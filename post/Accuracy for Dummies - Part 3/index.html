@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Jonathan Weisberg's Homepage">
+    <meta name="author" content="Jonathan Weisberg">
+    
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@jweisber">
+    <meta name="twitter:creator" content="@jweisber">
+    <meta name="twitter:title" content="Accuracy for Dummies, Part 3: Beyond the Second Dimension">
+    <meta name="twitter:description" content="Last time we saw why accuracy-mavens prefer Brier distance to Euclidean distance. But we did everything in two dimensions. That&rsquo;s fine for a coin toss, with only two possibilities. But what if there are three doors and one of them has a prize behind it??
+Don&rsquo;t panic! Today we&rsquo;re going to verify that Brier distance is still a proper way of measuring inaccuracy, even when there are more than two possibilities.">
+    <meta name="twitter:image" content="http://4.bp.blogspot.com/-1-Qhw_YLpa0/TnlAVcZHvUI/AAAAAAAACp0/sirO6rEzgvw/s1600/02%2BRomana.jpg">
+
+    <meta property="og:url" content="/post/Accuracy%20for%20Dummies%20-%20Part%203/" />
+    <meta property="og:type" content="article" />
+    <meta property="og:title" content="Accuracy for Dummies, Part 3: Beyond the Second Dimension" />
+    <meta property="og:description" content="Last time we saw why accuracy-mavens prefer Brier distance to Euclidean distance. But we did everything in two dimensions. That&rsquo;s fine for a coin toss, with only two possibilities. But what if there are three doors and one of them has a prize behind it??
+Don&rsquo;t panic! Today we&rsquo;re going to verify that Brier distance is still a proper way of measuring inaccuracy, even when there are more than two possibilities." />
+    <meta property="og:image" content="http://4.bp.blogspot.com/-1-Qhw_YLpa0/TnlAVcZHvUI/AAAAAAAACp0/sirO6rEzgvw/s1600/02%2BRomana.jpg" />
+
+
+    <title>Accuracy for Dummies, Part 3: Beyond the Second Dimension</title>
+
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+    <link href="/css/prism-xonokai.css" rel="stylesheet" />
+    <link href="/css/scarab.css" rel="stylesheet">
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]},
+        "HTML-CSS": {
+          availableFonts: ["Gyre-Pagella"],
+          preferredFont: "Gyre-Pagella",
+          webFont: "Gyre-Pagella",
+          imageFont: "Gyre-Pagella",
+        }
+      });
+    </script>
+    <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+    </script>
+    
+    
+    
+
+</head>
+
+<body>
+
+<nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+  <div class="container">
+    
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-navbar-collapse-1">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="http://jonathanweisberg.org/">Jonathan Weisberg</a>
+    </div>
+    
+    <div class="collapse navbar-collapse" id="bs-navbar-collapse-1">
+      <ul class="nav navbar-nav">
+        <li>
+          <a href="/pdf/CV.pdf">
+            <i class="fa fa-briefcase"></i>&nbsp;
+            CV
+          </a>
+        </li>
+        <li>
+          <a href="/post/">
+            <i class="fa fa-code"></i>&nbsp;
+            Blog
+          </a>
+        </li>
+        <li>
+          <a href="/publication/">
+            <i class="fa fa-files-o"></i>&nbsp;
+            Research
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+
+
+  
+  <div class="container">
+
+    
+    <div class="row">
+      <div class="col-md-3 hidden-sm hidden-xs text-right">
+        <h1 class="post-title">&nbsp;</h1>
+        <p>
+          <em>Fri, Jan 27, 2017</em><br />
+          
+          
+          
+          <span class="post-tags">
+            
+            <a class="post-tag" href="http://jonathanweisberg.org/tags/accuracy">Accuracy</a>
+             &bull;   
+            
+            <a class="post-tag" href="http://jonathanweisberg.org/tags/accuracy-for-dummies">Accuracy for Dummies</a>
+             &bull;  
+            
+            <a class="post-tag" href="http://jonathanweisberg.org/tags/formal-epistemology">Formal Epistemology</a>
+             &bull;  
+            
+            <a class="post-tag" href="http://jonathanweisberg.org/tags/philosophy">Philosophy</a>
+            
+            
+          </span>
+          
+          
+        </p>
+      </div>
+
+      <div class="col-md-7 blog-post">
+
+        <h1>Accuracy for Dummies, Part 3: Beyond the Second Dimension</h1>
+
+        <div class="hidden-md hidden-lg">
+          <div>
+            <em>Fri, Jan 27, 2017</em>
+          </div>
+          
+          
+          
+          <p class="post-tags">
+            
+            <a class="post-tag" href="http://jonathanweisberg.org/tags/accuracy">Accuracy</a>
+             &bull;   
+            
+            <a class="post-tag" href="http://jonathanweisberg.org/tags/accuracy-for-dummies">Accuracy for Dummies</a>
+             &bull;  
+            
+            <a class="post-tag" href="http://jonathanweisberg.org/tags/formal-epistemology">Formal Epistemology</a>
+             &bull;  
+            
+            <a class="post-tag" href="http://jonathanweisberg.org/tags/philosophy">Philosophy</a>
+            
+            
+          </p>
+          
+          
+        </div>
+
+        <div class="post-body">
+          
+
+<p>Last time we saw why accuracy-mavens prefer Brier distance to Euclidean distance. But we did everything in two dimensions. That&rsquo;s fine for a coin toss, with only two possibilities. But what if there are three doors and one of them has a prize behind it??</p>
+
+<p>Don&rsquo;t panic! Today we&rsquo;re going to verify that Brier distance is still a proper way of measuring inaccuracy, even when there are more than two possibilities. (Next time we&rsquo;ll talk about Euclidean distance with more than two possibilitie.)</p>
+
+<p>Let&rsquo;s start small, with just three possibilities. $\renewcommand{\vec}[1]{\mathbf{#1}}\newcommand{\p}{\vec{p}}\newcommand{\q}{\vec{q}}\newcommand{\v}{\vec{v}}\newcommand{\EIpq}{EI_{\p}(\q)}\newcommand{\EIpp}{EI_{\p}(\p)}$</p>
+
+<h1 id="three-possibilities">Three Possibilities</h1>
+
+<p>You&rsquo;re on a game show; there are three doors; one has a prize behind it. The three possibilities are represented by the vertices $(1,0,0)$, $(0,1,0)$, and $(0,0,1)$:</p>
+
+<p><img src="/img/accuracy/Three Vertices.png" alt="" /></p>
+
+<p>Your credences are given by some probability assignment $(p_1, p_2, p_3)$. It might be $(1/ 3, 1/ 3, 1/ 3)$ but it could be anything&hellip; $(7/ 10, 2/ 10, 1/ 10)$, for example.</p>
+
+<p>In case you&rsquo;re curious, here&rsquo;s what the range of possible probability assignments looks like in graphical terms:</p>
+
+<p><img src="/img/accuracy/Three Vertices with Hull.png" alt="" /></p>
+
+<p>The triangular surface is the three-dimensional analogue of the diagonal line in <a href="/img/accuracy/2D Dominance Diagram.png">the two-dimensional diagram</a> from our <a href="/post/Accuracy for Dummies - Part 1/">first post</a> in this series.</p>
+
+<p>It&rsquo;ll be handy to refer to points on this surface using single letters, like $\p$ for $(p_1, p_2, p_3)$. We&rsquo;ll write these letters in bold, to distinguish a sequence of numbers like $\p$ from a single number like $p_1$. (In math-speak, $\p$ is a <em>vector</em> and $p_1$ is a <em>scalar</em>.)</p>
+
+<p>Our job is to show that Brier distance is &ldquo;proper&rdquo; in three dimensions. Let&rsquo;s recall what that means: given a point $\p$, the expected Brier distance (according to $\p$) of a point $\q = (q_1, q_2, q_3)$ from the three vertices is always smallest when $\q = \p$.</p>
+
+<p>What does <em>that</em> mean?</p>
+
+<p>Recall, the Brier distance from $\q$ to the vertex $(1, 0, 0)$ is:
+$$
+(q_1 - 1)^2 + (q_2 - 0)^2 + (q_3 - 0)^2
+$$
+Or, more succinctly:
+$$
+(q_1 - 1)^2 + q_2^2 + q_3^2
+$$
+So the <em>expected</em> Brier distance of $\q$ according to $\p$ weights each such sum by the probability $\p$ assigns to the corresponding vertex.
+$$
+\begin{align}
+&amp;\quad\quad p_1 \left( (q_1 - 1)^2 + q_2^2 + q_3^2 \right)\\<br />
+  &amp;\quad + p_2 \left( q_1^2 + (q_2 - 1)^2 + q_3^2 \right)\\<br />
+  &amp;\quad + p_3 \left( q_1^2 + q_2^2 + (q_3 - 1)^2 \right)
+\end{align}
+$$
+We need to show that this quantity is smallest when $\q = \p$, i.e. when $q_1 = p_1$, $q_2 = p_2$, and $q_3 = p_3$.</p>
+
+<h2 id="visualizing-expected-inaccuracy">Visualizing Expected Inaccuracy</h2>
+
+<p>Let&rsquo;s do some visualization. We&rsquo;ll take a few examples of $\p$, and graph the expected inaccuracy of other possible points $\q$, using Brier distance to measure inaccuracy.</p>
+
+<p>For example, suppose $\p = (1/ 3, 1/ 3, 1/ 3)$. Then the expected inaccuracy of each point $\q$ looks like this:</p>
+
+<p><img src="/img/accuracy/BrierEI3.png" alt="" /></p>
+
+<p>The horizontal axes represent $q_1$ and $q_2$. The vertical axis represents expected inaccuracy.</p>
+
+<p>Where&rsquo;s $q_3$?? Not pictured! If we used all three visible dimensions for the elements of $\q$, we&rsquo;d have nothing left to visualize expected inaccuracy. But $q_3$ is there implicitly. You can always get $q_3$ by calculating $1 - (q_1 + q_2)$, because $\q$ is a probability assignment. So we don&rsquo;t actually need $q_3$ in the graph!</p>
+
+<p>Now, the red dot is the lowest point on the surface: the smallest possible expected inaccuracy, according to $\p$. But where is that in terms of $q_1$ and $q_2$? Let&rsquo;s look at the same graph from directly above:</p>
+
+<p><img src="/img/accuracy/BrierEI3-above.png" alt="" /></p>
+
+<p>Hey! Looks like the red dot is located at $q_1 = 1/ 3$ and $q_2 = 1/ 3$, i.e. at $\q = (1/ 3, 1/ 3, 1/ 3)$. Also known as $\p$. So that&rsquo;s promising: looks like expected inaccuracy is minimized when $\q = \p$, at least in this example.</p>
+
+<p>Let&rsquo;s do one more example, $\p = (6/ 10, 3/ 10, 1/ 10)$. Then the expected Brier distance of each point $\q$ looks like this:
+<img src="/img/accuracy/BrierEI3-2.png" alt="" />
+Or, taking the aerial view again:
+<img src="/img/accuracy/BrierEI3-2above.png" alt="" />
+Yep, looks like the red dot is located at $q_1 = 6/ 10$ and $q_2 = 3/ 10$, i.e. at $\q = (6/ 10, 3/ 10, 1/ 10)$, also known as $\p$. So, once again, it seems expected inaccuracy is minimized when $\q = \p$.</p>
+
+<p>So let&rsquo;s prove that that&rsquo;s how it always is.</p>
+
+<h2 id="a-proof">A Proof</h2>
+
+<p>We&rsquo;ll need a little notation: I&rsquo;m going to write $\EIpq$ for the expected inaccuracy of point $\q$, according to $\p$.</p>
+
+<p>Now recall our formula for expected inaccuracy:
+$$
+\begin{align}
+\EIpq
+&amp;= \quad p_1 \left( (q_1 - 1)^2 + q_2^2 + q_3^2 \right)\\<br />
+  &amp;\quad + p_2 \left( q_1^2 + (q_2 - 1)^2 + q_3^2 \right)\\<br />
+  &amp;\quad + p_3 \left( q_1^2 + q_2^2 + (q_3 - 1)^2 \right).
+\end{align}
+$$
+How do we find the point $\q$ that minimizes this mess?</p>
+
+<p>Originally this post used some pretty tedious calculus. But thanks to a hot tip from <a href="https://mathematics.stanford.edu/people/department-directory/name/jonathan-love/" target="_blank">Jonathan Love</a>, we can get by just with algebra.</p>
+
+<p>First we need to expand the squares in our big ugly sum:
+$$
+\begin{align}
+\EIpq
+&amp;= \quad p_1 \left( q_1^2 - 2q_1 + 1 + q_2^2 + q_3^2 \right)\\<br />
+  &amp;\quad + p_2 \left( q_1^2 + q_2^2 - 2q_2 + 1 + q_3^2 \right)\\<br />
+  &amp;\quad + p_3 \left( q_1^2 + q_2^2 + q_3^2 - 2q_3 + 1 \right).
+\end{align}
+$$
+Then we&rsquo;ll gather some common terms and rearrange things:
+$$
+\begin{align}
+\EIpq &amp;= (p_1 + p_2 + p_3)\left(q_1^2 + q_2^2 + q_3^2 + 1 \right) - 2p_1q_1 - 2p_2q_2 - 2p_3q_3.\\<br />
+\end{align}
+$$
+Since $p_1 + p_2 + p_3 = 1$, that simplifies to:
+$$
+\begin{align}
+\EIpq &amp;= q_1^2 + q_2^2 + q_3^2 + 1 - 2p_1q_1 - 2p_2q_2 - 2p_3q_3.\\<br />
+\end{align}
+$$</p>
+
+<p>Now we&rsquo;ll use <a href="https://mathematics.stanford.edu/people/department-directory/name/jonathan-love/" target="_blank">Jonathan</a>&rsquo;s ingenious trick. We&rsquo;re going to add $p_1^2 + p_2^2 + p_3^2 - 1$ to this expression, <em>which doesn&rsquo;t change where the minimum occurs</em>. If you shift every point on a graph upwards by the same amount, the minimum is still in the same place. (Imagine everybody in the world grows by an inch overnight; the shortest person in the world is still the shortest, despite being an inch taller.)</p>
+
+<p>Then, magically, we get an expression that factors into something tidy:
+$$
+\begin{align}
+&amp;\phantom{=}\phantom{=} p_1^2 + p_2^2 + p_3^2 + q_1^2 + q_2^2 + q_3^2 - 2p_1q_1 - 2p_2q_2 - 2p_3q_3\\<br />
+  &amp;= (p_1 - q_1)^2 + (p_2 - q_2)^2 + (p_3 - q_3)^2.
+\end{align}
+$$
+And not just tidy, but easy to minimize. It&rsquo;s a sum of squares, and squares are never negative. So the smallest possible value  is $0$, which occurs when all the squares are $0$, i.e. when $q_1 = p_1$, $q_2 = p_2$, and $q_3 = p_3$.</p>
+
+<p>So, the minimum of $\EIpq$ occurs in the same place, namely when $\q = \p$!</p>
+
+<h2 id="the-nth-dimension">The Nth Dimension</h2>
+
+<p>Now we can use the same idea to generalize to any number of dimensions. Since the steps are essentially identical, I&rsquo;ll keep it short and (I hope) sweet.</p>
+
+<p><strong>Theorem.</strong>&nbsp;
+Given a probability assignment $\p = (p_1, \ldots, p_n)$, if inaccuracy is measured using Brier distance, then $\EIpq$ is uniquely minimized when $\q = \p$.</p>
+
+<p><em>Proof.</em>&nbsp;
+Let $\p = (p_1, \ldots, p_n)$ be a probability assignment, and let $\EIpq$ be the expected inaccuracy according to $\p$ of probability assignment $\q = (q_1, \ldots, q_n)$, measured using Brier distance.</p>
+
+<p>First we simplify our expression for $\EIpq$ using algebra:
+$$
+\begin{align}
+\EIpq
+&amp;= \quad p_1 \left( (q_1 - 1)^2 + q_2^2 + \ldots + q_n^2 \right)\\<br />
+  &amp;\quad + p_2 \left( q_1^2 + (q_2 - 1)^2 + \ldots + q_n^2 \right)\\<br />
+  &amp;\quad\quad \vdots\\<br />
+  &amp;\quad + p_n \left( q_1^2 + q_2^2 + \ldots + q_{n-1}^2 + (q_n - 1)^2 \right)\\<br />
+&amp;= (p_1 + \ldots + p_n)\left( q_1^2 + \ldots + q_n^2 + 1\right) - 2 p_1 q_1 - \ldots - 2 p_n q_n\\<br />
+&amp;= q_1^2 + \ldots + q_n^2 + 1 - 2 p_1 q_1 - \ldots - 2 p_n q_n.
+\end{align}
+$$
+Now, because $p_1^2 + \ldots + p_n^2 - 1$ is a constant, adding it to $\EIpq$ doesn&rsquo;t change where the minimum occurs. So we can minimize instead:
+$$
+\begin{align}
+&amp;\phantom{=}\phantom{=} p_1^2 + \ldots + p_n^2 + q_1^2 + \ldots + q_n^2 - 2 p_1 q_1 - \ldots - 2 p_n q_n\\<br />
+&amp;= (p_1 - q_1)^2 + \ldots + (p_n - q_n)^2.
+\end{align}
+$$
+Being a sum of squares, the minimum value here cannot be less than $0$, which occurs when $\q = \p$. <span style="float: right;">$\Box$</span></p>
+
+<h1 id="conclusion">Conclusion</h1>
+
+<div class="text-center">
+<object data="http://www.youtube.com/embed/MkmMxfCgewQ"
+   width="560" height="315" classboo="text-center"></object>
+</div>
+
+<p>So what did we learn? That Brier distance isn&rsquo;t just &ldquo;stable&rdquo; in toy cases like a coin-toss. It&rsquo;s also stable in toy cases with any finite number of outcomes.</p>
+
+<p>No matter how many outcomes are under consideration, each probability assignment expects itself to do best at minimizing inaccuracy, if we use Brier distance to measure inaccuracy.</p>
+
+<p>To go beyond toy cases, we&rsquo;d have to extend this result to cases with infinite numbers of possibilities. And I haven&rsquo;t even begun to think about how to do that.</p>
+
+<p>Instead, next time we&rsquo;ll look at what happens in $3+$ dimensions when we use Euclidean distance instead of Brier distance. And it&rsquo;s actually kind of interesting! It turns out Euclidean distance is still improper in $3+$ dimensions, but not necessarily in the same way as in $2$ dimensions. More on that next time&hellip;</p>
+
+
+          &nbsp;
+        </div>
+
+        <div>
+          <a href="javascript: history.back()"><i class="fa fa-arrow-left"></i> Back</a>
+
+        </div>
+      </div>
+    </div>
+    
+
+<footer style="padding-top: 1em;">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-lg-12 text-center">
+        <p>
+          Powered by <a href="https://gohugo.io/">Hugo</a>;
+          styled with <a href="http://getbootstrap.com/">Bootstrap</a>;
+          mostly <a href="https://github.com/lambdafu/hugo-finite">cribbed</a> <a href="https://kieranhealy.org/">from</a> <a href="http://consequently.org/">others</a>.
+        </p>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+<script src="/js/prism.js"></script>
+
+<script type="text/javascript">
+var sc_project= 11213692 ;
+var sc_invisible= 1 ;
+var sc_security="b1954803";
+var scJsHost = (("https:" == document.location.protocol) ?
+"https://secure." : "http://www.");
+document.write("<sc"+"ript type='text/javascript' src='" +
+scJsHost+
+"statcounter.com/counter/counter.js'></"+"script>");
+</script>
+<noscript><div class="statcounter"><a title="web analytics"
+href="http://statcounter.com/" target="_blank"><img
+class="statcounter"
+src="//c.statcounter.com/11213692/0/b1954803/1/" alt="web
+analytics"></a></div></noscript>
+
+
+</body>
+</html>
+

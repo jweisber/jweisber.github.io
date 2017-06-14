@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Jonathan Weisberg's Homepage">
+    <meta name="author" content="Jonathan Weisberg">
+    
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@jweisber">
+    <meta name="twitter:creator" content="@jweisber">
+    <meta name="twitter:title" content="Gender &amp; Journal Submissions">
+    <meta name="twitter:description" content="Does an author&rsquo;s gender affect the fate of their submission to an academic journal? It&rsquo;s a big question, even if we restrict ourselves to philosophy journals.
+But we can make a start by using Ergo as one data-point. I&rsquo;ll examine two questions:
+ Question 1: Does gender affect the decision rendered at Ergo? Are men more likely to have their papers accepted, for example?
+ Question 2: Does gender affect time-to-decision at Ergo?">
+    <meta name="twitter:image" content="/img/author_gender_files/unnamed-chunk-9-1.png">
+
+    <meta property="og:url" content="/post/Author%20Gender/" />
+    <meta property="og:type" content="article" />
+    <meta property="og:title" content="Gender &amp; Journal Submissions" />
+    <meta property="og:description" content="Does an author&rsquo;s gender affect the fate of their submission to an academic journal? It&rsquo;s a big question, even if we restrict ourselves to philosophy journals.
+But we can make a start by using Ergo as one data-point. I&rsquo;ll examine two questions:
+ Question 1: Does gender affect the decision rendered at Ergo? Are men more likely to have their papers accepted, for example?
+ Question 2: Does gender affect time-to-decision at Ergo?" />
+    <meta property="og:image" content="/img/author_gender_files/unnamed-chunk-9-1.png" />
+
+
+    <title>Gender &amp; Journal Submissions</title>
+
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+    <link href="/css/prism-xonokai.css" rel="stylesheet" />
+    <link href="/css/scarab.css" rel="stylesheet">
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]},
+        "HTML-CSS": {
+          availableFonts: ["Gyre-Pagella"],
+          preferredFont: "Gyre-Pagella",
+          webFont: "Gyre-Pagella",
+          imageFont: "Gyre-Pagella",
+        }
+      });
+    </script>
+    <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+    </script>
+    
+    
+    
+
+</head>
+
+<body>
+
+<nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+  <div class="container">
+    
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-navbar-collapse-1">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="http://jonathanweisberg.org/">Jonathan Weisberg</a>
+    </div>
+    
+    <div class="collapse navbar-collapse" id="bs-navbar-collapse-1">
+      <ul class="nav navbar-nav">
+        <li>
+          <a href="/pdf/CV.pdf">
+            <i class="fa fa-briefcase"></i>&nbsp;
+            CV
+          </a>
+        </li>
+        <li>
+          <a href="/post/">
+            <i class="fa fa-code"></i>&nbsp;
+            Blog
+          </a>
+        </li>
+        <li>
+          <a href="/publication/">
+            <i class="fa fa-files-o"></i>&nbsp;
+            Research
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+
+
+  
+  <div class="container">
+
+    
+    <div class="row">
+      <div class="col-md-3 hidden-sm hidden-xs text-right">
+        <h1 class="post-title">&nbsp;</h1>
+        <p>
+          <em>Thu, Jan 26, 2017</em><br />
+          
+          
+          
+          <span class="post-tags">
+            
+            <a class="post-tag" href="http://jonathanweisberg.org/tags/rgo">Rgo</a>
+             &bull;   
+            
+            <a class="post-tag" href="http://jonathanweisberg.org/tags/r">R</a>
+             &bull;  
+            
+            <a class="post-tag" href="http://jonathanweisberg.org/tags/ergo">Ergo</a>
+             &bull;  
+            
+            <a class="post-tag" href="http://jonathanweisberg.org/tags/publishing">Publishing</a>
+            
+            
+          </span>
+          
+          
+        </p>
+      </div>
+
+      <div class="col-md-7 blog-post">
+
+        <h1>Gender &amp; Journal Submissions</h1>
+
+        <div class="hidden-md hidden-lg">
+          <div>
+            <em>Thu, Jan 26, 2017</em>
+          </div>
+          
+          
+          
+          <p class="post-tags">
+            
+            <a class="post-tag" href="http://jonathanweisberg.org/tags/rgo">Rgo</a>
+             &bull;   
+            
+            <a class="post-tag" href="http://jonathanweisberg.org/tags/r">R</a>
+             &bull;  
+            
+            <a class="post-tag" href="http://jonathanweisberg.org/tags/ergo">Ergo</a>
+             &bull;  
+            
+            <a class="post-tag" href="http://jonathanweisberg.org/tags/publishing">Publishing</a>
+            
+            
+          </p>
+          
+          
+        </div>
+
+        <div class="post-body">
+          
+
+<p>Does an author&rsquo;s gender affect the fate of their submission to an academic journal? It&rsquo;s a big question, even if we restrict ourselves to philosophy journals.</p>
+
+<p>But we can make a start by using <a href="http://www.ergophiljournal.org" target="_blank"><em>Ergo</em></a> as one data-point. I&rsquo;ll examine two questions:</p>
+
+<ul>
+<li><p>Question 1: Does gender affect the decision rendered at <em>Ergo</em>? Are men more likely to have their papers accepted, for example?</p></li>
+
+<li><p>Question 2: Does gender affect time-to-decision at <em>Ergo</em>? For example, do women have to wait longer on average for a decision?</p></li>
+</ul>
+
+<h1 id="background">Background</h1>
+
+<p>Some important background and caveats before we begin:</p>
+
+<ul>
+<li><p>Our data set goes back to Feb. 11, 2015, when <em>Ergo</em> moved to its current online system for handling submissions. We do have records going back to Jun. 2013, when the journal launched. But integrating the data from the two systems is a programming hassle I haven&rsquo;t faced up to yet.</p></li>
+
+<li><p>We&rsquo;ll exclude submissions that were withdrawn by the author before a decision could be rendered. Usually, when an author withdraws a submission, it&rsquo;s so that they can resubmit a trivially-corrected manuscript five minutes later. So this data mostly just gets in the way.</p></li>
+
+<li><p>We&rsquo;ll also exclude submissions that were still under review as of Jan. 1, 2017, since the data there is incomplete.</p></li>
+
+<li><p>The gender data we&rsquo;ll be using was gathered manually by <em>Ergo</em>&rsquo;s managing editors (me and Franz Huber). In most cases we didn&rsquo;t know the author personally. So we did a quick google to see whether we could infer the author&rsquo;s gender based on public information, like pronouns and/or pictures. When we weren&rsquo;t confident that we could, we left their gender as &ldquo;unknown&rdquo;.</p></li>
+
+<li><p>This analysis covers only men and women, because there haven&rsquo;t yet been any cases where we could confidently infer that an author identified as another gender. And the &ldquo;gender unknown&rdquo; cases are too few for reliable statistical analysis.</p></li>
+
+<li><p>Since we only have data for the gender of the submitting author, our analysis will overlook co-authors.</p></li>
+</ul>
+
+<p>With that in mind, a brief overview: our data set contains $696$ submissions over almost two years (Feb. 11, 2015 up to Jan. 1, 2017), but only $639$ of these are included in this analysis. The $52$ submissions that were in-progress as of Jan. 1, 2017, or were withdrawn by the author, have been excluded. Another $5$ cases where the author&rsquo;s gender was unknown were also excluded.</p>
+
+<h1 id="gender-decisions">Gender &amp; Decisions</h1>
+
+<p>Does an author&rsquo;s gender affect the journal&rsquo;s decision about whether their submission is accepted? We can slice this question a few different ways:</p>
+
+<ol>
+<li><p>Does gender affect the first-round decision to reject/accept/R&amp;R?</p></li>
+
+<li><p>Does gender affect the likelihood of desk-rejection, specifically?</p></li>
+
+<li><p>Does gender affect the chance of converting an R&amp;R into an accept?</p></li>
+
+<li><p>Does gender affect the ultimate decision to accept/reject (whether via an intervening R&amp;R or not)?</p></li>
+</ol>
+
+<p>The short answer to all these questions is: no, at least not in a statistically significant way. But there are some wrinkles. So let&rsquo;s take each question in turn.</p>
+
+<h2 id="first-round-decisions">First-Round Decisions</h2>
+
+<p>Does gender affect the first-round decision to reject/accept/R&amp;R?</p>
+
+<p><em>Ergo</em> has two kinds of R&amp;R, Major Revisions and Minor Revisions. Here are the raw numbers:</p>
+
+<table>
+<thead>
+<tr>
+<th align="left"></th>
+<th align="right">Reject</th>
+<th align="right">Major Revisions</th>
+<th align="right">Minor Revisions</th>
+<th align="right">Accept</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td align="left">Female</td>
+<td align="right">76</td>
+<td align="right">10</td>
+<td align="right">2</td>
+<td align="right">0</td>
+</tr>
+
+<tr>
+<td align="left">Male</td>
+<td align="right">438</td>
+<td align="right">41</td>
+<td align="right">15</td>
+<td align="right">5</td>
+</tr>
+</tbody>
+</table>
+
+<p>Graphically, in terms of percentages:</p>
+
+<p><img src="/img/author_gender_files/unnamed-chunk-4-1.png" alt="" /><!-- --></p>
+
+<p>There are differences here, of course: women were asked to make major revisions more frequently than men, for example. And men received verdicts of minor revisions or outright acceptance more often than women.</p>
+
+<p>Are these differences significant? They don&rsquo;t look it from the bar graph. And a standard chi-square test agrees.<sup class="footnote-ref" id="fnref:1"><a rel="footnote" href="#fn:1">1</a></sup></p>
+
+<h2 id="desk-rejections">Desk Rejections</h2>
+
+<p>Things are a little more interesting if we separate out desk rejections from rejections-after-external-review. The raw numbers:</p>
+
+<table>
+<thead>
+<tr>
+<th align="left"></th>
+<th align="right">Desk Reject</th>
+<th align="right">Non-desk Reject</th>
+<th align="right">Major Revisions</th>
+<th align="right">Minor Revisions</th>
+<th align="right">Accept</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td align="left">Female</td>
+<td align="right">61</td>
+<td align="right">15</td>
+<td align="right">10</td>
+<td align="right">2</td>
+<td align="right">0</td>
+</tr>
+
+<tr>
+<td align="left">Male</td>
+<td align="right">311</td>
+<td align="right">127</td>
+<td align="right">41</td>
+<td align="right">15</td>
+<td align="right">5</td>
+</tr>
+</tbody>
+</table>
+
+<p>In terms of percentages for men and women:</p>
+
+<p><img src="/img/author_gender_files/unnamed-chunk-9-1.png" alt="" /><!-- --></p>
+
+<p>The differences here are more pronounced. For example, women had their submissions desk-rejected more frequently, a difference of about 8.5%.</p>
+
+<p>But once again, the differences are not statistically significant according to the standard chi-square test.<sup class="footnote-ref" id="fnref:2"><a rel="footnote" href="#fn:2">2</a></sup></p>
+
+<h2 id="ultimate-decisions">Ultimate Decisions</h2>
+
+<p>What if we just consider a submission&rsquo;s ultimate fate&mdash;whether it&rsquo;s accepted or rejected in the end? Here the results are pretty clear:</p>
+
+<table>
+<thead>
+<tr>
+<th align="left"></th>
+<th align="right">Reject</th>
+<th align="right">Accept</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td align="left">Female</td>
+<td align="right">78</td>
+<td align="right">5</td>
+</tr>
+
+<tr>
+<td align="left">Male</td>
+<td align="right">450</td>
+<td align="right">38</td>
+</tr>
+</tbody>
+</table>
+
+<p><img src="/img/author_gender_files/unnamed-chunk-13-1.png" alt="" /><!-- --></p>
+
+<p>Pretty obviously there&rsquo;s no significant difference, and a chi-square test agrees.<sup class="footnote-ref" id="fnref:3"><a rel="footnote" href="#fn:3">3</a></sup></p>
+
+<h2 id="conversions">Conversions</h2>
+
+<p>Our analysis so far suggests that men and women probably have about equal chance of converting an R&amp;R into an accept. Looking at the numbers directly corroborates that thought:</p>
+
+<table>
+<thead>
+<tr>
+<th align="left"></th>
+<th align="right">Reject</th>
+<th align="right">Accept</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td align="left">Female</td>
+<td align="right">2</td>
+<td align="right">5</td>
+</tr>
+
+<tr>
+<td align="left">Male</td>
+<td align="right">12</td>
+<td align="right">33</td>
+</tr>
+</tbody>
+</table>
+
+<p><img src="/img/author_gender_files/unnamed-chunk-16-1.png" alt="" /><!-- --></p>
+
+<p>As before, a standard chi-square test agrees.<sup class="footnote-ref" id="fnref:4"><a rel="footnote" href="#fn:4">4</a></sup> Though, of course, the numbers here are small and shouldn&rsquo;t be given too much weight.</p>
+
+<h2 id="conclusion-so-far">Conclusion So Far</h2>
+
+<p>None of the data so far yielded a significant difference between men and women. None even came particularly close (see the footnotes for the numerical details). So it seems the journal&rsquo;s decisions are independent of gender, or nearly so.</p>
+
+<h1 id="gender-time-to-decision">Gender &amp; Time-to-Decision</h1>
+
+<p>Authors don&rsquo;t just care what decision is rendered, of course. They also care that decisions are made quickly. Can men and women expect similar wait-times?</p>
+
+<p>The average time-to-decision is 23.3 days. But for men it&rsquo;s 23.9 days while for women it&rsquo;s only 19.6. This looks like a significant difference. And although it isn&rsquo;t quite significant according to a standard $t$ test, it very nearly is.<sup class="footnote-ref" id="fnref:5"><a rel="footnote" href="#fn:5">5</a></sup></p>
+
+<p>What might be going on here? Let&rsquo;s look at the observed distributions for men and women:</p>
+
+<p><img src="/img/author_gender_files/unnamed-chunk-19-1.png" alt="" /><!-- --></p>
+
+<p>A striking difference is that there are so many more submissions from men than from women. But otherwise these distributions actually look quite similar. Each is a bimodal distribution with one peak for desk-rejections around one week, and another, smaller peak for externally reviewed submissions around six or seven weeks.</p>
+
+<p>We noticed earlier that women had more desk-rejections by about 8.5%. And while that difference wasn&rsquo;t statistically significant, it may still be what&rsquo;s causing the almost-significant difference we see with time-to-decision (especially if men also have a few extra outliers, as seems to be the case).</p>
+
+<p>To test this hypothesis, we can separate out desk-rejections and externally reviewed submissions. Graphically:</p>
+
+<p><img src="/img/author_gender_files/unnamed-chunk-20-1.png" alt="" /><!-- --><img src="/img/author_gender_files/unnamed-chunk-20-2.png" alt="" /><!-- --></p>
+
+<p>Aside from the raw numbers, the distributions for men and for women look very similar. And if we run separate $t$ tests for desk-rejections and for externally reviewed submissions, gender differences are no longer close to significance. For desk-rejections $p = 0.24$. And for externally reviewed submissions $p = 0.46$.</p>
+
+<h1 id="conclusions">Conclusions</h1>
+
+<p>Apparently an author&rsquo;s gender has little or no effect on the content or speed of <em>Ergo</em>&rsquo;s decision. I&rsquo;d <em>like</em> to think this is a result of the journal&rsquo;s <a href="http://www.ergophiljournal.org/review.html" target="_blank">strong commitment to triple-anonymous review</a>. But without data from other journals to make comparisons, we can&rsquo;t really infer much about potential causes. And, of course, we can&rsquo;t generalize to other journals with any confidence, either.</p>
+
+<h1 id="technical-notes">Technical Notes</h1>
+
+<p>This post was written in R Markdown and the source is <a href="https://github.com/jweisber/rgo/blob/master/author%20gender/author%20gender.Rmd" target="_blank">available on GitHub</a>. I&rsquo;m new to both R and classical statistics, and this post is a learning exercise for me. So I encourage you to check the code and contact me with corrections.</p>
+<div class="footnotes">
+
+<hr />
+
+<ol>
+<li id="fn:1"><p>Specifically, $\chi^2(3, N = 587) = 1.89$, $p = 0.6$. This raises the question of power, and for a small effect size ($w = .1$) power is only about $0.51$. But it increases quickly to $0.99$ at $w = .2$.</p>
+
+<p>Given the small numbers in some of the columns though, especially the Accept column, we might prefer a different test than $\chi^2$. The more precise $G$ test yields $p = 0.46$, still fairly large. And Fisher&rsquo;s exact test yields $p = 0.72$.</p>
+
+<p>We might also do an ordinal analysis, since decisions have a natural desirability ordering for authors: Accept &gt; Minor Revisions &gt; Major Revisions &gt; Reject. We can test for a linear trend by assigning integer ranks from 4 down through 1 <a href="http://ca.wiley.com/WileyCDA/WileyTitle/productCd-0470463635.html" target="_blank">(Agresti 2007)</a>.  A test of the <a href="https://onlinecourses.science.psu.edu/stat504/node/91" target="_blank">Mantel-Haenszel statistic</a> $M^2$ then yields $p = 0.82$.</p>
+ <a class="footnote-return" href="#fnref:1"><sup>[return]</sup></a></li>
+
+<li id="fn:2"><p>Here we have $\chi^2(4, N = 587) = 4.64$, $p = 0.33$. As before, the power for a small effect ($w = .1$) is only middling, about 0.46, but increases quickly to near certainty ($0.98$) by $w = .2$.</p>
+
+<p>Instead of $\chi^2$ we might again consider a $G$ test, which yields $p = 0.24$, or Fisher&rsquo;s exact test which yields $p = 0.37$.</p>
+
+<p>For an ordinal test using the ranking Desk Reject &lt; Non-desk Reject &lt; Major Revisions &lt; etc., the Mantel-Haenszel statistic $M^2$ now yields $p = 0.39$.</p>
+ <a class="footnote-return" href="#fnref:2"><sup>[return]</sup></a></li>
+<li id="fn:3">Here we have $\chi^2(1, N = 571) = 0.11$, $p = 0.74$.
+ <a class="footnote-return" href="#fnref:3"><sup>[return]</sup></a></li>
+<li id="fn:4">$\chi^2(1, N = 52) = 0$, $p = 1$.
+ <a class="footnote-return" href="#fnref:4"><sup>[return]</sup></a></li>
+<li id="fn:5">Specifically, $t(137.71) = 1.78$, $p = 0.08$. Although a $t$ test may not actually be the best choice here, since (as we&rsquo;re about to see) the sampling distributions aren&rsquo;t normal, but rather bimodal. Still, we can compare this result to non-parametric tests like Wilcoxon-Mann-Whitney ($p = 0.1$) or the bootstrap-$t$  ($p = 0.07$). These $p$-values don&rsquo;t quite cross the customary $\alpha = .05$ threshold either, but they are still small.
+ <a class="footnote-return" href="#fnref:5"><sup>[return]</sup></a></li>
+</ol>
+</div>
+
+
+          &nbsp;
+        </div>
+
+        <div>
+          <a href="javascript: history.back()"><i class="fa fa-arrow-left"></i> Back</a>
+
+        </div>
+      </div>
+    </div>
+    
+
+<footer style="padding-top: 1em;">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-lg-12 text-center">
+        <p>
+          Powered by <a href="https://gohugo.io/">Hugo</a>;
+          styled with <a href="http://getbootstrap.com/">Bootstrap</a>;
+          mostly <a href="https://github.com/lambdafu/hugo-finite">cribbed</a> <a href="https://kieranhealy.org/">from</a> <a href="http://consequently.org/">others</a>.
+        </p>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+<script src="/js/prism.js"></script>
+
+<script type="text/javascript">
+var sc_project= 11213692 ;
+var sc_invisible= 1 ;
+var sc_security="b1954803";
+var scJsHost = (("https:" == document.location.protocol) ?
+"https://secure." : "http://www.");
+document.write("<sc"+"ript type='text/javascript' src='" +
+scJsHost+
+"statcounter.com/counter/counter.js'></"+"script>");
+</script>
+<noscript><div class="statcounter"><a title="web analytics"
+href="http://statcounter.com/" target="_blank"><img
+class="statcounter"
+src="//c.statcounter.com/11213692/0/b1954803/1/" alt="web
+analytics"></a></div></noscript>
+
+
+</body>
+</html>
+
