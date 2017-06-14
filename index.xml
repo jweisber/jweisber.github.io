@@ -1,0 +1,410 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Jonathan Weisberg</title>
+    <link>http://jonathanweisberg.org/</link>
+    <description>Recent content on Jonathan Weisberg</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Wed, 14 Jun 2017 15:21:42 -0500</lastBuildDate>
+    
+	<atom:link href="http://jonathanweisberg.org/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>The Mosteller Hall Puzzle</title>
+      <link>http://jonathanweisberg.org/post/teaching-monty-hall/</link>
+      <pubDate>Wed, 14 Jun 2017 15:21:42 -0500</pubDate>
+      
+      <guid>http://jonathanweisberg.org/post/teaching-monty-hall/</guid>
+      <description>One of my favourite probability puzzles to teach is a close cousin of the Monty Hall problem. Originally from a 1965 book by Frederick Mosteller,1 here&amp;rsquo;s my formulation:
+ Three prisoners, A, B, and C, are condemned to die in the morning. But the king decides in the night to pardon one of them. He makes his choice at random and communicates it to the guard, who is sworn to secrecy.</description>
+    </item>
+    
+    <item>
+      <title>Accuracy for Dummies, Part 7: Dominance</title>
+      <link>http://jonathanweisberg.org/post/accuracy-for-dummies---part-7---brier-dominance/</link>
+      <pubDate>Wed, 07 Jun 2017 00:00:00 -0500</pubDate>
+      
+      <guid>http://jonathanweisberg.org/post/accuracy-for-dummies---part-7---brier-dominance/</guid>
+      <description>In our last two posts we established two key facts:
+ The set of possible probability assignments is convex. Convex sets are &amp;ldquo;obtuse&amp;rdquo;. Given a point outside a convex set, there&amp;rsquo;s a point inside that forms a right-or-obtuse angle with any third point in the set.  Today we&amp;rsquo;re putting them together to get the central result of the accuracy framework, the Brier dominance theorem. We&amp;rsquo;ll show that a non-probabilistic credence assignment is always &amp;ldquo;Brier dominated&amp;rdquo; by some probabilistic one.</description>
+    </item>
+    
+    <item>
+      <title>Journal Submission Rates by Gender: A Look at the APA/BPA Data</title>
+      <link>http://jonathanweisberg.org/post/a-look-at-the-apa-bpa-data/</link>
+      <pubDate>Tue, 06 Jun 2017 11:45:04 -0500</pubDate>
+      
+      <guid>http://jonathanweisberg.org/post/a-look-at-the-apa-bpa-data/</guid>
+      <description>Update: editors at CJP and Phil Quarterly have kindly shared some important, additional information. See the edit below for details.
+A new paper on the representation of women in philosophy journals prompted some debate in the philosophy blogosphere last week. The paper found women to be underrepresented across a range of prominent journals, yet overrepresented in the two journals studied where review was non-anonymous.
+Commenters over at Daily Nous complained about the lack of base-rate data.</description>
+    </item>
+    
+    <item>
+      <title>Accuracy for Dummies, Part 6: Obtusity</title>
+      <link>http://jonathanweisberg.org/post/accuracy-for-dummies---part-6---obtusity/</link>
+      <pubDate>Wed, 24 May 2017 00:00:00 -0500</pubDate>
+      
+      <guid>http://jonathanweisberg.org/post/accuracy-for-dummies---part-6---obtusity/</guid>
+      <description>Last time we saw that the set of probability assignments is convex. Today we&amp;rsquo;re going to show that convex sets have a special sort of &amp;ldquo;obtuse&amp;rdquo; relationship with outsiders. Given a point outside a convex set, there is always a point in the set that forms a right-or-obtuse angle with it.
+Recall our 2D diagram from the first post. The convex set of interest here is the diagonal line segment from $(0,1)$ to $(1,0)$:</description>
+    </item>
+    
+    <item>
+      <title>Accuracy for Dummies, Part 5: Convexity</title>
+      <link>http://jonathanweisberg.org/post/accuracy-for-dummies---part-5---convexity/</link>
+      <pubDate>Thu, 18 May 2017 10:35:00 -0500</pubDate>
+      
+      <guid>http://jonathanweisberg.org/post/accuracy-for-dummies---part-5---convexity/</guid>
+      <description>In this and the next two posts we&amp;rsquo;ll establish the central theorem of the accuracy framework. We&amp;rsquo;ll show that the laws of probability are specially suited to the pursuit of accuracy, measured in Brier distance.
+We showed this for cases with two possible outcomes, like a coin toss, way back in the first post of this series. A simple, two-dimensional diagram was all we really needed for that argument. To see how the same idea extends to any number of dimensions, we need to generalize the key ingredients of that reasoning to $n$ dimensions.</description>
+    </item>
+    
+    <item>
+      <title>Journals as Ratings Agencies</title>
+      <link>http://jonathanweisberg.org/post/journals-as-ratings-agencies/</link>
+      <pubDate>Thu, 30 Mar 2017 15:27:04 -0500</pubDate>
+      
+      <guid>http://jonathanweisberg.org/post/journals-as-ratings-agencies/</guid>
+      <description>Starting in July, philosophy&amp;rsquo;s two most prestigious journals won&amp;rsquo;t reject submitted papers anymore. Instead they&amp;rsquo;ll &amp;ldquo;grade&amp;rdquo; every submission, assigning a rating on the familiar letter-grade scale (A+, A, A-, B+, B, B-, etc.).
+They will, in effect, become ratings agencies.
+They&amp;rsquo;ll still publish papers. Those rated A- or higher can be published in the journal, if the authors want. Or they can seek another venue, if they think they can do better.</description>
+    </item>
+    
+    <item>
+      <title>Accuracy for Dummies, Part 4: Euclid in the Round</title>
+      <link>http://jonathanweisberg.org/post/accuracy-for-dummies---part-4/</link>
+      <pubDate>Thu, 23 Feb 2017 00:00:00 -0500</pubDate>
+      
+      <guid>http://jonathanweisberg.org/post/accuracy-for-dummies---part-4/</guid>
+      <description>Last time we took Brier distance beyond two dimensions. We showed that it&amp;rsquo;s &amp;ldquo;proper&amp;rdquo; in any finite number of dimensions. Today we&amp;rsquo;ll show that Euclidean distance is &amp;ldquo;improper&amp;rdquo; in any finite number dimensions.
+When I first sat down to write this post, I had in mind a straightforward generalization of our previous result for Euclidean distance in two dimensions. And I figured it would be easy to prove.
+Not so.</description>
+    </item>
+    
+    <item>
+      <title>Editorial Gravity</title>
+      <link>http://jonathanweisberg.org/post/editorial-gravity/</link>
+      <pubDate>Wed, 22 Feb 2017 10:44:10 -0500</pubDate>
+      
+      <guid>http://jonathanweisberg.org/post/editorial-gravity/</guid>
+      <description>We&amp;rsquo;ve all been there. One referee is positive, the other negative, and the editor decides to reject the submission.
+I&amp;rsquo;ve heard it said editors tend to be conservative given the recommendations of their referees. And that jibes with my experience as an author.
+So is there anything to it&amp;mdash;is &amp;ldquo;editorial gravity&amp;rdquo; a real thing? And if it is, how strong is its pull? Is there some magic function editors use to compute their decision based on the referees&amp;rsquo; recommendations?</description>
+    </item>
+    
+    <item>
+      <title>Gender &amp; Journal Referees</title>
+      <link>http://jonathanweisberg.org/post/referee-gender/</link>
+      <pubDate>Mon, 20 Feb 2017 09:34:10 -0500</pubDate>
+      
+      <guid>http://jonathanweisberg.org/post/referee-gender/</guid>
+      <description>We looked at author gender in a previous post, today let&amp;rsquo;s consider referees. Does their gender have any predictive value?
+Once again our discussion only covers men and women because we don&amp;rsquo;t have the data to support a deeper analysis.1
+Using data from Ergo, we&amp;rsquo;ll consider the following questions:
+ Requests. How are requests to referee distributed between men and women? Are men more likely to be invited, for example?</description>
+    </item>
+    
+    <item>
+      <title>In Defense of Reviewer 2</title>
+      <link>http://jonathanweisberg.org/post/reviewer-2/</link>
+      <pubDate>Mon, 06 Feb 2017 10:36:10 -0500</pubDate>
+      
+      <guid>http://jonathanweisberg.org/post/reviewer-2/</guid>
+      <description>Spare a thought for Reviewer 2, that much-maligned shade of academe. There&amp;rsquo;s even a hashtag dedicated to the joke:
+A rare glimpse of reviewer 2, seen here in their natural habitat pic.twitter.com/lpT1BVhDCX
+&amp;mdash; Aidan McGlynn (@AidanMcGlynn) January 15, 2017 
+But is it just a joke? Order could easily matter here.
+Referees invited later weren&amp;rsquo;t the editor&amp;rsquo;s first choice, after all. Maybe they&amp;rsquo;re less competent, less likely to appreciate your brilliant insights as an author.</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>http://jonathanweisberg.org/2/</link>
+      <pubDate>Wed, 01 Feb 2017 10:44:10 -0500</pubDate>
+      
+      <guid>http://jonathanweisberg.org/2/</guid>
+      <description> Three Lectures in Formal Epistemology, NIP 2010: 1) Upper &amp;amp; Lower Probabilities, 2) Dempster-Shafer Theory, and 3) Pollock&amp;rsquo;s Theory of Defeasible Reasoning Conditionalization Without Reflection &amp;mdash; An extended version of Conditionalization, Reflection, and Self-Knowledge  </description>
+    </item>
+    
+    <item>
+      <title>Accuracy for Dummies, Part 3: Beyond the Second Dimension</title>
+      <link>http://jonathanweisberg.org/post/accuracy-for-dummies---part-3/</link>
+      <pubDate>Fri, 27 Jan 2017 00:00:00 -0500</pubDate>
+      
+      <guid>http://jonathanweisberg.org/post/accuracy-for-dummies---part-3/</guid>
+      <description>Last time we saw why accuracy-mavens prefer Brier distance to Euclidean distance. But we did everything in two dimensions. That&amp;rsquo;s fine for a coin toss, with only two possibilities. But what if there are three doors and one of them has a prize behind it??
+Don&amp;rsquo;t panic! Today we&amp;rsquo;re going to verify that Brier distance is still a proper way of measuring inaccuracy, even when there are more than two possibilities.</description>
+    </item>
+    
+    <item>
+      <title>Gender &amp; Journal Submissions</title>
+      <link>http://jonathanweisberg.org/post/author-gender/</link>
+      <pubDate>Thu, 26 Jan 2017 10:36:10 -0500</pubDate>
+      
+      <guid>http://jonathanweisberg.org/post/author-gender/</guid>
+      <description>Does an author&amp;rsquo;s gender affect the fate of their submission to an academic journal? It&amp;rsquo;s a big question, even if we restrict ourselves to philosophy journals.
+But we can make a start by using Ergo as one data-point. I&amp;rsquo;ll examine two questions:
+ Question 1: Does gender affect the decision rendered at Ergo? Are men more likely to have their papers accepted, for example?
+ Question 2: Does gender affect time-to-decision at Ergo?</description>
+    </item>
+    
+    <item>
+      <title>Accuracy for Dummies, Part 2: from Euclid to Brier</title>
+      <link>http://jonathanweisberg.org/post/accuracy-for-dummies---part-2/</link>
+      <pubDate>Wed, 18 Jan 2017 00:00:00 -0500</pubDate>
+      
+      <guid>http://jonathanweisberg.org/post/accuracy-for-dummies---part-2/</guid>
+      <description>Last time we saw that Euclidean distance is an &amp;ldquo;unstable&amp;rdquo; way of measuring inaccuracy. Given one assignment of probabilities, you&amp;rsquo;ll expect some other assignment to be more accurate (unless the first assignment is either perfectly certain or perfectly uncertain).
+That&amp;rsquo;s why accuraticians don&amp;rsquo;t use good ol&amp;rsquo; Euclidean distance.
+Instead they use&amp;hellip; well, there are lots of alternatives. But the closest thing to a standard one is Brier distance: the square of Euclidean distance.</description>
+    </item>
+    
+    <item>
+      <title>The Thursday Conundrum</title>
+      <link>http://jonathanweisberg.org/post/the-thursday-conundrum/</link>
+      <pubDate>Mon, 16 Jan 2017 10:14:00 -0500</pubDate>
+      
+      <guid>http://jonathanweisberg.org/post/the-thursday-conundrum/</guid>
+      <description>In an earlier post we saw that Mondays and Thursdays are good for editors, at least at Ergo. Potential referees say yes more often when invited on these days. But why?
+Mondays aren&amp;rsquo;t too puzzling. It&amp;rsquo;s the start of a new week, so people are fresh, and maybe just a little deluded about how productive the coming week will prove to be.
+But Thursdays? They don&amp;rsquo;t seem especially special. I tried speculating a priori about what might be going on there.</description>
+    </item>
+    
+    <item>
+      <title>Accuracy for Dummies, Part 1: Euclid Improper</title>
+      <link>http://jonathanweisberg.org/post/accuracy-for-dummies---part-1/</link>
+      <pubDate>Fri, 13 Jan 2017 09:53:00 -0500</pubDate>
+      
+      <guid>http://jonathanweisberg.org/post/accuracy-for-dummies---part-1/</guid>
+      <description>If you&amp;rsquo;ve bumped into the accuracy framework before, you&amp;rsquo;ve probably seen a diagram like this one:
+The vertices $(1,0)$ and $(0,1)$ represent two possibilities, whether a coin lands heads or tails in this example.
+According to the laws of probability, the probability of heads and of tails must add up to $1$, like $.3 + .7$ or $.5 + .5$. So the diagonal line connecting the two vertices covers all the possible probability assignments&amp;hellip; $(0,1)$, $(.</description>
+    </item>
+    
+    <item>
+      <title>An Editor&#39;s Favourite Days of the Week</title>
+      <link>http://jonathanweisberg.org/post/an-editors-favourite-days/</link>
+      <pubDate>Mon, 09 Jan 2017 10:13:49 -0500</pubDate>
+      
+      <guid>http://jonathanweisberg.org/post/an-editors-favourite-days/</guid>
+      <description>Finding willing referees is one of the biggest challenges for a journal editor. Are referees more willing some days of the week than others? Apparently they are, on Mondays&amp;hellip; and Thursdays, for some reason. At least, that&amp;rsquo;s how things have gone at Ergo the last couple years (2015 and 2016).
+Data Consider the &amp;ldquo;bounce rate&amp;rdquo; for a given day of the week: the portion of invites sent on that day that end up being declined (bounce rate = #declined / #invited).</description>
+    </item>
+    
+    <item>
+      <title>Victor: Hugo</title>
+      <link>http://jonathanweisberg.org/post/hugo/</link>
+      <pubDate>Sun, 08 Jan 2017 00:00:01 -0500</pubDate>
+      
+      <guid>http://jonathanweisberg.org/post/hugo/</guid>
+      <description>I chose Hugo to manage this site mainly because it&amp;rsquo;s shiny and new. But there were some substantive reasons, too.
+Hugo is famously fast&amp;mdash;really fast&amp;mdash;but that wasn&amp;rsquo;t the big draw for me. For a personal website, even one with many years&amp;rsquo; worth of blogging accrued, Hugo&amp;rsquo;s speed just isn&amp;rsquo;t that important. Quoth the Code Barbarian:
+ being the fastest static site generator is like being the resturaunt with the cleanest bathroom: sure, I prefer a faster generator, but I wouldn&amp;rsquo;t pick one generator over another because one shaves off 100ms.</description>
+    </item>
+    
+    <item>
+      <title>iTerm from RStudio</title>
+      <link>http://jonathanweisberg.org/post/iterm-with-rstudio/</link>
+      <pubDate>Fri, 06 Jan 2017 00:00:00 -0500</pubDate>
+      
+      <guid>http://jonathanweisberg.org/post/iterm-with-rstudio/</guid>
+      <description>I can&amp;rsquo;t abide OS X&amp;rsquo;s built-in Terminal.app&amp;mdash;too janky by half. So like any reasonable obssessive, I use iTerm2.
+Now, RStudio helpfully provides a menu item for opening a shell in the current project&amp;rsquo;s directory. But it calls Terminal.app, with no option to substitue an alternative.
+R-bloggers has a helpful post about this. But it&amp;rsquo;s from way back in the dark ages (January 2014), and the solution there doesn&amp;rsquo;t seem to work any more thanks to changes in iTerm.</description>
+    </item>
+    
+    <item>
+      <title>This Must Be the Place</title>
+      <link>http://jonathanweisberg.org/post/this-must-be-the-place/</link>
+      <pubDate>Tue, 03 Jan 2017 00:00:00 -0500</pubDate>
+      
+      <guid>http://jonathanweisberg.org/post/this-must-be-the-place/</guid>
+      <description>For years I lovingly hand-coded my personal website. The ethos was pure, the product normcore: a single page, packed with links to my academic papers and other projects, all lightly seasoned with a sprinkle of explanatory text.
+I scoffed at the polished and capacious WordPress sites of my colleagues. &amp;ldquo;A navbar? With four sections?? Does that link to a PDF of your CV really need a whole page to itself?&amp;rdquo;</description>
+    </item>
+    
+    <item>
+      <title>Risk Writ Large</title>
+      <link>http://jonathanweisberg.org/publication/risk-writ-large/</link>
+      <pubDate>Wed, 28 Dec 2016 11:20:45 -0500</pubDate>
+      
+      <guid>http://jonathanweisberg.org/publication/risk-writ-large/</guid>
+      <description>Risk-weighted expected utility (REU) theory is motivated by small-world problems like the Allais paradox, but it is a grand-world theory by nature. And, at the grand-world level, its ability to handle the Allais paradox is dubious. The REU model described in Risk and Rationality turns out to be risk-seeking rather than risk-averse on one natural way of formulating the Allais gambles in the grand-world context. This result illustrates a general problem with the case for REU theory, we argue.</description>
+    </item>
+    
+    <item>
+      <title>Could&#39;ve Thought Otherwise</title>
+      <link>http://jonathanweisberg.org/publication/couldve-thought-otherwise/</link>
+      <pubDate>Tue, 27 Dec 2016 21:58:08 -0500</pubDate>
+      
+      <guid>http://jonathanweisberg.org/publication/couldve-thought-otherwise/</guid>
+      <description>Evidence is univocal, not equivocal. Its implications don&amp;rsquo;t depend on our beliefs or values, the evidence says what it says. But that doesn&amp;rsquo;t mean there&amp;rsquo;s no room for rational disagreement between people with the same evidence. Evaluating evidence is a lot like polling an electorate: getting an accurate reading requires a bit of luck, and even the best pollsters are bound to get slightly different results. So even though evidence is univocal, rationality&amp;rsquo;s requirements are not &amp;ldquo;unique&amp;rdquo;.</description>
+    </item>
+    
+    <item>
+      <title>Belief in Psyontology</title>
+      <link>http://jonathanweisberg.org/publication/belief-in-psyontology/</link>
+      <pubDate>Tue, 27 Dec 2016 21:58:04 -0500</pubDate>
+      
+      <guid>http://jonathanweisberg.org/publication/belief-in-psyontology/</guid>
+      <description>Which is more fundamental, full belief or partial belief? I argue that neither is, ontologically speaking. A survey of some relevant cognitive psychology supports a dualist ontology instead. Beliefs come in two kinds, categorical and graded, with neither kind more fundamental than the other. In particular, the graded kind is no more fundamental. When we discuss belief in on/off terms, we are not speaking coarsely or informally about states that are ultimately credal.</description>
+    </item>
+    
+    <item>
+      <title>Formal Epistemology</title>
+      <link>http://jonathanweisberg.org/publication/2015-formal-epistemology/</link>
+      <pubDate>Tue, 27 Dec 2016 21:58:02 -0500</pubDate>
+      
+      <guid>http://jonathanweisberg.org/publication/2015-formal-epistemology/</guid>
+      <description>A survey of formal epistemology aimed at undergraduates with no previous exposure. Topics surveyed include: (1) confirmation theory, (2) the problem of induction, (3) the regress problem and foundationalist vs. coherentist theories of knowledge, (4) epistemic logic and the limits of knowledge, and (5) applications outside epistemology, like decision theory, the existence of God, and the semantics of conditionals.</description>
+    </item>
+    
+    <item>
+      <title>You&#39;ve Come a Long Way, Bayesians</title>
+      <link>http://jonathanweisberg.org/publication/2015-youve-come-a-long-way-bayesians/</link>
+      <pubDate>Tue, 27 Dec 2016 21:57:58 -0500</pubDate>
+      
+      <guid>http://jonathanweisberg.org/publication/2015-youve-come-a-long-way-bayesians/</guid>
+      <description>To celebrate the 40th anniversary of the JPL, a retrospective on select topics in Bayesian epistemology from the last 40 years. Topics discussed: (1) scoring rules and accuracy arguments, (2) imprecise credences, (3) regularity and zero-probable events, (4) connections between Bayesianism and &amp;ldquo;informal&amp;rdquo; epistemology, and (5) full and partial belief.</description>
+    </item>
+    
+    <item>
+      <title>Updating, Undermining, &amp; Independence</title>
+      <link>http://jonathanweisberg.org/publication/2015-updating-undermining-and-independence/</link>
+      <pubDate>Tue, 27 Dec 2016 21:57:55 -0500</pubDate>
+      
+      <guid>http://jonathanweisberg.org/publication/2015-updating-undermining-and-independence/</guid>
+      <description>Sometimes appearances provide epistemic support that gets undercut later. In an earlier paper I argued that standard Bayesian update rules are at odds with this phenomenon because they are &amp;ldquo;rigid&amp;rdquo;. Here I generalize and bolster that argument. I first show that the update rules of Dempster–Shafer theory and ranking theory are rigid too, hence also at odds with the defeasibility of appearances. I then rebut three Bayesian attempts to solve the problem.</description>
+    </item>
+    
+    <item>
+      <title>Knowledge in Action</title>
+      <link>http://jonathanweisberg.org/publication/2013-knowledge-in-action/</link>
+      <pubDate>Tue, 27 Dec 2016 21:57:51 -0500</pubDate>
+      
+      <guid>http://jonathanweisberg.org/publication/2013-knowledge-in-action/</guid>
+      <description>Your actions should be guided by what you know, many say. Yet Bayesian decision theory says rational decision-making is rooted in uncertainty: you ought to maximize expected utility with respect to your credences. I argue that these knowledge- and credence-based pictures are not as incompatible as they seem, and I offer three irenic proposals to bridge the divide. First, there are knowledge-based methods of practical reasoning that are capable of making expected-utility-maximizing choices.</description>
+    </item>
+    
+    <item>
+      <title>The Argument from Divine Indifference</title>
+      <link>http://jonathanweisberg.org/publication/2012-divine-indifference/</link>
+      <pubDate>Sun, 01 Jan 2012 00:00:02 -0500</pubDate>
+      
+      <guid>http://jonathanweisberg.org/publication/2012-divine-indifference/</guid>
+      <description>The rationale behind the fine-tuning argument for design is self-undermining, refuting the argument&amp;rsquo;s own premiss that fine-tuning is to be expected given design. In Weisberg (2010), I argued on informal grounds that this premiss is unsupported. White (2011) countered that it can be derived from three plausible assumptions. But White&amp;rsquo;s third assumption is based on a fallacious rationale, and is even objectionable by the design theorist&amp;rsquo;s own lights. The argument that shows this, the argument from divine indifference, simultaneously exposes the fine-tuning argument&amp;rsquo;s self-undermining character.</description>
+    </item>
+    
+    <item>
+      <title>The Bootstrapping Problem</title>
+      <link>http://jonathanweisberg.org/publication/2012-the-bootstrapping-problem/</link>
+      <pubDate>Sun, 01 Jan 2012 00:00:01 -0500</pubDate>
+      
+      <guid>http://jonathanweisberg.org/publication/2012-the-bootstrapping-problem/</guid>
+      <description>Bootstrapping is a suspicious form of reasoning that verifies a source&amp;rsquo;s reliability by checking the source against itself. Theories that endorse such reasoning face the bootstrapping problem. This article considers which theories face the problem and surveys potential solutions. The initial focus is on theories like reliabilism and dogmatism, which allow one to gain knowledge from a source without knowing that it is reliable. But the discussion quickly turns to a more general version of the problem that does not depend on this allowance.</description>
+    </item>
+    
+    <item>
+      <title>Embedding If and Only If</title>
+      <link>http://jonathanweisberg.org/publication/2012-embedding-if-and-only-if/</link>
+      <pubDate>Sun, 01 Jan 2012 00:00:00 -0500</pubDate>
+      
+      <guid>http://jonathanweisberg.org/publication/2012-embedding-if-and-only-if/</guid>
+      <description>Some left-nested indicative conditionals are hard to interpret while others seem fine. Some proponents of the view that indicative conditionals have No Truth Values (NTV) use their view to explain why some left-nestings are hard to interpret: the embedded conditional does not express the truth conditions needed by the embedding conditional. Left-nestings that seem fine are then explained away as cases of ad hoc, pragmatic interpretation. We challenge this explanation. The standard reasons for NTV about indicative conditionals (triviality results, Gibbardian standoffs, etc.</description>
+    </item>
+    
+    <item>
+      <title>Representation Theorems and the Foundations of Decision Theory</title>
+      <link>http://jonathanweisberg.org/publication/2011-representation-theorems-and-the-foundations-of-decision-theory/</link>
+      <pubDate>Sat, 01 Jan 2011 00:00:01 -0500</pubDate>
+      
+      <guid>http://jonathanweisberg.org/publication/2011-representation-theorems-and-the-foundations-of-decision-theory/</guid>
+      <description>Representation theorems are often taken to provide the foundations for decision theory. First, they are taken to characterize degrees of belief and utilities. Second, they are taken to justify two fundamental rules of rationality: that we should have probabilistic degrees of belief and that we should act as expected utility maximizers. We argue that representation theorems cannot serve either of these foundational purposes, and that recent attempts to defend the foundational importance of representation theorems are unsuccessful.</description>
+    </item>
+    
+    <item>
+      <title>Varieties of Bayesianism</title>
+      <link>http://jonathanweisberg.org/publication/2011-varieties-of-bayesianism/</link>
+      <pubDate>Sat, 01 Jan 2011 00:00:00 -0500</pubDate>
+      
+      <guid>http://jonathanweisberg.org/publication/2011-varieties-of-bayesianism/</guid>
+      <description>A survey of Bayesian epistemology covering (1) the basic mathematical machinery of Bayesianism, (2) interpretations of &amp;lsquo;probability&amp;rsquo;, (3) the subjective-objective continuum, (4) justifications for Bayesian principles, (5) decision theory, (6) confirmation theory, and (7) full and partial belief.</description>
+    </item>
+    
+    <item>
+      <title>Bootstrapping in General</title>
+      <link>http://jonathanweisberg.org/publication/2010-bootstrapping-in-general/</link>
+      <pubDate>Fri, 01 Jan 2010 00:00:01 -0500</pubDate>
+      
+      <guid>http://jonathanweisberg.org/publication/2010-bootstrapping-in-general/</guid>
+      <description>Bootstrapping poses a more general challenge than commonly thought. Versions of the problem afflict even strongly internalist theories of knowledge. Even if one must know a source to be reliable to gain knowledge from it, bootstrapping is still a threat. I consider potential solutions internalists might try, and defend the one I think most plausible: that bootstrapping involves an abuse of inductive reasoning akin to generalizing from a small or biased sample.</description>
+    </item>
+    
+    <item>
+      <title>A Note on Design: What&#39;s Fine-tuning Got to Do With It?</title>
+      <link>http://jonathanweisberg.org/publication/2010-a-note-on-design/</link>
+      <pubDate>Fri, 01 Jan 2010 00:00:00 -0500</pubDate>
+      
+      <guid>http://jonathanweisberg.org/publication/2010-a-note-on-design/</guid>
+      <description>We have known for a long time that there is complex, intelligent life. More recently we have discovered that the physics of our universe is fine-tuned so as to allow for the existence of such life. I argue that this new finding provides no evidence for the design hypothesis. Thus, there is an important sense in which the much-touted fine-tuning of physics is irrelevant to debates about design.</description>
+    </item>
+    
+    <item>
+      <title>Commutativity or Holism? A Dilemma for Conditionalizers</title>
+      <link>http://jonathanweisberg.org/publication/2009-commutativity-or-holism/</link>
+      <pubDate>Thu, 01 Jan 2009 00:00:01 -0500</pubDate>
+      
+      <guid>http://jonathanweisberg.org/publication/2009-commutativity-or-holism/</guid>
+      <description>Conditionalization and Jeffrey Conditionalization cannot simultaneously satisfy two widely held desiderata on rules for empirical learning. The first desideratum is confirmational holism, which says that the evidential import of an experience is always sensitive to our background assumptions. The second desideratum is commutativity, which says that the order in which one acquires evidence shouldn&amp;rsquo;t affect what conclusions one draws, provided the same total evidence is gathered in the end. (Jeffrey) Conditionalization cannot satisfy either of these desiderata without violating the other.</description>
+    </item>
+    
+    <item>
+      <title>Locating IBE in the Bayesian Framework</title>
+      <link>http://jonathanweisberg.org/publication/2009-locating-ibe-in-the-bayesian-framework/</link>
+      <pubDate>Thu, 01 Jan 2009 00:00:00 -0500</pubDate>
+      
+      <guid>http://jonathanweisberg.org/publication/2009-locating-ibe-in-the-bayesian-framework/</guid>
+      <description>Inference to the Best Explanation (IBE) and Bayesianism are our two most prominent theories of scientific inference. Are they compatible? Van Fraassen famously argued that they are not, concluding that IBE must be wrong since Bayesianism is right. Writers since then, from both the Bayesian and explanationist camps, have usually considered van Fraassen’s argument to be misguided, and have plumped for the view that Bayesianism and IBE are actually compatible. I argue that van Fraassen’s argument is actually not so misguided, and that it causes more trouble for compatibilists than is typically thought.</description>
+    </item>
+    
+    <item>
+      <title>Conditionalization, Reflection, and Self-Knowledge</title>
+      <link>http://jonathanweisberg.org/publication/2007-conditionalization-reflection-and-self-knowledge/</link>
+      <pubDate>Mon, 01 Jan 2007 00:00:00 -0500</pubDate>
+      
+      <guid>http://jonathanweisberg.org/publication/2007-conditionalization-reflection-and-self-knowledge/</guid>
+      <description>Van Fraassen famously endorses the Principle of Reflection as a constraint on rational credence, and argues that Reflection is entailed by the more traditional principle of Conditionalization. He draws two morals from this alleged entailment. First, that Reflection can be regarded as an alternative to Conditionalization&amp;mdash;a more lenient standard of rationality. And second, that commitment to Conditionalization can be turned into support for Reflection. Van Fraassen also argues that Reflection implies Conditionalization, thus offering a new justification for Conditionalization.</description>
+    </item>
+    
+    <item>
+      <title>Firing Squads and Fine-Tuning: Sober on the Design Argument</title>
+      <link>http://jonathanweisberg.org/publication/2005-firing-squads-and-fine-tuning/</link>
+      <pubDate>Sat, 01 Jan 2005 00:00:00 -0500</pubDate>
+      
+      <guid>http://jonathanweisberg.org/publication/2005-firing-squads-and-fine-tuning/</guid>
+      <description>Elliott Sober argues that the cosmological design argument is unsound, since our observation of cosmic fine-tuning is subject to an observation selection effect (OSE). I argue that this view commits Sober to rejecting patently correct design inferences in more mundane scenarios. I show that Sober&amp;rsquo;s view, that there are OSEs in those mundane cases, rests on a confusion about what information an agent ought to treat as background when evaluating likelihoods.</description>
+    </item>
+    
+    <item>
+      <title>Clark and Shackel on the Two‐Envelope Paradox</title>
+      <link>http://jonathanweisberg.org/publication/2003-clark-and-shackel-on-the-two-envelope-paradox/</link>
+      <pubDate>Wed, 01 Jan 2003 00:00:00 -0500</pubDate>
+      
+      <guid>http://jonathanweisberg.org/publication/2003-clark-and-shackel-on-the-two-envelope-paradox/</guid>
+      <description>Clark and Shackel (2000) argue that previous attempts to resolve the two-envelope paradox fail, and that we must look to symmetries of the relevant expected-value calculations for a solution. They also argue for a novel solution to the peeking case, a variant of the two-envelope scenario in which you are allowed to look in your envelope before deciding whether or not to swap. They&amp;rsquo;re view goes beyond accepted decision theory, even contradicting it in the peeking case.</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>http://jonathanweisberg.org/extras/1/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://jonathanweisberg.org/extras/1/</guid>
+      <description> Ergo, an Open Access Journal of Philosophy Ergonaut &amp;mdash; Peer Review on Rails The Preface Paradox &amp;mdash; A Wi-Phi video Scarab &amp;mdash; The Hugo theme for this site The Rgo Project &amp;mdash; Ergo meets data science The Open Handbook of Formal Epistemology &amp;mdash; coming soon  </description>
+    </item>
+    
+  </channel>
+</rss>

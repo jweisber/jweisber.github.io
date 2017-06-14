@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Jonathan Weisberg's Homepage">
+    <meta name="author" content="Jonathan Weisberg">
+    
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@jweisber">
+    <meta name="twitter:creator" content="@jweisber">
+    <meta name="twitter:title" content="Accuracy for Dummies, Part 7: Dominance">
+    <meta name="twitter:description" content="In our last two posts we established two key facts:
+ The set of possible probability assignments is convex. Convex sets are &ldquo;obtuse&rdquo;. Given a point outside a convex set, there&rsquo;s a point inside that forms a right-or-obtuse angle with any third point in the set.  Today we&rsquo;re putting them together to get the central result of the accuracy framework, the Brier dominance theorem. We&rsquo;ll show that a non-probabilistic credence assignment is always &ldquo;Brier dominated&rdquo; by some probabilistic one.">
+    <meta name="twitter:image" content="http://i.imgur.com/F8H9z5h.png">
+
+    <meta property="og:url" content="/post/accuracy-for-dummies---part-7---brier-dominance/" />
+    <meta property="og:type" content="article" />
+    <meta property="og:title" content="Accuracy for Dummies, Part 7: Dominance" />
+    <meta property="og:description" content="In our last two posts we established two key facts:
+ The set of possible probability assignments is convex. Convex sets are &ldquo;obtuse&rdquo;. Given a point outside a convex set, there&rsquo;s a point inside that forms a right-or-obtuse angle with any third point in the set.  Today we&rsquo;re putting them together to get the central result of the accuracy framework, the Brier dominance theorem. We&rsquo;ll show that a non-probabilistic credence assignment is always &ldquo;Brier dominated&rdquo; by some probabilistic one." />
+    <meta property="og:image" content="http://i.imgur.com/F8H9z5h.png" />
+
+
+    <title>Accuracy for Dummies, Part 7: Dominance</title>
+
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+    <link href="/css/prism-xonokai.css" rel="stylesheet" />
+    <link href="/css/scarab.css" rel="stylesheet">
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]},
+        "HTML-CSS": {
+          availableFonts: ["Gyre-Pagella"],
+          preferredFont: "Gyre-Pagella",
+          webFont: "Gyre-Pagella",
+          imageFont: "Gyre-Pagella",
+        }
+      });
+    </script>
+    <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+    </script>
+    
+    
+    
+
+</head>
+
+<body>
+
+<nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+  <div class="container">
+    
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-navbar-collapse-1">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="http://jonathanweisberg.org/">Jonathan Weisberg</a>
+    </div>
+    
+    <div class="collapse navbar-collapse" id="bs-navbar-collapse-1">
+      <ul class="nav navbar-nav">
+        <li>
+          <a href="/pdf/CV.pdf">
+            <i class="fa fa-briefcase"></i>&nbsp;
+            CV
+          </a>
+        </li>
+        <li>
+          <a href="/post/">
+            <i class="fa fa-code"></i>&nbsp;
+            Blog
+          </a>
+        </li>
+        <li>
+          <a href="/publication/">
+            <i class="fa fa-files-o"></i>&nbsp;
+            Research
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+
+
+  
+  <div class="container">
+
+    
+    <div class="row">
+      <div class="col-md-3 hidden-sm hidden-xs text-right">
+        <h1 class="post-title">&nbsp;</h1>
+        <p>
+          <em>Wed, Jun 7, 2017</em><br />
+          
+          
+          
+          <span class="post-tags">
+            
+            <a class="post-tag" href="http://jonathanweisberg.org/tags/accuracy-for-dummies">Accuracy for Dummies</a>
+             &bull;   
+            
+            <a class="post-tag" href="http://jonathanweisberg.org/tags/accuracy">Accuracy</a>
+             &bull;  
+            
+            <a class="post-tag" href="http://jonathanweisberg.org/tags/formal-epistemology">Formal Epistemology</a>
+             &bull;  
+            
+            <a class="post-tag" href="http://jonathanweisberg.org/tags/philosophy">Philosophy</a>
+            
+            
+          </span>
+          
+          
+        </p>
+      </div>
+
+      <div class="col-md-7 blog-post">
+
+        <h1>Accuracy for Dummies, Part 7: Dominance</h1>
+
+        <div class="hidden-md hidden-lg">
+          <div>
+            <em>Wed, Jun 7, 2017</em>
+          </div>
+          
+          
+          
+          <p class="post-tags">
+            
+            <a class="post-tag" href="http://jonathanweisberg.org/tags/accuracy-for-dummies">Accuracy for Dummies</a>
+             &bull;   
+            
+            <a class="post-tag" href="http://jonathanweisberg.org/tags/accuracy">Accuracy</a>
+             &bull;  
+            
+            <a class="post-tag" href="http://jonathanweisberg.org/tags/formal-epistemology">Formal Epistemology</a>
+             &bull;  
+            
+            <a class="post-tag" href="http://jonathanweisberg.org/tags/philosophy">Philosophy</a>
+            
+            
+          </p>
+          
+          
+        </div>
+
+        <div class="post-body">
+          
+
+<p>In our <a href="/post/Accuracy for Dummies - Part 5 - Convexity/">last</a> <a href="/post/Accuracy for Dummies - Part 6 - Obtusity/">two</a> posts we established two key facts:</p>
+
+<ol>
+<li>The set of possible probability assignments is convex.</li>
+<li>Convex sets are &ldquo;obtuse&rdquo;. Given a point outside a convex set, there&rsquo;s a point inside that forms a right-or-obtuse angle with any third point in the set.</li>
+</ol>
+
+<p>Today we&rsquo;re putting them together to get the central result of the accuracy framework, the Brier dominance theorem. We&rsquo;ll show that a non-probabilistic credence assignment is always &ldquo;Brier dominated&rdquo; by some probabilistic one. That is, there is always a probabilistic assignment that is closer, in terms of Brier distance, to every possible truth-value assignment.</p>
+
+<p>In fact we&rsquo;ll show something a bit more general. We&rsquo;ll show that there&rsquo;s a probability assignment that&rsquo;s closer to all the possible <em>probability</em> assignments. But truth-value assignments are probability assignments, just extreme ones. So the result we really want follows straight away as a special case.$
+\renewcommand{\vec}[1]{\mathbf{#1}}
+\newcommand{\x}{\vec{x}}
+\newcommand{\y}{\vec{y}}
+\newcommand{\z}{\vec{z}}
+\newcommand{\v}{\vec{v}}
+\newcommand{\p}{\vec{p}}
+\newcommand{\q}{\vec{q}}
+\newcommand{\B}{B}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\EIpq}{EI_{\p}(\q)}\newcommand{\EIpp}{EI_{\p}(\p)}
+$</p>
+
+<h1 id="recap">Recap</h1>
+
+<p>For reference, let&rsquo;s collect our notation, terminology, and previous results, so that we have everything in one place.</p>
+
+<p>We&rsquo;re using $n$ for the number of possibilities under consideration. And we use bold letters like $\x$ and $\p$ to represent $n$-tuples of real numbers. So $\p = (p_1, \ldots, p_n)$ is a point in $n$-dimensional space: a member of $\R^n$.</p>
+
+<p>We call $\p$ a <em>probability assignment</em> if its coordinates are (a) all nonnegative, and (b) they sum to $1$. And we write $P$ for the set of all probability assignments.</p>
+
+<p>We call $\v$ a <em>truth-value assignment</em> if its coordinates are all zeros except for a single $1$. And we write $V$ for the set of all truth-value assignments.</p>
+
+<p>A point $\y$ is a <em>mixture</em> of the points $\x_1, \ldots, \x_n$ if there are real numbers $\lambda_1, \ldots, \lambda_n$ such that:</p>
+
+<ul>
+<li>$\lambda_i \geq 0$ for all $i$,</li>
+<li>$\lambda_1 + \ldots + \lambda_n = 1$, and</li>
+<li>$\y = \lambda_1 \x_1 + \ldots + \lambda_n \x_n$.</li>
+</ul>
+
+<p>We say that a set is <em>convex</em> if it is closed under mixing, i.e. any mixture of elements in the set is also in the set.</p>
+
+<p>The difference between two points, $\x - \y$, is defined coordinate-wise:
+  $$ \x - \y = (x_1 - y_1, \ldots, x_n - y_n). $$
+The <em>dot product</em> of two points $\x$ and $\y$ is written $\x \cdot \y$, and is defined:
+  $$ \x \cdot \y = x_1 y_1 + \ldots + x_n y_n. $$
+As a reminder, the dot product returns a single, real number (not another $n$-dimensional point as one might expect). And the sign of the dot product reflects the angle between $\x$ and $\y$ when viewed as vectors/arrows. In particular, $\x \cdot \y \leq 0$ corresponds to a right-or-obtuse angle.</p>
+
+<p>Finally, $\B(\x,\y)$ is the Brier distance between $\x$ and $\y$, which can be defined:
+  $$
+  \begin{align}
+    \B(\x,\y) &amp;= (\x - \y)^2\\<br />
+              &amp;= (\x - \y) \cdot (\x - \y).
+  \end{align}
+  $$</p>
+
+<p>Now let&rsquo;s restate the two key theorems we&rsquo;ll be relying on.</p>
+
+<p><strong>Theorem (Convexity).</strong>&nbsp;
+The set of probability functions $P$ is convex.</p>
+
+<p>We established this in <a href="/post/Accuracy for Dummies - Part 5 - Convexity/">Part 5</a> of this series. In particular, we showed that $P$ is the &ldquo;convex hull&rdquo; of $V$: the set of all mixtures of points in $V$.</p>
+
+<p><strong>Lemma (Obtusity).</strong>&nbsp;
+If $S$ is convex, $\x \not \in S$, and $\y \in S$ minimizes $\B(\y,\x)$ as a function of $\y$ on the domain $S$, then for any $\z \in S$, $(\x - \y) \cdot (\z - \y) \leq 0$.</p>
+
+<p>The intuitive idea behind this lemma, which we proved last time in <a href="(/post/Accuracy for Dummies - Part 6 - Obtusity/)" target="_blank">Part 6</a>, can be illustrated with a diagram:
+<img src="/img/accuracy/ObtusityLemma3.png" alt="" />
+Given a point outside a convex set, we can find a point inside (the closest point) that forms a right-or-obtuse angle with all other points in the set.</p>
+
+<p>What we&rsquo;ll show next is the natural and intuitive consequence: that point $\y$ is thus closer to any point $\z$ of $S$ than $\x$ is.</p>
+
+<h1 id="the-brier-dominance-theorem">The Brier Dominance Theorem</h1>
+
+<p>Intuitively, we want to show that if the angle formed at point $\y$ with the points $\x$ and $\z$ is right-or-obtuse, then $\y$ must be closer to $\z$ than $\x$ is (in Brier distance).</p>
+
+<p>Formally, a right-or-obtuse angle corresponds to a dot product less than or equal to zero: $(\x - \y) \cdot (\z - \y) \leq 0$. But if $\x = \y$, then the dot product will be zero trivially. So the precise statement of our theorem is:</p>
+
+<p><strong>Theorem.</strong>&nbsp;
+If $(\x - \y) \cdot (\z - \y) \leq 0$ and $\x \neq \y$, then $\B(\x,\z) &gt; \B(\y,\z)$.</p>
+
+<p><em>Proof.</em>  To start, we establish a general identity via algebra:
+  $$
+  \begin{align}
+  \B(\x, \z) - \B(\x, \y) - \B(\y,\z)
+    &amp;= (\x - \z)^2 - (\x - \y)^2 - (\y - \z)^2\\<br />
+    &amp;= -2\y^2 - 2 \x \cdot \z + 2 \x \cdot \y + 2 \y \cdot \z\\<br />
+    &amp;= -2 (\x - \y) \cdot (\z - \y).
+  \end{align}
+  $$
+Now suppose $ (\x - \y) \cdot (\z - \y) \leq 0$. Then, given the negative sign on the $-2$ in the established identity,
+  $$ \B(\x, \z) - \B(\x, \y) - \B(\y,\z) \geq 0, $$
+from which we derive
+  $$ \B(\x, \z)  \geq \B(\x, \y) + \B(\y,\z). $$
+Now, since $\x \neq \y$ by hypothesis, $\B(\x,\y) &gt; 0$. Thus $\B(\x,\z) &gt; \B(\y,\z)$, as desired.
+<span class="floatright">$\Box$</span></p>
+
+<p>It follows now that if $\x$ isn&rsquo;t a probability assignment, there&rsquo;s a probability assignment that&rsquo;s closer to every truth-value assignment than $\x$ is.</p>
+
+<p><strong>Corollary (Brier Dominance).</strong> If $\x \not \in P$ then there is a $\p \in P$ such that $\B(\p,\v) &lt; \B(\x, \v)$ for all $\v \in V$.</p>
+
+<p><em>Proof.</em>  Fix $\x \not \in P$, and let $\p$ be the member of $P$ that minimizes $B(\y,\x)$ as a function of $\y$. The Convexity theorem tells us that $P$ is convex, so the Obtusity lemma implies $(\x - \p) \cdot (\v - \p) \leq 0$ for every $\v \in V$. And since $\x \neq \p$ (because $\x \not \in P$), the last theorem entails $\B(\p,\v) &lt; \B(\x, \v)$, as desired.
+<span class="floatright">$\Box$</span></p>
+
+<p>This is the core of the main result we&rsquo;ve been working towards. Hooray! But, we still have one piece of unfinished business. For what if $\p$ is itself dominated??</p>
+
+<h1 id="undominated-dominance">Undominated Dominance</h1>
+
+<p>We&rsquo;ve shown that credences which violate the probability axioms are always &ldquo;accuracy dominated&rdquo; by some assignment of credences that obeys those axioms. But what if those dominating, probabilistic credences are themselves dominated? <em>What if they&rsquo;re dominated by non-probabilistic credences??</em></p>
+
+<p>For all we&rsquo;ve said, that&rsquo;s a real possibility. And if it actually obtains, then there&rsquo;s nothing especially accuracy-conducive about the laws of probability. So we had better rule this possibility out. Luckily, that&rsquo;s pretty easy to do.</p>
+
+<p>In fact, the reals work here was already done back in <a href="/post/Accuracy for Dummies - Part 3/">Part 3</a> of the series. There we showed that Brier distance is a &ldquo;proper&rdquo; measure of inaccuracy: each probability assignment expects itself to do best with respect to accuracy, if inaccuracy is measured by Brier distance.</p>
+
+<p>As a reminder, we wrote $\EIpq$ for the expected inaccuracy of probability assignment $\q$ according to assignment $\p$. When inaccuracy is measured in terms of Brier distance:
+$$ \EIpq = p_1 \B(\q,\v_1) + p_2 \B(\q,\v_2) + \ldots + p_n \B(\q,\v_n). $$
+Here $\v_i$ is the truth-value assignment with a $1$ in the $i$-th coordinate, and $0$ everywhere else. What we showed in Part 3 was:</p>
+
+<p><strong>Theorem.</strong>&nbsp;
+$\EIpq$ is uniquely minimized when $\q = \p$.</p>
+
+<p>And notice, this would be impossible if there were some $\q$ such that $\B(\q,\v_i) \leq \B(\p,\v_i)$ for all $i$. For then the weighted average $\EIpq$ would have to be no larger than $\EIpp$. And this contradicts the theorem, which says that $\EIpq &gt; \EIpp$ for all $\q \neq \p$.</p>
+
+<p>So, at long last, we have the full result we want:</p>
+
+<p><strong>Corollary (Undominated Brier Dominance).</strong> If $\x \not \in P$ then there is a $\p \in P$ such that $\B(\p,\v) &lt; \B(\x, \v)$ for all $\v \in V$. Moreover, there is no $\q \in P$ such that $\B(\q,\v) \leq \B(\p, \v)$ for all $\v \in V$.</p>
+
+<p>So the laws of probability really are specially conducive to accuracy, as measured using Brier distance. Only probabilistic credence assignments are undominated.</p>
+
+<h1 id="where-to-next">Where to Next?</h1>
+
+<p>That&rsquo;s a pretty sweet result. And it raises plenty of fun and interesting questions we could look at next. Here are three:</p>
+
+<ol>
+<li><p>What about other ways of measuring inaccuracy besides Brier? Are there reasonable alternatives, and if so, do similar results apply to them?</p></li>
+
+<li><p>What about other probabilistic principles, like Conditionalization, the Principal Principle, or the Principle of Indifference? Can we take this approach beyond the probability axioms?</p></li>
+
+<li><p>Speaking of the probability axioms, we&rsquo;ve been working with a pretty paired down conception of a &ldquo;probability assignment&rdquo;. Usually we assign probabilities not just to atomic possibilities, but to disjunctions/sets of possibilities: e.g. &ldquo;the prize is behind either door #1 or door #2&rdquo;. Can we extend this result to such &ldquo;super-atomic&rdquo; probability assignments?</p></li>
+</ol>
+
+<p>We&rsquo;ll tackle some or all of these questions in future posts. But I haven&rsquo;t yet decided which ones or in what order.</p>
+
+<p>So for now let&rsquo;s just stop and appreciate the work we&rsquo;ve already done. Because not only have we proved one of the most central and interesting results of the accuracy framework. But also, in a lot of ways the hardest work is already behind us. If you&rsquo;ve come this far, I think you deserve a nice pat on the back.</p>
+
+<p><img src="http://i1145.photobucket.com/albums/o503/KimmieRocks/tumblr_liqmv89ru51qb2dn6.gif" alt="" /></p>
+
+
+          &nbsp;
+        </div>
+
+        <div>
+          <a href="javascript: history.back()"><i class="fa fa-arrow-left"></i> Back</a>
+
+        </div>
+      </div>
+    </div>
+    
+
+<footer style="padding-top: 1em;">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-lg-12 text-center">
+        <p>
+          Powered by <a href="https://gohugo.io/">Hugo</a>;
+          styled with <a href="http://getbootstrap.com/">Bootstrap</a>;
+          mostly <a href="https://github.com/lambdafu/hugo-finite">cribbed</a> <a href="https://kieranhealy.org/">from</a> <a href="http://consequently.org/">others</a>.
+        </p>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+<script src="/js/prism.js"></script>
+
+<script type="text/javascript">
+var sc_project= 11213692 ;
+var sc_invisible= 1 ;
+var sc_security="b1954803";
+var scJsHost = (("https:" == document.location.protocol) ?
+"https://secure." : "http://www.");
+document.write("<sc"+"ript type='text/javascript' src='" +
+scJsHost+
+"statcounter.com/counter/counter.js'></"+"script>");
+</script>
+<noscript><div class="statcounter"><a title="web analytics"
+href="http://statcounter.com/" target="_blank"><img
+class="statcounter"
+src="//c.statcounter.com/11213692/0/b1954803/1/" alt="web
+analytics"></a></div></noscript>
+
+
+</body>
+</html>
+

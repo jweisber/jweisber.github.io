@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Jonathan Weisberg's Homepage">
+    <meta name="author" content="Jonathan Weisberg">
+    
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@jweisber">
+    <meta name="twitter:creator" content="@jweisber">
+    <meta name="twitter:title" content="Accuracy for Dummies, Part 4: Euclid in the Round">
+    <meta name="twitter:description" content="Last time we took Brier distance beyond two dimensions. We showed that it&rsquo;s &ldquo;proper&rdquo; in any finite number of dimensions. Today we&rsquo;ll show that Euclidean distance is &ldquo;improper&rdquo; in any finite number dimensions.
+When I first sat down to write this post, I had in mind a straightforward generalization of our previous result for Euclidean distance in two dimensions. And I figured it would be easy to prove.
+Not so.">
+    <meta name="twitter:image" content="http://i.imgur.com/l9gZcO6.jpg">
+
+    <meta property="og:url" content="/post/accuracy-for-dummies---part-4/" />
+    <meta property="og:type" content="article" />
+    <meta property="og:title" content="Accuracy for Dummies, Part 4: Euclid in the Round" />
+    <meta property="og:description" content="Last time we took Brier distance beyond two dimensions. We showed that it&rsquo;s &ldquo;proper&rdquo; in any finite number of dimensions. Today we&rsquo;ll show that Euclidean distance is &ldquo;improper&rdquo; in any finite number dimensions.
+When I first sat down to write this post, I had in mind a straightforward generalization of our previous result for Euclidean distance in two dimensions. And I figured it would be easy to prove.
+Not so." />
+    <meta property="og:image" content="http://i.imgur.com/l9gZcO6.jpg" />
+
+
+    <title>Accuracy for Dummies, Part 4: Euclid in the Round</title>
+
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+    <link href="/css/prism-xonokai.css" rel="stylesheet" />
+    <link href="/css/scarab.css" rel="stylesheet">
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]},
+        "HTML-CSS": {
+          availableFonts: ["Gyre-Pagella"],
+          preferredFont: "Gyre-Pagella",
+          webFont: "Gyre-Pagella",
+          imageFont: "Gyre-Pagella",
+        }
+      });
+    </script>
+    <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+    </script>
+    
+    
+    
+
+</head>
+
+<body>
+
+<nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+  <div class="container">
+    
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-navbar-collapse-1">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="http://jonathanweisberg.org/">Jonathan Weisberg</a>
+    </div>
+    
+    <div class="collapse navbar-collapse" id="bs-navbar-collapse-1">
+      <ul class="nav navbar-nav">
+        <li>
+          <a href="/pdf/CV.pdf">
+            <i class="fa fa-briefcase"></i>&nbsp;
+            CV
+          </a>
+        </li>
+        <li>
+          <a href="/post/">
+            <i class="fa fa-code"></i>&nbsp;
+            Blog
+          </a>
+        </li>
+        <li>
+          <a href="/publication/">
+            <i class="fa fa-files-o"></i>&nbsp;
+            Research
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+
+
+  
+  <div class="container">
+
+    
+    <div class="row">
+      <div class="col-md-3 hidden-sm hidden-xs text-right">
+        <h1 class="post-title">&nbsp;</h1>
+        <p>
+          <em>Thu, Feb 23, 2017</em><br />
+          
+          
+          
+          <span class="post-tags">
+            
+            <a class="post-tag" href="http://jonathanweisberg.org/tags/accuracy-for-dummies">Accuracy for Dummies</a>
+             &bull;   
+            
+            <a class="post-tag" href="http://jonathanweisberg.org/tags/accuracy">Accuracy</a>
+             &bull;  
+            
+            <a class="post-tag" href="http://jonathanweisberg.org/tags/formal-epistemology">Formal Epistemology</a>
+             &bull;  
+            
+            <a class="post-tag" href="http://jonathanweisberg.org/tags/philosophy">Philosophy</a>
+            
+            
+          </span>
+          
+          
+        </p>
+      </div>
+
+      <div class="col-md-7 blog-post">
+
+        <h1>Accuracy for Dummies, Part 4: Euclid in the Round</h1>
+
+        <div class="hidden-md hidden-lg">
+          <div>
+            <em>Thu, Feb 23, 2017</em>
+          </div>
+          
+          
+          
+          <p class="post-tags">
+            
+            <a class="post-tag" href="http://jonathanweisberg.org/tags/accuracy-for-dummies">Accuracy for Dummies</a>
+             &bull;   
+            
+            <a class="post-tag" href="http://jonathanweisberg.org/tags/accuracy">Accuracy</a>
+             &bull;  
+            
+            <a class="post-tag" href="http://jonathanweisberg.org/tags/formal-epistemology">Formal Epistemology</a>
+             &bull;  
+            
+            <a class="post-tag" href="http://jonathanweisberg.org/tags/philosophy">Philosophy</a>
+            
+            
+          </p>
+          
+          
+        </div>
+
+        <div class="post-body">
+          
+
+<p>Last time we took Brier distance beyond two dimensions. <a href="/post/Accuracy for Dummies - Part 3/">We showed</a> that it&rsquo;s &ldquo;proper&rdquo; in any finite number of dimensions. Today we&rsquo;ll show that Euclidean distance is &ldquo;improper&rdquo; in any finite number dimensions.</p>
+
+<p>When I first sat down to write this post, I had in mind a straightforward generalization of <a href="/post/Accuracy for Dummies - Part 1/">our previous result</a> for Euclidean distance in two dimensions. And I figured it would be easy to prove.</p>
+
+<p>Not so.</p>
+
+<p>My initial conjecture was false, and worse, when I asked my accuracy-guru friends for the truth, nobody seemed to know. (They did offer lots of helpful suggestions, though.)</p>
+
+<p>So today we&rsquo;re muddling through on our own even more than usual. Here goes.</p>
+
+<h1 id="background">Background</h1>
+
+<p>Let&rsquo;s recall where we are. We&rsquo;ve been considering different ways of measuring the inaccuracy of a probability assignment given a possibility, or a &ldquo;possible world&rdquo;.</p>
+
+<p>Let&rsquo;s start today by regimenting our terminology. We&rsquo;ve used these terms semi-formally for a while now. But let&rsquo;s gather them here for reference, and to make them a little more precise.$
+\renewcommand{\vec}[1]{\mathbf{#1}}
+\newcommand{\p}{\vec{p}}
+\newcommand{\q}{\vec{q}}
+\newcommand{\u}{\vec{u}}
+\newcommand{\EIpq}{EI_{\p}(\q)}
+\newcommand{\EIpp}{EI_{\p}(\p)}
+$</p>
+
+<p>Given a number of dimensions $n$:</p>
+
+<ul>
+<li>A <em>probability assignment</em> $\p = (p_1, \ldots, p_n)$ is a vector of positive real numbers that sum to $1$.</li>
+<li>A <em>possible world</em> is a vector $\u$ of length $n$ containing all zeros except for a single $1$. (A <a href="https://en.wikipedia.org/wiki/Unit_vector" target="_blank">unit vector</a> of length $n$, in other words.)</li>
+<li>A <em>measure of inaccuracy</em> $D(\p, \u)$ is a function that takes a probability assignment and a possible world and returns a real number.</li>
+</ul>
+
+<p>We&rsquo;ve been considering two measures of inaccuracy. The first is the familiar Euclidean distance between $\p$ and $\u$. For example, when $\u = (1, 0, \ldots, 0)$ we have:
+$$ \sqrt{(p_1 - 1)^2 + (p_2 - 0)^2 + \ldots + (p_n - 0)^2}.$$
+The second way of measuring inaccuracy is less familiar, Brier distance, which is just the square of Euclidean distance:
+$$ (p_1 - 1)^2 + (p_2 - 0)^2 + \ldots + (p_n - 0)^2.$$</p>
+
+<p>What we found in $n = 2$ dimensions is that Euclidean distance is &ldquo;unstable&rdquo; in a way that Brier is not. If we measure inaccuracy using Euclidean distance, a probability assignment can expect some <em>other</em> probability assignment to do better accuracy-wise, i.e. to have lower inaccuracy.</p>
+
+<p>In fact, given almost any probability assignment, the way to minimize expected inaccuracy is to leap to certainty in the most likely possibility. Given $(2/3, 1/3)$, for example, the way to minimize expected inaccuracy is to move to $(1,0)$.</p>
+
+<p>Because Euclidean distance is unstable in this way, it&rsquo;s called an &ldquo;improper&rdquo; measure of inaccuracy. So, two more bits of terminology:</p>
+
+<ul>
+<li>Given a probability assignment $\p$ and a measure of inaccuracy $D$, the <em>expected inaccuracy</em> of probability assignment $\q$, written $\EIpq$, is the weighted sum:
+$$
+\EIpq = p_1 D(\q,\u_1) + \ldots + p_n D(\q,\u_n),
+$$
+where $\u_i$ is the possible world with a $1$ at index $i$.</li>
+<li>A measure of inaccuracy $D$ is <em>improper</em> if there is a probability assignment $\p$ such that for some assignment $\q \neq \p$, $\EIpq &lt; \EIpp$ when inaccuracy is measured according to $D$.</li>
+</ul>
+
+<p>Last time we showed that Brier is <em>proper</em> in any finite number of dimensions $n$. Today our main task is to show that Euclidean distance is <em><strong>im</strong>proper</em> in any finite number of dimensions $n$.</p>
+
+<p>But first, let&rsquo;s get a tempting mistake out of the way.</p>
+
+<h1 id="a-conjecture-and-its-refutation">A Conjecture and Its Refutation</h1>
+
+<p>In <a href="/post/Accuracy for Dummies - Part 1/">our first post</a>, we saw that Euclidean distance isn&rsquo;t just improper in two dimensions. It&rsquo;s also <em>extremizing</em>: the assignment $(2/3, 1/3)$ doesn&rsquo;t just expect <em>some</em> other assignment to do better accuracy-wise. It expects the assignment $(1,0)$ to do best!</p>
+
+<p>At first I thought we&rsquo;d be proving a straightforward generalization of that result today:</p>
+
+<p><strong>Conjecture 1 (False).</strong> Let $(p_1, \ldots, p_n)$ be a probability assignment with a unique largest element $p_i$. If we measure inaccuracy by Euclidean distance, then $\EIpq$ is minimized when $\q = \u_i$.</p>
+
+<p>Intuitively: expected inaccuracy is minimized by leaping to certainty in the most probable possibility. Turns out this is false in three dimensions. Here&rsquo;s a</p>
+
+<p><strong>Counterexample.</strong> Let&rsquo;s define:
+$$
+\begin{align}
+\p &amp;= (5/12, 4/12, 3/12),\\<br />
+\p&rsquo; &amp;= (6/12, 4/12, 2/12),\\<br />
+\u_1 &amp;= (1, 0, 0).
+\end{align}
+$$</p>
+
+<p>Then we can calculate (or better, <a href="https://github.com/jweisber/a4d/blob/master/Euclid%20in%20the%20Round.nb" target="_blank">have <em>Mathematica</em> calculate</a>):
+$$
+\begin{align}
+\EIpp &amp;\approx .804,\\<br />
+EI_{\p}(\p&rsquo;) &amp;\approx .800,\\<br />
+EI_{\p}(\u_1) &amp;\approx .825.
+\end{align}
+$$
+In this case $\EIpp &lt; EI_{\p}(\u_1)$. So leaping to certainty doesn&rsquo;t minimize expected inaccuracy (as measured by Euclidean distance).</p>
+
+<p>Of course, staying put doesn&rsquo;t minimize it either, since $EI_{\p}(\p&rsquo;) &lt; \EIpp$.</p>
+
+<p>So what <em>does</em> minimize it in this example? I asked <em>Mathematica</em> to minimize $\EIpq$ and got&hellip; nothing for days. Eventually I gave up waiting and asked instead for <a href="https://github.com/jweisber/a4d/blob/master/Euclid%20in%20the%20Round.nb" target="_blank">a numerical approximation of the minimum</a>. One second later I got:</p>
+
+<p>$$EI_{\p}(0.575661, 0.250392, 0.173947) \approx 0.797432.$$</p>
+
+<p>I have no idea what that is in more meaningful terms, I&rsquo;m sorry to say. But at least we know it&rsquo;s not anywhere near the extreme point $\u_1$ I conjectured at the outset. (See the <strong>Update</strong> at the end for a little more.)</p>
+
+<h1 id="a-shortcut-and-its-shortcomings">A Shortcut and Its Shortcomings</h1>
+
+<p>So I asked friends who do this kind of thing for a living how they handle the $n$-dimensional case.  A couple of them suggested taking a shortcut around it!</p>
+
+<blockquote>
+<p>Look, you&rsquo;ve already handled the two-dimensional case. And that&rsquo;s just an instance of higher dimensional cases.</p>
+
+<p>Take a probability assignment like (2/3, 1/3). We can also think of it as (2/3, 1/3, 0), or as (2/3, 0, 1/3, 0), etc.</p>
+
+<p>No matter how many zeros we sprinkle around in there, the same thing is going to happen as in the two-dimensional case. Leaping to certainty in the 2/3 possibility will minimize expected inaccuracy. (Because possibilities with no probability make no difference to expected value calculations.)</p>
+
+<p>So no matter how many dimensions we&rsquo;re working in, there will always be <em>some</em> probability assignment where leaping to certainty minimizes expected inaccuracy. It just might have lots of zeros in it.</p>
+
+<p>So Euclidean distance is, technically, improper in any finite number of dimensions.</p>
+</blockquote>
+
+<p>At first I thought that was good enough for philosophy. Though I still wanted to know how to handle &ldquo;no zeros&rdquo; cases for the mathematical clarity.</p>
+
+<p>Then I realized there may be a philosophical reason to be dissatisfied with this shortcut. A lot of people endorse the <a href="http://philosophy.anu.edu.au/sites/default/files/Staying%20Regular.December%2028.2012.pdf" target="_blank">Regularity principle</a>: you should never assign zero probability to any possibility. For these people, the shortcut might be a dead end.</p>
+
+<p>(Of course, maybe we shouldn&rsquo;t embrace Regularity if we&rsquo;re working in the accuracy framework. I won&rsquo;t stop for that question here.)</p>
+
+<h1 id="a-theorem-and-its-corollary">A Theorem and Its Corollary</h1>
+
+<p>So let&rsquo;s take the problem head on. We want to show that Euclidean distance is improper in $n &gt; 2$ dimensions, even when there are &ldquo;no zeros&rdquo;. Two last bits of terminology:</p>
+
+<ul>
+<li>A probability assignment $(p_1, \ldots, p_n)$ is <em>regular</em> if $p_i &gt; 0$ for all $i$.</li>
+<li>A probability assignment $(p_1, \ldots, p_n)$ is <em>uniform</em> if $p_i = p_j$ for all $i,j$.</li>
+</ul>
+
+<p>So, for example, the assignment $(1/3, 1/3, 1/3)$ is both regular and uniform. Whereas the assignment $(2/5, 2/5, 1/5)$ is regular, but not uniform.</p>
+
+<p>What we&rsquo;ll show is that assignments like $(2/5, 2/5, 1/5)$ make Euclidean distance &ldquo;unstable&rdquo;: they expect some other assignment to do better, accuracy-wise. (Exactly which other assignment they&rsquo;ll expect to do best isn&rsquo;t always easy to say.)</p>
+
+<p>(Though I try to keep the math in these posts as elementary as possible, this proof will use calculus. If you know a bit about derivatives, you should be fine. Technically we&rsquo;ll use multi-variable calculus. But if you&rsquo;ve worked with derivatives in single-variable calculus, that should be enough for the main ideas.)</p>
+
+<p><strong>Theorem.</strong>&nbsp;
+Let $\p = (p_1, \ldots, p_n)$ be a regular, non-uniform probability assignment. If accuracy is measured by Euclidean distance, then $EI_{\p}(\q)$ is not minimized when $\q = \p$.</p>
+
+<p><em>Proof.</em>&nbsp;
+Let $\p = (p_1, \ldots, p_n)$ be a regular and non-uniform probability assignment, and measure inaccuracy using Euclidean distance. Then:
+$$
+\begin{align}
+EI_{\p}(\q) &amp;= p_1 \sqrt{(q_1 - 1)^2 + \ldots + (q_n - 0)^2} + \ldots + p_n \sqrt{(q_1 - 0)^2 + \ldots + (q_n - 1)^2}\\<br />
+&amp;= p_1 \sqrt{(q_1 - 1)^2 + \ldots + q_n^2} + \ldots + p_n \sqrt{q_1^2 + \ldots + (q_n - 1)^2}
+\end{align}
+$$</p>
+
+<p>The crux of our proof will be that the derivatives of this function are non-zero at the point $\q = \p$. Since the minimum of a function is always a <a href="https://en.wikipedia.org/wiki/Critical_point_(mathematics)" target="_blank">&ldquo;critical point&rdquo;</a>, that suffices to show that $\q = \p$ is not a minimum of $\EIpq$.</p>
+
+<p>To start, we calculate the partial derivative of $\EIpq$ for an arbitrary $q_i$:
+$$
+\begin{align}
+\frac{\partial}{\partial q_i} \EIpq
+&amp;=
+\frac{\partial}{\partial q_i} \left( p_1 \sqrt{(q_1 - 1)^2 + \ldots + q_n^2} + \ldots + p_n \sqrt{q_1^2 + \ldots + (q_n - 1)^2} \right)\\<br />
+&amp;=
+p_1 \frac{\partial}{\partial q_i} \sqrt{(q_1 - 1)^2 + \ldots + q_n^2} + \ldots + p_n \frac{\partial}{\partial q_i} \sqrt{q_1^2 + \ldots + (q_n - 1)^2}\\<br />
+&amp;= \quad
+p_i \frac{q_i - 1}{\sqrt{(q_i - 1)^2 + \sum_{j \neq i} q_j^2}} + \sum_{j \neq i} p_j \frac{q_i}{\sqrt{(q_j - 1)^2 + \sum_{k \neq j} q_k^2}}\\<br />
+&amp;= \quad
+\sum_{j \neq i} \frac{p_j q_i}{\sqrt{(q_j - 1)^2 + \sum_{k \neq j} q_k^2}} - \sum_{j \neq i} \frac{p_i q_j}{\sqrt{(q_i - 1)^2 + \sum_{j \neq i} q_j^2}}.
+\end{align}
+$$</p>
+
+<p>Then we evaluate at $\q = \p$:
+$$
+\begin{align}
+\frac{\partial}{\partial q_i} \EIpp
+&amp;= \sum_{j \neq i} \frac{p_i p_j}{\sqrt{(p_j - 1)^2 + \sum_{k \neq j} p_k^2}} - \sum_{j \neq i} \frac{p_i p_j}{\sqrt{(p_i - 1)^2 + \sum_{j \neq i} p_j^2}}
+\end{align}
+$$</p>
+
+<p>Now, because $\p$ is not uniform, some of its elements are larger than others. And because it is finite, there is at least one largest element. When $p_i$ is one of these largest elements, then $\partial / \partial q_i \EIpp$ is negative.</p>
+
+<p>Why?</p>
+
+<p>In our equation for $\partial / \partial q_i \EIpp$, each positive term has a corresponding negative term whose numerator is identical. And when $p_i$ is a largest element of $\p$, the denominator of each negative term will never be larger, but will sometimes be smaller, than the denominator of its corresponding positive term. Subtracting $1$ from $p_i$ before squaring does more to reduce the sum of squares $p_i^2 + \sum_{j \neq i} p_j^2$ than subtracting $1$ from any smaller term would. It effectively removes the/a largest square from the sum and substitutes the smallest replacement. So the negative terms are never smaller, but are sometimes larger, than their positive counterparts.</p>
+
+<p>If, on the other hand, $p_i$ is the one of the smallest elements, then $\partial / \partial q_i \EIpp$ is positive. For then the reverse argument applies: the denominator of each negative term will never be smaller and will sometimes be larger than the denominator of the corresponding positive term. So the negatives terms are never larger, but are sometimes smaller, than their positive counterparts.</p>
+
+<p>We have shown that the partial derivates of $\EIpq$ are non-zero at the point $\q = \p$. Thus $\p$ is not a critical point of $\EIpq$, and hence cannot be a minimum of $\EIpq$.  <span class="floatright">$\Box$</span></p>
+
+<p><strong>Corollary.</strong> Euclidean distance is improper in any finite number of dimensions.</p>
+
+<p><em>Proof.</em>&nbsp; This is just a slight restatement of our theorem. If $\q = \p$ is not a minimum of $\EIpq$, then there is some $\q \neq \p$ such that $\EIpq &lt; \EIpp$.  <span class="floatright">$\Box$</span></p>
+
+<h1 id="conjectures-awaiting-refutations">Conjectures Awaiting Refutations</h1>
+
+<p>Notice, we&rsquo;ve also shown something a bit stronger. We showed that the slope of $\EIpq$ at the point $\q = \p$ is always negative in the direction of $\p$&rsquo;s largest element(s), and positive in the direction of its smallest element(s). That means we can always reduce expected inaccuracy by taking some small quantity away from the/a smallest element of $\p$ and adding it to the/a largest element. In other words, we can always reduce expected inaccuracy by moving <em>some</em> way towards perfect certainty in the/a possibility that $\p$ rates most probable.</p>
+
+<p>However, we <em>haven&rsquo;t</em> shown that repeatedly minimizing expected inaccuracy will, eventually, lead to certainty in the/a possibility that was most probable to begin with. For one thing, we haven&rsquo;t shown that moving towards certainty in this direction minimizes expected inaccuracy at each step. We&rsquo;ve only shown that moving in this direction reduces it.</p>
+
+<p>Still, I&rsquo;m pretty sure a result along these lines holds. Tinkering in <em>Mathematica</em> strongly suggests that the following Conjectures are true in any finite number of dimensions $n$:</p>
+
+<p><strong>Conjecture 2.</strong> If a probability assignment gives greater than $1/ 2$ probability to some possibility, then expected inaccuracy is minimized by assigning probability 1 to that possibility. (But see the <strong>Update</strong> below.)</p>
+
+<p><strong>Conjecture 3.</strong> Given a non-uniform probability assignment, repeatedly minimizing expected inaccuracy will, within a finite number of steps, increase the probability of the/a possibility that was most probable initially beyond $1/ 2$.</p>
+
+<p>If these conjectures hold, then there&rsquo;s still a weak-ish sense in which Euclidean distance is &ldquo;extremizing&rdquo; in $n &gt; 2$ dimensions. Given a non-uniform probability assignment, repeatedly minimizing expected inaccuracy will eventually lead to greater than $1/ 2$ probability in the/a possibility that was most probable to begin with. Then, minimizing inaccuracy will lead in a single step to certainty in that possibility.</p>
+
+<p>Proving these conjectures would close much of the gap between the theorem we proved and the false conjecture I started with. If you&rsquo;re interested, you can use <a href="https://github.com/jweisber/a4d/blob/master/Euclid%20in%20the%20Round.nb" target="_blank">this <em>Mathematica</em> notebook</a> to test them.</p>
+
+<p><strong>Update: Mar. 6, 2017.</strong> Thanks to some excellent help from <a href="https://mathematics.stanford.edu/people/department-directory/name/jonathan-love/" target="_blank">Jonathan Love</a>, I&rsquo;ve tweaked this post (and greatly simplified <a href="/post/Accuracy%20for%20Dummies%20-%20Part%203/">the previous one</a>).</p>
+
+<p>I changed the counterexample to the false Conjecture 1, which used to be $\p = (3/7, 2/7, 2/7)$ and $\p&rsquo; = (4/7, 2/7, 1/7)$. That works fine, but it&rsquo;s potentially misleading.</p>
+
+<p>As Jonathan kindly pointed out, the minimum point then is something quite nice. It&rsquo;s obtained by moving in the $x$-dimension from $3/7$ to $\sqrt{3/7}$, and correspondingly reducing the probability in the $y$ and $z$ dimensions in equal parts.</p>
+
+<p>But, in general, moving to the square root of the largest $p_i$ (when there is one) doesn&rsquo;t minimize $\EIpq$. Even in the special case where all the other elements in the vector are equal, this doesn&rsquo;t generally work.</p>
+
+<p>Jonathan did solve that special case, though, and he found at least one interesting result connected with Conjecture 2. There appear to be cases where $p_i &lt; 1/ 2$ for all $i$, and yet $\EIpq$ is still minimized by going directly to the extreme. For example, $\p = (.465, .2675, .2675)$.</p>
+
+
+          &nbsp;
+        </div>
+
+        <div>
+          <a href="javascript: history.back()"><i class="fa fa-arrow-left"></i> Back</a>
+
+        </div>
+      </div>
+    </div>
+    
+
+<footer style="padding-top: 1em;">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-lg-12 text-center">
+        <p>
+          Powered by <a href="https://gohugo.io/">Hugo</a>;
+          styled with <a href="http://getbootstrap.com/">Bootstrap</a>;
+          mostly <a href="https://github.com/lambdafu/hugo-finite">cribbed</a> <a href="https://kieranhealy.org/">from</a> <a href="http://consequently.org/">others</a>.
+        </p>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+<script src="/js/prism.js"></script>
+
+<script type="text/javascript">
+var sc_project= 11213692 ;
+var sc_invisible= 1 ;
+var sc_security="b1954803";
+var scJsHost = (("https:" == document.location.protocol) ?
+"https://secure." : "http://www.");
+document.write("<sc"+"ript type='text/javascript' src='" +
+scJsHost+
+"statcounter.com/counter/counter.js'></"+"script>");
+</script>
+<noscript><div class="statcounter"><a title="web analytics"
+href="http://statcounter.com/" target="_blank"><img
+class="statcounter"
+src="//c.statcounter.com/11213692/0/b1954803/1/" alt="web
+analytics"></a></div></noscript>
+
+
+</body>
+</html>
+

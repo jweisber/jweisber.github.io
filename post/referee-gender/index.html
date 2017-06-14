@@ -1,0 +1,465 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Jonathan Weisberg's Homepage">
+    <meta name="author" content="Jonathan Weisberg">
+    
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@jweisber">
+    <meta name="twitter:creator" content="@jweisber">
+    <meta name="twitter:title" content="Gender &amp; Journal Referees">
+    <meta name="twitter:description" content="We looked at author gender in a previous post, today let&rsquo;s consider referees. Does their gender have any predictive value?
+Once again our discussion only covers men and women because we don&rsquo;t have the data to support a deeper analysis.1
+Using data from Ergo, we&rsquo;ll consider the following questions:
+ Requests. How are requests to referee distributed between men and women? Are men more likely to be invited, for example?">
+    <meta name="twitter:image" content="/img/referee_gender_files/unnamed-chunk-11-1.png">
+
+    <meta property="og:url" content="/post/referee-gender/" />
+    <meta property="og:type" content="article" />
+    <meta property="og:title" content="Gender &amp; Journal Referees" />
+    <meta property="og:description" content="We looked at author gender in a previous post, today let&rsquo;s consider referees. Does their gender have any predictive value?
+Once again our discussion only covers men and women because we don&rsquo;t have the data to support a deeper analysis.1
+Using data from Ergo, we&rsquo;ll consider the following questions:
+ Requests. How are requests to referee distributed between men and women? Are men more likely to be invited, for example?" />
+    <meta property="og:image" content="/img/referee_gender_files/unnamed-chunk-11-1.png" />
+
+
+    <title>Gender &amp; Journal Referees</title>
+
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+    <link href="/css/prism-xonokai.css" rel="stylesheet" />
+    <link href="/css/scarab.css" rel="stylesheet">
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]},
+        "HTML-CSS": {
+          availableFonts: ["Gyre-Pagella"],
+          preferredFont: "Gyre-Pagella",
+          webFont: "Gyre-Pagella",
+          imageFont: "Gyre-Pagella",
+        }
+      });
+    </script>
+    <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+    </script>
+    
+    
+    
+
+</head>
+
+<body>
+
+<nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+  <div class="container">
+    
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-navbar-collapse-1">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="http://jonathanweisberg.org/">Jonathan Weisberg</a>
+    </div>
+    
+    <div class="collapse navbar-collapse" id="bs-navbar-collapse-1">
+      <ul class="nav navbar-nav">
+        <li>
+          <a href="/pdf/CV.pdf">
+            <i class="fa fa-briefcase"></i>&nbsp;
+            CV
+          </a>
+        </li>
+        <li>
+          <a href="/post/">
+            <i class="fa fa-code"></i>&nbsp;
+            Blog
+          </a>
+        </li>
+        <li>
+          <a href="/publication/">
+            <i class="fa fa-files-o"></i>&nbsp;
+            Research
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+
+
+  
+  <div class="container">
+
+    
+    <div class="row">
+      <div class="col-md-3 hidden-sm hidden-xs text-right">
+        <h1 class="post-title">&nbsp;</h1>
+        <p>
+          <em>Mon, Feb 20, 2017</em><br />
+          
+          
+          
+          <span class="post-tags">
+            
+            <a class="post-tag" href="http://jonathanweisberg.org/tags/rgo">Rgo</a>
+             &bull;   
+            
+            <a class="post-tag" href="http://jonathanweisberg.org/tags/r">R</a>
+             &bull;  
+            
+            <a class="post-tag" href="http://jonathanweisberg.org/tags/ergo">Ergo</a>
+             &bull;  
+            
+            <a class="post-tag" href="http://jonathanweisberg.org/tags/publishing">Publishing</a>
+            
+            
+          </span>
+          
+          
+        </p>
+      </div>
+
+      <div class="col-md-7 blog-post">
+
+        <h1>Gender &amp; Journal Referees</h1>
+
+        <div class="hidden-md hidden-lg">
+          <div>
+            <em>Mon, Feb 20, 2017</em>
+          </div>
+          
+          
+          
+          <p class="post-tags">
+            
+            <a class="post-tag" href="http://jonathanweisberg.org/tags/rgo">Rgo</a>
+             &bull;   
+            
+            <a class="post-tag" href="http://jonathanweisberg.org/tags/r">R</a>
+             &bull;  
+            
+            <a class="post-tag" href="http://jonathanweisberg.org/tags/ergo">Ergo</a>
+             &bull;  
+            
+            <a class="post-tag" href="http://jonathanweisberg.org/tags/publishing">Publishing</a>
+            
+            
+          </p>
+          
+          
+        </div>
+
+        <div class="post-body">
+          
+
+<p>We looked at author gender in <a href="/post/Author Gender/">a previous post</a>, today let&rsquo;s consider referees. Does their gender have any predictive value?</p>
+
+<p>Once again our discussion only covers men and women because we don&rsquo;t have the data to support a deeper analysis.<sup class="footnote-ref" id="fnref:1"><a rel="footnote" href="#fn:1">1</a></sup></p>
+
+<p>Using data from <a href="http://www.ergophiljournal.org/" target="_blank"><em>Ergo</em></a>, we&rsquo;ll consider the following questions:</p>
+
+<ol>
+<li><em>Requests</em>. How are requests to referee distributed between men and women? Are men more likely to be invited, for example?</li>
+<li><em>Responses</em>. Does gender inform a referee&rsquo;s response to a request? Are women more likely to say &lsquo;yes&rsquo;, for example?</li>
+<li><em>Response-speed</em>. Does gender inform how quickly a referee responds to an invitation (whether to agree or to decline)? Do men take longer to agree/decline an invitation, for example?</li>
+<li><em>Completion-speed</em>. If a referee does agree to provide a report, does their gender inform how quickly they&rsquo;ll complete that report? Do men and women tend to complete their reports in the same time-frame?</li>
+<li><em>Recommendations</em>. Does gender inform how positive/negative a referee&rsquo;s recommendation is? Are men and women equally likely to recommend that a submission be rejected, for example?</li>
+<li><em>Influence</em>. Does a referee&rsquo;s gender affect the influence of their recommendation on the editor&rsquo;s decison? Are the recommendations of male referees more likely to be followed, for example?</li>
+</ol>
+
+<p>A quick overview of our data set: there are a total of 1526 referee-requests in <em>Ergo</em>&rsquo;s database. But only 1394 are included in this analysis. I&rsquo;ve excluded:</p>
+
+<ol>
+<li>Requests to review an invited resubmission, since these are a different sort of beast.</li>
+<li>Pending requests and reports, since the data for these are incomplete.</li>
+<li>A handfull of cases where the referee&rsquo;s gender is either unknown, or doesn&rsquo;t fit the male/female classification.</li>
+</ol>
+
+<h1 id="requests">Requests</h1>
+
+<p>How are requests distributed between men and women? 322 of our 1394 requests went to women, or 23.1% (1072 went to men, or 76.9%).</p>
+
+<p>How does this compare to the way men and women are represented in academic philosophy in general? Different sources and different subpopulations yield a range of estimates.</p>
+
+<p>At the low end, we saw in <a href="/post/Author Gender/">an earlier post</a> that about 15.3% of <em>Ergo</em>&rsquo;s submissions come from women. The PhilPapers survey yields a range from 16.2% (<a href="https://philpapers.org/surveys/demographics.pl" target="_blank">all respondents</a>) to 18.4% (<a href="https://philpapers.org/surveys/demographics.pl?affil=Target+faculty&amp;survey=8" target="_blank">&ldquo;target&rdquo; faculty</a>). And sources cited in <a href="http://www.faculty.ucr.edu/~eschwitz/SchwitzPapers/WomenInPhil-160315b.pdf" target="_blank">Schwitzgebel &amp; Jennings</a> estimate the percentage of women faculty in various English speaking countries at 23% for Australia, 24% for the U.K., and 19&ndash;26% for the U.S.</p>
+
+<p>So we have a range of baseline estimates from 15% to 26%. For comparison, the 95% confidence interval around our 23.1% finding is (21%, 25.4%).</p>
+
+<h1 id="responses">Responses</h1>
+
+<p>Do men and women differ in their responses to these requests? Here are the raw numbers:</p>
+
+<table>
+<thead>
+<tr>
+<th align="left"></th>
+<th align="right">Agreed</th>
+<th align="right">Declined / No Response / Canceled</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td align="left">Female</td>
+<td align="right">101</td>
+<td align="right">221</td>
+</tr>
+
+<tr>
+<td align="left">Male</td>
+<td align="right">403</td>
+<td align="right">669</td>
+</tr>
+</tbody>
+</table>
+
+<p>The final column calls for some explanation. I&rsquo;m lumping togther several scenarios here: (i) the referee responds to decline the request, (ii) the referee never responds, (iii) the editors cancel the request because it was made in error. Unfortunately, these three scenarios are hard to distinguish based on the raw data. For example, sometimes a referee declines by email rather than via our online system, and the handling editor then cancels the request instead of marking it as &ldquo;Declined&rdquo;.</p>
+
+<p>With that in mind, here are the proportions graphically:</p>
+
+<p><img src="/img/referee_gender_files/unnamed-chunk-6-1.png" alt="" /></p>
+
+<p>Men agreed more often than women: approximately 38% vs. 31%. And this difference is statistically significant.<sup class="footnote-ref" id="fnref:0"><a rel="footnote" href="#fn:0">2</a></sup></p>
+
+<p>Note that women and men accounted for about 20% and 80% of the &ldquo;Agreed&rdquo; responses, respectively. Whether this figure differs significantly from the gender makeup of &ldquo;the general population&rdquo; depends, as before, on the source and subpopulation we use for that estimate.</p>
+
+<p>We saw that estimates of female representation ranged from roughly 15% to 26%. For comparison, the 95% confidence interval around our 20% finding is (16.8%, 23.8%).</p>
+
+<h1 id="response-speed">Response-speed</h1>
+
+<p>Do men and women differ in response-speed&mdash;in how quickly they respond to a referee request (whether to agree or to decline)?</p>
+
+<p>The average response-time for women is 1.92 days, and for men it&rsquo;s 1.58 days. This difference is not statistically significant.<sup class="footnote-ref" id="fnref:3"><a rel="footnote" href="#fn:3">3</a></sup></p>
+
+<p>A boxplot likewise suggests that men and women have similar interquartile ranges:</p>
+
+<p><img src="/img/referee_gender_files/unnamed-chunk-9-1.png" alt="" /><!-- --></p>
+
+<h1 id="completion-speed">Completion-speed</h1>
+
+<p>What about completion-speed: is there any difference in how long men and women take to complete their reports?</p>
+
+<p>Women took 27.6 days on average, while men took 23.8 days. This difference is statistically significant.<sup class="footnote-ref" id="fnref:4"><a rel="footnote" href="#fn:4">4</a></sup></p>
+
+<p>Does that mean men are more likely to complete their reports on time? Not necessarily. Here&rsquo;s a frequency polygram showing when reports were completed:</p>
+
+<p><img src="/img/referee_gender_files/unnamed-chunk-11-1.png" alt="" /><!-- --></p>
+
+<p>The spike at the four-week mark corresponds to the standard due date. We ask referees to submit their reports within 28 days of the initial request.</p>
+
+<p>It looks like men had a stronger tendency to complete their reports early. But were they more likely to complete them on time?</p>
+
+<p>One way to tackle this question is to look at how completed reports accumulate with time (the <a href="https://en.wikipedia.org/wiki/Empirical_distribution_function" target="_blank">empirical cumulative distribution</a>):</p>
+
+<p><img src="/img/referee_gender_files/unnamed-chunk-12-1.png" alt="" /><!-- --></p>
+
+<p>As expected, the plot shows that men completed their reports early with greater frequency. But it also looks like women and men converged around the four-week mark, when reports were due.</p>
+
+<p>Another way of approaching the question is to classify reports as either &ldquo;On Time&rdquo; or &ldquo;Late&rdquo;, according to whether they were completed before Day 29.</p>
+
+<table>
+<thead>
+<tr>
+<th align="left"></th>
+<th align="right">On Time</th>
+<th align="right">Late</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td align="left">Female</td>
+<td align="right">50</td>
+<td align="right">38</td>
+</tr>
+
+<tr>
+<td align="left">Male</td>
+<td align="right">242</td>
+<td align="right">121</td>
+</tr>
+</tbody>
+</table>
+
+<p><img src="/img/referee_gender_files/unnamed-chunk-14-1.png" alt="" /><!-- --></p>
+
+<p>A chi-square test of independence then finds no statistically significant difference.<sup class="footnote-ref" id="fnref:6"><a rel="footnote" href="#fn:6">5</a></sup></p>
+
+<p>Apparently men and women differed in their tendency to be early, but not necessarily in their tendency to be on time.</p>
+
+<h1 id="recommendations">Recommendations</h1>
+
+<p>Did male and female referees differ in their recommendations to the editors?</p>
+
+<p><em>Ergo</em> offers referees four recommendations to choose from. The raw numbers:</p>
+
+<table>
+<thead>
+<tr>
+<th align="left"></th>
+<th align="right">Reject</th>
+<th align="right">Major Revisions</th>
+<th align="right">Minor Revisions</th>
+<th align="right">Accept</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td align="left">Female</td>
+<td align="right">42</td>
+<td align="right">29</td>
+<td align="right">9</td>
+<td align="right">8</td>
+</tr>
+
+<tr>
+<td align="left">Male</td>
+<td align="right">154</td>
+<td align="right">103</td>
+<td align="right">61</td>
+<td align="right">45</td>
+</tr>
+</tbody>
+</table>
+
+<p>In terms of frequencies:</p>
+
+<p><img src="/img/referee_gender_files/unnamed-chunk-16-1.png" alt="" /><!-- --></p>
+
+<p>The differences here are not statistically significant according to a chi-square test of independence.<sup class="footnote-ref" id="fnref:5"><a rel="footnote" href="#fn:5">6</a></sup></p>
+
+<h1 id="influence">Influence</h1>
+
+<p>Does a referee&rsquo;s gender affect whether the editor follows their recommendation? We can tackle this question a few different ways.</p>
+
+<p>One way is to just tally up those cases where the editor&rsquo;s decision was the same as the referee&rsquo;s recommendation, and those where it was different.</p>
+
+<table>
+<thead>
+<tr>
+<th align="left"></th>
+<th align="right">Same</th>
+<th align="right">Different</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td align="left">Female</td>
+<td align="right">51</td>
+<td align="right">37</td>
+</tr>
+
+<tr>
+<td align="left">Male</td>
+<td align="right">206</td>
+<td align="right">157</td>
+</tr>
+</tbody>
+</table>
+
+<p><img src="/img/referee_gender_files/unnamed-chunk-17-1.png" alt="" /><!-- --></p>
+
+<p>Clearly there&rsquo;s no statistically significant difference between male and female referees here.<sup class="footnote-ref" id="fnref:7"><a rel="footnote" href="#fn:7">7</a></sup></p>
+
+<p>A second approach would be to assign numerical ranks to referees&rsquo; recommendations and editors&rsquo; decisions: Reject = 1, Major Revisions = 2, etc. Then we can consider how far the editor&rsquo;s decision is from the referee&rsquo;s recommendation. For example, a decision of Accept is 3 away from a recommendation of Reject, while a decision of Major Revisions is 2 away from a recommendation of Accept.</p>
+
+<p>By this measure, the average distance between the referee&rsquo;s recommendation and the editor&rsquo;s decision was 0.57 for women and 0.56 for men&mdash;clearly not a statistically significant difference.<sup class="footnote-ref" id="fnref:8"><a rel="footnote" href="#fn:8">8</a></sup></p>
+
+<h1 id="summary">Summary</h1>
+
+<p>Men received more requests to referee than women, as expected given the well known gender imbalance in academic philosophy. The distribution of requests between men (76.9%) and women (23.1%) was in line with some estimates of the gender makeup of academic philosophy, though not all estimates.</p>
+
+<p>Men were more likely to agree to a request (38% vs. 31%), a statistically significant difference. Women accounted for about 20% of the &ldquo;Agreed&rdquo; responses, however, consistent with most (but not all) estimates of the gender makeup of academic philosophy.</p>
+
+<p>There was no statistically significant difference in response-speed, but there was in the speed with which reports were completed (23.8 days on average for men, 27.6 days for women). This difference appears to be due to a stronger tendency on the part of men to complete their reports early, though not necessarily a greater chance of meeting the deadline.</p>
+
+<p>Finally, there was no statistically significant difference in the recommendations of male and female referees, or in editors&rsquo; uptake of those recommendations.</p>
+
+<h1 id="technical-notes">Technical Notes</h1>
+
+<p>This post was written in R Markdown and the source is <a href="https://github.com/jweisber/rgo/blob/master/referee%20gender/referee%20gender.Rmd" target="_blank">available on GitHub</a>. I&rsquo;m new to both R and classical statistics, and this post is a learning exercise for me. So I encourage you to check the code and contact me with corrections.</p>
+<div class="footnotes">
+
+<hr />
+
+<ol>
+<li id="fn:1">Unlike in the previous analysis of author gender, however, here we do have a few known cases where either (i) the referee identifies as neither male nor female, or (ii) they identify as something more specific, e.g. &ldquo;transgender male&rdquo; rather than just &ldquo;male&rdquo;. But these cases are still too few for statistical analysis.
+ <a class="footnote-return" href="#fnref:1"><sup>[return]</sup></a></li>
+<li id="fn:0">$\chi^2$(1, <em>N</em> = 1394) = 3.89, <em>p</em> = 0.05.
+ <a class="footnote-return" href="#fnref:0"><sup>[return]</sup></a></li>
+<li id="fn:3"><em>t</em>(437.43) = -1.63, <em>p</em> = 0.1
+ <a class="footnote-return" href="#fnref:3"><sup>[return]</sup></a></li>
+<li id="fn:4"><em>t</em>(144.26) = -2.46, <em>p</em> = 0.02
+ <a class="footnote-return" href="#fnref:4"><sup>[return]</sup></a></li>
+<li id="fn:6">$\chi^2$(1, <em>N</em> = 451) = 2.59, <em>p</em> = 0.11.
+ <a class="footnote-return" href="#fnref:6"><sup>[return]</sup></a></li>
+<li id="fn:5">$\chi^2$(3, <em>N</em> = 451) = 3.6, <em>p</em> = 0.31.
+ <a class="footnote-return" href="#fnref:5"><sup>[return]</sup></a></li>
+<li id="fn:7">$\chi^2$(1, <em>N</em> = 451) = 0.01, <em>p</em> = 0.93.
+ <a class="footnote-return" href="#fnref:7"><sup>[return]</sup></a></li>
+<li id="fn:8"><em>t</em>(117.57) = 0.07, <em>p</em> = 0.95.
+ <a class="footnote-return" href="#fnref:8"><sup>[return]</sup></a></li>
+</ol>
+</div>
+
+
+          &nbsp;
+        </div>
+
+        <div>
+          <a href="javascript: history.back()"><i class="fa fa-arrow-left"></i> Back</a>
+
+        </div>
+      </div>
+    </div>
+    
+
+<footer style="padding-top: 1em;">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-lg-12 text-center">
+        <p>
+          Powered by <a href="https://gohugo.io/">Hugo</a>;
+          styled with <a href="http://getbootstrap.com/">Bootstrap</a>;
+          mostly <a href="https://github.com/lambdafu/hugo-finite">cribbed</a> <a href="https://kieranhealy.org/">from</a> <a href="http://consequently.org/">others</a>.
+        </p>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+<script src="/js/prism.js"></script>
+
+<script type="text/javascript">
+var sc_project= 11213692 ;
+var sc_invisible= 1 ;
+var sc_security="b1954803";
+var scJsHost = (("https:" == document.location.protocol) ?
+"https://secure." : "http://www.");
+document.write("<sc"+"ript type='text/javascript' src='" +
+scJsHost+
+"statcounter.com/counter/counter.js'></"+"script>");
+</script>
+<noscript><div class="statcounter"><a title="web analytics"
+href="http://statcounter.com/" target="_blank"><img
+class="statcounter"
+src="//c.statcounter.com/11213692/0/b1954803/1/" alt="web
+analytics"></a></div></noscript>
+
+
+</body>
+</html>
+

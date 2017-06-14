@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Probability on Jonathan Weisberg</title>
+    <link>http://jonathanweisberg.org/tags/probability/</link>
+    <description>Recent content in Probability on Jonathan Weisberg</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Wed, 14 Jun 2017 15:21:42 -0500</lastBuildDate>
+    
+	<atom:link href="http://jonathanweisberg.org/tags/probability/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>The Mosteller Hall Puzzle</title>
+      <link>http://jonathanweisberg.org/post/teaching-monty-hall/</link>
+      <pubDate>Wed, 14 Jun 2017 15:21:42 -0500</pubDate>
+      
+      <guid>http://jonathanweisberg.org/post/teaching-monty-hall/</guid>
+      <description>One of my favourite probability puzzles to teach is a close cousin of the Monty Hall problem. Originally from a 1965 book by Frederick Mosteller,1 here&amp;rsquo;s my formulation:
+ Three prisoners, A, B, and C, are condemned to die in the morning. But the king decides in the night to pardon one of them. He makes his choice at random and communicates it to the guard, who is sworn to secrecy.</description>
+    </item>
+    
+  </channel>
+</rss>

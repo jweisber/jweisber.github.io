@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Workflows on Jonathan Weisberg</title>
+    <link>http://jonathanweisberg.org/tags/workflows/</link>
+    <description>Recent content in Workflows on Jonathan Weisberg</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sun, 08 Jan 2017 00:00:01 -0500</lastBuildDate>
+    
+	<atom:link href="http://jonathanweisberg.org/tags/workflows/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Victor: Hugo</title>
+      <link>http://jonathanweisberg.org/post/hugo/</link>
+      <pubDate>Sun, 08 Jan 2017 00:00:01 -0500</pubDate>
+      
+      <guid>http://jonathanweisberg.org/post/hugo/</guid>
+      <description>I chose Hugo to manage this site mainly because it&amp;rsquo;s shiny and new. But there were some substantive reasons, too.
+Hugo is famously fast&amp;mdash;really fast&amp;mdash;but that wasn&amp;rsquo;t the big draw for me. For a personal website, even one with many years&amp;rsquo; worth of blogging accrued, Hugo&amp;rsquo;s speed just isn&amp;rsquo;t that important. Quoth the Code Barbarian:
+ being the fastest static site generator is like being the resturaunt with the cleanest bathroom: sure, I prefer a faster generator, but I wouldn&amp;rsquo;t pick one generator over another because one shaves off 100ms.</description>
+    </item>
+    
+    <item>
+      <title>iTerm from RStudio</title>
+      <link>http://jonathanweisberg.org/post/iterm-with-rstudio/</link>
+      <pubDate>Fri, 06 Jan 2017 00:00:00 -0500</pubDate>
+      
+      <guid>http://jonathanweisberg.org/post/iterm-with-rstudio/</guid>
+      <description>I can&amp;rsquo;t abide OS X&amp;rsquo;s built-in Terminal.app&amp;mdash;too janky by half. So like any reasonable obssessive, I use iTerm2.
+Now, RStudio helpfully provides a menu item for opening a shell in the current project&amp;rsquo;s directory. But it calls Terminal.app, with no option to substitue an alternative.
+R-bloggers has a helpful post about this. But it&amp;rsquo;s from way back in the dark ages (January 2014), and the solution there doesn&amp;rsquo;t seem to work any more thanks to changes in iTerm.</description>
+    </item>
+    
+  </channel>
+</rss>

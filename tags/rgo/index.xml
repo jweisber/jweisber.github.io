@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Rgo on Jonathan Weisberg</title>
+    <link>http://jonathanweisberg.org/tags/rgo/</link>
+    <description>Recent content in Rgo on Jonathan Weisberg</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Wed, 22 Feb 2017 10:44:10 -0500</lastBuildDate>
+    
+	<atom:link href="http://jonathanweisberg.org/tags/rgo/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Editorial Gravity</title>
+      <link>http://jonathanweisberg.org/post/editorial-gravity/</link>
+      <pubDate>Wed, 22 Feb 2017 10:44:10 -0500</pubDate>
+      
+      <guid>http://jonathanweisberg.org/post/editorial-gravity/</guid>
+      <description>We&amp;rsquo;ve all been there. One referee is positive, the other negative, and the editor decides to reject the submission.
+I&amp;rsquo;ve heard it said editors tend to be conservative given the recommendations of their referees. And that jibes with my experience as an author.
+So is there anything to it&amp;mdash;is &amp;ldquo;editorial gravity&amp;rdquo; a real thing? And if it is, how strong is its pull? Is there some magic function editors use to compute their decision based on the referees&amp;rsquo; recommendations?</description>
+    </item>
+    
+    <item>
+      <title>Gender &amp; Journal Referees</title>
+      <link>http://jonathanweisberg.org/post/referee-gender/</link>
+      <pubDate>Mon, 20 Feb 2017 09:34:10 -0500</pubDate>
+      
+      <guid>http://jonathanweisberg.org/post/referee-gender/</guid>
+      <description>We looked at author gender in a previous post, today let&amp;rsquo;s consider referees. Does their gender have any predictive value?
+Once again our discussion only covers men and women because we don&amp;rsquo;t have the data to support a deeper analysis.1
+Using data from Ergo, we&amp;rsquo;ll consider the following questions:
+ Requests. How are requests to referee distributed between men and women? Are men more likely to be invited, for example?</description>
+    </item>
+    
+    <item>
+      <title>In Defense of Reviewer 2</title>
+      <link>http://jonathanweisberg.org/post/reviewer-2/</link>
+      <pubDate>Mon, 06 Feb 2017 10:36:10 -0500</pubDate>
+      
+      <guid>http://jonathanweisberg.org/post/reviewer-2/</guid>
+      <description>Spare a thought for Reviewer 2, that much-maligned shade of academe. There&amp;rsquo;s even a hashtag dedicated to the joke:
+A rare glimpse of reviewer 2, seen here in their natural habitat pic.twitter.com/lpT1BVhDCX
+&amp;mdash; Aidan McGlynn (@AidanMcGlynn) January 15, 2017 
+But is it just a joke? Order could easily matter here.
+Referees invited later weren&amp;rsquo;t the editor&amp;rsquo;s first choice, after all. Maybe they&amp;rsquo;re less competent, less likely to appreciate your brilliant insights as an author.</description>
+    </item>
+    
+    <item>
+      <title>Gender &amp; Journal Submissions</title>
+      <link>http://jonathanweisberg.org/post/author-gender/</link>
+      <pubDate>Thu, 26 Jan 2017 10:36:10 -0500</pubDate>
+      
+      <guid>http://jonathanweisberg.org/post/author-gender/</guid>
+      <description>Does an author&amp;rsquo;s gender affect the fate of their submission to an academic journal? It&amp;rsquo;s a big question, even if we restrict ourselves to philosophy journals.
+But we can make a start by using Ergo as one data-point. I&amp;rsquo;ll examine two questions:
+ Question 1: Does gender affect the decision rendered at Ergo? Are men more likely to have their papers accepted, for example?
+ Question 2: Does gender affect time-to-decision at Ergo?</description>
+    </item>
+    
+    <item>
+      <title>The Thursday Conundrum</title>
+      <link>http://jonathanweisberg.org/post/the-thursday-conundrum/</link>
+      <pubDate>Mon, 16 Jan 2017 10:14:00 -0500</pubDate>
+      
+      <guid>http://jonathanweisberg.org/post/the-thursday-conundrum/</guid>
+      <description>In an earlier post we saw that Mondays and Thursdays are good for editors, at least at Ergo. Potential referees say yes more often when invited on these days. But why?
+Mondays aren&amp;rsquo;t too puzzling. It&amp;rsquo;s the start of a new week, so people are fresh, and maybe just a little deluded about how productive the coming week will prove to be.
+But Thursdays? They don&amp;rsquo;t seem especially special. I tried speculating a priori about what might be going on there.</description>
+    </item>
+    
+    <item>
+      <title>An Editor&#39;s Favourite Days of the Week</title>
+      <link>http://jonathanweisberg.org/post/an-editors-favourite-days/</link>
+      <pubDate>Mon, 09 Jan 2017 10:13:49 -0500</pubDate>
+      
+      <guid>http://jonathanweisberg.org/post/an-editors-favourite-days/</guid>
+      <description>Finding willing referees is one of the biggest challenges for a journal editor. Are referees more willing some days of the week than others? Apparently they are, on Mondays&amp;hellip; and Thursdays, for some reason. At least, that&amp;rsquo;s how things have gone at Ergo the last couple years (2015 and 2016).
+Data Consider the &amp;ldquo;bounce rate&amp;rdquo; for a given day of the week: the portion of invites sent on that day that end up being declined (bounce rate = #declined / #invited).</description>
+    </item>
+    
+  </channel>
+</rss>

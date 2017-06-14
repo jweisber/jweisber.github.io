@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Jonathan Weisberg's Homepage">
+    <meta name="author" content="Jonathan Weisberg">
+    
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@jweisber">
+    <meta name="twitter:creator" content="@jweisber">
+    <meta name="twitter:title" content="Accuracy for Dummies, Part 5: Convexity">
+    <meta name="twitter:description" content="In this and the next two posts we&rsquo;ll establish the central theorem of the accuracy framework. We&rsquo;ll show that the laws of probability are specially suited to the pursuit of accuracy, measured in Brier distance.
+We showed this for cases with two possible outcomes, like a coin toss, way back in the first post of this series. A simple, two-dimensional diagram was all we really needed for that argument. To see how the same idea extends to any number of dimensions, we need to generalize the key ingredients of that reasoning to $n$ dimensions.">
+    <meta name="twitter:image" content="http://i.imgur.com/yN0tsfF.jpg">
+
+    <meta property="og:url" content="/post/accuracy-for-dummies---part-5---convexity/" />
+    <meta property="og:type" content="article" />
+    <meta property="og:title" content="Accuracy for Dummies, Part 5: Convexity" />
+    <meta property="og:description" content="In this and the next two posts we&rsquo;ll establish the central theorem of the accuracy framework. We&rsquo;ll show that the laws of probability are specially suited to the pursuit of accuracy, measured in Brier distance.
+We showed this for cases with two possible outcomes, like a coin toss, way back in the first post of this series. A simple, two-dimensional diagram was all we really needed for that argument. To see how the same idea extends to any number of dimensions, we need to generalize the key ingredients of that reasoning to $n$ dimensions." />
+    <meta property="og:image" content="http://i.imgur.com/yN0tsfF.jpg" />
+
+
+    <title>Accuracy for Dummies, Part 5: Convexity</title>
+
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+    <link href="/css/prism-xonokai.css" rel="stylesheet" />
+    <link href="/css/scarab.css" rel="stylesheet">
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]},
+        "HTML-CSS": {
+          availableFonts: ["Gyre-Pagella"],
+          preferredFont: "Gyre-Pagella",
+          webFont: "Gyre-Pagella",
+          imageFont: "Gyre-Pagella",
+        }
+      });
+    </script>
+    <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+    </script>
+    
+    
+    
+
+</head>
+
+<body>
+
+<nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+  <div class="container">
+    
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-navbar-collapse-1">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="http://jonathanweisberg.org/">Jonathan Weisberg</a>
+    </div>
+    
+    <div class="collapse navbar-collapse" id="bs-navbar-collapse-1">
+      <ul class="nav navbar-nav">
+        <li>
+          <a href="/pdf/CV.pdf">
+            <i class="fa fa-briefcase"></i>&nbsp;
+            CV
+          </a>
+        </li>
+        <li>
+          <a href="/post/">
+            <i class="fa fa-code"></i>&nbsp;
+            Blog
+          </a>
+        </li>
+        <li>
+          <a href="/publication/">
+            <i class="fa fa-files-o"></i>&nbsp;
+            Research
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+
+
+  
+  <div class="container">
+
+    
+    <div class="row">
+      <div class="col-md-3 hidden-sm hidden-xs text-right">
+        <h1 class="post-title">&nbsp;</h1>
+        <p>
+          <em>Thu, May 18, 2017</em><br />
+          
+          
+          
+          <span class="post-tags">
+            
+            <a class="post-tag" href="http://jonathanweisberg.org/tags/accuracy-for-dummies">Accuracy for Dummies</a>
+             &bull;   
+            
+            <a class="post-tag" href="http://jonathanweisberg.org/tags/accuracy">Accuracy</a>
+             &bull;  
+            
+            <a class="post-tag" href="http://jonathanweisberg.org/tags/formal-epistemology">Formal Epistemology</a>
+             &bull;  
+            
+            <a class="post-tag" href="http://jonathanweisberg.org/tags/philosophy">Philosophy</a>
+            
+            
+          </span>
+          
+          
+        </p>
+      </div>
+
+      <div class="col-md-7 blog-post">
+
+        <h1>Accuracy for Dummies, Part 5: Convexity</h1>
+
+        <div class="hidden-md hidden-lg">
+          <div>
+            <em>Thu, May 18, 2017</em>
+          </div>
+          
+          
+          
+          <p class="post-tags">
+            
+            <a class="post-tag" href="http://jonathanweisberg.org/tags/accuracy-for-dummies">Accuracy for Dummies</a>
+             &bull;   
+            
+            <a class="post-tag" href="http://jonathanweisberg.org/tags/accuracy">Accuracy</a>
+             &bull;  
+            
+            <a class="post-tag" href="http://jonathanweisberg.org/tags/formal-epistemology">Formal Epistemology</a>
+             &bull;  
+            
+            <a class="post-tag" href="http://jonathanweisberg.org/tags/philosophy">Philosophy</a>
+            
+            
+          </p>
+          
+          
+        </div>
+
+        <div class="post-body">
+          
+
+<p>In this and the next two posts we&rsquo;ll establish the central theorem of the accuracy framework. We&rsquo;ll show that the laws of probability are specially suited to the pursuit of accuracy, measured in Brier distance.</p>
+
+<p>We showed this for cases with two possible outcomes, like a coin toss,  way back in <a href="/post/Accuracy for Dummies - Part 1/">the first post of this series</a>. A simple, <a href="/img/accuracy/2D Dominance Diagram - 400px.png">two-dimensional diagram</a> was all we really needed for that argument. To see how the same idea extends to any number of dimensions, we need to generalize the key ingredients of that reasoning to $n$ dimensions.</p>
+
+<p>This post supplies the first ingredient: the convexity theorem.</p>
+
+<h1 id="convex-shapes">Convex Shapes</h1>
+
+<p>Convex shapes are central to the accuracy framework because, in a way, the laws of probability have a convex shape. Hopefully that mystical pronouncement will make sense by the end of this post.</p>
+
+<p>You probably know a convex shape when you see one. Circles, triangles, and octagons are convex; pentagrams and the state of Texas are not.</p>
+
+<p>But what makes a convex shape convex? Roughly: <em>it contains all its connecting lines</em>. If you take any two points in a convex region and draw a line connecting them, the line will lie entirely inside that region.</p>
+
+<p>But on a non-convex figure, you can find points whose connecting line leaves the figure&rsquo;s boundary:</p>
+
+<p><img src="/img/accuracy/TexasLine.png" alt="" /></p>
+
+<p>We want to take this idea beyond two dimensions, though. And for that, we need  to generalize the idea of connecting lines. We need the concept of a &ldquo;mixture&rdquo;.</p>
+
+<h2 id="pointy-arithmetic">Pointy Arithmetic</h2>
+
+<p>In two dimensions it&rsquo;s pretty easy to see that if you take some percentage of one point, and a complementary percentage of another point, you get a third point on the line between them.$
+\renewcommand{\vec}[1]{\mathbf{#1}}
+\newcommand{\p}{\vec{p}}
+\newcommand{\q}{\vec{q}}
+\newcommand{\r}{\vec{r}}
+\newcommand{\v}{\vec{v}}
+\newcommand{\R}{\mathbb{R}}
+$</p>
+
+<p>For example, if you take $1/ 2$ of $(0,0)$ and add it to $1/ 2$ of $(1,1)$, you get the point halfway between: $(1/ 2,1/ 2)$. That&rsquo;s pretty intuitive geometrically:
+<img src="/img/accuracy/Fig1.png" alt="" />
+But we can capture the idea algebraically too:
+$$
+  \begin{align}
+    1/ 2 \times (0,0) + 1/ 2 \times (1,1)
+      &amp;= (0,0) + (1/ 2, 1/ 2)\\<br />
+      &amp;= (1/ 2, 1/ 2).
+  \end{align}
+$$</p>
+
+<p>Likewise, if you add $3/10$ of $(0,0)$ to $7/10$ of $(1, 1)$, you get the point seven-tenths of the way in between, namely $(7/10, 7/10)$:
+<img src="/img/accuracy/Fig2.png" alt="" />
+In algebraic terms:
+$$
+  \begin{align}
+    3/10 \times (0,0) + 7/10 \times (1,1)
+      &amp;= (0,0) + (7/10, 7/10)\\<br />
+      &amp;= (7/10, 7/10).
+  \end{align}
+$$</p>
+
+<p>Notice that we just introduced two rules for doing arithmetic with points. When multiplying a point $\p = (p_1, p_2)$ by a number $a$, we get:
+$$ a \p = (a p_1, a p_2). $$
+And when adding two points $\p = (p_1, p_2)$ and $\q = (q_1, q_2)$ together:
+$$ \p + \q = (p_1 + q_1, p_2 + q_2). $$
+In other words, multiplying a point by a single number works element-wise, and so does adding two points together.</p>
+
+<p>We can generalize these ideas straightforwardly to any number of dimensions $n$. Given points $\p = (p_1, p_2, \ldots, p_n)$ and $\q = (q_1, q_2, \ldots, q_n)$, we can define:
+$$ a \p = (a p_1, a p_2, \ldots, a p_n), $$
+and
+$$ \p + \q = (p_1 + q_1, p_2 + q_2, \ldots, p_n + q_n).$$
+We&rsquo;ll talk more about arithmetic with points next time. For now, these two definitions will do.</p>
+
+<h2 id="mixtures">Mixtures</h2>
+
+<p>Now back to connecting lines between points. The idea is that the straight line between $\p$ and $\q$ is the set of points we get by &ldquo;mixing&rdquo; some portion of $\p$ with some portion of $\q$.</p>
+
+<p>We take some number $\lambda$ between $0$ and $1$, we multiply $\p$ by $\lambda$ and $\q$ by $1 - \lambda$, and we sum the results: $\lambda \p + (1-\lambda) \q$. The set of points you can obtain this way is the straight line between $\p$ and $\q$.</p>
+
+<p>In fact, you can mix any number of points together. Given $m$ points $\q_1, \ldots, \q_m$, we can define their <em>mixture</em> as follows. Let $\lambda_1, \ldots \lambda_m$ be positive real numbers that sum to one. That is:</p>
+
+<ul>
+<li>$\lambda_i \geq 0$ for all $i$, and</li>
+<li>$\lambda_1 + \lambda_2 + \ldots + \lambda_m = 1$.</li>
+</ul>
+
+<p>Then we multiply each $\q_i$ by the corresponding $\lambda_i$ and sum up:
+  $$ \p = \lambda_1 \q_1 + \ldots + \lambda_m \q_m. $$
+The resulting point $\p$ is a <em>mixture</em> of the $\q_i$&rsquo;s.</p>
+
+<p>Now we can define the general notion of a <em>convex set</em> of points. A convex set is one where the mixture of any points in the set is also contained in the set. (A convex set is &ldquo;closed under mixing&rdquo;, you might say.)</p>
+
+<h1 id="convex-hulls">Convex Hulls</h1>
+
+<p>It turns out that the set of possible probability assignments is convex.</p>
+
+<p>More than that, it&rsquo;s the convex set generated by the possible truth-value assignments, in a certain way. It&rsquo;s the &ldquo;convex hull&rdquo; of the possible truth-value assignments.</p>
+
+<p>What in the world is a &ldquo;convex hull&rdquo;?</p>
+
+<p>Imagine some points in the plane&mdash;the corners of a square, for example. Now imagine stretching a rubber band around those points and letting it snap tight. The shape you get is the square with those points as corners. And the set of points enclosed by the rubber band is a convex set. Take any two points inside the square, or on its boundary, and draw the straight line between them. The line will not leave the square.</p>
+
+<p>Intuitively, the convex hull of a set of points in the plane is the set enclosed by the rubber band exercise. Formally, the convex hull of a set of points is the set of points that can be obtained from them as a mixture. (And this definition works in any number of dimensions.)</p>
+
+<p>For example, any of the points in our square example can be obtained by taking a mixture of the vertices. Take the center of the square: it&rsquo;s halfway between the bottom left and top right corners. To get something to the left of that we can mix in some of the top left corner (and correspondingly less of the top right). And so on.</p>
+
+<p>Now imagine the rubber band exercise using the possible truth-value assignments, instead of the corners of a square. In two dimensions, those are the points $(0,1)$ and $(1,0)$. And when you let the band snap tight, you get the diagonal line connecting them. As we saw way back in <a href="/post/Accuracy for Dummies - Part 1/">our first post</a>, the points on that diagonal line are the possible probability assignments.</p>
+
+<h1 id="peeking-ahead">Peeking Ahead</h1>
+
+<p>We also saw that if you take any point <em>not</em> on that diagonal, the closest point on the diagonal forms a right angle. That&rsquo;s what lets us do some basic geometric reasoning to see that there&rsquo;s a point on the line that&rsquo;s closer to both vertices than the point off the line:</p>
+
+<p><img src="/img/accuracy/2D Dominance Diagram - 400px.png" alt="" /></p>
+
+<p>That fact about closest points and right angles is what&rsquo;s going to enable us to generalize the argument beyond two dimensions. If you take any point not on a convex hull, there&rsquo;s a point on the convex hull (namely the closest point) which forms a right (or obtuse) angle with the other points on the hull.</p>
+
+<p>Consider the three dimensional case. The possible truth-value assignments are $(1,0,0)$, $(0,1,0)$, and $(0,0,1)$:
+<img src="/img/accuracy/Three Vertices.png" alt="" />
+And when you let a rubber band snap tight around them, it encloses the triangular surface connecting them:
+<img src="/img/accuracy/Three Vertices with Hull.png" alt="" />
+That&rsquo;s the set of probability assignments for three outcomes.</p>
+
+<p>Now take any point that&rsquo;s not on that triangular surface. Drop a straight line to the closest point on the surface. Then draw another straight line from there to one of the triangle&rsquo;s vertices. These two straight lines will form a right or obtuse angle. So the distance from the first, off-hull point to the vertex is further than the distance from the second, on-hull point to the vertex.</p>
+
+<p>Essentially the same reasoning works in any number of dimensions. But to make it work, we need to do three things.</p>
+
+<ol>
+<li>Prove that the probability assignments always form a convex hull around the possible truth-value assignments.</li>
+<li>Prove that any point outside a convex hull forms a right angle (or an obtuse angle) with any point on the hull.</li>
+<li>Prove that the point off the hull is further from all the vertices than the closest point on the hull.</li>
+</ol>
+
+<p>This post is dedicated to the first item.</p>
+
+<h1 id="the-convexity-theorem">The Convexity Theorem</h1>
+
+<p>We&rsquo;re going to prove that the set of possible probability assignments is the same as the convex hull of the possible truth-value assignments. First let&rsquo;s get some notation in place.</p>
+
+<h2 id="notation">Notation</h2>
+
+<p>As usual $n$ is the number of possible outcomes under consideration. So each possible truth-value assignment is a point of $n$ coordinates, with a single $1$ and $0$ everywhere else. For example, if $n = 4$ then $(0, 0, 1, 0)$ represents the case where the third possibility obtains.</p>
+
+<p>We&rsquo;ll write $V$ for the set of all possible truth value assignments. And we&rsquo;ll write $\v_1, \ldots, \v_n$ for the elements of $V$. The first element $\v_1$ has its $1$ in the first coordinate, $\v_2$ has its $1$ in the second coordinate, etc.</p>
+
+<p>We&rsquo;ll use a superscript $^+$ for the convex hull of a set. So $V^+$ is the convex hull of $V$. It&rsquo;s the set of all points that can be obtained by mixing members of $V$.</p>
+
+<p>Recall, a mixture is a point obtained by taking nonnegative real numbers $\lambda_1, \ldots, \lambda_n$ that sum to one, and multiplying each one against the corresponding $\v_i$ and then summing up:
+  $$ \lambda_1 \v_1 + \lambda_2 \v_2 + \ldots + \lambda_n \v_n. $$
+So $V^+$ is the set of all points that can be obtained by this method. Each choice of values $\lambda_1, \ldots, \lambda_n$ generates a member of $V^+$. (To exclude one of the $\v_i$&rsquo;s from a mixture, just set $\lambda_i = 0$.)</p>
+
+<p>Finally, we&rsquo;ll use $P$ for the set of all probability assignments. Recall: a probability assignment is a point of $n$ coordinates, where each coordinate is nonnegative, and all the coordinates together add up to one. That is, $\p = (p_1,\ldots,p_n)$ is a probability assignment just in case:</p>
+
+<ul>
+<li>$p_i \geq 0$ for all $i$, and</li>
+<li>$p_1 + p_2 + \ldots + p_n = 1$.</li>
+</ul>
+
+<p>The set $P$ contains just those points $\p$ satisfying these two conditions.</p>
+
+<h2 id="statement-and-proof">Statement and Proof</h2>
+
+<p>In the notation just established, what we&rsquo;re trying to show is that $V^+ = P$.</p>
+
+<p><strong>Theorem.</strong> $V^+ = P$. That is, the convex hull of the possible truth-value assignments just is the set of possible probability assignments.</p>
+
+<p><em>Proof.</em> Let&rsquo;s first show that $V^+ \subseteq P$.</p>
+
+<p>Notice that a truth-value assignment is also probability assignment. Its coordinates are always $1$ or $0$, so all coordinates are nonnegative. And since it has only a single coordinate with value $1$, its coordinates add up to $1$.</p>
+
+<p>But we have to show that any mixture of truth-value assignments is also a probability assignment. So let $\lambda_1, \ldots, \lambda_n$ be nonnegative numbers that sum to $1$. If we multiply $\lambda_i$ against a truth-value assignment $\v_i$, we get a point with $0$ in every coordinate except the $i$-th coordinate, which has value $\lambda_i$. For example, $\lambda_3 \times (0, 0, 1, 0) = (0, 0, \lambda_3, 0)$. So the mixture that results from $\lambda_1, \ldots, \lambda_n$ is:
+  $$
+    \lambda_1 \v_1 + \lambda_2 \v_2 + \ldots \lambda_n \v_n = (\lambda_1, \lambda_2, \ldots, \lambda_n).
+  $$
+And this mixture has coordinates that are all nonnegative and sum to $1$, by hypothesis. In other words, it is a probability assignment.</p>
+
+<p>So we turn to showing that $P \subseteq V^+$. In other words, we want to show that every probability assignment can be obtained as a mixture of the $\v_i$&rsquo;s.</p>
+
+<p>So take an arbitrary probability assignment $\p \in P$, where $\p = (p_1, \ldots, p_n)$. Let the $\lambda_i$&rsquo;s be the probabilities that $\p$ assigns to each $i$: $\lambda_1 = p_1$, $\lambda_2 = p_2$, and so on. Then, by the same logic as in the first part of the proof:
+  $$ \lambda_1 \v_1 + \ldots + \lambda_n \v_n = (p_1, \ldots, p_n). $$
+In other words, $\p$ is a mixture of the possible truth-value assignments, where the weights in the mixture are just the probability values assigned by $\p$. <span style="float: right;">$\Box$</span></p>
+
+<h1 id="up-next">Up Next</h1>
+
+<p>We&rsquo;ve established the first of the three items listed earlier. Next time we&rsquo;ll establish the second: given a point outside a convex set, there&rsquo;s always a point inside that forms a right or obtuse angle with any other point of the set. Then we&rsquo;ll be just a few lines of algebra from the main result: the Brier dominance theorem!</p>
+
+
+          &nbsp;
+        </div>
+
+        <div>
+          <a href="javascript: history.back()"><i class="fa fa-arrow-left"></i> Back</a>
+
+        </div>
+      </div>
+    </div>
+    
+
+<footer style="padding-top: 1em;">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-lg-12 text-center">
+        <p>
+          Powered by <a href="https://gohugo.io/">Hugo</a>;
+          styled with <a href="http://getbootstrap.com/">Bootstrap</a>;
+          mostly <a href="https://github.com/lambdafu/hugo-finite">cribbed</a> <a href="https://kieranhealy.org/">from</a> <a href="http://consequently.org/">others</a>.
+        </p>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+<script src="/js/prism.js"></script>
+
+<script type="text/javascript">
+var sc_project= 11213692 ;
+var sc_invisible= 1 ;
+var sc_security="b1954803";
+var scJsHost = (("https:" == document.location.protocol) ?
+"https://secure." : "http://www.");
+document.write("<sc"+"ript type='text/javascript' src='" +
+scJsHost+
+"statcounter.com/counter/counter.js'></"+"script>");
+</script>
+<noscript><div class="statcounter"><a title="web analytics"
+href="http://statcounter.com/" target="_blank"><img
+class="statcounter"
+src="//c.statcounter.com/11213692/0/b1954803/1/" alt="web
+analytics"></a></div></noscript>
+
+
+</body>
+</html>
+

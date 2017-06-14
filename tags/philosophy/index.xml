@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Philosophy on Jonathan Weisberg</title>
+    <link>http://jonathanweisberg.org/tags/philosophy/</link>
+    <description>Recent content in Philosophy on Jonathan Weisberg</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Wed, 14 Jun 2017 15:21:42 -0500</lastBuildDate>
+    
+	<atom:link href="http://jonathanweisberg.org/tags/philosophy/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>The Mosteller Hall Puzzle</title>
+      <link>http://jonathanweisberg.org/post/teaching-monty-hall/</link>
+      <pubDate>Wed, 14 Jun 2017 15:21:42 -0500</pubDate>
+      
+      <guid>http://jonathanweisberg.org/post/teaching-monty-hall/</guid>
+      <description>One of my favourite probability puzzles to teach is a close cousin of the Monty Hall problem. Originally from a 1965 book by Frederick Mosteller,1 here&amp;rsquo;s my formulation:
+ Three prisoners, A, B, and C, are condemned to die in the morning. But the king decides in the night to pardon one of them. He makes his choice at random and communicates it to the guard, who is sworn to secrecy.</description>
+    </item>
+    
+    <item>
+      <title>Accuracy for Dummies, Part 7: Dominance</title>
+      <link>http://jonathanweisberg.org/post/accuracy-for-dummies---part-7---brier-dominance/</link>
+      <pubDate>Wed, 07 Jun 2017 00:00:00 -0500</pubDate>
+      
+      <guid>http://jonathanweisberg.org/post/accuracy-for-dummies---part-7---brier-dominance/</guid>
+      <description>In our last two posts we established two key facts:
+ The set of possible probability assignments is convex. Convex sets are &amp;ldquo;obtuse&amp;rdquo;. Given a point outside a convex set, there&amp;rsquo;s a point inside that forms a right-or-obtuse angle with any third point in the set.  Today we&amp;rsquo;re putting them together to get the central result of the accuracy framework, the Brier dominance theorem. We&amp;rsquo;ll show that a non-probabilistic credence assignment is always &amp;ldquo;Brier dominated&amp;rdquo; by some probabilistic one.</description>
+    </item>
+    
+    <item>
+      <title>Journal Submission Rates by Gender: A Look at the APA/BPA Data</title>
+      <link>http://jonathanweisberg.org/post/a-look-at-the-apa-bpa-data/</link>
+      <pubDate>Tue, 06 Jun 2017 11:45:04 -0500</pubDate>
+      
+      <guid>http://jonathanweisberg.org/post/a-look-at-the-apa-bpa-data/</guid>
+      <description>Update: editors at CJP and Phil Quarterly have kindly shared some important, additional information. See the edit below for details.
+A new paper on the representation of women in philosophy journals prompted some debate in the philosophy blogosphere last week. The paper found women to be underrepresented across a range of prominent journals, yet overrepresented in the two journals studied where review was non-anonymous.
+Commenters over at Daily Nous complained about the lack of base-rate data.</description>
+    </item>
+    
+    <item>
+      <title>Accuracy for Dummies, Part 6: Obtusity</title>
+      <link>http://jonathanweisberg.org/post/accuracy-for-dummies---part-6---obtusity/</link>
+      <pubDate>Wed, 24 May 2017 00:00:00 -0500</pubDate>
+      
+      <guid>http://jonathanweisberg.org/post/accuracy-for-dummies---part-6---obtusity/</guid>
+      <description>Last time we saw that the set of probability assignments is convex. Today we&amp;rsquo;re going to show that convex sets have a special sort of &amp;ldquo;obtuse&amp;rdquo; relationship with outsiders. Given a point outside a convex set, there is always a point in the set that forms a right-or-obtuse angle with it.
+Recall our 2D diagram from the first post. The convex set of interest here is the diagonal line segment from $(0,1)$ to $(1,0)$:</description>
+    </item>
+    
+    <item>
+      <title>Accuracy for Dummies, Part 5: Convexity</title>
+      <link>http://jonathanweisberg.org/post/accuracy-for-dummies---part-5---convexity/</link>
+      <pubDate>Thu, 18 May 2017 10:35:00 -0500</pubDate>
+      
+      <guid>http://jonathanweisberg.org/post/accuracy-for-dummies---part-5---convexity/</guid>
+      <description>In this and the next two posts we&amp;rsquo;ll establish the central theorem of the accuracy framework. We&amp;rsquo;ll show that the laws of probability are specially suited to the pursuit of accuracy, measured in Brier distance.
+We showed this for cases with two possible outcomes, like a coin toss, way back in the first post of this series. A simple, two-dimensional diagram was all we really needed for that argument. To see how the same idea extends to any number of dimensions, we need to generalize the key ingredients of that reasoning to $n$ dimensions.</description>
+    </item>
+    
+    <item>
+      <title>Journals as Ratings Agencies</title>
+      <link>http://jonathanweisberg.org/post/journals-as-ratings-agencies/</link>
+      <pubDate>Thu, 30 Mar 2017 15:27:04 -0500</pubDate>
+      
+      <guid>http://jonathanweisberg.org/post/journals-as-ratings-agencies/</guid>
+      <description>Starting in July, philosophy&amp;rsquo;s two most prestigious journals won&amp;rsquo;t reject submitted papers anymore. Instead they&amp;rsquo;ll &amp;ldquo;grade&amp;rdquo; every submission, assigning a rating on the familiar letter-grade scale (A+, A, A-, B+, B, B-, etc.).
+They will, in effect, become ratings agencies.
+They&amp;rsquo;ll still publish papers. Those rated A- or higher can be published in the journal, if the authors want. Or they can seek another venue, if they think they can do better.</description>
+    </item>
+    
+    <item>
+      <title>Accuracy for Dummies, Part 4: Euclid in the Round</title>
+      <link>http://jonathanweisberg.org/post/accuracy-for-dummies---part-4/</link>
+      <pubDate>Thu, 23 Feb 2017 00:00:00 -0500</pubDate>
+      
+      <guid>http://jonathanweisberg.org/post/accuracy-for-dummies---part-4/</guid>
+      <description>Last time we took Brier distance beyond two dimensions. We showed that it&amp;rsquo;s &amp;ldquo;proper&amp;rdquo; in any finite number of dimensions. Today we&amp;rsquo;ll show that Euclidean distance is &amp;ldquo;improper&amp;rdquo; in any finite number dimensions.
+When I first sat down to write this post, I had in mind a straightforward generalization of our previous result for Euclidean distance in two dimensions. And I figured it would be easy to prove.
+Not so.</description>
+    </item>
+    
+    <item>
+      <title>Accuracy for Dummies, Part 3: Beyond the Second Dimension</title>
+      <link>http://jonathanweisberg.org/post/accuracy-for-dummies---part-3/</link>
+      <pubDate>Fri, 27 Jan 2017 00:00:00 -0500</pubDate>
+      
+      <guid>http://jonathanweisberg.org/post/accuracy-for-dummies---part-3/</guid>
+      <description>Last time we saw why accuracy-mavens prefer Brier distance to Euclidean distance. But we did everything in two dimensions. That&amp;rsquo;s fine for a coin toss, with only two possibilities. But what if there are three doors and one of them has a prize behind it??
+Don&amp;rsquo;t panic! Today we&amp;rsquo;re going to verify that Brier distance is still a proper way of measuring inaccuracy, even when there are more than two possibilities.</description>
+    </item>
+    
+    <item>
+      <title>Accuracy for Dummies, Part 2: from Euclid to Brier</title>
+      <link>http://jonathanweisberg.org/post/accuracy-for-dummies---part-2/</link>
+      <pubDate>Wed, 18 Jan 2017 00:00:00 -0500</pubDate>
+      
+      <guid>http://jonathanweisberg.org/post/accuracy-for-dummies---part-2/</guid>
+      <description>Last time we saw that Euclidean distance is an &amp;ldquo;unstable&amp;rdquo; way of measuring inaccuracy. Given one assignment of probabilities, you&amp;rsquo;ll expect some other assignment to be more accurate (unless the first assignment is either perfectly certain or perfectly uncertain).
+That&amp;rsquo;s why accuraticians don&amp;rsquo;t use good ol&amp;rsquo; Euclidean distance.
+Instead they use&amp;hellip; well, there are lots of alternatives. But the closest thing to a standard one is Brier distance: the square of Euclidean distance.</description>
+    </item>
+    
+    <item>
+      <title>Accuracy for Dummies, Part 1: Euclid Improper</title>
+      <link>http://jonathanweisberg.org/post/accuracy-for-dummies---part-1/</link>
+      <pubDate>Fri, 13 Jan 2017 09:53:00 -0500</pubDate>
+      
+      <guid>http://jonathanweisberg.org/post/accuracy-for-dummies---part-1/</guid>
+      <description>If you&amp;rsquo;ve bumped into the accuracy framework before, you&amp;rsquo;ve probably seen a diagram like this one:
+The vertices $(1,0)$ and $(0,1)$ represent two possibilities, whether a coin lands heads or tails in this example.
+According to the laws of probability, the probability of heads and of tails must add up to $1$, like $.3 + .7$ or $.5 + .5$. So the diagonal line connecting the two vertices covers all the possible probability assignments&amp;hellip; $(0,1)$, $(.</description>
+    </item>
+    
+  </channel>
+</rss>

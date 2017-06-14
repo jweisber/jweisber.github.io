@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Jonathan Weisberg's Homepage">
+    <meta name="author" content="Jonathan Weisberg">
+    
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@jweisber">
+    <meta name="twitter:creator" content="@jweisber">
+    <meta name="twitter:title" content="Accuracy for Dummies, Part 2: from Euclid to Brier">
+    <meta name="twitter:description" content="Last time we saw that Euclidean distance is an &ldquo;unstable&rdquo; way of measuring inaccuracy. Given one assignment of probabilities, you&rsquo;ll expect some other assignment to be more accurate (unless the first assignment is either perfectly certain or perfectly uncertain).
+That&rsquo;s why accuraticians don&rsquo;t use good ol&rsquo; Euclidean distance.
+Instead they use&hellip; well, there are lots of alternatives. But the closest thing to a standard one is Brier distance: the square of Euclidean distance.">
+    <meta name="twitter:image" content="http://i.imgur.com/zvq7LgW.png">
+
+    <meta property="og:url" content="/post/accuracy-for-dummies---part-2/" />
+    <meta property="og:type" content="article" />
+    <meta property="og:title" content="Accuracy for Dummies, Part 2: from Euclid to Brier" />
+    <meta property="og:description" content="Last time we saw that Euclidean distance is an &ldquo;unstable&rdquo; way of measuring inaccuracy. Given one assignment of probabilities, you&rsquo;ll expect some other assignment to be more accurate (unless the first assignment is either perfectly certain or perfectly uncertain).
+That&rsquo;s why accuraticians don&rsquo;t use good ol&rsquo; Euclidean distance.
+Instead they use&hellip; well, there are lots of alternatives. But the closest thing to a standard one is Brier distance: the square of Euclidean distance." />
+    <meta property="og:image" content="http://i.imgur.com/zvq7LgW.png" />
+
+
+    <title>Accuracy for Dummies, Part 2: from Euclid to Brier</title>
+
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+    <link href="/css/prism-xonokai.css" rel="stylesheet" />
+    <link href="/css/scarab.css" rel="stylesheet">
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]},
+        "HTML-CSS": {
+          availableFonts: ["Gyre-Pagella"],
+          preferredFont: "Gyre-Pagella",
+          webFont: "Gyre-Pagella",
+          imageFont: "Gyre-Pagella",
+        }
+      });
+    </script>
+    <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+    </script>
+    
+    
+    
+
+</head>
+
+<body>
+
+<nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+  <div class="container">
+    
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-navbar-collapse-1">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="http://jonathanweisberg.org/">Jonathan Weisberg</a>
+    </div>
+    
+    <div class="collapse navbar-collapse" id="bs-navbar-collapse-1">
+      <ul class="nav navbar-nav">
+        <li>
+          <a href="/pdf/CV.pdf">
+            <i class="fa fa-briefcase"></i>&nbsp;
+            CV
+          </a>
+        </li>
+        <li>
+          <a href="/post/">
+            <i class="fa fa-code"></i>&nbsp;
+            Blog
+          </a>
+        </li>
+        <li>
+          <a href="/publication/">
+            <i class="fa fa-files-o"></i>&nbsp;
+            Research
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+
+
+  
+  <div class="container">
+
+    
+    <div class="row">
+      <div class="col-md-3 hidden-sm hidden-xs text-right">
+        <h1 class="post-title">&nbsp;</h1>
+        <p>
+          <em>Wed, Jan 18, 2017</em><br />
+          
+          
+          
+          <span class="post-tags">
+            
+            <a class="post-tag" href="http://jonathanweisberg.org/tags/accuracy">Accuracy</a>
+             &bull;   
+            
+            <a class="post-tag" href="http://jonathanweisberg.org/tags/accuracy-for-dummies">Accuracy for Dummies</a>
+             &bull;  
+            
+            <a class="post-tag" href="http://jonathanweisberg.org/tags/formal-epistemology">Formal Epistemology</a>
+             &bull;  
+            
+            <a class="post-tag" href="http://jonathanweisberg.org/tags/philosophy">Philosophy</a>
+            
+            
+          </span>
+          
+          
+        </p>
+      </div>
+
+      <div class="col-md-7 blog-post">
+
+        <h1>Accuracy for Dummies, Part 2: from Euclid to Brier</h1>
+
+        <div class="hidden-md hidden-lg">
+          <div>
+            <em>Wed, Jan 18, 2017</em>
+          </div>
+          
+          
+          
+          <p class="post-tags">
+            
+            <a class="post-tag" href="http://jonathanweisberg.org/tags/accuracy">Accuracy</a>
+             &bull;   
+            
+            <a class="post-tag" href="http://jonathanweisberg.org/tags/accuracy-for-dummies">Accuracy for Dummies</a>
+             &bull;  
+            
+            <a class="post-tag" href="http://jonathanweisberg.org/tags/formal-epistemology">Formal Epistemology</a>
+             &bull;  
+            
+            <a class="post-tag" href="http://jonathanweisberg.org/tags/philosophy">Philosophy</a>
+            
+            
+          </p>
+          
+          
+        </div>
+
+        <div class="post-body">
+          
+
+<p><a href="/post/Accuracy%20for%20Dummies%20-%20Part%201/">Last time</a> we saw that Euclidean distance is an &ldquo;unstable&rdquo; way of measuring inaccuracy. Given one assignment of probabilities, you&rsquo;ll expect some other assignment to be more accurate (unless the first assignment is either perfectly certain or perfectly uncertain).</p>
+
+<p>That&rsquo;s why accuraticians don&rsquo;t use good ol&rsquo; Euclidean distance.</p>
+
+<p><img src="https://crookedrunbrewing.files.wordpress.com/2014/05/scientician.png?w=240" alt="Just ask this accuratician" /></p>
+
+<p>Instead they use&hellip; well, there are lots of alternatives. But the closest thing to a standard one is <em>Brier distance</em>: the square of Euclidean distance.</p>
+
+<p>Here&rsquo;s Euclid&rsquo;s formula for the distance between two points $(a, b)$ and $(c, d)$ in the plane:
+$$ \sqrt{ (a - c)^2 + (b - d)^2 }. $$
+And here&rsquo;s Brier&rsquo;s:
+$$ (a - c)^2 + (b - d)^2. $$
+So, to get from Euclid to Brier, you just take away the square root.</p>
+
+<p>That makes a world of difference, it turns out. Brier distance isn&rsquo;t unstable the way Euclidean distance is. But we&rsquo;ll see that it&rsquo;s enough like Euclidean distance to vindicate the argument for the laws of probability we began with last time.</p>
+
+<p>But first, a fun fact.</p>
+
+<h1 id="fun-fact">Fun Fact</h1>
+
+<p>Brier distance comes from the world of weather forecasting. Glenn W. Brier worked for the U. S. Weather Bureau, and in <a href="http://docs.lib.noaa.gov/rescue/mwr/078/mwr-078-01-0001.pdf" target="_blank">a 1950 paper</a> he proposed his formula as a way of measuring how well a weather forecaster is doing at predicting the weather.</p>
+
+<p>Suppose you say there&rsquo;s a 70% chance of rain. If it does rain, you&rsquo;re hardly wrong, but you&rsquo;re not exactly right either. Brier suggested assessing a forecaster&rsquo;s probabilities by taking the square of the difference from $1$ when it rains, and from $0$ when it doesn&rsquo;t.</p>
+
+<p>Well, actually, he proposed taking the <em>average</em> of those squares. But we&rsquo;ll follow the recent philosophical literature and keep it simple: we&rsquo;ll just use the sum of squares rather than its average.</p>
+
+<p>Now on to the substance. Two facts about Brier distance make it useful as a replacement for Euclidean distance.</p>
+
+<h1 id="euclid-and-brier-are-ordinally-equivalent">Euclid and Brier are Ordinally Equivalent</h1>
+
+<p>First, Brier distance is <em>ordinally equivalent</em> to Euclidean distance. Meaning: whenever a distance is larger according to Euclid, it&rsquo;s larger according to Brier too. And vice versa.</p>
+
+<p>How do we know that? Because Brier is just Euclid squared, and squaring a larger number always results in a larger number (for positive numbers like distances, anyway). If $D$ is the distance from Toronto to the sun, and $d$ is the distance from Toronto to the moon, then $D^2 &gt; d^2$. It&rsquo;s further to the sun than to the moon, both in terms of Brier distance and Euclidean distance.</p>
+
+<p>So, when we&rsquo;re comparing distances from the truth, Brier distance behaves a lot like Euclidean distance. In particular, what we learned from our opening diagram about Euclidean distance holds for Brier distance, too.</p>
+
+<p><img src="/img/accuracy/2D%20Dominance%20Diagram%20-%20400px.png" alt="Opening diagram" /></p>
+
+<p>Not only is $c&rsquo;$ closer to both vertices than $c^*$ in Euclidean terms, it&rsquo;s also closer in terms of Brier distance.</p>
+
+<h1 id="brier-is-stable">Brier is Stable</h1>
+
+<p>Second, Brier distance doesn&rsquo;t lead to the kind of instability that made Euclidean distance problematic. To see why, let&rsquo;s rerun our expected inaccuracy calculations from last time, but using Brier distance instead of Euclid.</p>
+
+<p>Suppose your credences in Heads and Tails are $p$ and $1-p$. What&rsquo;s the expected inaccuracy of having some credence $q$ in Heads, and $1-q$ in Tails?</p>
+
+<p>Well, the Brier distance between $(q, 1-q)$ and $(1,0)$ is:
+$$(q - 1)^2 + ((1-q) - 0)^2.$$
+And the Brier distance between $(q, 1-q)$ and $(0,1)$ is:
+$$(q - 0)^2 + ((1-q) - 1)^2.$$
+We don&rsquo;t know which of $(1,0)$ or $(0,1)$ is the &ldquo;true&rdquo; one. But we have assigned them the probabilities $p$ and $1-p$, respectively. So we can calculate the expected inaccuracy of $(q, 1-q)$, written $EI(q, 1-q)$:
+$$
+\begin{align}
+EI(q, 1-q) &amp;= p \left( (q - 1)^2 + ((1-q) - 0)^2 \right)\\<br />
+  &amp;\quad + (1-p) \left( (q - 0)^2 + ((1-q) - 1)^2 \right)\\<br />
+  &amp;= 2 p (1 - q)^2 + 2(1-p) q^2\\<br />
+  &amp;= 2 p q^2 - 4pq + 2p + 2q^2 - 2pq^2\\<br />
+  &amp;= 2q^2 - 4pq + 2p
+\end{align}
+$$
+Now that last line might look like a mess. But it&rsquo;s really just a quadratic equation, where the variable is $q$. Remember: we&rsquo;re treating $p$ as a constant since that&rsquo;s the credence you hold. And we&rsquo;re looking at potential values of $q$ to see which ones minimize the quantity $EI(q, 1-q)$, given a fixed credence of $p$ in heads.</p>
+
+<p>So which value of $q$ minimizes this quadratic formula? You might remember from algebra class that a quadratic equation of the form:
+$$
+ax^2 + bx + c
+$$
+is a parabola, with the bottom of the bowl located at $x = -b/2a$. (Or, if you know some calculus, you can take the derivative and set it equal to $0$. Since the derivative here is $2ax + b$, setting it equal to $0$ yields, again, $x = -b/2a$.)</p>
+
+<p>In the case of our formula, we have $a = 2$ and $b = -4p$. So the minimum happens when $q = 4p/4 = p$. In other words, given credence $p$ in heads, expected inaccuracy is minimized by sticking with that same credence, i.e. assigning $q = p$.</p>
+
+<p>So, to complement our result about Euclidean distance from last time, we have a</p>
+
+<p><strong>Theorem.</strong>&nbsp; Suppose $p \in [0,1]$. Then, according to the probability assignment $(p, 1-p)$, the expected Brier distance of any alternative assignment $(q, 1-q)$ from the points $(1,0)$ and $(0,1)$ is uniquely minimized when $p = q$.</p>
+
+<p><em>Proof.</em>&nbsp; Scroll up! <span style="float: right;">$\Box$</span></p>
+
+<h1 id="proper-scoring-rules">Proper Scoring Rules</h1>
+
+<p>When a measure of inaccuracy is stable like this, it&rsquo;s called <em>proper</em> (or sometimes: <em>immodest</em>).</p>
+
+<p>There are lots of other proper ways of measuring inaccuracy besides Brier. But Brier tends to be the default among philosophers writing in the accuracy framework, at least as a working example. Why?</p>
+
+<p>My impression (though I&rsquo;m no guru) is that it&rsquo;s the default because:</p>
+
+<ol>
+<li>Brier is a lot like Euclidean distance, as we saw. So it&rsquo;s easier and more intuitive to work with than some of the alternatives.</li>
+<li>Brier tends to be representative of other proper/immodest rules. If you discover something philosophically interesting using Brier, there&rsquo;s a good chance it holds for many other proper scoring rules.</li>
+<li>Brier has other nice mathematical properties which, according to authors like Richard Pettigrew, make it The One True Measure of Inaccuracy. (It may have some odd features too, though: see <a href="http://m-phi.blogspot.ca/2015/03/a-strange-thing-about-brier-score.html" target="_blank">this post</a> by Brian Knab and Miriam Schoenfield, for example.)</li>
+</ol>
+
+<p>How does our starting argument for the laws of total probability fare if we use other proper scoring rules, besides Brier? Really well, it turns out!</p>
+
+<p>The key fact our diagram illustrates doesn&rsquo;t just hold for Euclidean distance and Brier distance. Speaking <em>very</em> loosely: it holds on any proper way of measuring distance (but do see sections 8 and 9 of <a href="https://philpapers.org/rec/JOYAAC" target="_blank">Joyce&rsquo;s 2009</a> for the details before getting carried away with this generalization; or see Theorem 4.3.5 of <a href="https://global.oup.com/academic/product/accuracy-and-the-laws-of-credence-9780198732716" target="_blank">Pettigrew 2016</a>).</p>
+
+<p>Proving that requires grinding through a good deal of math, though. So in these posts we&rsquo;re going to stick with Brier distance, at least for a while.</p>
+
+<h1 id="begging-the-question">Begging the Question?</h1>
+
+<p>We started these posts with an illustration of an influential argument for the laws of probability. But we quickly switched to <em>assuming</em> those very same laws in the arguments that followed.</p>
+
+<p>For example, to illustrate the instability of Euclidean distance, I chose a point on the diagonal of our diagram, $(.6, .4)$. And in the theorem that generalized that example, I assumed probabilistic assignments like $(p, 1-p)$ and $(q, 1-q)$, which add up to $1$.</p>
+
+<p>So didn&rsquo;t we beg the question when we motivated switching from Euclid to Brier?</p>
+
+<p>To some extent: yes. We are assuming that reasonable ways of measuring inaccuracy can&rsquo;t be so hostile to the laws of probability that they make almost all probability assignments unstable.</p>
+
+<p>But also: no. We aren&rsquo;t assuming that the laws of probability are absolute and inviolable, just that they&rsquo;re reasonable <em>sometimes</em>. Euclidean distance would rule out probabilistic credences on pretty much all occasions. So it conflicts with the very modest thought that following the laws of probability is <em>occasionally</em> reasonable. So, even if you&rsquo;re just a little bit open to the idea of probability theory, Euclidean distance will seem pretty unfriendly.<sup class="footnote-ref" id="fnref:1"><a rel="footnote" href="#fn:1">1</a></sup></p>
+
+<p>Perhaps most importantly, though: the motivation I&rsquo;ve given you here for moving from Euclid to Brier isn&rsquo;t the official one you&rsquo;ll find in an actual, bottom-up argument for probability theory, like <a href="https://richardpettigrew.wordpress.com/accuracy-book/" target="_blank">Richard Pettigrew&rsquo;s</a>. His argument starts from a much more abstract place. He starts with axioms that any measure of inaccuracy must obey, and then narrows things down to Brier.</p>
+
+<p>So there&rsquo;s the official story and the unofficial story. This post gives you the unofficial story, to help you get started. Because the official story is often really hard to understand. Not only is the math way more abstract, but the philosophical motivations are often hard to suss out. Because&mdash;and this is just between you and me now&mdash;the people telling the official story actually started out with the unofficial story, and then worked backwards until they came up with an officially respectable story that doesn&rsquo;t beg the question quite so obviously.</p>
+
+<p>Ok, that&rsquo;s unfair. Here&rsquo;s a more even-handed (and better-informed) way of putting it, from <a href="http://ndpr.nd.edu/news/70705-accuracy-and-the-laws-of-credence/" target="_blank">Kenny Easwaran&rsquo;s review</a> of Pettigrew&rsquo;s book:</p>
+
+<blockquote>
+<p>Some philosophers have a vision of what they do as starting from unassailable premises, and giving an ironclad argument for a conclusion. However, I think we&rsquo;ve all often seen cases where these arguments are weaker than they seem to the author, and with the benefit of a bit of distance, one can often recognize how the premises were in fact motivated by an attempt to justify the conclusion, which was chosen in advance. Pettigrew avoids the charade of pretending to have come up with the premises independently of recognizing that they lead to the conclusions of his arguments. Instead, he is open about having chosen target conclusions in advance [&hellip;] and investigated what collection of potentially plausible principles about accuracy and epistemic decision theory will lead to those conclusions.</p>
+</blockquote>
+<div class="footnotes">
+
+<hr />
+
+<ol>
+<li id="fn:1">This argument is essentially drawn from <a href="https://philpapers.org/rec/JOYAAC" target="_blank">(Joyce 2009)</a>.
+ <a class="footnote-return" href="#fnref:1"><sup>[return]</sup></a></li>
+</ol>
+</div>
+
+
+          &nbsp;
+        </div>
+
+        <div>
+          <a href="javascript: history.back()"><i class="fa fa-arrow-left"></i> Back</a>
+
+        </div>
+      </div>
+    </div>
+    
+
+<footer style="padding-top: 1em;">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-lg-12 text-center">
+        <p>
+          Powered by <a href="https://gohugo.io/">Hugo</a>;
+          styled with <a href="http://getbootstrap.com/">Bootstrap</a>;
+          mostly <a href="https://github.com/lambdafu/hugo-finite">cribbed</a> <a href="https://kieranhealy.org/">from</a> <a href="http://consequently.org/">others</a>.
+        </p>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+<script src="/js/prism.js"></script>
+
+<script type="text/javascript">
+var sc_project= 11213692 ;
+var sc_invisible= 1 ;
+var sc_security="b1954803";
+var scJsHost = (("https:" == document.location.protocol) ?
+"https://secure." : "http://www.");
+document.write("<sc"+"ript type='text/javascript' src='" +
+scJsHost+
+"statcounter.com/counter/counter.js'></"+"script>");
+</script>
+<noscript><div class="statcounter"><a title="web analytics"
+href="http://statcounter.com/" target="_blank"><img
+class="statcounter"
+src="//c.statcounter.com/11213692/0/b1954803/1/" alt="web
+analytics"></a></div></noscript>
+
+
+</body>
+</html>
+
