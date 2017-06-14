@@ -2,161 +2,184 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Publications on Jonathan Weisberg</title>
-    <link>http://jonathanweisberg.org/publication/index.xml</link>
+    <link>http://jonathanweisberg.org/publication/</link>
     <description>Recent content in Publications on Jonathan Weisberg</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Wed, 28 Dec 2016 11:20:45 -0500</lastBuildDate>
-    <atom:link href="http://jonathanweisberg.org/publication/index.xml" rel="self" type="application/rss+xml" />
+    
+	<atom:link href="http://jonathanweisberg.org/publication/index.xml" rel="self" type="application/rss+xml" />
+    
     
     <item>
       <title>Risk Writ Large</title>
-      <link>http://jonathanweisberg.org/publication/Risk%20Writ%20Large/</link>
+      <link>http://jonathanweisberg.org/publication/risk-writ-large/</link>
       <pubDate>Wed, 28 Dec 2016 11:20:45 -0500</pubDate>
       
-      <guid>http://jonathanweisberg.org/publication/Risk%20Writ%20Large/</guid>
-      <description>&lt;p&gt;Risk-weighted expected utility (REU) theory is motivated by small-world problems like the Allais paradox, but it is a grand-world theory by nature. And, at the grand-world level, its ability to handle the Allais paradox is dubious. The REU model described in Risk and Rationality turns out to be risk-seeking rather than risk-averse on one natural way of formulating the Allais gambles in the grand-world context. This result illustrates a general problem with the case for REU theory, we argue. There is a tension between the small-world thinking marshaled against standard expected utility theory, and the grand-world thinking inherent to the risk-weighted alternative.&lt;/p&gt;
-</description>
+      <guid>http://jonathanweisberg.org/publication/risk-writ-large/</guid>
+      <description>Risk-weighted expected utility (REU) theory is motivated by small-world problems like the Allais paradox, but it is a grand-world theory by nature. And, at the grand-world level, its ability to handle the Allais paradox is dubious. The REU model described in Risk and Rationality turns out to be risk-seeking rather than risk-averse on one natural way of formulating the Allais gambles in the grand-world context. This result illustrates a general problem with the case for REU theory, we argue.</description>
     </item>
     
     <item>
       <title>Could&#39;ve Thought Otherwise</title>
-      <link>http://jonathanweisberg.org/publication/Couldve%20Thought%20Otherwise/</link>
+      <link>http://jonathanweisberg.org/publication/couldve-thought-otherwise/</link>
       <pubDate>Tue, 27 Dec 2016 21:58:08 -0500</pubDate>
       
-      <guid>http://jonathanweisberg.org/publication/Couldve%20Thought%20Otherwise/</guid>
-      <description>&lt;p&gt;Evidence is univocal, not equivocal. Its implications don&amp;rsquo;t depend on our beliefs or values, the evidence says what it says. But that doesn&amp;rsquo;t mean there&amp;rsquo;s no room for rational disagreement between people with the same evidence. Evaluating evidence is a lot like polling an electorate: getting an accurate reading requires a bit of luck, and even the best pollsters are bound to get slightly different results. So even though evidence is univocal, rationality&amp;rsquo;s requirements are not &amp;ldquo;unique&amp;rdquo;. Understanding this resolves several puzzles to do with uniqueness and disagreement.&lt;/p&gt;
-</description>
+      <guid>http://jonathanweisberg.org/publication/couldve-thought-otherwise/</guid>
+      <description>Evidence is univocal, not equivocal. Its implications don&amp;rsquo;t depend on our beliefs or values, the evidence says what it says. But that doesn&amp;rsquo;t mean there&amp;rsquo;s no room for rational disagreement between people with the same evidence. Evaluating evidence is a lot like polling an electorate: getting an accurate reading requires a bit of luck, and even the best pollsters are bound to get slightly different results. So even though evidence is univocal, rationality&amp;rsquo;s requirements are not &amp;ldquo;unique&amp;rdquo;.</description>
     </item>
     
     <item>
       <title>Belief in Psyontology</title>
-      <link>http://jonathanweisberg.org/publication/Belief%20in%20Psyontology/</link>
+      <link>http://jonathanweisberg.org/publication/belief-in-psyontology/</link>
       <pubDate>Tue, 27 Dec 2016 21:58:04 -0500</pubDate>
       
-      <guid>http://jonathanweisberg.org/publication/Belief%20in%20Psyontology/</guid>
-      <description>&lt;p&gt;Which is more fundamental, full belief or partial belief? I argue that neither is, ontologically speaking. A survey of some relevant cognitive psychology supports a dualist ontology instead. Beliefs come in two kinds, categorical and graded, with neither kind more fundamental than the other. In particular, the graded kind is no more fundamental. When we discuss belief in on/off terms, we are not speaking coarsely or informally about states that are ultimately credal.&lt;/p&gt;
-</description>
+      <guid>http://jonathanweisberg.org/publication/belief-in-psyontology/</guid>
+      <description>Which is more fundamental, full belief or partial belief? I argue that neither is, ontologically speaking. A survey of some relevant cognitive psychology supports a dualist ontology instead. Beliefs come in two kinds, categorical and graded, with neither kind more fundamental than the other. In particular, the graded kind is no more fundamental. When we discuss belief in on/off terms, we are not speaking coarsely or informally about states that are ultimately credal.</description>
     </item>
     
     <item>
       <title>Formal Epistemology</title>
-      <link>http://jonathanweisberg.org/publication/2015%20Formal%20Epistemology/</link>
+      <link>http://jonathanweisberg.org/publication/2015-formal-epistemology/</link>
       <pubDate>Tue, 27 Dec 2016 21:58:02 -0500</pubDate>
       
-      <guid>http://jonathanweisberg.org/publication/2015%20Formal%20Epistemology/</guid>
-      <description>&lt;p&gt;A survey of formal epistemology aimed at undergraduates with no previous exposure. Topics surveyed include: (1) confirmation theory, (2) the problem of induction, (3) the regress problem and foundationalist vs. coherentist theories of knowledge, (4) epistemic logic and the limits of knowledge, and (5) applications outside epistemology, like decision theory, the existence of God, and the semantics of conditionals.&lt;/p&gt;
-</description>
+      <guid>http://jonathanweisberg.org/publication/2015-formal-epistemology/</guid>
+      <description>A survey of formal epistemology aimed at undergraduates with no previous exposure. Topics surveyed include: (1) confirmation theory, (2) the problem of induction, (3) the regress problem and foundationalist vs. coherentist theories of knowledge, (4) epistemic logic and the limits of knowledge, and (5) applications outside epistemology, like decision theory, the existence of God, and the semantics of conditionals.</description>
     </item>
     
     <item>
       <title>You&#39;ve Come a Long Way, Bayesians</title>
-      <link>http://jonathanweisberg.org/publication/2015%20Youve%20Come%20a%20Long%20Way%20Bayesians/</link>
+      <link>http://jonathanweisberg.org/publication/2015-youve-come-a-long-way-bayesians/</link>
       <pubDate>Tue, 27 Dec 2016 21:57:58 -0500</pubDate>
       
-      <guid>http://jonathanweisberg.org/publication/2015%20Youve%20Come%20a%20Long%20Way%20Bayesians/</guid>
-      <description>&lt;p&gt;To celebrate the 40th anniversary of the JPL, a retrospective on select topics in Bayesian epistemology from the last 40 years. Topics discussed: (1) scoring rules and accuracy arguments, (2) imprecise credences, (3) regularity and zero-probable events, (4) connections between Bayesianism and &amp;ldquo;informal&amp;rdquo; epistemology, and (5) full and partial belief.&lt;/p&gt;
-</description>
+      <guid>http://jonathanweisberg.org/publication/2015-youve-come-a-long-way-bayesians/</guid>
+      <description>To celebrate the 40th anniversary of the JPL, a retrospective on select topics in Bayesian epistemology from the last 40 years. Topics discussed: (1) scoring rules and accuracy arguments, (2) imprecise credences, (3) regularity and zero-probable events, (4) connections between Bayesianism and &amp;ldquo;informal&amp;rdquo; epistemology, and (5) full and partial belief.</description>
     </item>
     
     <item>
       <title>Updating, Undermining, &amp; Independence</title>
-      <link>http://jonathanweisberg.org/publication/2015%20Updating%20Undermining%20and%20Independence/</link>
+      <link>http://jonathanweisberg.org/publication/2015-updating-undermining-and-independence/</link>
       <pubDate>Tue, 27 Dec 2016 21:57:55 -0500</pubDate>
       
-      <guid>http://jonathanweisberg.org/publication/2015%20Updating%20Undermining%20and%20Independence/</guid>
-      <description>&lt;p&gt;Sometimes appearances provide epistemic support that gets undercut later. In an earlier paper I argued that standard Bayesian update rules are at odds with this phenomenon because they are &amp;ldquo;rigid&amp;rdquo;. Here I generalize and bolster that argument. I first show that the update rules of Dempster–Shafer theory and ranking theory are rigid too, hence also at odds with the defeasibility of appearances. I then rebut three Bayesian attempts to solve the problem. I conclude that defeasible appearances pose a more difficult and pervasive challenge for formal epistemology than is currently thought.&lt;/p&gt;
-</description>
+      <guid>http://jonathanweisberg.org/publication/2015-updating-undermining-and-independence/</guid>
+      <description>Sometimes appearances provide epistemic support that gets undercut later. In an earlier paper I argued that standard Bayesian update rules are at odds with this phenomenon because they are &amp;ldquo;rigid&amp;rdquo;. Here I generalize and bolster that argument. I first show that the update rules of Dempster–Shafer theory and ranking theory are rigid too, hence also at odds with the defeasibility of appearances. I then rebut three Bayesian attempts to solve the problem.</description>
     </item>
     
     <item>
       <title>Knowledge in Action</title>
-      <link>http://jonathanweisberg.org/publication/2013%20Knowledge%20in%20Action/</link>
+      <link>http://jonathanweisberg.org/publication/2013-knowledge-in-action/</link>
       <pubDate>Tue, 27 Dec 2016 21:57:51 -0500</pubDate>
       
-      <guid>http://jonathanweisberg.org/publication/2013%20Knowledge%20in%20Action/</guid>
-      <description>&lt;p&gt;Your actions should be guided by what you know, many say. Yet Bayesian decision theory says rational decision-making is rooted in uncertainty: you ought to maximize expected utility with respect to your credences. I argue that these knowledge- and credence-based pictures are not as incompatible as they seem, and I offer three irenic proposals to bridge the divide. First, there are knowledge-based methods of practical reasoning that are capable of making expected-utility-maximizing choices. Second, credences can constitute knowledge by constituting dispositional beliefs about epistemic probabilities. And third, even when credences don&amp;rsquo;t constitute such knowledge, they can still influence action by serving as weights for the reasons one&amp;rsquo;s knowledge does provide.&lt;/p&gt;
-</description>
+      <guid>http://jonathanweisberg.org/publication/2013-knowledge-in-action/</guid>
+      <description>Your actions should be guided by what you know, many say. Yet Bayesian decision theory says rational decision-making is rooted in uncertainty: you ought to maximize expected utility with respect to your credences. I argue that these knowledge- and credence-based pictures are not as incompatible as they seem, and I offer three irenic proposals to bridge the divide. First, there are knowledge-based methods of practical reasoning that are capable of making expected-utility-maximizing choices.</description>
     </item>
     
     <item>
       <title>The Argument from Divine Indifference</title>
-      <link>http://jonathanweisberg.org/publication/2012%20Divine%20Indifference/</link>
+      <link>http://jonathanweisberg.org/publication/2012-divine-indifference/</link>
       <pubDate>Sun, 01 Jan 2012 00:00:02 -0500</pubDate>
       
-      <guid>http://jonathanweisberg.org/publication/2012%20Divine%20Indifference/</guid>
-      <description>&lt;p&gt;The rationale behind the fine-tuning argument for design is self-undermining, refuting the argument&amp;rsquo;s own premiss that fine-tuning is to be expected given design. In Weisberg (2010), I argued on informal grounds that this premiss is unsupported. White (2011) countered that it can be derived from three plausible assumptions. But White&amp;rsquo;s third assumption is based on a fallacious rationale, and is even objectionable by the design theorist&amp;rsquo;s own lights. The argument that shows this, the argument from divine indifference, simultaneously exposes the fine-tuning argument&amp;rsquo;s self-undermining character. The same argument also answers Bradley&amp;rsquo;s (forthcoming) reply to my earlier objection.&lt;/p&gt;
-</description>
+      <guid>http://jonathanweisberg.org/publication/2012-divine-indifference/</guid>
+      <description>The rationale behind the fine-tuning argument for design is self-undermining, refuting the argument&amp;rsquo;s own premiss that fine-tuning is to be expected given design. In Weisberg (2010), I argued on informal grounds that this premiss is unsupported. White (2011) countered that it can be derived from three plausible assumptions. But White&amp;rsquo;s third assumption is based on a fallacious rationale, and is even objectionable by the design theorist&amp;rsquo;s own lights. The argument that shows this, the argument from divine indifference, simultaneously exposes the fine-tuning argument&amp;rsquo;s self-undermining character.</description>
     </item>
     
     <item>
       <title>The Bootstrapping Problem</title>
-      <link>http://jonathanweisberg.org/publication/2012%20The%20Bootstrapping%20Problem/</link>
+      <link>http://jonathanweisberg.org/publication/2012-the-bootstrapping-problem/</link>
       <pubDate>Sun, 01 Jan 2012 00:00:01 -0500</pubDate>
       
-      <guid>http://jonathanweisberg.org/publication/2012%20The%20Bootstrapping%20Problem/</guid>
-      <description>&lt;p&gt;Bootstrapping is a suspicious form of reasoning that verifies a source&amp;rsquo;s reliability by checking the source against itself. Theories that endorse such reasoning face the bootstrapping problem. This article considers which theories face the problem and surveys potential solutions. The initial focus is on theories like reliabilism and dogmatism, which allow one to gain knowledge from a source without knowing that it is reliable. But the discussion quickly turns to a more general version of the problem that does not depend on this allowance. Five potential solutions to the general problem are evaluated, and some implications for the literature on peer disagreement are considered.&lt;/p&gt;
-</description>
+      <guid>http://jonathanweisberg.org/publication/2012-the-bootstrapping-problem/</guid>
+      <description>Bootstrapping is a suspicious form of reasoning that verifies a source&amp;rsquo;s reliability by checking the source against itself. Theories that endorse such reasoning face the bootstrapping problem. This article considers which theories face the problem and surveys potential solutions. The initial focus is on theories like reliabilism and dogmatism, which allow one to gain knowledge from a source without knowing that it is reliable. But the discussion quickly turns to a more general version of the problem that does not depend on this allowance.</description>
     </item>
     
     <item>
       <title>Embedding If and Only If</title>
-      <link>http://jonathanweisberg.org/publication/2012%20Embedding%20If%20and%20Only%20If/</link>
+      <link>http://jonathanweisberg.org/publication/2012-embedding-if-and-only-if/</link>
       <pubDate>Sun, 01 Jan 2012 00:00:00 -0500</pubDate>
       
-      <guid>http://jonathanweisberg.org/publication/2012%20Embedding%20If%20and%20Only%20If/</guid>
-      <description>&lt;p&gt;Some left-nested indicative conditionals are hard to interpret while others seem fine. Some proponents of the view that indicative conditionals have No Truth Values (NTV) use their view to explain why some left-nestings are hard to interpret: the embedded conditional does not express the truth conditions needed by the embedding conditional. Left-nestings that seem fine are then explained away as cases of ad hoc, pragmatic interpretation. We challenge this explanation. The standard reasons for NTV about indicative conditionals (triviality results, Gibbardian standoffs, etc.) extend naturally to NTV about biconditionals. So NTVers about conditionals should also be NTVers about biconditionals. But biconditionals embed much more freely than conditionals. If NTV explains why some left-nested conditionals are hard to interpret, why do biconditionals embed successfully in the very contexts where conditionals do not embed?&lt;/p&gt;
-</description>
+      <guid>http://jonathanweisberg.org/publication/2012-embedding-if-and-only-if/</guid>
+      <description>Some left-nested indicative conditionals are hard to interpret while others seem fine. Some proponents of the view that indicative conditionals have No Truth Values (NTV) use their view to explain why some left-nestings are hard to interpret: the embedded conditional does not express the truth conditions needed by the embedding conditional. Left-nestings that seem fine are then explained away as cases of ad hoc, pragmatic interpretation. We challenge this explanation. The standard reasons for NTV about indicative conditionals (triviality results, Gibbardian standoffs, etc.</description>
     </item>
     
     <item>
       <title>Representation Theorems and the Foundations of Decision Theory</title>
-      <link>http://jonathanweisberg.org/publication/2011%20Representation%20Theorems%20and%20the%20Foundations%20of%20Decision%20Theory/</link>
+      <link>http://jonathanweisberg.org/publication/2011-representation-theorems-and-the-foundations-of-decision-theory/</link>
       <pubDate>Sat, 01 Jan 2011 00:00:01 -0500</pubDate>
       
-      <guid>http://jonathanweisberg.org/publication/2011%20Representation%20Theorems%20and%20the%20Foundations%20of%20Decision%20Theory/</guid>
-      <description>&lt;p&gt;Representation theorems are often taken to provide the foundations for decision theory. First, they are taken to characterize degrees of belief and utilities. Second, they are taken to justify two fundamental rules of rationality: that we should have probabilistic degrees of belief and that we should act as expected utility maximizers. We argue that representation theorems cannot serve either of these foundational purposes, and that recent attempts to defend the foundational importance of representation theorems are unsuccessful. As a result, we should reject these claims, and lay the foundations of decision theory on firmer ground.&lt;/p&gt;
-</description>
+      <guid>http://jonathanweisberg.org/publication/2011-representation-theorems-and-the-foundations-of-decision-theory/</guid>
+      <description>Representation theorems are often taken to provide the foundations for decision theory. First, they are taken to characterize degrees of belief and utilities. Second, they are taken to justify two fundamental rules of rationality: that we should have probabilistic degrees of belief and that we should act as expected utility maximizers. We argue that representation theorems cannot serve either of these foundational purposes, and that recent attempts to defend the foundational importance of representation theorems are unsuccessful.</description>
     </item>
     
     <item>
       <title>Varieties of Bayesianism</title>
-      <link>http://jonathanweisberg.org/publication/2011%20Varieties%20of%20Bayesianism/</link>
+      <link>http://jonathanweisberg.org/publication/2011-varieties-of-bayesianism/</link>
       <pubDate>Sat, 01 Jan 2011 00:00:00 -0500</pubDate>
       
-      <guid>http://jonathanweisberg.org/publication/2011%20Varieties%20of%20Bayesianism/</guid>
-      <description>&lt;p&gt;A survey of Bayesian epistemology covering (1) the basic mathematical machinery of Bayesianism, (2) interpretations of &amp;lsquo;probability&amp;rsquo;, (3) the subjective-objective continuum, (4) justifications for Bayesian principles, (5) decision theory, (6) confirmation theory, and (7) full and partial belief.&lt;/p&gt;
-</description>
+      <guid>http://jonathanweisberg.org/publication/2011-varieties-of-bayesianism/</guid>
+      <description>A survey of Bayesian epistemology covering (1) the basic mathematical machinery of Bayesianism, (2) interpretations of &amp;lsquo;probability&amp;rsquo;, (3) the subjective-objective continuum, (4) justifications for Bayesian principles, (5) decision theory, (6) confirmation theory, and (7) full and partial belief.</description>
     </item>
     
     <item>
       <title>Bootstrapping in General</title>
-      <link>http://jonathanweisberg.org/publication/2010%20Bootstrapping%20in%20General/</link>
+      <link>http://jonathanweisberg.org/publication/2010-bootstrapping-in-general/</link>
       <pubDate>Fri, 01 Jan 2010 00:00:01 -0500</pubDate>
       
-      <guid>http://jonathanweisberg.org/publication/2010%20Bootstrapping%20in%20General/</guid>
-      <description>&lt;p&gt;Bootstrapping poses a more general challenge than commonly thought. Versions of the problem afflict even strongly internalist theories of knowledge. Even if one must know a source to be reliable to gain knowledge from it, bootstrapping is still a threat. I consider potential solutions internalists might try, and defend the one I think most plausible: that bootstrapping involves an abuse of inductive reasoning akin to generalizing from a small or biased sample. Finally, I argue that this solution is equally available to the reliabilist. The moral is that the issues raised by bootstrapping are orthogonal to questions about internalism and basic knowledge. They have more to do with the nature of good inductive reasoning.&lt;/p&gt;
-</description>
+      <guid>http://jonathanweisberg.org/publication/2010-bootstrapping-in-general/</guid>
+      <description>Bootstrapping poses a more general challenge than commonly thought. Versions of the problem afflict even strongly internalist theories of knowledge. Even if one must know a source to be reliable to gain knowledge from it, bootstrapping is still a threat. I consider potential solutions internalists might try, and defend the one I think most plausible: that bootstrapping involves an abuse of inductive reasoning akin to generalizing from a small or biased sample.</description>
     </item>
     
     <item>
       <title>A Note on Design: What&#39;s Fine-tuning Got to Do With It?</title>
-      <link>http://jonathanweisberg.org/publication/2010%20A%20Note%20on%20Design/</link>
+      <link>http://jonathanweisberg.org/publication/2010-a-note-on-design/</link>
       <pubDate>Fri, 01 Jan 2010 00:00:00 -0500</pubDate>
       
-      <guid>http://jonathanweisberg.org/publication/2010%20A%20Note%20on%20Design/</guid>
-      <description>&lt;p&gt;We have known for a long time that there is complex, intelligent life. More recently we have discovered that the physics of our universe is fine-tuned so as to allow for the existence of such life. I argue that this new finding provides no evidence for the design hypothesis. Thus, there is an important sense in which the much-touted fine-tuning of physics is irrelevant to debates about design.&lt;/p&gt;
-</description>
+      <guid>http://jonathanweisberg.org/publication/2010-a-note-on-design/</guid>
+      <description>We have known for a long time that there is complex, intelligent life. More recently we have discovered that the physics of our universe is fine-tuned so as to allow for the existence of such life. I argue that this new finding provides no evidence for the design hypothesis. Thus, there is an important sense in which the much-touted fine-tuning of physics is irrelevant to debates about design.</description>
     </item>
     
     <item>
       <title>Commutativity or Holism? A Dilemma for Conditionalizers</title>
-      <link>http://jonathanweisberg.org/publication/2009%20Commutativity%20or%20Holism/</link>
+      <link>http://jonathanweisberg.org/publication/2009-commutativity-or-holism/</link>
       <pubDate>Thu, 01 Jan 2009 00:00:01 -0500</pubDate>
       
-      <guid>http://jonathanweisberg.org/publication/2009%20Commutativity%20or%20Holism/</guid>
-      <description>&lt;p&gt;Conditionalization and Jeffrey Conditionalization cannot simultaneously satisfy two widely held desiderata on rules for empirical learning. The first desideratum is confirmational holism, which says that the evidential import of an experience is always sensitive to our background assumptions. The second desideratum is commutativity, which says that the order in which one acquires evidence shouldn&amp;rsquo;t affect what conclusions one draws, provided the same total evidence is gathered in the end. (Jeffrey) Conditionalization cannot satisfy either of these desiderata without violating the other. This is a surprising problem, and I offer a diagnosis of its source. I argue that (Jeffrey) Conditionalization is inherently anti-holistic in a way that is just exacerbated by the requirement of commutativity. The dilemma is thus a superficial manifestation of (Jeffrey) Conditionalization&amp;rsquo;s fundamentally anti-holistic nature.&lt;/p&gt;
-</description>
+      <guid>http://jonathanweisberg.org/publication/2009-commutativity-or-holism/</guid>
+      <description>Conditionalization and Jeffrey Conditionalization cannot simultaneously satisfy two widely held desiderata on rules for empirical learning. The first desideratum is confirmational holism, which says that the evidential import of an experience is always sensitive to our background assumptions. The second desideratum is commutativity, which says that the order in which one acquires evidence shouldn&amp;rsquo;t affect what conclusions one draws, provided the same total evidence is gathered in the end. (Jeffrey) Conditionalization cannot satisfy either of these desiderata without violating the other.</description>
+    </item>
+    
+    <item>
+      <title>Locating IBE in the Bayesian Framework</title>
+      <link>http://jonathanweisberg.org/publication/2009-locating-ibe-in-the-bayesian-framework/</link>
+      <pubDate>Thu, 01 Jan 2009 00:00:00 -0500</pubDate>
+      
+      <guid>http://jonathanweisberg.org/publication/2009-locating-ibe-in-the-bayesian-framework/</guid>
+      <description>Inference to the Best Explanation (IBE) and Bayesianism are our two most prominent theories of scientific inference. Are they compatible? Van Fraassen famously argued that they are not, concluding that IBE must be wrong since Bayesianism is right. Writers since then, from both the Bayesian and explanationist camps, have usually considered van Fraassen’s argument to be misguided, and have plumped for the view that Bayesianism and IBE are actually compatible. I argue that van Fraassen’s argument is actually not so misguided, and that it causes more trouble for compatibilists than is typically thought.</description>
+    </item>
+    
+    <item>
+      <title>Conditionalization, Reflection, and Self-Knowledge</title>
+      <link>http://jonathanweisberg.org/publication/2007-conditionalization-reflection-and-self-knowledge/</link>
+      <pubDate>Mon, 01 Jan 2007 00:00:00 -0500</pubDate>
+      
+      <guid>http://jonathanweisberg.org/publication/2007-conditionalization-reflection-and-self-knowledge/</guid>
+      <description>Van Fraassen famously endorses the Principle of Reflection as a constraint on rational credence, and argues that Reflection is entailed by the more traditional principle of Conditionalization. He draws two morals from this alleged entailment. First, that Reflection can be regarded as an alternative to Conditionalization&amp;mdash;a more lenient standard of rationality. And second, that commitment to Conditionalization can be turned into support for Reflection. Van Fraassen also argues that Reflection implies Conditionalization, thus offering a new justification for Conditionalization.</description>
+    </item>
+    
+    <item>
+      <title>Firing Squads and Fine-Tuning: Sober on the Design Argument</title>
+      <link>http://jonathanweisberg.org/publication/2005-firing-squads-and-fine-tuning/</link>
+      <pubDate>Sat, 01 Jan 2005 00:00:00 -0500</pubDate>
+      
+      <guid>http://jonathanweisberg.org/publication/2005-firing-squads-and-fine-tuning/</guid>
+      <description>Elliott Sober argues that the cosmological design argument is unsound, since our observation of cosmic fine-tuning is subject to an observation selection effect (OSE). I argue that this view commits Sober to rejecting patently correct design inferences in more mundane scenarios. I show that Sober&amp;rsquo;s view, that there are OSEs in those mundane cases, rests on a confusion about what information an agent ought to treat as background when evaluating likelihoods.</description>
+    </item>
+    
+    <item>
+      <title>Clark and Shackel on the Two‐Envelope Paradox</title>
+      <link>http://jonathanweisberg.org/publication/2003-clark-and-shackel-on-the-two-envelope-paradox/</link>
+      <pubDate>Wed, 01 Jan 2003 00:00:00 -0500</pubDate>
+      
+      <guid>http://jonathanweisberg.org/publication/2003-clark-and-shackel-on-the-two-envelope-paradox/</guid>
+      <description>Clark and Shackel (2000) argue that previous attempts to resolve the two-envelope paradox fail, and that we must look to symmetries of the relevant expected-value calculations for a solution. They also argue for a novel solution to the peeking case, a variant of the two-envelope scenario in which you are allowed to look in your envelope before deciding whether or not to swap. They&amp;rsquo;re view goes beyond accepted decision theory, even contradicting it in the peeking case.</description>
     </item>
     
   </channel>

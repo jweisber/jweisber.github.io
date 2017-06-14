@@ -2,59 +2,24 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Os X on Jonathan Weisberg</title>
-    <link>http://jonathanweisberg.org/tags/os-x/index.xml</link>
+    <link>http://jonathanweisberg.org/tags/os-x/</link>
     <description>Recent content in Os X on Jonathan Weisberg</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <atom:link href="http://jonathanweisberg.org/tags/os-x/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Fri, 06 Jan 2017 00:00:00 -0500</lastBuildDate>
+    
+	<atom:link href="http://jonathanweisberg.org/tags/os-x/index.xml" rel="self" type="application/rss+xml" />
+    
     
     <item>
       <title>iTerm from RStudio</title>
-      <link>http://jonathanweisberg.org/post/iTerm%20with%20RStudio/</link>
+      <link>http://jonathanweisberg.org/post/iterm-with-rstudio/</link>
       <pubDate>Fri, 06 Jan 2017 00:00:00 -0500</pubDate>
       
-      <guid>http://jonathanweisberg.org/post/iTerm%20with%20RStudio/</guid>
-      <description>&lt;p&gt;I can&amp;rsquo;t abide OS X&amp;rsquo;s built-in Terminal.app&amp;mdash;too janky by half. So like any reasonable obssessive, I use iTerm2.&lt;/p&gt;
-
-&lt;p&gt;Now, RStudio helpfully provides a menu item for opening a shell in the current project&amp;rsquo;s directory. But it calls Terminal.app, with no option to substitue an alternative.&lt;/p&gt;
-
-&lt;p&gt;R-bloggers has &lt;a href=&#34;https://www.r-bloggers.com/change-the-default-shell-action-in-rstudio-for-os-x/&#34; target=&#34;_blank&#34;&gt;a helpful post&lt;/a&gt; about this. But it&amp;rsquo;s from way back in the dark ages (January 2014), and the solution there doesn&amp;rsquo;t seem to work any more thanks to &lt;a href=&#34;https://www.iterm2.com/documentation-scripting.html&#34; target=&#34;_blank&#34;&gt;changes in iTerm&lt;/a&gt;.&lt;/p&gt;
-
-&lt;p&gt;A little tweaking yields a working variant, though&amp;mdash;improved, even. Just back up the script at &lt;code&gt;/Applications/RStudio.app/Contents/MacOS/mac-terminal&lt;/code&gt; and edit the original to read:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-applescript&#34;&gt;#!/usr/bin/osascript
-on run argv
-  set dir to quoted form of (first item of argv)
-
-  if application &amp;quot;iTerm&amp;quot; is running then
-  	set wasRunning to true
-  else
-    set wasRunning to false
-  end if
-
-  tell application &amp;quot;iTerm&amp;quot;
-    activate
-
-  	if wasRunning then
-  		tell current window
-  			create tab with default profile
-  		end tell
-  	end if
-
-  	tell last session of current tab of current window
-  		set name to &amp;quot;RStudio Session&amp;quot;
-  		write text &amp;quot;cd &amp;quot; &amp;amp; dir &amp;amp; &amp;quot;; clear&amp;quot;
-  	end tell
-  end tell
-end run
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;I also added a keyboard shortcut, &amp;#8984;+T, in RStudio under Tools &amp;gt; Modify Keyboard Shortcuts&amp;hellip;.&lt;/p&gt;
-
-&lt;p&gt;One nagging imperfection remains, though. Is the best we can do to drop ourselves into the project directory really &lt;code&gt;write text &amp;quot;cd&amp;quot; &amp;amp; dir&lt;/code&gt;? Watching AppleScript scramble to &lt;code&gt;cd&lt;/code&gt; and &lt;code&gt;clear&lt;/code&gt; pains me each time&amp;mdash;so inelegant.&lt;/p&gt;
-
-&lt;p&gt;Ah, well. It&amp;rsquo;s not as though elegance was the whole point of switching to iTerm in the first place&amp;hellip;&lt;/p&gt;
-</description>
+      <guid>http://jonathanweisberg.org/post/iterm-with-rstudio/</guid>
+      <description>I can&amp;rsquo;t abide OS X&amp;rsquo;s built-in Terminal.app&amp;mdash;too janky by half. So like any reasonable obssessive, I use iTerm2.
+Now, RStudio helpfully provides a menu item for opening a shell in the current project&amp;rsquo;s directory. But it calls Terminal.app, with no option to substitue an alternative.
+R-bloggers has a helpful post about this. But it&amp;rsquo;s from way back in the dark ages (January 2014), and the solution there doesn&amp;rsquo;t seem to work any more thanks to changes in iTerm.</description>
     </item>
     
   </channel>

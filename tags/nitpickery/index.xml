@@ -2,146 +2,35 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Nitpickery on Jonathan Weisberg</title>
-    <link>http://jonathanweisberg.org/tags/nitpickery/index.xml</link>
+    <link>http://jonathanweisberg.org/tags/nitpickery/</link>
     <description>Recent content in Nitpickery on Jonathan Weisberg</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <atom:link href="http://jonathanweisberg.org/tags/nitpickery/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 08 Jan 2017 00:00:01 -0500</lastBuildDate>
+    
+	<atom:link href="http://jonathanweisberg.org/tags/nitpickery/index.xml" rel="self" type="application/rss+xml" />
+    
     
     <item>
       <title>Victor: Hugo</title>
-      <link>http://jonathanweisberg.org/post/Hugo/</link>
+      <link>http://jonathanweisberg.org/post/hugo/</link>
       <pubDate>Sun, 08 Jan 2017 00:00:01 -0500</pubDate>
       
-      <guid>http://jonathanweisberg.org/post/Hugo/</guid>
-      <description>
-
-&lt;p&gt;I chose Hugo to manage this site mainly because it&amp;rsquo;s shiny and new. But there were some substantive reasons, too.&lt;/p&gt;
-
-&lt;p&gt;Hugo is famously fast&amp;mdash;&lt;em&gt;really&lt;/em&gt; fast&amp;mdash;but that wasn&amp;rsquo;t the big draw for me.  For a personal website, even one with many years&amp;rsquo; worth of blogging accrued, Hugo&amp;rsquo;s speed just isn&amp;rsquo;t that important. Quoth &lt;a href=&#34;http://thecodebarbarian.com/2015/02/06/static_site_generators.html&#34; target=&#34;_blank&#34;&gt;the Code Barbarian&lt;/a&gt;:&lt;/p&gt;
-
-&lt;blockquote&gt;
-&lt;p&gt;being the fastest static site generator is like being the resturaunt with the cleanest bathroom: sure, I prefer a faster generator, but I wouldn&amp;rsquo;t pick one generator over another because one shaves off 100ms.&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;What attracted me more was the lack of dependencies. Hugo is just a single, pre-compiled binary. That&amp;rsquo;s one reason I didn&amp;rsquo;t go with the Ruby-based Jekyll. Despite being a Rails regular, I always get a twinge of vertigo when I have to wrestle with gems, bundler, rvm, and all that. It seems there&amp;rsquo;s always just enough time between bundler/rvm meltdowns for me to forget how it&amp;rsquo;s all supposed to work. So I never really get fluent, and never really feel confident working with those tools.&lt;/p&gt;
-
-&lt;p&gt;So how did getting started with Hugo go? I&amp;rsquo;m pretty happy now that I&amp;rsquo;ve got things set up as I need them. But there were some unexpected bumps in the road.&lt;/p&gt;
-
-&lt;h1 id=&#34;templates&#34;&gt;Templates&lt;/h1&gt;
-
-&lt;p&gt;I ended up paying for snubbing my beloved Ruby. Hugo is written in the Go language, and its template engine isn&amp;rsquo;t exactly user-friendly. It&amp;rsquo;s especially unpleasant if you&amp;rsquo;re coming from a mature and sugary place like Rails. Quoth the Code Barbarian again:&lt;/p&gt;
-
-&lt;blockquote&gt;
-&lt;p&gt;I&amp;rsquo;m sure somebody out there likes Go&amp;rsquo;s HTML templating, but, as somebody who&amp;rsquo;s used to more sophisticated tools like Jade, it makes gouging my eyes out with a rusty fork seem like an appealing alternative.&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;I dunno about &lt;em&gt;rusty&lt;/em&gt;, but&amp;hellip; well, here&amp;rsquo;s an example. The following snippet is from the template for this site&amp;rsquo;s header. It determines whether to include MathJax, which can be done on either a site-wide or a by-page basis:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-HTML&#34;&gt;{{- if (or (.Site.Params.math) (.Params.math)) }}
-&amp;lt;script type=&amp;quot;text/javascript&amp;quot; src=&amp;quot;https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML&amp;quot;&amp;gt;
-&amp;lt;/script&amp;gt;
-{{- end }}
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;A few things stand out here. First is the &lt;a href=&#34;https://en.wikipedia.org/wiki/Polish_notation&#34; target=&#34;_blank&#34;&gt;Polish notation&lt;/a&gt;-esque way the logic has to be written, with the &lt;code&gt;or&lt;/code&gt; to the left of its two arguments. What you really want, of course, is the more familiar &lt;a href=&#34;https://en.wikipedia.org/wiki/Infix_notation&#34; target=&#34;_blank&#34;&gt;infix&lt;/a&gt; construction:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-HTML&#34;&gt;{{- if (.Site.Params.math or .Params.math) -}}
-...
-{{- end -}}
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;But that doesn&amp;rsquo;t appear to be valid Go template-speak.&lt;/p&gt;
-
-&lt;p&gt;Then there&amp;rsquo;s the way the parameters are referenced: beginning with the anonymous and mysterious &lt;code&gt;.&lt;/code&gt;, which refers to the current &amp;ldquo;context&amp;rdquo;. Concision is nice and all, but just a &lt;code&gt;.&lt;/code&gt;?? A &lt;code&gt;.&lt;/code&gt; with nothing to its left just seems unnecessarily obscure, almost Perl-like in its obfuscation. (And then there&amp;rsquo;s the fact that there are two sets of parameters named &lt;code&gt;Params&lt;/code&gt;.)&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&#34;http://68.media.tumblr.com/edc428840aab503b2407a9629793058c/tumblr_mqm0qbH01O1r3vs52o1_500.gif&#34; alt=&#34;Shawshank Redemption: How can you be so obtuse?&#34; /&gt;&lt;/p&gt;
-
-&lt;p&gt;Another small thing: the &lt;code&gt;-&lt;/code&gt; sign attached to each &lt;code&gt;{{&lt;/code&gt; and &lt;code&gt;}}&lt;/code&gt; prevents a blank line from appearing in the rendered HTML where the template code used to be. Rails used to need this kind of thing, but not anymore. And given how cluttered templates can get, every little bit of tidying helps. It&amp;rsquo;d be nice to have a configuration option that just makes the &lt;code&gt;-&lt;/code&gt; implicit by default.&lt;/p&gt;
-
-&lt;p&gt;Getting even more nit-picky: I personally find the &amp;ldquo;mustache&amp;rdquo; notation &lt;code&gt;{{&lt;/code&gt; and &lt;code&gt;}}&lt;/code&gt; unintuitive, even kind of distracting. It doesn&amp;rsquo;t sit well with the surrounding HTML like the corresponding &lt;code&gt;&amp;lt;%&lt;/code&gt; and &lt;code&gt;%&amp;gt;&lt;/code&gt; of embedded Ruby does. You might think it helps make the Go code stand out from the HTML, but that&amp;rsquo;s really a job for your syntax-highlighter. And something about those double curly braces just doesn&amp;rsquo;t say to me: &lt;em&gt;your code here!&lt;/em&gt; I just see redundant C syntax instead.&lt;/p&gt;
-
-&lt;p&gt;These are small things, and probably idiosyncratic to me, in large part. But they did accumulate to noticeably slow down the whole getting-started process.&lt;/p&gt;
-
-&lt;h1 id=&#34;themes&#34;&gt;Themes&lt;/h1&gt;
-
-&lt;p&gt;Ironically, none of that would have been an issue if I&amp;rsquo;d just gone with one of the existing, out-of-the-box themes, as I originally intended. Then I could&amp;rsquo;ve just poured my content into an existing template, mixed, and served. But I couldn&amp;rsquo;t find a theme that suited me! (Shocking, I know.) There are &lt;a href=&#34;http://themes.gohugo.io/&#34; target=&#34;_blank&#34;&gt;loads&lt;/a&gt;, including some great-looking ones. But they&amp;rsquo;re mostly designed for developers (&lt;em&gt;gasp&lt;/em&gt;) and the people they develop for (&lt;em&gt;escandalo&lt;/em&gt;!), not academics.&lt;/p&gt;
-
-&lt;p&gt;The &lt;a href=&#34;https://github.com/gcushen/hugo-academic&#34; target=&#34;_blank&#34;&gt;Academic&lt;/a&gt; theme seemed the obvious choice. And it&amp;rsquo;s probably great if you&amp;rsquo;re a big-time engineering prof running a ginormous lab teeming with underlings who churn out ten publications a year under your name. But for a humanist shitmuncher such as myself, all the industrial-strength plumbing just got in the way.&lt;/p&gt;
-
-&lt;p&gt;The &lt;a href=&#34;http://themes.gohugo.io/hugo-finite/&#34; target=&#34;_blank&#34;&gt;Finite&lt;/a&gt; theme was much closer to what I needed, but still overkill. And using it effectively would&amp;rsquo;ve required learning a lot about Hugo&amp;rsquo;s inner workings anyway.&lt;/p&gt;
-
-&lt;p&gt;So I sucked it up and created my own theme, &lt;a href=&#34;http://www.github.com/jweisber/scarab&#34; target=&#34;_blank&#34;&gt;Scarab&lt;/a&gt;. It&amp;rsquo;s basically a dumbed down version of Finite (but using Bootstrap instead of Foundation). It should probably be named Infinitesimal, not Scarab. But like I said: &lt;a href=&#34;https://en.wikipedia.org/wiki/Dung_beetle&#34; target=&#34;_blank&#34;&gt;shitmuncher&lt;/a&gt;.&lt;/p&gt;
-
-&lt;h1 id=&#34;docs&#34;&gt;Docs&lt;/h1&gt;
-
-&lt;p&gt;Luckily, Hugo has pretty thorough and clear documentation, including a solid tutorial on creating a new theme. But to really get where I wanted to go, I needed to read the full docs pretty much all the way through. And even though they&amp;rsquo;re thorough and clear (for the most part), they are occasionally terse. The organization also leaves something to be desired. So there was a lot of trial and error and googling, and there still is.&lt;/p&gt;
-
-&lt;h1 id=&#34;git-glitch&#34;&gt;Git Glitch&lt;/h1&gt;
-
-&lt;p&gt;Once I had the whole site built and themed, it looked like the sailing would be smooth. The workflow for creating new content is straightforward and fluid. But, of course, there was still one crag to navigate: version control.&lt;/p&gt;
-
-&lt;p&gt;I basically have three separate projects in one place. First there&amp;rsquo;s the top-level directory, &lt;code&gt;hugo/&lt;/code&gt;, with subdirectories for my Markdown content, images, etc. Second is the &lt;code&gt;hugo/public/&lt;/code&gt; subdirectory, where Hugo assembles all that stuff into the actual HTML and related site materials that get uploaded to a public server. Third and finally, there&amp;rsquo;s the &lt;code&gt;hugo/themes/scarab/&lt;/code&gt; subdirectory for my custom theme, which I&amp;rsquo;m constantly tweaking and updating.&lt;/p&gt;
-
-&lt;p&gt;Each of these needs its own git repo. Why?&lt;/p&gt;
-
-&lt;p&gt;Well, this site is hosted on GitHub pages as a &amp;ldquo;User&amp;rdquo; page. So &lt;code&gt;hugo/public/&lt;/code&gt; needs to be on the &lt;code&gt;master&lt;/code&gt; branch. And since I don&amp;rsquo;t want to make all my drafts and raw materials public on GitHub, &lt;code&gt;hugo&lt;/code&gt; and &lt;code&gt;hugo/public/&lt;/code&gt; needs separate repos. As for &lt;code&gt;hugo/themes/scarab&lt;/code&gt;, that&amp;rsquo;s its own project. People should be able to download or fork it on its own, without all my stupid content bundled in. So that&amp;rsquo;s another repo.&lt;/p&gt;
-
-&lt;p&gt;So I have three projects, two of which are in (sub)subdirectories of a third, with &lt;code&gt;.gitignore&lt;/code&gt; the only thing making sure they don&amp;rsquo;t get all scrambled up. And every time I want to update my site, I have to do two commits: one for &lt;code&gt;hugo/&lt;/code&gt; and one for &lt;code&gt;hugo/public/&lt;/code&gt;. I only have to do one push, since only the second repo is up on GitHub (I don&amp;rsquo;t have a paid/private account). Unless I&amp;rsquo;m updating the theme, in which case I have to do three commits and two pushes. It&amp;rsquo;s not ideal.&lt;/p&gt;
-
-&lt;h1 id=&#34;conclusion&#34;&gt;Conclusion&lt;/h1&gt;
-
-&lt;p&gt;If I sound like I&amp;rsquo;m complaining, that&amp;rsquo;s because I love unnecessarily complex technical projects that give me something to complain about. Especially if I learn something in the process. And I did learn a thing or two in this process. I&amp;rsquo;m even a little sad now that it&amp;rsquo;s over and Hugo is humming along, staying out of my way so that I have to actually work on creating content. Maybe I&amp;rsquo;ll just try one more tweak to the theme first; I hear there&amp;rsquo;s a new free serif font that&amp;rsquo;s supposed to be amaze&amp;hellip;&lt;/p&gt;
-</description>
+      <guid>http://jonathanweisberg.org/post/hugo/</guid>
+      <description>I chose Hugo to manage this site mainly because it&amp;rsquo;s shiny and new. But there were some substantive reasons, too.
+Hugo is famously fast&amp;mdash;really fast&amp;mdash;but that wasn&amp;rsquo;t the big draw for me. For a personal website, even one with many years&amp;rsquo; worth of blogging accrued, Hugo&amp;rsquo;s speed just isn&amp;rsquo;t that important. Quoth the Code Barbarian:
+ being the fastest static site generator is like being the resturaunt with the cleanest bathroom: sure, I prefer a faster generator, but I wouldn&amp;rsquo;t pick one generator over another because one shaves off 100ms.</description>
     </item>
     
     <item>
       <title>iTerm from RStudio</title>
-      <link>http://jonathanweisberg.org/post/iTerm%20with%20RStudio/</link>
+      <link>http://jonathanweisberg.org/post/iterm-with-rstudio/</link>
       <pubDate>Fri, 06 Jan 2017 00:00:00 -0500</pubDate>
       
-      <guid>http://jonathanweisberg.org/post/iTerm%20with%20RStudio/</guid>
-      <description>&lt;p&gt;I can&amp;rsquo;t abide OS X&amp;rsquo;s built-in Terminal.app&amp;mdash;too janky by half. So like any reasonable obssessive, I use iTerm2.&lt;/p&gt;
-
-&lt;p&gt;Now, RStudio helpfully provides a menu item for opening a shell in the current project&amp;rsquo;s directory. But it calls Terminal.app, with no option to substitue an alternative.&lt;/p&gt;
-
-&lt;p&gt;R-bloggers has &lt;a href=&#34;https://www.r-bloggers.com/change-the-default-shell-action-in-rstudio-for-os-x/&#34; target=&#34;_blank&#34;&gt;a helpful post&lt;/a&gt; about this. But it&amp;rsquo;s from way back in the dark ages (January 2014), and the solution there doesn&amp;rsquo;t seem to work any more thanks to &lt;a href=&#34;https://www.iterm2.com/documentation-scripting.html&#34; target=&#34;_blank&#34;&gt;changes in iTerm&lt;/a&gt;.&lt;/p&gt;
-
-&lt;p&gt;A little tweaking yields a working variant, though&amp;mdash;improved, even. Just back up the script at &lt;code&gt;/Applications/RStudio.app/Contents/MacOS/mac-terminal&lt;/code&gt; and edit the original to read:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-applescript&#34;&gt;#!/usr/bin/osascript
-on run argv
-  set dir to quoted form of (first item of argv)
-
-  if application &amp;quot;iTerm&amp;quot; is running then
-  	set wasRunning to true
-  else
-    set wasRunning to false
-  end if
-
-  tell application &amp;quot;iTerm&amp;quot;
-    activate
-
-  	if wasRunning then
-  		tell current window
-  			create tab with default profile
-  		end tell
-  	end if
-
-  	tell last session of current tab of current window
-  		set name to &amp;quot;RStudio Session&amp;quot;
-  		write text &amp;quot;cd &amp;quot; &amp;amp; dir &amp;amp; &amp;quot;; clear&amp;quot;
-  	end tell
-  end tell
-end run
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;I also added a keyboard shortcut, &amp;#8984;+T, in RStudio under Tools &amp;gt; Modify Keyboard Shortcuts&amp;hellip;.&lt;/p&gt;
-
-&lt;p&gt;One nagging imperfection remains, though. Is the best we can do to drop ourselves into the project directory really &lt;code&gt;write text &amp;quot;cd&amp;quot; &amp;amp; dir&lt;/code&gt;? Watching AppleScript scramble to &lt;code&gt;cd&lt;/code&gt; and &lt;code&gt;clear&lt;/code&gt; pains me each time&amp;mdash;so inelegant.&lt;/p&gt;
-
-&lt;p&gt;Ah, well. It&amp;rsquo;s not as though elegance was the whole point of switching to iTerm in the first place&amp;hellip;&lt;/p&gt;
-</description>
+      <guid>http://jonathanweisberg.org/post/iterm-with-rstudio/</guid>
+      <description>I can&amp;rsquo;t abide OS X&amp;rsquo;s built-in Terminal.app&amp;mdash;too janky by half. So like any reasonable obssessive, I use iTerm2.
+Now, RStudio helpfully provides a menu item for opening a shell in the current project&amp;rsquo;s directory. But it calls Terminal.app, with no option to substitue an alternative.
+R-bloggers has a helpful post about this. But it&amp;rsquo;s from way back in the dark ages (January 2014), and the solution there doesn&amp;rsquo;t seem to work any more thanks to changes in iTerm.</description>
     </item>
     
   </channel>
