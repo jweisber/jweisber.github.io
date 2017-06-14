@@ -2,13 +2,11 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Extras on Jonathan Weisberg</title>
-    <link>http://jonathanweisberg.org/extras/</link>
+    <link>http://jonathanweisberg.org/extras/index.xml</link>
     <description>Recent content in Extras on Jonathan Weisberg</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    
-	<atom:link href="http://jonathanweisberg.org/extras/index.xml" rel="self" type="application/rss+xml" />
-    
+    <atom:link href="http://jonathanweisberg.org/extras/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title></title>
@@ -16,7 +14,15 @@
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>http://jonathanweisberg.org/extras/1/</guid>
-      <description> Ergo, an Open Access Journal of Philosophy Ergonaut &amp;mdash; Peer Review on Rails The Preface Paradox &amp;mdash; A Wi-Phi video Scarab &amp;mdash; The Hugo theme for this site The Rgo Project &amp;mdash; Ergo meets data science The Open Handbook of Formal Epistemology &amp;mdash; coming soon  </description>
+      <description>&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;http://ergophiljournal.org&#34; target=&#34;_blank&#34;&gt;Ergo, an Open Access Journal of Philosophy&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://github.com/jweisber/ergonaut&#34; target=&#34;_blank&#34;&gt;Ergonaut&lt;/a&gt; &amp;mdash; Peer Review on Rails&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://www.wi-phi.com/video/preface-paradox&#34; target=&#34;_blank&#34;&gt;The Preface Paradox&lt;/a&gt; &amp;mdash; A Wi-Phi video&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://github.com/jweisber/scarab&#34; target=&#34;_blank&#34;&gt;Scarab&lt;/a&gt; &amp;mdash; The Hugo theme for this site&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://jonathanweisberg.org/tags/rgo/&#34;&gt;The Rgo Project&lt;/a&gt; &amp;mdash; &lt;em&gt;Ergo&lt;/em&gt; meets data science&lt;/li&gt;
+&lt;li&gt;The Open Handbook of Formal Epistemology &amp;mdash; coming soon&lt;/li&gt;
+&lt;/ul&gt;
+</description>
     </item>
     
   </channel>

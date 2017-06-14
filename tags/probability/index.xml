@@ -2,23 +2,73 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Probability on Jonathan Weisberg</title>
-    <link>http://jonathanweisberg.org/tags/probability/</link>
+    <link>http://jonathanweisberg.org/tags/probability/index.xml</link>
     <description>Recent content in Probability on Jonathan Weisberg</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 14 Jun 2017 15:21:42 -0500</lastBuildDate>
-    
-	<atom:link href="http://jonathanweisberg.org/tags/probability/index.xml" rel="self" type="application/rss+xml" />
-    
+    <atom:link href="http://jonathanweisberg.org/tags/probability/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>The Mosteller Hall Puzzle</title>
-      <link>http://jonathanweisberg.org/post/teaching-monty-hall/</link>
+      <link>http://jonathanweisberg.org/post/Teaching%20Monty%20Hall/</link>
       <pubDate>Wed, 14 Jun 2017 15:21:42 -0500</pubDate>
       
-      <guid>http://jonathanweisberg.org/post/teaching-monty-hall/</guid>
-      <description>One of my favourite probability puzzles to teach is a close cousin of the Monty Hall problem. Originally from a 1965 book by Frederick Mosteller,1 here&amp;rsquo;s my formulation:
- Three prisoners, A, B, and C, are condemned to die in the morning. But the king decides in the night to pardon one of them. He makes his choice at random and communicates it to the guard, who is sworn to secrecy.</description>
+      <guid>http://jonathanweisberg.org/post/Teaching%20Monty%20Hall/</guid>
+      <description>&lt;p&gt;One of my favourite probability puzzles to teach is a close cousin of the &lt;a href=&#34;https://en.wikipedia.org/wiki/Monty_Hall_problem&#34; target=&#34;_blank&#34;&gt;Monty Hall problem&lt;/a&gt;. Originally from a 1965 &lt;a href=&#34;https://books.google.ca/books/about/Fifty_Challenging_Problems_in_Probabilit.html?id=QiuqPejnweEC&#34; target=&#34;_blank&#34;&gt;book by Frederick Mosteller&lt;/a&gt;,&lt;sup class=&#34;footnote-ref&#34; id=&#34;fnref:1&#34;&gt;&lt;a rel=&#34;footnote&#34; href=&#34;#fn:1&#34;&gt;1&lt;/a&gt;&lt;/sup&gt; here&amp;rsquo;s my formulation:&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;Three prisoners, A, B, and C, are condemned to die in the morning. But the king decides in the night to pardon one of them. He makes his choice at random and communicates it to the guard, who is sworn to secrecy. She can only tell the prisoners that one of them will be released at dawn.&lt;/p&gt;
+
+&lt;p&gt;Prisoner A welcomes the news, as he now has a 1/3 chance of survival. Hoping to go even further, he says to the guard, &amp;ldquo;I know you can&amp;rsquo;t tell me whether I am condemned or pardoned. But at least one other prisoner must still be condemned, so can you just name one who is?&amp;rdquo;. The guard replies (truthfully) that B is still condemned. &amp;ldquo;Ok&amp;rdquo;, says A, &amp;ldquo;then it&amp;rsquo;s either me or C who was pardoned. So my chance of survival has gone up to &amp;frac12;&amp;rdquo;.&lt;/p&gt;
+
+&lt;p&gt;Unfortunately for A, he is mistaken. But how?&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Update&lt;/strong&gt;: turns out the puzzle isn&amp;rsquo;t originally due to Mosteller after all! It appears in &lt;a href=&#34;https://www.nature.com/scientificamerican/journal/v201/n4/pdf/scientificamerican1059-174.pdf&#34; target=&#34;_blank&#34;&gt;a 1959 article&lt;/a&gt; in &lt;em&gt;Scientific American&lt;/em&gt;, by Martin Gardner.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;For me it&amp;rsquo;s really intuitive that A is mistaken. The way he figures things, his chance of survival will go up to &amp;frac12; whoever the guard names in her response. But then A doesn&amp;rsquo;t even have to bother the guard. He can just skip ahead to the conclusion that his chance of survival is &amp;frac12;. And that&amp;rsquo;s absurd.&lt;/p&gt;
+
+&lt;p&gt;It&amp;rsquo;s a bit harder to say exactly &lt;em&gt;where&lt;/em&gt; A goes wrong. But I&amp;rsquo;ve always taken this puzzle to be, like Monty Hall, a lesson in Carnap&amp;rsquo;s TER: the Total Evidence Requirement.&lt;/p&gt;
+
+&lt;p&gt;What A learns isn&amp;rsquo;t only that B is condemned, but also that the guard reports as much. And this report is more likely if C was pardoned than if A was. If C was pardoned, the guard had to name B, the only other prisoner still condemned. Whereas if A was pardoned, the guard could just as easily have named C instead.&lt;/p&gt;
+
+&lt;p&gt;So when the guard names B, her report fits twice as well with the hypothesis that C was pardoned, not A:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;http://jonathanweisberg.org/img/misc/mosteller_tree_diagram.png&#34; alt=&#34;Tree diagram&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Thus A&amp;rsquo;s chance of being condemned remains twice that of being pardoned.&lt;/p&gt;
+
+&lt;p&gt;If you&amp;rsquo;re like me, this reasoning will actually be less intuitive than the initial, gut feeling that A must be mistaken (because her logic would make it unnecessary to consult the guard). The argument is still instructive though, for several reasons:&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;&lt;p&gt;It shows how the initial, gut feeling is consistent with the probability axioms. We&amp;rsquo;ve constructed a plausible probability model that vindicates it.&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;The Total Evidence Requirement makes the difference in this model. Learning merely that B is condemned would have a different effect in this model. A&amp;rsquo;s chance of survival really would go up to &amp;frac12; then.&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;These lessons can be carried over to Monty Hall. The same model yields the correct solution there, with the TER playing out in a parallel way.&lt;/p&gt;&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;And that last point is the real point of this post. As my colleague &lt;a href=&#34;http://www.sergiotenenbaum.org/&#34; target=&#34;_blank&#34;&gt;Sergio Tenenbaum&lt;/a&gt; pointed out in conversation, it means you can use Mosteller&amp;rsquo;s puzzle to teach Monty Hall. Because, unlike in Monty Hall, &lt;em&gt;the intuitive judgment is the correct one in Mosteller&amp;rsquo;s puzzle&lt;/em&gt;. So you can use it to get students on board with the less intuitive (but entirely correct) argument we used to resolve Mosteller&amp;rsquo;s puzzle.&lt;/p&gt;
+
+&lt;p&gt;Once students have seen how important it is to set up the probability model correctly, so that the Total Evidence Requirement can do its work, they may be more comfortable using the same technique on Monty Hall.&lt;/p&gt;
+
+&lt;p&gt;There are other ways of bringing students around to the correct solution to Monty Hall, of course. You can run them through a variant with a hundred doors instead of three; you can invite them to consider what would happen in the long run in repeated games; you can ask them how things would have been different had Monty opened the other door instead.&lt;/p&gt;
+
+&lt;p&gt;These are all worthy heuristics. And I expect different ones will click for different students.&lt;/p&gt;
+
+&lt;p&gt;But for my money, there&amp;rsquo;s nothing like a simple and concrete model to help me get oriented and shake off that befuddled feeling. And, in this case, Mosteller&amp;rsquo;s puzzle helps make the model more intuitive, hence more memorable.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://68.media.tumblr.com/776dfc1f8b3baa0309b41c6a90ea1a13/tumblr_nd53ozBNz81qj0u7fo1_r1_400.gif&#34; alt=&#34;Fainting Goat&#34; /&gt;&lt;/p&gt;
+&lt;div class=&#34;footnotes&#34;&gt;
+
+&lt;hr /&gt;
+
+&lt;ol&gt;
+&lt;li id=&#34;fn:1&#34;&gt;So I think it actually predates Monty Hall, though I gather this general family of puzzles goes back at least to 1889 and &lt;a href=&#34;https://en.wikipedia.org/wiki/Bertrand%27s_box_paradox&#34; target=&#34;_blank&#34;&gt;Bertrand&amp;rsquo;s box paradox&lt;/a&gt;.
+ &lt;a class=&#34;footnote-return&#34; href=&#34;#fnref:1&#34;&gt;&lt;sup&gt;[return]&lt;/sup&gt;&lt;/a&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;
+</description>
     </item>
     
   </channel>
