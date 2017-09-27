@@ -9,6 +9,167 @@
     <atom:link href="http://jonathanweisberg.org/tags/formal-epistemology/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
+      <title>REU Redeux: Allais All Over Again</title>
+      <link>http://jonathanweisberg.org/post/REU%20Redeux/</link>
+      <pubDate>Tue, 26 Sep 2017 20:24:04 -0500</pubDate>
+      
+      <guid>http://jonathanweisberg.org/post/REU%20Redeux/</guid>
+      <description>
+
+&lt;p&gt;&lt;em&gt;This post is coauthored with &lt;a href=&#34;http://johannathoma.com/&#34; target=&#34;_blank&#34;&gt;Johanna Thoma&lt;/a&gt; and cross-posted at &lt;a href=&#34;https://choiceinference.wordpress.com/&#34; target=&#34;_blank&#34;&gt;Choice &amp;amp; Inference&lt;/a&gt;. Accompanying Mathematica code is available on &lt;a href=&#34;https://github.com/jweisber/reu&#34; target=&#34;_blank&#34;&gt;GitHub&lt;/a&gt;.&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;Lara Buchak&amp;rsquo;s &lt;a href=&#34;http://www.oxfordscholarship.com/view/10.1093/acprof:oso/9780199672165.001.0001/acprof-9780199672165&#34; target=&#34;_blank&#34;&gt;&lt;em&gt;Risk &amp;amp; Rationality&lt;/em&gt;&lt;/a&gt; advertises REU theory as able to recover the modal preferences in the Allais paradox. In &lt;a href=&#34;https://link.springer.com/content/pdf/10.1007%2Fs11098-017-0916-3.pdf&#34; target=&#34;_blank&#34;&gt;our commentary&lt;/a&gt; we challenged this claim. We pointed out that REU theory is strictly &lt;a href=&#34;https://johannathoma.files.wordpress.com/2015/08/decision-theory-open-handbook-edit.pdf#page=11&#34; target=&#34;_blank&#34;&gt;&amp;ldquo;grand-world&amp;rdquo;&lt;/a&gt;, and in the grand-world setting it actually struggles with the Allais preferences.&lt;/p&gt;
+
+&lt;p&gt;To demonstrate, we constructed a grand-world model of the Allais problem. We replaced each small-world outcome with a normal distribution whose mean matches its utility, and whose height corresponds to its probability.&lt;/p&gt;
+
+&lt;p&gt;Take for example the Allais gamble:
+$$(\$0, .01; \$1M, .89; \$5M, .1).$$
+If we adopt &lt;em&gt;Risk &amp;amp; Rationality&lt;/em&gt;&amp;rsquo;s utility assignments:
+$$u(\$0) = 0, u(\$1M) = 1, u(\$5M) = 2,$$
+we can depict the small-world version of this gamble:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;http://jonathanweisberg.org/img/reu_redeux/fig1.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;On our grand-world model this becomes:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;http://jonathanweisberg.org/img/reu_redeux/fig2.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;And REU theory fails to predict the usual Allais preferences on this model, provided the normal distributions used are minimally spread out.&lt;/p&gt;
+
+&lt;p&gt;If we squeeze the normal distributions tight enough, the grand-world problem collapses into the small-world problem, and REU theory can recover the Allais preferences. But, we showed, they&amp;rsquo;d have to be squeezed absurdly tight. A small standard deviation like $\sigma = .1$ lets REU theory recover the Allais preferences.&lt;sup class=&#34;footnote-ref&#34; id=&#34;fnref:1&#34;&gt;&lt;a rel=&#34;footnote&#34; href=&#34;#fn:1&#34;&gt;1&lt;/a&gt;&lt;/sup&gt; But it also requires outlandish certainty that a windfall of $\$$1M will lead to a better life than the one you&amp;rsquo;d expect to lead without it. The probability of a life of utility at most 0, despite winning $\$$1M, would have to be smaller than $1 \times 10^{-23}$.&lt;sup class=&#34;footnote-ref&#34; id=&#34;fnref:2&#34;&gt;&lt;a rel=&#34;footnote&#34; href=&#34;#fn:2&#34;&gt;2&lt;/a&gt;&lt;/sup&gt; Yet the chances are massively greater than that of suffering life-ruining tragedy (illness, financial ruin&amp;hellip; &lt;em&gt;Game of Thrones&lt;/em&gt; ending happily ever after, etc.).&lt;/p&gt;
+
+&lt;p&gt;In response Buchak offers &lt;a href=&#34;https://link.springer.com/content/pdf/10.1007%2Fs11098-017-0907-4.pdf&#34; target=&#34;_blank&#34;&gt;two replies&lt;/a&gt;. The first is a technical maneuver, adjusting the model parameters. The second is more philosophical, adjusting the target interpretation of the Allais paradox instead.&lt;/p&gt;
+
+&lt;h1 id=&#34;first-reply&#34;&gt;First Reply&lt;/h1&gt;
+
+&lt;p&gt;Buchak&amp;rsquo;s first reply tweaks our model in two ways. First, the mean utility of winning $\$$5M is shifted from 2 down to 1.3. Second, all normal distributions are skewed by a factor of 5 (positive 5 for utility 0, negative otherwise). So, for example, the Allais gamble pictured above becomes:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;http://jonathanweisberg.org/img/reu_redeux/fig3.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;We&amp;rsquo;ll focus on the second tweak here, the introduction of skew. It rests on a technical error, as we&amp;rsquo;ll show momentarily. But it also wants for motivation.&lt;/p&gt;
+
+&lt;h2 id=&#34;motivational-problems&#34;&gt;Motivational Problems&lt;/h2&gt;
+
+&lt;p&gt;Why should the grand-world model be skewed? And why in this particular way? Buchak writes:&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;[&amp;hellip;] receiving $\$$1M makes the worst possibilities much less likely. Receiving $\$$1M provides security in the sense of making the probability associated with lower utility values smaller and smaller. The utility of $\$$1M is concentrated around a high mean with a long tail to the left: things likely will be great, though there is some small and diminishing chance they will be fine but not great. Similarly, the utility of $\$$0 is concentrated around a low mean with a long tail to the right: things likely will be fine but not great, though there is some small and diminishing chance they will be great. In other words, $\$$1M (and $\$$5M) is a gamble with negative skew, and $\$$0 is a gamble with positive skew &lt;a href=&#34;p. 2401&#34; target=&#34;_blank&#34;&gt;&amp;hellip;&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;But this passage never actually identifies any asymmetry in the phenomena we&amp;rsquo;re modeling. True, &amp;ldquo;receiving $\$$1M makes the worst possibilities much less likely&amp;rdquo;, but it also makes the best possibilities much more likely. Likewise,  &amp;ldquo;[r]eceiving $\$$1M provides security in the sense of making the probability associated with lower utility values smaller and smaller.&amp;rdquo; But $\$$1M also makes the probability associated with higher utility values larger. And so on.&lt;/p&gt;
+
+&lt;p&gt;The tendencies of large winnings to control bad outcomes and promote good outcomes was already captured in the original model. A normal distribution centered on utility 1 already admits &amp;ldquo;some small and diminishing chance that [things] will be fine but not great.&amp;rdquo; It just also admits some small chance that things will be much better than great, since it&amp;rsquo;s symmetric around utility 1. To motivate the skewed model, we&amp;rsquo;d need some reason to think this symmetry should not hold. But none has been given.&lt;/p&gt;
+
+&lt;h2 id=&#34;technical-difficulties&#34;&gt;Technical Difficulties&lt;/h2&gt;
+
+&lt;p&gt;Motivation aside, there is a technical fault in the skewed model.&lt;/p&gt;
+
+&lt;p&gt;Introducing skew is supposed to make room for a reasonably large standard deviation while still recovering the Allais preferences. Buchak advertises a standard deviation&lt;sup class=&#34;footnote-ref&#34; id=&#34;fnref:3&#34;&gt;&lt;a rel=&#34;footnote&#34; href=&#34;#fn:3&#34;&gt;3&lt;/a&gt;&lt;/sup&gt; of $\sigma = .17$ for the skewed model, but the true value is actually $.106$&amp;mdash;essentially the same as the $.1$ value Buchak concedes is implausibly small, and seeks to avoid by introducing skew.&lt;sup class=&#34;footnote-ref&#34; id=&#34;fnref:4&#34;&gt;&lt;a rel=&#34;footnote&#34; href=&#34;#fn:4&#34;&gt;4&lt;/a&gt;&lt;/sup&gt;&lt;/p&gt;
+
+&lt;p&gt;Where does the $.17$ figure come from then? It&amp;rsquo;s the &lt;a href=&#34;https://en.wikipedia.org/wiki/Scale_parameter&#34; target=&#34;_blank&#34;&gt;scale parameter&lt;/a&gt; of the skew normal distribution, often denoted $\omega$. For an ordinary normal distribution, the scale $\omega$ famously coincides with the standard deviation $\sigma$, and so we write $\sigma$ for both. But when we skew a normal distribution, we tighten it, shrinking the standard deviation:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;http://jonathanweisberg.org/img/reu_redeux/fig4.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;The distributions in this figure share the same scale parameter ($.17$) but the skewed one (yellow) is much narrower.&lt;sup class=&#34;footnote-ref&#34; id=&#34;fnref:5&#34;&gt;&lt;a rel=&#34;footnote&#34; href=&#34;#fn:5&#34;&gt;5&lt;/a&gt;&lt;/sup&gt;&lt;/p&gt;
+
+&lt;p&gt;Unfortunately, &lt;em&gt;Mathematica&lt;/em&gt; uses $\sigma$ for the scale parameter even in skewed normal distributions, giving the misleading impression that it&amp;rsquo;s still the standard deviation.&lt;/p&gt;
+
+&lt;p&gt;What really matters, of course, isn&amp;rsquo;t the value of the standard deviation itself, but the probabilities that result from whatever parameters we choose. And Buchak argues that her model avoids the implausible probabilities we cited in the introduction. How can this be?&lt;/p&gt;
+
+&lt;p&gt;Buchak says that the skewed model has &amp;ldquo;more overlap in the utility that $\$$0 and $\$$1M might deliver&amp;rdquo;:&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;[&amp;hellip;] there is a 0.003 probability that the $\$$0 gamble will deliver more than 0.5 utils, and a 0.003 probability that the $\$$1M gamble will deliver less than 0.5 utils. (p. 2402)&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;But this &amp;ldquo;overlap&amp;rdquo; was never the problematic quantity. The problem was, rather, that a small standard deviation like $.1$ requires you to think it less than $1 \times 10^{-23}$ likely you will end up with a life no better than $0$ utils, despite a $\$$1M windfall.&lt;/p&gt;
+
+&lt;p&gt;On Buchak&amp;rsquo;s model this probability is still absurdly small: $4 \times 10^{-9}$.&lt;sup class=&#34;footnote-ref&#34; id=&#34;fnref:6&#34;&gt;&lt;a rel=&#34;footnote&#34; href=&#34;#fn:6&#34;&gt;6&lt;/a&gt;&lt;/sup&gt; This is a considerable improvement over $1 \times 10^{-23}$, but it&amp;rsquo;s still not plausible. For example, it&amp;rsquo;s almost $300,000$ times more likely that one author of this post (Jonathan Weisberg) will &lt;a href=&#34;http://www.statcan.gc.ca/pub/84-537-x/2013005/tbl/tbl7a-eng.htm&#34; target=&#34;_blank&#34;&gt;die in the coming year at the ripe old age of 39&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;But worst of all, any improvement here comes at an impossible price: ludicrously low probabilities on the other side. For example, the probability that the life you&amp;rsquo;ll lead with $\$$1M will end up as good as the one you&amp;rsquo;d expect with $\$$5M is so small that &lt;em&gt;Mathematica&lt;/em&gt; can&amp;rsquo;t distinguish it from zero.&lt;sup class=&#34;footnote-ref&#34; id=&#34;fnref:7&#34;&gt;&lt;a rel=&#34;footnote&#34; href=&#34;#fn:7&#34;&gt;7&lt;/a&gt;&lt;/sup&gt; So the problem is actually worse than before, not better.&lt;/p&gt;
+
+&lt;h1 id=&#34;second-reply&#34;&gt;Second Reply&lt;/h1&gt;
+
+&lt;p&gt;Buchak&amp;rsquo;s second reply is that it wouldn&amp;rsquo;t in fact be a problem if REU theory could only recover the Allais preferences in a small-world setting. We should think of the Allais problem as a thought experiment: it asks us to abstract away from anything but the immediate rewards mentioned in the problem, and to think of the monetary rewards as stand-ins for things that are valuable for their own sakes.&lt;/p&gt;
+
+&lt;p&gt;What &lt;em&gt;Risk &amp;amp; Rationality&lt;/em&gt; showed, according to Buchak, is that REU theory can accommodate people&amp;rsquo;s intuitions regarding such a small-world thought experiment. And this is a success, because this establishes that the theory can accommodate a certain kind of reasoning that we all engage in. Buchak moreover concedes that it may well be a mistake for agents to think of the choices they actually face in small-world terms. But she claims this is no problem for her theory:&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;[I]f people &amp;lsquo;really&amp;rsquo; face the simple choices, then their reasoning is correct and REU captures it. If people &amp;lsquo;really&amp;rsquo; face the complex choices, then the reasoning in favor of their preferences is misapplied, and REU does not capture their preferences. Either way, the point still stands: REU-maximization rationalizes and formally reconstructs a certain kind of intuitive reasoning, as seen through REU theory&amp;rsquo;s ability to capture preferences over highly idealized gambles to which this reasoning is relevant. (p. 2403)&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;But there isn&amp;rsquo;t actually an &amp;lsquo;if&amp;rsquo; here. People do really face &amp;lsquo;complex&amp;rsquo; choices as we tried to model them. Any reward from an isolated gamble an agent faces in her life really should itself be thought of as a gamble. This is not only true when the potential reward is something like money, which is only a means to something else. Even if the good in question is &amp;lsquo;ultimate&amp;rsquo;, it just adds to the larger gamble of the agent&amp;rsquo;s life she is yet to face. She might win a beautiful holiday, but she will still face 20 micromorts per day for the rest of her life (&lt;a href=&#34;https://en.wikipedia.org/wiki/Micromort#Baseline&#34; target=&#34;_blank&#34;&gt;24 if she moves from Canada to England&lt;/a&gt;). Even on our deathbeds, we are unsure about how a lot of things we care about will play out. REU theory makes this background risk relevant to the evaluation of any individual gamble.&lt;/p&gt;
+
+&lt;p&gt;So Buchak&amp;rsquo;s response really comes to this: REU theory captures a kind of intuitive reasoning that we employ in highly idealized decision contexts, but which would be misapplied in any actual decisions agents face in their lives. This raises two questions:&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;&lt;p&gt;Why should we care about accommodating reasoning in highly idealized decision contexts?&lt;/p&gt;
+
+&lt;p&gt;The original project of &lt;em&gt;Risk &amp;amp; Rationality&lt;/em&gt; was to rationally accommodate the ordinary decision-maker. But now what we are rationally accommodating are at best her responses to thought experiments that are very far removed from her real life, namely thought experiments that ask her to imagine that she faces no other risk in her life. If our model is right, then REU theory still has to declare her irrational if she acts in real life as she would in the thought experiment&amp;mdash;as presumably ordinary decision-makers do. And then we haven&amp;rsquo;t done very much to rationally accommodate her. At best, we have provided an error theory to explain her ordinary behaviour: her mistake is to treat grand-world problems like small-world problems. This is, of course, a different project than the one &lt;em&gt;Risk &amp;amp; Rationality&lt;/em&gt; originally embarked on. As an error theory, REU theory will have to compete with other theories of choice under uncertainty that were never meant to be theories of rationality, such as prospect theory. Moreover, there is still another open question.&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;Why should agents have developed a knack for the reasoning displayed in the Allais problem if it is never actually rational to use it?&lt;/p&gt;
+
+&lt;p&gt;As a heuristic to try and approximate the behaviour of a perfectly rational system, at least in the Allais example, agents would do better to maximize expected utility&amp;mdash;which is also easier to compute. Moreover, the burden of proof is on proponents of REU theory to show that there are any grand-world decisions commonly faced by real agents where REU theory comes to a significantly different assessment than expected utility theory. Unless they can show this, expected utility theory comes out as the better heuristic more generally. It is then quite mysterious what explains our supposed employment of REU-style reasoning. Why should irrational agents, who employ it more generally, have developed a bad heuristic? And why should rational agents, who never use it in real life, develop a tendency to employ it exclusively in highly idealized thought experiments?&lt;/p&gt;&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;Ultimately, if Buchak&amp;rsquo;s first reply fails, and all we can rely on is her second reply, &lt;em&gt;Risk &amp;amp; Rationality&lt;/em&gt; provides us with no reason to abandon expected utility theory as our best theory of rational choice under uncertainty in actual choice scenarios. Even if we grant that REU theory is a better theory of rational choice in hypothetical scenarios we never face, this is a much less exciting result than the one &lt;em&gt;Risk &amp;amp; Rationality&lt;/em&gt; advertised.&lt;/p&gt;
+&lt;div class=&#34;footnotes&#34;&gt;
+
+&lt;hr /&gt;
+
+&lt;ol&gt;
+&lt;li id=&#34;fn:1&#34;&gt;Though we need a slightly more severe risk function than that used in &lt;em&gt;Risk &amp;amp; Rationality&lt;/em&gt;: $r(p) = p^{2.05}$ instead of $r(p) = p^2$. See our original commentary for details.
+ &lt;a class=&#34;footnote-return&#34; href=&#34;#fnref:1&#34;&gt;&lt;sup&gt;[return]&lt;/sup&gt;&lt;/a&gt;&lt;/li&gt;
+
+&lt;li id=&#34;fn:2&#34;&gt;&lt;p&gt;To get this figure we calculate the cumulative density, at zero, of the normal distribution $𝒩(1,.1)$. Using &lt;em&gt;Mathematica&lt;/em&gt;:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-mathematica&#34;&gt;CDF[NormalDistribution[1, .1], 0]
+7.61985 × 10^-24
+&lt;/code&gt;&lt;/pre&gt;
+ &lt;a class=&#34;footnote-return&#34; href=&#34;#fnref:2&#34;&gt;&lt;sup&gt;[return]&lt;/sup&gt;&lt;/a&gt;&lt;/li&gt;
+&lt;li id=&#34;fn:3&#34;&gt;This is the &amp;ldquo;variance&amp;rdquo; in Buchak&amp;rsquo;s terminology, but we&amp;rsquo;ll continue to use &amp;ldquo;standard deviation&amp;rdquo; here for consistency with our previous discussion and the preferred nomenclature.
+ &lt;a class=&#34;footnote-return&#34; href=&#34;#fnref:3&#34;&gt;&lt;sup&gt;[return]&lt;/sup&gt;&lt;/a&gt;&lt;/li&gt;
+
+&lt;li id=&#34;fn:4&#34;&gt;&lt;p&gt;In &lt;em&gt;Mathematica&lt;/em&gt;:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-mathematica&#34;&gt;StandardDeviation[SkewNormalDistribution[1, .17, -5]]
+0.105874
+&lt;/code&gt;&lt;/pre&gt;
+ &lt;a class=&#34;footnote-return&#34; href=&#34;#fnref:4&#34;&gt;&lt;sup&gt;[return]&lt;/sup&gt;&lt;/a&gt;&lt;/li&gt;
+&lt;li id=&#34;fn:5&#34;&gt;Skewing also shifts the mean, we should note.
+ &lt;a class=&#34;footnote-return&#34; href=&#34;#fnref:5&#34;&gt;&lt;sup&gt;[return]&lt;/sup&gt;&lt;/a&gt;&lt;/li&gt;
+
+&lt;li id=&#34;fn:6&#34;&gt;&lt;p&gt;In &lt;em&gt;Mathematica&lt;/em&gt;:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-mathematica&#34;&gt;CDF[SkewNormalDistribution[1, .17, -5], 0]
+4.04475 × 10^-9
+&lt;/code&gt;&lt;/pre&gt;
+ &lt;a class=&#34;footnote-return&#34; href=&#34;#fnref:6&#34;&gt;&lt;sup&gt;[return]&lt;/sup&gt;&lt;/a&gt;&lt;/li&gt;
+
+&lt;li id=&#34;fn:7&#34;&gt;&lt;p&gt;Here we calculate the complement of the cumulative density, at $1.3$, of the skew normal distribution with location $1$, scale $.17$, and skew $-5$. In &lt;em&gt;Mathematica&lt;/em&gt;:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-mathematica&#34;&gt;1 - CDF[SkewNormalDistribution[1, .17, -5], 1.3]
+0.
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Note that &lt;em&gt;Mathematica&lt;/em&gt; can estimate this value at the nearby point $1.25$, which gives us an upper bound of about $7 \times 10^{-16}$:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-mathematica&#34;&gt;1 - CDF[SkewNormalDistribution[1, .17, -5], 1.25]
+6.66134 × 10^-16
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;For comparison, this probability was about $.0013$ with no skew and $\sigma = .1$:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-mathematica&#34;&gt;1 - CDF[NormalDistribution[1, .1], 1.3]
+0.0013499
+&lt;/code&gt;&lt;/pre&gt;
+ &lt;a class=&#34;footnote-return&#34; href=&#34;#fnref:7&#34;&gt;&lt;sup&gt;[return]&lt;/sup&gt;&lt;/a&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;
+</description>
+    </item>
+    
+    <item>
       <title>The Mosteller Hall Puzzle</title>
       <link>http://jonathanweisberg.org/post/Teaching%20Monty%20Hall/</link>
       <pubDate>Wed, 14 Jun 2017 15:21:42 -0500</pubDate>

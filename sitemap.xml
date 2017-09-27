@@ -2,6 +2,11 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://jonathanweisberg.org/post/REU%20Redeux/</loc>
+    <lastmod>2017-09-26T20:24:04-05:00</lastmod>
+  </url>
+  
+  <url>
     <loc>http://jonathanweisberg.org/post/Teaching%20Monty%20Hall/</loc>
     <lastmod>2017-06-14T15:21:42-05:00</lastmod>
   </url>
@@ -213,6 +218,12 @@
   </url>
   
   <url>
+    <loc>http://jonathanweisberg.org/tags/decision-theory/</loc>
+    <lastmod>2017-09-26T20:24:04-05:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
     <loc>http://jonathanweisberg.org/tags/ergo/</loc>
     <lastmod>2017-02-22T10:44:10-05:00</lastmod>
     <priority>0</priority>
@@ -225,7 +236,7 @@
   
   <url>
     <loc>http://jonathanweisberg.org/tags/formal-epistemology/</loc>
-    <lastmod>2017-06-14T15:21:42-05:00</lastmod>
+    <lastmod>2017-09-26T20:24:04-05:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -237,7 +248,7 @@
   
   <url>
     <loc>http://jonathanweisberg.org/</loc>
-    <lastmod>2017-06-14T15:21:42-05:00</lastmod>
+    <lastmod>2017-09-26T20:24:04-05:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -255,13 +266,13 @@
   
   <url>
     <loc>http://jonathanweisberg.org/tags/philosophy/</loc>
-    <lastmod>2017-06-14T15:21:42-05:00</lastmod>
+    <lastmod>2017-09-26T20:24:04-05:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>http://jonathanweisberg.org/post/</loc>
-    <lastmod>2017-06-14T15:21:42-05:00</lastmod>
+    <lastmod>2017-09-26T20:24:04-05:00</lastmod>
     <priority>0</priority>
   </url>
   
