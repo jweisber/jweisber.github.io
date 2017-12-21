@@ -6,8 +6,43 @@
     <description>Recent content on Jonathan Weisberg</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 26 Sep 2017 20:24:04 -0500</lastBuildDate>
+    <lastBuildDate>Thu, 21 Dec 2017 10:36:00 -0500</lastBuildDate>
     <atom:link href="http://jonathanweisberg.org/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Call for Papers: Formal Epistemology Workshop (FEW) 2018</title>
+      <link>http://jonathanweisberg.org/post/CFP%20FEW%202018/</link>
+      <pubDate>Thu, 21 Dec 2017 10:36:00 -0500</pubDate>
+      
+      <guid>http://jonathanweisberg.org/post/CFP%20FEW%202018/</guid>
+      <description>&lt;p&gt;&lt;strong&gt;Location:&lt;/strong&gt; University of Toronto&lt;br /&gt;
+&lt;strong&gt;Dates:&lt;/strong&gt; June 12–14, 2018&lt;br /&gt;
+&lt;strong&gt;Keynote Speakers:&lt;/strong&gt; &lt;a href=&#34;https://philosophy.berkeley.edu/buchak&#34; target=&#34;_blank&#34;&gt;Lara Buchak&lt;/a&gt; and &lt;a href=&#34;https://sites.google.com/site/michaeltitelbaum/&#34; target=&#34;_blank&#34;&gt;Mike Titelbaum&lt;/a&gt;&lt;br /&gt;
+&lt;strong&gt;Submission Deadline:&lt;/strong&gt; February 12, 2018&lt;br /&gt;
+&lt;strong&gt;Authors Notified:&lt;/strong&gt; March 31, 2018&lt;/p&gt;
+
+&lt;p&gt;We are pleased to invite papers in formal epistemology, broadly construed to include related areas of philosophy as well as cognate disciplines like statistics, psychology, economics, computer science, and mathematics.&lt;/p&gt;
+
+&lt;p&gt;Submissions should be:&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;prepared for anonymous review,&lt;/li&gt;
+&lt;li&gt;no more than 6,000 words,&lt;/li&gt;
+&lt;li&gt;accompanied by an abstract of up to 300 words, and&lt;/li&gt;
+&lt;li&gt;in PDF format.&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;Submission is via the &lt;a href=&#34;https://easychair.org/conferences/?conf=few2018&#34; target=&#34;_blank&#34;&gt;EasyChair website&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;The final selection of the program will be made with an eye to diversity. We especially encourage submissions from PhD candidates, early career researchers, and members of groups underrepresented in academic philosophy.&lt;/p&gt;
+
+&lt;p&gt;Some funds are available to reimburse speakers&amp;rsquo; travel expenses. The available amounts are still being determined, but we hope to cover most/all expenses for student and early career speakers. Childcare can also be arranged.&lt;/p&gt;
+
+&lt;p&gt;The contact address for the conference is &lt;a href=&#34;mailto:few2018toronto@gmail.com&#34; target=&#34;_blank&#34;&gt;few2018toronto@gmail.com&lt;/a&gt;. The local organizers are &lt;a href=&#34;http://www.davidjamesbar.net/&#34; target=&#34;_blank&#34;&gt;David James Barnett&lt;/a&gt;, &lt;a href=&#34;http://individual.utoronto.ca/jnagel/Home_Page.html&#34; target=&#34;_blank&#34;&gt;Jennifer Nagel&lt;/a&gt;, and &lt;a href=&#34;http://jonathanweisberg.org/&#34; target=&#34;_blank&#34;&gt;Jonathan Weisberg&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;More information and a conference website are coming soon&amp;hellip;&lt;/p&gt;
+</description>
+    </item>
     
     <item>
       <title>REU Redux: Allais All Over Again</title>
@@ -2234,143 +2269,6 @@ Being a sum of squares, the minimum value here cannot be less than $0$, which oc
  &lt;a class=&#34;footnote-return&#34; href=&#34;#fnref:4&#34;&gt;&lt;sup&gt;[return]&lt;/sup&gt;&lt;/a&gt;&lt;/li&gt;
 &lt;li id=&#34;fn:5&#34;&gt;Specifically, $t(137.71) = 1.78$, $p = 0.08$. Although a $t$ test may not actually be the best choice here, since (as we&amp;rsquo;re about to see) the sampling distributions aren&amp;rsquo;t normal, but rather bimodal. Still, we can compare this result to non-parametric tests like Wilcoxon-Mann-Whitney ($p = 0.1$) or the bootstrap-$t$  ($p = 0.07$). These $p$-values don&amp;rsquo;t quite cross the customary $\alpha = .05$ threshold either, but they are still small.
  &lt;a class=&#34;footnote-return&#34; href=&#34;#fnref:5&#34;&gt;&lt;sup&gt;[return]&lt;/sup&gt;&lt;/a&gt;&lt;/li&gt;
-&lt;/ol&gt;
-&lt;/div&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>Accuracy for Dummies, Part 2: from Euclid to Brier</title>
-      <link>http://jonathanweisberg.org/post/Accuracy%20for%20Dummies%20-%20Part%202/</link>
-      <pubDate>Wed, 18 Jan 2017 00:00:00 -0500</pubDate>
-      
-      <guid>http://jonathanweisberg.org/post/Accuracy%20for%20Dummies%20-%20Part%202/</guid>
-      <description>
-
-&lt;p&gt;&lt;a href=&#34;http://jonathanweisberg.org/post/Accuracy%20for%20Dummies%20-%20Part%201/&#34;&gt;Last time&lt;/a&gt; we saw that Euclidean distance is an &amp;ldquo;unstable&amp;rdquo; way of measuring inaccuracy. Given one assignment of probabilities, you&amp;rsquo;ll expect some other assignment to be more accurate (unless the first assignment is either perfectly certain or perfectly uncertain).&lt;/p&gt;
-
-&lt;p&gt;That&amp;rsquo;s why accuraticians don&amp;rsquo;t use good ol&amp;rsquo; Euclidean distance.&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&#34;https://crookedrunbrewing.files.wordpress.com/2014/05/scientician.png?w=240&#34; alt=&#34;Just ask this accuratician&#34; /&gt;&lt;/p&gt;
-
-&lt;p&gt;Instead they use&amp;hellip; well, there are lots of alternatives. But the closest thing to a standard one is &lt;em&gt;Brier distance&lt;/em&gt;: the square of Euclidean distance.&lt;/p&gt;
-
-&lt;p&gt;Here&amp;rsquo;s Euclid&amp;rsquo;s formula for the distance between two points $(a, b)$ and $(c, d)$ in the plane:
-$$ \sqrt{ (a - c)^2 + (b - d)^2 }. $$
-And here&amp;rsquo;s Brier&amp;rsquo;s:
-$$ (a - c)^2 + (b - d)^2. $$
-So, to get from Euclid to Brier, you just take away the square root.&lt;/p&gt;
-
-&lt;p&gt;That makes a world of difference, it turns out. Brier distance isn&amp;rsquo;t unstable the way Euclidean distance is. But we&amp;rsquo;ll see that it&amp;rsquo;s enough like Euclidean distance to vindicate the argument for the laws of probability we began with last time.&lt;/p&gt;
-
-&lt;p&gt;But first, a fun fact.&lt;/p&gt;
-
-&lt;h1 id=&#34;fun-fact&#34;&gt;Fun Fact&lt;/h1&gt;
-
-&lt;p&gt;Brier distance comes from the world of weather forecasting. Glenn W. Brier worked for the U. S. Weather Bureau, and in &lt;a href=&#34;http://docs.lib.noaa.gov/rescue/mwr/078/mwr-078-01-0001.pdf&#34; target=&#34;_blank&#34;&gt;a 1950 paper&lt;/a&gt; he proposed his formula as a way of measuring how well a weather forecaster is doing at predicting the weather.&lt;/p&gt;
-
-&lt;p&gt;Suppose you say there&amp;rsquo;s a 70% chance of rain. If it does rain, you&amp;rsquo;re hardly wrong, but you&amp;rsquo;re not exactly right either. Brier suggested assessing a forecaster&amp;rsquo;s probabilities by taking the square of the difference from $1$ when it rains, and from $0$ when it doesn&amp;rsquo;t.&lt;/p&gt;
-
-&lt;p&gt;Well, actually, he proposed taking the &lt;em&gt;average&lt;/em&gt; of those squares. But we&amp;rsquo;ll follow the recent philosophical literature and keep it simple: we&amp;rsquo;ll just use the sum of squares rather than its average.&lt;/p&gt;
-
-&lt;p&gt;Now on to the substance. Two facts about Brier distance make it useful as a replacement for Euclidean distance.&lt;/p&gt;
-
-&lt;h1 id=&#34;euclid-and-brier-are-ordinally-equivalent&#34;&gt;Euclid and Brier are Ordinally Equivalent&lt;/h1&gt;
-
-&lt;p&gt;First, Brier distance is &lt;em&gt;ordinally equivalent&lt;/em&gt; to Euclidean distance. Meaning: whenever a distance is larger according to Euclid, it&amp;rsquo;s larger according to Brier too. And vice versa.&lt;/p&gt;
-
-&lt;p&gt;How do we know that? Because Brier is just Euclid squared, and squaring a larger number always results in a larger number (for positive numbers like distances, anyway). If $D$ is the distance from Toronto to the sun, and $d$ is the distance from Toronto to the moon, then $D^2 &amp;gt; d^2$. It&amp;rsquo;s further to the sun than to the moon, both in terms of Brier distance and Euclidean distance.&lt;/p&gt;
-
-&lt;p&gt;So, when we&amp;rsquo;re comparing distances from the truth, Brier distance behaves a lot like Euclidean distance. In particular, what we learned from our opening diagram about Euclidean distance holds for Brier distance, too.&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&#34;http://jonathanweisberg.org/img/accuracy/2D%20Dominance%20Diagram%20-%20400px.png&#34; alt=&#34;Opening diagram&#34; /&gt;&lt;/p&gt;
-
-&lt;p&gt;Not only is $c&amp;rsquo;$ closer to both vertices than $c^*$ in Euclidean terms, it&amp;rsquo;s also closer in terms of Brier distance.&lt;/p&gt;
-
-&lt;h1 id=&#34;brier-is-stable&#34;&gt;Brier is Stable&lt;/h1&gt;
-
-&lt;p&gt;Second, Brier distance doesn&amp;rsquo;t lead to the kind of instability that made Euclidean distance problematic. To see why, let&amp;rsquo;s rerun our expected inaccuracy calculations from last time, but using Brier distance instead of Euclid.&lt;/p&gt;
-
-&lt;p&gt;Suppose your credences in Heads and Tails are $p$ and $1-p$. What&amp;rsquo;s the expected inaccuracy of having some credence $q$ in Heads, and $1-q$ in Tails?&lt;/p&gt;
-
-&lt;p&gt;Well, the Brier distance between $(q, 1-q)$ and $(1,0)$ is:
-$$(q - 1)^2 + ((1-q) - 0)^2.$$
-And the Brier distance between $(q, 1-q)$ and $(0,1)$ is:
-$$(q - 0)^2 + ((1-q) - 1)^2.$$
-We don&amp;rsquo;t know which of $(1,0)$ or $(0,1)$ is the &amp;ldquo;true&amp;rdquo; one. But we have assigned them the probabilities $p$ and $1-p$, respectively. So we can calculate the expected inaccuracy of $(q, 1-q)$, written $EI(q, 1-q)$:
-$$
-\begin{align}
-EI(q, 1-q) &amp;amp;= p \left( (q - 1)^2 + ((1-q) - 0)^2 \right)\\&lt;br /&gt;
-  &amp;amp;\quad + (1-p) \left( (q - 0)^2 + ((1-q) - 1)^2 \right)\\&lt;br /&gt;
-  &amp;amp;= 2 p (1 - q)^2 + 2(1-p) q^2\\&lt;br /&gt;
-  &amp;amp;= 2 p q^2 - 4pq + 2p + 2q^2 - 2pq^2\\&lt;br /&gt;
-  &amp;amp;= 2q^2 - 4pq + 2p
-\end{align}
-$$
-Now that last line might look like a mess. But it&amp;rsquo;s really just a quadratic equation, where the variable is $q$. Remember: we&amp;rsquo;re treating $p$ as a constant since that&amp;rsquo;s the credence you hold. And we&amp;rsquo;re looking at potential values of $q$ to see which ones minimize the quantity $EI(q, 1-q)$, given a fixed credence of $p$ in heads.&lt;/p&gt;
-
-&lt;p&gt;So which value of $q$ minimizes this quadratic formula? You might remember from algebra class that a quadratic equation of the form:
-$$
-ax^2 + bx + c
-$$
-is a parabola, with the bottom of the bowl located at $x = -b/2a$. (Or, if you know some calculus, you can take the derivative and set it equal to $0$. Since the derivative here is $2ax + b$, setting it equal to $0$ yields, again, $x = -b/2a$.)&lt;/p&gt;
-
-&lt;p&gt;In the case of our formula, we have $a = 2$ and $b = -4p$. So the minimum happens when $q = 4p/4 = p$. In other words, given credence $p$ in heads, expected inaccuracy is minimized by sticking with that same credence, i.e. assigning $q = p$.&lt;/p&gt;
-
-&lt;p&gt;So, to complement our result about Euclidean distance from last time, we have a&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;Theorem.&lt;/strong&gt;&amp;nbsp; Suppose $p \in [0,1]$. Then, according to the probability assignment $(p, 1-p)$, the expected Brier distance of any alternative assignment $(q, 1-q)$ from the points $(1,0)$ and $(0,1)$ is uniquely minimized when $p = q$.&lt;/p&gt;
-
-&lt;p&gt;&lt;em&gt;Proof.&lt;/em&gt;&amp;nbsp; Scroll up! &lt;span style=&#34;float: right;&#34;&gt;$\Box$&lt;/span&gt;&lt;/p&gt;
-
-&lt;h1 id=&#34;proper-scoring-rules&#34;&gt;Proper Scoring Rules&lt;/h1&gt;
-
-&lt;p&gt;When a measure of inaccuracy is stable like this, it&amp;rsquo;s called &lt;em&gt;proper&lt;/em&gt; (or sometimes: &lt;em&gt;immodest&lt;/em&gt;).&lt;/p&gt;
-
-&lt;p&gt;There are lots of other proper ways of measuring inaccuracy besides Brier. But Brier tends to be the default among philosophers writing in the accuracy framework, at least as a working example. Why?&lt;/p&gt;
-
-&lt;p&gt;My impression (though I&amp;rsquo;m no guru) is that it&amp;rsquo;s the default because:&lt;/p&gt;
-
-&lt;ol&gt;
-&lt;li&gt;Brier is a lot like Euclidean distance, as we saw. So it&amp;rsquo;s easier and more intuitive to work with than some of the alternatives.&lt;/li&gt;
-&lt;li&gt;Brier tends to be representative of other proper/immodest rules. If you discover something philosophically interesting using Brier, there&amp;rsquo;s a good chance it holds for many other proper scoring rules.&lt;/li&gt;
-&lt;li&gt;Brier has other nice mathematical properties which, according to authors like Richard Pettigrew, make it The One True Measure of Inaccuracy. (It may have some odd features too, though: see &lt;a href=&#34;http://m-phi.blogspot.ca/2015/03/a-strange-thing-about-brier-score.html&#34; target=&#34;_blank&#34;&gt;this post&lt;/a&gt; by Brian Knab and Miriam Schoenfield, for example.)&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;p&gt;How does our starting argument for the laws of total probability fare if we use other proper scoring rules, besides Brier? Really well, it turns out!&lt;/p&gt;
-
-&lt;p&gt;The key fact our diagram illustrates doesn&amp;rsquo;t just hold for Euclidean distance and Brier distance. Speaking &lt;em&gt;very&lt;/em&gt; loosely: it holds on any proper way of measuring distance (but do see sections 8 and 9 of &lt;a href=&#34;https://philpapers.org/rec/JOYAAC&#34; target=&#34;_blank&#34;&gt;Joyce&amp;rsquo;s 2009&lt;/a&gt; for the details before getting carried away with this generalization; or see Theorem 4.3.5 of &lt;a href=&#34;https://global.oup.com/academic/product/accuracy-and-the-laws-of-credence-9780198732716&#34; target=&#34;_blank&#34;&gt;Pettigrew 2016&lt;/a&gt;).&lt;/p&gt;
-
-&lt;p&gt;Proving that requires grinding through a good deal of math, though. So in these posts we&amp;rsquo;re going to stick with Brier distance, at least for a while.&lt;/p&gt;
-
-&lt;h1 id=&#34;begging-the-question&#34;&gt;Begging the Question?&lt;/h1&gt;
-
-&lt;p&gt;We started these posts with an illustration of an influential argument for the laws of probability. But we quickly switched to &lt;em&gt;assuming&lt;/em&gt; those very same laws in the arguments that followed.&lt;/p&gt;
-
-&lt;p&gt;For example, to illustrate the instability of Euclidean distance, I chose a point on the diagonal of our diagram, $(.6, .4)$. And in the theorem that generalized that example, I assumed probabilistic assignments like $(p, 1-p)$ and $(q, 1-q)$, which add up to $1$.&lt;/p&gt;
-
-&lt;p&gt;So didn&amp;rsquo;t we beg the question when we motivated switching from Euclid to Brier?&lt;/p&gt;
-
-&lt;p&gt;To some extent: yes. We are assuming that reasonable ways of measuring inaccuracy can&amp;rsquo;t be so hostile to the laws of probability that they make almost all probability assignments unstable.&lt;/p&gt;
-
-&lt;p&gt;But also: no. We aren&amp;rsquo;t assuming that the laws of probability are absolute and inviolable, just that they&amp;rsquo;re reasonable &lt;em&gt;sometimes&lt;/em&gt;. Euclidean distance would rule out probabilistic credences on pretty much all occasions. So it conflicts with the very modest thought that following the laws of probability is &lt;em&gt;occasionally&lt;/em&gt; reasonable. So, even if you&amp;rsquo;re just a little bit open to the idea of probability theory, Euclidean distance will seem pretty unfriendly.&lt;sup class=&#34;footnote-ref&#34; id=&#34;fnref:1&#34;&gt;&lt;a rel=&#34;footnote&#34; href=&#34;#fn:1&#34;&gt;1&lt;/a&gt;&lt;/sup&gt;&lt;/p&gt;
-
-&lt;p&gt;Perhaps most importantly, though: the motivation I&amp;rsquo;ve given you here for moving from Euclid to Brier isn&amp;rsquo;t the official one you&amp;rsquo;ll find in an actual, bottom-up argument for probability theory, like &lt;a href=&#34;https://richardpettigrew.wordpress.com/accuracy-book/&#34; target=&#34;_blank&#34;&gt;Richard Pettigrew&amp;rsquo;s&lt;/a&gt;. His argument starts from a much more abstract place. He starts with axioms that any measure of inaccuracy must obey, and then narrows things down to Brier.&lt;/p&gt;
-
-&lt;p&gt;So there&amp;rsquo;s the official story and the unofficial story. This post gives you the unofficial story, to help you get started. Because the official story is often really hard to understand. Not only is the math way more abstract, but the philosophical motivations are often hard to suss out. Because&amp;mdash;and this is just between you and me now&amp;mdash;the people telling the official story actually started out with the unofficial story, and then worked backwards until they came up with an officially respectable story that doesn&amp;rsquo;t beg the question quite so obviously.&lt;/p&gt;
-
-&lt;p&gt;Ok, that&amp;rsquo;s unfair. Here&amp;rsquo;s a more even-handed (and better-informed) way of putting it, from &lt;a href=&#34;http://ndpr.nd.edu/news/70705-accuracy-and-the-laws-of-credence/&#34; target=&#34;_blank&#34;&gt;Kenny Easwaran&amp;rsquo;s review&lt;/a&gt; of Pettigrew&amp;rsquo;s book:&lt;/p&gt;
-
-&lt;blockquote&gt;
-&lt;p&gt;Some philosophers have a vision of what they do as starting from unassailable premises, and giving an ironclad argument for a conclusion. However, I think we&amp;rsquo;ve all often seen cases where these arguments are weaker than they seem to the author, and with the benefit of a bit of distance, one can often recognize how the premises were in fact motivated by an attempt to justify the conclusion, which was chosen in advance. Pettigrew avoids the charade of pretending to have come up with the premises independently of recognizing that they lead to the conclusions of his arguments. Instead, he is open about having chosen target conclusions in advance [&amp;hellip;] and investigated what collection of potentially plausible principles about accuracy and epistemic decision theory will lead to those conclusions.&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;div class=&#34;footnotes&#34;&gt;
-
-&lt;hr /&gt;
-
-&lt;ol&gt;
-&lt;li id=&#34;fn:1&#34;&gt;This argument is essentially drawn from &lt;a href=&#34;https://philpapers.org/rec/JOYAAC&#34; target=&#34;_blank&#34;&gt;(Joyce 2009)&lt;/a&gt;.
- &lt;a class=&#34;footnote-return&#34; href=&#34;#fnref:1&#34;&gt;&lt;sup&gt;[return]&lt;/sup&gt;&lt;/a&gt;&lt;/li&gt;
 &lt;/ol&gt;
 &lt;/div&gt;
 </description>

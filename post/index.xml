@@ -6,8 +6,43 @@
     <description>Recent content in Posts on Jonathan Weisberg</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 26 Sep 2017 20:24:04 -0500</lastBuildDate>
+    <lastBuildDate>Thu, 21 Dec 2017 10:36:00 -0500</lastBuildDate>
     <atom:link href="http://jonathanweisberg.org/post/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Call for Papers: Formal Epistemology Workshop (FEW) 2018</title>
+      <link>http://jonathanweisberg.org/post/CFP%20FEW%202018/</link>
+      <pubDate>Thu, 21 Dec 2017 10:36:00 -0500</pubDate>
+      
+      <guid>http://jonathanweisberg.org/post/CFP%20FEW%202018/</guid>
+      <description>&lt;p&gt;&lt;strong&gt;Location:&lt;/strong&gt; University of Toronto&lt;br /&gt;
+&lt;strong&gt;Dates:&lt;/strong&gt; June 12–14, 2018&lt;br /&gt;
+&lt;strong&gt;Keynote Speakers:&lt;/strong&gt; &lt;a href=&#34;https://philosophy.berkeley.edu/buchak&#34; target=&#34;_blank&#34;&gt;Lara Buchak&lt;/a&gt; and &lt;a href=&#34;https://sites.google.com/site/michaeltitelbaum/&#34; target=&#34;_blank&#34;&gt;Mike Titelbaum&lt;/a&gt;&lt;br /&gt;
+&lt;strong&gt;Submission Deadline:&lt;/strong&gt; February 12, 2018&lt;br /&gt;
+&lt;strong&gt;Authors Notified:&lt;/strong&gt; March 31, 2018&lt;/p&gt;
+
+&lt;p&gt;We are pleased to invite papers in formal epistemology, broadly construed to include related areas of philosophy as well as cognate disciplines like statistics, psychology, economics, computer science, and mathematics.&lt;/p&gt;
+
+&lt;p&gt;Submissions should be:&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;prepared for anonymous review,&lt;/li&gt;
+&lt;li&gt;no more than 6,000 words,&lt;/li&gt;
+&lt;li&gt;accompanied by an abstract of up to 300 words, and&lt;/li&gt;
+&lt;li&gt;in PDF format.&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;Submission is via the &lt;a href=&#34;https://easychair.org/conferences/?conf=few2018&#34; target=&#34;_blank&#34;&gt;EasyChair website&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;The final selection of the program will be made with an eye to diversity. We especially encourage submissions from PhD candidates, early career researchers, and members of groups underrepresented in academic philosophy.&lt;/p&gt;
+
+&lt;p&gt;Some funds are available to reimburse speakers&amp;rsquo; travel expenses. The available amounts are still being determined, but we hope to cover most/all expenses for student and early career speakers. Childcare can also be arranged.&lt;/p&gt;
+
+&lt;p&gt;The contact address for the conference is &lt;a href=&#34;mailto:few2018toronto@gmail.com&#34; target=&#34;_blank&#34;&gt;few2018toronto@gmail.com&lt;/a&gt;. The local organizers are &lt;a href=&#34;http://www.davidjamesbar.net/&#34; target=&#34;_blank&#34;&gt;David James Barnett&lt;/a&gt;, &lt;a href=&#34;http://individual.utoronto.ca/jnagel/Home_Page.html&#34; target=&#34;_blank&#34;&gt;Jennifer Nagel&lt;/a&gt;, and &lt;a href=&#34;http://jonathanweisberg.org/&#34; target=&#34;_blank&#34;&gt;Jonathan Weisberg&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;More information and a conference website are coming soon&amp;hellip;&lt;/p&gt;
+</description>
+    </item>
     
     <item>
       <title>REU Redux: Allais All Over Again</title>
@@ -2360,77 +2395,6 @@ is a parabola, with the bottom of the bowl located at $x = -b/2a$. (Or, if you k
  &lt;a class=&#34;footnote-return&#34; href=&#34;#fnref:1&#34;&gt;&lt;sup&gt;[return]&lt;/sup&gt;&lt;/a&gt;&lt;/li&gt;
 &lt;/ol&gt;
 &lt;/div&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>The Thursday Conundrum</title>
-      <link>http://jonathanweisberg.org/post/The%20Thursday%20Conundrum/</link>
-      <pubDate>Mon, 16 Jan 2017 10:14:00 -0500</pubDate>
-      
-      <guid>http://jonathanweisberg.org/post/The%20Thursday%20Conundrum/</guid>
-      <description>
-
-&lt;p&gt;In &lt;a href=&#34;http://jonathanweisberg.org/post/An%20Editors%20Favourite%20Days/&#34;&gt;an earlier post&lt;/a&gt; we saw that Mondays and Thursdays are good for editors, at least at &lt;a href=&#34;http://www.ergophiljournal.org/&#34; target=&#34;_blank&#34;&gt;&lt;em&gt;Ergo&lt;/em&gt;&lt;/a&gt;. Potential referees say yes more often when invited on these days. But why?&lt;/p&gt;
-
-&lt;p&gt;Mondays aren&amp;rsquo;t too puzzling. It&amp;rsquo;s the start of a new week, so people are fresh, and maybe just a little deluded about how productive the coming week will prove to be.&lt;/p&gt;
-
-&lt;p&gt;But Thursdays? They don&amp;rsquo;t seem especially special. I tried &lt;a href=&#34;http://jonathanweisberg.org/post/An%20Editors%20Favourite%20Days/#theory&#34;&gt;speculating &lt;em&gt;a priori&lt;/em&gt;&lt;/a&gt; about what might be going on there. But it&amp;rsquo;d be nice to have a hypothesis that&amp;rsquo;s grounded in some data.&lt;/p&gt;
-
-&lt;h1 id=&#34;virtual-mondays&#34;&gt;Virtual Mondays?&lt;/h1&gt;
-
-&lt;p&gt;At first I thought it might be something subtle. Maybe the day the invite is sent isn&amp;rsquo;t as important as when the referee &lt;em&gt;responds&lt;/em&gt;. An invitation sent on Thursday might not be answered until the following Monday. Whereas invites sent on Monday might tend to be answered the same day. Then Thursday would end up being a kind of virtual Monday, as far as referees responding to invites goes.&lt;/p&gt;
-
-&lt;p&gt;That didn&amp;rsquo;t seem to fit the data, though. For one thing, if you look at which days referees are least likely to &lt;em&gt;respond&lt;/em&gt; negatively, it&amp;rsquo;s Mondays and Thursdays again:
-&lt;img src=&#34;http://jonathanweisberg.org/img/the_thursday_conundrum_files/unnamed-chunk-2-1.png&#34; alt=&#34;&#34; /&gt;&lt;!-- --&gt;&lt;/p&gt;
-
-&lt;p&gt;For another, if you look at when referees respond to requests sent on Monday, it&amp;rsquo;s the same pattern as for requests sent on Thursday. In either case, referees typically respond the same day, or in the next couple of days. Here&amp;rsquo;s the pattern for Monday-invites:
-&lt;img src=&#34;http://jonathanweisberg.org/img/the_thursday_conundrum_files/unnamed-chunk-3-1.png&#34; alt=&#34;&#34; /&gt;&lt;!-- --&gt;
-And here are Thursday-invites:
-&lt;img src=&#34;http://jonathanweisberg.org/img/the_thursday_conundrum_files/unnamed-chunk-4-1.png&#34; alt=&#34;&#34; /&gt;&lt;!-- --&gt;
-In case you&amp;rsquo;re curious, here are all the days of the week, tiled according to day-of-invite:
-&lt;img src=&#34;http://jonathanweisberg.org/img/the_thursday_conundrum_files/unnamed-chunk-5-1.png&#34; alt=&#34;&#34; /&gt;&lt;!-- --&gt;
-The pattern is pretty similar regardless of the day the invite is sent (except for the predictable effect of weekends, which tend to dampen responses accross the board).&lt;/p&gt;
-
-&lt;h1 id=&#34;the-beleaguered&#34;&gt;The Beleaguered&lt;/h1&gt;
-
-&lt;p&gt;So my current hypothesis is much more flat-footed: it&amp;rsquo;s mainly a matter of when referees are busy. Monday they&amp;rsquo;re feeling fresh from the weekend, as I suggested. But why would Thursday be less overwhelming for referees? Maybe because they get fewer invitations then.&lt;/p&gt;
-
-&lt;p&gt;Let&amp;rsquo;s test that hypothesis. Here are the total numbers of invites sent out each day of the week, over the last two years at &lt;em&gt;Ergo&lt;/em&gt;:
-&lt;img src=&#34;http://jonathanweisberg.org/img/the_thursday_conundrum_files/unnamed-chunk-6-1.png&#34; alt=&#34;&#34; /&gt;&lt;!-- --&gt;
-The overall pattern is pretty much what you&amp;rsquo;d expect. Weekends are quiet (because even editors have lives). Then things pick up on Monday and Tuesday as the workweek begins, before declining again as the week wears on.&lt;/p&gt;
-
-&lt;p&gt;Note the uptick from Thursday to Friday, though: a difference of about 30 invitations. On a scale ranging from ~100 to ~250, that may be a non-trivial difference. And the same pattern shows up in both years we have data for:
-&lt;img src=&#34;http://jonathanweisberg.org/img/the_thursday_conundrum_files/unnamed-chunk-7-1.png&#34; alt=&#34;&#34; /&gt;&lt;!-- --&gt;
-So maybe Thursdays are good because things are quieting down as the weekend approaches, and referees are receiving fewer requests. But by Friday it&amp;rsquo;s too late. The editors of the world are scrambling to lock down referees before the weekend. And, probably, referees aren&amp;rsquo;t keen to clutter up their desks just as they&amp;rsquo;re about to go into a weekend break.&lt;/p&gt;
-
-&lt;h1 id=&#34;how-is-a-raven-like-a-writing-desk&#34;&gt;How is a Raven Like a Writing Desk?&lt;/h1&gt;
-
-&lt;p&gt;But if Thursdays are good because fewer requests go out then, shouldn&amp;rsquo;t Mondays be terrible? We just saw that the start of the week is the busiest time as far as number of requests sent to referees.&lt;/p&gt;
-
-&lt;p&gt;My guess is that Monday and Thursday are to be explained somewhat differently. Thursdays are distinguished by their quietude, whereas Mondays are marked by vim and vigour. People are fresh, as I said. But also, the onslaught of the week&amp;rsquo;s workload hasn&amp;rsquo;t really hit yet.&lt;/p&gt;
-
-&lt;p&gt;In support of this last hypothesis, notice that the following pattern is quite robust: weekends are quiet, followed by a burst of activity early in the week, followed by decline towards the next weekend. We saw this pattern with editors sending requests to referees. But we see it other places too.&lt;/p&gt;
-
-&lt;p&gt;For example, here&amp;rsquo;s how the quantity of submissions the journal receives varies over the week:
-&lt;img src=&#34;http://jonathanweisberg.org/img/the_thursday_conundrum_files/unnamed-chunk-8-1.png&#34; alt=&#34;&#34; /&gt;&lt;!-- --&gt;
-And here are the numbers of referee reports completed each day:
-&lt;img src=&#34;http://jonathanweisberg.org/img/the_thursday_conundrum_files/unnamed-chunk-9-1.png&#34; alt=&#34;&#34; /&gt;&lt;!-- --&gt;
-Pretty clearly, authors, editors, and referees are all quietest on the weekends, and most active at the week&amp;rsquo;s start. (We also see in this last graph, as  with editors contacting referees, that there&amp;rsquo;s a feeble resurgence toward week&amp;rsquo;s end&amp;mdash;presumably in an attempt to clear the docket before the weekend.)&lt;/p&gt;
-
-&lt;h1 id=&#34;conclusion&#34;&gt;Conclusion&lt;/h1&gt;
-
-&lt;p&gt;So here&amp;rsquo;s my theory, at least for now.&lt;/p&gt;
-
-&lt;p&gt;Referees are game on Mondays for the obvious reasons: they&amp;rsquo;ve had the weekend to recharge and catch up, and the onslaught of Monday&amp;rsquo;s and Tuesday&amp;rsquo;s new submissions&amp;mdash;and the corresponding wave of invitations to referees&amp;mdash;hasn&amp;rsquo;t reverberated out into the referee-verse just yet. (Not to mention other demands, like teaching.)&lt;/p&gt;
-
-&lt;p&gt;Referees are game on Thursdays, too, but for somewhat different reasons. As the week wears on, authors and editors wind down, so referees find fewer invites in their inboxes. They&amp;rsquo;ve also completed their existing assignments earlier in the week, maybe even  submitted their own papers. So they&amp;rsquo;re game, until the next day, Friday, when editors do their last-minute, pre-weekend scramble&amp;mdash;which is especially ill-timed since referees are switching out of work-mode anyway.&lt;/p&gt;
-
-&lt;p&gt;It&amp;rsquo;s a bit unlovely and disunified, this explanation. But not entirely. Mondays and Thursdays do have something in common on this story. They&amp;rsquo;re both days when things are calmer for referees, albeit calm in different ways and for somewhat different reasons.&lt;/p&gt;
-
-&lt;h1 id=&#34;technical-notes&#34;&gt;Technical Notes&lt;/h1&gt;
-
-&lt;p&gt;This post was written in R Markdown and the source is &lt;a href=&#34;https://github.com/jweisber/rgo/blob/master/thursday%20conundrum/the%20thursday%20conundrum.Rmd&#34; target=&#34;_blank&#34;&gt;available on GitHub&lt;/a&gt;. I&amp;rsquo;m new to R and data science, and this post is a learning exercise for me. So I encourage you to check the code and contact me with corrections.&lt;/p&gt;
 </description>
     </item>
     
