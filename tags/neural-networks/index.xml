@@ -1,0 +1,524 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Neural Networks on Jonathan Weisberg</title>
+    <link>http://jonathanweisberg.org/tags/neural-networks/index.xml</link>
+    <description>Recent content in Neural Networks on Jonathan Weisberg</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <atom:link href="http://jonathanweisberg.org/tags/neural-networks/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Building a Neural Network from Scratch: Part 1</title>
+      <link>http://jonathanweisberg.org/post/A%20Neural%20Network%20from%20Scratch%20-%20Part%201/</link>
+      <pubDate>Mon, 05 Mar 2018 00:00:00 -0500</pubDate>
+      
+      <guid>http://jonathanweisberg.org/post/A%20Neural%20Network%20from%20Scratch%20-%20Part%201/</guid>
+      <description>
+
+&lt;p&gt;In this post we&amp;rsquo;re going to build a neural network from scratch. We&amp;rsquo;ll train it to recognize hand-written digits, using the famous MNIST data set.&lt;/p&gt;
+
+&lt;p&gt;We&amp;rsquo;ll use just basic Python with NumPy to build our network (no high-level stuff like Keras or TensorFlow). We will dip into scikit-learn, but only to get the MNIST data and to assess our model once its built.&lt;/p&gt;
+
+&lt;p&gt;We&amp;rsquo;ll start with the simplest possible &amp;ldquo;network&amp;rdquo;: a single node that recognizes just the digit 0. This is actually just an implementation of logistic regression, which may seem kind of silly. But it&amp;rsquo;ll help us get some key components working before things get more complicated.&lt;/p&gt;
+
+&lt;p&gt;Then we&amp;rsquo;ll extend that into a network with one hidden layer, still recognizing just 0. Then we&amp;rsquo;ll add a softmax for recognizing all the digits 0 through 9. That&amp;rsquo;ll give us a 92% accurate digit-recognizer, bringing us up to the cutting edge of 1985 technology.&lt;/p&gt;
+
+&lt;p&gt;In a followup post we&amp;rsquo;ll bring that up into the high nineties by making sundry improvements: better optimization, more hidden layers, and smarter initialization.&lt;/p&gt;
+
+&lt;h1 id=&#34;1-hello-mnist&#34;&gt;1. Hello, MNIST&lt;/h1&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://en.wikipedia.org/wiki/MNIST_database&#34; target=&#34;_blank&#34;&gt;MNIST&lt;/a&gt; contains 70,000 images of hand-written digits, each 28 x 28 pixels, in greyscale with pixel-values from 0 to 255. We could &lt;a href=&#34;http://yann.lecun.com/exdb/mnist/&#34; target=&#34;_blank&#34;&gt;download&lt;/a&gt; and preprocess the data ourselves. But the makers of scikit-learn already did that for us. Since it would be rude to neglect their efforts, we&amp;rsquo;ll just import it:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;from sklearn.datasets import fetch_mldata
+mnist = fetch_mldata(&#39;MNIST original&#39;)
+X, y = mnist[&amp;quot;data&amp;quot;], mnist[&amp;quot;target&amp;quot;]
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;We&amp;rsquo;ll normalize the data to keep our gradients manageable:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;X = X / 255
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;The default MNIST labels record &lt;code&gt;7&lt;/code&gt; for an image of a seven, &lt;code&gt;4&lt;/code&gt; for an image of a four, etc. But we&amp;rsquo;re just building a zero-classifier for now. So we want our labels to say &lt;code&gt;1&lt;/code&gt; when we have a zero, and &lt;code&gt;0&lt;/code&gt; otherwise (intuitive, I know). So we&amp;rsquo;ll overwrite the labels to make that happen:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;import numpy as np
+
+y_new = np.zeros(y.shape)
+y_new[np.where(y == 0.0)[0]] = 1
+y = y_new
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Now we can make our train/test split. The MNIST images are pre-arranged so that the first 60,000 can be used for training, and the last 10,000 for testing. We&amp;rsquo;ll also transform the data into the shape we want, with each example in a column (instead of a row):&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;m = 60000
+m_test = X.shape[0] - m
+
+X_train, X_test = X[:m].T, X[m:].T
+y_train, y_test = y[:m].reshape(1,m), y[m:].reshape(1,m_test)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Finally we&amp;rsquo;ll shuffle the training set for good measure:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;np.random.seed(138)
+shuffle_index = np.random.permutation(m)
+X_train, y_train = X_train[:,shuffle_index], y_train[:,shuffle_index]
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Let&amp;rsquo;s have a look at a random image and label just to make sure we didn&amp;rsquo;t throw anything out of wack:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;%matplotlib inline
+import matplotlib
+import matplotlib.pyplot as plt
+
+i = 3
+plt.imshow(X_train[:,i].reshape(28,28), cmap = matplotlib.cm.binary)
+plt.axis(&amp;quot;off&amp;quot;)
+plt.show()
+print(y_train[:,i])
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;img src=&#34;http://jonathanweisberg.org/img/nn_from_scratch/output_13_0.png&#34; alt=&#34;png&#34; /&gt;&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;[1.]
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;That&amp;rsquo;s a zero, so we want the label to be &lt;code&gt;1&lt;/code&gt;, which it is. Looks good, so let&amp;rsquo;s build our first network.&lt;/p&gt;
+
+&lt;h1 id=&#34;2-a-single-neuron-aka-logistic-regression&#34;&gt;2. A Single Neuron (aka Logistic Regression)&lt;/h1&gt;
+
+&lt;p&gt;We want to build a simple, feed-forward network with 784 inputs (=28 x 28), and a single sigmoid unit generating the output.&lt;/p&gt;
+
+&lt;h2 id=&#34;2-1-forward-propogation&#34;&gt;2.1 Forward Propogation&lt;/h2&gt;
+
+&lt;p&gt;The forward pass on a single example $x$ executes the following computation:
+$$ \hat{y} = \sigma(w^T x + b). $$
+Here $\sigma$ is the sigmoid function:
+$$ \sigma(z) = \frac{1}{1 + e^{-z}}. $$
+So let&amp;rsquo;s define:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;def sigmoid(z):
+    s = 1 / (1 + np.exp(-z))
+    return s
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;We&amp;rsquo;ll vectorize by stacking examples side-by-side, so that our input matrix $X$ has an example in each column. The vectorized form of the forward pass is then:
+$$ \hat{y} = \sigma(w^T X + b). $$
+Note that $\hat{y}$ is now a vector, not a scalar as it was in the previous equation.&lt;/p&gt;
+
+&lt;p&gt;In our code we&amp;rsquo;ll compute this in two stages: &lt;code&gt;Z = np.matmul(W.T, X) + b&lt;/code&gt; and then &lt;code&gt;A = sigmoid(Z)&lt;/code&gt;. (&lt;code&gt;A&lt;/code&gt; for Activation.) Breaking things up into stages like this is just for tidiness—it&amp;rsquo;ll make our forward propagation computations mirror the steps in our backward propagation computations.&lt;/p&gt;
+
+&lt;h2 id=&#34;2-2-cost-function&#34;&gt;2.2 Cost Function&lt;/h2&gt;
+
+&lt;p&gt;We&amp;rsquo;ll use cross-entropy for our cost function. The formula for a single training example is:
+$$ L(y, \hat{y}) = -y \log(\hat{y}) - (1-y) \log(1-\hat{y}). $$
+Averaging over a training set of $m$ examples we then have:
+$$ L(Y, \hat{Y}) = -\frac{1}{m} \sum_{i=1}^m \left( y^{(i)} \log(\hat{y}^{(i)}) + (1-y^{(i)}) \log(1-\hat{y}^{(i)}) \right). $$
+So let&amp;rsquo;s define:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;def compute_loss(Y, Y_hat):
+
+    m = Y.shape[1]
+    L = -(1./m) * ( np.sum( np.multiply(np.log(Y_hat),Y) ) + np.sum( np.multiply(np.log(1-Y_hat),(1-Y)) ) )
+
+    return L
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&#34;2-3-backward-propagation&#34;&gt;2.3 Backward Propagation&lt;/h2&gt;
+
+&lt;p&gt;For backpropagation, we&amp;rsquo;ll need to know how $L$ changes with respect to each component $w_j$ of $w$. That is, we must compute each $\partial L / \partial w_j$.&lt;/p&gt;
+
+&lt;p&gt;Focusing on a single example will make it easier to derive the formulas we need. Holding all values except $w_j$ fixed, we can think of $L$ as being computed in three steps: $w_j \rightarrow z \rightarrow \hat{y} \rightarrow L$. The formulas for these steps are:
+$$
+  \begin{align}
+  z &amp;amp;= w^T x + b,\newline
+  \hat{y} &amp;amp;= \sigma(z),\newline
+  L(y, \hat{y}) &amp;amp;= -y \log(\hat{y}) - (1-y) \log(1-\hat{y}).
+  \end{align}
+$$
+And the chain rule tells us:
+$$
+  \frac{\partial L}{\partial w_j} = \frac{\partial L}{\partial \hat{y}} \frac{\partial \hat{y}}{\partial z} \frac{\partial z}{\partial w_j}.
+$$
+Looking at $\partial L / \partial \hat{y}$ first:
+$$
+  \begin{align}
+    \frac{\partial L}{\partial \hat{y}} &amp;amp;= \frac{\partial}{\partial \hat{y}} \left( -y \log(\hat{y}) - (1-y) \log(1-\hat{y}) \right)\newline
+      &amp;amp;= -y \frac{\partial}{\partial \hat{y}} \log(\hat{y}) - (1-y) \frac{\partial}{\partial \hat{y}} \log(1-\hat{y})\newline
+      &amp;amp;= \frac{-y}{\hat{y}} + \frac{(1-y) }{1 - \hat{y}}\newline
+      &amp;amp;= \frac{\hat{y} - y}{\hat{y}(1 - \hat{y})}.
+  \end{align}
+$$
+Next we want $\partial \hat{y} / \partial z$:
+$$
+  \begin{align}
+    \frac{\partial}{\partial z} \sigma(z) &amp;amp;= \frac{\partial}{\partial z} \left( \frac{1}{1 + e^{-z}} \right)\newline
+      &amp;amp;= - \frac{1}{(1 + e^{-z})^2} \frac{\partial}{\partial z} \left( 1 + e^{-z} \right)\newline
+      &amp;amp;= \frac{e^{-z}}{(1 + e^{-z})^2}\newline
+      &amp;amp;= \frac{1}{1 + e^{-z}} \frac{e^{-z}}{1 + e^{-z}}\newline
+      &amp;amp;= \sigma(z) \frac{e^{-z}}{1 + e^{-z}}\newline
+      &amp;amp;= \sigma(z) \left( 1 - \frac{1}{1 + e^{-z}} \right)\newline
+      &amp;amp;= \sigma(z) \left( 1 - \sigma(z) \right)\newline
+      &amp;amp;= \hat{y} (1-\hat{y}).
+  \end{align}
+$$
+Lastly we tackle $\partial z / \partial w_j$:
+$$
+  \begin{align}
+    \frac{\partial}{\partial w_j} (w^T x + b) &amp;amp;= \frac{\partial}{\partial w_j} (w_0 x_0 + \ldots + w_n x_n + b)\newline
+      &amp;amp;= w_j.
+  \end{align}
+$$
+Finally we can substitute into the chain rule to find:
+$$
+  \begin{align}
+    \frac{\partial L}{\partial w_j} &amp;amp;= \frac{\partial L}{\partial \hat{y}} \frac{\partial \hat{y}}{\partial z} \frac{\partial z}{\partial w_j}\newline
+    &amp;amp;= \frac{\hat{y} - y}{\hat{y}(1 - \hat{y})} \hat{y} (1-\hat{y}) w_j\newline
+    &amp;amp;= (\hat{y} - y) w_j.\newline
+  \end{align}
+$$
+In vectorized form with $m$ training examples this gives us:
+$$
+  \frac{\partial L}{\partial w} = \frac{1}{m} X (\hat{y} - y)^T.
+$$
+What about $\partial L / \partial b$? A very similar derivation yields, for a single example:
+$$
+  \begin{align}
+    \frac{\partial L}{\partial b} &amp;amp;= (\hat{y} - y).
+  \end{align}
+$$
+Which in vectorized form amounts to:
+$$
+  \frac{\partial L}{\partial b} = \frac{1}{m} \sum_{i=1}^m (\hat{y}^{(i)} - y^{(i)}).
+$$
+In our code we&amp;rsquo;ll label these gradients according to their denominators, as &lt;code&gt;dW&lt;/code&gt; and &lt;code&gt;db&lt;/code&gt;. So for backpropagation we&amp;rsquo;ll compute &lt;code&gt;dW = (1/m) * np.matmul(X, (A-Y).T)&lt;/code&gt; and &lt;code&gt;db = (1/m) * np.sum(A-Y, axis=1, keepdims=True)&lt;/code&gt;.&lt;/p&gt;
+
+&lt;h2 id=&#34;2-4-build-train&#34;&gt;2.4 Build &amp;amp; Train&lt;/h2&gt;
+
+&lt;p&gt;Ok we&amp;rsquo;re ready to build and train our network!&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;learning_rate = 1
+
+X = X_train
+Y = y_train
+
+n_x = X.shape[0]
+m = X.shape[1]
+
+W = np.random.randn(n_x, 1) * 0.01
+b = np.zeros((1, 1))
+
+for i in range(2000):
+    Z = np.matmul(W.T, X) + b
+    A = sigmoid(Z)
+
+    cost = compute_loss(Y, A)
+
+    dW = (1/m) * np.matmul(X, (A-Y).T)
+    db = (1/m) * np.sum(A-Y, axis=1, keepdims=True)
+
+    W = W - learning_rate * dW
+    b = b - learning_rate * db
+
+    if (i % 100 == 0):
+        print(&amp;quot;Epoch&amp;quot;, i, &amp;quot;cost: &amp;quot;, cost)
+
+print(&amp;quot;Final cost:&amp;quot;, cost)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;pre&gt;&lt;code&gt;Epoch 0 cost:  0.6840801595436431
+Epoch 100 cost:  0.041305162058342754
+... *snip* ...
+Final cost: 0.02514156608481825
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;We could probably eek out a bit more accuracy with some more training. But the gains have slowed considerably. So let&amp;rsquo;s just see how we did, by looking at the confusion matrix:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;from sklearn.metrics import classification_report, confusion_matrix
+
+Z = np.matmul(W.T, X_test) + b
+A = sigmoid(Z)
+
+predictions = (A&amp;gt;.5)[0,:]
+labels = (y_test == 1)[0,:]
+
+print(confusion_matrix(predictions, labels))
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;pre&gt;&lt;code&gt;[[8980   33]
+ [  40  947]]
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Hey, that&amp;rsquo;s actually pretty good! We got 947 of the zeros and missed only 33, while getting nearly all the negative cases right. In terms of f1-score that&amp;rsquo;s 0.99:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;print(classification_report(predictions, labels))
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;pre&gt;&lt;code&gt;             precision    recall  f1-score   support
+
+      False       1.00      1.00      1.00      9013
+       True       0.97      0.96      0.96       987
+
+avg / total       0.99      0.99      0.99     10000
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;So, now that we&amp;rsquo;ve got a working model and optimization algorithm, let&amp;rsquo;s enrich it.&lt;/p&gt;
+
+&lt;h1 id=&#34;3-one-hidden-layer&#34;&gt;3. One Hidden Layer&lt;/h1&gt;
+
+&lt;p&gt;Let&amp;rsquo;s add a hidden layer now, with 64 units (a mostly arbitrary choice). I won&amp;rsquo;t go through the derivations of all the formulas for the forward and backward passes this time; they&amp;rsquo;re a pretty direct extension of the work we did earlier. Instead let&amp;rsquo;s just dive right in and build the model:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;X = X_train
+Y = y_train
+
+n_x = X.shape[0]
+n_h = 64
+learning_rate = 1
+
+W1 = np.random.randn(n_h, n_x)
+b1 = np.zeros((n_h, 1))
+W2 = np.random.randn(1, n_h)
+b2 = np.zeros((1, 1))
+
+for i in range(2000):
+
+    Z1 = np.matmul(W1, X) + b1
+    A1 = sigmoid(Z1)
+    Z2 = np.matmul(W2, A1) + b2
+    A2 = sigmoid(Z2)
+
+    cost = compute_loss(Y, A2)
+
+    dZ2 = A2-Y
+    dW2 = (1./m) * np.matmul(dZ2, A1.T)
+    db2 = (1./m) * np.sum(dZ2, axis=1, keepdims=True)
+
+    dA1 = np.matmul(W2.T, dZ2)
+    dZ1 = dA1 * sigmoid(Z1) * (1 - sigmoid(Z1))
+    dW1 = (1./m) * np.matmul(dZ1, X.T)
+    db1 = (1./m) * np.sum(dZ1, axis=1, keepdims=True)
+
+    W2 = W2 - learning_rate * dW2
+    b2 = b2 - learning_rate * db2
+    W1 = W1 - learning_rate * dW1
+    b1 = b1 - learning_rate * db1
+
+    if i % 100 == 0:
+        print(&amp;quot;Epoch&amp;quot;, i, &amp;quot;cost: &amp;quot;, cost)
+
+print(&amp;quot;Final cost:&amp;quot;, cost)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;pre&gt;&lt;code&gt;Epoch 0 cost:  0.9144384083567224
+Epoch 100 cost:  0.08856953026938433
+... *snip* ...
+Final cost: 0.024249298861903648
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;How&amp;rsquo;d we do?&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;Z1 = np.matmul(W1, X_test) + b1
+A1 = sigmoid(Z1)
+Z2 = np.matmul(W2, A1) + b2
+A2 = sigmoid(Z2)
+
+predictions = (A2&amp;gt;.5)[0,:]
+labels = (y_test == 1)[0,:]
+
+print(confusion_matrix(predictions, labels))
+print(classification_report(predictions, labels))
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;pre&gt;&lt;code&gt;[[8984   36]
+ [  36  944]]
+             precision    recall  f1-score   support
+
+      False       1.00      1.00      1.00      9020
+       True       0.96      0.96      0.96       980
+
+avg / total       0.99      0.99      0.99     10000
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Hmm, not bad, but about the same as our one-neuron model did. We could do more training and add more nodes/layers. But it&amp;rsquo;ll be slow going until we improve our optimization algorithm, which we&amp;rsquo;ll do in a followup post.&lt;/p&gt;
+
+&lt;p&gt;So for now let&amp;rsquo;s turn to recognizing all ten digits.&lt;/p&gt;
+
+&lt;h1 id=&#34;4-upgrading-to-multiclass&#34;&gt;4. Upgrading to Multiclass&lt;/h1&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://medias.spotern.com/spots/w1280/3477.jpg&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+
+&lt;h2 id=&#34;4-1-labels&#34;&gt;4.1 Labels&lt;/h2&gt;
+
+&lt;p&gt;First we need to redo our labels. We&amp;rsquo;ll re-import everything, so that we don&amp;rsquo;t have to go back and coordinate with our earlier shuffling:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;mnist = fetch_mldata(&#39;MNIST original&#39;)
+X, y = mnist[&amp;quot;data&amp;quot;], mnist[&amp;quot;target&amp;quot;]
+
+X = X / 255
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Then we&amp;rsquo;ll one-hot encode MNIST&amp;rsquo;s labels, to get a 10 x 70,000 array.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;digits = 10
+examples = y.shape[0]
+
+y = y.reshape(1, examples)
+
+Y_new = np.eye(digits)[y.astype(&#39;int32&#39;)]
+Y_new = Y_new.T.reshape(digits, examples)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Then we re-split, re-shape, and re-shuffle our training set:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;m = 60000
+m_test = X.shape[0] - m
+
+X_train, X_test = X[:m].T, X[m:].T
+Y_train, Y_test = Y_new[:,:m], Y_new[:,m:]
+
+shuffle_index = np.random.permutation(m)
+X_train, Y_train = X_train[:, shuffle_index], Y_train[:, shuffle_index]
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;A quick check that things are as they should be:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;i = 12
+plt.imshow(X_train[:,i].reshape(28,28), cmap = matplotlib.cm.binary)
+plt.axis(&amp;quot;off&amp;quot;)
+plt.show()
+Y_train[:,i]
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;img src=&#34;http://jonathanweisberg.org/img/nn_from_scratch/output_43_0.png&#34; alt=&#34;png&#34; /&gt;&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;array([0., 0., 0., 0., 0., 0., 1., 0., 0., 0.])
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Looks good, so let&amp;rsquo;s consider what changes we need to make to the model itself.&lt;/p&gt;
+
+&lt;h2 id=&#34;4-2-forward-propagation&#34;&gt;4.2 Forward Propagation&lt;/h2&gt;
+
+&lt;p&gt;Only the last layer of our network is changing. To add the softmax, we have to replace our lone, final node with a 10-unit layer. Its final activations are the exponentials of its $z$-values, normalized across all ten such exponentials. So instead of just computing $\sigma(z)$, we compute the activation for each unit $i$:
+$$ \frac{e^{z_i}}{\sum_{j=0}^{9} e^{z_j}}.$$
+So, in our vectorized code, the last line of forward propagation will be &lt;code&gt;A2 = np.exp(Z2) / np.sum(np.exp(Z2), axis=0)&lt;/code&gt;.&lt;/p&gt;
+
+&lt;h2 id=&#34;4-3-cost-function&#34;&gt;4.3 Cost Function&lt;/h2&gt;
+
+&lt;p&gt;Our cost function now has to generalize to more than two classes. The general formula for $n$ classes is:
+$$ L(y, \hat{y}) = -\sum_{i = 0}^n y_i \log(\hat{y}_i). $$
+Averaging over $m$ training examples this becomes:
+$$ L(Y, \hat{Y}) = - \frac{1}{m} \sum_{j = 0}^m \sum_{i = 0}^n y_i^{(j)} \log(\hat{y}_i^{(j)}). $$
+So let&amp;rsquo;s define:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;def compute_multiclass_loss(Y, Y_hat):
+
+    L_sum = np.sum(np.multiply(Y, np.log(Y_hat)))
+    m = Y.shape[1]
+    L = -(1/m) * L_sum
+
+    return L
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&#34;4-4-backprop&#34;&gt;4.4 Backprop&lt;/h2&gt;
+
+&lt;p&gt;Luckily it turns out that backprop isn&amp;rsquo;t really affected by the switch to a softmax. A softmax generalizes the sigmoid activiation we&amp;rsquo;ve been using, and in such a way that the code we wrote earlier still works. We could verify this by deriving:
+$$\frac{\partial L}{\partial z_i} = \hat{y}_i - y_i.$$
+But I won&amp;rsquo;t walk through the steps here. Let&amp;rsquo;s just go ahead and build our final network.&lt;/p&gt;
+
+&lt;h2 id=&#34;4-5-build-train&#34;&gt;4.5 Build &amp;amp; Train&lt;/h2&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;n_x = X_train.shape[0]
+n_h = 64
+learning_rate = 1
+
+W1 = np.random.randn(n_h, n_x)
+b1 = np.zeros((n_h, 1))
+W2 = np.random.randn(digits, n_h)
+b2 = np.zeros((digits, 1))
+
+X = X_train
+Y = Y_train
+
+for i in range(2000):
+
+    Z1 = np.matmul(W1,X) + b1
+    A1 = sigmoid(Z1)
+    Z2 = np.matmul(W2,A1) + b2
+    A2 = np.exp(Z2) / np.sum(np.exp(Z2), axis=0)
+
+    cost = compute_multiclass_loss(Y, A2)
+
+    dZ2 = A2-Y
+    dW2 = (1./m) * np.matmul(dZ2, A1.T)
+    db2 = (1./m) * np.sum(dZ2, axis=1, keepdims=True)
+
+    dA1 = np.matmul(W2.T, dZ2)
+    dZ1 = dA1 * sigmoid(Z1) * (1 - sigmoid(Z1))
+    dW1 = (1./m) * np.matmul(dZ1, X.T)
+    db1 = (1./m) * np.sum(dZ1, axis=1, keepdims=True)
+
+    W2 = W2 - learning_rate * dW2
+    b2 = b2 - learning_rate * db2
+    W1 = W1 - learning_rate * dW1
+    b1 = b1 - learning_rate * db1
+
+    if (i % 100 == 0):
+        print(&amp;quot;Epoch&amp;quot;, i, &amp;quot;cost: &amp;quot;, cost)
+
+print(&amp;quot;Final cost:&amp;quot;, cost)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;pre&gt;&lt;code&gt;Epoch 0 cost:  9.243960401572568
+... *snip* ...
+Epoch 1900 cost:  0.24585173887243117
+Final cost: 0.24072776877870128
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Let&amp;rsquo;s see how we did:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;Z1 = np.matmul(W1, X_test) + b1
+A1 = sigmoid(Z1)
+Z2 = np.matmul(W2, A1) + b2
+A2 = np.exp(Z2) / np.sum(np.exp(Z2), axis=0)
+
+predictions = np.argmax(A2, axis=0)
+labels = np.argmax(Y_test, axis=0)
+
+print(confusion_matrix(predictions, labels))
+print(classification_report(predictions, labels))
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;pre&gt;&lt;code&gt;[[ 946    0   14    3    3   10   12    2    9    4]
+ [   0 1112    3    2    1    1    2    8    3    4]
+ [   3    4  937   24   10    7    8   18    8    3]
+ [   4    2   17  924    1   39    4   13   26    9]
+ [   0    1   10    0  905    9   11    9   10   40]
+ [  12    5    2   26    3  786   15    3   24   14]
+ [   8    1   19    2    9   10  902    1    9    1]
+ [   2    1   13   14    3    5    1  946    9   25]
+ [   5    9   16   11    5   18    3    5  868    9]
+ [   0    0    1    4   42    7    0   23    8  900]]
+             precision    recall  f1-score   support
+
+          0       0.97      0.94      0.95      1003
+          1       0.98      0.98      0.98      1136
+          2       0.91      0.92      0.91      1022
+          3       0.91      0.89      0.90      1039
+          4       0.92      0.91      0.92       995
+          5       0.88      0.88      0.88       890
+          6       0.94      0.94      0.94       962
+          7       0.92      0.93      0.92      1019
+          8       0.89      0.91      0.90       949
+          9       0.89      0.91      0.90       985
+
+avg / total       0.92      0.92      0.92     10000
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;We&amp;rsquo;re at 92% accuracy across all digits, not bad! And it looks like we could still improve with more training.&lt;/p&gt;
+
+&lt;p&gt;But let&amp;rsquo;s work on speeding up our optimization alogirthm first. We&amp;rsquo;ll pick things up there in the next post.&lt;/p&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>
