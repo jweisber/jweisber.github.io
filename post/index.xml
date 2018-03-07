@@ -522,6 +522,212 @@ avg / total       0.92      0.92      0.92     10000
     </item>
     
     <item>
+      <title>Building a Neural Network from Scratch: Part 2</title>
+      <link>http://jonathanweisberg.org/post/A%20Neural%20Network%20from%20Scratch%20-%20Part%202/</link>
+      <pubDate>Mon, 05 Mar 2018 00:00:00 -0500</pubDate>
+      
+      <guid>http://jonathanweisberg.org/post/A%20Neural%20Network%20from%20Scratch%20-%20Part%202/</guid>
+      <description>&lt;p&gt;In this post we&amp;rsquo;ll improve our training algorithm from the &lt;a href=&#34;http://jonathanweisberg.org/post/A%20Neural%20Network%20from%20Scratch%20-%20Part%201/&#34;&gt;previous post&lt;/a&gt;. When we&amp;rsquo;re done we&amp;rsquo;ll be able to achieve 98% precision on the MNIST data set, after just 9 epochs of training&amp;mdash;which only takes about 30 seconds to run on my laptop.&lt;/p&gt;
+
+&lt;p&gt;For comparison, last time we only achieved 92% precision after 2,000 epochs of training, which took over an hour!&lt;/p&gt;
+
+&lt;p&gt;The main driver in this improvement is just switching from batch gradient descent to &lt;em&gt;mini&lt;/em&gt;-batch gradient descent. But we&amp;rsquo;ll also make two other, smaller improvements: we&amp;rsquo;ll add momentum to our descent algorithm, and we&amp;rsquo;ll smarten up the initialization of our network&amp;rsquo;s weights.&lt;/p&gt;
+
+&lt;p&gt;We&amp;rsquo;ll also reorganize our code a bit while we&amp;rsquo;re at it, making things more modular.&lt;/p&gt;
+
+&lt;p&gt;But first we need to import and massage our data. These steps are the same as in the previous post:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;from sklearn.datasets import fetch_mldata
+from sklearn.metrics import classification_report, confusion_matrix
+import numpy as np
+
+# import
+mnist = fetch_mldata(&#39;MNIST original&#39;)
+X, y = mnist[&amp;quot;data&amp;quot;], mnist[&amp;quot;target&amp;quot;]
+
+# scale
+X = X / 255
+
+# one-hot encode labels
+digits = 10
+examples = y.shape[0]
+y = y.reshape(1, examples)
+Y_new = np.eye(digits)[y.astype(&#39;int32&#39;)]
+Y_new = Y_new.T.reshape(digits, examples)
+
+# split, reshape, shuffle
+m = 60000
+m_test = X.shape[0] - m
+X_train, X_test = X[:m].T, X[m:].T
+Y_train, Y_test = Y_new[:,:m], Y_new[:,m:]
+shuffle_index = np.random.permutation(m)
+X_train, Y_train = X_train[:, shuffle_index], Y_train[:, shuffle_index]
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Then we&amp;rsquo;ll define our key functions. Only the last two are new, and they just put the steps of forward and backward propagation into their own functions. This tidies up the training code to follow, so that we can focus on the novel elements, especially mini-batch descent and momentum.&lt;/p&gt;
+
+&lt;p&gt;Notice that in the process we introduce three dictionaries:&lt;code&gt;params&lt;/code&gt;, &lt;code&gt;cache&lt;/code&gt;, and &lt;code&gt;grads&lt;/code&gt;. These are for conveniently passing information back and forth between the forward and backward passes.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;def sigmoid(z):
+    s = 1. / (1. + np.exp(-z))
+    return s
+
+def compute_loss(Y, Y_hat):
+
+    L_sum = np.sum(np.multiply(Y, np.log(Y_hat)))
+    m = Y.shape[1]
+    L = -(1./m) * L_sum
+
+    return L
+
+def feed_forward(X, params):
+
+    cache = {}
+
+    cache[&amp;quot;Z1&amp;quot;] = np.matmul(params[&amp;quot;W1&amp;quot;], X) + params[&amp;quot;b1&amp;quot;]
+    cache[&amp;quot;A1&amp;quot;] = sigmoid(cache[&amp;quot;Z1&amp;quot;])
+    cache[&amp;quot;Z2&amp;quot;] = np.matmul(params[&amp;quot;W2&amp;quot;], cache[&amp;quot;A1&amp;quot;]) + params[&amp;quot;b2&amp;quot;]
+    cache[&amp;quot;A2&amp;quot;] = np.exp(cache[&amp;quot;Z2&amp;quot;]) / np.sum(np.exp(cache[&amp;quot;Z2&amp;quot;]), axis=0)
+
+    return cache
+
+def back_propagate(X, Y, params, cache):
+
+    dZ2 = cache[&amp;quot;A2&amp;quot;] - Y
+    dW2 = (1./m_batch) * np.matmul(dZ2, cache[&amp;quot;A1&amp;quot;].T)
+    db2 = (1./m_batch) * np.sum(dZ2, axis=1, keepdims=True)
+
+    dA1 = np.matmul(params[&amp;quot;W2&amp;quot;].T, dZ2)
+    dZ1 = dA1 * sigmoid(cache[&amp;quot;Z1&amp;quot;]) * (1 - sigmoid(cache[&amp;quot;Z1&amp;quot;]))
+    dW1 = (1./m_batch) * np.matmul(dZ1, X.T)
+    db1 = (1./m_batch) * np.sum(dZ1, axis=1, keepdims=True)
+
+    grads = {&amp;quot;dW1&amp;quot;: dW1, &amp;quot;db1&amp;quot;: db1, &amp;quot;dW2&amp;quot;: dW2, &amp;quot;db2&amp;quot;: db2}
+
+    return grads
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Now for the substantive stuff.&lt;/p&gt;
+
+&lt;p&gt;To switch to mini-batch descent, we add another &lt;code&gt;for&lt;/code&gt; loop inside the pass through each epoch. At each pass we randomly shuffle the training set, then iterate through it in chunks of &lt;code&gt;batch_size&lt;/code&gt;, which we&amp;rsquo;ll arbitrarily set to 128. We&amp;rsquo;ll see the code for all this in a moment.&lt;/p&gt;
+
+&lt;p&gt;Next, to add momentum, we keep a moving average of our gradients. So instead of updating our parameters by doing e.g.:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;params[&amp;quot;W1&amp;quot;] = params[&amp;quot;W1&amp;quot;] - learning_rate * grads[&amp;quot;dW1&amp;quot;]
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;we do this:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;V_dW1 = (beta * V_dW1 + (1. - beta) * grads[&amp;quot;dW1&amp;quot;])
+params[&amp;quot;W1&amp;quot;] = params[&amp;quot;W1&amp;quot;] - learning_rate * V_dW1
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Finally, to smarten up our initialization, we shrink the variance of the weights in each layer. Following &lt;a href=&#34;https://www.coursera.org/learn/deep-neural-network/lecture/RwqYe/weight-initialization-for-deep-networks&#34; target=&#34;_blank&#34;&gt;this nice video&lt;/a&gt; by Andrew Ng (whose excellent Coursera materials I&amp;rsquo;ve been relying on heavily in these posts), we&amp;rsquo;ll set the variance for each layer to $1/n$, where $n$ is the number of inputs feeding into that layer.&lt;/p&gt;
+
+&lt;p&gt;We&amp;rsquo;ve been using the &lt;code&gt;np.random.randn()&lt;/code&gt; function to get our initial weights. And this function draws from the standard normal distribution. So to adjust the variance to $1/n$, we just divide by $\sqrt{n}$. In code this means that instead of doing e.g. &lt;code&gt;np.random.randn(n_h, n_x)&lt;/code&gt;, we do &lt;code&gt;np.random.randn(n_h, n_x) * np.sqrt(1. / n_x)&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;Ok that covers our three improvements. Let&amp;rsquo;s build and train!&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;np.random.seed(138)
+
+# hyperparameters
+n_x = X_train.shape[0]
+n_h = 64
+learning_rate = 4
+beta = .9
+batch_size = 128
+batches = -(-m // batch_size)
+
+# initialization
+params = { &amp;quot;W1&amp;quot;: np.random.randn(n_h, n_x) * np.sqrt(1. / n_x),
+           &amp;quot;b1&amp;quot;: np.zeros((n_h, 1)) * np.sqrt(1. / n_x),
+           &amp;quot;W2&amp;quot;: np.random.randn(digits, n_h) * np.sqrt(1. / n_h),
+           &amp;quot;b2&amp;quot;: np.zeros((digits, 1)) * np.sqrt(1. / n_h) }
+
+V_dW1 = np.zeros(params[&amp;quot;W1&amp;quot;].shape)
+V_db1 = np.zeros(params[&amp;quot;b1&amp;quot;].shape)
+V_dW2 = np.zeros(params[&amp;quot;W2&amp;quot;].shape)
+V_db2 = np.zeros(params[&amp;quot;b2&amp;quot;].shape)
+
+# train
+for i in range(9):
+
+    permutation = np.random.permutation(X_train.shape[1])
+    X_train_shuffled = X_train[:, permutation]
+    Y_train_shuffled = Y_train[:, permutation]
+
+    for j in range(batches):
+
+        begin = j * batch_size
+        end = min(begin + batch_size, X_train.shape[1] - 1)
+        X = X_train_shuffled[:, begin:end]
+        Y = Y_train_shuffled[:, begin:end]
+        m_batch = end - begin
+
+        cache = feed_forward(X, params)
+        grads = back_propagate(X, Y, params, cache)
+
+        V_dW1 = (beta * V_dW1 + (1. - beta) * grads[&amp;quot;dW1&amp;quot;])
+        V_db1 = (beta * V_db1 + (1. - beta) * grads[&amp;quot;db1&amp;quot;])
+        V_dW2 = (beta * V_dW2 + (1. - beta) * grads[&amp;quot;dW2&amp;quot;])
+        V_db2 = (beta * V_db2 + (1. - beta) * grads[&amp;quot;db2&amp;quot;])
+
+        params[&amp;quot;W1&amp;quot;] = params[&amp;quot;W1&amp;quot;] - learning_rate * V_dW1
+        params[&amp;quot;b1&amp;quot;] = params[&amp;quot;b1&amp;quot;] - learning_rate * V_db1
+        params[&amp;quot;W2&amp;quot;] = params[&amp;quot;W2&amp;quot;] - learning_rate * V_dW2
+        params[&amp;quot;b2&amp;quot;] = params[&amp;quot;b2&amp;quot;] - learning_rate * V_db2
+
+    cache = feed_forward(X_train, params)
+    train_cost = compute_loss(Y_train, cache[&amp;quot;A2&amp;quot;])
+    cache = feed_forward(X_test, params)
+    test_cost = compute_loss(Y_test, cache[&amp;quot;A2&amp;quot;])
+    print(&amp;quot;Epoch {}: training cost = {}, test cost = {}&amp;quot;.format(i+1 ,train_cost, test_cost))
+
+print(&amp;quot;Done.&amp;quot;)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;pre&gt;&lt;code&gt;Epoch 1: training cost = 0.15587093418167058, test cost = 0.16223940981168986
+Epoch 2: training cost = 0.09417519634799829, test cost = 0.11032242938356147
+Epoch 3: training cost = 0.07205872840102934, test cost = 0.0958078559246339
+Epoch 4: training cost = 0.07008115814138867, test cost = 0.1010270024817398
+Epoch 5: training cost = 0.05501929068580713, test cost = 0.09527116695490956
+Epoch 6: training cost = 0.042663638371140164, test cost = 0.08268937190759178
+Epoch 7: training cost = 0.03615501088752129, test cost = 0.08188431384719108
+Epoch 8: training cost = 0.03610956910064329, test cost = 0.08675249924246693
+Epoch 9: training cost = 0.027582647825206745, test cost = 0.08023754855128316
+Done.
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;How&amp;rsquo;d we do?&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;cache = feed_forward(X_test, params)
+predictions = np.argmax(cache[&amp;quot;A2&amp;quot;], axis=0)
+labels = np.argmax(Y_test, axis=0)
+
+print(classification_report(predictions, labels))
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;pre&gt;&lt;code&gt;             precision    recall  f1-score   support
+
+          0       0.99      0.98      0.98       984
+          1       0.99      0.99      0.99      1136
+          2       0.98      0.98      0.98      1037
+          3       0.97      0.98      0.97      1004
+          4       0.97      0.98      0.98       970
+          5       0.97      0.96      0.97       900
+          6       0.97      0.99      0.98       942
+          7       0.97      0.97      0.97      1026
+          8       0.97      0.96      0.97       982
+          9       0.97      0.96      0.97      1019
+
+avg / total       0.98      0.98      0.98     10000
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;And there it is: 98% precision in just 9 epochs of training.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
       <title>Call for Papers: Formal Epistemology Workshop (FEW) 2018</title>
       <link>http://jonathanweisberg.org/post/CFP%20FEW%202018/</link>
       <pubDate>Thu, 21 Dec 2017 10:36:00 -0500</pubDate>
@@ -2501,273 +2707,6 @@ Being a sum of squares, the minimum value here cannot be less than $0$, which oc
 &lt;p&gt;To go beyond toy cases, we&amp;rsquo;d have to extend this result to cases with infinite numbers of possibilities. And I haven&amp;rsquo;t even begun to think about how to do that.&lt;/p&gt;
 
 &lt;p&gt;Instead, next time we&amp;rsquo;ll look at what happens in $3+$ dimensions when we use Euclidean distance instead of Brier distance. And it&amp;rsquo;s actually kind of interesting! It turns out Euclidean distance is still improper in $3+$ dimensions, but not necessarily in the same way as in $2$ dimensions. More on that next time&amp;hellip;&lt;/p&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>Gender &amp; Journal Submissions</title>
-      <link>http://jonathanweisberg.org/post/Author%20Gender/</link>
-      <pubDate>Thu, 26 Jan 2017 10:36:10 -0500</pubDate>
-      
-      <guid>http://jonathanweisberg.org/post/Author%20Gender/</guid>
-      <description>
-
-&lt;p&gt;Does an author&amp;rsquo;s gender affect the fate of their submission to an academic journal? It&amp;rsquo;s a big question, even if we restrict ourselves to philosophy journals.&lt;/p&gt;
-
-&lt;p&gt;But we can make a start by using &lt;a href=&#34;http://www.ergophiljournal.org&#34; target=&#34;_blank&#34;&gt;&lt;em&gt;Ergo&lt;/em&gt;&lt;/a&gt; as one data-point. I&amp;rsquo;ll examine two questions:&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;p&gt;Question 1: Does gender affect the decision rendered at &lt;em&gt;Ergo&lt;/em&gt;? Are men more likely to have their papers accepted, for example?&lt;/p&gt;&lt;/li&gt;
-
-&lt;li&gt;&lt;p&gt;Question 2: Does gender affect time-to-decision at &lt;em&gt;Ergo&lt;/em&gt;? For example, do women have to wait longer on average for a decision?&lt;/p&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h1 id=&#34;background&#34;&gt;Background&lt;/h1&gt;
-
-&lt;p&gt;Some important background and caveats before we begin:&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;p&gt;Our data set goes back to Feb. 11, 2015, when &lt;em&gt;Ergo&lt;/em&gt; moved to its current online system for handling submissions. We do have records going back to Jun. 2013, when the journal launched. But integrating the data from the two systems is a programming hassle I haven&amp;rsquo;t faced up to yet.&lt;/p&gt;&lt;/li&gt;
-
-&lt;li&gt;&lt;p&gt;We&amp;rsquo;ll exclude submissions that were withdrawn by the author before a decision could be rendered. Usually, when an author withdraws a submission, it&amp;rsquo;s so that they can resubmit a trivially-corrected manuscript five minutes later. So this data mostly just gets in the way.&lt;/p&gt;&lt;/li&gt;
-
-&lt;li&gt;&lt;p&gt;We&amp;rsquo;ll also exclude submissions that were still under review as of Jan. 1, 2017, since the data there is incomplete.&lt;/p&gt;&lt;/li&gt;
-
-&lt;li&gt;&lt;p&gt;The gender data we&amp;rsquo;ll be using was gathered manually by &lt;em&gt;Ergo&lt;/em&gt;&amp;rsquo;s managing editors (me and Franz Huber). In most cases we didn&amp;rsquo;t know the author personally. So we did a quick google to see whether we could infer the author&amp;rsquo;s gender based on public information, like pronouns and/or pictures. When we weren&amp;rsquo;t confident that we could, we left their gender as &amp;ldquo;unknown&amp;rdquo;.&lt;/p&gt;&lt;/li&gt;
-
-&lt;li&gt;&lt;p&gt;This analysis covers only men and women, because there haven&amp;rsquo;t yet been any cases where we could confidently infer that an author identified as another gender. And the &amp;ldquo;gender unknown&amp;rdquo; cases are too few for reliable statistical analysis.&lt;/p&gt;&lt;/li&gt;
-
-&lt;li&gt;&lt;p&gt;Since we only have data for the gender of the submitting author, our analysis will overlook co-authors.&lt;/p&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;With that in mind, a brief overview: our data set contains $696$ submissions over almost two years (Feb. 11, 2015 up to Jan. 1, 2017), but only $639$ of these are included in this analysis. The $52$ submissions that were in-progress as of Jan. 1, 2017, or were withdrawn by the author, have been excluded. Another $5$ cases where the author&amp;rsquo;s gender was unknown were also excluded.&lt;/p&gt;
-
-&lt;h1 id=&#34;gender-decisions&#34;&gt;Gender &amp;amp; Decisions&lt;/h1&gt;
-
-&lt;p&gt;Does an author&amp;rsquo;s gender affect the journal&amp;rsquo;s decision about whether their submission is accepted? We can slice this question a few different ways:&lt;/p&gt;
-
-&lt;ol&gt;
-&lt;li&gt;&lt;p&gt;Does gender affect the first-round decision to reject/accept/R&amp;amp;R?&lt;/p&gt;&lt;/li&gt;
-
-&lt;li&gt;&lt;p&gt;Does gender affect the likelihood of desk-rejection, specifically?&lt;/p&gt;&lt;/li&gt;
-
-&lt;li&gt;&lt;p&gt;Does gender affect the chance of converting an R&amp;amp;R into an accept?&lt;/p&gt;&lt;/li&gt;
-
-&lt;li&gt;&lt;p&gt;Does gender affect the ultimate decision to accept/reject (whether via an intervening R&amp;amp;R or not)?&lt;/p&gt;&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;p&gt;The short answer to all these questions is: no, at least not in a statistically significant way. But there are some wrinkles. So let&amp;rsquo;s take each question in turn.&lt;/p&gt;
-
-&lt;h2 id=&#34;first-round-decisions&#34;&gt;First-Round Decisions&lt;/h2&gt;
-
-&lt;p&gt;Does gender affect the first-round decision to reject/accept/R&amp;amp;R?&lt;/p&gt;
-
-&lt;p&gt;&lt;em&gt;Ergo&lt;/em&gt; has two kinds of R&amp;amp;R, Major Revisions and Minor Revisions. Here are the raw numbers:&lt;/p&gt;
-
-&lt;table&gt;
-&lt;thead&gt;
-&lt;tr&gt;
-&lt;th align=&#34;left&#34;&gt;&lt;/th&gt;
-&lt;th align=&#34;right&#34;&gt;Reject&lt;/th&gt;
-&lt;th align=&#34;right&#34;&gt;Major Revisions&lt;/th&gt;
-&lt;th align=&#34;right&#34;&gt;Minor Revisions&lt;/th&gt;
-&lt;th align=&#34;right&#34;&gt;Accept&lt;/th&gt;
-&lt;/tr&gt;
-&lt;/thead&gt;
-
-&lt;tbody&gt;
-&lt;tr&gt;
-&lt;td align=&#34;left&#34;&gt;Female&lt;/td&gt;
-&lt;td align=&#34;right&#34;&gt;76&lt;/td&gt;
-&lt;td align=&#34;right&#34;&gt;10&lt;/td&gt;
-&lt;td align=&#34;right&#34;&gt;2&lt;/td&gt;
-&lt;td align=&#34;right&#34;&gt;0&lt;/td&gt;
-&lt;/tr&gt;
-
-&lt;tr&gt;
-&lt;td align=&#34;left&#34;&gt;Male&lt;/td&gt;
-&lt;td align=&#34;right&#34;&gt;438&lt;/td&gt;
-&lt;td align=&#34;right&#34;&gt;41&lt;/td&gt;
-&lt;td align=&#34;right&#34;&gt;15&lt;/td&gt;
-&lt;td align=&#34;right&#34;&gt;5&lt;/td&gt;
-&lt;/tr&gt;
-&lt;/tbody&gt;
-&lt;/table&gt;
-
-&lt;p&gt;Graphically, in terms of percentages:&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&#34;http://jonathanweisberg.org/img/author_gender_files/unnamed-chunk-4-1.png&#34; alt=&#34;&#34; /&gt;&lt;!-- --&gt;&lt;/p&gt;
-
-&lt;p&gt;There are differences here, of course: women were asked to make major revisions more frequently than men, for example. And men received verdicts of minor revisions or outright acceptance more often than women.&lt;/p&gt;
-
-&lt;p&gt;Are these differences significant? They don&amp;rsquo;t look it from the bar graph. And a standard chi-square test agrees.&lt;sup class=&#34;footnote-ref&#34; id=&#34;fnref:1&#34;&gt;&lt;a rel=&#34;footnote&#34; href=&#34;#fn:1&#34;&gt;1&lt;/a&gt;&lt;/sup&gt;&lt;/p&gt;
-
-&lt;h2 id=&#34;desk-rejections&#34;&gt;Desk Rejections&lt;/h2&gt;
-
-&lt;p&gt;Things are a little more interesting if we separate out desk rejections from rejections-after-external-review. The raw numbers:&lt;/p&gt;
-
-&lt;table&gt;
-&lt;thead&gt;
-&lt;tr&gt;
-&lt;th align=&#34;left&#34;&gt;&lt;/th&gt;
-&lt;th align=&#34;right&#34;&gt;Desk Reject&lt;/th&gt;
-&lt;th align=&#34;right&#34;&gt;Non-desk Reject&lt;/th&gt;
-&lt;th align=&#34;right&#34;&gt;Major Revisions&lt;/th&gt;
-&lt;th align=&#34;right&#34;&gt;Minor Revisions&lt;/th&gt;
-&lt;th align=&#34;right&#34;&gt;Accept&lt;/th&gt;
-&lt;/tr&gt;
-&lt;/thead&gt;
-
-&lt;tbody&gt;
-&lt;tr&gt;
-&lt;td align=&#34;left&#34;&gt;Female&lt;/td&gt;
-&lt;td align=&#34;right&#34;&gt;61&lt;/td&gt;
-&lt;td align=&#34;right&#34;&gt;15&lt;/td&gt;
-&lt;td align=&#34;right&#34;&gt;10&lt;/td&gt;
-&lt;td align=&#34;right&#34;&gt;2&lt;/td&gt;
-&lt;td align=&#34;right&#34;&gt;0&lt;/td&gt;
-&lt;/tr&gt;
-
-&lt;tr&gt;
-&lt;td align=&#34;left&#34;&gt;Male&lt;/td&gt;
-&lt;td align=&#34;right&#34;&gt;311&lt;/td&gt;
-&lt;td align=&#34;right&#34;&gt;127&lt;/td&gt;
-&lt;td align=&#34;right&#34;&gt;41&lt;/td&gt;
-&lt;td align=&#34;right&#34;&gt;15&lt;/td&gt;
-&lt;td align=&#34;right&#34;&gt;5&lt;/td&gt;
-&lt;/tr&gt;
-&lt;/tbody&gt;
-&lt;/table&gt;
-
-&lt;p&gt;In terms of percentages for men and women:&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&#34;http://jonathanweisberg.org/img/author_gender_files/unnamed-chunk-9-1.png&#34; alt=&#34;&#34; /&gt;&lt;!-- --&gt;&lt;/p&gt;
-
-&lt;p&gt;The differences here are more pronounced. For example, women had their submissions desk-rejected more frequently, a difference of about 8.5%.&lt;/p&gt;
-
-&lt;p&gt;But once again, the differences are not statistically significant according to the standard chi-square test.&lt;sup class=&#34;footnote-ref&#34; id=&#34;fnref:2&#34;&gt;&lt;a rel=&#34;footnote&#34; href=&#34;#fn:2&#34;&gt;2&lt;/a&gt;&lt;/sup&gt;&lt;/p&gt;
-
-&lt;h2 id=&#34;ultimate-decisions&#34;&gt;Ultimate Decisions&lt;/h2&gt;
-
-&lt;p&gt;What if we just consider a submission&amp;rsquo;s ultimate fate&amp;mdash;whether it&amp;rsquo;s accepted or rejected in the end? Here the results are pretty clear:&lt;/p&gt;
-
-&lt;table&gt;
-&lt;thead&gt;
-&lt;tr&gt;
-&lt;th align=&#34;left&#34;&gt;&lt;/th&gt;
-&lt;th align=&#34;right&#34;&gt;Reject&lt;/th&gt;
-&lt;th align=&#34;right&#34;&gt;Accept&lt;/th&gt;
-&lt;/tr&gt;
-&lt;/thead&gt;
-
-&lt;tbody&gt;
-&lt;tr&gt;
-&lt;td align=&#34;left&#34;&gt;Female&lt;/td&gt;
-&lt;td align=&#34;right&#34;&gt;78&lt;/td&gt;
-&lt;td align=&#34;right&#34;&gt;5&lt;/td&gt;
-&lt;/tr&gt;
-
-&lt;tr&gt;
-&lt;td align=&#34;left&#34;&gt;Male&lt;/td&gt;
-&lt;td align=&#34;right&#34;&gt;450&lt;/td&gt;
-&lt;td align=&#34;right&#34;&gt;38&lt;/td&gt;
-&lt;/tr&gt;
-&lt;/tbody&gt;
-&lt;/table&gt;
-
-&lt;p&gt;&lt;img src=&#34;http://jonathanweisberg.org/img/author_gender_files/unnamed-chunk-13-1.png&#34; alt=&#34;&#34; /&gt;&lt;!-- --&gt;&lt;/p&gt;
-
-&lt;p&gt;Pretty obviously there&amp;rsquo;s no significant difference, and a chi-square test agrees.&lt;sup class=&#34;footnote-ref&#34; id=&#34;fnref:3&#34;&gt;&lt;a rel=&#34;footnote&#34; href=&#34;#fn:3&#34;&gt;3&lt;/a&gt;&lt;/sup&gt;&lt;/p&gt;
-
-&lt;h2 id=&#34;conversions&#34;&gt;Conversions&lt;/h2&gt;
-
-&lt;p&gt;Our analysis so far suggests that men and women probably have about equal chance of converting an R&amp;amp;R into an accept. Looking at the numbers directly corroborates that thought:&lt;/p&gt;
-
-&lt;table&gt;
-&lt;thead&gt;
-&lt;tr&gt;
-&lt;th align=&#34;left&#34;&gt;&lt;/th&gt;
-&lt;th align=&#34;right&#34;&gt;Reject&lt;/th&gt;
-&lt;th align=&#34;right&#34;&gt;Accept&lt;/th&gt;
-&lt;/tr&gt;
-&lt;/thead&gt;
-
-&lt;tbody&gt;
-&lt;tr&gt;
-&lt;td align=&#34;left&#34;&gt;Female&lt;/td&gt;
-&lt;td align=&#34;right&#34;&gt;2&lt;/td&gt;
-&lt;td align=&#34;right&#34;&gt;5&lt;/td&gt;
-&lt;/tr&gt;
-
-&lt;tr&gt;
-&lt;td align=&#34;left&#34;&gt;Male&lt;/td&gt;
-&lt;td align=&#34;right&#34;&gt;12&lt;/td&gt;
-&lt;td align=&#34;right&#34;&gt;33&lt;/td&gt;
-&lt;/tr&gt;
-&lt;/tbody&gt;
-&lt;/table&gt;
-
-&lt;p&gt;&lt;img src=&#34;http://jonathanweisberg.org/img/author_gender_files/unnamed-chunk-16-1.png&#34; alt=&#34;&#34; /&gt;&lt;!-- --&gt;&lt;/p&gt;
-
-&lt;p&gt;As before, a standard chi-square test agrees.&lt;sup class=&#34;footnote-ref&#34; id=&#34;fnref:4&#34;&gt;&lt;a rel=&#34;footnote&#34; href=&#34;#fn:4&#34;&gt;4&lt;/a&gt;&lt;/sup&gt; Though, of course, the numbers here are small and shouldn&amp;rsquo;t be given too much weight.&lt;/p&gt;
-
-&lt;h2 id=&#34;conclusion-so-far&#34;&gt;Conclusion So Far&lt;/h2&gt;
-
-&lt;p&gt;None of the data so far yielded a significant difference between men and women. None even came particularly close (see the footnotes for the numerical details). So it seems the journal&amp;rsquo;s decisions are independent of gender, or nearly so.&lt;/p&gt;
-
-&lt;h1 id=&#34;gender-time-to-decision&#34;&gt;Gender &amp;amp; Time-to-Decision&lt;/h1&gt;
-
-&lt;p&gt;Authors don&amp;rsquo;t just care what decision is rendered, of course. They also care that decisions are made quickly. Can men and women expect similar wait-times?&lt;/p&gt;
-
-&lt;p&gt;The average time-to-decision is 23.3 days. But for men it&amp;rsquo;s 23.9 days while for women it&amp;rsquo;s only 19.6. This looks like a significant difference. And although it isn&amp;rsquo;t quite significant according to a standard $t$ test, it very nearly is.&lt;sup class=&#34;footnote-ref&#34; id=&#34;fnref:5&#34;&gt;&lt;a rel=&#34;footnote&#34; href=&#34;#fn:5&#34;&gt;5&lt;/a&gt;&lt;/sup&gt;&lt;/p&gt;
-
-&lt;p&gt;What might be going on here? Let&amp;rsquo;s look at the observed distributions for men and women:&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&#34;http://jonathanweisberg.org/img/author_gender_files/unnamed-chunk-19-1.png&#34; alt=&#34;&#34; /&gt;&lt;!-- --&gt;&lt;/p&gt;
-
-&lt;p&gt;A striking difference is that there are so many more submissions from men than from women. But otherwise these distributions actually look quite similar. Each is a bimodal distribution with one peak for desk-rejections around one week, and another, smaller peak for externally reviewed submissions around six or seven weeks.&lt;/p&gt;
-
-&lt;p&gt;We noticed earlier that women had more desk-rejections by about 8.5%. And while that difference wasn&amp;rsquo;t statistically significant, it may still be what&amp;rsquo;s causing the almost-significant difference we see with time-to-decision (especially if men also have a few extra outliers, as seems to be the case).&lt;/p&gt;
-
-&lt;p&gt;To test this hypothesis, we can separate out desk-rejections and externally reviewed submissions. Graphically:&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&#34;http://jonathanweisberg.org/img/author_gender_files/unnamed-chunk-20-1.png&#34; alt=&#34;&#34; /&gt;&lt;!-- --&gt;&lt;img src=&#34;http://jonathanweisberg.org/img/author_gender_files/unnamed-chunk-20-2.png&#34; alt=&#34;&#34; /&gt;&lt;!-- --&gt;&lt;/p&gt;
-
-&lt;p&gt;Aside from the raw numbers, the distributions for men and for women look very similar. And if we run separate $t$ tests for desk-rejections and for externally reviewed submissions, gender differences are no longer close to significance. For desk-rejections $p = 0.24$. And for externally reviewed submissions $p = 0.46$.&lt;/p&gt;
-
-&lt;h1 id=&#34;conclusions&#34;&gt;Conclusions&lt;/h1&gt;
-
-&lt;p&gt;Apparently an author&amp;rsquo;s gender has little or no effect on the content or speed of &lt;em&gt;Ergo&lt;/em&gt;&amp;rsquo;s decision. I&amp;rsquo;d &lt;em&gt;like&lt;/em&gt; to think this is a result of the journal&amp;rsquo;s &lt;a href=&#34;http://www.ergophiljournal.org/review.html&#34; target=&#34;_blank&#34;&gt;strong commitment to triple-anonymous review&lt;/a&gt;. But without data from other journals to make comparisons, we can&amp;rsquo;t really infer much about potential causes. And, of course, we can&amp;rsquo;t generalize to other journals with any confidence, either.&lt;/p&gt;
-
-&lt;h1 id=&#34;technical-notes&#34;&gt;Technical Notes&lt;/h1&gt;
-
-&lt;p&gt;This post was written in R Markdown and the source is &lt;a href=&#34;https://github.com/jweisber/rgo/blob/master/author%20gender/author%20gender.Rmd&#34; target=&#34;_blank&#34;&gt;available on GitHub&lt;/a&gt;. I&amp;rsquo;m new to both R and classical statistics, and this post is a learning exercise for me. So I encourage you to check the code and contact me with corrections.&lt;/p&gt;
-&lt;div class=&#34;footnotes&#34;&gt;
-
-&lt;hr /&gt;
-
-&lt;ol&gt;
-&lt;li id=&#34;fn:1&#34;&gt;&lt;p&gt;Specifically, $\chi^2(3, N = 587) = 1.89$, $p = 0.6$. This raises the question of power, and for a small effect size ($w = .1$) power is only about $0.51$. But it increases quickly to $0.99$ at $w = .2$.&lt;/p&gt;
-
-&lt;p&gt;Given the small numbers in some of the columns though, especially the Accept column, we might prefer a different test than $\chi^2$. The more precise $G$ test yields $p = 0.46$, still fairly large. And Fisher&amp;rsquo;s exact test yields $p = 0.72$.&lt;/p&gt;
-
-&lt;p&gt;We might also do an ordinal analysis, since decisions have a natural desirability ordering for authors: Accept &amp;gt; Minor Revisions &amp;gt; Major Revisions &amp;gt; Reject. We can test for a linear trend by assigning integer ranks from 4 down through 1 &lt;a href=&#34;http://ca.wiley.com/WileyCDA/WileyTitle/productCd-0470463635.html&#34; target=&#34;_blank&#34;&gt;(Agresti 2007)&lt;/a&gt;.  A test of the &lt;a href=&#34;https://onlinecourses.science.psu.edu/stat504/node/91&#34; target=&#34;_blank&#34;&gt;Mantel-Haenszel statistic&lt;/a&gt; $M^2$ then yields $p = 0.82$.&lt;/p&gt;
- &lt;a class=&#34;footnote-return&#34; href=&#34;#fnref:1&#34;&gt;&lt;sup&gt;[return]&lt;/sup&gt;&lt;/a&gt;&lt;/li&gt;
-
-&lt;li id=&#34;fn:2&#34;&gt;&lt;p&gt;Here we have $\chi^2(4, N = 587) = 4.64$, $p = 0.33$. As before, the power for a small effect ($w = .1$) is only middling, about 0.46, but increases quickly to near certainty ($0.98$) by $w = .2$.&lt;/p&gt;
-
-&lt;p&gt;Instead of $\chi^2$ we might again consider a $G$ test, which yields $p = 0.24$, or Fisher&amp;rsquo;s exact test which yields $p = 0.37$.&lt;/p&gt;
-
-&lt;p&gt;For an ordinal test using the ranking Desk Reject &amp;lt; Non-desk Reject &amp;lt; Major Revisions &amp;lt; etc., the Mantel-Haenszel statistic $M^2$ now yields $p = 0.39$.&lt;/p&gt;
- &lt;a class=&#34;footnote-return&#34; href=&#34;#fnref:2&#34;&gt;&lt;sup&gt;[return]&lt;/sup&gt;&lt;/a&gt;&lt;/li&gt;
-&lt;li id=&#34;fn:3&#34;&gt;Here we have $\chi^2(1, N = 571) = 0.11$, $p = 0.74$.
- &lt;a class=&#34;footnote-return&#34; href=&#34;#fnref:3&#34;&gt;&lt;sup&gt;[return]&lt;/sup&gt;&lt;/a&gt;&lt;/li&gt;
-&lt;li id=&#34;fn:4&#34;&gt;$\chi^2(1, N = 52) = 0$, $p = 1$.
- &lt;a class=&#34;footnote-return&#34; href=&#34;#fnref:4&#34;&gt;&lt;sup&gt;[return]&lt;/sup&gt;&lt;/a&gt;&lt;/li&gt;
-&lt;li id=&#34;fn:5&#34;&gt;Specifically, $t(137.71) = 1.78$, $p = 0.08$. Although a $t$ test may not actually be the best choice here, since (as we&amp;rsquo;re about to see) the sampling distributions aren&amp;rsquo;t normal, but rather bimodal. Still, we can compare this result to non-parametric tests like Wilcoxon-Mann-Whitney ($p = 0.1$) or the bootstrap-$t$  ($p = 0.07$). These $p$-values don&amp;rsquo;t quite cross the customary $\alpha = .05$ threshold either, but they are still small.
- &lt;a class=&#34;footnote-return&#34; href=&#34;#fnref:5&#34;&gt;&lt;sup&gt;[return]&lt;/sup&gt;&lt;/a&gt;&lt;/li&gt;
-&lt;/ol&gt;
-&lt;/div&gt;
 </description>
     </item>
     

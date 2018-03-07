@@ -522,6 +522,212 @@ avg / total       0.92      0.92      0.92     10000
     </item>
     
     <item>
+      <title>Building a Neural Network from Scratch: Part 2</title>
+      <link>http://jonathanweisberg.org/post/A%20Neural%20Network%20from%20Scratch%20-%20Part%202/</link>
+      <pubDate>Mon, 05 Mar 2018 00:00:00 -0500</pubDate>
+      
+      <guid>http://jonathanweisberg.org/post/A%20Neural%20Network%20from%20Scratch%20-%20Part%202/</guid>
+      <description>&lt;p&gt;In this post we&amp;rsquo;ll improve our training algorithm from the &lt;a href=&#34;http://jonathanweisberg.org/post/A%20Neural%20Network%20from%20Scratch%20-%20Part%201/&#34;&gt;previous post&lt;/a&gt;. When we&amp;rsquo;re done we&amp;rsquo;ll be able to achieve 98% precision on the MNIST data set, after just 9 epochs of training&amp;mdash;which only takes about 30 seconds to run on my laptop.&lt;/p&gt;
+
+&lt;p&gt;For comparison, last time we only achieved 92% precision after 2,000 epochs of training, which took over an hour!&lt;/p&gt;
+
+&lt;p&gt;The main driver in this improvement is just switching from batch gradient descent to &lt;em&gt;mini&lt;/em&gt;-batch gradient descent. But we&amp;rsquo;ll also make two other, smaller improvements: we&amp;rsquo;ll add momentum to our descent algorithm, and we&amp;rsquo;ll smarten up the initialization of our network&amp;rsquo;s weights.&lt;/p&gt;
+
+&lt;p&gt;We&amp;rsquo;ll also reorganize our code a bit while we&amp;rsquo;re at it, making things more modular.&lt;/p&gt;
+
+&lt;p&gt;But first we need to import and massage our data. These steps are the same as in the previous post:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;from sklearn.datasets import fetch_mldata
+from sklearn.metrics import classification_report, confusion_matrix
+import numpy as np
+
+# import
+mnist = fetch_mldata(&#39;MNIST original&#39;)
+X, y = mnist[&amp;quot;data&amp;quot;], mnist[&amp;quot;target&amp;quot;]
+
+# scale
+X = X / 255
+
+# one-hot encode labels
+digits = 10
+examples = y.shape[0]
+y = y.reshape(1, examples)
+Y_new = np.eye(digits)[y.astype(&#39;int32&#39;)]
+Y_new = Y_new.T.reshape(digits, examples)
+
+# split, reshape, shuffle
+m = 60000
+m_test = X.shape[0] - m
+X_train, X_test = X[:m].T, X[m:].T
+Y_train, Y_test = Y_new[:,:m], Y_new[:,m:]
+shuffle_index = np.random.permutation(m)
+X_train, Y_train = X_train[:, shuffle_index], Y_train[:, shuffle_index]
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Then we&amp;rsquo;ll define our key functions. Only the last two are new, and they just put the steps of forward and backward propagation into their own functions. This tidies up the training code to follow, so that we can focus on the novel elements, especially mini-batch descent and momentum.&lt;/p&gt;
+
+&lt;p&gt;Notice that in the process we introduce three dictionaries:&lt;code&gt;params&lt;/code&gt;, &lt;code&gt;cache&lt;/code&gt;, and &lt;code&gt;grads&lt;/code&gt;. These are for conveniently passing information back and forth between the forward and backward passes.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;def sigmoid(z):
+    s = 1. / (1. + np.exp(-z))
+    return s
+
+def compute_loss(Y, Y_hat):
+
+    L_sum = np.sum(np.multiply(Y, np.log(Y_hat)))
+    m = Y.shape[1]
+    L = -(1./m) * L_sum
+
+    return L
+
+def feed_forward(X, params):
+
+    cache = {}
+
+    cache[&amp;quot;Z1&amp;quot;] = np.matmul(params[&amp;quot;W1&amp;quot;], X) + params[&amp;quot;b1&amp;quot;]
+    cache[&amp;quot;A1&amp;quot;] = sigmoid(cache[&amp;quot;Z1&amp;quot;])
+    cache[&amp;quot;Z2&amp;quot;] = np.matmul(params[&amp;quot;W2&amp;quot;], cache[&amp;quot;A1&amp;quot;]) + params[&amp;quot;b2&amp;quot;]
+    cache[&amp;quot;A2&amp;quot;] = np.exp(cache[&amp;quot;Z2&amp;quot;]) / np.sum(np.exp(cache[&amp;quot;Z2&amp;quot;]), axis=0)
+
+    return cache
+
+def back_propagate(X, Y, params, cache):
+
+    dZ2 = cache[&amp;quot;A2&amp;quot;] - Y
+    dW2 = (1./m_batch) * np.matmul(dZ2, cache[&amp;quot;A1&amp;quot;].T)
+    db2 = (1./m_batch) * np.sum(dZ2, axis=1, keepdims=True)
+
+    dA1 = np.matmul(params[&amp;quot;W2&amp;quot;].T, dZ2)
+    dZ1 = dA1 * sigmoid(cache[&amp;quot;Z1&amp;quot;]) * (1 - sigmoid(cache[&amp;quot;Z1&amp;quot;]))
+    dW1 = (1./m_batch) * np.matmul(dZ1, X.T)
+    db1 = (1./m_batch) * np.sum(dZ1, axis=1, keepdims=True)
+
+    grads = {&amp;quot;dW1&amp;quot;: dW1, &amp;quot;db1&amp;quot;: db1, &amp;quot;dW2&amp;quot;: dW2, &amp;quot;db2&amp;quot;: db2}
+
+    return grads
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Now for the substantive stuff.&lt;/p&gt;
+
+&lt;p&gt;To switch to mini-batch descent, we add another &lt;code&gt;for&lt;/code&gt; loop inside the pass through each epoch. At each pass we randomly shuffle the training set, then iterate through it in chunks of &lt;code&gt;batch_size&lt;/code&gt;, which we&amp;rsquo;ll arbitrarily set to 128. We&amp;rsquo;ll see the code for all this in a moment.&lt;/p&gt;
+
+&lt;p&gt;Next, to add momentum, we keep a moving average of our gradients. So instead of updating our parameters by doing e.g.:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;params[&amp;quot;W1&amp;quot;] = params[&amp;quot;W1&amp;quot;] - learning_rate * grads[&amp;quot;dW1&amp;quot;]
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;we do this:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;V_dW1 = (beta * V_dW1 + (1. - beta) * grads[&amp;quot;dW1&amp;quot;])
+params[&amp;quot;W1&amp;quot;] = params[&amp;quot;W1&amp;quot;] - learning_rate * V_dW1
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Finally, to smarten up our initialization, we shrink the variance of the weights in each layer. Following &lt;a href=&#34;https://www.coursera.org/learn/deep-neural-network/lecture/RwqYe/weight-initialization-for-deep-networks&#34; target=&#34;_blank&#34;&gt;this nice video&lt;/a&gt; by Andrew Ng (whose excellent Coursera materials I&amp;rsquo;ve been relying on heavily in these posts), we&amp;rsquo;ll set the variance for each layer to $1/n$, where $n$ is the number of inputs feeding into that layer.&lt;/p&gt;
+
+&lt;p&gt;We&amp;rsquo;ve been using the &lt;code&gt;np.random.randn()&lt;/code&gt; function to get our initial weights. And this function draws from the standard normal distribution. So to adjust the variance to $1/n$, we just divide by $\sqrt{n}$. In code this means that instead of doing e.g. &lt;code&gt;np.random.randn(n_h, n_x)&lt;/code&gt;, we do &lt;code&gt;np.random.randn(n_h, n_x) * np.sqrt(1. / n_x)&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;Ok that covers our three improvements. Let&amp;rsquo;s build and train!&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;np.random.seed(138)
+
+# hyperparameters
+n_x = X_train.shape[0]
+n_h = 64
+learning_rate = 4
+beta = .9
+batch_size = 128
+batches = -(-m // batch_size)
+
+# initialization
+params = { &amp;quot;W1&amp;quot;: np.random.randn(n_h, n_x) * np.sqrt(1. / n_x),
+           &amp;quot;b1&amp;quot;: np.zeros((n_h, 1)) * np.sqrt(1. / n_x),
+           &amp;quot;W2&amp;quot;: np.random.randn(digits, n_h) * np.sqrt(1. / n_h),
+           &amp;quot;b2&amp;quot;: np.zeros((digits, 1)) * np.sqrt(1. / n_h) }
+
+V_dW1 = np.zeros(params[&amp;quot;W1&amp;quot;].shape)
+V_db1 = np.zeros(params[&amp;quot;b1&amp;quot;].shape)
+V_dW2 = np.zeros(params[&amp;quot;W2&amp;quot;].shape)
+V_db2 = np.zeros(params[&amp;quot;b2&amp;quot;].shape)
+
+# train
+for i in range(9):
+
+    permutation = np.random.permutation(X_train.shape[1])
+    X_train_shuffled = X_train[:, permutation]
+    Y_train_shuffled = Y_train[:, permutation]
+
+    for j in range(batches):
+
+        begin = j * batch_size
+        end = min(begin + batch_size, X_train.shape[1] - 1)
+        X = X_train_shuffled[:, begin:end]
+        Y = Y_train_shuffled[:, begin:end]
+        m_batch = end - begin
+
+        cache = feed_forward(X, params)
+        grads = back_propagate(X, Y, params, cache)
+
+        V_dW1 = (beta * V_dW1 + (1. - beta) * grads[&amp;quot;dW1&amp;quot;])
+        V_db1 = (beta * V_db1 + (1. - beta) * grads[&amp;quot;db1&amp;quot;])
+        V_dW2 = (beta * V_dW2 + (1. - beta) * grads[&amp;quot;dW2&amp;quot;])
+        V_db2 = (beta * V_db2 + (1. - beta) * grads[&amp;quot;db2&amp;quot;])
+
+        params[&amp;quot;W1&amp;quot;] = params[&amp;quot;W1&amp;quot;] - learning_rate * V_dW1
+        params[&amp;quot;b1&amp;quot;] = params[&amp;quot;b1&amp;quot;] - learning_rate * V_db1
+        params[&amp;quot;W2&amp;quot;] = params[&amp;quot;W2&amp;quot;] - learning_rate * V_dW2
+        params[&amp;quot;b2&amp;quot;] = params[&amp;quot;b2&amp;quot;] - learning_rate * V_db2
+
+    cache = feed_forward(X_train, params)
+    train_cost = compute_loss(Y_train, cache[&amp;quot;A2&amp;quot;])
+    cache = feed_forward(X_test, params)
+    test_cost = compute_loss(Y_test, cache[&amp;quot;A2&amp;quot;])
+    print(&amp;quot;Epoch {}: training cost = {}, test cost = {}&amp;quot;.format(i+1 ,train_cost, test_cost))
+
+print(&amp;quot;Done.&amp;quot;)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;pre&gt;&lt;code&gt;Epoch 1: training cost = 0.15587093418167058, test cost = 0.16223940981168986
+Epoch 2: training cost = 0.09417519634799829, test cost = 0.11032242938356147
+Epoch 3: training cost = 0.07205872840102934, test cost = 0.0958078559246339
+Epoch 4: training cost = 0.07008115814138867, test cost = 0.1010270024817398
+Epoch 5: training cost = 0.05501929068580713, test cost = 0.09527116695490956
+Epoch 6: training cost = 0.042663638371140164, test cost = 0.08268937190759178
+Epoch 7: training cost = 0.03615501088752129, test cost = 0.08188431384719108
+Epoch 8: training cost = 0.03610956910064329, test cost = 0.08675249924246693
+Epoch 9: training cost = 0.027582647825206745, test cost = 0.08023754855128316
+Done.
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;How&amp;rsquo;d we do?&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;cache = feed_forward(X_test, params)
+predictions = np.argmax(cache[&amp;quot;A2&amp;quot;], axis=0)
+labels = np.argmax(Y_test, axis=0)
+
+print(classification_report(predictions, labels))
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;pre&gt;&lt;code&gt;             precision    recall  f1-score   support
+
+          0       0.99      0.98      0.98       984
+          1       0.99      0.99      0.99      1136
+          2       0.98      0.98      0.98      1037
+          3       0.97      0.98      0.97      1004
+          4       0.97      0.98      0.98       970
+          5       0.97      0.96      0.97       900
+          6       0.97      0.99      0.98       942
+          7       0.97      0.97      0.97      1026
+          8       0.97      0.96      0.97       982
+          9       0.97      0.96      0.97      1019
+
+avg / total       0.98      0.98      0.98     10000
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;And there it is: 98% precision in just 9 epochs of training.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
       <title>Call for Papers: Formal Epistemology Workshop (FEW) 2018</title>
       <link>http://jonathanweisberg.org/post/CFP%20FEW%202018/</link>
       <pubDate>Thu, 21 Dec 2017 10:36:00 -0500</pubDate>
@@ -2336,184 +2542,6 @@ $$&lt;/p&gt;
 &lt;li&gt;Three Lectures in Formal Epistemology, NIP 2010: 1) &lt;a href=&#34;http://jonathanweisberg.org/pdf/NIP - ULPs.pdf&#34;&gt;Upper &amp;amp; Lower Probabilities&lt;/a&gt;, 2) &lt;a href=&#34;http://jonathanweisberg.org/pdf/NIP - DST.pdf&#34;&gt;Dempster-Shafer Theory&lt;/a&gt;, and 3) &lt;a href=&#34;http://jonathanweisberg.org/pdf/NIP - Pollock.pdf&#34;&gt;Pollock&amp;rsquo;s Theory of Defeasible Reasoning&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;http://jonathanweisberg.org/pdf/C_R_and_SKvWS.pdf&#34;&gt;Conditionalization Without Reflection&lt;/a&gt; &amp;mdash; An extended version of &lt;a href=&#34;http://jonathanweisberg.org/pdf/C_R_and_SKv2.SP.pdf&#34;&gt;Conditionalization, Reflection, and Self-Knowledge&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>Accuracy for Dummies, Part 3: Beyond the Second Dimension</title>
-      <link>http://jonathanweisberg.org/post/Accuracy%20for%20Dummies%20-%20Part%203/</link>
-      <pubDate>Fri, 27 Jan 2017 00:00:00 -0500</pubDate>
-      
-      <guid>http://jonathanweisberg.org/post/Accuracy%20for%20Dummies%20-%20Part%203/</guid>
-      <description>
-
-&lt;p&gt;Last time we saw why accuracy-mavens prefer Brier distance to Euclidean distance. But we did everything in two dimensions. That&amp;rsquo;s fine for a coin toss, with only two possibilities. But what if there are three doors and one of them has a prize behind it??&lt;/p&gt;
-
-&lt;p&gt;Don&amp;rsquo;t panic! Today we&amp;rsquo;re going to verify that Brier distance is still a proper way of measuring inaccuracy, even when there are more than two possibilities. (Next time we&amp;rsquo;ll talk about Euclidean distance with more than two possibilitie.)&lt;/p&gt;
-
-&lt;p&gt;Let&amp;rsquo;s start small, with just three possibilities. $\renewcommand{\vec}[1]{\mathbf{#1}}\newcommand{\p}{\vec{p}}\newcommand{\q}{\vec{q}}\newcommand{\v}{\vec{v}}\newcommand{\EIpq}{EI_{\p}(\q)}\newcommand{\EIpp}{EI_{\p}(\p)}$&lt;/p&gt;
-
-&lt;h1 id=&#34;three-possibilities&#34;&gt;Three Possibilities&lt;/h1&gt;
-
-&lt;p&gt;You&amp;rsquo;re on a game show; there are three doors; one has a prize behind it. The three possibilities are represented by the vertices $(1,0,0)$, $(0,1,0)$, and $(0,0,1)$:&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&#34;http://jonathanweisberg.org/img/accuracy/Three Vertices.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
-
-&lt;p&gt;Your credences are given by some probability assignment $(p_1, p_2, p_3)$. It might be $(1/ 3, 1/ 3, 1/ 3)$ but it could be anything&amp;hellip; $(7/ 10, 2/ 10, 1/ 10)$, for example.&lt;/p&gt;
-
-&lt;p&gt;In case you&amp;rsquo;re curious, here&amp;rsquo;s what the range of possible probability assignments looks like in graphical terms:&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&#34;http://jonathanweisberg.org/img/accuracy/Three Vertices with Hull.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
-
-&lt;p&gt;The triangular surface is the three-dimensional analogue of the diagonal line in &lt;a href=&#34;http://jonathanweisberg.org/img/accuracy/2D Dominance Diagram.png&#34;&gt;the two-dimensional diagram&lt;/a&gt; from our &lt;a href=&#34;http://jonathanweisberg.org/post/Accuracy for Dummies - Part 1/&#34;&gt;first post&lt;/a&gt; in this series.&lt;/p&gt;
-
-&lt;p&gt;It&amp;rsquo;ll be handy to refer to points on this surface using single letters, like $\p$ for $(p_1, p_2, p_3)$. We&amp;rsquo;ll write these letters in bold, to distinguish a sequence of numbers like $\p$ from a single number like $p_1$. (In math-speak, $\p$ is a &lt;em&gt;vector&lt;/em&gt; and $p_1$ is a &lt;em&gt;scalar&lt;/em&gt;.)&lt;/p&gt;
-
-&lt;p&gt;Our job is to show that Brier distance is &amp;ldquo;proper&amp;rdquo; in three dimensions. Let&amp;rsquo;s recall what that means: given a point $\p$, the expected Brier distance (according to $\p$) of a point $\q = (q_1, q_2, q_3)$ from the three vertices is always smallest when $\q = \p$.&lt;/p&gt;
-
-&lt;p&gt;What does &lt;em&gt;that&lt;/em&gt; mean?&lt;/p&gt;
-
-&lt;p&gt;Recall, the Brier distance from $\q$ to the vertex $(1, 0, 0)$ is:
-$$
-(q_1 - 1)^2 + (q_2 - 0)^2 + (q_3 - 0)^2
-$$
-Or, more succinctly:
-$$
-(q_1 - 1)^2 + q_2^2 + q_3^2
-$$
-So the &lt;em&gt;expected&lt;/em&gt; Brier distance of $\q$ according to $\p$ weights each such sum by the probability $\p$ assigns to the corresponding vertex.
-$$
-\begin{align}
-&amp;amp;\quad\quad p_1 \left( (q_1 - 1)^2 + q_2^2 + q_3^2 \right)\\&lt;br /&gt;
-  &amp;amp;\quad + p_2 \left( q_1^2 + (q_2 - 1)^2 + q_3^2 \right)\\&lt;br /&gt;
-  &amp;amp;\quad + p_3 \left( q_1^2 + q_2^2 + (q_3 - 1)^2 \right)
-\end{align}
-$$
-We need to show that this quantity is smallest when $\q = \p$, i.e. when $q_1 = p_1$, $q_2 = p_2$, and $q_3 = p_3$.&lt;/p&gt;
-
-&lt;h2 id=&#34;visualizing-expected-inaccuracy&#34;&gt;Visualizing Expected Inaccuracy&lt;/h2&gt;
-
-&lt;p&gt;Let&amp;rsquo;s do some visualization. We&amp;rsquo;ll take a few examples of $\p$, and graph the expected inaccuracy of other possible points $\q$, using Brier distance to measure inaccuracy.&lt;/p&gt;
-
-&lt;p&gt;For example, suppose $\p = (1/ 3, 1/ 3, 1/ 3)$. Then the expected inaccuracy of each point $\q$ looks like this:&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&#34;http://jonathanweisberg.org/img/accuracy/BrierEI3.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
-
-&lt;p&gt;The horizontal axes represent $q_1$ and $q_2$. The vertical axis represents expected inaccuracy.&lt;/p&gt;
-
-&lt;p&gt;Where&amp;rsquo;s $q_3$?? Not pictured! If we used all three visible dimensions for the elements of $\q$, we&amp;rsquo;d have nothing left to visualize expected inaccuracy. But $q_3$ is there implicitly. You can always get $q_3$ by calculating $1 - (q_1 + q_2)$, because $\q$ is a probability assignment. So we don&amp;rsquo;t actually need $q_3$ in the graph!&lt;/p&gt;
-
-&lt;p&gt;Now, the red dot is the lowest point on the surface: the smallest possible expected inaccuracy, according to $\p$. But where is that in terms of $q_1$ and $q_2$? Let&amp;rsquo;s look at the same graph from directly above:&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&#34;http://jonathanweisberg.org/img/accuracy/BrierEI3-above.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
-
-&lt;p&gt;Hey! Looks like the red dot is located at $q_1 = 1/ 3$ and $q_2 = 1/ 3$, i.e. at $\q = (1/ 3, 1/ 3, 1/ 3)$. Also known as $\p$. So that&amp;rsquo;s promising: looks like expected inaccuracy is minimized when $\q = \p$, at least in this example.&lt;/p&gt;
-
-&lt;p&gt;Let&amp;rsquo;s do one more example, $\p = (6/ 10, 3/ 10, 1/ 10)$. Then the expected Brier distance of each point $\q$ looks like this:
-&lt;img src=&#34;http://jonathanweisberg.org/img/accuracy/BrierEI3-2.png&#34; alt=&#34;&#34; /&gt;
-Or, taking the aerial view again:
-&lt;img src=&#34;http://jonathanweisberg.org/img/accuracy/BrierEI3-2above.png&#34; alt=&#34;&#34; /&gt;
-Yep, looks like the red dot is located at $q_1 = 6/ 10$ and $q_2 = 3/ 10$, i.e. at $\q = (6/ 10, 3/ 10, 1/ 10)$, also known as $\p$. So, once again, it seems expected inaccuracy is minimized when $\q = \p$.&lt;/p&gt;
-
-&lt;p&gt;So let&amp;rsquo;s prove that that&amp;rsquo;s how it always is.&lt;/p&gt;
-
-&lt;h2 id=&#34;a-proof&#34;&gt;A Proof&lt;/h2&gt;
-
-&lt;p&gt;We&amp;rsquo;ll need a little notation: I&amp;rsquo;m going to write $\EIpq$ for the expected inaccuracy of point $\q$, according to $\p$.&lt;/p&gt;
-
-&lt;p&gt;Now recall our formula for expected inaccuracy:
-$$
-\begin{align}
-\EIpq
-&amp;amp;= \quad p_1 \left( (q_1 - 1)^2 + q_2^2 + q_3^2 \right)\\&lt;br /&gt;
-  &amp;amp;\quad + p_2 \left( q_1^2 + (q_2 - 1)^2 + q_3^2 \right)\\&lt;br /&gt;
-  &amp;amp;\quad + p_3 \left( q_1^2 + q_2^2 + (q_3 - 1)^2 \right).
-\end{align}
-$$
-How do we find the point $\q$ that minimizes this mess?&lt;/p&gt;
-
-&lt;p&gt;Originally this post used some pretty tedious calculus. But thanks to a hot tip from &lt;a href=&#34;https://mathematics.stanford.edu/people/department-directory/name/jonathan-love/&#34; target=&#34;_blank&#34;&gt;Jonathan Love&lt;/a&gt;, we can get by just with algebra.&lt;/p&gt;
-
-&lt;p&gt;First we need to expand the squares in our big ugly sum:
-$$
-\begin{align}
-\EIpq
-&amp;amp;= \quad p_1 \left( q_1^2 - 2q_1 + 1 + q_2^2 + q_3^2 \right)\\&lt;br /&gt;
-  &amp;amp;\quad + p_2 \left( q_1^2 + q_2^2 - 2q_2 + 1 + q_3^2 \right)\\&lt;br /&gt;
-  &amp;amp;\quad + p_3 \left( q_1^2 + q_2^2 + q_3^2 - 2q_3 + 1 \right).
-\end{align}
-$$
-Then we&amp;rsquo;ll gather some common terms and rearrange things:
-$$
-\begin{align}
-\EIpq &amp;amp;= (p_1 + p_2 + p_3)\left(q_1^2 + q_2^2 + q_3^2 + 1 \right) - 2p_1q_1 - 2p_2q_2 - 2p_3q_3.\\&lt;br /&gt;
-\end{align}
-$$
-Since $p_1 + p_2 + p_3 = 1$, that simplifies to:
-$$
-\begin{align}
-\EIpq &amp;amp;= q_1^2 + q_2^2 + q_3^2 + 1 - 2p_1q_1 - 2p_2q_2 - 2p_3q_3.\\&lt;br /&gt;
-\end{align}
-$$&lt;/p&gt;
-
-&lt;p&gt;Now we&amp;rsquo;ll use &lt;a href=&#34;https://mathematics.stanford.edu/people/department-directory/name/jonathan-love/&#34; target=&#34;_blank&#34;&gt;Jonathan&lt;/a&gt;&amp;rsquo;s ingenious trick. We&amp;rsquo;re going to add $p_1^2 + p_2^2 + p_3^2 - 1$ to this expression, &lt;em&gt;which doesn&amp;rsquo;t change where the minimum occurs&lt;/em&gt;. If you shift every point on a graph upwards by the same amount, the minimum is still in the same place. (Imagine everybody in the world grows by an inch overnight; the shortest person in the world is still the shortest, despite being an inch taller.)&lt;/p&gt;
-
-&lt;p&gt;Then, magically, we get an expression that factors into something tidy:
-$$
-\begin{align}
-&amp;amp;\phantom{=}\phantom{=} p_1^2 + p_2^2 + p_3^2 + q_1^2 + q_2^2 + q_3^2 - 2p_1q_1 - 2p_2q_2 - 2p_3q_3\\&lt;br /&gt;
-  &amp;amp;= (p_1 - q_1)^2 + (p_2 - q_2)^2 + (p_3 - q_3)^2.
-\end{align}
-$$
-And not just tidy, but easy to minimize. It&amp;rsquo;s a sum of squares, and squares are never negative. So the smallest possible value  is $0$, which occurs when all the squares are $0$, i.e. when $q_1 = p_1$, $q_2 = p_2$, and $q_3 = p_3$.&lt;/p&gt;
-
-&lt;p&gt;So, the minimum of $\EIpq$ occurs in the same place, namely when $\q = \p$!&lt;/p&gt;
-
-&lt;h2 id=&#34;the-nth-dimension&#34;&gt;The Nth Dimension&lt;/h2&gt;
-
-&lt;p&gt;Now we can use the same idea to generalize to any number of dimensions. Since the steps are essentially identical, I&amp;rsquo;ll keep it short and (I hope) sweet.&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;Theorem.&lt;/strong&gt;&amp;nbsp;
-Given a probability assignment $\p = (p_1, \ldots, p_n)$, if inaccuracy is measured using Brier distance, then $\EIpq$ is uniquely minimized when $\q = \p$.&lt;/p&gt;
-
-&lt;p&gt;&lt;em&gt;Proof.&lt;/em&gt;&amp;nbsp;
-Let $\p = (p_1, \ldots, p_n)$ be a probability assignment, and let $\EIpq$ be the expected inaccuracy according to $\p$ of probability assignment $\q = (q_1, \ldots, q_n)$, measured using Brier distance.&lt;/p&gt;
-
-&lt;p&gt;First we simplify our expression for $\EIpq$ using algebra:
-$$
-\begin{align}
-\EIpq
-&amp;amp;= \quad p_1 \left( (q_1 - 1)^2 + q_2^2 + \ldots + q_n^2 \right)\\&lt;br /&gt;
-  &amp;amp;\quad + p_2 \left( q_1^2 + (q_2 - 1)^2 + \ldots + q_n^2 \right)\\&lt;br /&gt;
-  &amp;amp;\quad\quad \vdots\\&lt;br /&gt;
-  &amp;amp;\quad + p_n \left( q_1^2 + q_2^2 + \ldots + q_{n-1}^2 + (q_n - 1)^2 \right)\\&lt;br /&gt;
-&amp;amp;= (p_1 + \ldots + p_n)\left( q_1^2 + \ldots + q_n^2 + 1\right) - 2 p_1 q_1 - \ldots - 2 p_n q_n\\&lt;br /&gt;
-&amp;amp;= q_1^2 + \ldots + q_n^2 + 1 - 2 p_1 q_1 - \ldots - 2 p_n q_n.
-\end{align}
-$$
-Now, because $p_1^2 + \ldots + p_n^2 - 1$ is a constant, adding it to $\EIpq$ doesn&amp;rsquo;t change where the minimum occurs. So we can minimize instead:
-$$
-\begin{align}
-&amp;amp;\phantom{=}\phantom{=} p_1^2 + \ldots + p_n^2 + q_1^2 + \ldots + q_n^2 - 2 p_1 q_1 - \ldots - 2 p_n q_n\\&lt;br /&gt;
-&amp;amp;= (p_1 - q_1)^2 + \ldots + (p_n - q_n)^2.
-\end{align}
-$$
-Being a sum of squares, the minimum value here cannot be less than $0$, which occurs when $\q = \p$. &lt;span style=&#34;float: right;&#34;&gt;$\Box$&lt;/span&gt;&lt;/p&gt;
-
-&lt;h1 id=&#34;conclusion&#34;&gt;Conclusion&lt;/h1&gt;
-
-&lt;div class=&#34;text-center&#34;&gt;
-&lt;object data=&#34;http://www.youtube.com/embed/MkmMxfCgewQ&#34;
-   width=&#34;560&#34; height=&#34;315&#34; classboo=&#34;text-center&#34;&gt;&lt;/object&gt;
-&lt;/div&gt;
-
-&lt;p&gt;So what did we learn? That Brier distance isn&amp;rsquo;t just &amp;ldquo;stable&amp;rdquo; in toy cases like a coin-toss. It&amp;rsquo;s also stable in toy cases with any finite number of outcomes.&lt;/p&gt;
-
-&lt;p&gt;No matter how many outcomes are under consideration, each probability assignment expects itself to do best at minimizing inaccuracy, if we use Brier distance to measure inaccuracy.&lt;/p&gt;
-
-&lt;p&gt;To go beyond toy cases, we&amp;rsquo;d have to extend this result to cases with infinite numbers of possibilities. And I haven&amp;rsquo;t even begun to think about how to do that.&lt;/p&gt;
-
-&lt;p&gt;Instead, next time we&amp;rsquo;ll look at what happens in $3+$ dimensions when we use Euclidean distance instead of Brier distance. And it&amp;rsquo;s actually kind of interesting! It turns out Euclidean distance is still improper in $3+$ dimensions, but not necessarily in the same way as in $2$ dimensions. More on that next time&amp;hellip;&lt;/p&gt;
 </description>
     </item>
     
