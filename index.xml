@@ -6,8 +6,214 @@
     <description>Recent content on Jonathan Weisberg</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 05 Mar 2018 00:00:00 -0500</lastBuildDate>
+    <lastBuildDate>Wed, 07 Mar 2018 00:00:00 -0500</lastBuildDate>
     <atom:link href="http://jonathanweisberg.org/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Building a Neural Network from Scratch: Part 2</title>
+      <link>http://jonathanweisberg.org/post/A%20Neural%20Network%20from%20Scratch%20-%20Part%202/</link>
+      <pubDate>Wed, 07 Mar 2018 00:00:00 -0500</pubDate>
+      
+      <guid>http://jonathanweisberg.org/post/A%20Neural%20Network%20from%20Scratch%20-%20Part%202/</guid>
+      <description>&lt;p&gt;In this post we&amp;rsquo;ll improve our training algorithm from the &lt;a href=&#34;http://jonathanweisberg.org/post/A%20Neural%20Network%20from%20Scratch%20-%20Part%201/&#34;&gt;previous post&lt;/a&gt;. When we&amp;rsquo;re done we&amp;rsquo;ll be able to achieve 98% precision on the MNIST data set, after just 9 epochs of training&amp;mdash;which only takes about 30 seconds to run on my laptop.&lt;/p&gt;
+
+&lt;p&gt;For comparison, last time we only achieved 92% precision after 2,000 epochs of training, which took over an hour!&lt;/p&gt;
+
+&lt;p&gt;The main driver in this improvement is just switching from batch gradient descent to &lt;em&gt;mini&lt;/em&gt;-batch gradient descent. But we&amp;rsquo;ll also make two other, smaller improvements: we&amp;rsquo;ll add momentum to our descent algorithm, and we&amp;rsquo;ll smarten up the initialization of our network&amp;rsquo;s weights.&lt;/p&gt;
+
+&lt;p&gt;We&amp;rsquo;ll also reorganize our code a bit while we&amp;rsquo;re at it, making things more modular.&lt;/p&gt;
+
+&lt;p&gt;But first we need to import and massage our data. These steps are the same as in the previous post:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;from sklearn.datasets import fetch_mldata
+from sklearn.metrics import classification_report, confusion_matrix
+import numpy as np
+
+# import
+mnist = fetch_mldata(&#39;MNIST original&#39;)
+X, y = mnist[&amp;quot;data&amp;quot;], mnist[&amp;quot;target&amp;quot;]
+
+# scale
+X = X / 255
+
+# one-hot encode labels
+digits = 10
+examples = y.shape[0]
+y = y.reshape(1, examples)
+Y_new = np.eye(digits)[y.astype(&#39;int32&#39;)]
+Y_new = Y_new.T.reshape(digits, examples)
+
+# split, reshape, shuffle
+m = 60000
+m_test = X.shape[0] - m
+X_train, X_test = X[:m].T, X[m:].T
+Y_train, Y_test = Y_new[:,:m], Y_new[:,m:]
+shuffle_index = np.random.permutation(m)
+X_train, Y_train = X_train[:, shuffle_index], Y_train[:, shuffle_index]
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Then we&amp;rsquo;ll define our key functions. Only the last two are new, and they just put the steps of forward and backward propagation into their own functions. This tidies up the training code to follow, so that we can focus on the novel elements, especially mini-batch descent and momentum.&lt;/p&gt;
+
+&lt;p&gt;Notice that in the process we introduce three dictionaries:&lt;code&gt;params&lt;/code&gt;, &lt;code&gt;cache&lt;/code&gt;, and &lt;code&gt;grads&lt;/code&gt;. These are for conveniently passing information back and forth between the forward and backward passes.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;def sigmoid(z):
+    s = 1. / (1. + np.exp(-z))
+    return s
+
+def compute_loss(Y, Y_hat):
+
+    L_sum = np.sum(np.multiply(Y, np.log(Y_hat)))
+    m = Y.shape[1]
+    L = -(1./m) * L_sum
+
+    return L
+
+def feed_forward(X, params):
+
+    cache = {}
+
+    cache[&amp;quot;Z1&amp;quot;] = np.matmul(params[&amp;quot;W1&amp;quot;], X) + params[&amp;quot;b1&amp;quot;]
+    cache[&amp;quot;A1&amp;quot;] = sigmoid(cache[&amp;quot;Z1&amp;quot;])
+    cache[&amp;quot;Z2&amp;quot;] = np.matmul(params[&amp;quot;W2&amp;quot;], cache[&amp;quot;A1&amp;quot;]) + params[&amp;quot;b2&amp;quot;]
+    cache[&amp;quot;A2&amp;quot;] = np.exp(cache[&amp;quot;Z2&amp;quot;]) / np.sum(np.exp(cache[&amp;quot;Z2&amp;quot;]), axis=0)
+
+    return cache
+
+def back_propagate(X, Y, params, cache):
+
+    dZ2 = cache[&amp;quot;A2&amp;quot;] - Y
+    dW2 = (1./m_batch) * np.matmul(dZ2, cache[&amp;quot;A1&amp;quot;].T)
+    db2 = (1./m_batch) * np.sum(dZ2, axis=1, keepdims=True)
+
+    dA1 = np.matmul(params[&amp;quot;W2&amp;quot;].T, dZ2)
+    dZ1 = dA1 * sigmoid(cache[&amp;quot;Z1&amp;quot;]) * (1 - sigmoid(cache[&amp;quot;Z1&amp;quot;]))
+    dW1 = (1./m_batch) * np.matmul(dZ1, X.T)
+    db1 = (1./m_batch) * np.sum(dZ1, axis=1, keepdims=True)
+
+    grads = {&amp;quot;dW1&amp;quot;: dW1, &amp;quot;db1&amp;quot;: db1, &amp;quot;dW2&amp;quot;: dW2, &amp;quot;db2&amp;quot;: db2}
+
+    return grads
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Now for the substantive stuff.&lt;/p&gt;
+
+&lt;p&gt;To switch to mini-batch descent, we add another &lt;code&gt;for&lt;/code&gt; loop inside the pass through each epoch. At each pass we randomly shuffle the training set, then iterate through it in chunks of &lt;code&gt;batch_size&lt;/code&gt;, which we&amp;rsquo;ll arbitrarily set to 128. We&amp;rsquo;ll see the code for all this in a moment.&lt;/p&gt;
+
+&lt;p&gt;Next, to add momentum, we keep a moving average of our gradients. So instead of updating our parameters by doing e.g.:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;params[&amp;quot;W1&amp;quot;] = params[&amp;quot;W1&amp;quot;] - learning_rate * grads[&amp;quot;dW1&amp;quot;]
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;we do this:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;V_dW1 = (beta * V_dW1 + (1. - beta) * grads[&amp;quot;dW1&amp;quot;])
+params[&amp;quot;W1&amp;quot;] = params[&amp;quot;W1&amp;quot;] - learning_rate * V_dW1
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Finally, to smarten up our initialization, we shrink the variance of the weights in each layer. Following &lt;a href=&#34;https://www.coursera.org/learn/deep-neural-network/lecture/RwqYe/weight-initialization-for-deep-networks&#34; target=&#34;_blank&#34;&gt;this nice video&lt;/a&gt; by Andrew Ng (whose excellent Coursera materials I&amp;rsquo;ve been relying on heavily in these posts), we&amp;rsquo;ll set the variance for each layer to $1/n$, where $n$ is the number of inputs feeding into that layer.&lt;/p&gt;
+
+&lt;p&gt;We&amp;rsquo;ve been using the &lt;code&gt;np.random.randn()&lt;/code&gt; function to get our initial weights. And this function draws from the standard normal distribution. So to adjust the variance to $1/n$, we just divide by $\sqrt{n}$. In code this means that instead of doing e.g. &lt;code&gt;np.random.randn(n_h, n_x)&lt;/code&gt;, we do &lt;code&gt;np.random.randn(n_h, n_x) * np.sqrt(1. / n_x)&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;Ok that covers our three improvements. Let&amp;rsquo;s build and train!&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;np.random.seed(138)
+
+# hyperparameters
+n_x = X_train.shape[0]
+n_h = 64
+learning_rate = 4
+beta = .9
+batch_size = 128
+batches = -(-m // batch_size)
+
+# initialization
+params = { &amp;quot;W1&amp;quot;: np.random.randn(n_h, n_x) * np.sqrt(1. / n_x),
+           &amp;quot;b1&amp;quot;: np.zeros((n_h, 1)) * np.sqrt(1. / n_x),
+           &amp;quot;W2&amp;quot;: np.random.randn(digits, n_h) * np.sqrt(1. / n_h),
+           &amp;quot;b2&amp;quot;: np.zeros((digits, 1)) * np.sqrt(1. / n_h) }
+
+V_dW1 = np.zeros(params[&amp;quot;W1&amp;quot;].shape)
+V_db1 = np.zeros(params[&amp;quot;b1&amp;quot;].shape)
+V_dW2 = np.zeros(params[&amp;quot;W2&amp;quot;].shape)
+V_db2 = np.zeros(params[&amp;quot;b2&amp;quot;].shape)
+
+# train
+for i in range(9):
+
+    permutation = np.random.permutation(X_train.shape[1])
+    X_train_shuffled = X_train[:, permutation]
+    Y_train_shuffled = Y_train[:, permutation]
+
+    for j in range(batches):
+
+        begin = j * batch_size
+        end = min(begin + batch_size, X_train.shape[1] - 1)
+        X = X_train_shuffled[:, begin:end]
+        Y = Y_train_shuffled[:, begin:end]
+        m_batch = end - begin
+
+        cache = feed_forward(X, params)
+        grads = back_propagate(X, Y, params, cache)
+
+        V_dW1 = (beta * V_dW1 + (1. - beta) * grads[&amp;quot;dW1&amp;quot;])
+        V_db1 = (beta * V_db1 + (1. - beta) * grads[&amp;quot;db1&amp;quot;])
+        V_dW2 = (beta * V_dW2 + (1. - beta) * grads[&amp;quot;dW2&amp;quot;])
+        V_db2 = (beta * V_db2 + (1. - beta) * grads[&amp;quot;db2&amp;quot;])
+
+        params[&amp;quot;W1&amp;quot;] = params[&amp;quot;W1&amp;quot;] - learning_rate * V_dW1
+        params[&amp;quot;b1&amp;quot;] = params[&amp;quot;b1&amp;quot;] - learning_rate * V_db1
+        params[&amp;quot;W2&amp;quot;] = params[&amp;quot;W2&amp;quot;] - learning_rate * V_dW2
+        params[&amp;quot;b2&amp;quot;] = params[&amp;quot;b2&amp;quot;] - learning_rate * V_db2
+
+    cache = feed_forward(X_train, params)
+    train_cost = compute_loss(Y_train, cache[&amp;quot;A2&amp;quot;])
+    cache = feed_forward(X_test, params)
+    test_cost = compute_loss(Y_test, cache[&amp;quot;A2&amp;quot;])
+    print(&amp;quot;Epoch {}: training cost = {}, test cost = {}&amp;quot;.format(i+1 ,train_cost, test_cost))
+
+print(&amp;quot;Done.&amp;quot;)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;pre&gt;&lt;code&gt;Epoch 1: training cost = 0.15587093418167058, test cost = 0.16223940981168986
+Epoch 2: training cost = 0.09417519634799829, test cost = 0.11032242938356147
+Epoch 3: training cost = 0.07205872840102934, test cost = 0.0958078559246339
+Epoch 4: training cost = 0.07008115814138867, test cost = 0.1010270024817398
+Epoch 5: training cost = 0.05501929068580713, test cost = 0.09527116695490956
+Epoch 6: training cost = 0.042663638371140164, test cost = 0.08268937190759178
+Epoch 7: training cost = 0.03615501088752129, test cost = 0.08188431384719108
+Epoch 8: training cost = 0.03610956910064329, test cost = 0.08675249924246693
+Epoch 9: training cost = 0.027582647825206745, test cost = 0.08023754855128316
+Done.
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;How&amp;rsquo;d we do?&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;cache = feed_forward(X_test, params)
+predictions = np.argmax(cache[&amp;quot;A2&amp;quot;], axis=0)
+labels = np.argmax(Y_test, axis=0)
+
+print(classification_report(predictions, labels))
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;pre&gt;&lt;code&gt;             precision    recall  f1-score   support
+
+          0       0.99      0.98      0.98       984
+          1       0.99      0.99      0.99      1136
+          2       0.98      0.98      0.98      1037
+          3       0.97      0.98      0.97      1004
+          4       0.97      0.98      0.98       970
+          5       0.97      0.96      0.97       900
+          6       0.97      0.99      0.98       942
+          7       0.97      0.97      0.97      1026
+          8       0.97      0.96      0.97       982
+          9       0.97      0.96      0.97      1019
+
+avg / total       0.98      0.98      0.98     10000
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;And there it is: 98% precision in just 9 epochs of training.&lt;/p&gt;
+</description>
+    </item>
     
     <item>
       <title>Building a Neural Network from Scratch: Part 1</title>
@@ -518,212 +724,6 @@ avg / total       0.92      0.92      0.92     10000
 &lt;p&gt;We&amp;rsquo;re at 92% accuracy across all digits, not bad! And it looks like we could still improve with more training.&lt;/p&gt;
 
 &lt;p&gt;But let&amp;rsquo;s work on speeding up our optimization alogirthm first. We&amp;rsquo;ll pick things up there in the next post.&lt;/p&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>Building a Neural Network from Scratch: Part 2</title>
-      <link>http://jonathanweisberg.org/post/A%20Neural%20Network%20from%20Scratch%20-%20Part%202/</link>
-      <pubDate>Mon, 05 Mar 2018 00:00:00 -0500</pubDate>
-      
-      <guid>http://jonathanweisberg.org/post/A%20Neural%20Network%20from%20Scratch%20-%20Part%202/</guid>
-      <description>&lt;p&gt;In this post we&amp;rsquo;ll improve our training algorithm from the &lt;a href=&#34;http://jonathanweisberg.org/post/A%20Neural%20Network%20from%20Scratch%20-%20Part%201/&#34;&gt;previous post&lt;/a&gt;. When we&amp;rsquo;re done we&amp;rsquo;ll be able to achieve 98% precision on the MNIST data set, after just 9 epochs of training&amp;mdash;which only takes about 30 seconds to run on my laptop.&lt;/p&gt;
-
-&lt;p&gt;For comparison, last time we only achieved 92% precision after 2,000 epochs of training, which took over an hour!&lt;/p&gt;
-
-&lt;p&gt;The main driver in this improvement is just switching from batch gradient descent to &lt;em&gt;mini&lt;/em&gt;-batch gradient descent. But we&amp;rsquo;ll also make two other, smaller improvements: we&amp;rsquo;ll add momentum to our descent algorithm, and we&amp;rsquo;ll smarten up the initialization of our network&amp;rsquo;s weights.&lt;/p&gt;
-
-&lt;p&gt;We&amp;rsquo;ll also reorganize our code a bit while we&amp;rsquo;re at it, making things more modular.&lt;/p&gt;
-
-&lt;p&gt;But first we need to import and massage our data. These steps are the same as in the previous post:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;from sklearn.datasets import fetch_mldata
-from sklearn.metrics import classification_report, confusion_matrix
-import numpy as np
-
-# import
-mnist = fetch_mldata(&#39;MNIST original&#39;)
-X, y = mnist[&amp;quot;data&amp;quot;], mnist[&amp;quot;target&amp;quot;]
-
-# scale
-X = X / 255
-
-# one-hot encode labels
-digits = 10
-examples = y.shape[0]
-y = y.reshape(1, examples)
-Y_new = np.eye(digits)[y.astype(&#39;int32&#39;)]
-Y_new = Y_new.T.reshape(digits, examples)
-
-# split, reshape, shuffle
-m = 60000
-m_test = X.shape[0] - m
-X_train, X_test = X[:m].T, X[m:].T
-Y_train, Y_test = Y_new[:,:m], Y_new[:,m:]
-shuffle_index = np.random.permutation(m)
-X_train, Y_train = X_train[:, shuffle_index], Y_train[:, shuffle_index]
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Then we&amp;rsquo;ll define our key functions. Only the last two are new, and they just put the steps of forward and backward propagation into their own functions. This tidies up the training code to follow, so that we can focus on the novel elements, especially mini-batch descent and momentum.&lt;/p&gt;
-
-&lt;p&gt;Notice that in the process we introduce three dictionaries:&lt;code&gt;params&lt;/code&gt;, &lt;code&gt;cache&lt;/code&gt;, and &lt;code&gt;grads&lt;/code&gt;. These are for conveniently passing information back and forth between the forward and backward passes.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;def sigmoid(z):
-    s = 1. / (1. + np.exp(-z))
-    return s
-
-def compute_loss(Y, Y_hat):
-
-    L_sum = np.sum(np.multiply(Y, np.log(Y_hat)))
-    m = Y.shape[1]
-    L = -(1./m) * L_sum
-
-    return L
-
-def feed_forward(X, params):
-
-    cache = {}
-
-    cache[&amp;quot;Z1&amp;quot;] = np.matmul(params[&amp;quot;W1&amp;quot;], X) + params[&amp;quot;b1&amp;quot;]
-    cache[&amp;quot;A1&amp;quot;] = sigmoid(cache[&amp;quot;Z1&amp;quot;])
-    cache[&amp;quot;Z2&amp;quot;] = np.matmul(params[&amp;quot;W2&amp;quot;], cache[&amp;quot;A1&amp;quot;]) + params[&amp;quot;b2&amp;quot;]
-    cache[&amp;quot;A2&amp;quot;] = np.exp(cache[&amp;quot;Z2&amp;quot;]) / np.sum(np.exp(cache[&amp;quot;Z2&amp;quot;]), axis=0)
-
-    return cache
-
-def back_propagate(X, Y, params, cache):
-
-    dZ2 = cache[&amp;quot;A2&amp;quot;] - Y
-    dW2 = (1./m_batch) * np.matmul(dZ2, cache[&amp;quot;A1&amp;quot;].T)
-    db2 = (1./m_batch) * np.sum(dZ2, axis=1, keepdims=True)
-
-    dA1 = np.matmul(params[&amp;quot;W2&amp;quot;].T, dZ2)
-    dZ1 = dA1 * sigmoid(cache[&amp;quot;Z1&amp;quot;]) * (1 - sigmoid(cache[&amp;quot;Z1&amp;quot;]))
-    dW1 = (1./m_batch) * np.matmul(dZ1, X.T)
-    db1 = (1./m_batch) * np.sum(dZ1, axis=1, keepdims=True)
-
-    grads = {&amp;quot;dW1&amp;quot;: dW1, &amp;quot;db1&amp;quot;: db1, &amp;quot;dW2&amp;quot;: dW2, &amp;quot;db2&amp;quot;: db2}
-
-    return grads
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Now for the substantive stuff.&lt;/p&gt;
-
-&lt;p&gt;To switch to mini-batch descent, we add another &lt;code&gt;for&lt;/code&gt; loop inside the pass through each epoch. At each pass we randomly shuffle the training set, then iterate through it in chunks of &lt;code&gt;batch_size&lt;/code&gt;, which we&amp;rsquo;ll arbitrarily set to 128. We&amp;rsquo;ll see the code for all this in a moment.&lt;/p&gt;
-
-&lt;p&gt;Next, to add momentum, we keep a moving average of our gradients. So instead of updating our parameters by doing e.g.:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;params[&amp;quot;W1&amp;quot;] = params[&amp;quot;W1&amp;quot;] - learning_rate * grads[&amp;quot;dW1&amp;quot;]
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;we do this:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;V_dW1 = (beta * V_dW1 + (1. - beta) * grads[&amp;quot;dW1&amp;quot;])
-params[&amp;quot;W1&amp;quot;] = params[&amp;quot;W1&amp;quot;] - learning_rate * V_dW1
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Finally, to smarten up our initialization, we shrink the variance of the weights in each layer. Following &lt;a href=&#34;https://www.coursera.org/learn/deep-neural-network/lecture/RwqYe/weight-initialization-for-deep-networks&#34; target=&#34;_blank&#34;&gt;this nice video&lt;/a&gt; by Andrew Ng (whose excellent Coursera materials I&amp;rsquo;ve been relying on heavily in these posts), we&amp;rsquo;ll set the variance for each layer to $1/n$, where $n$ is the number of inputs feeding into that layer.&lt;/p&gt;
-
-&lt;p&gt;We&amp;rsquo;ve been using the &lt;code&gt;np.random.randn()&lt;/code&gt; function to get our initial weights. And this function draws from the standard normal distribution. So to adjust the variance to $1/n$, we just divide by $\sqrt{n}$. In code this means that instead of doing e.g. &lt;code&gt;np.random.randn(n_h, n_x)&lt;/code&gt;, we do &lt;code&gt;np.random.randn(n_h, n_x) * np.sqrt(1. / n_x)&lt;/code&gt;.&lt;/p&gt;
-
-&lt;p&gt;Ok that covers our three improvements. Let&amp;rsquo;s build and train!&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;np.random.seed(138)
-
-# hyperparameters
-n_x = X_train.shape[0]
-n_h = 64
-learning_rate = 4
-beta = .9
-batch_size = 128
-batches = -(-m // batch_size)
-
-# initialization
-params = { &amp;quot;W1&amp;quot;: np.random.randn(n_h, n_x) * np.sqrt(1. / n_x),
-           &amp;quot;b1&amp;quot;: np.zeros((n_h, 1)) * np.sqrt(1. / n_x),
-           &amp;quot;W2&amp;quot;: np.random.randn(digits, n_h) * np.sqrt(1. / n_h),
-           &amp;quot;b2&amp;quot;: np.zeros((digits, 1)) * np.sqrt(1. / n_h) }
-
-V_dW1 = np.zeros(params[&amp;quot;W1&amp;quot;].shape)
-V_db1 = np.zeros(params[&amp;quot;b1&amp;quot;].shape)
-V_dW2 = np.zeros(params[&amp;quot;W2&amp;quot;].shape)
-V_db2 = np.zeros(params[&amp;quot;b2&amp;quot;].shape)
-
-# train
-for i in range(9):
-
-    permutation = np.random.permutation(X_train.shape[1])
-    X_train_shuffled = X_train[:, permutation]
-    Y_train_shuffled = Y_train[:, permutation]
-
-    for j in range(batches):
-
-        begin = j * batch_size
-        end = min(begin + batch_size, X_train.shape[1] - 1)
-        X = X_train_shuffled[:, begin:end]
-        Y = Y_train_shuffled[:, begin:end]
-        m_batch = end - begin
-
-        cache = feed_forward(X, params)
-        grads = back_propagate(X, Y, params, cache)
-
-        V_dW1 = (beta * V_dW1 + (1. - beta) * grads[&amp;quot;dW1&amp;quot;])
-        V_db1 = (beta * V_db1 + (1. - beta) * grads[&amp;quot;db1&amp;quot;])
-        V_dW2 = (beta * V_dW2 + (1. - beta) * grads[&amp;quot;dW2&amp;quot;])
-        V_db2 = (beta * V_db2 + (1. - beta) * grads[&amp;quot;db2&amp;quot;])
-
-        params[&amp;quot;W1&amp;quot;] = params[&amp;quot;W1&amp;quot;] - learning_rate * V_dW1
-        params[&amp;quot;b1&amp;quot;] = params[&amp;quot;b1&amp;quot;] - learning_rate * V_db1
-        params[&amp;quot;W2&amp;quot;] = params[&amp;quot;W2&amp;quot;] - learning_rate * V_dW2
-        params[&amp;quot;b2&amp;quot;] = params[&amp;quot;b2&amp;quot;] - learning_rate * V_db2
-
-    cache = feed_forward(X_train, params)
-    train_cost = compute_loss(Y_train, cache[&amp;quot;A2&amp;quot;])
-    cache = feed_forward(X_test, params)
-    test_cost = compute_loss(Y_test, cache[&amp;quot;A2&amp;quot;])
-    print(&amp;quot;Epoch {}: training cost = {}, test cost = {}&amp;quot;.format(i+1 ,train_cost, test_cost))
-
-print(&amp;quot;Done.&amp;quot;)
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;pre&gt;&lt;code&gt;Epoch 1: training cost = 0.15587093418167058, test cost = 0.16223940981168986
-Epoch 2: training cost = 0.09417519634799829, test cost = 0.11032242938356147
-Epoch 3: training cost = 0.07205872840102934, test cost = 0.0958078559246339
-Epoch 4: training cost = 0.07008115814138867, test cost = 0.1010270024817398
-Epoch 5: training cost = 0.05501929068580713, test cost = 0.09527116695490956
-Epoch 6: training cost = 0.042663638371140164, test cost = 0.08268937190759178
-Epoch 7: training cost = 0.03615501088752129, test cost = 0.08188431384719108
-Epoch 8: training cost = 0.03610956910064329, test cost = 0.08675249924246693
-Epoch 9: training cost = 0.027582647825206745, test cost = 0.08023754855128316
-Done.
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;How&amp;rsquo;d we do?&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;cache = feed_forward(X_test, params)
-predictions = np.argmax(cache[&amp;quot;A2&amp;quot;], axis=0)
-labels = np.argmax(Y_test, axis=0)
-
-print(classification_report(predictions, labels))
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;pre&gt;&lt;code&gt;             precision    recall  f1-score   support
-
-          0       0.99      0.98      0.98       984
-          1       0.99      0.99      0.99      1136
-          2       0.98      0.98      0.98      1037
-          3       0.97      0.98      0.97      1004
-          4       0.97      0.98      0.98       970
-          5       0.97      0.96      0.97       900
-          6       0.97      0.99      0.98       942
-          7       0.97      0.97      0.97      1026
-          8       0.97      0.96      0.97       982
-          9       0.97      0.96      0.97      1019
-
-avg / total       0.98      0.98      0.98     10000
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;And there it is: 98% precision in just 9 epochs of training.&lt;/p&gt;
 </description>
     </item>
     
