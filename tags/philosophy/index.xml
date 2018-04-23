@@ -9,6 +9,152 @@
     <atom:link href="http://jonathanweisberg.org/tags/philosophy/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
+      <title>Where Are They Now? The Healy 2100</title>
+      <link>http://jonathanweisberg.org/post/Where%20Are%20They%20Now%20The%20Healy%202100/</link>
+      <pubDate>Mon, 23 Apr 2018 00:00:00 -0500</pubDate>
+      
+      <guid>http://jonathanweisberg.org/post/Where%20Are%20They%20Now%20The%20Healy%202100/</guid>
+      <description>
+
+&lt;p&gt;A &lt;a href=&#34;https://www.timeshighereducation.com/news/how-much-research-goes-completely-uncited&#34; target=&#34;_blank&#34;&gt;&lt;em&gt;Times Higher Education&lt;/em&gt;
+piece&lt;/a&gt;
+making the rounds last week found that most published philosophy papers
+are never cited. More exactly, of the studied philosophy papers
+published in 2012, more than half had no citations indexed in &lt;a href=&#34;https://clarivate.com/products/web-of-science/&#34; target=&#34;_blank&#34;&gt;Web of
+Science&lt;/a&gt; five years
+later.&lt;/p&gt;
+
+&lt;p&gt;At Daily Nous, the &lt;a href=&#34;http://dailynous.com/2018/04/19/philosophy-high-rate-uncited-publications/&#34; target=&#34;_blank&#34;&gt;discussion of that
+finding&lt;/a&gt;
+turned up some interesting follow-up questions and findings. In
+particular, Brian Weatherson found &lt;a href=&#34;http://dailynous.com/2018/04/19/philosophy-high-rate-uncited-publications/#comment-141535&#34; target=&#34;_blank&#34;&gt;quite different
+figures&lt;/a&gt;
+for papers published in &lt;em&gt;prestigious&lt;/em&gt; philosophy journals. In the journals
+he looked at,&lt;sup class=&#34;footnote-ref&#34; id=&#34;fnref:1&#34;&gt;&lt;a rel=&#34;footnote&#34; href=&#34;#fn:1&#34;&gt;1&lt;/a&gt;&lt;/sup&gt; 89% of the papers published in 2012 had at least one
+citation in Web of Science five years later. And more than half had five
+or more citations.&lt;/p&gt;
+
+&lt;p&gt;That&amp;rsquo;s a pretty striking difference: &amp;gt;50% vs. ~11%! Seems like where
+you publish your paper makes a &lt;em&gt;big&lt;/em&gt; difference to your chances of going
+uncited.&lt;/p&gt;
+
+&lt;p&gt;Shocking, I know.&lt;/p&gt;
+
+&lt;p&gt;But this got me thinking about &lt;a href=&#34;https://kieranhealy.org/blog/archives/2015/02/25/gender-and-citation-in-four-general-interest-philosophy-journals-1993-2013/&#34; target=&#34;_blank&#34;&gt;Kieran Healy&amp;rsquo;s
+analysis&lt;/a&gt;
+from a few years back. He found an &amp;ldquo;uncitation&amp;rdquo; rate higher than
+Weatherson&amp;rsquo;s&amp;mdash;almost 20%&amp;mdash;even though he was looking at just four of
+philosophy&amp;rsquo;s most prominent journals: &lt;em&gt;Journal of Philosophy&lt;/em&gt;, &lt;em&gt;Mind&lt;/em&gt;,
+&lt;em&gt;Noûs&lt;/em&gt;, and &lt;em&gt;Philosophical Review&lt;/em&gt;. (He found that around half of the
+papers in these journals had five citations or fewer.)&lt;/p&gt;
+
+&lt;p&gt;So I wondered: what&amp;rsquo;s with the discrepancy? Do these journals not
+necessarily get the most citations? Or is it that Healy was looking at
+papers from 1993 to 2013, and things changed somehow over those two
+decades, so that papers published in 2012 tend to get discussed more
+than papers from 1993. Or is it just a symptom of when Healy collected
+his data? Papers published in, say, 2011 wouldn&amp;rsquo;t have had much time to
+gather citations by 2013 when Healy (apparently?) gathered his data.&lt;/p&gt;
+
+&lt;p&gt;Let&amp;rsquo;s take a look.&lt;/p&gt;
+
+&lt;h1 id=&#34;the-healy-2100&#34;&gt;The Healy 2100&lt;/h1&gt;
+
+&lt;p&gt;Since I don&amp;rsquo;t have Healy&amp;rsquo;s raw data, I went to Web of Science and
+grabbed their data for all papers published over 1993&amp;ndash;2013 in the
+&amp;ldquo;Healy 4&amp;rdquo; journals. I ended up with a coupld hundred more papers than
+Healy looked at&amp;mdash;not sure why. But the list of 2,100 papers he studied
+is &lt;a href=&#34;https://github.com/kjhealy/philpub&#34; target=&#34;_blank&#34;&gt;available on GitHub&lt;/a&gt;. So I
+focused on just those to get more of an apples-to-apples comparison.&lt;/p&gt;
+
+&lt;p&gt;Then I tried to reproduce his original findings, especially &lt;a href=&#34;https://kieranhealy.org/files/misc/citation-histogram-freq.png&#34; target=&#34;_blank&#34;&gt;this
+histogram&lt;/a&gt;:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;http://jonathanweisberg.org/img/where_are_they_now_the_healy_2100/unnamed-chunk-2-1.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;I got pretty close, but I didn&amp;rsquo;t manage to reproduce his results
+exactly. I found about 19.9% of the papers had no citations by the end
+of 2013, compared to Healy&amp;rsquo;s ~18.5%. And I found about 58.6% with five
+or fewer citations, compared with Healy&amp;rsquo;s &amp;ldquo;just over half&amp;rdquo;.&lt;/p&gt;
+
+&lt;p&gt;Still, the match is pretty close, so let&amp;rsquo;s go on to see how these papers
+have aged since 2013.&lt;/p&gt;
+
+&lt;h1 id=&#34;where-are-they-now&#34;&gt;Where Are They Now?&lt;/h1&gt;
+
+&lt;p&gt;If we include citations up to the present day, only about 9.7% of these
+2,100 papers have no citations, and about 39.1% have five or fewer.
+Here&amp;rsquo;s the updated histogram:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;http://jonathanweisberg.org/img/where_are_they_now_the_healy_2100/unnamed-chunk-4-1.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;So it looks like the discrepancy with Weatherson&amp;rsquo;s result is (partly?)
+down to the obvious thing. There hadn&amp;rsquo;t been enough time for the later
+papers in Healy&amp;rsquo;s data set to accrue citations.&lt;/p&gt;
+
+&lt;h1 id=&#34;cutting-out-supplements&#34;&gt;Cutting Out Supplements&lt;/h1&gt;
+
+&lt;p&gt;A lot of these 2,100 papers are actually from the two supplements to
+&lt;em&gt;Noûs&lt;/em&gt;: &lt;em&gt;Philosophical Issues&lt;/em&gt; and &lt;em&gt;Philosophical Perspectives&lt;/em&gt;. And it
+turns out they&amp;rsquo;re making a big difference.&lt;/p&gt;
+
+&lt;p&gt;Here&amp;rsquo;s what things look like when we cut supplements out:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;http://jonathanweisberg.org/img/where_are_they_now_the_healy_2100/unnamed-chunk-6-1.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Now only 4.5% of our 1,694 papers have no citations to date, and just
+31.5% have five or fewer.&lt;/p&gt;
+
+&lt;h1 id=&#34;sliding-windows&#34;&gt;Sliding Windows&lt;/h1&gt;
+
+&lt;p&gt;We&amp;rsquo;ve been looking at all citations accumulated to date for these
+papers, which for older papers means 25 years&amp;rsquo; worth of opportunity for
+discussion. For more direct comparison to the &lt;em&gt;THE&lt;/em&gt; analysis mentioned
+at the outset, we can look at just the five-year window following each
+paper&amp;rsquo;s publication.&lt;/p&gt;
+
+&lt;p&gt;So, how many citations did these papers accrue just within five years of
+being published? Looking at only the &amp;ldquo;core&amp;rdquo; papers again (no
+supplements), 15.2% had no citations within five years of publication,
+and 69.9% had five or fewer.&lt;/p&gt;
+
+&lt;p&gt;Once again that&amp;rsquo;s higher than the 11% (respectively 50%) found by
+Weatherson. So we have to ask: are things changing? Are recent papers in
+these journals accruing citations faster?&lt;/p&gt;
+
+&lt;p&gt;It seems so. Here are the &amp;ldquo;uncitation&amp;rdquo; rates for the years 1993&amp;ndash;2013:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;http://jonathanweisberg.org/img/where_are_they_now_the_healy_2100/unnamed-chunk-8-1.png&#34; alt=&#34;&#34; /&gt; And here
+are the &amp;ldquo;five or fewer citations&amp;rdquo; rates:
+&lt;img src=&#34;http://jonathanweisberg.org/img/where_are_they_now_the_healy_2100/unnamed-chunk-9-1.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;My impression is that it doesn&amp;rsquo;t take as long as it used to for a paper
+to move through a journal&amp;rsquo;s pipeline. Both review times and production
+times may be getting shorter. Could that be why citations are piling up
+faster for papers in these journals?&lt;/p&gt;
+
+&lt;p&gt;If so, we&amp;rsquo;d expect the effect to lessen when we look at a ten-year
+window. We can only do that for papers published up to 2008, but let&amp;rsquo;s
+go ahead:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;http://jonathanweisberg.org/img/where_are_they_now_the_healy_2100/unnamed-chunk-10-1.png&#34; alt=&#34;&#34; /&gt;&lt;img src=&#34;http://jonathanweisberg.org/img/where_are_they_now_the_healy_2100/unnamed-chunk-10-2.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;The trend still looks fairly significant, so maybe other factors are at work.
+Is it just more papers coming out, leading to more citations? Are
+citation practices changing? I&amp;rsquo;m not sure.&lt;/p&gt;
+&lt;div class=&#34;footnotes&#34;&gt;
+
+&lt;hr /&gt;
+
+&lt;ol&gt;
+&lt;li id=&#34;fn:1&#34;&gt;Weatherson looked at 391 articles published in 2012 in &lt;em&gt;Philosophical Review&lt;/em&gt;, &lt;em&gt;Mind&lt;/em&gt;, &lt;em&gt;Journal of Philosophy&lt;/em&gt;, &lt;em&gt;Nous&lt;/em&gt;, &lt;em&gt;Philosophical Studies&lt;/em&gt;, &lt;em&gt;Ethics&lt;/em&gt;, &lt;em&gt;Philosophical Quarterly&lt;/em&gt;, &lt;em&gt;Philosophy of Science&lt;/em&gt;, and &lt;em&gt;Australasian Journal of Philosophy&lt;/em&gt;.
+ &lt;a class=&#34;footnote-return&#34; href=&#34;#fnref:1&#34;&gt;&lt;sup&gt;[return]&lt;/sup&gt;&lt;/a&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;
+</description>
+    </item>
+    
+    <item>
       <title>Call for Papers: Formal Epistemology Workshop (FEW) 2018</title>
       <link>http://jonathanweisberg.org/post/CFP%20FEW%202018/</link>
       <pubDate>Thu, 21 Dec 2017 10:36:00 -0500</pubDate>
