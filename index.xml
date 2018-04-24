@@ -44,7 +44,7 @@ uncited.&lt;/p&gt;
 &lt;p&gt;But this got me thinking about &lt;a href=&#34;https://kieranhealy.org/blog/archives/2015/02/25/gender-and-citation-in-four-general-interest-philosophy-journals-1993-2013/&#34; target=&#34;_blank&#34;&gt;Kieran Healy&amp;rsquo;s
 analysis&lt;/a&gt;
 from a few years back. He found an &amp;ldquo;uncitation&amp;rdquo; rate higher than
-Weatherson&amp;rsquo;s&amp;mdash;almost 20%&amp;mdash;even though he was looking at just four of
+Weatherson&amp;rsquo;s 11%&amp;mdash;almost 20%&amp;mdash;even though he was looking at just four of
 philosophy&amp;rsquo;s most prominent journals: &lt;em&gt;Journal of Philosophy&lt;/em&gt;, &lt;em&gt;Mind&lt;/em&gt;,
 &lt;em&gt;Noûs&lt;/em&gt;, and &lt;em&gt;Philosophical Review&lt;/em&gt;. (He found that around half of the
 papers in these journals had five citations or fewer.)&lt;/p&gt;
@@ -68,7 +68,7 @@ Healy looked at&amp;mdash;not sure why. But the list of 2,100 papers he studied
 is &lt;a href=&#34;https://github.com/kjhealy/philpub&#34; target=&#34;_blank&#34;&gt;available on GitHub&lt;/a&gt;. So I
 focused on just those to get more of an apples-to-apples comparison.&lt;/p&gt;
 
-&lt;p&gt;Then I tried to reproduce his original findings, especially &lt;a href=&#34;https://kieranhealy.org/files/misc/citation-histogram-freq.png&#34; target=&#34;_blank&#34;&gt;this
+&lt;p&gt;Then I tried to reproduce his original findings, especially &lt;a href=&#34;https://kieranhealy.org/blog/archives/2015/02/25/gender-and-citation-in-four-general-interest-philosophy-journals-1993-2013/#the-matthew-effect-is-a-harsh-mistress&#34; target=&#34;_blank&#34;&gt;this
 histogram&lt;/a&gt;:&lt;/p&gt;
 
 &lt;p&gt;&lt;img src=&#34;http://jonathanweisberg.org/img/where_are_they_now_the_healy_2100/unnamed-chunk-2-1.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
