@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Jonathan Weisberg's Homepage">
+    <meta name="author" content="Jonathan Weisberg">
+    
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@jweisber">
+    <meta name="twitter:creator" content="@jweisber">
+    <meta name="twitter:title" content="Visualizing the Philosophy Journal Surveys">
+    <meta name="twitter:description" content="In 2009 Andrew Cullison set up an ongoing survey for philosophers to report their experiences submitting papers to various journals. For me, a junior philosopher working toward tenure at the time, it was a great resource. It was the best guide I knew to my chances of getting a paper accepted at Journal X, or at least getting rejected quickly by Journal Y.
+But I always wondered about self-selection bias.">
+    <meta name="twitter:image" content="/img/journal_surveys/unnamed-chunk-16-1.png">
+
+    <meta property="og:url" content="/post/Journal%20Surveys/" />
+    <meta property="og:type" content="article" />
+    <meta property="og:title" content="Visualizing the Philosophy Journal Surveys" />
+    <meta property="og:description" content="In 2009 Andrew Cullison set up an ongoing survey for philosophers to report their experiences submitting papers to various journals. For me, a junior philosopher working toward tenure at the time, it was a great resource. It was the best guide I knew to my chances of getting a paper accepted at Journal X, or at least getting rejected quickly by Journal Y.
+But I always wondered about self-selection bias." />
+    <meta property="og:image" content="/img/journal_surveys/unnamed-chunk-16-1.png" />
+
+
+    <title>Visualizing the Philosophy Journal Surveys</title>
+
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+    <link href="/css/prism.css" rel="stylesheet" />
+    <link href="/css/scarab.css" rel="stylesheet">
+    
+    
+    
+
+</head>
+
+<body>
+
+<nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+  <div class="container">
+    
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-navbar-collapse-1">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="http://jonathanweisberg.org/">Jonathan Weisberg</a>
+    </div>
+    
+    <div class="collapse navbar-collapse" id="bs-navbar-collapse-1">
+      <ul class="nav navbar-nav">
+        <li>
+          <a href="/pdf/CV.pdf">
+            <i class="fa fa-briefcase"></i>&nbsp;
+            CV
+          </a>
+        </li>
+        <li>
+          <a href="/post/">
+            <i class="fa fa-code"></i>&nbsp;
+            Blog
+          </a>
+        </li>
+        <li>
+          <a href="/publication/">
+            <i class="fa fa-files-o"></i>&nbsp;
+            Research
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+
+
+  
+  <div class="container">
+
+    
+    <div class="row">
+      <div class="col-md-3 hidden-sm hidden-xs text-right">
+        <h1 class="post-title">&nbsp;</h1>
+        <p>
+          <em>Tue, May 22, 2018</em><br />
+          
+          
+          
+          <span class="post-tags">
+            
+            <a class="post-tag" href="http://jonathanweisberg.org/tags/philosophy">Philosophy</a>
+             &bull;   
+            
+            <a class="post-tag" href="http://jonathanweisberg.org/tags/publishing">Publishing</a>
+            
+            
+          </span>
+          
+          
+        </p>
+      </div>
+
+      <div class="col-md-7 blog-post">
+
+        <h1>Visualizing the Philosophy Journal Surveys</h1>
+
+        <div class="hidden-md hidden-lg">
+          <div>
+            <em>Tue, May 22, 2018</em>
+          </div>
+          
+          
+          
+          <p class="post-tags">
+            
+            <a class="post-tag" href="http://jonathanweisberg.org/tags/philosophy">Philosophy</a>
+             &bull;   
+            
+            <a class="post-tag" href="http://jonathanweisberg.org/tags/publishing">Publishing</a>
+            
+            
+          </p>
+          
+          
+        </div>
+
+        <div class="post-body">
+          
+
+<p>In 2009 Andrew Cullison set up an <a href="https://blog.apaonline.org/journal-surveys/" target="_blank">ongoing survey</a> for philosophers to report their experiences submitting papers to various journals. For me, a junior philosopher working toward tenure at the time, it was a great resource. It was the best guide I knew to my chances of getting a paper accepted at <em>Journal X</em>, or at least getting rejected quickly by <em>Journal Y</em>.</p>
+
+<p>But I always wondered about self-selection bias. I figured disgruntled authors were more likely to use the survey to vent. So I wondered whether the data overestimated things like wait times and rejection rates.</p>
+
+<p>This post is an attempt to better understand the survey data, especially through visualization and comparisons with other sources.</p>
+
+<h1 id="timeline">Timeline</h1>
+
+<p>The survey has accrued 7,425 responses as of this writing. Of these, 720 have no date recorded. Here&rsquo;s the timeline for the rest:</p>
+
+<p><img src="/img/journal_surveys/unnamed-chunk-1-1.png" alt="" /><!-- --></p>
+
+<p>Two things jump out right away: the spike at the beginning and the dead zone near the end. What gives?</p>
+
+<p>I&rsquo;m guessing the spike reflects records imported manually from another source at the survey&rsquo;s inception. Here I&rsquo;ll mostly assume these records are legitimate, and include them in our analyses. But since the dates attached to those responses are certainly wrong, I&rsquo;ll exclude them when we get to temporal questions (toward the end of the post).</p>
+
+<p>What about the 2016&ndash;17 dead zone? I tried contacting people involved with the surveys, but nobody seemed to really know for sure what happened there. This dead period is right around when the surveys were <a href="https://blog.apaonline.org/2017/04/13/journal-surveys-assessing-the-peer-review-process/" target="_blank">handed over to the APA</a>. In that process the data were moved to a different hosting service, apparently with some changes to the survey format. So maybe the records for this period were lost in translation.</p>
+
+<p>In any case, it looks like the norm is for the survey to get around 50 to 100 responses each month.</p>
+
+<h1 id="journals">Journals</h1>
+
+<p>There are 155 journals covered by the survey, but most have only a handful of responses. Here are the journals with 50 or more:</p>
+
+<p><img src="/img/journal_surveys/unnamed-chunk-2-1.png" alt="" /><!-- --></p>
+
+<p>How do these numbers compare to the ground truth? Do <em>Phil Studies</em> and <em>Phil Quarterly</em> really get the most submissions, for example? And do they really get 4&ndash;5 times as many as, say, <em>BJPS</em>?</p>
+
+<p>One way to check is to compare these numbers with those reported by the journals themselves to the APA and BPA in <a href="http://www.apaonline.org/page/journalsurveys" target="_blank">this study</a> from 2011&ndash;13. <em>Phil Studies</em> isn&rsquo;t included in that report unfortunately, but <em>Phil Quarterly</em> and <em>BJPS</em> are. They reported receiving 2,305 and 1,267 submissions, respectively, during 2011&ndash;13. So <em>Phil Quarterly</em> does seem to get a lot more submissions, though not 4 times as many.</p>
+
+<p>For a fuller picture let&rsquo;s do the same comparison for all journals that reported their submission totals to the APA/BPA. That gives us a subset of 33 journals. If we look at the number of survey responses for these journals over the years 2011&ndash;2013, we can get a sense of how large each journal looms in the Journal Survey vs. the APA/BPA report:</p>
+
+<p><img src="/img/journal_surveys/unnamed-chunk-4-1.png" alt="" /><!-- --></p>
+
+<p>There&rsquo;s a pretty a strong correlation evident here. But it&rsquo;s also clear there&rsquo;s some bias in the survey responses. Bias towards what? I&rsquo;m not exactly sure. Roughly the pattern seems to be that the more submissions a journal receives, the more likely it is to be overrepresented in the survey. But it might instead be a bias towards generalist journals, or journals with fast turn around times. This question would need a more careful analysis, I think.</p>
+
+<h1 id="acceptance-rates">Acceptance Rates</h1>
+
+<p>What about acceptance rates? Here are the acceptance rates for those journals with 30+ responses in the survey:</p>
+
+<p><img src="/img/journal_surveys/unnamed-chunk-5-1.png" alt="" /><!-- --></p>
+
+<p>These numbers look suspiciously high to me. Most philosophy journals I know have an acceptance rate under 10%. So let&rsquo;s compare with an outside source again.</p>
+
+<p>The most comprehensive list of acceptance rates I know is <a href="http://certaindoubts.com/philosophy-journal-information-esf-rankings-citation-impact-rejection-rates/" target="_blank">this one</a> based on data from the ESF. It&rsquo;s not as current as I&rsquo;d like (2011), nor as complete (<em>Phil Imprint</em> isn&rsquo;t included, perhaps too new at the time). It&rsquo;s also not entirely accurate: it reports an acceptance rate of 8% for <em>Phil Quarterly</em> vs. 3% reported in the APA/BPA study.</p>
+
+<p>Still, the ESF values do seem to be largely accurate for many prominent journals I&rsquo;ve checked. For example, they&rsquo;re within 1 or 2% of the numbers reported elsewhere by <em>Ethics</em>, <em>Mind</em>, <em>Phil Review</em>, <em>JPhil</em>, <em>Nous</em>, and <em>PPR</em>.<sup class="footnote-ref" id="fnref:Sources-the-APA"><a rel="footnote" href="#fn:Sources-the-APA">1</a></sup> So they&rsquo;re useful for at least a rough validation.</p>
+
+<p><img src="/img/journal_surveys/unnamed-chunk-6-1.png" alt="" /><!-- --></p>
+
+<p>Apparently the Journal Surveys do overrepresent accepted submissions. Consistently so in fact: with the exception of <em>Phil Review</em>, <em>Analysis</em>, <em>Ancient Philosophy</em>, and <em>Phil Sci</em>, the surveys overrepresent accepted submissions for every other journal in this comparison. And in many cases accepted submissions are drastically overrepresented.</p>
+
+<p>This surprised me, since I figured the surveys would serve as an outlet for disgruntled authors. But maybe it&rsquo;s the other way around: people are more likely to use the surveys as a way to share happy news. (Draw your own conclusions about human nature.)</p>
+
+<h1 id="seniority">Seniority</h1>
+
+<p>So who uses the journal surveys: grad students? Faculty? The survey records five categories: Graduate Student, Non-TT Faculty, TT-but-not-T Faculty, Tenured Faculty, and Other. A few entries have no professional position recorded.</p>
+
+<p><img src="/img/journal_surveys/unnamed-chunk-7-1.png" alt="" /><!-- --></p>
+
+<p>Evidently, participation drops off with seniority. Also interesting if not too terribly surprising is that seniority affects acceptance:</p>
+
+<p><img src="/img/journal_surveys/unnamed-chunk-8-1.png" alt="" /><!-- --></p>
+
+<p>Compared to grad students, tenured faculty were about 10% more likely to report their papers as having been accepted.</p>
+
+<h1 id="gender">Gender</h1>
+
+<p>About 79% of respondents specified their gender. Of those, 16.4% were women and 83.6% were men. How does this compare to journal-submitting philosophers in general?</p>
+
+<p><a href="http://jonathanweisberg.org/post/Referee%20Gender/" target="_blank">Various other sources</a> put the percentage of women in academic philosophy roughly in the 15&ndash;25% range. But we&rsquo;re looking for something more specific: what portion of journal submissions come from women vs. men?</p>
+
+<p>The APA/BPA report gives the percentage of submissions from women at 14 journals. And we can use those figures to infer that 17.6% of submissions to these journals were from women, which matches the 16.4% in the Journal Surveys fairly well.</p>
+
+<p>Looking at individual journals gives a more mixed picture, however:</p>
+
+<p><img src="/img/journal_surveys/unnamed-chunk-10-1.png" alt="" /><!-- --></p>
+
+<p>While the numbers are reasonably close for some of these journals, they&rsquo;re significantly different for many of them. So, using the Journal Surveys to estimate the gender makeup of a journal&rsquo;s submission pool probably isn&rsquo;t a good idea.</p>
+
+<p>Does gender affect acceptance? Looking at the data from all journals together, it seems not:</p>
+
+<p><img src="/img/journal_surveys/unnamed-chunk-11-1.png" alt="" /><!-- --></p>
+
+<p>In fact it&rsquo;s striking how stark the non-effect is here, given the quirks we&rsquo;ve already noted in this data set.</p>
+
+<p>We could break things down further, going journal by journal. But then we&rsquo;d face <a href="https://imgs.xkcd.com/comics/significant.png" target="_blank">the problem of multiple comparisons</a>, and we&rsquo;ve already seen that the journal-by-journal numbers on gender aren&rsquo;t terribly reliable. So I won&rsquo;t dig into that exercise here.</p>
+
+<h1 id="wait-times">Wait Times</h1>
+
+<p>For me, the surveys were always most interesting as a means to compare wait times across journals. But how reliable are these comparisons?</p>
+
+<p>The APA/BPA report gives the average wait times at 38 journals. It also reports how many decisions were delivered within 2 months, in 2&ndash;6 months, in 7&ndash;11 months, and after 12+ months.</p>
+
+<p>Trouble is, a lot of these numbers look dodgy. The average wait times are all whole numbers of months&mdash;except inexplicaby for one journal, <em>Ratio</em>. I guess someone at the APA/BPA has a sense of humour.</p>
+
+<p>The other wait time figures are also suspiciously round. For example, <em>APQ</em> is listed as returning 60% of its decisions within 2 months, 35% after 2&ndash;6 months, and the remaining 5% after 7&ndash;11 months. Round percentages like these are the norm. So, at best, most of these numbers are rounded estimates. At worst, they don&rsquo;t always reflect an actual count, but rather the editor&rsquo;s perception of their own performance.</p>
+
+<p>On top of all that, there are differences between <a href="https://apaonline.site-ym.com/resource/resmgr/journal_surveys_2014/apa_bpa_survey_data_2014.xlsx" target="_blank">the downloadable Excel spreadsheet</a> and <a href="https://apaonline.site-ym.com/general/custom.asp?page=journalsurveys" target="_blank">the APA&rsquo;s webpages</a> reporting (supposedly) the same data. For example, the spreadsheet gives an average wait time of 6 months for <em>Phil Imprint</em> (certainly wrong), while the webpage says &ldquo;not available&rdquo;. In fact the Excel spreadsheet flatly contradicts itself here: it says <em>Phil Imprint</em> returns 73% of its decisions within 2 months, the rest in 2&ndash;6 months.</p>
+
+<p>I don&rsquo;t know any other comprehensive list of wait times, though, so we&rsquo;ll have to make do. Here I&rsquo;ll restrict the comparison to journals with 30+ responses in the 2011&ndash;2013 timeframe, and exclude <em>Phil Imprint</em> because of the inconsistencies just mentioned.</p>
+
+<p>That leaves us with 11 journals on which to compare average wait times:</p>
+
+<p><img src="/img/journal_surveys/unnamed-chunk-15-1.png" alt="" /><!-- --></p>
+
+<p>The results are pretty stark. The match is close for most of these journals. In fact, if we&rsquo;re forgiving about the rounding, only three journals have a discrepancy that&rsquo;s clearly more than 1 month: <em>Erkenntnis</em>,  <em>Mind</em>, and <em>Synthese</em>.</p>
+
+<p>Notably, these are the three journals with the longest wait times according to survey respondents. I&rsquo;d add that the reported 2 month average for <em>Mind</em> is wildly implausible by reputation. I can&rsquo;t comment on the discrepancies for <em>Erkenntnis</em> and <em>Synthese</em>, though, since I know much less about their reputations for turnaround.</p>
+
+<p>I do want to flag that <em>Mind</em> has radically improved its review times recently, as we&rsquo;ll soon see. But for the present purpose&mdash;validating the Journal Survey data&mdash;we&rsquo;re confined to look at 2011&ndash;13. And the survey responses align much better with <em>Mind</em>&rsquo;s reputation during that time period than the 2 month average listed in the APA/BPA report.</p>
+
+<p>In any case, since the wait time data looks to be carrying a fair amount of signal, let&rsquo;s conclude our analysis with some visualizations of it.</p>
+
+<h1 id="visualizing-wait-times">Visualizing Wait Times</h1>
+
+<p>A journal&rsquo;s average wait time doesn&rsquo;t tell the whole story, of course. Two journals might have the same average wait time even though one of them is much more consistent and predictable. Or, a journal with a high desk-rejection rate might have a low average wait time, but still take a long time with its few externally reviewed submissions. So it&rsquo;s helpful to see the whole picture.</p>
+
+<p>One way to see the whole picture is with a scatterplot. This also let&rsquo;s us see how a journal&rsquo;s wait times have changed. To make this feasible, I&rsquo;ll focus on two groups of journals I expect to be of broad interest.</p>
+
+<p>The first is a list of 18 &ldquo;general&rdquo; journals that were highly rated in <a href="http://leiterreports.typepad.com/blog/2015/09/the-top-20-general-philosophy-journals-2015.html" target="_blank">a pair of polls</a> at Leiter Reports.<sup class="footnote-ref" id="fnref:The-poll-results"><a rel="footnote" href="#fn:The-poll-results">2</a></sup> For the sake of visibility, I&rsquo;ll cap these scatterplots at 24 months. The handful of entries with longer wait times are squashed down to 24 so they can still inform the plot.</p>
+
+<p><img src="/img/journal_surveys/unnamed-chunk-16-1.png" alt="" /><!-- --></p>
+
+<p>In addition to the improvements at <em>Mind</em> mentioned earlier, <em>Phil Review</em>, <em>PPQ</em>, <em>CJP</em>, and <em>Erkenntnis</em> all seem to be shortening their wait times. <em>APQ</em> and <em>EJP</em> on the other hand appear to be drifting upward.</p>
+
+<p>Keeping that in mind, let&rsquo;s visualize expected wait times at these journals with a ridgeplot. The plot shows a smoothed estimate of the probable wait times for each journal. Note that here I&rsquo;ve truncated the timeline at 12 months, squashing all wait times longer than 12 months down to 12.</p>
+
+<p><img src="/img/journal_surveys/unnamed-chunk-17-1.png" alt="" /><!-- --></p>
+
+<p>Remember though, the ridgeplot reflects old data as much as new. Authors submitting to journals like <em>Mind</em> and <em>CJP</em>, where wait times have significantly improved recently, should definitely not just set their expectations according to this plot. Consult the scatterplot!</p>
+
+<p>Our second group consists of 8 &ldquo;specialty&rdquo; journals drawn from <a href="http://leiterreports.typepad.com/blog/2013/07/top-philosophy-journals-without-regard-to-area.html" target="_blank">another poll</a> at Leiter Reports. Here I&rsquo;ll cap the scale at 15 months for the sake of visibility:</p>
+
+<p><img src="/img/journal_surveys/unnamed-chunk-18-1.png" alt="" /><!-- --></p>
+
+<p>And for the ridgeplot we&rsquo;ll return to a cap of 12 months:</p>
+
+<p><img src="/img/journal_surveys/unnamed-chunk-19-1.png" alt="" /><!-- --></p>
+
+<p>Again, remember that the ridgeplot reflects out-of-date information for some journals. Consult the scatterplot! And please direct others to do the same if you share any of this on social media.</p>
+
+<h1 id="conclusions">Conclusions</h1>
+
+<p><img src="/img/journal_surveys/inigo.jpg" alt="" /></p>
+
+<ul>
+<li>A journal&rsquo;s prominence in the survey is a decent <em>comparative</em> guide to the quantity of submissions it receives.</li>
+<li>Accepted submissions are overrepresented in the survey. Acceptance rates estimated from the survey will pretty consistently overestimate the true rate&mdash;in many cases by a lot.</li>
+<li>Grad students and non-tenured faculty use the surveys a lot more than tenured faculty.</li>
+<li>Acceptance rates increase with seniority.</li>
+<li>Men and women seem to be represented about the same as in the population of journal-submitting philosophers more generally.</li>
+<li>Gender doesn&rsquo;t seem to affect acceptance rate.</li>
+<li>The Survey seems to be a reasonably good guide to expected wait times, though there may be some anomalies (e.g. <em>Synthese</em> and <em>Erkenntnis</em>).</li>
+<li>Some journals&rsquo; wait times have been improving significantly, such as <em>CJP</em>, <em>Erkenntnis</em>, <em>Mind</em>, <em>PPQ</em>, and <em>Phil Review</em>.</li>
+</ul>
+<div class="footnotes">
+
+<hr />
+
+<ol>
+<li id="fn:Sources-the-APA">Sources: the APA/BPA study, <a href="http://dailynous.com/2015/01/20/closer-look-philosophy-journal-practices/" target="_blank">Daily Nous</a>, and the websites for <a href="https://philreview.gorgesapps.us/statistics" target="_blank"><em>Phil Review</em></a> and <a href="https://www.journals.uchicago.edu/pb-assets/docs/journals/ethics-editorial-final-2018-02-07.pdf" target="_blank"><em>Ethics</em></a>. One notable exception is <em>CJP</em>, which reported 17% to the APA/BPA but 6% on Daily Nous. The ESF gives 10%. <a class="footnote-return" href="#fnref:Sources-the-APA"><sup>[return]</sup></a></li>
+<li id="fn:The-poll-results">The poll results identified 20 journals ranked &ldquo;best&rdquo; by respondents. So why does our list only have 18? Because 3 of those 20 aren&rsquo;t covered in the survey data, and I&rsquo;ve included the &ldquo;runner up&rdquo; journal ranked 21st. <a class="footnote-return" href="#fnref:The-poll-results"><sup>[return]</sup></a></li>
+</ol>
+</div>
+
+
+          &nbsp;
+        </div>
+
+        <div>
+          <a href="javascript: history.back()"><i class="fa fa-arrow-left"></i> Back</a>
+
+        </div>
+      </div>
+    </div>
+    
+
+<footer style="padding-top: 1em;">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-lg-12 text-center">
+        <p>
+          Powered by <a href="https://gohugo.io/">Hugo</a>;
+          styled with <a href="http://getbootstrap.com/">Bootstrap</a>;
+          mostly <a href="https://github.com/lambdafu/hugo-finite">cribbed</a> <a href="https://kieranhealy.org/">from</a> <a href="http://consequently.org/">others</a>.
+        </p>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+<script src="/js/prism.js"></script>
+
+<script type="text/javascript">
+var sc_project= 11213692 ;
+var sc_invisible= 1 ;
+var sc_security="b1954803";
+var scJsHost = (("https:" == document.location.protocol) ?
+"https://secure." : "http://www.");
+document.write("<sc"+"ript type='text/javascript' src='" +
+scJsHost+
+"statcounter.com/counter/counter.js'></"+"script>");
+</script>
+<noscript><div class="statcounter"><a title="web analytics"
+href="http://statcounter.com/" target="_blank"><img
+class="statcounter"
+src="//c.statcounter.com/11213692/0/b1954803/1/" alt="web
+analytics"></a></div></noscript>
+
+
+</body>
+</html>
+
