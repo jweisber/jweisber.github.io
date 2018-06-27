@@ -16,23 +16,23 @@
       <guid>http://jonathanweisberg.org/post/Shiny%20Wait%20Times/</guid>
       <description>&lt;p&gt;If waiting to hear back from journals makes you as twitchy as it makes me, you might appreciate &lt;a href=&#34;https://jweisber.shinyapps.io/WaitingForTheEditor/&#34; target=&#34;_blank&#34;&gt;Waiting for the Editor&lt;/a&gt;. It&amp;rsquo;s a little app that displays wait time forecasts and data from &lt;a href=&#34;https://blog.apaonline.org/2017/04/13/journal-surveys-assessing-the-peer-review-process/&#34; target=&#34;_blank&#34;&gt;the APA Journal Survey&lt;/a&gt;.&lt;/p&gt;
 
-&lt;p&gt;It has two kinds of display, similar to &lt;a href=&#34;http://jonathanweisberg.org/post/Journal%20Surveys&#34;&gt;my earlier post&lt;/a&gt; on the APA survey. You can view scatterplots like this one:&lt;/p&gt;
+&lt;p&gt;It has two kinds of display, based on &lt;a href=&#34;http://jonathanweisberg.org/post/Journal%20Surveys&#34;&gt;my earlier post&lt;/a&gt; about the APA survey. You can view scatterplots:&lt;/p&gt;
 
 &lt;p&gt;&lt;img src=&#34;http://jonathanweisberg.org/img/shiny_wait_times/scatter.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
 
-&lt;p&gt;Or ridgeplots like this one:&lt;/p&gt;
+&lt;p&gt;Or ridgeplots:&lt;/p&gt;
 
 &lt;p&gt;&lt;img src=&#34;http://jonathanweisberg.org/img/shiny_wait_times/ridge.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
 
-&lt;p&gt;&lt;strong&gt;NB: the ridgeplots include old data as well as new, so they can be misleading.&lt;/strong&gt; If a journal&amp;rsquo;s wait times have improved/worsened since the survey started in 2009, this won&amp;rsquo;t be reflected in the ridgeplot.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Note that the ridgeplots can be misleading.&lt;/strong&gt; They treat old data and new the same. So if a journal&amp;rsquo;s wait times have improved/worsened since the survey started in 2009, this won&amp;rsquo;t be reflected in the ridgeplot.&lt;/p&gt;
 
 &lt;p&gt;You can customize these displays by&amp;hellip;&lt;/p&gt;
 
 &lt;ol&gt;
-&lt;li&gt;choosing which journals to show.&lt;/li&gt;
-&lt;li&gt;including all submissions or just e.g. rejected ones, since &lt;a href=&#34;http://jonathanweisberg.org/post/Journal%20Surveys/#acceptance-rates&#34; target=&#34;_blank&#34;&gt;accepted submissions are overrepresented&lt;/a&gt;.&lt;/li&gt;
-&lt;li&gt;choosing what dates you want to draw the data from, since some journals have gotten better/worse since the survey started in 2009.&lt;/li&gt;
-&lt;li&gt;choosing your own cap for the maximum review time to display.&lt;/li&gt;
+&lt;li&gt;selecting which journals to show.&lt;/li&gt;
+&lt;li&gt;including all submissions or just e.g. rejected ones (since &lt;a href=&#34;http://jonathanweisberg.org/post/Journal%20Surveys/#acceptance-rates&#34; target=&#34;_blank&#34;&gt;accepted submissions are overrepresented&lt;/a&gt;).&lt;/li&gt;
+&lt;li&gt;choosing what dates you want to draw the data from, since some journals have gotten better/worse since 2009.&lt;/li&gt;
+&lt;li&gt;choosing your own cap for the maximum review time.&lt;/li&gt;
 &lt;/ol&gt;
 </description>
     </item>
