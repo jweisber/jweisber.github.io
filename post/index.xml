@@ -19,11 +19,11 @@
 
 &lt;p&gt;It has two kinds of display, based on &lt;a href=&#34;http://jonathanweisberg.org/post/Journal%20Surveys&#34;&gt;my earlier post&lt;/a&gt; about the APA survey. You can view scatterplots:&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&#34;http://jonathanweisberg.org/img/shiny_wait_times/scatter.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://jweisber.shinyapps.io/WaitingForTheEditor/&#34; target=&#34;_blank&#34;&gt;&lt;img src=&#34;http://jonathanweisberg.org/img/shiny_wait_times/scatter.png&#34; alt=&#34;&#34; /&gt;&lt;/a&gt;&lt;/p&gt;
 
 &lt;p&gt;Or ridgeplots:&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&#34;http://jonathanweisberg.org/img/shiny_wait_times/ridge.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://jweisber.shinyapps.io/WaitingForTheEditor/&#34; target=&#34;_blank&#34;&gt;&lt;img src=&#34;http://jonathanweisberg.org/img/shiny_wait_times/ridge.png&#34; alt=&#34;&#34; /&gt;&lt;/a&gt;&lt;/p&gt;
 
 &lt;p&gt;&lt;strong&gt;Note that the ridgeplots can be misleading.&lt;/strong&gt; They treat old data and new the same. So if a journal&amp;rsquo;s wait times have improved/worsened since the survey started in 2009, this won&amp;rsquo;t be reflected in the ridgeplot.&lt;/p&gt;
 
