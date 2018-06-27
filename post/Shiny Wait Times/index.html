@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Jonathan Weisberg's Homepage">
+    <meta name="author" content="Jonathan Weisberg">
+    
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@jweisber">
+    <meta name="twitter:creator" content="@jweisber">
+    <meta name="twitter:title" content="Waiting for the Editor: A New App">
+    <meta name="twitter:description" content="If waiting to hear back from journals makes you as twitchy as it makes me, you might appreciate Waiting for the Editor. It&rsquo;s a little app that displays wait time forecasts and data from the APA Journal Survey.
+It has two kinds of display, similar to my earlier post on the APA survey. You can view scatterplots like this one:
+Or ridgeplots like this one:
+NB: the ridgeplots include old data as well as new, so they can be misleading.">
+    <meta name="twitter:image" content="https://i.pinimg.com/originals/73/08/c5/7308c502678354f87657e4b0717a3b4c.jpg">
+
+    <meta property="og:url" content="/post/Shiny%20Wait%20Times/" />
+    <meta property="og:type" content="article" />
+    <meta property="og:title" content="Waiting for the Editor: A New App" />
+    <meta property="og:description" content="If waiting to hear back from journals makes you as twitchy as it makes me, you might appreciate Waiting for the Editor. It&rsquo;s a little app that displays wait time forecasts and data from the APA Journal Survey.
+It has two kinds of display, similar to my earlier post on the APA survey. You can view scatterplots like this one:
+Or ridgeplots like this one:
+NB: the ridgeplots include old data as well as new, so they can be misleading." />
+    <meta property="og:image" content="https://i.pinimg.com/originals/73/08/c5/7308c502678354f87657e4b0717a3b4c.jpg" />
+
+
+    <title>Waiting for the Editor: A New App</title>
+
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+    <link href="/css/prism.css" rel="stylesheet" />
+    <link href="/css/scarab.css" rel="stylesheet">
+    
+    
+    
+
+</head>
+
+<body>
+
+<nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+  <div class="container">
+    
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-navbar-collapse-1">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="http://jonathanweisberg.org/">Jonathan Weisberg</a>
+    </div>
+    
+    <div class="collapse navbar-collapse" id="bs-navbar-collapse-1">
+      <ul class="nav navbar-nav">
+        <li>
+          <a href="/pdf/CV.pdf">
+            <i class="fa fa-briefcase"></i>&nbsp;
+            CV
+          </a>
+        </li>
+        <li>
+          <a href="/post/">
+            <i class="fa fa-code"></i>&nbsp;
+            Blog
+          </a>
+        </li>
+        <li>
+          <a href="/publication/">
+            <i class="fa fa-files-o"></i>&nbsp;
+            Research
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+
+
+  
+  <div class="container">
+
+    
+    <div class="row">
+      <div class="col-md-3 hidden-sm hidden-xs text-right">
+        <h1 class="post-title">&nbsp;</h1>
+        <p>
+          <em>Wed, Jun 27, 2018</em><br />
+          
+          
+          
+          <span class="post-tags">
+            
+            <a class="post-tag" href="http://jonathanweisberg.org/tags/philosophy">Philosophy</a>
+             &bull;   
+            
+            <a class="post-tag" href="http://jonathanweisberg.org/tags/publishing">Publishing</a>
+             &bull;  
+            
+            <a class="post-tag" href="http://jonathanweisberg.org/tags/visualization">Visualization</a>
+            
+            
+          </span>
+          
+          
+        </p>
+      </div>
+
+      <div class="col-md-7 blog-post">
+
+        <h1>Waiting for the Editor: A New App</h1>
+
+        <div class="hidden-md hidden-lg">
+          <div>
+            <em>Wed, Jun 27, 2018</em>
+          </div>
+          
+          
+          
+          <p class="post-tags">
+            
+            <a class="post-tag" href="http://jonathanweisberg.org/tags/philosophy">Philosophy</a>
+             &bull;   
+            
+            <a class="post-tag" href="http://jonathanweisberg.org/tags/publishing">Publishing</a>
+             &bull;  
+            
+            <a class="post-tag" href="http://jonathanweisberg.org/tags/visualization">Visualization</a>
+            
+            
+          </p>
+          
+          
+        </div>
+
+        <div class="post-body">
+          <p>If waiting to hear back from journals makes you as twitchy as it makes me, you might appreciate <a href="https://jweisber.shinyapps.io/WaitingForTheEditor/" target="_blank">Waiting for the Editor</a>. It&rsquo;s a little app that displays wait time forecasts and data from <a href="https://blog.apaonline.org/2017/04/13/journal-surveys-assessing-the-peer-review-process/" target="_blank">the APA Journal Survey</a>.</p>
+
+<p>It has two kinds of display, similar to <a href="/post/Journal%20Surveys">my earlier post</a> on the APA survey. You can view scatterplots like this one:</p>
+
+<p><img src="/img/shiny_wait_times/scatter.png" alt="" /></p>
+
+<p>Or ridgeplots like this one:</p>
+
+<p><img src="/img/shiny_wait_times/ridge.png" alt="" /></p>
+
+<p><strong>NB: the ridgeplots include old data as well as new, so they can be misleading.</strong> If a journal&rsquo;s wait times have improved/worsened since the survey started in 2009, this won&rsquo;t be reflected in the ridgeplot.</p>
+
+<p>You can customize these displays by&hellip;</p>
+
+<ol>
+<li>choosing which journals to show.</li>
+<li>including all submissions or just e.g. rejected ones, since <a href="http://jonathanweisberg.org/post/Journal%20Surveys/#acceptance-rates" target="_blank">accepted submissions are overrepresented</a>.</li>
+<li>choosing what dates you want to draw the data from, since some journals have gotten better/worse since the survey started in 2009.</li>
+<li>choosing your own cap for the maximum review time to display.</li>
+</ol>
+
+
+          &nbsp;
+        </div>
+
+        <div>
+          <a href="javascript: history.back()"><i class="fa fa-arrow-left"></i> Back</a>
+
+        </div>
+      </div>
+    </div>
+    
+
+<footer style="padding-top: 1em;">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-lg-12 text-center">
+        <p>
+          Powered by <a href="https://gohugo.io/">Hugo</a>;
+          styled with <a href="http://getbootstrap.com/">Bootstrap</a>;
+          mostly <a href="https://github.com/lambdafu/hugo-finite">cribbed</a> <a href="https://kieranhealy.org/">from</a> <a href="http://consequently.org/">others</a>.
+        </p>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+<script src="/js/prism.js"></script>
+
+<script type="text/javascript">
+var sc_project= 11213692 ;
+var sc_invisible= 1 ;
+var sc_security="b1954803";
+var scJsHost = (("https:" == document.location.protocol) ?
+"https://secure." : "http://www.");
+document.write("<sc"+"ript type='text/javascript' src='" +
+scJsHost+
+"statcounter.com/counter/counter.js'></"+"script>");
+</script>
+<noscript><div class="statcounter"><a title="web analytics"
+href="http://statcounter.com/" target="_blank"><img
+class="statcounter"
+src="//c.statcounter.com/11213692/0/b1954803/1/" alt="web
+analytics"></a></div></noscript>
+
+
+</body>
+</html>
+

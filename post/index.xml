@@ -6,8 +6,37 @@
     <description>Recent content in Posts on Jonathan Weisberg</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 22 May 2018 00:00:00 -0500</lastBuildDate>
+    <lastBuildDate>Wed, 27 Jun 2018 00:00:00 -0500</lastBuildDate>
     <atom:link href="http://jonathanweisberg.org/post/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Waiting for the Editor: A New App</title>
+      <link>http://jonathanweisberg.org/post/Shiny%20Wait%20Times/</link>
+      <pubDate>Wed, 27 Jun 2018 00:00:00 -0500</pubDate>
+      
+      <guid>http://jonathanweisberg.org/post/Shiny%20Wait%20Times/</guid>
+      <description>&lt;p&gt;If waiting to hear back from journals makes you as twitchy as it makes me, you might appreciate &lt;a href=&#34;https://jweisber.shinyapps.io/WaitingForTheEditor/&#34; target=&#34;_blank&#34;&gt;Waiting for the Editor&lt;/a&gt;. It&amp;rsquo;s a little app that displays wait time forecasts and data from &lt;a href=&#34;https://blog.apaonline.org/2017/04/13/journal-surveys-assessing-the-peer-review-process/&#34; target=&#34;_blank&#34;&gt;the APA Journal Survey&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;It has two kinds of display, similar to &lt;a href=&#34;http://jonathanweisberg.org/post/Journal%20Surveys&#34;&gt;my earlier post&lt;/a&gt; on the APA survey. You can view scatterplots like this one:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;http://jonathanweisberg.org/img/shiny_wait_times/scatter.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Or ridgeplots like this one:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;http://jonathanweisberg.org/img/shiny_wait_times/ridge.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;NB: the ridgeplots include old data as well as new, so they can be misleading.&lt;/strong&gt; If a journal&amp;rsquo;s wait times have improved/worsened since the survey started in 2009, this won&amp;rsquo;t be reflected in the ridgeplot.&lt;/p&gt;
+
+&lt;p&gt;You can customize these displays by&amp;hellip;&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;choosing which journals to show.&lt;/li&gt;
+&lt;li&gt;including all submissions or just e.g. rejected ones, since &lt;a href=&#34;http://jonathanweisberg.org/post/Journal%20Surveys/#acceptance-rates&#34; target=&#34;_blank&#34;&gt;accepted submissions are overrepresented&lt;/a&gt;.&lt;/li&gt;
+&lt;li&gt;choosing what dates you want to draw the data from, since some journals have gotten better/worse since the survey started in 2009.&lt;/li&gt;
+&lt;li&gt;choosing your own cap for the maximum review time to display.&lt;/li&gt;
+&lt;/ol&gt;
+</description>
+    </item>
     
     <item>
       <title>Visualizing the Philosophy Journal Surveys</title>
@@ -2490,268 +2519,6 @@ $$&lt;/p&gt;
 &lt;h1 id=&#34;technical-note&#34;&gt;Technical Note&lt;/h1&gt;
 
 &lt;p&gt;This post was written in R Markdown and the source code is &lt;a href=&#34;https://github.com/jweisber/rgo/blob/master/editorial gravity/editorial gravity.Rmd&#34; target=&#34;_blank&#34;&gt;available on GitHub&lt;/a&gt;.&lt;/p&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>Gender &amp; Journal Referees</title>
-      <link>http://jonathanweisberg.org/post/Referee%20Gender/</link>
-      <pubDate>Mon, 20 Feb 2017 09:34:10 -0500</pubDate>
-      
-      <guid>http://jonathanweisberg.org/post/Referee%20Gender/</guid>
-      <description>
-
-&lt;p&gt;We looked at author gender in &lt;a href=&#34;http://jonathanweisberg.org/post/Author Gender/&#34;&gt;a previous post&lt;/a&gt;, today let&amp;rsquo;s consider referees. Does their gender have any predictive value?&lt;/p&gt;
-
-&lt;p&gt;Once again our discussion only covers men and women because we don&amp;rsquo;t have the data to support a deeper analysis.&lt;sup class=&#34;footnote-ref&#34; id=&#34;fnref:1&#34;&gt;&lt;a rel=&#34;footnote&#34; href=&#34;#fn:1&#34;&gt;1&lt;/a&gt;&lt;/sup&gt;&lt;/p&gt;
-
-&lt;p&gt;Using data from &lt;a href=&#34;http://www.ergophiljournal.org/&#34; target=&#34;_blank&#34;&gt;&lt;em&gt;Ergo&lt;/em&gt;&lt;/a&gt;, we&amp;rsquo;ll consider the following questions:&lt;/p&gt;
-
-&lt;ol&gt;
-&lt;li&gt;&lt;em&gt;Requests&lt;/em&gt;. How are requests to referee distributed between men and women? Are men more likely to be invited, for example?&lt;/li&gt;
-&lt;li&gt;&lt;em&gt;Responses&lt;/em&gt;. Does gender inform a referee&amp;rsquo;s response to a request? Are women more likely to say &amp;lsquo;yes&amp;rsquo;, for example?&lt;/li&gt;
-&lt;li&gt;&lt;em&gt;Response-speed&lt;/em&gt;. Does gender inform how quickly a referee responds to an invitation (whether to agree or to decline)? Do men take longer to agree/decline an invitation, for example?&lt;/li&gt;
-&lt;li&gt;&lt;em&gt;Completion-speed&lt;/em&gt;. If a referee does agree to provide a report, does their gender inform how quickly they&amp;rsquo;ll complete that report? Do men and women tend to complete their reports in the same time-frame?&lt;/li&gt;
-&lt;li&gt;&lt;em&gt;Recommendations&lt;/em&gt;. Does gender inform how positive/negative a referee&amp;rsquo;s recommendation is? Are men and women equally likely to recommend that a submission be rejected, for example?&lt;/li&gt;
-&lt;li&gt;&lt;em&gt;Influence&lt;/em&gt;. Does a referee&amp;rsquo;s gender affect the influence of their recommendation on the editor&amp;rsquo;s decison? Are the recommendations of male referees more likely to be followed, for example?&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;p&gt;A quick overview of our data set: there are a total of 1526 referee-requests in &lt;em&gt;Ergo&lt;/em&gt;&amp;rsquo;s database. But only 1394 are included in this analysis. I&amp;rsquo;ve excluded:&lt;/p&gt;
-
-&lt;ol&gt;
-&lt;li&gt;Requests to review an invited resubmission, since these are a different sort of beast.&lt;/li&gt;
-&lt;li&gt;Pending requests and reports, since the data for these are incomplete.&lt;/li&gt;
-&lt;li&gt;A handfull of cases where the referee&amp;rsquo;s gender is either unknown, or doesn&amp;rsquo;t fit the male/female classification.&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;h1 id=&#34;requests&#34;&gt;Requests&lt;/h1&gt;
-
-&lt;p&gt;How are requests distributed between men and women? 322 of our 1394 requests went to women, or 23.1% (1072 went to men, or 76.9%).&lt;/p&gt;
-
-&lt;p&gt;How does this compare to the way men and women are represented in academic philosophy in general? Different sources and different subpopulations yield a range of estimates.&lt;/p&gt;
-
-&lt;p&gt;At the low end, we saw in &lt;a href=&#34;http://jonathanweisberg.org/post/Author Gender/&#34;&gt;an earlier post&lt;/a&gt; that about 15.3% of &lt;em&gt;Ergo&lt;/em&gt;&amp;rsquo;s submissions come from women. The PhilPapers survey yields a range from 16.2% (&lt;a href=&#34;https://philpapers.org/surveys/demographics.pl&#34; target=&#34;_blank&#34;&gt;all respondents&lt;/a&gt;) to 18.4% (&lt;a href=&#34;https://philpapers.org/surveys/demographics.pl?affil=Target+faculty&amp;amp;survey=8&#34; target=&#34;_blank&#34;&gt;&amp;ldquo;target&amp;rdquo; faculty&lt;/a&gt;). And sources cited in &lt;a href=&#34;http://www.faculty.ucr.edu/~eschwitz/SchwitzPapers/WomenInPhil-160315b.pdf&#34; target=&#34;_blank&#34;&gt;Schwitzgebel &amp;amp; Jennings&lt;/a&gt; estimate the percentage of women faculty in various English speaking countries at 23% for Australia, 24% for the U.K., and 19&amp;ndash;26% for the U.S.&lt;/p&gt;
-
-&lt;p&gt;So we have a range of baseline estimates from 15% to 26%. For comparison, the 95% confidence interval around our 23.1% finding is (21%, 25.4%).&lt;/p&gt;
-
-&lt;h1 id=&#34;responses&#34;&gt;Responses&lt;/h1&gt;
-
-&lt;p&gt;Do men and women differ in their responses to these requests? Here are the raw numbers:&lt;/p&gt;
-
-&lt;table&gt;
-&lt;thead&gt;
-&lt;tr&gt;
-&lt;th align=&#34;left&#34;&gt;&lt;/th&gt;
-&lt;th align=&#34;right&#34;&gt;Agreed&lt;/th&gt;
-&lt;th align=&#34;right&#34;&gt;Declined / No Response / Canceled&lt;/th&gt;
-&lt;/tr&gt;
-&lt;/thead&gt;
-
-&lt;tbody&gt;
-&lt;tr&gt;
-&lt;td align=&#34;left&#34;&gt;Female&lt;/td&gt;
-&lt;td align=&#34;right&#34;&gt;101&lt;/td&gt;
-&lt;td align=&#34;right&#34;&gt;221&lt;/td&gt;
-&lt;/tr&gt;
-
-&lt;tr&gt;
-&lt;td align=&#34;left&#34;&gt;Male&lt;/td&gt;
-&lt;td align=&#34;right&#34;&gt;403&lt;/td&gt;
-&lt;td align=&#34;right&#34;&gt;669&lt;/td&gt;
-&lt;/tr&gt;
-&lt;/tbody&gt;
-&lt;/table&gt;
-
-&lt;p&gt;The final column calls for some explanation. I&amp;rsquo;m lumping togther several scenarios here: (i) the referee responds to decline the request, (ii) the referee never responds, (iii) the editors cancel the request because it was made in error. Unfortunately, these three scenarios are hard to distinguish based on the raw data. For example, sometimes a referee declines by email rather than via our online system, and the handling editor then cancels the request instead of marking it as &amp;ldquo;Declined&amp;rdquo;.&lt;/p&gt;
-
-&lt;p&gt;With that in mind, here are the proportions graphically:&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&#34;http://jonathanweisberg.org/img/referee_gender_files/unnamed-chunk-6-1.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
-
-&lt;p&gt;Men agreed more often than women: approximately 38% vs. 31%. And this difference is statistically significant.&lt;sup class=&#34;footnote-ref&#34; id=&#34;fnref:0&#34;&gt;&lt;a rel=&#34;footnote&#34; href=&#34;#fn:0&#34;&gt;2&lt;/a&gt;&lt;/sup&gt;&lt;/p&gt;
-
-&lt;p&gt;Note that women and men accounted for about 20% and 80% of the &amp;ldquo;Agreed&amp;rdquo; responses, respectively. Whether this figure differs significantly from the gender makeup of &amp;ldquo;the general population&amp;rdquo; depends, as before, on the source and subpopulation we use for that estimate.&lt;/p&gt;
-
-&lt;p&gt;We saw that estimates of female representation ranged from roughly 15% to 26%. For comparison, the 95% confidence interval around our 20% finding is (16.8%, 23.8%).&lt;/p&gt;
-
-&lt;h1 id=&#34;response-speed&#34;&gt;Response-speed&lt;/h1&gt;
-
-&lt;p&gt;Do men and women differ in response-speed&amp;mdash;in how quickly they respond to a referee request (whether to agree or to decline)?&lt;/p&gt;
-
-&lt;p&gt;The average response-time for women is 1.92 days, and for men it&amp;rsquo;s 1.58 days. This difference is not statistically significant.&lt;sup class=&#34;footnote-ref&#34; id=&#34;fnref:3&#34;&gt;&lt;a rel=&#34;footnote&#34; href=&#34;#fn:3&#34;&gt;3&lt;/a&gt;&lt;/sup&gt;&lt;/p&gt;
-
-&lt;p&gt;A boxplot likewise suggests that men and women have similar interquartile ranges:&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&#34;http://jonathanweisberg.org/img/referee_gender_files/unnamed-chunk-9-1.png&#34; alt=&#34;&#34; /&gt;&lt;!-- --&gt;&lt;/p&gt;
-
-&lt;h1 id=&#34;completion-speed&#34;&gt;Completion-speed&lt;/h1&gt;
-
-&lt;p&gt;What about completion-speed: is there any difference in how long men and women take to complete their reports?&lt;/p&gt;
-
-&lt;p&gt;Women took 27.6 days on average, while men took 23.8 days. This difference is statistically significant.&lt;sup class=&#34;footnote-ref&#34; id=&#34;fnref:4&#34;&gt;&lt;a rel=&#34;footnote&#34; href=&#34;#fn:4&#34;&gt;4&lt;/a&gt;&lt;/sup&gt;&lt;/p&gt;
-
-&lt;p&gt;Does that mean men are more likely to complete their reports on time? Not necessarily. Here&amp;rsquo;s a frequency polygram showing when reports were completed:&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&#34;http://jonathanweisberg.org/img/referee_gender_files/unnamed-chunk-11-1.png&#34; alt=&#34;&#34; /&gt;&lt;!-- --&gt;&lt;/p&gt;
-
-&lt;p&gt;The spike at the four-week mark corresponds to the standard due date. We ask referees to submit their reports within 28 days of the initial request.&lt;/p&gt;
-
-&lt;p&gt;It looks like men had a stronger tendency to complete their reports early. But were they more likely to complete them on time?&lt;/p&gt;
-
-&lt;p&gt;One way to tackle this question is to look at how completed reports accumulate with time (the &lt;a href=&#34;https://en.wikipedia.org/wiki/Empirical_distribution_function&#34; target=&#34;_blank&#34;&gt;empirical cumulative distribution&lt;/a&gt;):&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&#34;http://jonathanweisberg.org/img/referee_gender_files/unnamed-chunk-12-1.png&#34; alt=&#34;&#34; /&gt;&lt;!-- --&gt;&lt;/p&gt;
-
-&lt;p&gt;As expected, the plot shows that men completed their reports early with greater frequency. But it also looks like women and men converged around the four-week mark, when reports were due.&lt;/p&gt;
-
-&lt;p&gt;Another way of approaching the question is to classify reports as either &amp;ldquo;On Time&amp;rdquo; or &amp;ldquo;Late&amp;rdquo;, according to whether they were completed before Day 29.&lt;/p&gt;
-
-&lt;table&gt;
-&lt;thead&gt;
-&lt;tr&gt;
-&lt;th align=&#34;left&#34;&gt;&lt;/th&gt;
-&lt;th align=&#34;right&#34;&gt;On Time&lt;/th&gt;
-&lt;th align=&#34;right&#34;&gt;Late&lt;/th&gt;
-&lt;/tr&gt;
-&lt;/thead&gt;
-
-&lt;tbody&gt;
-&lt;tr&gt;
-&lt;td align=&#34;left&#34;&gt;Female&lt;/td&gt;
-&lt;td align=&#34;right&#34;&gt;50&lt;/td&gt;
-&lt;td align=&#34;right&#34;&gt;38&lt;/td&gt;
-&lt;/tr&gt;
-
-&lt;tr&gt;
-&lt;td align=&#34;left&#34;&gt;Male&lt;/td&gt;
-&lt;td align=&#34;right&#34;&gt;242&lt;/td&gt;
-&lt;td align=&#34;right&#34;&gt;121&lt;/td&gt;
-&lt;/tr&gt;
-&lt;/tbody&gt;
-&lt;/table&gt;
-
-&lt;p&gt;&lt;img src=&#34;http://jonathanweisberg.org/img/referee_gender_files/unnamed-chunk-14-1.png&#34; alt=&#34;&#34; /&gt;&lt;!-- --&gt;&lt;/p&gt;
-
-&lt;p&gt;A chi-square test of independence then finds no statistically significant difference.&lt;sup class=&#34;footnote-ref&#34; id=&#34;fnref:6&#34;&gt;&lt;a rel=&#34;footnote&#34; href=&#34;#fn:6&#34;&gt;5&lt;/a&gt;&lt;/sup&gt;&lt;/p&gt;
-
-&lt;p&gt;Apparently men and women differed in their tendency to be early, but not necessarily in their tendency to be on time.&lt;/p&gt;
-
-&lt;h1 id=&#34;recommendations&#34;&gt;Recommendations&lt;/h1&gt;
-
-&lt;p&gt;Did male and female referees differ in their recommendations to the editors?&lt;/p&gt;
-
-&lt;p&gt;&lt;em&gt;Ergo&lt;/em&gt; offers referees four recommendations to choose from. The raw numbers:&lt;/p&gt;
-
-&lt;table&gt;
-&lt;thead&gt;
-&lt;tr&gt;
-&lt;th align=&#34;left&#34;&gt;&lt;/th&gt;
-&lt;th align=&#34;right&#34;&gt;Reject&lt;/th&gt;
-&lt;th align=&#34;right&#34;&gt;Major Revisions&lt;/th&gt;
-&lt;th align=&#34;right&#34;&gt;Minor Revisions&lt;/th&gt;
-&lt;th align=&#34;right&#34;&gt;Accept&lt;/th&gt;
-&lt;/tr&gt;
-&lt;/thead&gt;
-
-&lt;tbody&gt;
-&lt;tr&gt;
-&lt;td align=&#34;left&#34;&gt;Female&lt;/td&gt;
-&lt;td align=&#34;right&#34;&gt;42&lt;/td&gt;
-&lt;td align=&#34;right&#34;&gt;29&lt;/td&gt;
-&lt;td align=&#34;right&#34;&gt;9&lt;/td&gt;
-&lt;td align=&#34;right&#34;&gt;8&lt;/td&gt;
-&lt;/tr&gt;
-
-&lt;tr&gt;
-&lt;td align=&#34;left&#34;&gt;Male&lt;/td&gt;
-&lt;td align=&#34;right&#34;&gt;154&lt;/td&gt;
-&lt;td align=&#34;right&#34;&gt;103&lt;/td&gt;
-&lt;td align=&#34;right&#34;&gt;61&lt;/td&gt;
-&lt;td align=&#34;right&#34;&gt;45&lt;/td&gt;
-&lt;/tr&gt;
-&lt;/tbody&gt;
-&lt;/table&gt;
-
-&lt;p&gt;In terms of frequencies:&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&#34;http://jonathanweisberg.org/img/referee_gender_files/unnamed-chunk-16-1.png&#34; alt=&#34;&#34; /&gt;&lt;!-- --&gt;&lt;/p&gt;
-
-&lt;p&gt;The differences here are not statistically significant according to a chi-square test of independence.&lt;sup class=&#34;footnote-ref&#34; id=&#34;fnref:5&#34;&gt;&lt;a rel=&#34;footnote&#34; href=&#34;#fn:5&#34;&gt;6&lt;/a&gt;&lt;/sup&gt;&lt;/p&gt;
-
-&lt;h1 id=&#34;influence&#34;&gt;Influence&lt;/h1&gt;
-
-&lt;p&gt;Does a referee&amp;rsquo;s gender affect whether the editor follows their recommendation? We can tackle this question a few different ways.&lt;/p&gt;
-
-&lt;p&gt;One way is to just tally up those cases where the editor&amp;rsquo;s decision was the same as the referee&amp;rsquo;s recommendation, and those where it was different.&lt;/p&gt;
-
-&lt;table&gt;
-&lt;thead&gt;
-&lt;tr&gt;
-&lt;th align=&#34;left&#34;&gt;&lt;/th&gt;
-&lt;th align=&#34;right&#34;&gt;Same&lt;/th&gt;
-&lt;th align=&#34;right&#34;&gt;Different&lt;/th&gt;
-&lt;/tr&gt;
-&lt;/thead&gt;
-
-&lt;tbody&gt;
-&lt;tr&gt;
-&lt;td align=&#34;left&#34;&gt;Female&lt;/td&gt;
-&lt;td align=&#34;right&#34;&gt;51&lt;/td&gt;
-&lt;td align=&#34;right&#34;&gt;37&lt;/td&gt;
-&lt;/tr&gt;
-
-&lt;tr&gt;
-&lt;td align=&#34;left&#34;&gt;Male&lt;/td&gt;
-&lt;td align=&#34;right&#34;&gt;206&lt;/td&gt;
-&lt;td align=&#34;right&#34;&gt;157&lt;/td&gt;
-&lt;/tr&gt;
-&lt;/tbody&gt;
-&lt;/table&gt;
-
-&lt;p&gt;&lt;img src=&#34;http://jonathanweisberg.org/img/referee_gender_files/unnamed-chunk-17-1.png&#34; alt=&#34;&#34; /&gt;&lt;!-- --&gt;&lt;/p&gt;
-
-&lt;p&gt;Clearly there&amp;rsquo;s no statistically significant difference between male and female referees here.&lt;sup class=&#34;footnote-ref&#34; id=&#34;fnref:7&#34;&gt;&lt;a rel=&#34;footnote&#34; href=&#34;#fn:7&#34;&gt;7&lt;/a&gt;&lt;/sup&gt;&lt;/p&gt;
-
-&lt;p&gt;A second approach would be to assign numerical ranks to referees&amp;rsquo; recommendations and editors&amp;rsquo; decisions: Reject = 1, Major Revisions = 2, etc. Then we can consider how far the editor&amp;rsquo;s decision is from the referee&amp;rsquo;s recommendation. For example, a decision of Accept is 3 away from a recommendation of Reject, while a decision of Major Revisions is 2 away from a recommendation of Accept.&lt;/p&gt;
-
-&lt;p&gt;By this measure, the average distance between the referee&amp;rsquo;s recommendation and the editor&amp;rsquo;s decision was 0.57 for women and 0.56 for men&amp;mdash;clearly not a statistically significant difference.&lt;sup class=&#34;footnote-ref&#34; id=&#34;fnref:8&#34;&gt;&lt;a rel=&#34;footnote&#34; href=&#34;#fn:8&#34;&gt;8&lt;/a&gt;&lt;/sup&gt;&lt;/p&gt;
-
-&lt;h1 id=&#34;summary&#34;&gt;Summary&lt;/h1&gt;
-
-&lt;p&gt;Men received more requests to referee than women, as expected given the well known gender imbalance in academic philosophy. The distribution of requests between men (76.9%) and women (23.1%) was in line with some estimates of the gender makeup of academic philosophy, though not all estimates.&lt;/p&gt;
-
-&lt;p&gt;Men were more likely to agree to a request (38% vs. 31%), a statistically significant difference. Women accounted for about 20% of the &amp;ldquo;Agreed&amp;rdquo; responses, however, consistent with most (but not all) estimates of the gender makeup of academic philosophy.&lt;/p&gt;
-
-&lt;p&gt;There was no statistically significant difference in response-speed, but there was in the speed with which reports were completed (23.8 days on average for men, 27.6 days for women). This difference appears to be due to a stronger tendency on the part of men to complete their reports early, though not necessarily a greater chance of meeting the deadline.&lt;/p&gt;
-
-&lt;p&gt;Finally, there was no statistically significant difference in the recommendations of male and female referees, or in editors&amp;rsquo; uptake of those recommendations.&lt;/p&gt;
-
-&lt;h1 id=&#34;technical-notes&#34;&gt;Technical Notes&lt;/h1&gt;
-
-&lt;p&gt;This post was written in R Markdown and the source is &lt;a href=&#34;https://github.com/jweisber/rgo/blob/master/referee%20gender/referee%20gender.Rmd&#34; target=&#34;_blank&#34;&gt;available on GitHub&lt;/a&gt;. I&amp;rsquo;m new to both R and classical statistics, and this post is a learning exercise for me. So I encourage you to check the code and contact me with corrections.&lt;/p&gt;
-&lt;div class=&#34;footnotes&#34;&gt;
-
-&lt;hr /&gt;
-
-&lt;ol&gt;
-&lt;li id=&#34;fn:1&#34;&gt;Unlike in the previous analysis of author gender, however, here we do have a few known cases where either (i) the referee identifies as neither male nor female, or (ii) they identify as something more specific, e.g. &amp;ldquo;transgender male&amp;rdquo; rather than just &amp;ldquo;male&amp;rdquo;. But these cases are still too few for statistical analysis.
- &lt;a class=&#34;footnote-return&#34; href=&#34;#fnref:1&#34;&gt;&lt;sup&gt;[return]&lt;/sup&gt;&lt;/a&gt;&lt;/li&gt;
-&lt;li id=&#34;fn:0&#34;&gt;$\chi^2$(1, &lt;em&gt;N&lt;/em&gt; = 1394) = 3.89, &lt;em&gt;p&lt;/em&gt; = 0.05.
- &lt;a class=&#34;footnote-return&#34; href=&#34;#fnref:0&#34;&gt;&lt;sup&gt;[return]&lt;/sup&gt;&lt;/a&gt;&lt;/li&gt;
-&lt;li id=&#34;fn:3&#34;&gt;&lt;em&gt;t&lt;/em&gt;(437.43) = -1.63, &lt;em&gt;p&lt;/em&gt; = 0.1
- &lt;a class=&#34;footnote-return&#34; href=&#34;#fnref:3&#34;&gt;&lt;sup&gt;[return]&lt;/sup&gt;&lt;/a&gt;&lt;/li&gt;
-&lt;li id=&#34;fn:4&#34;&gt;&lt;em&gt;t&lt;/em&gt;(144.26) = -2.46, &lt;em&gt;p&lt;/em&gt; = 0.02
- &lt;a class=&#34;footnote-return&#34; href=&#34;#fnref:4&#34;&gt;&lt;sup&gt;[return]&lt;/sup&gt;&lt;/a&gt;&lt;/li&gt;
-&lt;li id=&#34;fn:6&#34;&gt;$\chi^2$(1, &lt;em&gt;N&lt;/em&gt; = 451) = 2.59, &lt;em&gt;p&lt;/em&gt; = 0.11.
- &lt;a class=&#34;footnote-return&#34; href=&#34;#fnref:6&#34;&gt;&lt;sup&gt;[return]&lt;/sup&gt;&lt;/a&gt;&lt;/li&gt;
-&lt;li id=&#34;fn:5&#34;&gt;$\chi^2$(3, &lt;em&gt;N&lt;/em&gt; = 451) = 3.6, &lt;em&gt;p&lt;/em&gt; = 0.31.
- &lt;a class=&#34;footnote-return&#34; href=&#34;#fnref:5&#34;&gt;&lt;sup&gt;[return]&lt;/sup&gt;&lt;/a&gt;&lt;/li&gt;
-&lt;li id=&#34;fn:7&#34;&gt;$\chi^2$(1, &lt;em&gt;N&lt;/em&gt; = 451) = 0.01, &lt;em&gt;p&lt;/em&gt; = 0.93.
- &lt;a class=&#34;footnote-return&#34; href=&#34;#fnref:7&#34;&gt;&lt;sup&gt;[return]&lt;/sup&gt;&lt;/a&gt;&lt;/li&gt;
-&lt;li id=&#34;fn:8&#34;&gt;&lt;em&gt;t&lt;/em&gt;(117.57) = 0.07, &lt;em&gt;p&lt;/em&gt; = 0.95.
- &lt;a class=&#34;footnote-return&#34; href=&#34;#fnref:8&#34;&gt;&lt;sup&gt;[return]&lt;/sup&gt;&lt;/a&gt;&lt;/li&gt;
-&lt;/ol&gt;
-&lt;/div&gt;
 </description>
     </item>
     
