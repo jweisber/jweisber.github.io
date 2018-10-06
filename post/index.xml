@@ -6,8 +6,53 @@
     <description>Recent content in Posts on Jonathan Weisberg</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 27 Jun 2018 00:00:00 -0500</lastBuildDate>
+    <lastBuildDate>Sat, 06 Oct 2018 00:00:00 -0500</lastBuildDate>
     <atom:link href="http://jonathanweisberg.org/post/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>How Hard Is It to Find Referees?</title>
+      <link>http://jonathanweisberg.org/post/How%20Hard%20Is%20It%20to%20Find%20Referees/</link>
+      <pubDate>Sat, 06 Oct 2018 00:00:00 -0500</pubDate>
+      
+      <guid>http://jonathanweisberg.org/post/How%20Hard%20Is%20It%20to%20Find%20Referees/</guid>
+      <description>&lt;p&gt;Finding willing referees is one of the more tedious parts of an editor’s
+job. And with all the talk about how overloaded the peer-review system
+is, it’s worth pausing to examine just how hard it is to find referees.&lt;/p&gt;
+
+&lt;p&gt;Well, at &lt;em&gt;Ergo&lt;/em&gt; it takes on average 5.8 tries before we find two
+referees to review a submission. The following histogram gives the full
+picture.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;http://jonathanweisberg.org/img/finding_referees_files/unnamed-chunk-2-1.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;So most submissions take six or fewer invites, and the overwhelming
+majority require fewer than 10. But 10–15 is not unheard of. And on very
+rare occasions it’s taken more than 20.&lt;/p&gt;
+
+&lt;p&gt;A different perspective is the time it takes to find two willing
+referees. The average time between when the first invite is sent out and
+two referees have agreed is 10.8 days. Here’s the histogram:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;http://jonathanweisberg.org/img/finding_referees_files/unnamed-chunk-4-1.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;So it usually takes less than two weeks to find two takers, though on
+occasion it can take more than a month. And on very rare occasions it’s
+taken more than two months.&lt;/p&gt;
+
+&lt;p&gt;That’s all looking just at submissions that had two referees, mind you.
+Most submissions to &lt;em&gt;Ergo&lt;/em&gt; aren’t sent out to external reviewers at all,
+being desk-rejected instead. But more directly relevant is that about
+20% of externally reviewed submissions are rejected just on one
+referee’s recommendation, because the referee submits a decisively
+negative report before a second can be commissioned. And on some
+occasions an editor will even commission three reports.&lt;/p&gt;
+
+&lt;p&gt;So maybe the best way to look at the whole thing is just to calculate
+The Big Number: 35% of all invitations sent to referees end with a
+completed report. Which, I gotta say, is actually a lot better than I
+would have guessed.&lt;/p&gt;
+</description>
+    </item>
     
     <item>
       <title>Waiting for the Editor: A New App</title>
@@ -2440,85 +2485,6 @@ $$&lt;/p&gt;
 &lt;p&gt;But, in general, moving to the square root of the largest $p_i$ (when there is one) doesn&amp;rsquo;t minimize $\EIpq$. Even in the special case where all the other elements in the vector are equal, this doesn&amp;rsquo;t generally work.&lt;/p&gt;
 
 &lt;p&gt;Jonathan did solve that special case, though, and he found at least one interesting result connected with Conjecture 2. There appear to be cases where $p_i &amp;lt; 1/ 2$ for all $i$, and yet $\EIpq$ is still minimized by going directly to the extreme. For example, $\p = (.465, .2675, .2675)$.&lt;/p&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>Editorial Gravity</title>
-      <link>http://jonathanweisberg.org/post/Editorial%20Gravity/</link>
-      <pubDate>Wed, 22 Feb 2017 10:44:10 -0500</pubDate>
-      
-      <guid>http://jonathanweisberg.org/post/Editorial%20Gravity/</guid>
-      <description>
-
-&lt;p&gt;We&amp;rsquo;ve all been there. One referee is positive, the other negative, and the editor decides to reject the submission.&lt;/p&gt;
-
-&lt;p&gt;I&amp;rsquo;ve heard it said editors tend to be conservative given the recommendations of their referees. And that jibes with my experience as an author.&lt;/p&gt;
-
-&lt;p&gt;So is there anything to it&amp;mdash;is &amp;ldquo;editorial gravity&amp;rdquo; a real thing? And if it is, how strong is its pull? Is there some magic function editors use to compute their decision based on the referees&amp;rsquo; recommendations?&lt;/p&gt;
-
-&lt;p&gt;In this post I&amp;rsquo;ll consider how things shake out at &lt;a href=&#34;http://www.ergophiljournal.org/&#34; target=&#34;_blank&#34;&gt;&lt;em&gt;Ergo&lt;/em&gt;&lt;/a&gt;.&lt;/p&gt;
-
-&lt;h1 id=&#34;decision-rules&#34;&gt;Decision Rules&lt;/h1&gt;
-
-&lt;p&gt;&lt;em&gt;Ergo&lt;/em&gt; doesn&amp;rsquo;t have any rule about what an editor&amp;rsquo;s decision should be given the referees&amp;rsquo; recommendations. In fact, we explicitly discourage our editors from relying on any such heuristic. Instead we encourage them to rely on their judgment about the submission&amp;rsquo;s merits, informed by the substance of the referees&amp;rsquo; reports.&lt;/p&gt;
-
-&lt;p&gt;Still, maybe there&amp;rsquo;s some natural law of journal editing waiting to be discovered here, or some unwritten rule.&lt;/p&gt;
-
-&lt;p&gt;Referees choose from four possible recommendations at &lt;em&gt;Ergo&lt;/em&gt;: Reject, Major Revisions, Minor Revisions, or Accept. Let&amp;rsquo;s consider four simple rules we might use to predict an editor&amp;rsquo;s decision, given the recommendations of their referees.&lt;/p&gt;
-
-&lt;ol&gt;
-&lt;li&gt;Max: the editor follows the recommendation of the most positive referee. (Ha!)&lt;/li&gt;
-&lt;li&gt;Mean: the editor &amp;ldquo;splits the difference&amp;rdquo; between the referees&amp;rsquo; recommendations.
-
-&lt;ul&gt;
-&lt;li&gt;Accept + Major Revisions → Minor Revisions, for example.&lt;/li&gt;
-&lt;li&gt;When the difference is intermediate between possible decisions, we&amp;rsquo;ll stipulate that this rule &amp;ldquo;rounds down&amp;rdquo;.
-
-&lt;ul&gt;
-&lt;li&gt;Major Revisions + Minor Revisions → Major Revisions, for example.&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
-&lt;li&gt;Min: the editor follows the recommendation of the most negative referee.&lt;/li&gt;
-&lt;li&gt;Less-than-Min: the editor&amp;rsquo;s decision is a step more negative than either of the referees&amp;rsquo;.
-
-&lt;ul&gt;
-&lt;li&gt;Major Revisions + Minor Revisions → Reject, for example.&lt;/li&gt;
-&lt;li&gt;Except obviously that Reject + anything → Reject.&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;p&gt;Do any of these rules do a decent job of predicting editorial decisions? If so, which does best?&lt;/p&gt;
-
-&lt;h1 id=&#34;a-test&#34;&gt;A Test&lt;/h1&gt;
-
-&lt;p&gt;Let&amp;rsquo;s run the simplest test possible. We&amp;rsquo;ll go through the externally reviewed submissions in &lt;em&gt;Ergo&lt;/em&gt;&amp;rsquo;s database and see how often each rule makes the correct prediction.&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&#34;http://jonathanweisberg.org/img/editorial_gravity_files/unnamed-chunk-2-1.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
-
-&lt;p&gt;Not only was Min the most accurate rule, its predictions were correct 85% of the time! (The sample size here is 233 submissions, by the way.) Apparently, editorial gravity is a real thing, at least at &lt;em&gt;Ergo&lt;/em&gt;.&lt;/p&gt;
-
-&lt;p&gt;Of course, &lt;em&gt;Ergo&lt;/em&gt; might be atypical here. It&amp;rsquo;s a new journal, and online-only with no regular publication schedule. So there&amp;rsquo;s some pressure to play it safe, and no incentive to accept papers in order to fill space.&lt;/p&gt;
-
-&lt;p&gt;But let&amp;rsquo;s suppose for a moment that &lt;em&gt;Ergo&lt;/em&gt; is typical as far as editorial gravity goes. That raises some questions. Here are two.&lt;/p&gt;
-
-&lt;h1 id=&#34;two-questions&#34;&gt;Two Questions&lt;/h1&gt;
-
-&lt;p&gt;First question: can we improve on the Min rule? Is there a not-too-complicated heuristic that&amp;rsquo;s even more accurate?&lt;/p&gt;
-
-&lt;p&gt;Visualizing our data might help us spot any patterns. Typically there are two referees, so we can plot most submissions on a plane according to the referees&amp;rsquo; recommendations. Then we can colour them according to the editor&amp;rsquo;s decision. Adding a little random jitter to make all the points visible:&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&#34;http://jonathanweisberg.org/img/editorial_gravity_files/unnamed-chunk-3-1.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
-
-&lt;p&gt;To my eye this looks a lot like the pattern of concentric-corners you&amp;rsquo;d expect from the Min rule. Though not exactly, especially when the two referees strongly disagree&amp;mdash;the top-left and bottom-right corners of the plot. Still, other than treating cases of strong disagreement as a tossup, no simple way of improving on the Min rule jumps out at me.&lt;/p&gt;
-
-&lt;p&gt;Second question: if editorial gravity is a thing, is it a good thing or a bad thing?&lt;/p&gt;
-
-&lt;p&gt;I&amp;rsquo;ll leave that as an exercise for the reader.&lt;/p&gt;
-
-&lt;h1 id=&#34;technical-note&#34;&gt;Technical Note&lt;/h1&gt;
-
-&lt;p&gt;This post was written in R Markdown and the source code is &lt;a href=&#34;https://github.com/jweisber/rgo/blob/master/editorial gravity/editorial gravity.Rmd&#34; target=&#34;_blank&#34;&gt;available on GitHub&lt;/a&gt;.&lt;/p&gt;
 </description>
     </item>
     

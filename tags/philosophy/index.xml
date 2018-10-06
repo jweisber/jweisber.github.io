@@ -9,6 +9,51 @@
     <atom:link href="http://jonathanweisberg.org/tags/philosophy/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
+      <title>How Hard Is It to Find Referees?</title>
+      <link>http://jonathanweisberg.org/post/How%20Hard%20Is%20It%20to%20Find%20Referees/</link>
+      <pubDate>Sat, 06 Oct 2018 00:00:00 -0500</pubDate>
+      
+      <guid>http://jonathanweisberg.org/post/How%20Hard%20Is%20It%20to%20Find%20Referees/</guid>
+      <description>&lt;p&gt;Finding willing referees is one of the more tedious parts of an editor’s
+job. And with all the talk about how overloaded the peer-review system
+is, it’s worth pausing to examine just how hard it is to find referees.&lt;/p&gt;
+
+&lt;p&gt;Well, at &lt;em&gt;Ergo&lt;/em&gt; it takes on average 5.8 tries before we find two
+referees to review a submission. The following histogram gives the full
+picture.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;http://jonathanweisberg.org/img/finding_referees_files/unnamed-chunk-2-1.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;So most submissions take six or fewer invites, and the overwhelming
+majority require fewer than 10. But 10–15 is not unheard of. And on very
+rare occasions it’s taken more than 20.&lt;/p&gt;
+
+&lt;p&gt;A different perspective is the time it takes to find two willing
+referees. The average time between when the first invite is sent out and
+two referees have agreed is 10.8 days. Here’s the histogram:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;http://jonathanweisberg.org/img/finding_referees_files/unnamed-chunk-4-1.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;So it usually takes less than two weeks to find two takers, though on
+occasion it can take more than a month. And on very rare occasions it’s
+taken more than two months.&lt;/p&gt;
+
+&lt;p&gt;That’s all looking just at submissions that had two referees, mind you.
+Most submissions to &lt;em&gt;Ergo&lt;/em&gt; aren’t sent out to external reviewers at all,
+being desk-rejected instead. But more directly relevant is that about
+20% of externally reviewed submissions are rejected just on one
+referee’s recommendation, because the referee submits a decisively
+negative report before a second can be commissioned. And on some
+occasions an editor will even commission three reports.&lt;/p&gt;
+
+&lt;p&gt;So maybe the best way to look at the whole thing is just to calculate
+The Big Number: 35% of all invitations sent to referees end with a
+completed report. Which, I gotta say, is actually a lot better than I
+would have guessed.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
       <title>Waiting for the Editor: A New App</title>
       <link>http://jonathanweisberg.org/post/Shiny%20Wait%20Times/</link>
       <pubDate>Wed, 27 Jun 2018 00:00:00 -0500</pubDate>
@@ -2036,139 +2081,6 @@ is a parabola, with the bottom of the bowl located at $x = -b/2a$. (Or, if you k
  &lt;a class=&#34;footnote-return&#34; href=&#34;#fnref:1&#34;&gt;&lt;sup&gt;[return]&lt;/sup&gt;&lt;/a&gt;&lt;/li&gt;
 &lt;/ol&gt;
 &lt;/div&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>Accuracy for Dummies, Part 1: Euclid Improper</title>
-      <link>http://jonathanweisberg.org/post/Accuracy%20for%20Dummies%20-%20Part%201/</link>
-      <pubDate>Fri, 13 Jan 2017 09:53:00 -0500</pubDate>
-      
-      <guid>http://jonathanweisberg.org/post/Accuracy%20for%20Dummies%20-%20Part%201/</guid>
-      <description>
-
-&lt;p&gt;If you&amp;rsquo;ve bumped into &lt;a href=&#34;https://plato.stanford.edu/entries/epistemic-utility/#AccArg&#34; target=&#34;_blank&#34;&gt;the accuracy framework&lt;/a&gt; before, you&amp;rsquo;ve probably seen a diagram like this one:&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&#34;http://jonathanweisberg.org/img/accuracy/2D Dominance Diagram - 400px.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
-
-&lt;p&gt;The vertices $(1,0)$ and $(0,1)$ represent two possibilities, whether a coin lands heads or tails in this example.&lt;/p&gt;
-
-&lt;p&gt;According to the laws of probability, the probability of heads and of tails must add up to $1$, like $.3 + .7$ or $.5 + .5$. So the diagonal line connecting the two vertices covers all the possible probability assignments&amp;hellip;  $(0,1)$, $(.3,.7)$, $(.5, .5)$, $(.9, .1)$, $(1,0)$, etc.$\newcommand{\vone}{(1,0)}$$\newcommand{\vtwo}{(0,1)}$&lt;/p&gt;
-
-&lt;p&gt;The diagram illustrates a key fact of the accuracy framework. Assignments that obey the laws of probability are always &amp;ldquo;closer to the truth&amp;rdquo; than assignments that violate those laws&amp;mdash;&lt;em&gt;no matter what the truth turns out to be&lt;/em&gt;.  Given any point &lt;em&gt;not&lt;/em&gt; on the line, there is a point &lt;em&gt;on&lt;/em&gt; the line that is closer to &lt;em&gt;both&lt;/em&gt; vertices $\vone$ and $\vtwo$. So, whether the coin lands heads or tails, you&amp;rsquo;ll be closer to the truth if your degrees of belief (a.k.a. &amp;ldquo;credences&amp;rdquo;) obey the laws of probability.&lt;/p&gt;
-
-&lt;p&gt;Take $c^*$, for example, which doesn&amp;rsquo;t lie on the diagonal line. Let&amp;rsquo;s assume $c^*$ is the point $(.7, .5)$, which violates the laws of probability: $.7 + .5 &amp;gt; 1$. Now compare that to $c&amp;rsquo;$, which does lie on the diagonal line. That&amp;rsquo;s the point $(.6, .4)$, which does obey the laws of probability: $.6 + .4 = 1$.&lt;/p&gt;
-
-&lt;p&gt;Well, $c&amp;rsquo;$ is closer to $\vone$ than $c^*$ is. Just look at the right-triangle connecting all three points: to get to $\vone$ from $c^*$ you have to travel along the hypotenuse. But you only have to travel the distance of one of the legs to get there from $c&amp;rsquo;$. And the same thinking applies to the other vertex, $\vtwo$. So $c&amp;rsquo;$ is closer to both vertices than $c^*$ is.&lt;/p&gt;
-
-&lt;p&gt;The same idea applies to &lt;em&gt;any&lt;/em&gt; point in the unit square. If it&amp;rsquo;s not on the diagonal line, there&amp;rsquo;s a point on the line that will be closer to both vertices&amp;mdash;because Pythagoras. Just go from whatever $c^*$ you start with to the closest point $c&amp;rsquo;$ on the diagonal. You&amp;rsquo;ll have two right-triangles, one for  each vertex. So the $c&amp;rsquo;$ point will be closer to both vertices than the $c^*$ point you started with.&lt;/p&gt;
-
-&lt;p&gt;What&amp;rsquo;s more, no point on the line is closer to both vertices than any other. For example, if you move from $(.5, .5)$ to some other point on the line, you&amp;rsquo;ll move towards one vertex but away from the other. So if you&amp;rsquo;re off the line, you can always get closer to both vertices by moving onto the line. But once you&amp;rsquo;re on the line, there&amp;rsquo;s no way that guarantees you&amp;rsquo;ll be closer to the vertex representing the true outcome of the coin toss.&lt;/p&gt;
-
-&lt;p&gt;And that&amp;rsquo;s why you should obey the laws of probability, according to advocates of the accuracy framework. Violating the laws of probability takes you away from the truth, no matter what the truth turns out to be. Whereas if you obey the laws of probability, that doesn&amp;rsquo;t happen.&lt;/p&gt;
-
-&lt;h1 id=&#34;hey-dummy&#34;&gt;Hey, Dummy&lt;/h1&gt;
-
-&lt;p&gt;If you&amp;rsquo;re like me, the first time you see this argument you think to yourself: &amp;ldquo;Cool! The diagram gives me the key idea, I&amp;rsquo;ll worry about mathematical technicalities later (like, what if there are more than two possibilities?). For now let me just see where you&amp;rsquo;re going with this, epistemology-wise&amp;hellip;&amp;rdquo;&lt;/p&gt;
-
-&lt;p&gt;But when I finally did sit down to work through the math, I found it much harder than I expected to answer some elementary questions. The answers to these questions were usually taken for granted in published work, or they went by so fast I wasn&amp;rsquo;t sure about the details.&lt;/p&gt;
-
-&lt;p&gt;I&amp;rsquo;m still working on filling in a lot of these gaps, as I work through &lt;a href=&#34;https://global.oup.com/academic/product/accuracy-and-the-laws-of-credence-9780198732716?cc=ca&amp;amp;lang=en&amp;amp;&#34; target=&#34;_blank&#34;&gt;Richard Pettigrew&amp;rsquo;s excellent new book&lt;/a&gt; and get up to speed (I hope!) with the latest research. I&amp;rsquo;m writing these posts to help me get clear on the basics, and hopefully help you do the same.&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&#34;https://s-media-cache-ak0.pinimg.com/736x/2e/46/00/2e4600f7eab945f936f00548b5498ba4.jpg&#34; alt=&#34;Dennis Duffy: Hey Dummy&#34; /&gt;&lt;/p&gt;
-
-&lt;p&gt;(Warning: since I&amp;rsquo;m learning this stuff as I go, my solutions and proofs won&amp;rsquo;t always be the best. In fact they&amp;rsquo;re bound to have errors. So I encourage you to contact me with corrections, and help improve these posts for others.)&lt;/p&gt;
-
-&lt;p&gt;Now on to today&amp;rsquo;s topic: Euclidean distance as a measure of accuracy.&lt;/p&gt;
-
-&lt;h1 id=&#34;fear-of-a-euclidean-plane&#34;&gt;Fear of a Euclidean Plane&lt;/h1&gt;
-
-&lt;p&gt;We just saw that the laws of probability keep you close to the truth in our coin-toss example, whatever the truth turns out to be. And by &amp;ldquo;close&amp;rdquo; we meant Euclidean distance, the kind of spatial distance familiar from grade-school geometry.&lt;/p&gt;
-
-&lt;p&gt;But people writing in the accuracy framework never use Euclidean distance. Why not? Because, it turns out, Euclidean distance is unstable!&lt;/p&gt;
-
-&lt;p&gt;&amp;ldquo;Unstable&amp;rdquo; how?&lt;/p&gt;
-
-&lt;p&gt;Well, if your aim is to be as close to the truth as possible in terms of Euclidean distance, then you will almost always be driven to change your opinion to something extreme: either $(1,0)$ or $(0,1)$. And not because you get some definite information about how the coin-flip turns out. But just because of the way Euclidean distance interacts with &lt;a href=&#34;https://plato.stanford.edu/entries/rationality-normative-utility/#DefExpUti&#34; target=&#34;_blank&#34;&gt;&lt;em&gt;expected value&lt;/em&gt;&lt;/a&gt;. (I&amp;rsquo;m going to assume you&amp;rsquo;re familiar with the notion of expected value. If not, you can read &lt;a href=&#34;(https://plato.stanford.edu/entries/rationality-normative-utility/#DefExpUti)&#34; target=&#34;_blank&#34;&gt;the linked section&lt;/a&gt; of the &lt;em&gt;SEP&lt;/em&gt; article or do a bit of googling.)&lt;/p&gt;
-
-&lt;p&gt;Here&amp;rsquo;s how that happens. Suppose your credences in heads/tails are $(.6, .4)$: you&amp;rsquo;re $60\%$ confident the coin will land heads, and $40\%$ confident it&amp;rsquo;ll land tails. What&amp;rsquo;s your &lt;em&gt;expected inaccuracy&lt;/em&gt;, then? If we think of accuracy as utility, and thus inaccuracy as disutility, how well can you expect to do by holding your current state of opinion?&lt;/p&gt;
-
-&lt;p&gt;Let&amp;rsquo;s run the calculation. We&amp;rsquo;ll write $EI(x, 1-x)$ for the expected inaccuracy of having credence $x$ in heads and $1-x$ in tails.
-$$
-\begin{align}
-EI(.6, .4) &amp;amp;= .6 \sqrt{(.6 - 1)^2 + (.4 - 0)^2} + .4 \sqrt{(.6 - 0)^2 + (.4 - 1)^2}\\&lt;br /&gt;
-&amp;amp;= .6 \sqrt{(-.4)^2 + .4^2} + .4 \sqrt{.6^2 + (-.6)^2}\\&lt;br /&gt;
-&amp;amp;= .678823
-\end{align}
-$$
-Ok, not bad. But now let&amp;rsquo;s compare that to how you can expect to do if you change your opinion to the extreme state $(1,0)$:
-$$
-\begin{align}
-EI(1, 0) &amp;amp;= .6 \sqrt{(1 - 1)^2 + (0 - 0)^2} + .4 \sqrt{(1 - 0)^2 + (0 - 1)^2}\\&lt;br /&gt;
-&amp;amp;= .565685
-\end{align}
-$$
-Some things to keep in mind here:&lt;/p&gt;
-
-&lt;ol&gt;
-&lt;li&gt;The numbers outside the square root symbols are $.6$ and $.4$ because those are your current beliefs, and we&amp;rsquo;re asking how well you expect to do &lt;em&gt;according to your current beliefs&lt;/em&gt;.
-
-&lt;ul&gt;
-&lt;li&gt;The numbers inside the square roots are $1$ and $0$ because we&amp;rsquo;re asking how well you expect to do by adopting those extreme opinions. So those numbers describe the outcomes whose inaccuracy we want to evaluate and weigh.&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
-&lt;li&gt;Remember, &lt;strong&gt;smaller&lt;/strong&gt; numbers are &lt;strong&gt;better&lt;/strong&gt; because we&amp;rsquo;re talking about &lt;strong&gt;in&lt;/strong&gt;accuracy.&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;p&gt;And look: the extreme opinion $(1, 0)$ does &lt;em&gt;better&lt;/em&gt; than the more moderate opinion you actually hold, $(.6, .4)$. The extreme opinion has lower expected inaccuracy (think: higher expected accuracy).&lt;/p&gt;
-
-&lt;p&gt;In fact, the extreme assignment does better than the moderate one &lt;em&gt;according to the moderate assignment itself&lt;/em&gt;. So your moderate opinions end up undermining themselves. They drive you to hold more extreme opinions than you initially do, in the name of accuracy.&lt;/p&gt;
-
-&lt;p&gt;This isn&amp;rsquo;t an artifact of the particular example $(.6, .4)$. We can prove that an extreme state of opinion always does best in terms of expected inaccuracy&amp;mdash;unless you are completely uncertain about the outcome, i.e. $(.5,.5)$.&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;Theorem.&lt;/strong&gt;&amp;nbsp;
-Suppose $p \in [0, 1]$ and $p \neq .5$. Then, according to the probability assignment $(p, 1-p)$, the expected Euclidean distance of any alternative assignment $(q, 1-q)$ from the points $(1,0)$ and $(0,1)$ is uniquely minimized by:
-$$
-q = \begin{cases}
-0 &amp;amp; \mbox{ if } p &amp;lt; .5,\\&lt;br /&gt;
-1 &amp;amp; \mbox{ if } p &amp;gt; .5.
-\end{cases}
-$$&lt;/p&gt;
-
-&lt;p&gt;&lt;em&gt;Proof.&lt;/em&gt;&amp;nbsp;
-Suppose $0 \leq p \leq 1$ and $p \neq .5$. According to the probability assignment $(p, 1-p)$, the expected Euclidean distance from $(1,0)$ and $(0,1)$ of any alternative assignment $(q, 1-q)$ is:
-$$
-\begin{align}
-EI(q, 1-q) &amp;amp;= p \sqrt{(q - 1)^2 + ((1-q) - 0)^2}\\&lt;br /&gt;
-&amp;amp;\quad + (1-p) \sqrt{(q - 0)^2 + ((1-q) - 1)^2}\\&lt;br /&gt;
-&amp;amp;= p \sqrt{(q - 1)^2 + (1 - q)^2} + (1-p) \sqrt{q^2 + q^2}\\&lt;br /&gt;
-&amp;amp;= p \sqrt{2} (1 - q) + (1-p) \sqrt{2} q\\&lt;br /&gt;
-&amp;amp;= \sqrt{2} \left( p (1 - q) + (1-p) q \right).
-\end{align}
-$$
-We are looking for the value of $q$ that minimizes the quantity on the last line, which is the same if we drop the $\sqrt{2}$ and just seek to minimize:
-$$ p (1 - q) + (1-p) q. $$
-This quantity is a &lt;a href=&#34;https://en.wikipedia.org/wiki/Weighted_arithmetic_mean&#34; target=&#34;_blank&#34;&gt;weighted average&lt;/a&gt; of the two values $p$ and $(1-p)$, with the weights being $1-q$ and $q$, respectively. So the minimum possible value is just whichever of $p$ or $1-p$ is smaller. And this minimum is achieved when all the weight is given to the smaller value.&lt;/p&gt;
-
-&lt;p&gt;So, if $p &amp;lt; .5$, then the minimum possible value is $p$, and it is achieved when $1 - q = 1$, and thus $q = 0$. If instead $p &amp;gt; .5$, the minimum possible value is $1 - p$ and is achieved when $q = 1$.
-&lt;span style=&#34;float: right;&#34;&gt;$\Box$&lt;/span&gt;&lt;/p&gt;
-
-&lt;p&gt;Based on this proof you can also see what happens when $p=.5$. It doesn&amp;rsquo;t matter what value $q$ takes: any value $0 \leq q \leq 1$ will result in the same expected inaccuracy, namely $.5\sqrt{2}$.&lt;/p&gt;
-
-&lt;p&gt;So here&amp;rsquo;s the problem with Euclidean distance as a way of measuring inaccuracy. As soon as you find yourself leaning one way or another on heads-vs.-tails, you&amp;rsquo;re driven to extremes. If you get information that makes heads slightly more likely, say $.51$ for example, your expected inaccuracy is minimized by leaping to the conclusion that the coin will certainly come up heads.&lt;/p&gt;
-
-&lt;p&gt;So any probability assignment to heads/tails besides $(.5, .5)$ is self-undermining. It gives you cause to adopt some other assignment&amp;mdash;an extreme one, at that.&lt;/p&gt;
-
-&lt;p&gt;Even at $(.5, .5)$ things aren&amp;rsquo;t so happy, btw. Any other assignment of probabilities is just as good as far as minimizing inaccuracy goes. So even if the pursuit of accuracy doesn&amp;rsquo;t &lt;em&gt;require&lt;/em&gt; you to change your opinion, it still &lt;em&gt;permits&lt;/em&gt; you to do so. As far as accuracy goes, being indifferent about the coin toss also makes you indifferent about what opinion to hold. Which is pretty strange in itself.&lt;/p&gt;
-
-&lt;h1 id=&#34;where-this-leaves-us&#34;&gt;Where This Leaves Us&lt;/h1&gt;
-
-&lt;p&gt;Wait a minute: if Euclidean distance is a bad way to measure inaccuracy, then what&amp;rsquo;s the use of the diagram we started with?? And what&amp;rsquo;s the right way to measure inaccuracy?&lt;/p&gt;
-
-&lt;p&gt;We&amp;rsquo;ll tackle these questions in the next post. But here&amp;rsquo;s the short answer.&lt;/p&gt;
-
-&lt;p&gt;One common way of measuring inaccuracy is a variation on Euclidean distance called &lt;em&gt;Brier&lt;/em&gt; distance. Brier distance is just enough like Euclidean distance to vindicate the reasoning we did with our opening diagram. But it&amp;rsquo;s different enough from Euclidean distance to avoid the instability problem we ended up with.&lt;/p&gt;
-
-&lt;p&gt;So what is Brier distance? It&amp;rsquo;s just the square of Euclidean distance. Just take the square root symbol off Euclid&amp;rsquo;s formula and you&amp;rsquo;ve got the formula for Brier distance. Next time we&amp;rsquo;ll see how that one change makes all the right differences.&lt;/p&gt;
 </description>
     </item>
     
