@@ -9,51 +9,6 @@
     <atom:link href="http://jonathanweisberg.org/tags/publishing/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
-      <title>How Hard Is It to Find Referees?</title>
-      <link>http://jonathanweisberg.org/post/How%20Hard%20Is%20It%20to%20Find%20Referees/</link>
-      <pubDate>Mon, 08 Oct 2018 00:00:00 -0500</pubDate>
-      
-      <guid>http://jonathanweisberg.org/post/How%20Hard%20Is%20It%20to%20Find%20Referees/</guid>
-      <description>&lt;p&gt;Finding willing referees is one of the more tedious parts of an editor’s
-job. And with all the talk about how overloaded the peer-review system
-is, it’s worth pausing to examine just how hard it is to find referees.&lt;/p&gt;
-
-&lt;p&gt;Well, at &lt;em&gt;Ergo&lt;/em&gt; it takes on average 5.8 tries before we find two
-referees to review a submission. The following histogram gives the full
-picture.&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&#34;http://jonathanweisberg.org/img/finding_referees_files/unnamed-chunk-2-1.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
-
-&lt;p&gt;So most submissions take six or fewer invites, and the overwhelming
-majority require fewer than 10. But 10–15 is not unheard of. And on very
-rare occasions it’s taken more than 20.&lt;/p&gt;
-
-&lt;p&gt;A different perspective is the time it takes to find two willing
-referees. The average time between when the first invite is sent out and
-two referees have agreed is 10.8 days. Here’s the histogram:&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&#34;http://jonathanweisberg.org/img/finding_referees_files/unnamed-chunk-4-1.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
-
-&lt;p&gt;So it usually takes less than two weeks to find two takers, though on
-occasion it can take more than a month. And on very rare occasions it’s
-taken more than two months.&lt;/p&gt;
-
-&lt;p&gt;That’s all looking just at submissions that had two referees, mind you.
-Most submissions to &lt;em&gt;Ergo&lt;/em&gt; aren’t sent out to external reviewers at all,
-being desk-rejected instead. But more directly relevant is that about
-20% of externally reviewed submissions are rejected just on one
-referee’s recommendation, because the referee submits a decisively
-negative report before a second can be commissioned. And on some
-occasions an editor will even commission three reports.&lt;/p&gt;
-
-&lt;p&gt;So maybe the best way to look at the whole thing is just to calculate
-The Big Number: 35% of all invitations sent to referees end with a
-completed report. Which, I gotta say, is actually a lot better than I
-would have guessed.&lt;/p&gt;
-</description>
-    </item>
-    
-    <item>
       <title>Waiting for the Editor: A New App</title>
       <link>http://jonathanweisberg.org/post/Shiny%20Wait%20Times/</link>
       <pubDate>Wed, 27 Jun 2018 00:00:00 -0500</pubDate>
