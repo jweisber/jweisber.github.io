@@ -23,7 +23,7 @@ is, it’s worth pausing to examine just how hard it is to find referees.&lt;/p&
 referees to review a submission. The following plot gives the full
 picture.&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&#34;finding_referees_files/figure-markdown_strict/unnamed-chunk-2-1.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://jonathanweisberg.org/img/finding_referees_files/unnamed-chunk-2-1.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
 
 &lt;p&gt;So most submissions take six or fewer invites, and the overwhelming
 majority require fewer than 10. But 10–15 is not unheard of. And on very
@@ -33,7 +33,7 @@ rare occasions it’s taken more than 20.&lt;/p&gt;
 referees. The average time between when the first invite is sent out and
 two referees have agreed is 10.8 days. Here’s the histogram:&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&#34;finding_referees_files/figure-markdown_strict/unnamed-chunk-4-1.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://jonathanweisberg.org/img/finding_referees_files/unnamed-chunk-4-1.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
 
 &lt;p&gt;So it usually takes less than two weeks to find two takers, though on
 occasion it can take more than a month. And on very rare occasions it’s
