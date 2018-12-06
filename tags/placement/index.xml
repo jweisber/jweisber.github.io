@@ -9,6 +9,247 @@
     <atom:link href="http://jonathanweisberg.org/tags/placement/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
+      <title>Placement, PageRank, and the PGR: Part 2</title>
+      <link>http://jonathanweisberg.org/post/page-rank-2/</link>
+      <pubDate>Thu, 06 Dec 2018 00:00:01 -0500</pubDate>
+      
+      <guid>http://jonathanweisberg.org/post/page-rank-2/</guid>
+      <description>
+
+&lt;p&gt;This post is the second of two devoted to &lt;a href=&#34;https://bit.ly/2z12SoB&#34; target=&#34;_blank&#34;&gt;an idea of David
+Wallace’s&lt;/a&gt;: applying Google’s PageRank algorithm
+to the &lt;a href=&#34;http://www.placementdata.com/&#34; target=&#34;_blank&#34;&gt;APDA&lt;/a&gt; placement data.&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;http://jonathanweisberg.org/post/page-rank-1.html&#34;&gt;Last time&lt;/a&gt; we looked at the motivation and
+theory behind the idea. Now we’ll try predicting PageRanks. Can students
+who care about PageRank use the latest
+&lt;a href=&#34;https://www.philosophicalgourmet.com/&#34; target=&#34;_blank&#34;&gt;PGR&lt;/a&gt; to guesstimate a program’s
+PageRank 5 or 10 years in the future? Can they use the latest placement
+data?&lt;/p&gt;
+
+&lt;h1 id=&#34;the-data&#34;&gt;The Data&lt;/h1&gt;
+
+&lt;p&gt;We’ll use a somewhat different data set from last time, since we need
+things broken down by year. Our data comes now from &lt;a href=&#34;http://placementdata.com&#34; target=&#34;_blank&#34;&gt;the APDA
+homepage&lt;/a&gt;, where you can search by PhD program
+and get a list of jobs where its graduates have landed.&lt;/p&gt;
+
+&lt;p&gt;Unfortunately the search results are in a pretty unfriendly format. This
+means doing some nasty
+&lt;a href=&#34;https://en.wikipedia.org/wiki/Web_scraping&#34; target=&#34;_blank&#34;&gt;scraping&lt;/a&gt;, a notoriously
+error-prone process. And even before scraping, the data seems to have
+some errors and quirks (duplicate entries, inconsistent capitalization,
+missing values, etc.). I’ve patched what I can, but we should keep in
+mind that we’re already working with a pretty noisy signal even before
+we get to any analysis.&lt;/p&gt;
+
+&lt;p&gt;A quick poke around before we get to the main event: how much data do we
+have for each year? The years since 2010 really dominate this data set.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;http://jonathanweisberg.org/img/page-rank-2/unnamed-chunk-2-1.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;That’s going to be a problem, when we try predicting future PageRank
+based on past PageRank. Ideally we’d like to have two data-rich periods
+separated by a 5-year span. Then we can see how well a hypothetical
+prospective student would have done at predicting the PageRanks they’d
+face on the job market, using the PageRanks available when they were
+choosing a program. But we don’t have that. So we’ll have to live with
+some additional noise when we get to this below.&lt;/p&gt;
+
+&lt;p&gt;For now let’s turn to placement type. The APDA tracks whether a job is
+TT, a postdoc, temporary letureship, etc. TT and postdoc placements
+dominate the landscape, followed by temporary and non-academic
+positions.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;http://jonathanweisberg.org/img/page-rank-2/unnamed-chunk-3-1.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Placement types change dramatically over the years though. From the
+early to late naughties, TT changes from being the dominant type to a
+minority.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;http://jonathanweisberg.org/img/page-rank-2/unnamed-chunk-4-1.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Is this the story of the Great Recession? That’s likely a big factor.
+But our data gets spottier as we go back through the naughties. So a
+selection effect is another likely culprit.&lt;/p&gt;
+
+&lt;p&gt;Now let’s turn to predicting PageRanks.&lt;/p&gt;
+
+&lt;h1 id=&#34;predicting-pagerank-from-pgr&#34;&gt;Predicting PageRank from PGR&lt;/h1&gt;
+
+&lt;p&gt;We’ll calculate all PageRanks on a five-year window (a somewhat
+arbitrary choice). So the “future” PageRanks—the numbers we’ll be trying
+to predict—are calculated from the placement data in the years
+2014–2018.&lt;/p&gt;
+
+&lt;p&gt;For now we’ll count postdocs as well as TT placements, for continuity
+with the last post and with Wallace’s original analysis. We’ll rerun the
+analysis using only TT jobs at the end.&lt;/p&gt;
+
+&lt;p&gt;Given these choices, here are the top 10 programs by PageRank for
+2014–18.&lt;/p&gt;
+
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr class=&#34;header&#34;&gt;
+&lt;th style=&#34;text-align: left;&#34;&gt;Program&lt;/th&gt;
+&lt;th style=&#34;text-align: right;&#34;&gt;PageRank 2014-18&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr class=&#34;odd&#34;&gt;
+&lt;td style=&#34;text-align: left;&#34;&gt;Princeton University&lt;/td&gt;
+&lt;td style=&#34;text-align: right;&#34;&gt;0.0437282&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;even&#34;&gt;
+&lt;td style=&#34;text-align: left;&#34;&gt;Stanford University&lt;/td&gt;
+&lt;td style=&#34;text-align: right;&#34;&gt;0.0434163&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;odd&#34;&gt;
+&lt;td style=&#34;text-align: left;&#34;&gt;New York University&lt;/td&gt;
+&lt;td style=&#34;text-align: right;&#34;&gt;0.0408766&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;even&#34;&gt;
+&lt;td style=&#34;text-align: left;&#34;&gt;University of Oxford&lt;/td&gt;
+&lt;td style=&#34;text-align: right;&#34;&gt;0.0374294&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;odd&#34;&gt;
+&lt;td style=&#34;text-align: left;&#34;&gt;University of Arizona&lt;/td&gt;
+&lt;td style=&#34;text-align: right;&#34;&gt;0.0367260&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;even&#34;&gt;
+&lt;td style=&#34;text-align: left;&#34;&gt;Harvard University&lt;/td&gt;
+&lt;td style=&#34;text-align: right;&#34;&gt;0.0323110&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;odd&#34;&gt;
+&lt;td style=&#34;text-align: left;&#34;&gt;University of Pittsburgh (HPS)&lt;/td&gt;
+&lt;td style=&#34;text-align: right;&#34;&gt;0.0296616&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;even&#34;&gt;
+&lt;td style=&#34;text-align: left;&#34;&gt;Massachusetts Institute of Technology&lt;/td&gt;
+&lt;td style=&#34;text-align: right;&#34;&gt;0.0278274&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;odd&#34;&gt;
+&lt;td style=&#34;text-align: left;&#34;&gt;University of Chicago&lt;/td&gt;
+&lt;td style=&#34;text-align: right;&#34;&gt;0.0277885&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;even&#34;&gt;
+&lt;td style=&#34;text-align: left;&#34;&gt;University of Toronto&lt;/td&gt;
+&lt;td style=&#34;text-align: right;&#34;&gt;0.0260106&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;p&gt;How well do PGR scores predict these rankings? Following Wallace we’ll
+start with the 2006 PGR. But we’ll also consider the five iterations
+since. I’ve put the PageRanks (the &lt;em&gt;y&lt;/em&gt;-axis) on a log scale for
+visibility.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;http://jonathanweisberg.org/img/page-rank-2/unnamed-chunk-6-1.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Overall the correlation looks pretty strong, ranging from 0.66 in 2006
+to 0.73 in 2014. And that seems consistent with Wallace’s original
+finding, a correlation of 0.75 between the 2006 PGR and all placement
+data up through 2016.&lt;/p&gt;
+
+&lt;p&gt;Notice though, the connection gets much weaker when PGR ratings are
+lower. Below a PGR rating of 3 or so, PageRank doesn’t seem to increase
+much with PGR rating: the average correlation is only 0.25.&lt;/p&gt;
+
+&lt;p&gt;We have two conclusions so far then. First, as Wallace found, PGR rating
+seems to predict PageRank pretty well, even when the ratings are
+collected almost a decade in advance. But second, this effect is much
+stronger for programs with high PGR ratings.&lt;/p&gt;
+
+&lt;h1 id=&#34;predicting-pagerank-from-pagerank&#34;&gt;Predicting PageRank from PageRank&lt;/h1&gt;
+
+&lt;p&gt;What if our hypothetical grad student had relied on the available
+placement data instead of PGR scores in deciding where to go?&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;http://jonathanweisberg.org/img/page-rank-2/unnamed-chunk-8-1.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Well they’d probably have been better off using the PGR in 2006. But
+PageRank gets pretty competitive with PGR starting around 2010, when the
+placement data gets richer.&lt;/p&gt;
+
+&lt;p&gt;It might be that PageRank has the potential to be a better
+predictor—even long range—provided we have enough placement data. Or it
+might be that PageRank is only better at close range. We can’t be sure,
+but hopefully we’ll find out in a few years as the APDA database grows.&lt;/p&gt;
+
+&lt;h1 id=&#34;tenure-track-only&#34;&gt;Tenure-track Only&lt;/h1&gt;
+
+&lt;p&gt;Finally, let’s do the same analysis but counting only tenure-track
+placements toward a department’s PageRank. Here are our top 10 programs
+then (a more similar group to what we saw last time, note).&lt;/p&gt;
+
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr class=&#34;header&#34;&gt;
+&lt;th style=&#34;text-align: left;&#34;&gt;Program&lt;/th&gt;
+&lt;th style=&#34;text-align: right;&#34;&gt;PageRank 2014-18&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr class=&#34;odd&#34;&gt;
+&lt;td style=&#34;text-align: left;&#34;&gt;Princeton University&lt;/td&gt;
+&lt;td style=&#34;text-align: right;&#34;&gt;0.0837437&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;even&#34;&gt;
+&lt;td style=&#34;text-align: left;&#34;&gt;University of Pittsburgh (HPS)&lt;/td&gt;
+&lt;td style=&#34;text-align: right;&#34;&gt;0.0640854&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;odd&#34;&gt;
+&lt;td style=&#34;text-align: left;&#34;&gt;University of Oxford&lt;/td&gt;
+&lt;td style=&#34;text-align: right;&#34;&gt;0.0573890&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;even&#34;&gt;
+&lt;td style=&#34;text-align: left;&#34;&gt;University of Chicago&lt;/td&gt;
+&lt;td style=&#34;text-align: right;&#34;&gt;0.0519388&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;odd&#34;&gt;
+&lt;td style=&#34;text-align: left;&#34;&gt;Yale University&lt;/td&gt;
+&lt;td style=&#34;text-align: right;&#34;&gt;0.0452552&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;even&#34;&gt;
+&lt;td style=&#34;text-align: left;&#34;&gt;Harvard University&lt;/td&gt;
+&lt;td style=&#34;text-align: right;&#34;&gt;0.0420271&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;odd&#34;&gt;
+&lt;td style=&#34;text-align: left;&#34;&gt;Massachusetts Institute of Technology&lt;/td&gt;
+&lt;td style=&#34;text-align: right;&#34;&gt;0.0374587&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;even&#34;&gt;
+&lt;td style=&#34;text-align: left;&#34;&gt;Rutgers University&lt;/td&gt;
+&lt;td style=&#34;text-align: right;&#34;&gt;0.0360075&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;odd&#34;&gt;
+&lt;td style=&#34;text-align: left;&#34;&gt;New York University&lt;/td&gt;
+&lt;td style=&#34;text-align: right;&#34;&gt;0.0335406&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;even&#34;&gt;
+&lt;td style=&#34;text-align: left;&#34;&gt;University of California, Berkeley&lt;/td&gt;
+&lt;td style=&#34;text-align: right;&#34;&gt;0.0290834&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;p&gt;Here are the comparisons with past PGR scores.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;http://jonathanweisberg.org/img/page-rank-2/unnamed-chunk-11-1.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;And here are past PageRanks.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;http://jonathanweisberg.org/img/page-rank-2/unnamed-chunk-12-1.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Unsurprisingly, restricting ourselves to TT placements makes things
+noisier across the board. PGR-based predictions show more resilience
+here, possibly because they’re only affected by the added noise at one
+end.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
       <title>Placement, PageRank, and the PGR: Part 1</title>
       <link>http://jonathanweisberg.org/post/page-rank-1/</link>
       <pubDate>Thu, 06 Dec 2018 00:00:00 -0500</pubDate>
@@ -161,10 +402,10 @@ $$
   \end{aligned}
 $$&lt;/p&gt;
 
-&lt;p&gt;In matrix terms, we’re looking to solve the equation &lt;strong&gt;M&lt;/strong&gt;&lt;strong&gt;w&lt;/strong&gt; = &lt;strong&gt;w&lt;/strong&gt;.
+&lt;p&gt;In matrix terms, we’re looking to solve the equation $\mathbf{M}\mathbf{w} = \mathbf{w}$.
 This is an
 &lt;a href=&#34;https://en.wikipedia.org/wiki/Eigenvalues_and_eigenvectors&#34; target=&#34;_blank&#34;&gt;eigenvector&lt;/a&gt;
-equation &lt;strong&gt;M&lt;/strong&gt;&lt;strong&gt;w&lt;/strong&gt; = *λ*&lt;strong&gt;w&lt;/strong&gt;, where the eigenvalue *λ* = 1. And a
+equation $\mathbf{M}\mathbf{w} = \lambda \mathbf{w}$, where the eigenvalue $\lambda = 1$. And a
 &lt;a href=&#34;https://en.wikipedia.org/wiki/Perron%E2%80%93Frobenius_theorem&#34; target=&#34;_blank&#34;&gt;famous
 theorem&lt;/a&gt;
 guarantees that a unique solution exists, given assumptions to be
@@ -1226,247 +1467,6 @@ and past placement data. Meanwhile, here’s the full listing:&lt;/p&gt;
 &lt;/tr&gt;
 &lt;/tbody&gt;
 &lt;/table&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>Placement, PageRank, and the PGR: Part 2</title>
-      <link>http://jonathanweisberg.org/post/page-rank-2/</link>
-      <pubDate>Thu, 06 Dec 2018 00:00:00 -0500</pubDate>
-      
-      <guid>http://jonathanweisberg.org/post/page-rank-2/</guid>
-      <description>
-
-&lt;p&gt;This post is the second of two devoted to &lt;a href=&#34;https://bit.ly/2z12SoB&#34; target=&#34;_blank&#34;&gt;an idea of David
-Wallace’s&lt;/a&gt;: applying Google’s PageRank algorithm
-to the &lt;a href=&#34;http://www.placementdata.com/&#34; target=&#34;_blank&#34;&gt;APDA&lt;/a&gt; placement data.&lt;/p&gt;
-
-&lt;p&gt;&lt;a href=&#34;http://jonathanweisberg.org/post/page-rank-1.html&#34;&gt;Last time&lt;/a&gt; we looked at the motivation and
-theory behind the idea. Now we’ll try predicting PageRanks. Can students
-who care about PageRank use the latest
-&lt;a href=&#34;https://www.philosophicalgourmet.com/&#34; target=&#34;_blank&#34;&gt;PGR&lt;/a&gt; to guesstimate a program’s
-PageRank 5 or 10 years in the future? Can they use the latest placement
-data?&lt;/p&gt;
-
-&lt;h1 id=&#34;the-data&#34;&gt;The Data&lt;/h1&gt;
-
-&lt;p&gt;We’ll use a somewhat different data set from last time, since we need
-things broken down by year. Our data comes now from &lt;a href=&#34;http://placementdata.com&#34; target=&#34;_blank&#34;&gt;the APDA
-homepage&lt;/a&gt;, where you can search by PhD program
-and get a list of jobs where its graduates have landed.&lt;/p&gt;
-
-&lt;p&gt;Unfortunately the search results are in a pretty unfriendly format. This
-means doing some nasty
-&lt;a href=&#34;https://en.wikipedia.org/wiki/Web_scraping&#34; target=&#34;_blank&#34;&gt;scraping&lt;/a&gt;, a notoriously
-error-prone process. And even before scraping, the data seems to have
-some errors and quirks (duplicate entries, inconsistent capitalization,
-missing values, etc.). I’ve patched what I can, but we should keep in
-mind that we’re already working with a pretty noisy signal even before
-we get to any analysis.&lt;/p&gt;
-
-&lt;p&gt;A quick poke around before we get to the main event: how much data do we
-have for each year? The years since 2010 really dominate this data set.&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&#34;http://jonathanweisberg.org/img/page-rank-2/unnamed-chunk-2-1.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
-
-&lt;p&gt;That’s going to be a problem, when we try predicting future PageRank
-based on past PageRank. Ideally we’d like to have two data-rich periods
-separated by a 5-year span. Then we can see how well a hypothetical
-prospective student would have done at predicting the PageRanks they’d
-face on the job market, using the PageRanks available when they were
-choosing a program. But we don’t have that. So we’ll have to live with
-some additional noise when we get to this below.&lt;/p&gt;
-
-&lt;p&gt;For now let’s turn to placement type. The APDA tracks whether a job is
-TT, a postdoc, temporary letureship, etc. TT and postdoc placements
-dominate the landscape, followed by temporary and non-academic
-positions.&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&#34;http://jonathanweisberg.org/img/page-rank-2/unnamed-chunk-3-1.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
-
-&lt;p&gt;Placement types change dramatically over the years though. From the
-early to late naughties, TT changes from being the dominant type to a
-minority.&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&#34;http://jonathanweisberg.org/img/page-rank-2/unnamed-chunk-4-1.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
-
-&lt;p&gt;Is this the story of the Great Recession? That’s likely a big factor.
-But our data gets spottier as we go back through the naughties. So a
-selection effect is another likely culprit.&lt;/p&gt;
-
-&lt;p&gt;Now let’s turn to predicting PageRanks.&lt;/p&gt;
-
-&lt;h1 id=&#34;predicting-pagerank-from-pgr&#34;&gt;Predicting PageRank from PGR&lt;/h1&gt;
-
-&lt;p&gt;We’ll calculate all PageRanks on a five-year window (a somewhat
-arbitrary choice). So the “future” PageRanks—the numbers we’ll be trying
-to predict—are calculated from the placement data in the years
-2014–2018.&lt;/p&gt;
-
-&lt;p&gt;For now we’ll count postdocs as well as TT placements, for continuity
-with the last post and with Wallace’s original analysis. We’ll rerun the
-analysis using only TT jobs at the end.&lt;/p&gt;
-
-&lt;p&gt;Given these choices, here are the top 10 programs by PageRank for
-2014–18.&lt;/p&gt;
-
-&lt;table&gt;
-&lt;thead&gt;
-&lt;tr class=&#34;header&#34;&gt;
-&lt;th style=&#34;text-align: left;&#34;&gt;Program&lt;/th&gt;
-&lt;th style=&#34;text-align: right;&#34;&gt;PageRank 2014-18&lt;/th&gt;
-&lt;/tr&gt;
-&lt;/thead&gt;
-&lt;tbody&gt;
-&lt;tr class=&#34;odd&#34;&gt;
-&lt;td style=&#34;text-align: left;&#34;&gt;Princeton University&lt;/td&gt;
-&lt;td style=&#34;text-align: right;&#34;&gt;0.0437282&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr class=&#34;even&#34;&gt;
-&lt;td style=&#34;text-align: left;&#34;&gt;Stanford University&lt;/td&gt;
-&lt;td style=&#34;text-align: right;&#34;&gt;0.0434163&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr class=&#34;odd&#34;&gt;
-&lt;td style=&#34;text-align: left;&#34;&gt;New York University&lt;/td&gt;
-&lt;td style=&#34;text-align: right;&#34;&gt;0.0408766&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr class=&#34;even&#34;&gt;
-&lt;td style=&#34;text-align: left;&#34;&gt;University of Oxford&lt;/td&gt;
-&lt;td style=&#34;text-align: right;&#34;&gt;0.0374294&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr class=&#34;odd&#34;&gt;
-&lt;td style=&#34;text-align: left;&#34;&gt;University of Arizona&lt;/td&gt;
-&lt;td style=&#34;text-align: right;&#34;&gt;0.0367260&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr class=&#34;even&#34;&gt;
-&lt;td style=&#34;text-align: left;&#34;&gt;Harvard University&lt;/td&gt;
-&lt;td style=&#34;text-align: right;&#34;&gt;0.0323110&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr class=&#34;odd&#34;&gt;
-&lt;td style=&#34;text-align: left;&#34;&gt;University of Pittsburgh (HPS)&lt;/td&gt;
-&lt;td style=&#34;text-align: right;&#34;&gt;0.0296616&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr class=&#34;even&#34;&gt;
-&lt;td style=&#34;text-align: left;&#34;&gt;Massachusetts Institute of Technology&lt;/td&gt;
-&lt;td style=&#34;text-align: right;&#34;&gt;0.0278274&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr class=&#34;odd&#34;&gt;
-&lt;td style=&#34;text-align: left;&#34;&gt;University of Chicago&lt;/td&gt;
-&lt;td style=&#34;text-align: right;&#34;&gt;0.0277885&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr class=&#34;even&#34;&gt;
-&lt;td style=&#34;text-align: left;&#34;&gt;University of Toronto&lt;/td&gt;
-&lt;td style=&#34;text-align: right;&#34;&gt;0.0260106&lt;/td&gt;
-&lt;/tr&gt;
-&lt;/tbody&gt;
-&lt;/table&gt;
-
-&lt;p&gt;How well do PGR scores predict these rankings? Following Wallace we’ll
-start with the 2006 PGR. But we’ll also consider the five iterations
-since. I’ve put the PageRanks (the &lt;em&gt;y&lt;/em&gt;-axis) on a log scale for
-visibility.&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&#34;http://jonathanweisberg.org/img/page-rank-2/unnamed-chunk-6-1.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
-
-&lt;p&gt;Overall the correlation looks pretty strong, ranging from 0.66 in 2006
-to 0.73 in 2014. And that seems consistent with Wallace’s original
-finding, a correlation of 0.75 between the 2006 PGR and all placement
-data up through 2016.&lt;/p&gt;
-
-&lt;p&gt;Notice though, the connection gets much weaker when PGR ratings are
-lower. Below a PGR rating of 3 or so, PageRank doesn’t seem to increase
-much with PGR rating: the average correlation is only 0.25.&lt;/p&gt;
-
-&lt;p&gt;We have two conclusions so far then. First, as Wallace found, PGR rating
-seems to predict PageRank pretty well, even when the ratings are
-collected almost a decade in advance. But second, this effect is much
-stronger for programs with high PGR ratings.&lt;/p&gt;
-
-&lt;h1 id=&#34;predicting-pagerank-from-pagerank&#34;&gt;Predicting PageRank from PageRank&lt;/h1&gt;
-
-&lt;p&gt;What if our hypothetical grad student had relied on the available
-placement data instead of PGR scores in deciding where to go?&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&#34;http://jonathanweisberg.org/img/page-rank-2/unnamed-chunk-8-1.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
-
-&lt;p&gt;Well they’d probably have been better off using the PGR in 2006. But
-PageRank gets pretty competitive with PGR starting around 2010, when the
-placement data gets richer.&lt;/p&gt;
-
-&lt;p&gt;It might be that PageRank has the potential to be a better
-predictor—even long range—provided we have enough placement data. Or it
-might be that PageRank is only better at close range. We can’t be sure,
-but hopefully we’ll find out in a few years as the APDA database grows.&lt;/p&gt;
-
-&lt;h1 id=&#34;tenure-track-only&#34;&gt;Tenure-track Only&lt;/h1&gt;
-
-&lt;p&gt;Finally, let’s do the same analysis but counting only tenure-track
-placements toward a department’s PageRank. Here are our top 10 programs
-then (a more similar group to what we saw last time, note).&lt;/p&gt;
-
-&lt;table&gt;
-&lt;thead&gt;
-&lt;tr class=&#34;header&#34;&gt;
-&lt;th style=&#34;text-align: left;&#34;&gt;Program&lt;/th&gt;
-&lt;th style=&#34;text-align: right;&#34;&gt;PageRank 2014-18&lt;/th&gt;
-&lt;/tr&gt;
-&lt;/thead&gt;
-&lt;tbody&gt;
-&lt;tr class=&#34;odd&#34;&gt;
-&lt;td style=&#34;text-align: left;&#34;&gt;Princeton University&lt;/td&gt;
-&lt;td style=&#34;text-align: right;&#34;&gt;0.0837437&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr class=&#34;even&#34;&gt;
-&lt;td style=&#34;text-align: left;&#34;&gt;University of Pittsburgh (HPS)&lt;/td&gt;
-&lt;td style=&#34;text-align: right;&#34;&gt;0.0640854&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr class=&#34;odd&#34;&gt;
-&lt;td style=&#34;text-align: left;&#34;&gt;University of Oxford&lt;/td&gt;
-&lt;td style=&#34;text-align: right;&#34;&gt;0.0573890&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr class=&#34;even&#34;&gt;
-&lt;td style=&#34;text-align: left;&#34;&gt;University of Chicago&lt;/td&gt;
-&lt;td style=&#34;text-align: right;&#34;&gt;0.0519388&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr class=&#34;odd&#34;&gt;
-&lt;td style=&#34;text-align: left;&#34;&gt;Yale University&lt;/td&gt;
-&lt;td style=&#34;text-align: right;&#34;&gt;0.0452552&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr class=&#34;even&#34;&gt;
-&lt;td style=&#34;text-align: left;&#34;&gt;Harvard University&lt;/td&gt;
-&lt;td style=&#34;text-align: right;&#34;&gt;0.0420271&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr class=&#34;odd&#34;&gt;
-&lt;td style=&#34;text-align: left;&#34;&gt;Massachusetts Institute of Technology&lt;/td&gt;
-&lt;td style=&#34;text-align: right;&#34;&gt;0.0374587&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr class=&#34;even&#34;&gt;
-&lt;td style=&#34;text-align: left;&#34;&gt;Rutgers University&lt;/td&gt;
-&lt;td style=&#34;text-align: right;&#34;&gt;0.0360075&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr class=&#34;odd&#34;&gt;
-&lt;td style=&#34;text-align: left;&#34;&gt;New York University&lt;/td&gt;
-&lt;td style=&#34;text-align: right;&#34;&gt;0.0335406&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr class=&#34;even&#34;&gt;
-&lt;td style=&#34;text-align: left;&#34;&gt;University of California, Berkeley&lt;/td&gt;
-&lt;td style=&#34;text-align: right;&#34;&gt;0.0290834&lt;/td&gt;
-&lt;/tr&gt;
-&lt;/tbody&gt;
-&lt;/table&gt;
-
-&lt;p&gt;Here are the comparisons with past PGR scores.&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&#34;http://jonathanweisberg.org/img/page-rank-2/unnamed-chunk-11-1.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
-
-&lt;p&gt;And here are past PageRanks.&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&#34;http://jonathanweisberg.org/img/page-rank-2/unnamed-chunk-12-1.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
-
-&lt;p&gt;Unsurprisingly, restricting ourselves to TT placements makes things
-noisier across the board. PGR-based predictions show more resilience
-here, possibly because they’re only affected by the added noise at one
-end.&lt;/p&gt;
 </description>
     </item>
     
