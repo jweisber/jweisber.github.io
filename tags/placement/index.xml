@@ -20,7 +20,7 @@
 Wallace’s&lt;/a&gt;: applying Google’s PageRank algorithm
 to the &lt;a href=&#34;http://www.placementdata.com/&#34; target=&#34;_blank&#34;&gt;APDA&lt;/a&gt; placement data.&lt;/p&gt;
 
-&lt;p&gt;&lt;a href=&#34;http://jonathanweisberg.org/post/page-rank-1.html&#34;&gt;Last time&lt;/a&gt; we looked at the motivation and
+&lt;p&gt;&lt;a href=&#34;http://jonathanweisberg.org/post/page-rank-1/&#34;&gt;Last time&lt;/a&gt; we looked at the motivation and
 theory behind the idea. Now we’ll try predicting PageRanks. Can students
 who care about PageRank use the latest
 &lt;a href=&#34;https://www.philosophicalgourmet.com/&#34; target=&#34;_blank&#34;&gt;PGR&lt;/a&gt; to guesstimate a program’s
@@ -288,7 +288,7 @@ Gourmet Report&lt;/a&gt;’s ratings from
 
 &lt;p&gt;These posts expand on the idea in two parts. This post explains the
 theory behind the PageRank algorithm, and reproduces Wallace’s rankings.
-&lt;a href=&#34;http://jonathanweisberg.org/post/page-rank-2.html&#34;&gt;The next post&lt;/a&gt; considers the possibility of
+&lt;a href=&#34;http://jonathanweisberg.org/post/page-rank-2/&#34;&gt;The next post&lt;/a&gt; considers the possibility of
 predicting a department’s PageRank, using either past PGR scores, or
 past placement data fed into the PageRank algorithm itself.&lt;/p&gt;
 
