@@ -363,8 +363,8 @@ of its votes for A; and C cast 30% of its votes for A. But how much
 weight does a vote from program A carry, compared to say a vote from B?
 Labeling these unknown weights &lt;em&gt;w&lt;/em&gt;&lt;sub&gt;&lt;em&gt;A&lt;/em&gt;&lt;/sub&gt;, &lt;em&gt;w&lt;/em&gt;&lt;sub&gt;&lt;em&gt;B&lt;/em&gt;&lt;/sub&gt;, and
 &lt;em&gt;w&lt;/em&gt;&lt;sub&gt;&lt;em&gt;C&lt;/em&gt;&lt;/sub&gt;, we get a linear equation:
-&lt;em&gt;w&lt;/em&gt;&lt;sub&gt;&lt;em&gt;A&lt;/em&gt;&lt;/sub&gt; = .1&lt;em&gt;w&lt;/em&gt;&lt;sub&gt;&lt;em&gt;A&lt;/em&gt;&lt;/sub&gt; + .2&lt;em&gt;w&lt;/em&gt;&lt;sub&gt;&lt;em&gt;B&lt;/em&gt;&lt;/sub&gt; + .3&lt;em&gt;w&lt;/em&gt;&lt;sub&gt;&lt;em&gt;C&lt;/em&gt;&lt;/sub&gt;.
- Applying the same formula to B and C, and we get a system of three
+$$ w_A = .1 w_A + .2 w_B + .3 w_C. $$
+Applying the same formula to B and C, and we get a system of three
 linear equations, in three unknowns:
 $$
   \begin{aligned}
@@ -391,7 +391,7 @@ is pretty much the same.&lt;/p&gt;
 program &lt;em&gt;i&lt;/em&gt; a weight &lt;em&gt;w&lt;/em&gt;&lt;sub&gt;&lt;em&gt;i&lt;/em&gt;&lt;/sub&gt; that reflects the votes of
 confidence it’s received. Placement data tells us for any two programs
 &lt;em&gt;i&lt;/em&gt; and &lt;em&gt;j&lt;/em&gt; the portion of faculty at program &lt;em&gt;j&lt;/em&gt; hired from program
-&lt;em&gt;i&lt;/em&gt;, call it &lt;em&gt;m&lt;/em&gt;&lt;sub&gt;*i*&lt;em&gt;j&lt;/em&gt;&lt;/sub&gt;. Since the weight of program &lt;em&gt;i&lt;/em&gt; is
+&lt;em&gt;i&lt;/em&gt;, call it $m_{ij}$. Since the weight of program &lt;em&gt;i&lt;/em&gt; is
 the weighted sum of these numbers, we have a set of &lt;em&gt;n&lt;/em&gt; linear equations
 with &lt;em&gt;n&lt;/em&gt; unknowns:
 $$
