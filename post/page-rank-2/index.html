@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Jonathan Weisberg's Homepage">
+    <meta name="author" content="Jonathan Weisberg">
+    
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@jweisber">
+    <meta name="twitter:creator" content="@jweisber">
+    <meta name="twitter:title" content="Placement, PageRank, and the PGR: Part 2">
+    <meta name="twitter:description" content="This post is the second of two devoted to an idea of David Wallace’s: applying Google’s PageRank algorithm to the APDA placement data.
+Last time we looked at the motivation and theory behind the idea. Now we’ll try predicting PageRanks. Can students who care about PageRank use the latest PGR to guesstimate a program’s PageRank 5 or 10 years in the future? Can they use the latest placement data?">
+    <meta name="twitter:image" content="portrait.png">
+
+    <meta property="og:url" content="/post/page-rank-2/" />
+    <meta property="og:type" content="article" />
+    <meta property="og:title" content="Placement, PageRank, and the PGR: Part 2" />
+    <meta property="og:description" content="This post is the second of two devoted to an idea of David Wallace’s: applying Google’s PageRank algorithm to the APDA placement data.
+Last time we looked at the motivation and theory behind the idea. Now we’ll try predicting PageRanks. Can students who care about PageRank use the latest PGR to guesstimate a program’s PageRank 5 or 10 years in the future? Can they use the latest placement data?" />
+    <meta property="og:image" content="portrait.png" />
+
+
+    <title>Placement, PageRank, and the PGR: Part 2</title>
+
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+    <link href="/css/prism.css" rel="stylesheet" />
+    <link href="/css/scarab.css" rel="stylesheet">
+    
+    
+    
+
+</head>
+
+<body>
+
+<nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+  <div class="container">
+    
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-navbar-collapse-1">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="http://jonathanweisberg.org/">Jonathan Weisberg</a>
+    </div>
+    
+    <div class="collapse navbar-collapse" id="bs-navbar-collapse-1">
+      <ul class="nav navbar-nav">
+        <li>
+          <a href="/pdf/CV.pdf">
+            <i class="fa fa-briefcase"></i>&nbsp;
+            CV
+          </a>
+        </li>
+        <li>
+          <a href="/post/">
+            <i class="fa fa-code"></i>&nbsp;
+            Blog
+          </a>
+        </li>
+        <li>
+          <a href="/publication/">
+            <i class="fa fa-files-o"></i>&nbsp;
+            Research
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+
+
+  
+  <div class="container">
+
+    
+    <div class="row">
+      <div class="col-md-3 hidden-sm hidden-xs text-right">
+        <h1 class="post-title">&nbsp;</h1>
+        <p>
+          <em>Thu, Dec 6, 2018</em><br />
+          
+          
+          
+          <span class="post-tags">
+            
+            <a class="post-tag" href="http://jonathanweisberg.org/tags/philosophy">Philosophy</a>
+             &bull;   
+            
+            <a class="post-tag" href="http://jonathanweisberg.org/tags/placement">Placement</a>
+            
+            
+          </span>
+          
+          
+        </p>
+      </div>
+
+      <div class="col-md-7 blog-post">
+
+        <h1>Placement, PageRank, and the PGR: Part 2</h1>
+
+        <div class="hidden-md hidden-lg">
+          <div>
+            <em>Thu, Dec 6, 2018</em>
+          </div>
+          
+          
+          
+          <p class="post-tags">
+            
+            <a class="post-tag" href="http://jonathanweisberg.org/tags/philosophy">Philosophy</a>
+             &bull;   
+            
+            <a class="post-tag" href="http://jonathanweisberg.org/tags/placement">Placement</a>
+            
+            
+          </p>
+          
+          
+        </div>
+
+        <div class="post-body">
+          
+
+<p>This post is the second of two devoted to <a href="https://bit.ly/2z12SoB" target="_blank">an idea of David
+Wallace’s</a>: applying Google’s PageRank algorithm
+to the <a href="http://www.placementdata.com/" target="_blank">APDA</a> placement data.</p>
+
+<p><a href="/post/page-rank-1.html">Last time</a> we looked at the motivation and
+theory behind the idea. Now we’ll try predicting PageRanks. Can students
+who care about PageRank use the latest
+<a href="https://www.philosophicalgourmet.com/" target="_blank">PGR</a> to guesstimate a program’s
+PageRank 5 or 10 years in the future? Can they use the latest placement
+data?</p>
+
+<h1 id="the-data">The Data</h1>
+
+<p>We’ll use a somewhat different data set from last time, since we need
+things broken down by year. Our data comes now from <a href="http://placementdata.com" target="_blank">the APDA
+homepage</a>, where you can search by PhD program
+and get a list of jobs where its graduates have landed.</p>
+
+<p>Unfortunately the search results are in a pretty unfriendly format. This
+means doing some nasty
+<a href="https://en.wikipedia.org/wiki/Web_scraping" target="_blank">scraping</a>, a notoriously
+error-prone process. And even before scraping, the data seems to have
+some errors and quirks (duplicate entries, inconsistent capitalization,
+missing values, etc.). I’ve patched what I can, but we should keep in
+mind that we’re already working with a pretty noisy signal even before
+we get to any analysis.</p>
+
+<p>A quick poke around before we get to the main event: how much data do we
+have for each year? The years since 2010 really dominate this data set.</p>
+
+<p><img src="/img/page-rank-2/unnamed-chunk-2-1.png" alt="" /></p>
+
+<p>That’s going to be a problem, when we try predicting future PageRank
+based on past PageRank. Ideally we’d like to have two data-rich periods
+separated by a 5-year span. Then we can see how well a hypothetical
+prospective student would have done at predicting the PageRanks they’d
+face on the job market, using the PageRanks available when they were
+choosing a program. But we don’t have that. So we’ll have to live with
+some additional noise when we get to this below.</p>
+
+<p>For now let’s turn to placement type. The APDA tracks whether a job is
+TT, a postdoc, temporary letureship, etc. TT and postdoc placements
+dominate the landscape, followed by temporary and non-academic
+positions.</p>
+
+<p><img src="/img/page-rank-2/unnamed-chunk-3-1.png" alt="" /></p>
+
+<p>Placement types change dramatically over the years though. From the
+early to late naughties, TT changes from being the dominant type to a
+minority.</p>
+
+<p><img src="/img/page-rank-2/unnamed-chunk-4-1.png" alt="" /></p>
+
+<p>Is this the story of the Great Recession? That’s likely a big factor.
+But our data gets spottier as we go back through the naughties. So a
+selection effect is another likely culprit.</p>
+
+<p>Now let’s turn to predicting PageRanks.</p>
+
+<h1 id="predicting-pagerank-from-pgr">Predicting PageRank from PGR</h1>
+
+<p>We’ll calculate all PageRanks on a five-year window (a somewhat
+arbitrary choice). So the “future” PageRanks—the numbers we’ll be trying
+to predict—are calculated from the placement data in the years
+2014–2018.</p>
+
+<p>For now we’ll count postdocs as well as TT placements, for continuity
+with the last post and with Wallace’s original analysis. We’ll rerun the
+analysis using only TT jobs at the end.</p>
+
+<p>Given these choices, here are the top 10 programs by PageRank for
+2014–18.</p>
+
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Program</th>
+<th style="text-align: right;">PageRank 2014-18</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Princeton University</td>
+<td style="text-align: right;">0.0437282</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Stanford University</td>
+<td style="text-align: right;">0.0434163</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">New York University</td>
+<td style="text-align: right;">0.0408766</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">University of Oxford</td>
+<td style="text-align: right;">0.0374294</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">University of Arizona</td>
+<td style="text-align: right;">0.0367260</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Harvard University</td>
+<td style="text-align: right;">0.0323110</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">University of Pittsburgh (HPS)</td>
+<td style="text-align: right;">0.0296616</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Massachusetts Institute of Technology</td>
+<td style="text-align: right;">0.0278274</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">University of Chicago</td>
+<td style="text-align: right;">0.0277885</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">University of Toronto</td>
+<td style="text-align: right;">0.0260106</td>
+</tr>
+</tbody>
+</table>
+
+<p>How well do PGR scores predict these rankings? Following Wallace we’ll
+start with the 2006 PGR. But we’ll also consider the five iterations
+since. I’ve put the PageRanks (the <em>y</em>-axis) on a log scale for
+visibility.</p>
+
+<p><img src="/img/page-rank-2/unnamed-chunk-6-1.png" alt="" /></p>
+
+<p>Overall the correlation looks pretty strong, ranging from 0.66 in 2006
+to 0.73 in 2014. And that seems consistent with Wallace’s original
+finding, a correlation of 0.75 between the 2006 PGR and all placement
+data up through 2016.</p>
+
+<p>Notice though, the connection gets much weaker when PGR ratings are
+lower. Below a PGR rating of 3 or so, PageRank doesn’t seem to increase
+much with PGR rating: the average correlation is only 0.25.</p>
+
+<p>We have two conclusions so far then. First, as Wallace found, PGR rating
+seems to predict PageRank pretty well, even when the ratings are
+collected almost a decade in advance. But second, this effect is much
+stronger for programs with high PGR ratings.</p>
+
+<h1 id="predicting-pagerank-from-pagerank">Predicting PageRank from PageRank</h1>
+
+<p>What if our hypothetical grad student had relied on the available
+placement data instead of PGR scores in deciding where to go?</p>
+
+<p><img src="/img/page-rank-2/unnamed-chunk-8-1.png" alt="" /></p>
+
+<p>Well they’d probably have been better off using the PGR in 2006. But
+PageRank gets pretty competitive with PGR starting around 2010, when the
+placement data gets richer.</p>
+
+<p>It might be that PageRank has the potential to be a better
+predictor—even long range—provided we have enough placement data. Or it
+might be that PageRank is only better at close range. We can’t be sure,
+but hopefully we’ll find out in a few years as the APDA database grows.</p>
+
+<h1 id="tenure-track-only">Tenure-track Only</h1>
+
+<p>Finally, let’s do the same analysis but counting only tenure-track
+placements toward a department’s PageRank. Here are our top 10 programs
+then (a more similar group to what we saw last time, note).</p>
+
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Program</th>
+<th style="text-align: right;">PageRank 2014-18</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Princeton University</td>
+<td style="text-align: right;">0.0837437</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">University of Pittsburgh (HPS)</td>
+<td style="text-align: right;">0.0640854</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">University of Oxford</td>
+<td style="text-align: right;">0.0573890</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">University of Chicago</td>
+<td style="text-align: right;">0.0519388</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Yale University</td>
+<td style="text-align: right;">0.0452552</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Harvard University</td>
+<td style="text-align: right;">0.0420271</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Massachusetts Institute of Technology</td>
+<td style="text-align: right;">0.0374587</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Rutgers University</td>
+<td style="text-align: right;">0.0360075</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">New York University</td>
+<td style="text-align: right;">0.0335406</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">University of California, Berkeley</td>
+<td style="text-align: right;">0.0290834</td>
+</tr>
+</tbody>
+</table>
+
+<p>Here are the comparisons with past PGR scores.</p>
+
+<p><img src="/img/page-rank-2/unnamed-chunk-11-1.png" alt="" /></p>
+
+<p>And here are past PageRanks.</p>
+
+<p><img src="/img/page-rank-2/unnamed-chunk-12-1.png" alt="" /></p>
+
+<p>Unsurprisingly, restricting ourselves to TT placements makes things
+noisier across the board. PGR-based predictions show more resilience
+here, possibly because they’re only affected by the added noise at one
+end.</p>
+
+
+          &nbsp;
+        </div>
+
+        <div>
+          <a href="javascript: history.back()"><i class="fa fa-arrow-left"></i> Back</a>
+
+        </div>
+      </div>
+    </div>
+    
+
+<footer style="padding-top: 1em;">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-lg-12 text-center">
+        <p>
+          Powered by <a href="https://gohugo.io/">Hugo</a>;
+          styled with <a href="http://getbootstrap.com/">Bootstrap</a>;
+          mostly <a href="https://github.com/lambdafu/hugo-finite">cribbed</a> <a href="https://kieranhealy.org/">from</a> <a href="http://consequently.org/">others</a>.
+        </p>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+<script src="/js/prism.js"></script>
+
+<script type="text/javascript">
+var sc_project= 11213692 ;
+var sc_invisible= 1 ;
+var sc_security="b1954803";
+var scJsHost = (("https:" == document.location.protocol) ?
+"https://secure." : "http://www.");
+document.write("<sc"+"ript type='text/javascript' src='" +
+scJsHost+
+"statcounter.com/counter/counter.js'></"+"script>");
+</script>
+<noscript><div class="statcounter"><a title="web analytics"
+href="http://statcounter.com/" target="_blank"><img
+class="statcounter"
+src="//c.statcounter.com/11213692/0/b1954803/1/" alt="web
+analytics"></a></div></noscript>
+
+
+</body>
+</html>
+

@@ -1,0 +1,1408 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Jonathan Weisberg's Homepage">
+    <meta name="author" content="Jonathan Weisberg">
+    
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@jweisber">
+    <meta name="twitter:creator" content="@jweisber">
+    <meta name="twitter:title" content="Placement, PageRank, and the PGR: Part 1">
+    <meta name="twitter:description" content="This is the first of two posts devoted to an idea of David Wallace’s.
+Suppose you pick a philosophy PhD program at random and you go visit their website. There you pick a random person from the faculty list and see where they got their PhD. Then you go to that program’s website and repeat the exercise: pick a random faculty member, see where they did their PhD, and go to that program’s website.">
+    <meta name="twitter:image" content="portrait.png">
+
+    <meta property="og:url" content="/post/page-rank-1/" />
+    <meta property="og:type" content="article" />
+    <meta property="og:title" content="Placement, PageRank, and the PGR: Part 1" />
+    <meta property="og:description" content="This is the first of two posts devoted to an idea of David Wallace’s.
+Suppose you pick a philosophy PhD program at random and you go visit their website. There you pick a random person from the faculty list and see where they got their PhD. Then you go to that program’s website and repeat the exercise: pick a random faculty member, see where they did their PhD, and go to that program’s website." />
+    <meta property="og:image" content="portrait.png" />
+
+
+    <title>Placement, PageRank, and the PGR: Part 1</title>
+
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+    <link href="/css/prism.css" rel="stylesheet" />
+    <link href="/css/scarab.css" rel="stylesheet">
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]},
+        "HTML-CSS": {
+          availableFonts: ["Gyre-Pagella"],
+          preferredFont: "Gyre-Pagella",
+          webFont: "Gyre-Pagella",
+          imageFont: "Gyre-Pagella",
+        }
+      });
+    </script>
+    <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+    </script>
+    
+    
+    
+
+</head>
+
+<body>
+
+<nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+  <div class="container">
+    
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-navbar-collapse-1">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="http://jonathanweisberg.org/">Jonathan Weisberg</a>
+    </div>
+    
+    <div class="collapse navbar-collapse" id="bs-navbar-collapse-1">
+      <ul class="nav navbar-nav">
+        <li>
+          <a href="/pdf/CV.pdf">
+            <i class="fa fa-briefcase"></i>&nbsp;
+            CV
+          </a>
+        </li>
+        <li>
+          <a href="/post/">
+            <i class="fa fa-code"></i>&nbsp;
+            Blog
+          </a>
+        </li>
+        <li>
+          <a href="/publication/">
+            <i class="fa fa-files-o"></i>&nbsp;
+            Research
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+
+
+  
+  <div class="container">
+
+    
+    <div class="row">
+      <div class="col-md-3 hidden-sm hidden-xs text-right">
+        <h1 class="post-title">&nbsp;</h1>
+        <p>
+          <em>Thu, Dec 6, 2018</em><br />
+          
+          
+          
+          <span class="post-tags">
+            
+            <a class="post-tag" href="http://jonathanweisberg.org/tags/philosophy">Philosophy</a>
+             &bull;   
+            
+            <a class="post-tag" href="http://jonathanweisberg.org/tags/placement">Placement</a>
+            
+            
+          </span>
+          
+          
+        </p>
+      </div>
+
+      <div class="col-md-7 blog-post">
+
+        <h1>Placement, PageRank, and the PGR: Part 1</h1>
+
+        <div class="hidden-md hidden-lg">
+          <div>
+            <em>Thu, Dec 6, 2018</em>
+          </div>
+          
+          
+          
+          <p class="post-tags">
+            
+            <a class="post-tag" href="http://jonathanweisberg.org/tags/philosophy">Philosophy</a>
+             &bull;   
+            
+            <a class="post-tag" href="http://jonathanweisberg.org/tags/placement">Placement</a>
+            
+            
+          </p>
+          
+          
+        </div>
+
+        <div class="post-body">
+          
+
+<p>This is the first of two posts devoted to <a href="https://bit.ly/2z12SoB" target="_blank">an idea of David
+Wallace’s</a>.</p>
+
+<p>Suppose you pick a philosophy PhD program at random and you go visit
+their website. There you pick a random person from the faculty list and
+see where they got their PhD. Then you go to that program’s website and
+repeat the exercise: pick a random faculty member, see where they did
+their PhD, and go to that program’s website. And again, and again.</p>
+
+<p>You’d come back to some programs more often than others in the long run.
+Which ones? Those whose graduates are in demand at other programs whose
+graduates are in demand at still other programs etc. In other words, the
+programs you keep coming back to are central in the hiring network of
+philosophy PhD programs.</p>
+
+<p>This is the idea behind Google’s famous “PageRank” algorithm. In <a href="https://ac.els-cdn.com/S1389128612003611/1-s2.0-S1389128612003611-main.pdf?_tid=a2d2e085-ca3d-4933-b0f3-fa0f383599df&amp;acdnat=1541034827_134e15cd9b3a557c55ba481746397b93" target="_blank">a
+classic
+paper</a>,
+Google’s founders imagined a web surfer starting at a random page,
+following a random link from there, then following a random link found
+on the new page, and so on. Pages where the surfer winds up more often
+are more likely to be of interest to the users of a search engine.</p>
+
+<p>Wallace’s idea was to apply the same algorithm to the
+<a href="http://www.placementdata.com/" target="_blank">APDA</a>’s placement data. And he found
+that the resultant rankings correlated closely with the <a href="https://www.philosophicalgourmet.com/" target="_blank">Philosophical
+Gourmet Report</a>’s ratings from
+2006.</p>
+
+<p>These posts expand on the idea in two parts. This post explains the
+theory behind the PageRank algorithm, and reproduces Wallace’s rankings.
+<a href="/post/page-rank-2.html">The next post</a> considers the possibility of
+predicting a department’s PageRank, using either past PGR scores, or
+past placement data fed into the PageRank algorithm itself.</p>
+
+<h1 id="motivation">Motivation</h1>
+
+<p>Why care about a department’s PageRank? You might think it’s an
+indicator of a program’s “quality”, but I’m more interested in its
+potential use to students. Some want to become professors at programs
+where they will train PhDs who go on to do the same.</p>
+
+<p>I’m also just intrigued by the PageRank algorithm itself. It’s
+mathematically very nifty, and it has a delightfully philosophical
+flavour too. It takes a problem that looks like a vicious regress and
+shows how to give it a virtuous grounding.</p>
+
+<p>So these posts are partly an exercise for me, to learn about the
+algorithm and the math behind it. Plus I just like playing with data.</p>
+
+<h1 id="theory">Theory</h1>
+
+<p>There are two ways to understand the PageRank algorithm. First is the
+random surfer idea already described. The second we might call the “vote
+of confidence” model.</p>
+
+<p>When program X hires a graduate of program Y, that’s a vote of
+confidence for program Y. But this vote carries more weight if program X
+itself is well regarded. So we have to see where program X’s own
+graduates have been placed, and determine how much confidence people
+have in those programs. And so on.</p>
+
+<p>The threat of regress looms. How do we break out? With a dash of high
+school algebra.</p>
+
+<p>Imagine we have just three programs, A, B, and C. Program A got 80% of
+its faculty from B, and 10% each from C and from A itself. B is similar,
+except… well, here’s the whole story:</p>
+
+<table>
+<thead>
+<tr class="header">
+<th></th>
+<th style="text-align: left;">A’s Faculty</th>
+<th style="text-align: left;">B’s Faculty</th>
+<th style="text-align: left;">C’s Faculty</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>PhD from A</td>
+<td style="text-align: left;">10%</td>
+<td style="text-align: left;">20%</td>
+<td style="text-align: left;">30%</td>
+</tr>
+<tr class="even">
+<td>PhD from B</td>
+<td style="text-align: left;">80%</td>
+<td style="text-align: left;">70%</td>
+<td style="text-align: left;">40%</td>
+</tr>
+<tr class="odd">
+<td>PhD from C</td>
+<td style="text-align: left;">10%</td>
+<td style="text-align: left;">10%</td>
+<td style="text-align: left;">30%</td>
+</tr>
+</tbody>
+</table>
+
+<p>Thinking row-wise, A cast 10% of its votes for A so to speak; B cast 20%
+of its votes for A; and C cast 30% of its votes for A. But how much
+weight does a vote from program A carry, compared to say a vote from B?
+Labeling these unknown weights <em>w</em><sub><em>A</em></sub>, <em>w</em><sub><em>B</em></sub>, and
+<em>w</em><sub><em>C</em></sub>, we get a linear equation:
+<em>w</em><sub><em>A</em></sub> = .1<em>w</em><sub><em>A</em></sub> + .2<em>w</em><sub><em>B</em></sub> + .3<em>w</em><sub><em>C</em></sub>.
+ Applying the same formula to B and C, and we get a system of three
+linear equations, in three unknowns:
+$$
+  \begin{aligned}
+    w_A &amp;= .1 w_A + .2 w_B + .3 w_C.\\<br />
+    w_B &amp;= .8 w_A + .7 w_B + .4 w_C.\\<br />
+    w_C &amp;= .1 w_A + .1 w_B + .3 w_C.
+  \end{aligned}
+$$</p>
+
+<p>Solving this system we find that
+(<em>w</em><sub><em>A</em></sub>, <em>w</em><sub><em>B</em></sub>, <em>w</em><sub><em>C</em></sub>) = (0.19, 0.68, 0.12)
+is the only solution with positive weights. So we’ve determined how much
+weight a vote from each program carries. And unsurprisingly, votes from
+program B carry by far the most weight.</p>
+
+<p>Will the same reasoning work no matter how many programs we have, and no
+matter what their hiring patterns are like? More or less yes. We have to
+upgrade the math a bit and add a small tweak. But the heart of the idea
+is pretty much the same.</p>
+
+<h2 id="general-solution">General Solution</h2>
+
+<p>In the general case, we have <em>n</em> programs and we want to give each
+program <em>i</em> a weight <em>w</em><sub><em>i</em></sub> that reflects the votes of
+confidence it’s received. Placement data tells us for any two programs
+<em>i</em> and <em>j</em> the portion of faculty at program <em>j</em> hired from program
+<em>i</em>, call it <em>m</em><sub>*i*<em>j</em></sub>. Since the weight of program <em>i</em> is
+the weighted sum of these numbers, we have a set of <em>n</em> linear equations
+with <em>n</em> unknowns:
+$$
+  \begin{aligned}
+    m_{11} w_1 + m_{12} w_2 + \ldots + m_{1n} w_n &amp;= w_1,\\<br />
+    m_{21} w_1 + m_{22} w_2 + \ldots + m_{2n} w_n &amp;= w_2,\\<br />
+      \vdots &amp;  \\<br />
+    m_{n1} w_1 + m_{n2} w_2 + \ldots + m_{nn} w_n &amp;= w_n.
+  \end{aligned}
+$$</p>
+
+<p>In matrix terms, we’re looking to solve the equation <strong>M</strong><strong>w</strong> = <strong>w</strong>.
+This is an
+<a href="https://en.wikipedia.org/wiki/Eigenvalues_and_eigenvectors" target="_blank">eigenvector</a>
+equation <strong>M</strong><strong>w</strong> = *λ*<strong>w</strong>, where the eigenvalue *λ* = 1. And a
+<a href="https://en.wikipedia.org/wiki/Perron%E2%80%93Frobenius_theorem" target="_blank">famous
+theorem</a>
+guarantees that a unique solution exists, given assumptions to be
+discussed momentarily.</p>
+
+<p>The same theorem also guarantees that this solution is the result of the
+random-surfing exercise we opened with. This is why we can understand
+PageRank using either of our two interpretations. The weight
+<em>w</em><sub><em>B</em></sub> will also be the frequency with which our random
+surfer comes back to program B’s faculty page.</p>
+
+<p>Why? Well suppose we start on some random program’s page, say program A.
+We represent this with the vector <strong>p</strong> = (1, 0, 0), because right now
+we’re on program A’s page with probability 1. Then we start our random
+walk. What is the probability we’ll arrive at A, or B, or C next? To
+find out we multiply <strong>M</strong> against <strong>p</strong>:
+$$
+  \begin{aligned}
+    \mathbf{M} \mathbf{p}
+      &amp;=
+        \left(
+          \begin{matrix}
+            0.1 &amp; 0.2 &amp; 0.3\\<br />
+            0.8 &amp; 0.7 &amp; 0.4\\<br />
+            0.1 &amp; 0.1 &amp; 0.3
+          \end{matrix}
+        \right)
+        \left(
+          \begin{matrix}
+            1\\<br />
+            0\\<br />
+            0
+          \end{matrix}
+        \right)\\<br />
+      &amp;=
+        \left(
+          \begin{matrix}
+            0.1\\<br />
+            0.8\\<br />
+            0.1
+          \end{matrix}
+        \right).
+  \end{aligned}
+$$
+To find out where we’ll probably be at the next step, we multiply this
+result by <strong>M</strong> again, i.e. we compute <strong>M</strong>(<strong>M</strong><strong>p</strong>). Since matrix
+multiplication is associative, this is the same as
+<strong>M</strong><sup>2</sup><strong>p</strong>. And in general the probabilities of the <em>k</em>-th
+step are given by <strong>M</strong><sup><em>k</em></sup><strong>p</strong>.</p>
+
+<p>Our theorem guarantees now (given conditions still to be specified):
+$$\lim_{k \rightarrow \infty} \mathbf{M}^k \mathbf{p} = \mathbf{w}$$
+ where <strong>w</strong> is the solution to <strong>M</strong><strong>w</strong> = <strong>w</strong> we found earlier. In
+other words, as the random walk progresses, the portion of time spent at
+a program’s page converges to the weight that program’s votes carry.</p>
+
+<p>Importantly, this convergence happens no matter where the random walk
+starts. In fact we get the same convergence for <em>any</em> probability vector
+<strong>p</strong> we might start with. (A probability vector is a list of
+non-negative numbers that sum to one.)</p>
+
+<p>So what conditions guarantee this happy convergence? Our matrix <strong>M</strong> is
+<a href="https://en.wikipedia.org/wiki/Stochastic_matrix" target="_blank">stochastic</a>, meaning
+its columns are probability vectors: they contain nonnegative numbers
+that sum to one. Given that, it suffices for <strong>M</strong> to be
+<a href="https://en.wikipedia.org/wiki/Regular_matrix" target="_blank">regular</a>, meaning
+<strong>M</strong><sup><em>k</em></sup> has all positive entries for some positive integer
+<em>k</em>. This is equivalent to it being possible to get from the page of any
+one program to any other, with positive probability.</p>
+
+<p>In reality this condition may well fail, but there’s any easy fix. We
+just have our random surfer occasionally start over, picking a new
+program at random to start their surfing from. Then there’s always a
+positive chance of ending up anywhere, however briefly.</p>
+
+<h1 id="application">Application</h1>
+
+<p>Let’s put this theory into practice. We need a list of PhD programs, and
+the number of hires from each of them, by each of them. Happily the APDA
+provides <a href="https://bit.ly/2kZ2ulS" target="_blank">a table</a> of just such data up through
+2016.</p>
+
+<p>This table counts hires broadly, notice. It includes postdoc positions,
+and any “permanent academic” post apparently (see page 65
+<a href="https://bit.ly/2kZ2ulS" target="_blank">here</a>).</p>
+
+<p>It also includes “selfies”: when a program hires one of its own PhDs.
+Some selfies are certainly legitimate for our purposes, but others
+probably aren’t the sort of thing we’re after here. For example, KU
+Leuven stands out as having far more selfies than any other program save
+Oxford. Judging from Leuven’s website, most of these posts are not
+permanent positions, nor the sort of highly desirable fellowships Oxford
+often hires its own graduates into.</p>
+
+<p>In this analys I’m going to exclude selfies. This is a bit arbitrary,
+but not entirely. It has a big, negative impact on KU Leuven, not nearly
+so much Oxford. Disclosure: it also slightly favours the University of
+Toronto, where I work.</p>
+
+<p>That in mind let’s see our top 10 PageRank programs, alongside Wallace’s
+results for comparison:</p>
+
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Wallace</th>
+<th style="text-align: left;">Weisberg</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">New York University</td>
+<td style="text-align: left;">New York University</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Columbia University</td>
+<td style="text-align: left;">Columbia University</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Princeton University</td>
+<td style="text-align: left;">Princeton University</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Yale University</td>
+<td style="text-align: left;">Yale University</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Katholieke Universiteit Leuven</td>
+<td style="text-align: left;">University of California, Berkeley</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">University of California, Berkeley</td>
+<td style="text-align: left;">Rutgers University</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">University of Oxford</td>
+<td style="text-align: left;">University of Pittsburgh (HPS)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Rutgers University</td>
+<td style="text-align: left;">University of Toronto</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">University of Pittsburgh (HPS)</td>
+<td style="text-align: left;">University of Oxford</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">University of Toronto</td>
+<td style="text-align: left;">Harvard University</td>
+</tr>
+</tbody>
+</table>
+
+<p>The match is quite close. And the two big differences (Oxford and
+Leuven) are explained by the exclusion of selfies. So we seem to have
+implemented the algorithm correctly.</p>
+
+<p>Next time we’ll look at predicting PageRanks, based on past PGR ratings,
+and past placement data. Meanwhile, here’s the full listing:</p>
+
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: right;">Ordinal</th>
+<th style="text-align: left;">Program</th>
+<th style="text-align: right;">PageRank</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: right;">1</td>
+<td style="text-align: left;">New York University</td>
+<td style="text-align: right;">0.0556761</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">2</td>
+<td style="text-align: left;">Columbia University</td>
+<td style="text-align: right;">0.0513814</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">3</td>
+<td style="text-align: left;">Princeton University</td>
+<td style="text-align: right;">0.0469022</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">4</td>
+<td style="text-align: left;">Yale University</td>
+<td style="text-align: right;">0.0364091</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">5</td>
+<td style="text-align: left;">University of California, Berkeley</td>
+<td style="text-align: right;">0.0347961</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">6</td>
+<td style="text-align: left;">Rutgers University</td>
+<td style="text-align: right;">0.0320305</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">7</td>
+<td style="text-align: left;">University of Pittsburgh (HPS)</td>
+<td style="text-align: right;">0.0306536</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">8</td>
+<td style="text-align: left;">University of Toronto</td>
+<td style="text-align: right;">0.0255954</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">9</td>
+<td style="text-align: left;">University of Oxford</td>
+<td style="text-align: right;">0.0237988</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">10</td>
+<td style="text-align: left;">Harvard University</td>
+<td style="text-align: right;">0.0234968</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">11</td>
+<td style="text-align: left;">University of North Carolina at Chapel Hill</td>
+<td style="text-align: right;">0.0226243</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">12</td>
+<td style="text-align: left;">University of Pittsburgh</td>
+<td style="text-align: right;">0.0222314</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">13</td>
+<td style="text-align: left;">Massachusetts Institute of Technology</td>
+<td style="text-align: right;">0.0189393</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">14</td>
+<td style="text-align: left;">University of California, Los Angeles</td>
+<td style="text-align: right;">0.0185778</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">15</td>
+<td style="text-align: left;">University of Chicago</td>
+<td style="text-align: right;">0.0174908</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">16</td>
+<td style="text-align: left;">Stanford University</td>
+<td style="text-align: right;">0.0167941</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">17</td>
+<td style="text-align: left;">University of Cambridge (HPS)</td>
+<td style="text-align: right;">0.0132451</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">18</td>
+<td style="text-align: left;">University of California, San Diego</td>
+<td style="text-align: right;">0.0130881</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">19</td>
+<td style="text-align: left;">University of Arizona</td>
+<td style="text-align: right;">0.0125996</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">20</td>
+<td style="text-align: left;">Brown University</td>
+<td style="text-align: right;">0.0119340</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">21</td>
+<td style="text-align: left;">Northwestern University</td>
+<td style="text-align: right;">0.0115745</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">22</td>
+<td style="text-align: left;">University of Michigan</td>
+<td style="text-align: right;">0.0111104</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">23</td>
+<td style="text-align: left;">London School of Economics and Political Science</td>
+<td style="text-align: right;">0.0107691</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">24</td>
+<td style="text-align: left;">Graduate Center of the City University of New York</td>
+<td style="text-align: right;">0.0100186</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">25</td>
+<td style="text-align: left;">University of Cambridge</td>
+<td style="text-align: right;">0.0100180</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">26</td>
+<td style="text-align: left;">Indiana University Bloomington</td>
+<td style="text-align: right;">0.0097714</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">27</td>
+<td style="text-align: left;">University of Notre Dame</td>
+<td style="text-align: right;">0.0094539</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">28</td>
+<td style="text-align: left;">King’s College London</td>
+<td style="text-align: right;">0.0091462</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">29</td>
+<td style="text-align: left;">University of Pennsylvania</td>
+<td style="text-align: right;">0.0091080</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">30</td>
+<td style="text-align: left;">Ohio State University</td>
+<td style="text-align: right;">0.0090754</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">31</td>
+<td style="text-align: left;">University of Maryland, College Park</td>
+<td style="text-align: right;">0.0089689</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">32</td>
+<td style="text-align: left;">Katholieke Universiteit Leuven</td>
+<td style="text-align: right;">0.0089271</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">33</td>
+<td style="text-align: left;">University of Chicago (CHSS)</td>
+<td style="text-align: right;">0.0086507</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">34</td>
+<td style="text-align: left;">University of Southern California</td>
+<td style="text-align: right;">0.0083793</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">35</td>
+<td style="text-align: left;">Cornell University</td>
+<td style="text-align: right;">0.0082857</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">36</td>
+<td style="text-align: left;">Institut Jean Nicod</td>
+<td style="text-align: right;">0.0082398</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">37</td>
+<td style="text-align: left;">Western University</td>
+<td style="text-align: right;">0.0080649</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">38</td>
+<td style="text-align: left;">Indiana University Bloomington (HPS)</td>
+<td style="text-align: right;">0.0079434</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">39</td>
+<td style="text-align: left;">Australian National University</td>
+<td style="text-align: right;">0.0079356</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">40</td>
+<td style="text-align: left;">Duke University</td>
+<td style="text-align: right;">0.0077089</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">41</td>
+<td style="text-align: left;">The University of Melbourne</td>
+<td style="text-align: right;">0.0077023</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">42</td>
+<td style="text-align: left;">University College London</td>
+<td style="text-align: right;">0.0068843</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">43</td>
+<td style="text-align: left;">St Andrews and Stirling Graduate Programme in Philosophy</td>
+<td style="text-align: right;">0.0067107</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">44</td>
+<td style="text-align: left;">University of California, Irvine (LPS)</td>
+<td style="text-align: right;">0.0062144</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">45</td>
+<td style="text-align: left;">University of Alberta</td>
+<td style="text-align: right;">0.0062053</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">46</td>
+<td style="text-align: left;">University of Texas at Austin</td>
+<td style="text-align: right;">0.0061678</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">47</td>
+<td style="text-align: left;">University of Sheffield</td>
+<td style="text-align: right;">0.0061209</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">48</td>
+<td style="text-align: left;">Georgetown University</td>
+<td style="text-align: right;">0.0057809</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">49</td>
+<td style="text-align: left;">Carnegie Mellon University</td>
+<td style="text-align: right;">0.0056723</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">50</td>
+<td style="text-align: left;">Pennsylvania State University</td>
+<td style="text-align: right;">0.0056654</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">51</td>
+<td style="text-align: left;">Arizona State University</td>
+<td style="text-align: right;">0.0056481</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">52</td>
+<td style="text-align: left;">University of British Columbia</td>
+<td style="text-align: right;">0.0055508</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">53</td>
+<td style="text-align: left;">Boston College</td>
+<td style="text-align: right;">0.0054974</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">54</td>
+<td style="text-align: left;">University of Edinburgh</td>
+<td style="text-align: right;">0.0052731</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">55</td>
+<td style="text-align: left;">University of Wisconsin-Madison</td>
+<td style="text-align: right;">0.0050191</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">56</td>
+<td style="text-align: left;">McGill University</td>
+<td style="text-align: right;">0.0049022</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">57</td>
+<td style="text-align: left;">Tulane University</td>
+<td style="text-align: right;">0.0048671</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">58</td>
+<td style="text-align: left;">University of Memphis</td>
+<td style="text-align: right;">0.0047615</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">59</td>
+<td style="text-align: left;">McMaster University</td>
+<td style="text-align: right;">0.0045715</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">60</td>
+<td style="text-align: left;">University of Minnesota Twin Cities</td>
+<td style="text-align: right;">0.0045700</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">61</td>
+<td style="text-align: left;">University of Oregon</td>
+<td style="text-align: right;">0.0045430</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">62</td>
+<td style="text-align: left;">Boston University</td>
+<td style="text-align: right;">0.0041329</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">63</td>
+<td style="text-align: left;">University of Connecticut</td>
+<td style="text-align: right;">0.0039652</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">64</td>
+<td style="text-align: left;">University of California, Riverside</td>
+<td style="text-align: right;">0.0039192</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">65</td>
+<td style="text-align: left;">The University of Sydney</td>
+<td style="text-align: right;">0.0038372</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">66</td>
+<td style="text-align: left;">Johns Hopkins University</td>
+<td style="text-align: right;">0.0037778</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">67</td>
+<td style="text-align: left;">University of Colorado Boulder</td>
+<td style="text-align: right;">0.0036436</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">68</td>
+<td style="text-align: left;">The New School</td>
+<td style="text-align: right;">0.0035828</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">69</td>
+<td style="text-align: left;">University of California, Santa Barbara</td>
+<td style="text-align: right;">0.0035150</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">70</td>
+<td style="text-align: left;">University of Virginia</td>
+<td style="text-align: right;">0.0034553</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">71</td>
+<td style="text-align: left;">University of South Florida</td>
+<td style="text-align: right;">0.0034273</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">72</td>
+<td style="text-align: left;">State University of New York at Buffalo</td>
+<td style="text-align: right;">0.0033737</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">73</td>
+<td style="text-align: left;">York University</td>
+<td style="text-align: right;">0.0030985</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">74</td>
+<td style="text-align: left;">University of Massachusetts Amherst</td>
+<td style="text-align: right;">0.0030937</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">75</td>
+<td style="text-align: left;">University of California, Irvine</td>
+<td style="text-align: right;">0.0030890</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">76</td>
+<td style="text-align: left;">Vanderbilt University</td>
+<td style="text-align: right;">0.0030261</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">77</td>
+<td style="text-align: left;">Michigan State University</td>
+<td style="text-align: right;">0.0030149</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">78</td>
+<td style="text-align: left;">Saint Louis University</td>
+<td style="text-align: right;">0.0029294</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">79</td>
+<td style="text-align: left;">Emory University</td>
+<td style="text-align: right;">0.0028953</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">80</td>
+<td style="text-align: left;">University of Illinois at Chicago</td>
+<td style="text-align: right;">0.0028281</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">81</td>
+<td style="text-align: left;">Purdue University</td>
+<td style="text-align: right;">0.0027891</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">82</td>
+<td style="text-align: left;">University of California, Davis</td>
+<td style="text-align: right;">0.0027106</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">83</td>
+<td style="text-align: left;">State University of New York at Stony Brook</td>
+<td style="text-align: right;">0.0025640</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">84</td>
+<td style="text-align: left;">DePaul University</td>
+<td style="text-align: right;">0.0025005</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">85</td>
+<td style="text-align: left;">University of Iowa</td>
+<td style="text-align: right;">0.0023518</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">86</td>
+<td style="text-align: left;">Baylor University</td>
+<td style="text-align: right;">0.0021004</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">87</td>
+<td style="text-align: left;">Macquarie University</td>
+<td style="text-align: right;">0.0020773</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">88</td>
+<td style="text-align: left;">University of Illinois at Urbana-Champaign</td>
+<td style="text-align: right;">0.0020013</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">89</td>
+<td style="text-align: left;">The University of Manchester</td>
+<td style="text-align: right;">0.0019471</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">90</td>
+<td style="text-align: left;">Syracuse University</td>
+<td style="text-align: right;">0.0018914</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">91</td>
+<td style="text-align: left;">William Marsh Rice University</td>
+<td style="text-align: right;">0.0018034</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">92</td>
+<td style="text-align: left;">University of Calgary</td>
+<td style="text-align: right;">0.0017465</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">93</td>
+<td style="text-align: left;">University of York</td>
+<td style="text-align: right;">0.0017356</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">94</td>
+<td style="text-align: left;">University of Hawai’i at Manoa</td>
+<td style="text-align: right;">0.0017302</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">94</td>
+<td style="text-align: left;">University of Oklahoma</td>
+<td style="text-align: right;">0.0017302</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">96</td>
+<td style="text-align: left;">Duquesne University</td>
+<td style="text-align: right;">0.0016160</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">97</td>
+<td style="text-align: left;">Kingston University</td>
+<td style="text-align: right;">0.0015818</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">98</td>
+<td style="text-align: left;">Tilburg University</td>
+<td style="text-align: right;">0.0015262</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">99</td>
+<td style="text-align: left;">The Catholic University of America</td>
+<td style="text-align: right;">0.0015213</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">100</td>
+<td style="text-align: left;">Fordham University</td>
+<td style="text-align: right;">0.0015210</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">101</td>
+<td style="text-align: left;">University of Arkansas</td>
+<td style="text-align: right;">0.0015187</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">102</td>
+<td style="text-align: left;">University of Rochester</td>
+<td style="text-align: right;">0.0014903</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">103</td>
+<td style="text-align: left;">University of Nebraska, Lincoln</td>
+<td style="text-align: right;">0.0014715</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">104</td>
+<td style="text-align: left;">University of Washington</td>
+<td style="text-align: right;">0.0014668</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">105</td>
+<td style="text-align: left;">Washington University in St. Louis</td>
+<td style="text-align: right;">0.0013589</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">106</td>
+<td style="text-align: left;">Villanova University</td>
+<td style="text-align: right;">0.0012493</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">107</td>
+<td style="text-align: left;">Loyola University Chicago</td>
+<td style="text-align: right;">0.0011959</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">107</td>
+<td style="text-align: left;">University of South Carolina</td>
+<td style="text-align: right;">0.0011959</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">107</td>
+<td style="text-align: left;">Victoria University of Wellington</td>
+<td style="text-align: right;">0.0011959</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">110</td>
+<td style="text-align: left;">University of Florida</td>
+<td style="text-align: right;">0.0011906</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">111</td>
+<td style="text-align: left;">Bowling Green State University</td>
+<td style="text-align: right;">0.0011731</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">112</td>
+<td style="text-align: left;">University of Guelph</td>
+<td style="text-align: right;">0.0011575</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">113</td>
+<td style="text-align: left;">University of Utah</td>
+<td style="text-align: right;">0.0011462</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">114</td>
+<td style="text-align: left;">Binghamton University</td>
+<td style="text-align: right;">0.0011355</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">115</td>
+<td style="text-align: left;">University of Tennessee</td>
+<td style="text-align: right;">0.0011087</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">116</td>
+<td style="text-align: left;">University of Waterloo</td>
+<td style="text-align: right;">0.0010800</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">117</td>
+<td style="text-align: left;">University at Albany</td>
+<td style="text-align: right;">0.0010486</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">118</td>
+<td style="text-align: left;">University of New Mexico</td>
+<td style="text-align: right;">0.0010049</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">119</td>
+<td style="text-align: left;">Birkbeck, University of London</td>
+<td style="text-align: right;">0.0009510</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">120</td>
+<td style="text-align: left;">University of Kentucky</td>
+<td style="text-align: right;">0.0008533</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">121</td>
+<td style="text-align: left;">Marquette University</td>
+<td style="text-align: right;">0.0008356</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">122</td>
+<td style="text-align: left;">University of Cincinnati</td>
+<td style="text-align: right;">0.0008316</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">123</td>
+<td style="text-align: left;">University of Georgia</td>
+<td style="text-align: right;">0.0007732</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">124</td>
+<td style="text-align: left;">Brandeis University</td>
+<td style="text-align: right;">0.0007232</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">124</td>
+<td style="text-align: left;">California Institute of Technology</td>
+<td style="text-align: right;">0.0007232</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">124</td>
+<td style="text-align: left;">Central European University</td>
+<td style="text-align: right;">0.0007232</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">124</td>
+<td style="text-align: left;">Claremont Graduate University</td>
+<td style="text-align: right;">0.0007232</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">124</td>
+<td style="text-align: left;">Dalhousie University</td>
+<td style="text-align: right;">0.0007232</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">124</td>
+<td style="text-align: left;">Deakin University</td>
+<td style="text-align: right;">0.0007232</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">124</td>
+<td style="text-align: left;">Durham University</td>
+<td style="text-align: right;">0.0007232</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">124</td>
+<td style="text-align: left;">Eindhoven University of Technology</td>
+<td style="text-align: right;">0.0007232</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">124</td>
+<td style="text-align: left;">Florida State University</td>
+<td style="text-align: right;">0.0007232</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">124</td>
+<td style="text-align: left;">Free University of Berlin</td>
+<td style="text-align: right;">0.0007232</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">124</td>
+<td style="text-align: left;">Goethe University Frankfurt</td>
+<td style="text-align: right;">0.0007232</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">124</td>
+<td style="text-align: left;">Humboldt University of Berlin</td>
+<td style="text-align: right;">0.0007232</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">124</td>
+<td style="text-align: left;">Iowa State University</td>
+<td style="text-align: right;">0.0007232</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">124</td>
+<td style="text-align: left;">Monash University</td>
+<td style="text-align: right;">0.0007232</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">124</td>
+<td style="text-align: left;">Montclair State University</td>
+<td style="text-align: right;">0.0007232</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">124</td>
+<td style="text-align: left;">Pantheon-Sorbonne University</td>
+<td style="text-align: right;">0.0007232</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">124</td>
+<td style="text-align: left;">Southern Illinois University</td>
+<td style="text-align: right;">0.0007232</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">124</td>
+<td style="text-align: left;">Stockholm University</td>
+<td style="text-align: right;">0.0007232</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">124</td>
+<td style="text-align: left;">Temple University</td>
+<td style="text-align: right;">0.0007232</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">124</td>
+<td style="text-align: left;">Texas State University</td>
+<td style="text-align: right;">0.0007232</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">124</td>
+<td style="text-align: left;">The University of Adelaide</td>
+<td style="text-align: right;">0.0007232</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">124</td>
+<td style="text-align: left;">The University of Western Australia</td>
+<td style="text-align: right;">0.0007232</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">124</td>
+<td style="text-align: left;">Trinity College, Dublin</td>
+<td style="text-align: right;">0.0007232</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">124</td>
+<td style="text-align: left;">University de Montreal</td>
+<td style="text-align: right;">0.0007232</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">124</td>
+<td style="text-align: left;">University of Aberdeen</td>
+<td style="text-align: right;">0.0007232</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">124</td>
+<td style="text-align: left;">University of Amsterdam</td>
+<td style="text-align: right;">0.0007232</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">124</td>
+<td style="text-align: left;">University of Auckland</td>
+<td style="text-align: right;">0.0007232</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">124</td>
+<td style="text-align: left;">University of Bristol</td>
+<td style="text-align: right;">0.0007232</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">124</td>
+<td style="text-align: left;">University of California, Santa Cruz</td>
+<td style="text-align: right;">0.0007232</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">124</td>
+<td style="text-align: left;">University of Cologne</td>
+<td style="text-align: right;">0.0007232</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">124</td>
+<td style="text-align: left;">University of Dallas</td>
+<td style="text-align: right;">0.0007232</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">124</td>
+<td style="text-align: left;">University of East Anglia</td>
+<td style="text-align: right;">0.0007232</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">124</td>
+<td style="text-align: left;">University of Geneva</td>
+<td style="text-align: right;">0.0007232</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">124</td>
+<td style="text-align: left;">University of Glasgow</td>
+<td style="text-align: right;">0.0007232</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">124</td>
+<td style="text-align: left;">University of Groningen</td>
+<td style="text-align: right;">0.0007232</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">124</td>
+<td style="text-align: left;">University of Helsinki</td>
+<td style="text-align: right;">0.0007232</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">124</td>
+<td style="text-align: left;">University of Kansas</td>
+<td style="text-align: right;">0.0007232</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">124</td>
+<td style="text-align: left;">University of Kent</td>
+<td style="text-align: right;">0.0007232</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">124</td>
+<td style="text-align: left;">University of Leeds</td>
+<td style="text-align: right;">0.0007232</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">124</td>
+<td style="text-align: left;">University of Miami</td>
+<td style="text-align: right;">0.0007232</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">124</td>
+<td style="text-align: left;">University of Milan</td>
+<td style="text-align: right;">0.0007232</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">124</td>
+<td style="text-align: left;">University of Missouri</td>
+<td style="text-align: right;">0.0007232</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">124</td>
+<td style="text-align: left;">University of New South Wales</td>
+<td style="text-align: right;">0.0007232</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">124</td>
+<td style="text-align: left;">University of Oslo</td>
+<td style="text-align: right;">0.0007232</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">124</td>
+<td style="text-align: left;">University of Otago</td>
+<td style="text-align: right;">0.0007232</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">124</td>
+<td style="text-align: left;">University of Ottawa</td>
+<td style="text-align: right;">0.0007232</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">124</td>
+<td style="text-align: left;">University of Reading</td>
+<td style="text-align: right;">0.0007232</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">124</td>
+<td style="text-align: left;">University of Sussex</td>
+<td style="text-align: right;">0.0007232</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">124</td>
+<td style="text-align: left;">University of Tasmania</td>
+<td style="text-align: right;">0.0007232</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">124</td>
+<td style="text-align: left;">University of Tubingen</td>
+<td style="text-align: right;">0.0007232</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">124</td>
+<td style="text-align: left;">University of Vienna</td>
+<td style="text-align: right;">0.0007232</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">124</td>
+<td style="text-align: left;">University of Waikato</td>
+<td style="text-align: right;">0.0007232</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">124</td>
+<td style="text-align: left;">University of Warwick</td>
+<td style="text-align: right;">0.0007232</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">124</td>
+<td style="text-align: left;">Uppsala University</td>
+<td style="text-align: right;">0.0007232</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">124</td>
+<td style="text-align: left;">Wayne State University</td>
+<td style="text-align: right;">0.0007232</td>
+</tr>
+</tbody>
+</table>
+
+
+          &nbsp;
+        </div>
+
+        <div>
+          <a href="javascript: history.back()"><i class="fa fa-arrow-left"></i> Back</a>
+
+        </div>
+      </div>
+    </div>
+    
+
+<footer style="padding-top: 1em;">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-lg-12 text-center">
+        <p>
+          Powered by <a href="https://gohugo.io/">Hugo</a>;
+          styled with <a href="http://getbootstrap.com/">Bootstrap</a>;
+          mostly <a href="https://github.com/lambdafu/hugo-finite">cribbed</a> <a href="https://kieranhealy.org/">from</a> <a href="http://consequently.org/">others</a>.
+        </p>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+<script src="/js/prism.js"></script>
+
+<script type="text/javascript">
+var sc_project= 11213692 ;
+var sc_invisible= 1 ;
+var sc_security="b1954803";
+var scJsHost = (("https:" == document.location.protocol) ?
+"https://secure." : "http://www.");
+document.write("<sc"+"ript type='text/javascript' src='" +
+scJsHost+
+"statcounter.com/counter/counter.js'></"+"script>");
+</script>
+<noscript><div class="statcounter"><a title="web analytics"
+href="http://statcounter.com/" target="_blank"><img
+class="statcounter"
+src="//c.statcounter.com/11213692/0/b1954803/1/" alt="web
+analytics"></a></div></noscript>
+
+
+</body>
+</html>
+

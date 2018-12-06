@@ -1,0 +1,1474 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Placement on Jonathan Weisberg</title>
+    <link>http://jonathanweisberg.org/tags/placement/index.xml</link>
+    <description>Recent content in Placement on Jonathan Weisberg</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <atom:link href="http://jonathanweisberg.org/tags/placement/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Placement, PageRank, and the PGR: Part 1</title>
+      <link>http://jonathanweisberg.org/post/page-rank-1/</link>
+      <pubDate>Thu, 06 Dec 2018 00:00:00 -0500</pubDate>
+      
+      <guid>http://jonathanweisberg.org/post/page-rank-1/</guid>
+      <description>
+
+&lt;p&gt;This is the first of two posts devoted to &lt;a href=&#34;https://bit.ly/2z12SoB&#34; target=&#34;_blank&#34;&gt;an idea of David
+Wallace’s&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;Suppose you pick a philosophy PhD program at random and you go visit
+their website. There you pick a random person from the faculty list and
+see where they got their PhD. Then you go to that program’s website and
+repeat the exercise: pick a random faculty member, see where they did
+their PhD, and go to that program’s website. And again, and again.&lt;/p&gt;
+
+&lt;p&gt;You’d come back to some programs more often than others in the long run.
+Which ones? Those whose graduates are in demand at other programs whose
+graduates are in demand at still other programs etc. In other words, the
+programs you keep coming back to are central in the hiring network of
+philosophy PhD programs.&lt;/p&gt;
+
+&lt;p&gt;This is the idea behind Google’s famous “PageRank” algorithm. In &lt;a href=&#34;https://ac.els-cdn.com/S1389128612003611/1-s2.0-S1389128612003611-main.pdf?_tid=a2d2e085-ca3d-4933-b0f3-fa0f383599df&amp;amp;acdnat=1541034827_134e15cd9b3a557c55ba481746397b93&#34; target=&#34;_blank&#34;&gt;a
+classic
+paper&lt;/a&gt;,
+Google’s founders imagined a web surfer starting at a random page,
+following a random link from there, then following a random link found
+on the new page, and so on. Pages where the surfer winds up more often
+are more likely to be of interest to the users of a search engine.&lt;/p&gt;
+
+&lt;p&gt;Wallace’s idea was to apply the same algorithm to the
+&lt;a href=&#34;http://www.placementdata.com/&#34; target=&#34;_blank&#34;&gt;APDA&lt;/a&gt;’s placement data. And he found
+that the resultant rankings correlated closely with the &lt;a href=&#34;https://www.philosophicalgourmet.com/&#34; target=&#34;_blank&#34;&gt;Philosophical
+Gourmet Report&lt;/a&gt;’s ratings from
+2006.&lt;/p&gt;
+
+&lt;p&gt;These posts expand on the idea in two parts. This post explains the
+theory behind the PageRank algorithm, and reproduces Wallace’s rankings.
+&lt;a href=&#34;http://jonathanweisberg.org/post/page-rank-2.html&#34;&gt;The next post&lt;/a&gt; considers the possibility of
+predicting a department’s PageRank, using either past PGR scores, or
+past placement data fed into the PageRank algorithm itself.&lt;/p&gt;
+
+&lt;h1 id=&#34;motivation&#34;&gt;Motivation&lt;/h1&gt;
+
+&lt;p&gt;Why care about a department’s PageRank? You might think it’s an
+indicator of a program’s “quality”, but I’m more interested in its
+potential use to students. Some want to become professors at programs
+where they will train PhDs who go on to do the same.&lt;/p&gt;
+
+&lt;p&gt;I’m also just intrigued by the PageRank algorithm itself. It’s
+mathematically very nifty, and it has a delightfully philosophical
+flavour too. It takes a problem that looks like a vicious regress and
+shows how to give it a virtuous grounding.&lt;/p&gt;
+
+&lt;p&gt;So these posts are partly an exercise for me, to learn about the
+algorithm and the math behind it. Plus I just like playing with data.&lt;/p&gt;
+
+&lt;h1 id=&#34;theory&#34;&gt;Theory&lt;/h1&gt;
+
+&lt;p&gt;There are two ways to understand the PageRank algorithm. First is the
+random surfer idea already described. The second we might call the “vote
+of confidence” model.&lt;/p&gt;
+
+&lt;p&gt;When program X hires a graduate of program Y, that’s a vote of
+confidence for program Y. But this vote carries more weight if program X
+itself is well regarded. So we have to see where program X’s own
+graduates have been placed, and determine how much confidence people
+have in those programs. And so on.&lt;/p&gt;
+
+&lt;p&gt;The threat of regress looms. How do we break out? With a dash of high
+school algebra.&lt;/p&gt;
+
+&lt;p&gt;Imagine we have just three programs, A, B, and C. Program A got 80% of
+its faculty from B, and 10% each from C and from A itself. B is similar,
+except… well, here’s the whole story:&lt;/p&gt;
+
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr class=&#34;header&#34;&gt;
+&lt;th&gt;&lt;/th&gt;
+&lt;th style=&#34;text-align: left;&#34;&gt;A’s Faculty&lt;/th&gt;
+&lt;th style=&#34;text-align: left;&#34;&gt;B’s Faculty&lt;/th&gt;
+&lt;th style=&#34;text-align: left;&#34;&gt;C’s Faculty&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr class=&#34;odd&#34;&gt;
+&lt;td&gt;PhD from A&lt;/td&gt;
+&lt;td style=&#34;text-align: left;&#34;&gt;10%&lt;/td&gt;
+&lt;td style=&#34;text-align: left;&#34;&gt;20%&lt;/td&gt;
+&lt;td style=&#34;text-align: left;&#34;&gt;30%&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;even&#34;&gt;
+&lt;td&gt;PhD from B&lt;/td&gt;
+&lt;td style=&#34;text-align: left;&#34;&gt;80%&lt;/td&gt;
+&lt;td style=&#34;text-align: left;&#34;&gt;70%&lt;/td&gt;
+&lt;td style=&#34;text-align: left;&#34;&gt;40%&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;odd&#34;&gt;
+&lt;td&gt;PhD from C&lt;/td&gt;
+&lt;td style=&#34;text-align: left;&#34;&gt;10%&lt;/td&gt;
+&lt;td style=&#34;text-align: left;&#34;&gt;10%&lt;/td&gt;
+&lt;td style=&#34;text-align: left;&#34;&gt;30%&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;p&gt;Thinking row-wise, A cast 10% of its votes for A so to speak; B cast 20%
+of its votes for A; and C cast 30% of its votes for A. But how much
+weight does a vote from program A carry, compared to say a vote from B?
+Labeling these unknown weights &lt;em&gt;w&lt;/em&gt;&lt;sub&gt;&lt;em&gt;A&lt;/em&gt;&lt;/sub&gt;, &lt;em&gt;w&lt;/em&gt;&lt;sub&gt;&lt;em&gt;B&lt;/em&gt;&lt;/sub&gt;, and
+&lt;em&gt;w&lt;/em&gt;&lt;sub&gt;&lt;em&gt;C&lt;/em&gt;&lt;/sub&gt;, we get a linear equation:
+&lt;em&gt;w&lt;/em&gt;&lt;sub&gt;&lt;em&gt;A&lt;/em&gt;&lt;/sub&gt; = .1&lt;em&gt;w&lt;/em&gt;&lt;sub&gt;&lt;em&gt;A&lt;/em&gt;&lt;/sub&gt; + .2&lt;em&gt;w&lt;/em&gt;&lt;sub&gt;&lt;em&gt;B&lt;/em&gt;&lt;/sub&gt; + .3&lt;em&gt;w&lt;/em&gt;&lt;sub&gt;&lt;em&gt;C&lt;/em&gt;&lt;/sub&gt;.
+ Applying the same formula to B and C, and we get a system of three
+linear equations, in three unknowns:
+$$
+  \begin{aligned}
+    w_A &amp;amp;= .1 w_A + .2 w_B + .3 w_C.\\&lt;br /&gt;
+    w_B &amp;amp;= .8 w_A + .7 w_B + .4 w_C.\\&lt;br /&gt;
+    w_C &amp;amp;= .1 w_A + .1 w_B + .3 w_C.
+  \end{aligned}
+$$&lt;/p&gt;
+
+&lt;p&gt;Solving this system we find that
+(&lt;em&gt;w&lt;/em&gt;&lt;sub&gt;&lt;em&gt;A&lt;/em&gt;&lt;/sub&gt;, &lt;em&gt;w&lt;/em&gt;&lt;sub&gt;&lt;em&gt;B&lt;/em&gt;&lt;/sub&gt;, &lt;em&gt;w&lt;/em&gt;&lt;sub&gt;&lt;em&gt;C&lt;/em&gt;&lt;/sub&gt;) = (0.19, 0.68, 0.12)
+is the only solution with positive weights. So we’ve determined how much
+weight a vote from each program carries. And unsurprisingly, votes from
+program B carry by far the most weight.&lt;/p&gt;
+
+&lt;p&gt;Will the same reasoning work no matter how many programs we have, and no
+matter what their hiring patterns are like? More or less yes. We have to
+upgrade the math a bit and add a small tweak. But the heart of the idea
+is pretty much the same.&lt;/p&gt;
+
+&lt;h2 id=&#34;general-solution&#34;&gt;General Solution&lt;/h2&gt;
+
+&lt;p&gt;In the general case, we have &lt;em&gt;n&lt;/em&gt; programs and we want to give each
+program &lt;em&gt;i&lt;/em&gt; a weight &lt;em&gt;w&lt;/em&gt;&lt;sub&gt;&lt;em&gt;i&lt;/em&gt;&lt;/sub&gt; that reflects the votes of
+confidence it’s received. Placement data tells us for any two programs
+&lt;em&gt;i&lt;/em&gt; and &lt;em&gt;j&lt;/em&gt; the portion of faculty at program &lt;em&gt;j&lt;/em&gt; hired from program
+&lt;em&gt;i&lt;/em&gt;, call it &lt;em&gt;m&lt;/em&gt;&lt;sub&gt;*i*&lt;em&gt;j&lt;/em&gt;&lt;/sub&gt;. Since the weight of program &lt;em&gt;i&lt;/em&gt; is
+the weighted sum of these numbers, we have a set of &lt;em&gt;n&lt;/em&gt; linear equations
+with &lt;em&gt;n&lt;/em&gt; unknowns:
+$$
+  \begin{aligned}
+    m_{11} w_1 + m_{12} w_2 + \ldots + m_{1n} w_n &amp;amp;= w_1,\\&lt;br /&gt;
+    m_{21} w_1 + m_{22} w_2 + \ldots + m_{2n} w_n &amp;amp;= w_2,\\&lt;br /&gt;
+      \vdots &amp;amp;  \\&lt;br /&gt;
+    m_{n1} w_1 + m_{n2} w_2 + \ldots + m_{nn} w_n &amp;amp;= w_n.
+  \end{aligned}
+$$&lt;/p&gt;
+
+&lt;p&gt;In matrix terms, we’re looking to solve the equation &lt;strong&gt;M&lt;/strong&gt;&lt;strong&gt;w&lt;/strong&gt; = &lt;strong&gt;w&lt;/strong&gt;.
+This is an
+&lt;a href=&#34;https://en.wikipedia.org/wiki/Eigenvalues_and_eigenvectors&#34; target=&#34;_blank&#34;&gt;eigenvector&lt;/a&gt;
+equation &lt;strong&gt;M&lt;/strong&gt;&lt;strong&gt;w&lt;/strong&gt; = *λ*&lt;strong&gt;w&lt;/strong&gt;, where the eigenvalue *λ* = 1. And a
+&lt;a href=&#34;https://en.wikipedia.org/wiki/Perron%E2%80%93Frobenius_theorem&#34; target=&#34;_blank&#34;&gt;famous
+theorem&lt;/a&gt;
+guarantees that a unique solution exists, given assumptions to be
+discussed momentarily.&lt;/p&gt;
+
+&lt;p&gt;The same theorem also guarantees that this solution is the result of the
+random-surfing exercise we opened with. This is why we can understand
+PageRank using either of our two interpretations. The weight
+&lt;em&gt;w&lt;/em&gt;&lt;sub&gt;&lt;em&gt;B&lt;/em&gt;&lt;/sub&gt; will also be the frequency with which our random
+surfer comes back to program B’s faculty page.&lt;/p&gt;
+
+&lt;p&gt;Why? Well suppose we start on some random program’s page, say program A.
+We represent this with the vector &lt;strong&gt;p&lt;/strong&gt; = (1, 0, 0), because right now
+we’re on program A’s page with probability 1. Then we start our random
+walk. What is the probability we’ll arrive at A, or B, or C next? To
+find out we multiply &lt;strong&gt;M&lt;/strong&gt; against &lt;strong&gt;p&lt;/strong&gt;:
+$$
+  \begin{aligned}
+    \mathbf{M} \mathbf{p}
+      &amp;amp;=
+        \left(
+          \begin{matrix}
+            0.1 &amp;amp; 0.2 &amp;amp; 0.3\\&lt;br /&gt;
+            0.8 &amp;amp; 0.7 &amp;amp; 0.4\\&lt;br /&gt;
+            0.1 &amp;amp; 0.1 &amp;amp; 0.3
+          \end{matrix}
+        \right)
+        \left(
+          \begin{matrix}
+            1\\&lt;br /&gt;
+            0\\&lt;br /&gt;
+            0
+          \end{matrix}
+        \right)\\&lt;br /&gt;
+      &amp;amp;=
+        \left(
+          \begin{matrix}
+            0.1\\&lt;br /&gt;
+            0.8\\&lt;br /&gt;
+            0.1
+          \end{matrix}
+        \right).
+  \end{aligned}
+$$
+To find out where we’ll probably be at the next step, we multiply this
+result by &lt;strong&gt;M&lt;/strong&gt; again, i.e. we compute &lt;strong&gt;M&lt;/strong&gt;(&lt;strong&gt;M&lt;/strong&gt;&lt;strong&gt;p&lt;/strong&gt;). Since matrix
+multiplication is associative, this is the same as
+&lt;strong&gt;M&lt;/strong&gt;&lt;sup&gt;2&lt;/sup&gt;&lt;strong&gt;p&lt;/strong&gt;. And in general the probabilities of the &lt;em&gt;k&lt;/em&gt;-th
+step are given by &lt;strong&gt;M&lt;/strong&gt;&lt;sup&gt;&lt;em&gt;k&lt;/em&gt;&lt;/sup&gt;&lt;strong&gt;p&lt;/strong&gt;.&lt;/p&gt;
+
+&lt;p&gt;Our theorem guarantees now (given conditions still to be specified):
+$$\lim_{k \rightarrow \infty} \mathbf{M}^k \mathbf{p} = \mathbf{w}$$
+ where &lt;strong&gt;w&lt;/strong&gt; is the solution to &lt;strong&gt;M&lt;/strong&gt;&lt;strong&gt;w&lt;/strong&gt; = &lt;strong&gt;w&lt;/strong&gt; we found earlier. In
+other words, as the random walk progresses, the portion of time spent at
+a program’s page converges to the weight that program’s votes carry.&lt;/p&gt;
+
+&lt;p&gt;Importantly, this convergence happens no matter where the random walk
+starts. In fact we get the same convergence for &lt;em&gt;any&lt;/em&gt; probability vector
+&lt;strong&gt;p&lt;/strong&gt; we might start with. (A probability vector is a list of
+non-negative numbers that sum to one.)&lt;/p&gt;
+
+&lt;p&gt;So what conditions guarantee this happy convergence? Our matrix &lt;strong&gt;M&lt;/strong&gt; is
+&lt;a href=&#34;https://en.wikipedia.org/wiki/Stochastic_matrix&#34; target=&#34;_blank&#34;&gt;stochastic&lt;/a&gt;, meaning
+its columns are probability vectors: they contain nonnegative numbers
+that sum to one. Given that, it suffices for &lt;strong&gt;M&lt;/strong&gt; to be
+&lt;a href=&#34;https://en.wikipedia.org/wiki/Regular_matrix&#34; target=&#34;_blank&#34;&gt;regular&lt;/a&gt;, meaning
+&lt;strong&gt;M&lt;/strong&gt;&lt;sup&gt;&lt;em&gt;k&lt;/em&gt;&lt;/sup&gt; has all positive entries for some positive integer
+&lt;em&gt;k&lt;/em&gt;. This is equivalent to it being possible to get from the page of any
+one program to any other, with positive probability.&lt;/p&gt;
+
+&lt;p&gt;In reality this condition may well fail, but there’s any easy fix. We
+just have our random surfer occasionally start over, picking a new
+program at random to start their surfing from. Then there’s always a
+positive chance of ending up anywhere, however briefly.&lt;/p&gt;
+
+&lt;h1 id=&#34;application&#34;&gt;Application&lt;/h1&gt;
+
+&lt;p&gt;Let’s put this theory into practice. We need a list of PhD programs, and
+the number of hires from each of them, by each of them. Happily the APDA
+provides &lt;a href=&#34;https://bit.ly/2kZ2ulS&#34; target=&#34;_blank&#34;&gt;a table&lt;/a&gt; of just such data up through
+2016.&lt;/p&gt;
+
+&lt;p&gt;This table counts hires broadly, notice. It includes postdoc positions,
+and any “permanent academic” post apparently (see page 65
+&lt;a href=&#34;https://bit.ly/2kZ2ulS&#34; target=&#34;_blank&#34;&gt;here&lt;/a&gt;).&lt;/p&gt;
+
+&lt;p&gt;It also includes “selfies”: when a program hires one of its own PhDs.
+Some selfies are certainly legitimate for our purposes, but others
+probably aren’t the sort of thing we’re after here. For example, KU
+Leuven stands out as having far more selfies than any other program save
+Oxford. Judging from Leuven’s website, most of these posts are not
+permanent positions, nor the sort of highly desirable fellowships Oxford
+often hires its own graduates into.&lt;/p&gt;
+
+&lt;p&gt;In this analys I’m going to exclude selfies. This is a bit arbitrary,
+but not entirely. It has a big, negative impact on KU Leuven, not nearly
+so much Oxford. Disclosure: it also slightly favours the University of
+Toronto, where I work.&lt;/p&gt;
+
+&lt;p&gt;That in mind let’s see our top 10 PageRank programs, alongside Wallace’s
+results for comparison:&lt;/p&gt;
+
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr class=&#34;header&#34;&gt;
+&lt;th style=&#34;text-align: left;&#34;&gt;Wallace&lt;/th&gt;
+&lt;th style=&#34;text-align: left;&#34;&gt;Weisberg&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr class=&#34;odd&#34;&gt;
+&lt;td style=&#34;text-align: left;&#34;&gt;New York University&lt;/td&gt;
+&lt;td style=&#34;text-align: left;&#34;&gt;New York University&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;even&#34;&gt;
+&lt;td style=&#34;text-align: left;&#34;&gt;Columbia University&lt;/td&gt;
+&lt;td style=&#34;text-align: left;&#34;&gt;Columbia University&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;odd&#34;&gt;
+&lt;td style=&#34;text-align: left;&#34;&gt;Princeton University&lt;/td&gt;
+&lt;td style=&#34;text-align: left;&#34;&gt;Princeton University&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;even&#34;&gt;
+&lt;td style=&#34;text-align: left;&#34;&gt;Yale University&lt;/td&gt;
+&lt;td style=&#34;text-align: left;&#34;&gt;Yale University&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;odd&#34;&gt;
+&lt;td style=&#34;text-align: left;&#34;&gt;Katholieke Universiteit Leuven&lt;/td&gt;
+&lt;td style=&#34;text-align: left;&#34;&gt;University of California, Berkeley&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;even&#34;&gt;
+&lt;td style=&#34;text-align: left;&#34;&gt;University of California, Berkeley&lt;/td&gt;
+&lt;td style=&#34;text-align: left;&#34;&gt;Rutgers University&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;odd&#34;&gt;
+&lt;td style=&#34;text-align: left;&#34;&gt;University of Oxford&lt;/td&gt;
+&lt;td style=&#34;text-align: left;&#34;&gt;University of Pittsburgh (HPS)&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;even&#34;&gt;
+&lt;td style=&#34;text-align: left;&#34;&gt;Rutgers University&lt;/td&gt;
+&lt;td style=&#34;text-align: left;&#34;&gt;University of Toronto&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;odd&#34;&gt;
+&lt;td style=&#34;text-align: left;&#34;&gt;University of Pittsburgh (HPS)&lt;/td&gt;
+&lt;td style=&#34;text-align: left;&#34;&gt;University of Oxford&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;even&#34;&gt;
+&lt;td style=&#34;text-align: left;&#34;&gt;University of Toronto&lt;/td&gt;
+&lt;td style=&#34;text-align: left;&#34;&gt;Harvard University&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;p&gt;The match is quite close. And the two big differences (Oxford and
+Leuven) are explained by the exclusion of selfies. So we seem to have
+implemented the algorithm correctly.&lt;/p&gt;
+
+&lt;p&gt;Next time we’ll look at predicting PageRanks, based on past PGR ratings,
+and past placement data. Meanwhile, here’s the full listing:&lt;/p&gt;
+
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr class=&#34;header&#34;&gt;
+&lt;th style=&#34;text-align: right;&#34;&gt;Ordinal&lt;/th&gt;
+&lt;th style=&#34;text-align: left;&#34;&gt;Program&lt;/th&gt;
+&lt;th style=&#34;text-align: right;&#34;&gt;PageRank&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr class=&#34;odd&#34;&gt;
+&lt;td style=&#34;text-align: right;&#34;&gt;1&lt;/td&gt;
+&lt;td style=&#34;text-align: left;&#34;&gt;New York University&lt;/td&gt;
+&lt;td style=&#34;text-align: right;&#34;&gt;0.0556761&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;even&#34;&gt;
+&lt;td style=&#34;text-align: right;&#34;&gt;2&lt;/td&gt;
+&lt;td style=&#34;text-align: left;&#34;&gt;Columbia University&lt;/td&gt;
+&lt;td style=&#34;text-align: right;&#34;&gt;0.0513814&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;odd&#34;&gt;
+&lt;td style=&#34;text-align: right;&#34;&gt;3&lt;/td&gt;
+&lt;td style=&#34;text-align: left;&#34;&gt;Princeton University&lt;/td&gt;
+&lt;td style=&#34;text-align: right;&#34;&gt;0.0469022&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;even&#34;&gt;
+&lt;td style=&#34;text-align: right;&#34;&gt;4&lt;/td&gt;
+&lt;td style=&#34;text-align: left;&#34;&gt;Yale University&lt;/td&gt;
+&lt;td style=&#34;text-align: right;&#34;&gt;0.0364091&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;odd&#34;&gt;
+&lt;td style=&#34;text-align: right;&#34;&gt;5&lt;/td&gt;
+&lt;td style=&#34;text-align: left;&#34;&gt;University of California, Berkeley&lt;/td&gt;
+&lt;td style=&#34;text-align: right;&#34;&gt;0.0347961&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;even&#34;&gt;
+&lt;td style=&#34;text-align: right;&#34;&gt;6&lt;/td&gt;
+&lt;td style=&#34;text-align: left;&#34;&gt;Rutgers University&lt;/td&gt;
+&lt;td style=&#34;text-align: right;&#34;&gt;0.0320305&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;odd&#34;&gt;
+&lt;td style=&#34;text-align: right;&#34;&gt;7&lt;/td&gt;
+&lt;td style=&#34;text-align: left;&#34;&gt;University of Pittsburgh (HPS)&lt;/td&gt;
+&lt;td style=&#34;text-align: right;&#34;&gt;0.0306536&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;even&#34;&gt;
+&lt;td style=&#34;text-align: right;&#34;&gt;8&lt;/td&gt;
+&lt;td style=&#34;text-align: left;&#34;&gt;University of Toronto&lt;/td&gt;
+&lt;td style=&#34;text-align: right;&#34;&gt;0.0255954&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;odd&#34;&gt;
+&lt;td style=&#34;text-align: right;&#34;&gt;9&lt;/td&gt;
+&lt;td style=&#34;text-align: left;&#34;&gt;University of Oxford&lt;/td&gt;
+&lt;td style=&#34;text-align: right;&#34;&gt;0.0237988&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;even&#34;&gt;
+&lt;td style=&#34;text-align: right;&#34;&gt;10&lt;/td&gt;
+&lt;td style=&#34;text-align: left;&#34;&gt;Harvard University&lt;/td&gt;
+&lt;td style=&#34;text-align: right;&#34;&gt;0.0234968&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;odd&#34;&gt;
+&lt;td style=&#34;text-align: right;&#34;&gt;11&lt;/td&gt;
+&lt;td style=&#34;text-align: left;&#34;&gt;University of North Carolina at Chapel Hill&lt;/td&gt;
+&lt;td style=&#34;text-align: right;&#34;&gt;0.0226243&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;even&#34;&gt;
+&lt;td style=&#34;text-align: right;&#34;&gt;12&lt;/td&gt;
+&lt;td style=&#34;text-align: left;&#34;&gt;University of Pittsburgh&lt;/td&gt;
+&lt;td style=&#34;text-align: right;&#34;&gt;0.0222314&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;odd&#34;&gt;
+&lt;td style=&#34;text-align: right;&#34;&gt;13&lt;/td&gt;
+&lt;td style=&#34;text-align: left;&#34;&gt;Massachusetts Institute of Technology&lt;/td&gt;
+&lt;td style=&#34;text-align: right;&#34;&gt;0.0189393&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;even&#34;&gt;
+&lt;td style=&#34;text-align: right;&#34;&gt;14&lt;/td&gt;
+&lt;td style=&#34;text-align: left;&#34;&gt;University of California, Los Angeles&lt;/td&gt;
+&lt;td style=&#34;text-align: right;&#34;&gt;0.0185778&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;odd&#34;&gt;
+&lt;td style=&#34;text-align: right;&#34;&gt;15&lt;/td&gt;
+&lt;td style=&#34;text-align: left;&#34;&gt;University of Chicago&lt;/td&gt;
+&lt;td style=&#34;text-align: right;&#34;&gt;0.0174908&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;even&#34;&gt;
+&lt;td style=&#34;text-align: right;&#34;&gt;16&lt;/td&gt;
+&lt;td style=&#34;text-align: left;&#34;&gt;Stanford University&lt;/td&gt;
+&lt;td style=&#34;text-align: right;&#34;&gt;0.0167941&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;odd&#34;&gt;
+&lt;td style=&#34;text-align: right;&#34;&gt;17&lt;/td&gt;
+&lt;td style=&#34;text-align: left;&#34;&gt;University of Cambridge (HPS)&lt;/td&gt;
+&lt;td style=&#34;text-align: right;&#34;&gt;0.0132451&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;even&#34;&gt;
+&lt;td style=&#34;text-align: right;&#34;&gt;18&lt;/td&gt;
+&lt;td style=&#34;text-align: left;&#34;&gt;University of California, San Diego&lt;/td&gt;
+&lt;td style=&#34;text-align: right;&#34;&gt;0.0130881&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;odd&#34;&gt;
+&lt;td style=&#34;text-align: right;&#34;&gt;19&lt;/td&gt;
+&lt;td style=&#34;text-align: left;&#34;&gt;University of Arizona&lt;/td&gt;
+&lt;td style=&#34;text-align: right;&#34;&gt;0.0125996&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;even&#34;&gt;
+&lt;td style=&#34;text-align: right;&#34;&gt;20&lt;/td&gt;
+&lt;td style=&#34;text-align: left;&#34;&gt;Brown University&lt;/td&gt;
+&lt;td style=&#34;text-align: right;&#34;&gt;0.0119340&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;odd&#34;&gt;
+&lt;td style=&#34;text-align: right;&#34;&gt;21&lt;/td&gt;
+&lt;td style=&#34;text-align: left;&#34;&gt;Northwestern University&lt;/td&gt;
+&lt;td style=&#34;text-align: right;&#34;&gt;0.0115745&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;even&#34;&gt;
+&lt;td style=&#34;text-align: right;&#34;&gt;22&lt;/td&gt;
+&lt;td style=&#34;text-align: left;&#34;&gt;University of Michigan&lt;/td&gt;
+&lt;td style=&#34;text-align: right;&#34;&gt;0.0111104&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;odd&#34;&gt;
+&lt;td style=&#34;text-align: right;&#34;&gt;23&lt;/td&gt;
+&lt;td style=&#34;text-align: left;&#34;&gt;London School of Economics and Political Science&lt;/td&gt;
+&lt;td style=&#34;text-align: right;&#34;&gt;0.0107691&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;even&#34;&gt;
+&lt;td style=&#34;text-align: right;&#34;&gt;24&lt;/td&gt;
+&lt;td style=&#34;text-align: left;&#34;&gt;Graduate Center of the City University of New York&lt;/td&gt;
+&lt;td style=&#34;text-align: right;&#34;&gt;0.0100186&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;odd&#34;&gt;
+&lt;td style=&#34;text-align: right;&#34;&gt;25&lt;/td&gt;
+&lt;td style=&#34;text-align: left;&#34;&gt;University of Cambridge&lt;/td&gt;
+&lt;td style=&#34;text-align: right;&#34;&gt;0.0100180&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;even&#34;&gt;
+&lt;td style=&#34;text-align: right;&#34;&gt;26&lt;/td&gt;
+&lt;td style=&#34;text-align: left;&#34;&gt;Indiana University Bloomington&lt;/td&gt;
+&lt;td style=&#34;text-align: right;&#34;&gt;0.0097714&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;odd&#34;&gt;
+&lt;td style=&#34;text-align: right;&#34;&gt;27&lt;/td&gt;
+&lt;td style=&#34;text-align: left;&#34;&gt;University of Notre Dame&lt;/td&gt;
+&lt;td style=&#34;text-align: right;&#34;&gt;0.0094539&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;even&#34;&gt;
+&lt;td style=&#34;text-align: right;&#34;&gt;28&lt;/td&gt;
+&lt;td style=&#34;text-align: left;&#34;&gt;King’s College London&lt;/td&gt;
+&lt;td style=&#34;text-align: right;&#34;&gt;0.0091462&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;odd&#34;&gt;
+&lt;td style=&#34;text-align: right;&#34;&gt;29&lt;/td&gt;
+&lt;td style=&#34;text-align: left;&#34;&gt;University of Pennsylvania&lt;/td&gt;
+&lt;td style=&#34;text-align: right;&#34;&gt;0.0091080&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;even&#34;&gt;
+&lt;td style=&#34;text-align: right;&#34;&gt;30&lt;/td&gt;
+&lt;td style=&#34;text-align: left;&#34;&gt;Ohio State University&lt;/td&gt;
+&lt;td style=&#34;text-align: right;&#34;&gt;0.0090754&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;odd&#34;&gt;
+&lt;td style=&#34;text-align: right;&#34;&gt;31&lt;/td&gt;
+&lt;td style=&#34;text-align: left;&#34;&gt;University of Maryland, College Park&lt;/td&gt;
+&lt;td style=&#34;text-align: right;&#34;&gt;0.0089689&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;even&#34;&gt;
+&lt;td style=&#34;text-align: right;&#34;&gt;32&lt;/td&gt;
+&lt;td style=&#34;text-align: left;&#34;&gt;Katholieke Universiteit Leuven&lt;/td&gt;
+&lt;td style=&#34;text-align: right;&#34;&gt;0.0089271&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;odd&#34;&gt;
+&lt;td style=&#34;text-align: right;&#34;&gt;33&lt;/td&gt;
+&lt;td style=&#34;text-align: left;&#34;&gt;University of Chicago (CHSS)&lt;/td&gt;
+&lt;td style=&#34;text-align: right;&#34;&gt;0.0086507&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;even&#34;&gt;
+&lt;td style=&#34;text-align: right;&#34;&gt;34&lt;/td&gt;
+&lt;td style=&#34;text-align: left;&#34;&gt;University of Southern California&lt;/td&gt;
+&lt;td style=&#34;text-align: right;&#34;&gt;0.0083793&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;odd&#34;&gt;
+&lt;td style=&#34;text-align: right;&#34;&gt;35&lt;/td&gt;
+&lt;td style=&#34;text-align: left;&#34;&gt;Cornell University&lt;/td&gt;
+&lt;td style=&#34;text-align: right;&#34;&gt;0.0082857&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;even&#34;&gt;
+&lt;td style=&#34;text-align: right;&#34;&gt;36&lt;/td&gt;
+&lt;td style=&#34;text-align: left;&#34;&gt;Institut Jean Nicod&lt;/td&gt;
+&lt;td style=&#34;text-align: right;&#34;&gt;0.0082398&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;odd&#34;&gt;
+&lt;td style=&#34;text-align: right;&#34;&gt;37&lt;/td&gt;
+&lt;td style=&#34;text-align: left;&#34;&gt;Western University&lt;/td&gt;
+&lt;td style=&#34;text-align: right;&#34;&gt;0.0080649&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;even&#34;&gt;
+&lt;td style=&#34;text-align: right;&#34;&gt;38&lt;/td&gt;
+&lt;td style=&#34;text-align: left;&#34;&gt;Indiana University Bloomington (HPS)&lt;/td&gt;
+&lt;td style=&#34;text-align: right;&#34;&gt;0.0079434&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;odd&#34;&gt;
+&lt;td style=&#34;text-align: right;&#34;&gt;39&lt;/td&gt;
+&lt;td style=&#34;text-align: left;&#34;&gt;Australian National University&lt;/td&gt;
+&lt;td style=&#34;text-align: right;&#34;&gt;0.0079356&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;even&#34;&gt;
+&lt;td style=&#34;text-align: right;&#34;&gt;40&lt;/td&gt;
+&lt;td style=&#34;text-align: left;&#34;&gt;Duke University&lt;/td&gt;
+&lt;td style=&#34;text-align: right;&#34;&gt;0.0077089&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;odd&#34;&gt;
+&lt;td style=&#34;text-align: right;&#34;&gt;41&lt;/td&gt;
+&lt;td style=&#34;text-align: left;&#34;&gt;The University of Melbourne&lt;/td&gt;
+&lt;td style=&#34;text-align: right;&#34;&gt;0.0077023&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;even&#34;&gt;
+&lt;td style=&#34;text-align: right;&#34;&gt;42&lt;/td&gt;
+&lt;td style=&#34;text-align: left;&#34;&gt;University College London&lt;/td&gt;
+&lt;td style=&#34;text-align: right;&#34;&gt;0.0068843&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;odd&#34;&gt;
+&lt;td style=&#34;text-align: right;&#34;&gt;43&lt;/td&gt;
+&lt;td style=&#34;text-align: left;&#34;&gt;St Andrews and Stirling Graduate Programme in Philosophy&lt;/td&gt;
+&lt;td style=&#34;text-align: right;&#34;&gt;0.0067107&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;even&#34;&gt;
+&lt;td style=&#34;text-align: right;&#34;&gt;44&lt;/td&gt;
+&lt;td style=&#34;text-align: left;&#34;&gt;University of California, Irvine (LPS)&lt;/td&gt;
+&lt;td style=&#34;text-align: right;&#34;&gt;0.0062144&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;odd&#34;&gt;
+&lt;td style=&#34;text-align: right;&#34;&gt;45&lt;/td&gt;
+&lt;td style=&#34;text-align: left;&#34;&gt;University of Alberta&lt;/td&gt;
+&lt;td style=&#34;text-align: right;&#34;&gt;0.0062053&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;even&#34;&gt;
+&lt;td style=&#34;text-align: right;&#34;&gt;46&lt;/td&gt;
+&lt;td style=&#34;text-align: left;&#34;&gt;University of Texas at Austin&lt;/td&gt;
+&lt;td style=&#34;text-align: right;&#34;&gt;0.0061678&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;odd&#34;&gt;
+&lt;td style=&#34;text-align: right;&#34;&gt;47&lt;/td&gt;
+&lt;td style=&#34;text-align: left;&#34;&gt;University of Sheffield&lt;/td&gt;
+&lt;td style=&#34;text-align: right;&#34;&gt;0.0061209&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;even&#34;&gt;
+&lt;td style=&#34;text-align: right;&#34;&gt;48&lt;/td&gt;
+&lt;td style=&#34;text-align: left;&#34;&gt;Georgetown University&lt;/td&gt;
+&lt;td style=&#34;text-align: right;&#34;&gt;0.0057809&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;odd&#34;&gt;
+&lt;td style=&#34;text-align: right;&#34;&gt;49&lt;/td&gt;
+&lt;td style=&#34;text-align: left;&#34;&gt;Carnegie Mellon University&lt;/td&gt;
+&lt;td style=&#34;text-align: right;&#34;&gt;0.0056723&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;even&#34;&gt;
+&lt;td style=&#34;text-align: right;&#34;&gt;50&lt;/td&gt;
+&lt;td style=&#34;text-align: left;&#34;&gt;Pennsylvania State University&lt;/td&gt;
+&lt;td style=&#34;text-align: right;&#34;&gt;0.0056654&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;odd&#34;&gt;
+&lt;td style=&#34;text-align: right;&#34;&gt;51&lt;/td&gt;
+&lt;td style=&#34;text-align: left;&#34;&gt;Arizona State University&lt;/td&gt;
+&lt;td style=&#34;text-align: right;&#34;&gt;0.0056481&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;even&#34;&gt;
+&lt;td style=&#34;text-align: right;&#34;&gt;52&lt;/td&gt;
+&lt;td style=&#34;text-align: left;&#34;&gt;University of British Columbia&lt;/td&gt;
+&lt;td style=&#34;text-align: right;&#34;&gt;0.0055508&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;odd&#34;&gt;
+&lt;td style=&#34;text-align: right;&#34;&gt;53&lt;/td&gt;
+&lt;td style=&#34;text-align: left;&#34;&gt;Boston College&lt;/td&gt;
+&lt;td style=&#34;text-align: right;&#34;&gt;0.0054974&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;even&#34;&gt;
+&lt;td style=&#34;text-align: right;&#34;&gt;54&lt;/td&gt;
+&lt;td style=&#34;text-align: left;&#34;&gt;University of Edinburgh&lt;/td&gt;
+&lt;td style=&#34;text-align: right;&#34;&gt;0.0052731&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;odd&#34;&gt;
+&lt;td style=&#34;text-align: right;&#34;&gt;55&lt;/td&gt;
+&lt;td style=&#34;text-align: left;&#34;&gt;University of Wisconsin-Madison&lt;/td&gt;
+&lt;td style=&#34;text-align: right;&#34;&gt;0.0050191&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;even&#34;&gt;
+&lt;td style=&#34;text-align: right;&#34;&gt;56&lt;/td&gt;
+&lt;td style=&#34;text-align: left;&#34;&gt;McGill University&lt;/td&gt;
+&lt;td style=&#34;text-align: right;&#34;&gt;0.0049022&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;odd&#34;&gt;
+&lt;td style=&#34;text-align: right;&#34;&gt;57&lt;/td&gt;
+&lt;td style=&#34;text-align: left;&#34;&gt;Tulane University&lt;/td&gt;
+&lt;td style=&#34;text-align: right;&#34;&gt;0.0048671&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;even&#34;&gt;
+&lt;td style=&#34;text-align: right;&#34;&gt;58&lt;/td&gt;
+&lt;td style=&#34;text-align: left;&#34;&gt;University of Memphis&lt;/td&gt;
+&lt;td style=&#34;text-align: right;&#34;&gt;0.0047615&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;odd&#34;&gt;
+&lt;td style=&#34;text-align: right;&#34;&gt;59&lt;/td&gt;
+&lt;td style=&#34;text-align: left;&#34;&gt;McMaster University&lt;/td&gt;
+&lt;td style=&#34;text-align: right;&#34;&gt;0.0045715&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;even&#34;&gt;
+&lt;td style=&#34;text-align: right;&#34;&gt;60&lt;/td&gt;
+&lt;td style=&#34;text-align: left;&#34;&gt;University of Minnesota Twin Cities&lt;/td&gt;
+&lt;td style=&#34;text-align: right;&#34;&gt;0.0045700&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;odd&#34;&gt;
+&lt;td style=&#34;text-align: right;&#34;&gt;61&lt;/td&gt;
+&lt;td style=&#34;text-align: left;&#34;&gt;University of Oregon&lt;/td&gt;
+&lt;td style=&#34;text-align: right;&#34;&gt;0.0045430&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;even&#34;&gt;
+&lt;td style=&#34;text-align: right;&#34;&gt;62&lt;/td&gt;
+&lt;td style=&#34;text-align: left;&#34;&gt;Boston University&lt;/td&gt;
+&lt;td style=&#34;text-align: right;&#34;&gt;0.0041329&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;odd&#34;&gt;
+&lt;td style=&#34;text-align: right;&#34;&gt;63&lt;/td&gt;
+&lt;td style=&#34;text-align: left;&#34;&gt;University of Connecticut&lt;/td&gt;
+&lt;td style=&#34;text-align: right;&#34;&gt;0.0039652&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;even&#34;&gt;
+&lt;td style=&#34;text-align: right;&#34;&gt;64&lt;/td&gt;
+&lt;td style=&#34;text-align: left;&#34;&gt;University of California, Riverside&lt;/td&gt;
+&lt;td style=&#34;text-align: right;&#34;&gt;0.0039192&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;odd&#34;&gt;
+&lt;td style=&#34;text-align: right;&#34;&gt;65&lt;/td&gt;
+&lt;td style=&#34;text-align: left;&#34;&gt;The University of Sydney&lt;/td&gt;
+&lt;td style=&#34;text-align: right;&#34;&gt;0.0038372&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;even&#34;&gt;
+&lt;td style=&#34;text-align: right;&#34;&gt;66&lt;/td&gt;
+&lt;td style=&#34;text-align: left;&#34;&gt;Johns Hopkins University&lt;/td&gt;
+&lt;td style=&#34;text-align: right;&#34;&gt;0.0037778&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;odd&#34;&gt;
+&lt;td style=&#34;text-align: right;&#34;&gt;67&lt;/td&gt;
+&lt;td style=&#34;text-align: left;&#34;&gt;University of Colorado Boulder&lt;/td&gt;
+&lt;td style=&#34;text-align: right;&#34;&gt;0.0036436&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;even&#34;&gt;
+&lt;td style=&#34;text-align: right;&#34;&gt;68&lt;/td&gt;
+&lt;td style=&#34;text-align: left;&#34;&gt;The New School&lt;/td&gt;
+&lt;td style=&#34;text-align: right;&#34;&gt;0.0035828&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;odd&#34;&gt;
+&lt;td style=&#34;text-align: right;&#34;&gt;69&lt;/td&gt;
+&lt;td style=&#34;text-align: left;&#34;&gt;University of California, Santa Barbara&lt;/td&gt;
+&lt;td style=&#34;text-align: right;&#34;&gt;0.0035150&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;even&#34;&gt;
+&lt;td style=&#34;text-align: right;&#34;&gt;70&lt;/td&gt;
+&lt;td style=&#34;text-align: left;&#34;&gt;University of Virginia&lt;/td&gt;
+&lt;td style=&#34;text-align: right;&#34;&gt;0.0034553&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;odd&#34;&gt;
+&lt;td style=&#34;text-align: right;&#34;&gt;71&lt;/td&gt;
+&lt;td style=&#34;text-align: left;&#34;&gt;University of South Florida&lt;/td&gt;
+&lt;td style=&#34;text-align: right;&#34;&gt;0.0034273&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;even&#34;&gt;
+&lt;td style=&#34;text-align: right;&#34;&gt;72&lt;/td&gt;
+&lt;td style=&#34;text-align: left;&#34;&gt;State University of New York at Buffalo&lt;/td&gt;
+&lt;td style=&#34;text-align: right;&#34;&gt;0.0033737&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;odd&#34;&gt;
+&lt;td style=&#34;text-align: right;&#34;&gt;73&lt;/td&gt;
+&lt;td style=&#34;text-align: left;&#34;&gt;York University&lt;/td&gt;
+&lt;td style=&#34;text-align: right;&#34;&gt;0.0030985&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;even&#34;&gt;
+&lt;td style=&#34;text-align: right;&#34;&gt;74&lt;/td&gt;
+&lt;td style=&#34;text-align: left;&#34;&gt;University of Massachusetts Amherst&lt;/td&gt;
+&lt;td style=&#34;text-align: right;&#34;&gt;0.0030937&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;odd&#34;&gt;
+&lt;td style=&#34;text-align: right;&#34;&gt;75&lt;/td&gt;
+&lt;td style=&#34;text-align: left;&#34;&gt;University of California, Irvine&lt;/td&gt;
+&lt;td style=&#34;text-align: right;&#34;&gt;0.0030890&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;even&#34;&gt;
+&lt;td style=&#34;text-align: right;&#34;&gt;76&lt;/td&gt;
+&lt;td style=&#34;text-align: left;&#34;&gt;Vanderbilt University&lt;/td&gt;
+&lt;td style=&#34;text-align: right;&#34;&gt;0.0030261&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;odd&#34;&gt;
+&lt;td style=&#34;text-align: right;&#34;&gt;77&lt;/td&gt;
+&lt;td style=&#34;text-align: left;&#34;&gt;Michigan State University&lt;/td&gt;
+&lt;td style=&#34;text-align: right;&#34;&gt;0.0030149&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;even&#34;&gt;
+&lt;td style=&#34;text-align: right;&#34;&gt;78&lt;/td&gt;
+&lt;td style=&#34;text-align: left;&#34;&gt;Saint Louis University&lt;/td&gt;
+&lt;td style=&#34;text-align: right;&#34;&gt;0.0029294&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;odd&#34;&gt;
+&lt;td style=&#34;text-align: right;&#34;&gt;79&lt;/td&gt;
+&lt;td style=&#34;text-align: left;&#34;&gt;Emory University&lt;/td&gt;
+&lt;td style=&#34;text-align: right;&#34;&gt;0.0028953&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;even&#34;&gt;
+&lt;td style=&#34;text-align: right;&#34;&gt;80&lt;/td&gt;
+&lt;td style=&#34;text-align: left;&#34;&gt;University of Illinois at Chicago&lt;/td&gt;
+&lt;td style=&#34;text-align: right;&#34;&gt;0.0028281&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;odd&#34;&gt;
+&lt;td style=&#34;text-align: right;&#34;&gt;81&lt;/td&gt;
+&lt;td style=&#34;text-align: left;&#34;&gt;Purdue University&lt;/td&gt;
+&lt;td style=&#34;text-align: right;&#34;&gt;0.0027891&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;even&#34;&gt;
+&lt;td style=&#34;text-align: right;&#34;&gt;82&lt;/td&gt;
+&lt;td style=&#34;text-align: left;&#34;&gt;University of California, Davis&lt;/td&gt;
+&lt;td style=&#34;text-align: right;&#34;&gt;0.0027106&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;odd&#34;&gt;
+&lt;td style=&#34;text-align: right;&#34;&gt;83&lt;/td&gt;
+&lt;td style=&#34;text-align: left;&#34;&gt;State University of New York at Stony Brook&lt;/td&gt;
+&lt;td style=&#34;text-align: right;&#34;&gt;0.0025640&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;even&#34;&gt;
+&lt;td style=&#34;text-align: right;&#34;&gt;84&lt;/td&gt;
+&lt;td style=&#34;text-align: left;&#34;&gt;DePaul University&lt;/td&gt;
+&lt;td style=&#34;text-align: right;&#34;&gt;0.0025005&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;odd&#34;&gt;
+&lt;td style=&#34;text-align: right;&#34;&gt;85&lt;/td&gt;
+&lt;td style=&#34;text-align: left;&#34;&gt;University of Iowa&lt;/td&gt;
+&lt;td style=&#34;text-align: right;&#34;&gt;0.0023518&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;even&#34;&gt;
+&lt;td style=&#34;text-align: right;&#34;&gt;86&lt;/td&gt;
+&lt;td style=&#34;text-align: left;&#34;&gt;Baylor University&lt;/td&gt;
+&lt;td style=&#34;text-align: right;&#34;&gt;0.0021004&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;odd&#34;&gt;
+&lt;td style=&#34;text-align: right;&#34;&gt;87&lt;/td&gt;
+&lt;td style=&#34;text-align: left;&#34;&gt;Macquarie University&lt;/td&gt;
+&lt;td style=&#34;text-align: right;&#34;&gt;0.0020773&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;even&#34;&gt;
+&lt;td style=&#34;text-align: right;&#34;&gt;88&lt;/td&gt;
+&lt;td style=&#34;text-align: left;&#34;&gt;University of Illinois at Urbana-Champaign&lt;/td&gt;
+&lt;td style=&#34;text-align: right;&#34;&gt;0.0020013&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;odd&#34;&gt;
+&lt;td style=&#34;text-align: right;&#34;&gt;89&lt;/td&gt;
+&lt;td style=&#34;text-align: left;&#34;&gt;The University of Manchester&lt;/td&gt;
+&lt;td style=&#34;text-align: right;&#34;&gt;0.0019471&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;even&#34;&gt;
+&lt;td style=&#34;text-align: right;&#34;&gt;90&lt;/td&gt;
+&lt;td style=&#34;text-align: left;&#34;&gt;Syracuse University&lt;/td&gt;
+&lt;td style=&#34;text-align: right;&#34;&gt;0.0018914&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;odd&#34;&gt;
+&lt;td style=&#34;text-align: right;&#34;&gt;91&lt;/td&gt;
+&lt;td style=&#34;text-align: left;&#34;&gt;William Marsh Rice University&lt;/td&gt;
+&lt;td style=&#34;text-align: right;&#34;&gt;0.0018034&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;even&#34;&gt;
+&lt;td style=&#34;text-align: right;&#34;&gt;92&lt;/td&gt;
+&lt;td style=&#34;text-align: left;&#34;&gt;University of Calgary&lt;/td&gt;
+&lt;td style=&#34;text-align: right;&#34;&gt;0.0017465&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;odd&#34;&gt;
+&lt;td style=&#34;text-align: right;&#34;&gt;93&lt;/td&gt;
+&lt;td style=&#34;text-align: left;&#34;&gt;University of York&lt;/td&gt;
+&lt;td style=&#34;text-align: right;&#34;&gt;0.0017356&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;even&#34;&gt;
+&lt;td style=&#34;text-align: right;&#34;&gt;94&lt;/td&gt;
+&lt;td style=&#34;text-align: left;&#34;&gt;University of Hawai’i at Manoa&lt;/td&gt;
+&lt;td style=&#34;text-align: right;&#34;&gt;0.0017302&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;odd&#34;&gt;
+&lt;td style=&#34;text-align: right;&#34;&gt;94&lt;/td&gt;
+&lt;td style=&#34;text-align: left;&#34;&gt;University of Oklahoma&lt;/td&gt;
+&lt;td style=&#34;text-align: right;&#34;&gt;0.0017302&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;even&#34;&gt;
+&lt;td style=&#34;text-align: right;&#34;&gt;96&lt;/td&gt;
+&lt;td style=&#34;text-align: left;&#34;&gt;Duquesne University&lt;/td&gt;
+&lt;td style=&#34;text-align: right;&#34;&gt;0.0016160&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;odd&#34;&gt;
+&lt;td style=&#34;text-align: right;&#34;&gt;97&lt;/td&gt;
+&lt;td style=&#34;text-align: left;&#34;&gt;Kingston University&lt;/td&gt;
+&lt;td style=&#34;text-align: right;&#34;&gt;0.0015818&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;even&#34;&gt;
+&lt;td style=&#34;text-align: right;&#34;&gt;98&lt;/td&gt;
+&lt;td style=&#34;text-align: left;&#34;&gt;Tilburg University&lt;/td&gt;
+&lt;td style=&#34;text-align: right;&#34;&gt;0.0015262&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;odd&#34;&gt;
+&lt;td style=&#34;text-align: right;&#34;&gt;99&lt;/td&gt;
+&lt;td style=&#34;text-align: left;&#34;&gt;The Catholic University of America&lt;/td&gt;
+&lt;td style=&#34;text-align: right;&#34;&gt;0.0015213&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;even&#34;&gt;
+&lt;td style=&#34;text-align: right;&#34;&gt;100&lt;/td&gt;
+&lt;td style=&#34;text-align: left;&#34;&gt;Fordham University&lt;/td&gt;
+&lt;td style=&#34;text-align: right;&#34;&gt;0.0015210&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;odd&#34;&gt;
+&lt;td style=&#34;text-align: right;&#34;&gt;101&lt;/td&gt;
+&lt;td style=&#34;text-align: left;&#34;&gt;University of Arkansas&lt;/td&gt;
+&lt;td style=&#34;text-align: right;&#34;&gt;0.0015187&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;even&#34;&gt;
+&lt;td style=&#34;text-align: right;&#34;&gt;102&lt;/td&gt;
+&lt;td style=&#34;text-align: left;&#34;&gt;University of Rochester&lt;/td&gt;
+&lt;td style=&#34;text-align: right;&#34;&gt;0.0014903&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;odd&#34;&gt;
+&lt;td style=&#34;text-align: right;&#34;&gt;103&lt;/td&gt;
+&lt;td style=&#34;text-align: left;&#34;&gt;University of Nebraska, Lincoln&lt;/td&gt;
+&lt;td style=&#34;text-align: right;&#34;&gt;0.0014715&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;even&#34;&gt;
+&lt;td style=&#34;text-align: right;&#34;&gt;104&lt;/td&gt;
+&lt;td style=&#34;text-align: left;&#34;&gt;University of Washington&lt;/td&gt;
+&lt;td style=&#34;text-align: right;&#34;&gt;0.0014668&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;odd&#34;&gt;
+&lt;td style=&#34;text-align: right;&#34;&gt;105&lt;/td&gt;
+&lt;td style=&#34;text-align: left;&#34;&gt;Washington University in St. Louis&lt;/td&gt;
+&lt;td style=&#34;text-align: right;&#34;&gt;0.0013589&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;even&#34;&gt;
+&lt;td style=&#34;text-align: right;&#34;&gt;106&lt;/td&gt;
+&lt;td style=&#34;text-align: left;&#34;&gt;Villanova University&lt;/td&gt;
+&lt;td style=&#34;text-align: right;&#34;&gt;0.0012493&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;odd&#34;&gt;
+&lt;td style=&#34;text-align: right;&#34;&gt;107&lt;/td&gt;
+&lt;td style=&#34;text-align: left;&#34;&gt;Loyola University Chicago&lt;/td&gt;
+&lt;td style=&#34;text-align: right;&#34;&gt;0.0011959&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;even&#34;&gt;
+&lt;td style=&#34;text-align: right;&#34;&gt;107&lt;/td&gt;
+&lt;td style=&#34;text-align: left;&#34;&gt;University of South Carolina&lt;/td&gt;
+&lt;td style=&#34;text-align: right;&#34;&gt;0.0011959&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;odd&#34;&gt;
+&lt;td style=&#34;text-align: right;&#34;&gt;107&lt;/td&gt;
+&lt;td style=&#34;text-align: left;&#34;&gt;Victoria University of Wellington&lt;/td&gt;
+&lt;td style=&#34;text-align: right;&#34;&gt;0.0011959&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;even&#34;&gt;
+&lt;td style=&#34;text-align: right;&#34;&gt;110&lt;/td&gt;
+&lt;td style=&#34;text-align: left;&#34;&gt;University of Florida&lt;/td&gt;
+&lt;td style=&#34;text-align: right;&#34;&gt;0.0011906&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;odd&#34;&gt;
+&lt;td style=&#34;text-align: right;&#34;&gt;111&lt;/td&gt;
+&lt;td style=&#34;text-align: left;&#34;&gt;Bowling Green State University&lt;/td&gt;
+&lt;td style=&#34;text-align: right;&#34;&gt;0.0011731&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;even&#34;&gt;
+&lt;td style=&#34;text-align: right;&#34;&gt;112&lt;/td&gt;
+&lt;td style=&#34;text-align: left;&#34;&gt;University of Guelph&lt;/td&gt;
+&lt;td style=&#34;text-align: right;&#34;&gt;0.0011575&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;odd&#34;&gt;
+&lt;td style=&#34;text-align: right;&#34;&gt;113&lt;/td&gt;
+&lt;td style=&#34;text-align: left;&#34;&gt;University of Utah&lt;/td&gt;
+&lt;td style=&#34;text-align: right;&#34;&gt;0.0011462&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;even&#34;&gt;
+&lt;td style=&#34;text-align: right;&#34;&gt;114&lt;/td&gt;
+&lt;td style=&#34;text-align: left;&#34;&gt;Binghamton University&lt;/td&gt;
+&lt;td style=&#34;text-align: right;&#34;&gt;0.0011355&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;odd&#34;&gt;
+&lt;td style=&#34;text-align: right;&#34;&gt;115&lt;/td&gt;
+&lt;td style=&#34;text-align: left;&#34;&gt;University of Tennessee&lt;/td&gt;
+&lt;td style=&#34;text-align: right;&#34;&gt;0.0011087&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;even&#34;&gt;
+&lt;td style=&#34;text-align: right;&#34;&gt;116&lt;/td&gt;
+&lt;td style=&#34;text-align: left;&#34;&gt;University of Waterloo&lt;/td&gt;
+&lt;td style=&#34;text-align: right;&#34;&gt;0.0010800&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;odd&#34;&gt;
+&lt;td style=&#34;text-align: right;&#34;&gt;117&lt;/td&gt;
+&lt;td style=&#34;text-align: left;&#34;&gt;University at Albany&lt;/td&gt;
+&lt;td style=&#34;text-align: right;&#34;&gt;0.0010486&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;even&#34;&gt;
+&lt;td style=&#34;text-align: right;&#34;&gt;118&lt;/td&gt;
+&lt;td style=&#34;text-align: left;&#34;&gt;University of New Mexico&lt;/td&gt;
+&lt;td style=&#34;text-align: right;&#34;&gt;0.0010049&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;odd&#34;&gt;
+&lt;td style=&#34;text-align: right;&#34;&gt;119&lt;/td&gt;
+&lt;td style=&#34;text-align: left;&#34;&gt;Birkbeck, University of London&lt;/td&gt;
+&lt;td style=&#34;text-align: right;&#34;&gt;0.0009510&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;even&#34;&gt;
+&lt;td style=&#34;text-align: right;&#34;&gt;120&lt;/td&gt;
+&lt;td style=&#34;text-align: left;&#34;&gt;University of Kentucky&lt;/td&gt;
+&lt;td style=&#34;text-align: right;&#34;&gt;0.0008533&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;odd&#34;&gt;
+&lt;td style=&#34;text-align: right;&#34;&gt;121&lt;/td&gt;
+&lt;td style=&#34;text-align: left;&#34;&gt;Marquette University&lt;/td&gt;
+&lt;td style=&#34;text-align: right;&#34;&gt;0.0008356&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;even&#34;&gt;
+&lt;td style=&#34;text-align: right;&#34;&gt;122&lt;/td&gt;
+&lt;td style=&#34;text-align: left;&#34;&gt;University of Cincinnati&lt;/td&gt;
+&lt;td style=&#34;text-align: right;&#34;&gt;0.0008316&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;odd&#34;&gt;
+&lt;td style=&#34;text-align: right;&#34;&gt;123&lt;/td&gt;
+&lt;td style=&#34;text-align: left;&#34;&gt;University of Georgia&lt;/td&gt;
+&lt;td style=&#34;text-align: right;&#34;&gt;0.0007732&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;even&#34;&gt;
+&lt;td style=&#34;text-align: right;&#34;&gt;124&lt;/td&gt;
+&lt;td style=&#34;text-align: left;&#34;&gt;Brandeis University&lt;/td&gt;
+&lt;td style=&#34;text-align: right;&#34;&gt;0.0007232&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;odd&#34;&gt;
+&lt;td style=&#34;text-align: right;&#34;&gt;124&lt;/td&gt;
+&lt;td style=&#34;text-align: left;&#34;&gt;California Institute of Technology&lt;/td&gt;
+&lt;td style=&#34;text-align: right;&#34;&gt;0.0007232&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;even&#34;&gt;
+&lt;td style=&#34;text-align: right;&#34;&gt;124&lt;/td&gt;
+&lt;td style=&#34;text-align: left;&#34;&gt;Central European University&lt;/td&gt;
+&lt;td style=&#34;text-align: right;&#34;&gt;0.0007232&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;odd&#34;&gt;
+&lt;td style=&#34;text-align: right;&#34;&gt;124&lt;/td&gt;
+&lt;td style=&#34;text-align: left;&#34;&gt;Claremont Graduate University&lt;/td&gt;
+&lt;td style=&#34;text-align: right;&#34;&gt;0.0007232&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;even&#34;&gt;
+&lt;td style=&#34;text-align: right;&#34;&gt;124&lt;/td&gt;
+&lt;td style=&#34;text-align: left;&#34;&gt;Dalhousie University&lt;/td&gt;
+&lt;td style=&#34;text-align: right;&#34;&gt;0.0007232&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;odd&#34;&gt;
+&lt;td style=&#34;text-align: right;&#34;&gt;124&lt;/td&gt;
+&lt;td style=&#34;text-align: left;&#34;&gt;Deakin University&lt;/td&gt;
+&lt;td style=&#34;text-align: right;&#34;&gt;0.0007232&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;even&#34;&gt;
+&lt;td style=&#34;text-align: right;&#34;&gt;124&lt;/td&gt;
+&lt;td style=&#34;text-align: left;&#34;&gt;Durham University&lt;/td&gt;
+&lt;td style=&#34;text-align: right;&#34;&gt;0.0007232&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;odd&#34;&gt;
+&lt;td style=&#34;text-align: right;&#34;&gt;124&lt;/td&gt;
+&lt;td style=&#34;text-align: left;&#34;&gt;Eindhoven University of Technology&lt;/td&gt;
+&lt;td style=&#34;text-align: right;&#34;&gt;0.0007232&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;even&#34;&gt;
+&lt;td style=&#34;text-align: right;&#34;&gt;124&lt;/td&gt;
+&lt;td style=&#34;text-align: left;&#34;&gt;Florida State University&lt;/td&gt;
+&lt;td style=&#34;text-align: right;&#34;&gt;0.0007232&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;odd&#34;&gt;
+&lt;td style=&#34;text-align: right;&#34;&gt;124&lt;/td&gt;
+&lt;td style=&#34;text-align: left;&#34;&gt;Free University of Berlin&lt;/td&gt;
+&lt;td style=&#34;text-align: right;&#34;&gt;0.0007232&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;even&#34;&gt;
+&lt;td style=&#34;text-align: right;&#34;&gt;124&lt;/td&gt;
+&lt;td style=&#34;text-align: left;&#34;&gt;Goethe University Frankfurt&lt;/td&gt;
+&lt;td style=&#34;text-align: right;&#34;&gt;0.0007232&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;odd&#34;&gt;
+&lt;td style=&#34;text-align: right;&#34;&gt;124&lt;/td&gt;
+&lt;td style=&#34;text-align: left;&#34;&gt;Humboldt University of Berlin&lt;/td&gt;
+&lt;td style=&#34;text-align: right;&#34;&gt;0.0007232&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;even&#34;&gt;
+&lt;td style=&#34;text-align: right;&#34;&gt;124&lt;/td&gt;
+&lt;td style=&#34;text-align: left;&#34;&gt;Iowa State University&lt;/td&gt;
+&lt;td style=&#34;text-align: right;&#34;&gt;0.0007232&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;odd&#34;&gt;
+&lt;td style=&#34;text-align: right;&#34;&gt;124&lt;/td&gt;
+&lt;td style=&#34;text-align: left;&#34;&gt;Monash University&lt;/td&gt;
+&lt;td style=&#34;text-align: right;&#34;&gt;0.0007232&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;even&#34;&gt;
+&lt;td style=&#34;text-align: right;&#34;&gt;124&lt;/td&gt;
+&lt;td style=&#34;text-align: left;&#34;&gt;Montclair State University&lt;/td&gt;
+&lt;td style=&#34;text-align: right;&#34;&gt;0.0007232&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;odd&#34;&gt;
+&lt;td style=&#34;text-align: right;&#34;&gt;124&lt;/td&gt;
+&lt;td style=&#34;text-align: left;&#34;&gt;Pantheon-Sorbonne University&lt;/td&gt;
+&lt;td style=&#34;text-align: right;&#34;&gt;0.0007232&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;even&#34;&gt;
+&lt;td style=&#34;text-align: right;&#34;&gt;124&lt;/td&gt;
+&lt;td style=&#34;text-align: left;&#34;&gt;Southern Illinois University&lt;/td&gt;
+&lt;td style=&#34;text-align: right;&#34;&gt;0.0007232&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;odd&#34;&gt;
+&lt;td style=&#34;text-align: right;&#34;&gt;124&lt;/td&gt;
+&lt;td style=&#34;text-align: left;&#34;&gt;Stockholm University&lt;/td&gt;
+&lt;td style=&#34;text-align: right;&#34;&gt;0.0007232&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;even&#34;&gt;
+&lt;td style=&#34;text-align: right;&#34;&gt;124&lt;/td&gt;
+&lt;td style=&#34;text-align: left;&#34;&gt;Temple University&lt;/td&gt;
+&lt;td style=&#34;text-align: right;&#34;&gt;0.0007232&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;odd&#34;&gt;
+&lt;td style=&#34;text-align: right;&#34;&gt;124&lt;/td&gt;
+&lt;td style=&#34;text-align: left;&#34;&gt;Texas State University&lt;/td&gt;
+&lt;td style=&#34;text-align: right;&#34;&gt;0.0007232&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;even&#34;&gt;
+&lt;td style=&#34;text-align: right;&#34;&gt;124&lt;/td&gt;
+&lt;td style=&#34;text-align: left;&#34;&gt;The University of Adelaide&lt;/td&gt;
+&lt;td style=&#34;text-align: right;&#34;&gt;0.0007232&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;odd&#34;&gt;
+&lt;td style=&#34;text-align: right;&#34;&gt;124&lt;/td&gt;
+&lt;td style=&#34;text-align: left;&#34;&gt;The University of Western Australia&lt;/td&gt;
+&lt;td style=&#34;text-align: right;&#34;&gt;0.0007232&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;even&#34;&gt;
+&lt;td style=&#34;text-align: right;&#34;&gt;124&lt;/td&gt;
+&lt;td style=&#34;text-align: left;&#34;&gt;Trinity College, Dublin&lt;/td&gt;
+&lt;td style=&#34;text-align: right;&#34;&gt;0.0007232&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;odd&#34;&gt;
+&lt;td style=&#34;text-align: right;&#34;&gt;124&lt;/td&gt;
+&lt;td style=&#34;text-align: left;&#34;&gt;University de Montreal&lt;/td&gt;
+&lt;td style=&#34;text-align: right;&#34;&gt;0.0007232&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;even&#34;&gt;
+&lt;td style=&#34;text-align: right;&#34;&gt;124&lt;/td&gt;
+&lt;td style=&#34;text-align: left;&#34;&gt;University of Aberdeen&lt;/td&gt;
+&lt;td style=&#34;text-align: right;&#34;&gt;0.0007232&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;odd&#34;&gt;
+&lt;td style=&#34;text-align: right;&#34;&gt;124&lt;/td&gt;
+&lt;td style=&#34;text-align: left;&#34;&gt;University of Amsterdam&lt;/td&gt;
+&lt;td style=&#34;text-align: right;&#34;&gt;0.0007232&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;even&#34;&gt;
+&lt;td style=&#34;text-align: right;&#34;&gt;124&lt;/td&gt;
+&lt;td style=&#34;text-align: left;&#34;&gt;University of Auckland&lt;/td&gt;
+&lt;td style=&#34;text-align: right;&#34;&gt;0.0007232&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;odd&#34;&gt;
+&lt;td style=&#34;text-align: right;&#34;&gt;124&lt;/td&gt;
+&lt;td style=&#34;text-align: left;&#34;&gt;University of Bristol&lt;/td&gt;
+&lt;td style=&#34;text-align: right;&#34;&gt;0.0007232&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;even&#34;&gt;
+&lt;td style=&#34;text-align: right;&#34;&gt;124&lt;/td&gt;
+&lt;td style=&#34;text-align: left;&#34;&gt;University of California, Santa Cruz&lt;/td&gt;
+&lt;td style=&#34;text-align: right;&#34;&gt;0.0007232&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;odd&#34;&gt;
+&lt;td style=&#34;text-align: right;&#34;&gt;124&lt;/td&gt;
+&lt;td style=&#34;text-align: left;&#34;&gt;University of Cologne&lt;/td&gt;
+&lt;td style=&#34;text-align: right;&#34;&gt;0.0007232&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;even&#34;&gt;
+&lt;td style=&#34;text-align: right;&#34;&gt;124&lt;/td&gt;
+&lt;td style=&#34;text-align: left;&#34;&gt;University of Dallas&lt;/td&gt;
+&lt;td style=&#34;text-align: right;&#34;&gt;0.0007232&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;odd&#34;&gt;
+&lt;td style=&#34;text-align: right;&#34;&gt;124&lt;/td&gt;
+&lt;td style=&#34;text-align: left;&#34;&gt;University of East Anglia&lt;/td&gt;
+&lt;td style=&#34;text-align: right;&#34;&gt;0.0007232&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;even&#34;&gt;
+&lt;td style=&#34;text-align: right;&#34;&gt;124&lt;/td&gt;
+&lt;td style=&#34;text-align: left;&#34;&gt;University of Geneva&lt;/td&gt;
+&lt;td style=&#34;text-align: right;&#34;&gt;0.0007232&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;odd&#34;&gt;
+&lt;td style=&#34;text-align: right;&#34;&gt;124&lt;/td&gt;
+&lt;td style=&#34;text-align: left;&#34;&gt;University of Glasgow&lt;/td&gt;
+&lt;td style=&#34;text-align: right;&#34;&gt;0.0007232&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;even&#34;&gt;
+&lt;td style=&#34;text-align: right;&#34;&gt;124&lt;/td&gt;
+&lt;td style=&#34;text-align: left;&#34;&gt;University of Groningen&lt;/td&gt;
+&lt;td style=&#34;text-align: right;&#34;&gt;0.0007232&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;odd&#34;&gt;
+&lt;td style=&#34;text-align: right;&#34;&gt;124&lt;/td&gt;
+&lt;td style=&#34;text-align: left;&#34;&gt;University of Helsinki&lt;/td&gt;
+&lt;td style=&#34;text-align: right;&#34;&gt;0.0007232&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;even&#34;&gt;
+&lt;td style=&#34;text-align: right;&#34;&gt;124&lt;/td&gt;
+&lt;td style=&#34;text-align: left;&#34;&gt;University of Kansas&lt;/td&gt;
+&lt;td style=&#34;text-align: right;&#34;&gt;0.0007232&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;odd&#34;&gt;
+&lt;td style=&#34;text-align: right;&#34;&gt;124&lt;/td&gt;
+&lt;td style=&#34;text-align: left;&#34;&gt;University of Kent&lt;/td&gt;
+&lt;td style=&#34;text-align: right;&#34;&gt;0.0007232&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;even&#34;&gt;
+&lt;td style=&#34;text-align: right;&#34;&gt;124&lt;/td&gt;
+&lt;td style=&#34;text-align: left;&#34;&gt;University of Leeds&lt;/td&gt;
+&lt;td style=&#34;text-align: right;&#34;&gt;0.0007232&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;odd&#34;&gt;
+&lt;td style=&#34;text-align: right;&#34;&gt;124&lt;/td&gt;
+&lt;td style=&#34;text-align: left;&#34;&gt;University of Miami&lt;/td&gt;
+&lt;td style=&#34;text-align: right;&#34;&gt;0.0007232&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;even&#34;&gt;
+&lt;td style=&#34;text-align: right;&#34;&gt;124&lt;/td&gt;
+&lt;td style=&#34;text-align: left;&#34;&gt;University of Milan&lt;/td&gt;
+&lt;td style=&#34;text-align: right;&#34;&gt;0.0007232&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;odd&#34;&gt;
+&lt;td style=&#34;text-align: right;&#34;&gt;124&lt;/td&gt;
+&lt;td style=&#34;text-align: left;&#34;&gt;University of Missouri&lt;/td&gt;
+&lt;td style=&#34;text-align: right;&#34;&gt;0.0007232&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;even&#34;&gt;
+&lt;td style=&#34;text-align: right;&#34;&gt;124&lt;/td&gt;
+&lt;td style=&#34;text-align: left;&#34;&gt;University of New South Wales&lt;/td&gt;
+&lt;td style=&#34;text-align: right;&#34;&gt;0.0007232&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;odd&#34;&gt;
+&lt;td style=&#34;text-align: right;&#34;&gt;124&lt;/td&gt;
+&lt;td style=&#34;text-align: left;&#34;&gt;University of Oslo&lt;/td&gt;
+&lt;td style=&#34;text-align: right;&#34;&gt;0.0007232&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;even&#34;&gt;
+&lt;td style=&#34;text-align: right;&#34;&gt;124&lt;/td&gt;
+&lt;td style=&#34;text-align: left;&#34;&gt;University of Otago&lt;/td&gt;
+&lt;td style=&#34;text-align: right;&#34;&gt;0.0007232&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;odd&#34;&gt;
+&lt;td style=&#34;text-align: right;&#34;&gt;124&lt;/td&gt;
+&lt;td style=&#34;text-align: left;&#34;&gt;University of Ottawa&lt;/td&gt;
+&lt;td style=&#34;text-align: right;&#34;&gt;0.0007232&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;even&#34;&gt;
+&lt;td style=&#34;text-align: right;&#34;&gt;124&lt;/td&gt;
+&lt;td style=&#34;text-align: left;&#34;&gt;University of Reading&lt;/td&gt;
+&lt;td style=&#34;text-align: right;&#34;&gt;0.0007232&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;odd&#34;&gt;
+&lt;td style=&#34;text-align: right;&#34;&gt;124&lt;/td&gt;
+&lt;td style=&#34;text-align: left;&#34;&gt;University of Sussex&lt;/td&gt;
+&lt;td style=&#34;text-align: right;&#34;&gt;0.0007232&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;even&#34;&gt;
+&lt;td style=&#34;text-align: right;&#34;&gt;124&lt;/td&gt;
+&lt;td style=&#34;text-align: left;&#34;&gt;University of Tasmania&lt;/td&gt;
+&lt;td style=&#34;text-align: right;&#34;&gt;0.0007232&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;odd&#34;&gt;
+&lt;td style=&#34;text-align: right;&#34;&gt;124&lt;/td&gt;
+&lt;td style=&#34;text-align: left;&#34;&gt;University of Tubingen&lt;/td&gt;
+&lt;td style=&#34;text-align: right;&#34;&gt;0.0007232&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;even&#34;&gt;
+&lt;td style=&#34;text-align: right;&#34;&gt;124&lt;/td&gt;
+&lt;td style=&#34;text-align: left;&#34;&gt;University of Vienna&lt;/td&gt;
+&lt;td style=&#34;text-align: right;&#34;&gt;0.0007232&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;odd&#34;&gt;
+&lt;td style=&#34;text-align: right;&#34;&gt;124&lt;/td&gt;
+&lt;td style=&#34;text-align: left;&#34;&gt;University of Waikato&lt;/td&gt;
+&lt;td style=&#34;text-align: right;&#34;&gt;0.0007232&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;even&#34;&gt;
+&lt;td style=&#34;text-align: right;&#34;&gt;124&lt;/td&gt;
+&lt;td style=&#34;text-align: left;&#34;&gt;University of Warwick&lt;/td&gt;
+&lt;td style=&#34;text-align: right;&#34;&gt;0.0007232&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;odd&#34;&gt;
+&lt;td style=&#34;text-align: right;&#34;&gt;124&lt;/td&gt;
+&lt;td style=&#34;text-align: left;&#34;&gt;Uppsala University&lt;/td&gt;
+&lt;td style=&#34;text-align: right;&#34;&gt;0.0007232&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;even&#34;&gt;
+&lt;td style=&#34;text-align: right;&#34;&gt;124&lt;/td&gt;
+&lt;td style=&#34;text-align: left;&#34;&gt;Wayne State University&lt;/td&gt;
+&lt;td style=&#34;text-align: right;&#34;&gt;0.0007232&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Placement, PageRank, and the PGR: Part 2</title>
+      <link>http://jonathanweisberg.org/post/page-rank-2/</link>
+      <pubDate>Thu, 06 Dec 2018 00:00:00 -0500</pubDate>
+      
+      <guid>http://jonathanweisberg.org/post/page-rank-2/</guid>
+      <description>
+
+&lt;p&gt;This post is the second of two devoted to &lt;a href=&#34;https://bit.ly/2z12SoB&#34; target=&#34;_blank&#34;&gt;an idea of David
+Wallace’s&lt;/a&gt;: applying Google’s PageRank algorithm
+to the &lt;a href=&#34;http://www.placementdata.com/&#34; target=&#34;_blank&#34;&gt;APDA&lt;/a&gt; placement data.&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;http://jonathanweisberg.org/post/page-rank-1.html&#34;&gt;Last time&lt;/a&gt; we looked at the motivation and
+theory behind the idea. Now we’ll try predicting PageRanks. Can students
+who care about PageRank use the latest
+&lt;a href=&#34;https://www.philosophicalgourmet.com/&#34; target=&#34;_blank&#34;&gt;PGR&lt;/a&gt; to guesstimate a program’s
+PageRank 5 or 10 years in the future? Can they use the latest placement
+data?&lt;/p&gt;
+
+&lt;h1 id=&#34;the-data&#34;&gt;The Data&lt;/h1&gt;
+
+&lt;p&gt;We’ll use a somewhat different data set from last time, since we need
+things broken down by year. Our data comes now from &lt;a href=&#34;http://placementdata.com&#34; target=&#34;_blank&#34;&gt;the APDA
+homepage&lt;/a&gt;, where you can search by PhD program
+and get a list of jobs where its graduates have landed.&lt;/p&gt;
+
+&lt;p&gt;Unfortunately the search results are in a pretty unfriendly format. This
+means doing some nasty
+&lt;a href=&#34;https://en.wikipedia.org/wiki/Web_scraping&#34; target=&#34;_blank&#34;&gt;scraping&lt;/a&gt;, a notoriously
+error-prone process. And even before scraping, the data seems to have
+some errors and quirks (duplicate entries, inconsistent capitalization,
+missing values, etc.). I’ve patched what I can, but we should keep in
+mind that we’re already working with a pretty noisy signal even before
+we get to any analysis.&lt;/p&gt;
+
+&lt;p&gt;A quick poke around before we get to the main event: how much data do we
+have for each year? The years since 2010 really dominate this data set.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;http://jonathanweisberg.org/img/page-rank-2/unnamed-chunk-2-1.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;That’s going to be a problem, when we try predicting future PageRank
+based on past PageRank. Ideally we’d like to have two data-rich periods
+separated by a 5-year span. Then we can see how well a hypothetical
+prospective student would have done at predicting the PageRanks they’d
+face on the job market, using the PageRanks available when they were
+choosing a program. But we don’t have that. So we’ll have to live with
+some additional noise when we get to this below.&lt;/p&gt;
+
+&lt;p&gt;For now let’s turn to placement type. The APDA tracks whether a job is
+TT, a postdoc, temporary letureship, etc. TT and postdoc placements
+dominate the landscape, followed by temporary and non-academic
+positions.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;http://jonathanweisberg.org/img/page-rank-2/unnamed-chunk-3-1.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Placement types change dramatically over the years though. From the
+early to late naughties, TT changes from being the dominant type to a
+minority.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;http://jonathanweisberg.org/img/page-rank-2/unnamed-chunk-4-1.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Is this the story of the Great Recession? That’s likely a big factor.
+But our data gets spottier as we go back through the naughties. So a
+selection effect is another likely culprit.&lt;/p&gt;
+
+&lt;p&gt;Now let’s turn to predicting PageRanks.&lt;/p&gt;
+
+&lt;h1 id=&#34;predicting-pagerank-from-pgr&#34;&gt;Predicting PageRank from PGR&lt;/h1&gt;
+
+&lt;p&gt;We’ll calculate all PageRanks on a five-year window (a somewhat
+arbitrary choice). So the “future” PageRanks—the numbers we’ll be trying
+to predict—are calculated from the placement data in the years
+2014–2018.&lt;/p&gt;
+
+&lt;p&gt;For now we’ll count postdocs as well as TT placements, for continuity
+with the last post and with Wallace’s original analysis. We’ll rerun the
+analysis using only TT jobs at the end.&lt;/p&gt;
+
+&lt;p&gt;Given these choices, here are the top 10 programs by PageRank for
+2014–18.&lt;/p&gt;
+
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr class=&#34;header&#34;&gt;
+&lt;th style=&#34;text-align: left;&#34;&gt;Program&lt;/th&gt;
+&lt;th style=&#34;text-align: right;&#34;&gt;PageRank 2014-18&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr class=&#34;odd&#34;&gt;
+&lt;td style=&#34;text-align: left;&#34;&gt;Princeton University&lt;/td&gt;
+&lt;td style=&#34;text-align: right;&#34;&gt;0.0437282&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;even&#34;&gt;
+&lt;td style=&#34;text-align: left;&#34;&gt;Stanford University&lt;/td&gt;
+&lt;td style=&#34;text-align: right;&#34;&gt;0.0434163&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;odd&#34;&gt;
+&lt;td style=&#34;text-align: left;&#34;&gt;New York University&lt;/td&gt;
+&lt;td style=&#34;text-align: right;&#34;&gt;0.0408766&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;even&#34;&gt;
+&lt;td style=&#34;text-align: left;&#34;&gt;University of Oxford&lt;/td&gt;
+&lt;td style=&#34;text-align: right;&#34;&gt;0.0374294&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;odd&#34;&gt;
+&lt;td style=&#34;text-align: left;&#34;&gt;University of Arizona&lt;/td&gt;
+&lt;td style=&#34;text-align: right;&#34;&gt;0.0367260&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;even&#34;&gt;
+&lt;td style=&#34;text-align: left;&#34;&gt;Harvard University&lt;/td&gt;
+&lt;td style=&#34;text-align: right;&#34;&gt;0.0323110&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;odd&#34;&gt;
+&lt;td style=&#34;text-align: left;&#34;&gt;University of Pittsburgh (HPS)&lt;/td&gt;
+&lt;td style=&#34;text-align: right;&#34;&gt;0.0296616&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;even&#34;&gt;
+&lt;td style=&#34;text-align: left;&#34;&gt;Massachusetts Institute of Technology&lt;/td&gt;
+&lt;td style=&#34;text-align: right;&#34;&gt;0.0278274&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;odd&#34;&gt;
+&lt;td style=&#34;text-align: left;&#34;&gt;University of Chicago&lt;/td&gt;
+&lt;td style=&#34;text-align: right;&#34;&gt;0.0277885&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;even&#34;&gt;
+&lt;td style=&#34;text-align: left;&#34;&gt;University of Toronto&lt;/td&gt;
+&lt;td style=&#34;text-align: right;&#34;&gt;0.0260106&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;p&gt;How well do PGR scores predict these rankings? Following Wallace we’ll
+start with the 2006 PGR. But we’ll also consider the five iterations
+since. I’ve put the PageRanks (the &lt;em&gt;y&lt;/em&gt;-axis) on a log scale for
+visibility.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;http://jonathanweisberg.org/img/page-rank-2/unnamed-chunk-6-1.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Overall the correlation looks pretty strong, ranging from 0.66 in 2006
+to 0.73 in 2014. And that seems consistent with Wallace’s original
+finding, a correlation of 0.75 between the 2006 PGR and all placement
+data up through 2016.&lt;/p&gt;
+
+&lt;p&gt;Notice though, the connection gets much weaker when PGR ratings are
+lower. Below a PGR rating of 3 or so, PageRank doesn’t seem to increase
+much with PGR rating: the average correlation is only 0.25.&lt;/p&gt;
+
+&lt;p&gt;We have two conclusions so far then. First, as Wallace found, PGR rating
+seems to predict PageRank pretty well, even when the ratings are
+collected almost a decade in advance. But second, this effect is much
+stronger for programs with high PGR ratings.&lt;/p&gt;
+
+&lt;h1 id=&#34;predicting-pagerank-from-pagerank&#34;&gt;Predicting PageRank from PageRank&lt;/h1&gt;
+
+&lt;p&gt;What if our hypothetical grad student had relied on the available
+placement data instead of PGR scores in deciding where to go?&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;http://jonathanweisberg.org/img/page-rank-2/unnamed-chunk-8-1.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Well they’d probably have been better off using the PGR in 2006. But
+PageRank gets pretty competitive with PGR starting around 2010, when the
+placement data gets richer.&lt;/p&gt;
+
+&lt;p&gt;It might be that PageRank has the potential to be a better
+predictor—even long range—provided we have enough placement data. Or it
+might be that PageRank is only better at close range. We can’t be sure,
+but hopefully we’ll find out in a few years as the APDA database grows.&lt;/p&gt;
+
+&lt;h1 id=&#34;tenure-track-only&#34;&gt;Tenure-track Only&lt;/h1&gt;
+
+&lt;p&gt;Finally, let’s do the same analysis but counting only tenure-track
+placements toward a department’s PageRank. Here are our top 10 programs
+then (a more similar group to what we saw last time, note).&lt;/p&gt;
+
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr class=&#34;header&#34;&gt;
+&lt;th style=&#34;text-align: left;&#34;&gt;Program&lt;/th&gt;
+&lt;th style=&#34;text-align: right;&#34;&gt;PageRank 2014-18&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr class=&#34;odd&#34;&gt;
+&lt;td style=&#34;text-align: left;&#34;&gt;Princeton University&lt;/td&gt;
+&lt;td style=&#34;text-align: right;&#34;&gt;0.0837437&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;even&#34;&gt;
+&lt;td style=&#34;text-align: left;&#34;&gt;University of Pittsburgh (HPS)&lt;/td&gt;
+&lt;td style=&#34;text-align: right;&#34;&gt;0.0640854&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;odd&#34;&gt;
+&lt;td style=&#34;text-align: left;&#34;&gt;University of Oxford&lt;/td&gt;
+&lt;td style=&#34;text-align: right;&#34;&gt;0.0573890&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;even&#34;&gt;
+&lt;td style=&#34;text-align: left;&#34;&gt;University of Chicago&lt;/td&gt;
+&lt;td style=&#34;text-align: right;&#34;&gt;0.0519388&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;odd&#34;&gt;
+&lt;td style=&#34;text-align: left;&#34;&gt;Yale University&lt;/td&gt;
+&lt;td style=&#34;text-align: right;&#34;&gt;0.0452552&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;even&#34;&gt;
+&lt;td style=&#34;text-align: left;&#34;&gt;Harvard University&lt;/td&gt;
+&lt;td style=&#34;text-align: right;&#34;&gt;0.0420271&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;odd&#34;&gt;
+&lt;td style=&#34;text-align: left;&#34;&gt;Massachusetts Institute of Technology&lt;/td&gt;
+&lt;td style=&#34;text-align: right;&#34;&gt;0.0374587&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;even&#34;&gt;
+&lt;td style=&#34;text-align: left;&#34;&gt;Rutgers University&lt;/td&gt;
+&lt;td style=&#34;text-align: right;&#34;&gt;0.0360075&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;odd&#34;&gt;
+&lt;td style=&#34;text-align: left;&#34;&gt;New York University&lt;/td&gt;
+&lt;td style=&#34;text-align: right;&#34;&gt;0.0335406&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;even&#34;&gt;
+&lt;td style=&#34;text-align: left;&#34;&gt;University of California, Berkeley&lt;/td&gt;
+&lt;td style=&#34;text-align: right;&#34;&gt;0.0290834&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;p&gt;Here are the comparisons with past PGR scores.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;http://jonathanweisberg.org/img/page-rank-2/unnamed-chunk-11-1.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;And here are past PageRanks.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;http://jonathanweisberg.org/img/page-rank-2/unnamed-chunk-12-1.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Unsurprisingly, restricting ourselves to TT placements makes things
+noisier across the board. PGR-based predictions show more resilience
+here, possibly because they’re only affected by the added noise at one
+end.&lt;/p&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>
