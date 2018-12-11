@@ -20,6 +20,12 @@
 Wallace’s&lt;/a&gt;: applying Google’s PageRank algorithm
 to the &lt;a href=&#34;http://www.placementdata.com/&#34; target=&#34;_blank&#34;&gt;APDA&lt;/a&gt; placement data.&lt;/p&gt;
 
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;http://jonathanweisberg.org/post/page-rank-1&#34;&gt;Part 1&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Part 2&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://github.com/jweisber/page-rank&#34; target=&#34;_blank&#34;&gt;Source on GitHub&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
 &lt;p&gt;&lt;a href=&#34;http://jonathanweisberg.org/post/page-rank-1/&#34;&gt;Last time&lt;/a&gt; we looked at the motivation and
 theory behind the idea. Now we’ll try predicting PageRanks. Can students
 who care about PageRank use the latest
@@ -259,6 +265,12 @@ end.&lt;/p&gt;
 
 &lt;p&gt;This is the first of two posts devoted to &lt;a href=&#34;https://bit.ly/2z12SoB&#34; target=&#34;_blank&#34;&gt;an idea of David
 Wallace’s&lt;/a&gt;.&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Part 1&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://jonathanweisberg.org/post/page-rank-1&#34;&gt;Part 2&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://github.com/jweisber/page-rank&#34; target=&#34;_blank&#34;&gt;Source on GitHub&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
 
 &lt;p&gt;Suppose you pick a philosophy PhD program at random and you go visit
 their website. There you pick a random person from the faculty list and
@@ -563,7 +575,7 @@ results for comparison:&lt;/p&gt;
 Leuven) are explained by the exclusion of selfies. So we seem to have
 implemented the algorithm correctly.&lt;/p&gt;
 
-&lt;p&gt;Next time we’ll look at predicting PageRanks, based on past PGR ratings,
+&lt;p&gt;&lt;a href=&#34;http://jonathanweisberg.org/post/page-rank-2/&#34;&gt;Next time&lt;/a&gt; we’ll look at predicting PageRanks, based on past PGR ratings,
 and past placement data. Meanwhile, here’s the full listing:&lt;/p&gt;
 
 &lt;table&gt;
