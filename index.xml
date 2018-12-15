@@ -467,7 +467,7 @@ general the probabilities of the $k$-th step are given by
 $\mathbf{M}^k \mathbf{p}$.&lt;/p&gt;
 
 &lt;p&gt;Our theorem guarantees now (given conditions still to be specified):
-$$\lim_{k \rightarrow \infty} M^k \mathbf{p} = \mathbf{w},$$ where
+$$\lim_{k \rightarrow \infty} \mathbf{M}^k \mathbf{p} = \mathbf{w},$$ where
 $\mathbf{w}$ is the solution to $\mathbf{M}\mathbf{w} = \mathbf{w}$ we
 found earlier. In other words, as the random walk progresses, the
 portion of time spent at a program&amp;rsquo;s page converges to the weight that
