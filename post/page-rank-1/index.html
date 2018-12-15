@@ -13,15 +13,15 @@
     <meta name="twitter:site" content="@jweisber">
     <meta name="twitter:creator" content="@jweisber">
     <meta name="twitter:title" content="Placement, PageRank, and the PGR: Part 1">
-    <meta name="twitter:description" content="This is the first of two posts devoted to an idea of David Wallace’s.
- Part 1 Part 2 Source on GitHub  Suppose you pick a philosophy PhD program at random and you go visit their website. There you pick a random person from the faculty list and see where they got their PhD. Then you go to that program’s website and repeat the exercise: pick a random faculty member, see where they did their PhD, and go to that program’s website.">
+    <meta name="twitter:description" content="This is the first of two posts devoted to an idea of David Wallace&rsquo;s.
+ Part 1 Part 2 Source on GitHub  Suppose you pick a philosophy PhD program at random and you go visit their website. There you pick a random person from the faculty list and see where they got their PhD. Then you go to that program&rsquo;s website and repeat the exercise: pick a random faculty member, see where they did their PhD, and go to that program&rsquo;s website.">
     <meta name="twitter:image" content="https://news.mit.edu/sites/mit.edu.newsoffice/files/styles/news_article_image_top_slideshow/public/images/2016/MIT-Random-Walks_0.jpg">
 
     <meta property="og:url" content="/post/page-rank-1/" />
     <meta property="og:type" content="article" />
     <meta property="og:title" content="Placement, PageRank, and the PGR: Part 1" />
-    <meta property="og:description" content="This is the first of two posts devoted to an idea of David Wallace’s.
- Part 1 Part 2 Source on GitHub  Suppose you pick a philosophy PhD program at random and you go visit their website. There you pick a random person from the faculty list and see where they got their PhD. Then you go to that program’s website and repeat the exercise: pick a random faculty member, see where they did their PhD, and go to that program’s website." />
+    <meta property="og:description" content="This is the first of two posts devoted to an idea of David Wallace&rsquo;s.
+ Part 1 Part 2 Source on GitHub  Suppose you pick a philosophy PhD program at random and you go visit their website. There you pick a random person from the faculty list and see where they got their PhD. Then you go to that program&rsquo;s website and repeat the exercise: pick a random faculty member, see where they did their PhD, and go to that program&rsquo;s website." />
     <meta property="og:image" content="https://news.mit.edu/sites/mit.edu.newsoffice/files/styles/news_article_image_top_slideshow/public/images/2016/MIT-Random-Walks_0.jpg" />
 
 
@@ -143,7 +143,7 @@
           
 
 <p>This is the first of two posts devoted to <a href="https://bit.ly/2z12SoB" target="_blank">an idea of David
-Wallace’s</a>.</p>
+Wallace&rsquo;s</a>.</p>
 
 <ul>
 <li>Part 1</li>
@@ -153,44 +153,44 @@ Wallace’s</a>.</p>
 
 <p>Suppose you pick a philosophy PhD program at random and you go visit
 their website. There you pick a random person from the faculty list and
-see where they got their PhD. Then you go to that program’s website and
+see where they got their PhD. Then you go to that program&rsquo;s website and
 repeat the exercise: pick a random faculty member, see where they did
-their PhD, and go to that program’s website. And again, and again.</p>
+their PhD, and go to that program&rsquo;s website. And again, and again.</p>
 
-<p>You’d come back to some programs more often than others in the long run.
+<p>You&rsquo;d come back to some programs more often than others in the long run.
 Which ones? Those whose graduates are in demand at other programs whose
 graduates are in demand at still other programs etc. In other words, the
 programs you keep coming back to are central in the hiring network of
 philosophy PhD programs.</p>
 
-<p>This is the idea behind Google’s famous “PageRank” algorithm. In <a href="https://ac.els-cdn.com/S1389128612003611/1-s2.0-S1389128612003611-main.pdf?_tid=a2d2e085-ca3d-4933-b0f3-fa0f383599df&amp;acdnat=1541034827_134e15cd9b3a557c55ba481746397b93" target="_blank">a
+<p>This is the idea behind Google&rsquo;s famous &ldquo;PageRank&rdquo; algorithm. In <a href="https://ac.els-cdn.com/S1389128612003611/1-s2.0-S1389128612003611-main.pdf?_tid=a2d2e085-ca3d-4933-b0f3-fa0f383599df&amp;acdnat=1541034827_134e15cd9b3a557c55ba481746397b93" target="_blank">a
 classic
 paper</a>,
-Google’s founders imagined a web surfer starting at a random page,
+Google&rsquo;s founders imagined a web surfer starting at a random page,
 following a random link from there, then following a random link found
 on the new page, and so on. Pages where the surfer winds up more often
 are more likely to be of interest to the users of a search engine.</p>
 
-<p>Wallace’s idea was to apply the same algorithm to the
-<a href="http://www.placementdata.com/" target="_blank">APDA</a>’s placement data. And he found
+<p>Wallace&rsquo;s idea was to apply the same algorithm to the
+<a href="http://www.placementdata.com/" target="_blank">APDA</a>&rsquo;s placement data. And he found
 that the resultant rankings correlated closely with the <a href="https://www.philosophicalgourmet.com/" target="_blank">Philosophical
-Gourmet Report</a>’s ratings from
+Gourmet Report</a>&rsquo;s ratings from
 2006.</p>
 
 <p>These posts expand on the idea in two parts. This post explains the
-theory behind the PageRank algorithm, and reproduces Wallace’s rankings.
-<a href="/post/page-rank-2/">The next post</a> considers the possibility of
-predicting a department’s PageRank, using either past PGR scores, or
+theory behind the PageRank algorithm, and reproduces Wallace&rsquo;s rankings.
+<a href="/post/page-rank-2.html">The next post</a> considers the possibility of
+predicting a department&rsquo;s PageRank, using either past PGR scores, or
 past placement data fed into the PageRank algorithm itself.</p>
 
 <h1 id="motivation">Motivation</h1>
 
-<p>Why care about a department’s PageRank? You might think it’s an
-indicator of a program’s “quality”, but I’m more interested in its
+<p>Why care about a department&rsquo;s PageRank? You might think it&rsquo;s an
+indicator of a program&rsquo;s &ldquo;quality&rdquo;, but I&rsquo;m more interested in its
 potential use to students. Some want to become professors at programs
 where they will train PhDs who go on to do the same.</p>
 
-<p>I’m also just intrigued by the PageRank algorithm itself. It’s
+<p>I&rsquo;m also just intrigued by the PageRank algorithm itself. It&rsquo;s
 mathematically very nifty, and it has a delightfully philosophical
 flavour too. It takes a problem that looks like a vicious regress and
 shows how to give it a virtuous grounding.</p>
@@ -201,12 +201,12 @@ algorithm and the math behind it. Plus I just like playing with data.</p>
 <h1 id="theory">Theory</h1>
 
 <p>There are two ways to understand the PageRank algorithm. First is the
-random surfer idea already described. The second we might call the “vote
-of confidence” model.</p>
+random surfer idea already described. The second we might call the &ldquo;vote
+of confidence&rdquo; model.</p>
 
-<p>When program X hires a graduate of program Y, that’s a vote of
+<p>When program X hires a graduate of program Y, that&rsquo;s a vote of
 confidence for program Y. But this vote carries more weight if program X
-itself is well regarded. So we have to see where program X’s own
+itself is well regarded. So we have to see where program X&rsquo;s own
 graduates have been placed, and determine how much confidence people
 have in those programs. And so on.</p>
 
@@ -215,35 +215,38 @@ school algebra.</p>
 
 <p>Imagine we have just three programs, A, B, and C. Program A got 80% of
 its faculty from B, and 10% each from C and from A itself. B is similar,
-except… well, here’s the whole story:</p>
+except&hellip; well, here&rsquo;s the whole story:</p>
 
 <table>
 <thead>
-<tr class="header">
+<tr>
 <th></th>
-<th style="text-align: left;">A’s Faculty</th>
-<th style="text-align: left;">B’s Faculty</th>
-<th style="text-align: left;">C’s Faculty</th>
+<th>A&rsquo;s Faculty</th>
+<th>B&rsquo;s Faculty</th>
+<th>C&rsquo;s Faculty</th>
 </tr>
 </thead>
+
 <tbody>
-<tr class="odd">
+<tr>
 <td>PhD from A</td>
-<td style="text-align: left;">10%</td>
-<td style="text-align: left;">20%</td>
-<td style="text-align: left;">30%</td>
+<td>10%</td>
+<td>20%</td>
+<td>30%</td>
 </tr>
-<tr class="even">
+
+<tr>
 <td>PhD from B</td>
-<td style="text-align: left;">80%</td>
-<td style="text-align: left;">70%</td>
-<td style="text-align: left;">40%</td>
+<td>80%</td>
+<td>70%</td>
+<td>40%</td>
 </tr>
-<tr class="odd">
+
+<tr>
 <td>PhD from C</td>
-<td style="text-align: left;">10%</td>
-<td style="text-align: left;">10%</td>
-<td style="text-align: left;">30%</td>
+<td>10%</td>
+<td>10%</td>
+<td>30%</td>
 </tr>
 </tbody>
 </table>
@@ -251,12 +254,10 @@ except… well, here’s the whole story:</p>
 <p>Thinking row-wise, A cast 10% of its votes for A so to speak; B cast 20%
 of its votes for A; and C cast 30% of its votes for A. But how much
 weight does a vote from program A carry, compared to say a vote from B?
-Labeling these unknown weights <em>w</em><sub><em>A</em></sub>, <em>w</em><sub><em>B</em></sub>, and
-<em>w</em><sub><em>C</em></sub>, we get a linear equation:
-$$ w_A = .1 w_A + .2 w_B + .3 w_C. $$
-Applying the same formula to B and C, and we get a system of three
-linear equations, in three unknowns:
-$$
+Labeling these unknown weights $w_A$, $w_B$, and $w_C$, we get a linear
+equation: $$ w_A = .1 w_A + .2 w_B + .3 w_C. $$ Applying the same
+formula to B and C, and we get a system of three linear equations, in
+three unknowns: $$
   \begin{aligned}
     w_A &amp;= .1 w_A + .2 w_B + .3 w_C.\\<br />
     w_B &amp;= .8 w_A + .7 w_B + .4 w_C.\\<br />
@@ -264,9 +265,8 @@ $$
   \end{aligned}
 $$</p>
 
-<p>Solving this system we find that
-(<em>w</em><sub><em>A</em></sub>, <em>w</em><sub><em>B</em></sub>, <em>w</em><sub><em>C</em></sub>) = (0.19, 0.68, 0.12)
-is the only solution with positive weights. So we’ve determined how much
+<p>Solving this system we find that $(w_A, w_B, w_C) = (0.19, 0.68, 0.12)$
+is the only solution with positive weights. So we&rsquo;ve determined how much
 weight a vote from each program carries. And unsurprisingly, votes from
 program B carry by far the most weight.</p>
 
@@ -277,43 +277,40 @@ is pretty much the same.</p>
 
 <h2 id="general-solution">General Solution</h2>
 
-<p>In the general case, we have <em>n</em> programs and we want to give each
-program <em>i</em> a weight <em>w</em><sub><em>i</em></sub> that reflects the votes of
-confidence it’s received. Placement data tells us for any two programs
-<em>i</em> and <em>j</em> the portion of faculty at program <em>j</em> hired from program
-<em>i</em>, call it $m_{ij}$. Since the weight of program <em>i</em> is
-the weighted sum of these numbers, we have a set of <em>n</em> linear equations
-with <em>n</em> unknowns:
+<p>In the general case, we have $n$ programs and we want to give each
+program $i$ a weight $w_i$ that reflects the votes of confidence it&rsquo;s
+received. Placement data tells us for any two programs $i$ and $j$ the
+portion of faculty at program $j$ hired from program $i$, call it
+$m_{ij}$. Since the weight of program $i$ is the weighted sum of these
+numbers, we have a set of $n$ linear equations with $n$ unknowns:
 $$
-  \begin{aligned}
-    m_{11} w_1 + m_{12} w_2 + \ldots + m_{1n} w_n &amp;= w_1,\\<br />
-    m_{21} w_1 + m_{22} w_2 + \ldots + m_{2n} w_n &amp;= w_2,\\<br />
-      \vdots &amp;  \\<br />
-    m_{n1} w_1 + m_{n2} w_2 + \ldots + m_{nn} w_n &amp;= w_n.
-  \end{aligned}
-$$</p>
-
-<p>In matrix terms, we’re looking to solve the equation $\mathbf{M}\mathbf{w} = \mathbf{w}$.
-This is an
+\begin{aligned}
+m_{11} w_1 + m_{12} w_2 + \ldots + m_{1n} w_n &amp;= w_1,\\<br />
+m_{21} w_1 + m_{22} w_2 + \ldots + m_{2n} w_n &amp;= w_2,\\<br />
+  \vdots &amp;  \\<br />
+m_{n1} w_1 + m_{n2} w_2 + \ldots + m_{nn} w_n &amp;= w_n.
+\end{aligned}
+$$
+In matrix terms, we&rsquo;re looking to solve the equation
+$\mathbf{M} \mathbf{w} = \mathbf{w}.$ This is an
 <a href="https://en.wikipedia.org/wiki/Eigenvalues_and_eigenvectors" target="_blank">eigenvector</a>
-equation $\mathbf{M}\mathbf{w} = \lambda \mathbf{w}$, where the eigenvalue $\lambda = 1$. And a
-<a href="https://en.wikipedia.org/wiki/Perron%E2%80%93Frobenius_theorem" target="_blank">famous
+equation $\mathbf{M} \mathbf{w} = \lambda \mathbf{w}$, where the
+eigenvalue $\lambda = 1$. And a <a href="https://en.wikipedia.org/wiki/Perron%E2%80%93Frobenius_theorem" target="_blank">famous
 theorem</a>
 guarantees that a unique solution exists, given assumptions to be
 discussed momentarily.</p>
 
 <p>The same theorem also guarantees that this solution is the result of the
 random-surfing exercise we opened with. This is why we can understand
-PageRank using either of our two interpretations. The weight
-<em>w</em><sub><em>B</em></sub> will also be the frequency with which our random
-surfer comes back to program B’s faculty page.</p>
+PageRank using either of our two interpretations. The weight $w_B$ will
+also be the frequency with which our random surfer comes back to program
+B&rsquo;s faculty page.</p>
 
-<p>Why? Well suppose we start on some random program’s page, say program A.
-We represent this with the vector <strong>p</strong> = (1, 0, 0), because right now
-we’re on program A’s page with probability 1. Then we start our random
-walk. What is the probability we’ll arrive at A, or B, or C next? To
-find out we multiply <strong>M</strong> against <strong>p</strong>:
-$$
+<p>Why? Well suppose we start on some random program&rsquo;s page, say program A.
+We represent this with the vector $\mathbf{p} = (1, 0, 0)$, because
+right now we&rsquo;re on program A&rsquo;s page with probability 1. Then we start
+our random walk. What is the probability we&rsquo;ll arrive at A, or B, or C
+next? To find out we multiply $\mathbf{M}$ against $\mathbf{p}$: $$
   \begin{aligned}
     \mathbf{M} \mathbf{p}
       &amp;=
@@ -340,112 +337,124 @@ $$
           \end{matrix}
         \right).
   \end{aligned}
-$$
-To find out where we’ll probably be at the next step, we multiply this
-result by <strong>M</strong> again, i.e. we compute <strong>M</strong>(<strong>M</strong><strong>p</strong>). Since matrix
-multiplication is associative, this is the same as
-<strong>M</strong><sup>2</sup><strong>p</strong>. And in general the probabilities of the <em>k</em>-th
-step are given by <strong>M</strong><sup><em>k</em></sup><strong>p</strong>.</p>
+$$ To find out where we&rsquo;ll probably be at the next step, we multiply
+this result by $\mathbf{M}$ again, i.e. we compute
+$\mathbf{M}(\mathbf{M}\mathbf{p})$. Since matrix multiplication is
+associative, this is the same as $\mathbf{M}^2 \mathbf{p}$. And in
+general the probabilities of the $k$-th step are given by
+$\mathbf{M}^k \mathbf{p}$.</p>
 
 <p>Our theorem guarantees now (given conditions still to be specified):
-$$\lim_{k \rightarrow \infty} \mathbf{M}^k \mathbf{p} = \mathbf{w}$$
- where <strong>w</strong> is the solution to <strong>M</strong><strong>w</strong> = <strong>w</strong> we found earlier. In
-other words, as the random walk progresses, the portion of time spent at
-a program’s page converges to the weight that program’s votes carry.</p>
+$$\lim_{k \rightarrow \infty} M^k \mathbf{p} = \mathbf{w},$$ where
+$\mathbf{w}$ is the solution to $\mathbf{M}\mathbf{w} = \mathbf{w}$ we
+found earlier. In other words, as the random walk progresses, the
+portion of time spent at a program&rsquo;s page converges to the weight that
+program&rsquo;s votes carry.</p>
 
 <p>Importantly, this convergence happens no matter where the random walk
 starts. In fact we get the same convergence for <em>any</em> probability vector
-<strong>p</strong> we might start with. (A probability vector is a list of
+$\mathbf{p}$ we might start with. (A probability vector is a list of
 non-negative numbers that sum to one.)</p>
 
-<p>So what conditions guarantee this happy convergence? Our matrix <strong>M</strong> is
+<p>So what conditions guarantee this happy convergence? Our matrix
+$\mathbf{M}$ is
 <a href="https://en.wikipedia.org/wiki/Stochastic_matrix" target="_blank">stochastic</a>, meaning
 its columns are probability vectors: they contain nonnegative numbers
-that sum to one. Given that, it suffices for <strong>M</strong> to be
+that sum to one. Given that, it suffices for $\mathbf{M}$ to be
 <a href="https://en.wikipedia.org/wiki/Regular_matrix" target="_blank">regular</a>, meaning
-<strong>M</strong><sup><em>k</em></sup> has all positive entries for some positive integer
-<em>k</em>. This is equivalent to it being possible to get from the page of any
-one program to any other, with positive probability.</p>
+$\mathbf{M}^k$ has all positive entries for some positive integer $k$.
+This is equivalent to it being possible to get from the page of any one
+program to any other, with positive probability.</p>
 
-<p>In reality this condition may well fail, but there’s any easy fix. We
+<p>In reality this condition may well fail, but there&rsquo;s any easy fix. We
 just have our random surfer occasionally start over, picking a new
-program at random to start their surfing from. Then there’s always a
+program at random to start their surfing from. Then there&rsquo;s always a
 positive chance of ending up anywhere, however briefly.</p>
 
 <h1 id="application">Application</h1>
 
-<p>Let’s put this theory into practice. We need a list of PhD programs, and
+<p>Let&rsquo;s put this theory into practice. We need a list of PhD programs, and
 the number of hires from each of them, by each of them. Happily the APDA
 provides <a href="https://bit.ly/2kZ2ulS" target="_blank">a table</a> of just such data up through
 2016.</p>
 
 <p>This table counts hires broadly, notice. It includes postdoc positions,
-and any “permanent academic” post apparently (see page 65
+and any &ldquo;permanent academic&rdquo; post apparently (see page 65
 <a href="https://bit.ly/2kZ2ulS" target="_blank">here</a>).</p>
 
-<p>It also includes “selfies”: when a program hires one of its own PhDs.
+<p>It also includes &ldquo;selfies&rdquo;: when a program hires one of its own PhDs.
 Some selfies are certainly legitimate for our purposes, but others
-probably aren’t the sort of thing we’re after here. For example, KU
+probably aren&rsquo;t the sort of thing we&rsquo;re after here. For example, KU
 Leuven stands out as having far more selfies than any other program save
-Oxford. Judging from Leuven’s website, most of these posts are not
+Oxford. Judging from Leuven&rsquo;s website, most of these posts are not
 permanent positions, nor the sort of highly desirable fellowships Oxford
 often hires its own graduates into.</p>
 
-<p>In this analys I’m going to exclude selfies. This is a bit arbitrary,
+<p>In this analys I&rsquo;m going to exclude selfies. This is a bit arbitrary,
 but not entirely. It has a big, negative impact on KU Leuven, not nearly
 so much Oxford. Disclosure: it also slightly favours the University of
 Toronto, where I work.</p>
 
-<p>That in mind let’s see our top 10 PageRank programs, alongside Wallace’s
+<p>That in mind let&rsquo;s see our top 10 PageRank programs, alongside Wallace&rsquo;s
 results for comparison:</p>
 
 <table>
 <thead>
-<tr class="header">
-<th style="text-align: left;">Wallace</th>
-<th style="text-align: left;">Weisberg</th>
+<tr>
+<th>Wallace</th>
+<th>Weisberg</th>
 </tr>
 </thead>
+
 <tbody>
-<tr class="odd">
-<td style="text-align: left;">New York University</td>
-<td style="text-align: left;">New York University</td>
+<tr>
+<td>New York University</td>
+<td>New York University</td>
 </tr>
-<tr class="even">
-<td style="text-align: left;">Columbia University</td>
-<td style="text-align: left;">Columbia University</td>
+
+<tr>
+<td>Columbia University</td>
+<td>Columbia University</td>
 </tr>
-<tr class="odd">
-<td style="text-align: left;">Princeton University</td>
-<td style="text-align: left;">Princeton University</td>
+
+<tr>
+<td>Princeton University</td>
+<td>Princeton University</td>
 </tr>
-<tr class="even">
-<td style="text-align: left;">Yale University</td>
-<td style="text-align: left;">Yale University</td>
+
+<tr>
+<td>Yale University</td>
+<td>Yale University</td>
 </tr>
-<tr class="odd">
-<td style="text-align: left;">Katholieke Universiteit Leuven</td>
-<td style="text-align: left;">University of California, Berkeley</td>
+
+<tr>
+<td>Katholieke Universiteit Leuven</td>
+<td>University of California, Berkeley</td>
 </tr>
-<tr class="even">
-<td style="text-align: left;">University of California, Berkeley</td>
-<td style="text-align: left;">Rutgers University</td>
+
+<tr>
+<td>University of California, Berkeley</td>
+<td>Rutgers University</td>
 </tr>
-<tr class="odd">
-<td style="text-align: left;">University of Oxford</td>
-<td style="text-align: left;">University of Pittsburgh (HPS)</td>
+
+<tr>
+<td>University of Oxford</td>
+<td>University of Pittsburgh (HPS)</td>
 </tr>
-<tr class="even">
-<td style="text-align: left;">Rutgers University</td>
-<td style="text-align: left;">University of Toronto</td>
+
+<tr>
+<td>Rutgers University</td>
+<td>University of Toronto</td>
 </tr>
-<tr class="odd">
-<td style="text-align: left;">University of Pittsburgh (HPS)</td>
-<td style="text-align: left;">University of Oxford</td>
+
+<tr>
+<td>University of Pittsburgh (HPS)</td>
+<td>University of Oxford</td>
 </tr>
-<tr class="even">
-<td style="text-align: left;">University of Toronto</td>
-<td style="text-align: left;">Harvard University</td>
+
+<tr>
+<td>University of Toronto</td>
+<td>Harvard University</td>
 </tr>
 </tbody>
 </table>
@@ -454,907 +463,1085 @@ results for comparison:</p>
 Leuven) are explained by the exclusion of selfies. So we seem to have
 implemented the algorithm correctly.</p>
 
-<p><a href="/post/page-rank-2/">Next time</a> we’ll look at predicting PageRanks, based on past PGR ratings,
-and past placement data. Meanwhile, here’s the full listing:</p>
+<p><a href="/post/page-rank-2/">Next time</a> we&rsquo;ll look at predicting PageRanks, based on past PGR ratings,
+and past placement data. Meanwhile, here&rsquo;s the full listing:</p>
 
 <table>
 <thead>
-<tr class="header">
-<th style="text-align: right;">Ordinal</th>
-<th style="text-align: left;">Program</th>
-<th style="text-align: right;">PageRank</th>
+<tr>
+<th>Ordinal</th>
+<th>Program</th>
+<th>PageRank</th>
 </tr>
 </thead>
+
 <tbody>
-<tr class="odd">
-<td style="text-align: right;">1</td>
-<td style="text-align: left;">New York University</td>
-<td style="text-align: right;">0.0556761</td>
-</tr>
-<tr class="even">
-<td style="text-align: right;">2</td>
-<td style="text-align: left;">Columbia University</td>
-<td style="text-align: right;">0.0513814</td>
-</tr>
-<tr class="odd">
-<td style="text-align: right;">3</td>
-<td style="text-align: left;">Princeton University</td>
-<td style="text-align: right;">0.0469022</td>
-</tr>
-<tr class="even">
-<td style="text-align: right;">4</td>
-<td style="text-align: left;">Yale University</td>
-<td style="text-align: right;">0.0364091</td>
-</tr>
-<tr class="odd">
-<td style="text-align: right;">5</td>
-<td style="text-align: left;">University of California, Berkeley</td>
-<td style="text-align: right;">0.0347961</td>
-</tr>
-<tr class="even">
-<td style="text-align: right;">6</td>
-<td style="text-align: left;">Rutgers University</td>
-<td style="text-align: right;">0.0320305</td>
-</tr>
-<tr class="odd">
-<td style="text-align: right;">7</td>
-<td style="text-align: left;">University of Pittsburgh (HPS)</td>
-<td style="text-align: right;">0.0306536</td>
-</tr>
-<tr class="even">
-<td style="text-align: right;">8</td>
-<td style="text-align: left;">University of Toronto</td>
-<td style="text-align: right;">0.0255954</td>
-</tr>
-<tr class="odd">
-<td style="text-align: right;">9</td>
-<td style="text-align: left;">University of Oxford</td>
-<td style="text-align: right;">0.0237988</td>
-</tr>
-<tr class="even">
-<td style="text-align: right;">10</td>
-<td style="text-align: left;">Harvard University</td>
-<td style="text-align: right;">0.0234968</td>
-</tr>
-<tr class="odd">
-<td style="text-align: right;">11</td>
-<td style="text-align: left;">University of North Carolina at Chapel Hill</td>
-<td style="text-align: right;">0.0226243</td>
-</tr>
-<tr class="even">
-<td style="text-align: right;">12</td>
-<td style="text-align: left;">University of Pittsburgh</td>
-<td style="text-align: right;">0.0222314</td>
-</tr>
-<tr class="odd">
-<td style="text-align: right;">13</td>
-<td style="text-align: left;">Massachusetts Institute of Technology</td>
-<td style="text-align: right;">0.0189393</td>
-</tr>
-<tr class="even">
-<td style="text-align: right;">14</td>
-<td style="text-align: left;">University of California, Los Angeles</td>
-<td style="text-align: right;">0.0185778</td>
-</tr>
-<tr class="odd">
-<td style="text-align: right;">15</td>
-<td style="text-align: left;">University of Chicago</td>
-<td style="text-align: right;">0.0174908</td>
-</tr>
-<tr class="even">
-<td style="text-align: right;">16</td>
-<td style="text-align: left;">Stanford University</td>
-<td style="text-align: right;">0.0167941</td>
-</tr>
-<tr class="odd">
-<td style="text-align: right;">17</td>
-<td style="text-align: left;">University of Cambridge (HPS)</td>
-<td style="text-align: right;">0.0132451</td>
-</tr>
-<tr class="even">
-<td style="text-align: right;">18</td>
-<td style="text-align: left;">University of California, San Diego</td>
-<td style="text-align: right;">0.0130881</td>
-</tr>
-<tr class="odd">
-<td style="text-align: right;">19</td>
-<td style="text-align: left;">University of Arizona</td>
-<td style="text-align: right;">0.0125996</td>
-</tr>
-<tr class="even">
-<td style="text-align: right;">20</td>
-<td style="text-align: left;">Brown University</td>
-<td style="text-align: right;">0.0119340</td>
-</tr>
-<tr class="odd">
-<td style="text-align: right;">21</td>
-<td style="text-align: left;">Northwestern University</td>
-<td style="text-align: right;">0.0115745</td>
-</tr>
-<tr class="even">
-<td style="text-align: right;">22</td>
-<td style="text-align: left;">University of Michigan</td>
-<td style="text-align: right;">0.0111104</td>
-</tr>
-<tr class="odd">
-<td style="text-align: right;">23</td>
-<td style="text-align: left;">London School of Economics and Political Science</td>
-<td style="text-align: right;">0.0107691</td>
-</tr>
-<tr class="even">
-<td style="text-align: right;">24</td>
-<td style="text-align: left;">Graduate Center of the City University of New York</td>
-<td style="text-align: right;">0.0100186</td>
-</tr>
-<tr class="odd">
-<td style="text-align: right;">25</td>
-<td style="text-align: left;">University of Cambridge</td>
-<td style="text-align: right;">0.0100180</td>
-</tr>
-<tr class="even">
-<td style="text-align: right;">26</td>
-<td style="text-align: left;">Indiana University Bloomington</td>
-<td style="text-align: right;">0.0097714</td>
-</tr>
-<tr class="odd">
-<td style="text-align: right;">27</td>
-<td style="text-align: left;">University of Notre Dame</td>
-<td style="text-align: right;">0.0094539</td>
-</tr>
-<tr class="even">
-<td style="text-align: right;">28</td>
-<td style="text-align: left;">King’s College London</td>
-<td style="text-align: right;">0.0091462</td>
-</tr>
-<tr class="odd">
-<td style="text-align: right;">29</td>
-<td style="text-align: left;">University of Pennsylvania</td>
-<td style="text-align: right;">0.0091080</td>
-</tr>
-<tr class="even">
-<td style="text-align: right;">30</td>
-<td style="text-align: left;">Ohio State University</td>
-<td style="text-align: right;">0.0090754</td>
-</tr>
-<tr class="odd">
-<td style="text-align: right;">31</td>
-<td style="text-align: left;">University of Maryland, College Park</td>
-<td style="text-align: right;">0.0089689</td>
-</tr>
-<tr class="even">
-<td style="text-align: right;">32</td>
-<td style="text-align: left;">Katholieke Universiteit Leuven</td>
-<td style="text-align: right;">0.0089271</td>
-</tr>
-<tr class="odd">
-<td style="text-align: right;">33</td>
-<td style="text-align: left;">University of Chicago (CHSS)</td>
-<td style="text-align: right;">0.0086507</td>
-</tr>
-<tr class="even">
-<td style="text-align: right;">34</td>
-<td style="text-align: left;">University of Southern California</td>
-<td style="text-align: right;">0.0083793</td>
-</tr>
-<tr class="odd">
-<td style="text-align: right;">35</td>
-<td style="text-align: left;">Cornell University</td>
-<td style="text-align: right;">0.0082857</td>
-</tr>
-<tr class="even">
-<td style="text-align: right;">36</td>
-<td style="text-align: left;">Institut Jean Nicod</td>
-<td style="text-align: right;">0.0082398</td>
-</tr>
-<tr class="odd">
-<td style="text-align: right;">37</td>
-<td style="text-align: left;">Western University</td>
-<td style="text-align: right;">0.0080649</td>
-</tr>
-<tr class="even">
-<td style="text-align: right;">38</td>
-<td style="text-align: left;">Indiana University Bloomington (HPS)</td>
-<td style="text-align: right;">0.0079434</td>
-</tr>
-<tr class="odd">
-<td style="text-align: right;">39</td>
-<td style="text-align: left;">Australian National University</td>
-<td style="text-align: right;">0.0079356</td>
-</tr>
-<tr class="even">
-<td style="text-align: right;">40</td>
-<td style="text-align: left;">Duke University</td>
-<td style="text-align: right;">0.0077089</td>
-</tr>
-<tr class="odd">
-<td style="text-align: right;">41</td>
-<td style="text-align: left;">The University of Melbourne</td>
-<td style="text-align: right;">0.0077023</td>
-</tr>
-<tr class="even">
-<td style="text-align: right;">42</td>
-<td style="text-align: left;">University College London</td>
-<td style="text-align: right;">0.0068843</td>
-</tr>
-<tr class="odd">
-<td style="text-align: right;">43</td>
-<td style="text-align: left;">St Andrews and Stirling Graduate Programme in Philosophy</td>
-<td style="text-align: right;">0.0067107</td>
-</tr>
-<tr class="even">
-<td style="text-align: right;">44</td>
-<td style="text-align: left;">University of California, Irvine (LPS)</td>
-<td style="text-align: right;">0.0062144</td>
-</tr>
-<tr class="odd">
-<td style="text-align: right;">45</td>
-<td style="text-align: left;">University of Alberta</td>
-<td style="text-align: right;">0.0062053</td>
-</tr>
-<tr class="even">
-<td style="text-align: right;">46</td>
-<td style="text-align: left;">University of Texas at Austin</td>
-<td style="text-align: right;">0.0061678</td>
-</tr>
-<tr class="odd">
-<td style="text-align: right;">47</td>
-<td style="text-align: left;">University of Sheffield</td>
-<td style="text-align: right;">0.0061209</td>
-</tr>
-<tr class="even">
-<td style="text-align: right;">48</td>
-<td style="text-align: left;">Georgetown University</td>
-<td style="text-align: right;">0.0057809</td>
-</tr>
-<tr class="odd">
-<td style="text-align: right;">49</td>
-<td style="text-align: left;">Carnegie Mellon University</td>
-<td style="text-align: right;">0.0056723</td>
-</tr>
-<tr class="even">
-<td style="text-align: right;">50</td>
-<td style="text-align: left;">Pennsylvania State University</td>
-<td style="text-align: right;">0.0056654</td>
-</tr>
-<tr class="odd">
-<td style="text-align: right;">51</td>
-<td style="text-align: left;">Arizona State University</td>
-<td style="text-align: right;">0.0056481</td>
-</tr>
-<tr class="even">
-<td style="text-align: right;">52</td>
-<td style="text-align: left;">University of British Columbia</td>
-<td style="text-align: right;">0.0055508</td>
-</tr>
-<tr class="odd">
-<td style="text-align: right;">53</td>
-<td style="text-align: left;">Boston College</td>
-<td style="text-align: right;">0.0054974</td>
-</tr>
-<tr class="even">
-<td style="text-align: right;">54</td>
-<td style="text-align: left;">University of Edinburgh</td>
-<td style="text-align: right;">0.0052731</td>
-</tr>
-<tr class="odd">
-<td style="text-align: right;">55</td>
-<td style="text-align: left;">University of Wisconsin-Madison</td>
-<td style="text-align: right;">0.0050191</td>
-</tr>
-<tr class="even">
-<td style="text-align: right;">56</td>
-<td style="text-align: left;">McGill University</td>
-<td style="text-align: right;">0.0049022</td>
-</tr>
-<tr class="odd">
-<td style="text-align: right;">57</td>
-<td style="text-align: left;">Tulane University</td>
-<td style="text-align: right;">0.0048671</td>
-</tr>
-<tr class="even">
-<td style="text-align: right;">58</td>
-<td style="text-align: left;">University of Memphis</td>
-<td style="text-align: right;">0.0047615</td>
-</tr>
-<tr class="odd">
-<td style="text-align: right;">59</td>
-<td style="text-align: left;">McMaster University</td>
-<td style="text-align: right;">0.0045715</td>
-</tr>
-<tr class="even">
-<td style="text-align: right;">60</td>
-<td style="text-align: left;">University of Minnesota Twin Cities</td>
-<td style="text-align: right;">0.0045700</td>
-</tr>
-<tr class="odd">
-<td style="text-align: right;">61</td>
-<td style="text-align: left;">University of Oregon</td>
-<td style="text-align: right;">0.0045430</td>
-</tr>
-<tr class="even">
-<td style="text-align: right;">62</td>
-<td style="text-align: left;">Boston University</td>
-<td style="text-align: right;">0.0041329</td>
-</tr>
-<tr class="odd">
-<td style="text-align: right;">63</td>
-<td style="text-align: left;">University of Connecticut</td>
-<td style="text-align: right;">0.0039652</td>
-</tr>
-<tr class="even">
-<td style="text-align: right;">64</td>
-<td style="text-align: left;">University of California, Riverside</td>
-<td style="text-align: right;">0.0039192</td>
-</tr>
-<tr class="odd">
-<td style="text-align: right;">65</td>
-<td style="text-align: left;">The University of Sydney</td>
-<td style="text-align: right;">0.0038372</td>
-</tr>
-<tr class="even">
-<td style="text-align: right;">66</td>
-<td style="text-align: left;">Johns Hopkins University</td>
-<td style="text-align: right;">0.0037778</td>
-</tr>
-<tr class="odd">
-<td style="text-align: right;">67</td>
-<td style="text-align: left;">University of Colorado Boulder</td>
-<td style="text-align: right;">0.0036436</td>
-</tr>
-<tr class="even">
-<td style="text-align: right;">68</td>
-<td style="text-align: left;">The New School</td>
-<td style="text-align: right;">0.0035828</td>
-</tr>
-<tr class="odd">
-<td style="text-align: right;">69</td>
-<td style="text-align: left;">University of California, Santa Barbara</td>
-<td style="text-align: right;">0.0035150</td>
-</tr>
-<tr class="even">
-<td style="text-align: right;">70</td>
-<td style="text-align: left;">University of Virginia</td>
-<td style="text-align: right;">0.0034553</td>
-</tr>
-<tr class="odd">
-<td style="text-align: right;">71</td>
-<td style="text-align: left;">University of South Florida</td>
-<td style="text-align: right;">0.0034273</td>
-</tr>
-<tr class="even">
-<td style="text-align: right;">72</td>
-<td style="text-align: left;">State University of New York at Buffalo</td>
-<td style="text-align: right;">0.0033737</td>
-</tr>
-<tr class="odd">
-<td style="text-align: right;">73</td>
-<td style="text-align: left;">York University</td>
-<td style="text-align: right;">0.0030985</td>
-</tr>
-<tr class="even">
-<td style="text-align: right;">74</td>
-<td style="text-align: left;">University of Massachusetts Amherst</td>
-<td style="text-align: right;">0.0030937</td>
-</tr>
-<tr class="odd">
-<td style="text-align: right;">75</td>
-<td style="text-align: left;">University of California, Irvine</td>
-<td style="text-align: right;">0.0030890</td>
-</tr>
-<tr class="even">
-<td style="text-align: right;">76</td>
-<td style="text-align: left;">Vanderbilt University</td>
-<td style="text-align: right;">0.0030261</td>
-</tr>
-<tr class="odd">
-<td style="text-align: right;">77</td>
-<td style="text-align: left;">Michigan State University</td>
-<td style="text-align: right;">0.0030149</td>
-</tr>
-<tr class="even">
-<td style="text-align: right;">78</td>
-<td style="text-align: left;">Saint Louis University</td>
-<td style="text-align: right;">0.0029294</td>
-</tr>
-<tr class="odd">
-<td style="text-align: right;">79</td>
-<td style="text-align: left;">Emory University</td>
-<td style="text-align: right;">0.0028953</td>
-</tr>
-<tr class="even">
-<td style="text-align: right;">80</td>
-<td style="text-align: left;">University of Illinois at Chicago</td>
-<td style="text-align: right;">0.0028281</td>
-</tr>
-<tr class="odd">
-<td style="text-align: right;">81</td>
-<td style="text-align: left;">Purdue University</td>
-<td style="text-align: right;">0.0027891</td>
-</tr>
-<tr class="even">
-<td style="text-align: right;">82</td>
-<td style="text-align: left;">University of California, Davis</td>
-<td style="text-align: right;">0.0027106</td>
-</tr>
-<tr class="odd">
-<td style="text-align: right;">83</td>
-<td style="text-align: left;">State University of New York at Stony Brook</td>
-<td style="text-align: right;">0.0025640</td>
-</tr>
-<tr class="even">
-<td style="text-align: right;">84</td>
-<td style="text-align: left;">DePaul University</td>
-<td style="text-align: right;">0.0025005</td>
-</tr>
-<tr class="odd">
-<td style="text-align: right;">85</td>
-<td style="text-align: left;">University of Iowa</td>
-<td style="text-align: right;">0.0023518</td>
-</tr>
-<tr class="even">
-<td style="text-align: right;">86</td>
-<td style="text-align: left;">Baylor University</td>
-<td style="text-align: right;">0.0021004</td>
-</tr>
-<tr class="odd">
-<td style="text-align: right;">87</td>
-<td style="text-align: left;">Macquarie University</td>
-<td style="text-align: right;">0.0020773</td>
-</tr>
-<tr class="even">
-<td style="text-align: right;">88</td>
-<td style="text-align: left;">University of Illinois at Urbana-Champaign</td>
-<td style="text-align: right;">0.0020013</td>
-</tr>
-<tr class="odd">
-<td style="text-align: right;">89</td>
-<td style="text-align: left;">The University of Manchester</td>
-<td style="text-align: right;">0.0019471</td>
-</tr>
-<tr class="even">
-<td style="text-align: right;">90</td>
-<td style="text-align: left;">Syracuse University</td>
-<td style="text-align: right;">0.0018914</td>
-</tr>
-<tr class="odd">
-<td style="text-align: right;">91</td>
-<td style="text-align: left;">William Marsh Rice University</td>
-<td style="text-align: right;">0.0018034</td>
-</tr>
-<tr class="even">
-<td style="text-align: right;">92</td>
-<td style="text-align: left;">University of Calgary</td>
-<td style="text-align: right;">0.0017465</td>
-</tr>
-<tr class="odd">
-<td style="text-align: right;">93</td>
-<td style="text-align: left;">University of York</td>
-<td style="text-align: right;">0.0017356</td>
-</tr>
-<tr class="even">
-<td style="text-align: right;">94</td>
-<td style="text-align: left;">University of Hawai’i at Manoa</td>
-<td style="text-align: right;">0.0017302</td>
-</tr>
-<tr class="odd">
-<td style="text-align: right;">94</td>
-<td style="text-align: left;">University of Oklahoma</td>
-<td style="text-align: right;">0.0017302</td>
-</tr>
-<tr class="even">
-<td style="text-align: right;">96</td>
-<td style="text-align: left;">Duquesne University</td>
-<td style="text-align: right;">0.0016160</td>
-</tr>
-<tr class="odd">
-<td style="text-align: right;">97</td>
-<td style="text-align: left;">Kingston University</td>
-<td style="text-align: right;">0.0015818</td>
-</tr>
-<tr class="even">
-<td style="text-align: right;">98</td>
-<td style="text-align: left;">Tilburg University</td>
-<td style="text-align: right;">0.0015262</td>
-</tr>
-<tr class="odd">
-<td style="text-align: right;">99</td>
-<td style="text-align: left;">The Catholic University of America</td>
-<td style="text-align: right;">0.0015213</td>
-</tr>
-<tr class="even">
-<td style="text-align: right;">100</td>
-<td style="text-align: left;">Fordham University</td>
-<td style="text-align: right;">0.0015210</td>
-</tr>
-<tr class="odd">
-<td style="text-align: right;">101</td>
-<td style="text-align: left;">University of Arkansas</td>
-<td style="text-align: right;">0.0015187</td>
-</tr>
-<tr class="even">
-<td style="text-align: right;">102</td>
-<td style="text-align: left;">University of Rochester</td>
-<td style="text-align: right;">0.0014903</td>
-</tr>
-<tr class="odd">
-<td style="text-align: right;">103</td>
-<td style="text-align: left;">University of Nebraska, Lincoln</td>
-<td style="text-align: right;">0.0014715</td>
-</tr>
-<tr class="even">
-<td style="text-align: right;">104</td>
-<td style="text-align: left;">University of Washington</td>
-<td style="text-align: right;">0.0014668</td>
-</tr>
-<tr class="odd">
-<td style="text-align: right;">105</td>
-<td style="text-align: left;">Washington University in St. Louis</td>
-<td style="text-align: right;">0.0013589</td>
-</tr>
-<tr class="even">
-<td style="text-align: right;">106</td>
-<td style="text-align: left;">Villanova University</td>
-<td style="text-align: right;">0.0012493</td>
-</tr>
-<tr class="odd">
-<td style="text-align: right;">107</td>
-<td style="text-align: left;">Loyola University Chicago</td>
-<td style="text-align: right;">0.0011959</td>
-</tr>
-<tr class="even">
-<td style="text-align: right;">107</td>
-<td style="text-align: left;">University of South Carolina</td>
-<td style="text-align: right;">0.0011959</td>
-</tr>
-<tr class="odd">
-<td style="text-align: right;">107</td>
-<td style="text-align: left;">Victoria University of Wellington</td>
-<td style="text-align: right;">0.0011959</td>
-</tr>
-<tr class="even">
-<td style="text-align: right;">110</td>
-<td style="text-align: left;">University of Florida</td>
-<td style="text-align: right;">0.0011906</td>
-</tr>
-<tr class="odd">
-<td style="text-align: right;">111</td>
-<td style="text-align: left;">Bowling Green State University</td>
-<td style="text-align: right;">0.0011731</td>
-</tr>
-<tr class="even">
-<td style="text-align: right;">112</td>
-<td style="text-align: left;">University of Guelph</td>
-<td style="text-align: right;">0.0011575</td>
-</tr>
-<tr class="odd">
-<td style="text-align: right;">113</td>
-<td style="text-align: left;">University of Utah</td>
-<td style="text-align: right;">0.0011462</td>
-</tr>
-<tr class="even">
-<td style="text-align: right;">114</td>
-<td style="text-align: left;">Binghamton University</td>
-<td style="text-align: right;">0.0011355</td>
-</tr>
-<tr class="odd">
-<td style="text-align: right;">115</td>
-<td style="text-align: left;">University of Tennessee</td>
-<td style="text-align: right;">0.0011087</td>
-</tr>
-<tr class="even">
-<td style="text-align: right;">116</td>
-<td style="text-align: left;">University of Waterloo</td>
-<td style="text-align: right;">0.0010800</td>
-</tr>
-<tr class="odd">
-<td style="text-align: right;">117</td>
-<td style="text-align: left;">University at Albany</td>
-<td style="text-align: right;">0.0010486</td>
-</tr>
-<tr class="even">
-<td style="text-align: right;">118</td>
-<td style="text-align: left;">University of New Mexico</td>
-<td style="text-align: right;">0.0010049</td>
-</tr>
-<tr class="odd">
-<td style="text-align: right;">119</td>
-<td style="text-align: left;">Birkbeck, University of London</td>
-<td style="text-align: right;">0.0009510</td>
-</tr>
-<tr class="even">
-<td style="text-align: right;">120</td>
-<td style="text-align: left;">University of Kentucky</td>
-<td style="text-align: right;">0.0008533</td>
-</tr>
-<tr class="odd">
-<td style="text-align: right;">121</td>
-<td style="text-align: left;">Marquette University</td>
-<td style="text-align: right;">0.0008356</td>
-</tr>
-<tr class="even">
-<td style="text-align: right;">122</td>
-<td style="text-align: left;">University of Cincinnati</td>
-<td style="text-align: right;">0.0008316</td>
-</tr>
-<tr class="odd">
-<td style="text-align: right;">123</td>
-<td style="text-align: left;">University of Georgia</td>
-<td style="text-align: right;">0.0007732</td>
-</tr>
-<tr class="even">
-<td style="text-align: right;">124</td>
-<td style="text-align: left;">Brandeis University</td>
-<td style="text-align: right;">0.0007232</td>
-</tr>
-<tr class="odd">
-<td style="text-align: right;">124</td>
-<td style="text-align: left;">California Institute of Technology</td>
-<td style="text-align: right;">0.0007232</td>
-</tr>
-<tr class="even">
-<td style="text-align: right;">124</td>
-<td style="text-align: left;">Central European University</td>
-<td style="text-align: right;">0.0007232</td>
-</tr>
-<tr class="odd">
-<td style="text-align: right;">124</td>
-<td style="text-align: left;">Claremont Graduate University</td>
-<td style="text-align: right;">0.0007232</td>
-</tr>
-<tr class="even">
-<td style="text-align: right;">124</td>
-<td style="text-align: left;">Dalhousie University</td>
-<td style="text-align: right;">0.0007232</td>
-</tr>
-<tr class="odd">
-<td style="text-align: right;">124</td>
-<td style="text-align: left;">Deakin University</td>
-<td style="text-align: right;">0.0007232</td>
-</tr>
-<tr class="even">
-<td style="text-align: right;">124</td>
-<td style="text-align: left;">Durham University</td>
-<td style="text-align: right;">0.0007232</td>
-</tr>
-<tr class="odd">
-<td style="text-align: right;">124</td>
-<td style="text-align: left;">Eindhoven University of Technology</td>
-<td style="text-align: right;">0.0007232</td>
-</tr>
-<tr class="even">
-<td style="text-align: right;">124</td>
-<td style="text-align: left;">Florida State University</td>
-<td style="text-align: right;">0.0007232</td>
-</tr>
-<tr class="odd">
-<td style="text-align: right;">124</td>
-<td style="text-align: left;">Free University of Berlin</td>
-<td style="text-align: right;">0.0007232</td>
-</tr>
-<tr class="even">
-<td style="text-align: right;">124</td>
-<td style="text-align: left;">Goethe University Frankfurt</td>
-<td style="text-align: right;">0.0007232</td>
-</tr>
-<tr class="odd">
-<td style="text-align: right;">124</td>
-<td style="text-align: left;">Humboldt University of Berlin</td>
-<td style="text-align: right;">0.0007232</td>
-</tr>
-<tr class="even">
-<td style="text-align: right;">124</td>
-<td style="text-align: left;">Iowa State University</td>
-<td style="text-align: right;">0.0007232</td>
-</tr>
-<tr class="odd">
-<td style="text-align: right;">124</td>
-<td style="text-align: left;">Monash University</td>
-<td style="text-align: right;">0.0007232</td>
-</tr>
-<tr class="even">
-<td style="text-align: right;">124</td>
-<td style="text-align: left;">Montclair State University</td>
-<td style="text-align: right;">0.0007232</td>
-</tr>
-<tr class="odd">
-<td style="text-align: right;">124</td>
-<td style="text-align: left;">Pantheon-Sorbonne University</td>
-<td style="text-align: right;">0.0007232</td>
-</tr>
-<tr class="even">
-<td style="text-align: right;">124</td>
-<td style="text-align: left;">Southern Illinois University</td>
-<td style="text-align: right;">0.0007232</td>
-</tr>
-<tr class="odd">
-<td style="text-align: right;">124</td>
-<td style="text-align: left;">Stockholm University</td>
-<td style="text-align: right;">0.0007232</td>
-</tr>
-<tr class="even">
-<td style="text-align: right;">124</td>
-<td style="text-align: left;">Temple University</td>
-<td style="text-align: right;">0.0007232</td>
-</tr>
-<tr class="odd">
-<td style="text-align: right;">124</td>
-<td style="text-align: left;">Texas State University</td>
-<td style="text-align: right;">0.0007232</td>
-</tr>
-<tr class="even">
-<td style="text-align: right;">124</td>
-<td style="text-align: left;">The University of Adelaide</td>
-<td style="text-align: right;">0.0007232</td>
-</tr>
-<tr class="odd">
-<td style="text-align: right;">124</td>
-<td style="text-align: left;">The University of Western Australia</td>
-<td style="text-align: right;">0.0007232</td>
-</tr>
-<tr class="even">
-<td style="text-align: right;">124</td>
-<td style="text-align: left;">Trinity College, Dublin</td>
-<td style="text-align: right;">0.0007232</td>
-</tr>
-<tr class="odd">
-<td style="text-align: right;">124</td>
-<td style="text-align: left;">University de Montreal</td>
-<td style="text-align: right;">0.0007232</td>
-</tr>
-<tr class="even">
-<td style="text-align: right;">124</td>
-<td style="text-align: left;">University of Aberdeen</td>
-<td style="text-align: right;">0.0007232</td>
-</tr>
-<tr class="odd">
-<td style="text-align: right;">124</td>
-<td style="text-align: left;">University of Amsterdam</td>
-<td style="text-align: right;">0.0007232</td>
-</tr>
-<tr class="even">
-<td style="text-align: right;">124</td>
-<td style="text-align: left;">University of Auckland</td>
-<td style="text-align: right;">0.0007232</td>
-</tr>
-<tr class="odd">
-<td style="text-align: right;">124</td>
-<td style="text-align: left;">University of Bristol</td>
-<td style="text-align: right;">0.0007232</td>
-</tr>
-<tr class="even">
-<td style="text-align: right;">124</td>
-<td style="text-align: left;">University of California, Santa Cruz</td>
-<td style="text-align: right;">0.0007232</td>
-</tr>
-<tr class="odd">
-<td style="text-align: right;">124</td>
-<td style="text-align: left;">University of Cologne</td>
-<td style="text-align: right;">0.0007232</td>
-</tr>
-<tr class="even">
-<td style="text-align: right;">124</td>
-<td style="text-align: left;">University of Dallas</td>
-<td style="text-align: right;">0.0007232</td>
-</tr>
-<tr class="odd">
-<td style="text-align: right;">124</td>
-<td style="text-align: left;">University of East Anglia</td>
-<td style="text-align: right;">0.0007232</td>
-</tr>
-<tr class="even">
-<td style="text-align: right;">124</td>
-<td style="text-align: left;">University of Geneva</td>
-<td style="text-align: right;">0.0007232</td>
-</tr>
-<tr class="odd">
-<td style="text-align: right;">124</td>
-<td style="text-align: left;">University of Glasgow</td>
-<td style="text-align: right;">0.0007232</td>
-</tr>
-<tr class="even">
-<td style="text-align: right;">124</td>
-<td style="text-align: left;">University of Groningen</td>
-<td style="text-align: right;">0.0007232</td>
-</tr>
-<tr class="odd">
-<td style="text-align: right;">124</td>
-<td style="text-align: left;">University of Helsinki</td>
-<td style="text-align: right;">0.0007232</td>
-</tr>
-<tr class="even">
-<td style="text-align: right;">124</td>
-<td style="text-align: left;">University of Kansas</td>
-<td style="text-align: right;">0.0007232</td>
-</tr>
-<tr class="odd">
-<td style="text-align: right;">124</td>
-<td style="text-align: left;">University of Kent</td>
-<td style="text-align: right;">0.0007232</td>
-</tr>
-<tr class="even">
-<td style="text-align: right;">124</td>
-<td style="text-align: left;">University of Leeds</td>
-<td style="text-align: right;">0.0007232</td>
-</tr>
-<tr class="odd">
-<td style="text-align: right;">124</td>
-<td style="text-align: left;">University of Miami</td>
-<td style="text-align: right;">0.0007232</td>
-</tr>
-<tr class="even">
-<td style="text-align: right;">124</td>
-<td style="text-align: left;">University of Milan</td>
-<td style="text-align: right;">0.0007232</td>
-</tr>
-<tr class="odd">
-<td style="text-align: right;">124</td>
-<td style="text-align: left;">University of Missouri</td>
-<td style="text-align: right;">0.0007232</td>
-</tr>
-<tr class="even">
-<td style="text-align: right;">124</td>
-<td style="text-align: left;">University of New South Wales</td>
-<td style="text-align: right;">0.0007232</td>
-</tr>
-<tr class="odd">
-<td style="text-align: right;">124</td>
-<td style="text-align: left;">University of Oslo</td>
-<td style="text-align: right;">0.0007232</td>
-</tr>
-<tr class="even">
-<td style="text-align: right;">124</td>
-<td style="text-align: left;">University of Otago</td>
-<td style="text-align: right;">0.0007232</td>
-</tr>
-<tr class="odd">
-<td style="text-align: right;">124</td>
-<td style="text-align: left;">University of Ottawa</td>
-<td style="text-align: right;">0.0007232</td>
-</tr>
-<tr class="even">
-<td style="text-align: right;">124</td>
-<td style="text-align: left;">University of Reading</td>
-<td style="text-align: right;">0.0007232</td>
-</tr>
-<tr class="odd">
-<td style="text-align: right;">124</td>
-<td style="text-align: left;">University of Sussex</td>
-<td style="text-align: right;">0.0007232</td>
-</tr>
-<tr class="even">
-<td style="text-align: right;">124</td>
-<td style="text-align: left;">University of Tasmania</td>
-<td style="text-align: right;">0.0007232</td>
-</tr>
-<tr class="odd">
-<td style="text-align: right;">124</td>
-<td style="text-align: left;">University of Tubingen</td>
-<td style="text-align: right;">0.0007232</td>
-</tr>
-<tr class="even">
-<td style="text-align: right;">124</td>
-<td style="text-align: left;">University of Vienna</td>
-<td style="text-align: right;">0.0007232</td>
-</tr>
-<tr class="odd">
-<td style="text-align: right;">124</td>
-<td style="text-align: left;">University of Waikato</td>
-<td style="text-align: right;">0.0007232</td>
-</tr>
-<tr class="even">
-<td style="text-align: right;">124</td>
-<td style="text-align: left;">University of Warwick</td>
-<td style="text-align: right;">0.0007232</td>
-</tr>
-<tr class="odd">
-<td style="text-align: right;">124</td>
-<td style="text-align: left;">Uppsala University</td>
-<td style="text-align: right;">0.0007232</td>
-</tr>
-<tr class="even">
-<td style="text-align: right;">124</td>
-<td style="text-align: left;">Wayne State University</td>
-<td style="text-align: right;">0.0007232</td>
+<tr>
+<td>1</td>
+<td>New York University</td>
+<td>0.0556761</td>
+</tr>
+
+<tr>
+<td>2</td>
+<td>Columbia University</td>
+<td>0.0513814</td>
+</tr>
+
+<tr>
+<td>3</td>
+<td>Princeton University</td>
+<td>0.0469022</td>
+</tr>
+
+<tr>
+<td>4</td>
+<td>Yale University</td>
+<td>0.0364091</td>
+</tr>
+
+<tr>
+<td>5</td>
+<td>University of California, Berkeley</td>
+<td>0.0347961</td>
+</tr>
+
+<tr>
+<td>6</td>
+<td>Rutgers University</td>
+<td>0.0320305</td>
+</tr>
+
+<tr>
+<td>7</td>
+<td>University of Pittsburgh (HPS)</td>
+<td>0.0306536</td>
+</tr>
+
+<tr>
+<td>8</td>
+<td>University of Toronto</td>
+<td>0.0255954</td>
+</tr>
+
+<tr>
+<td>9</td>
+<td>University of Oxford</td>
+<td>0.0237988</td>
+</tr>
+
+<tr>
+<td>10</td>
+<td>Harvard University</td>
+<td>0.0234968</td>
+</tr>
+
+<tr>
+<td>11</td>
+<td>University of North Carolina at Chapel Hill</td>
+<td>0.0226243</td>
+</tr>
+
+<tr>
+<td>12</td>
+<td>University of Pittsburgh</td>
+<td>0.0222314</td>
+</tr>
+
+<tr>
+<td>13</td>
+<td>Massachusetts Institute of Technology</td>
+<td>0.0189393</td>
+</tr>
+
+<tr>
+<td>14</td>
+<td>University of California, Los Angeles</td>
+<td>0.0185778</td>
+</tr>
+
+<tr>
+<td>15</td>
+<td>University of Chicago</td>
+<td>0.0174908</td>
+</tr>
+
+<tr>
+<td>16</td>
+<td>Stanford University</td>
+<td>0.0167941</td>
+</tr>
+
+<tr>
+<td>17</td>
+<td>University of Cambridge (HPS)</td>
+<td>0.0132451</td>
+</tr>
+
+<tr>
+<td>18</td>
+<td>University of California, San Diego</td>
+<td>0.0130881</td>
+</tr>
+
+<tr>
+<td>19</td>
+<td>University of Arizona</td>
+<td>0.0125996</td>
+</tr>
+
+<tr>
+<td>20</td>
+<td>Brown University</td>
+<td>0.0119340</td>
+</tr>
+
+<tr>
+<td>21</td>
+<td>Northwestern University</td>
+<td>0.0115745</td>
+</tr>
+
+<tr>
+<td>22</td>
+<td>University of Michigan</td>
+<td>0.0111104</td>
+</tr>
+
+<tr>
+<td>23</td>
+<td>London School of Economics and Political Science</td>
+<td>0.0107691</td>
+</tr>
+
+<tr>
+<td>24</td>
+<td>Graduate Center of the City University of New York</td>
+<td>0.0100186</td>
+</tr>
+
+<tr>
+<td>25</td>
+<td>University of Cambridge</td>
+<td>0.0100180</td>
+</tr>
+
+<tr>
+<td>26</td>
+<td>Indiana University Bloomington</td>
+<td>0.0097714</td>
+</tr>
+
+<tr>
+<td>27</td>
+<td>University of Notre Dame</td>
+<td>0.0094539</td>
+</tr>
+
+<tr>
+<td>28</td>
+<td>King&rsquo;s College London</td>
+<td>0.0091462</td>
+</tr>
+
+<tr>
+<td>29</td>
+<td>University of Pennsylvania</td>
+<td>0.0091080</td>
+</tr>
+
+<tr>
+<td>30</td>
+<td>Ohio State University</td>
+<td>0.0090754</td>
+</tr>
+
+<tr>
+<td>31</td>
+<td>University of Maryland, College Park</td>
+<td>0.0089689</td>
+</tr>
+
+<tr>
+<td>32</td>
+<td>Katholieke Universiteit Leuven</td>
+<td>0.0089271</td>
+</tr>
+
+<tr>
+<td>33</td>
+<td>University of Chicago (CHSS)</td>
+<td>0.0086507</td>
+</tr>
+
+<tr>
+<td>34</td>
+<td>University of Southern California</td>
+<td>0.0083793</td>
+</tr>
+
+<tr>
+<td>35</td>
+<td>Cornell University</td>
+<td>0.0082857</td>
+</tr>
+
+<tr>
+<td>36</td>
+<td>Institut Jean Nicod</td>
+<td>0.0082398</td>
+</tr>
+
+<tr>
+<td>37</td>
+<td>Western University</td>
+<td>0.0080649</td>
+</tr>
+
+<tr>
+<td>38</td>
+<td>Indiana University Bloomington (HPS)</td>
+<td>0.0079434</td>
+</tr>
+
+<tr>
+<td>39</td>
+<td>Australian National University</td>
+<td>0.0079356</td>
+</tr>
+
+<tr>
+<td>40</td>
+<td>Duke University</td>
+<td>0.0077089</td>
+</tr>
+
+<tr>
+<td>41</td>
+<td>The University of Melbourne</td>
+<td>0.0077023</td>
+</tr>
+
+<tr>
+<td>42</td>
+<td>University College London</td>
+<td>0.0068843</td>
+</tr>
+
+<tr>
+<td>43</td>
+<td>St Andrews and Stirling Graduate Programme in Philosophy</td>
+<td>0.0067107</td>
+</tr>
+
+<tr>
+<td>44</td>
+<td>University of California, Irvine (LPS)</td>
+<td>0.0062144</td>
+</tr>
+
+<tr>
+<td>45</td>
+<td>University of Alberta</td>
+<td>0.0062053</td>
+</tr>
+
+<tr>
+<td>46</td>
+<td>University of Texas at Austin</td>
+<td>0.0061678</td>
+</tr>
+
+<tr>
+<td>47</td>
+<td>University of Sheffield</td>
+<td>0.0061209</td>
+</tr>
+
+<tr>
+<td>48</td>
+<td>Georgetown University</td>
+<td>0.0057809</td>
+</tr>
+
+<tr>
+<td>49</td>
+<td>Carnegie Mellon University</td>
+<td>0.0056723</td>
+</tr>
+
+<tr>
+<td>50</td>
+<td>Pennsylvania State University</td>
+<td>0.0056654</td>
+</tr>
+
+<tr>
+<td>51</td>
+<td>Arizona State University</td>
+<td>0.0056481</td>
+</tr>
+
+<tr>
+<td>52</td>
+<td>University of British Columbia</td>
+<td>0.0055508</td>
+</tr>
+
+<tr>
+<td>53</td>
+<td>Boston College</td>
+<td>0.0054974</td>
+</tr>
+
+<tr>
+<td>54</td>
+<td>University of Edinburgh</td>
+<td>0.0052731</td>
+</tr>
+
+<tr>
+<td>55</td>
+<td>University of Wisconsin-Madison</td>
+<td>0.0050191</td>
+</tr>
+
+<tr>
+<td>56</td>
+<td>McGill University</td>
+<td>0.0049022</td>
+</tr>
+
+<tr>
+<td>57</td>
+<td>Tulane University</td>
+<td>0.0048671</td>
+</tr>
+
+<tr>
+<td>58</td>
+<td>University of Memphis</td>
+<td>0.0047615</td>
+</tr>
+
+<tr>
+<td>59</td>
+<td>McMaster University</td>
+<td>0.0045715</td>
+</tr>
+
+<tr>
+<td>60</td>
+<td>University of Minnesota Twin Cities</td>
+<td>0.0045700</td>
+</tr>
+
+<tr>
+<td>61</td>
+<td>University of Oregon</td>
+<td>0.0045430</td>
+</tr>
+
+<tr>
+<td>62</td>
+<td>Boston University</td>
+<td>0.0041329</td>
+</tr>
+
+<tr>
+<td>63</td>
+<td>University of Connecticut</td>
+<td>0.0039652</td>
+</tr>
+
+<tr>
+<td>64</td>
+<td>University of California, Riverside</td>
+<td>0.0039192</td>
+</tr>
+
+<tr>
+<td>65</td>
+<td>The University of Sydney</td>
+<td>0.0038372</td>
+</tr>
+
+<tr>
+<td>66</td>
+<td>Johns Hopkins University</td>
+<td>0.0037778</td>
+</tr>
+
+<tr>
+<td>67</td>
+<td>University of Colorado Boulder</td>
+<td>0.0036436</td>
+</tr>
+
+<tr>
+<td>68</td>
+<td>The New School</td>
+<td>0.0035828</td>
+</tr>
+
+<tr>
+<td>69</td>
+<td>University of California, Santa Barbara</td>
+<td>0.0035150</td>
+</tr>
+
+<tr>
+<td>70</td>
+<td>University of Virginia</td>
+<td>0.0034553</td>
+</tr>
+
+<tr>
+<td>71</td>
+<td>University of South Florida</td>
+<td>0.0034273</td>
+</tr>
+
+<tr>
+<td>72</td>
+<td>State University of New York at Buffalo</td>
+<td>0.0033737</td>
+</tr>
+
+<tr>
+<td>73</td>
+<td>York University</td>
+<td>0.0030985</td>
+</tr>
+
+<tr>
+<td>74</td>
+<td>University of Massachusetts Amherst</td>
+<td>0.0030937</td>
+</tr>
+
+<tr>
+<td>75</td>
+<td>University of California, Irvine</td>
+<td>0.0030890</td>
+</tr>
+
+<tr>
+<td>76</td>
+<td>Vanderbilt University</td>
+<td>0.0030261</td>
+</tr>
+
+<tr>
+<td>77</td>
+<td>Michigan State University</td>
+<td>0.0030149</td>
+</tr>
+
+<tr>
+<td>78</td>
+<td>Saint Louis University</td>
+<td>0.0029294</td>
+</tr>
+
+<tr>
+<td>79</td>
+<td>Emory University</td>
+<td>0.0028953</td>
+</tr>
+
+<tr>
+<td>80</td>
+<td>University of Illinois at Chicago</td>
+<td>0.0028281</td>
+</tr>
+
+<tr>
+<td>81</td>
+<td>Purdue University</td>
+<td>0.0027891</td>
+</tr>
+
+<tr>
+<td>82</td>
+<td>University of California, Davis</td>
+<td>0.0027106</td>
+</tr>
+
+<tr>
+<td>83</td>
+<td>State University of New York at Stony Brook</td>
+<td>0.0025640</td>
+</tr>
+
+<tr>
+<td>84</td>
+<td>DePaul University</td>
+<td>0.0025005</td>
+</tr>
+
+<tr>
+<td>85</td>
+<td>University of Iowa</td>
+<td>0.0023518</td>
+</tr>
+
+<tr>
+<td>86</td>
+<td>Baylor University</td>
+<td>0.0021004</td>
+</tr>
+
+<tr>
+<td>87</td>
+<td>Macquarie University</td>
+<td>0.0020773</td>
+</tr>
+
+<tr>
+<td>88</td>
+<td>University of Illinois at Urbana-Champaign</td>
+<td>0.0020013</td>
+</tr>
+
+<tr>
+<td>89</td>
+<td>The University of Manchester</td>
+<td>0.0019471</td>
+</tr>
+
+<tr>
+<td>90</td>
+<td>Syracuse University</td>
+<td>0.0018914</td>
+</tr>
+
+<tr>
+<td>91</td>
+<td>William Marsh Rice University</td>
+<td>0.0018034</td>
+</tr>
+
+<tr>
+<td>92</td>
+<td>University of Calgary</td>
+<td>0.0017465</td>
+</tr>
+
+<tr>
+<td>93</td>
+<td>University of York</td>
+<td>0.0017356</td>
+</tr>
+
+<tr>
+<td>94</td>
+<td>University of Hawai&rsquo;i at Manoa</td>
+<td>0.0017302</td>
+</tr>
+
+<tr>
+<td>94</td>
+<td>University of Oklahoma</td>
+<td>0.0017302</td>
+</tr>
+
+<tr>
+<td>96</td>
+<td>Duquesne University</td>
+<td>0.0016160</td>
+</tr>
+
+<tr>
+<td>97</td>
+<td>Kingston University</td>
+<td>0.0015818</td>
+</tr>
+
+<tr>
+<td>98</td>
+<td>Tilburg University</td>
+<td>0.0015262</td>
+</tr>
+
+<tr>
+<td>99</td>
+<td>The Catholic University of America</td>
+<td>0.0015213</td>
+</tr>
+
+<tr>
+<td>100</td>
+<td>Fordham University</td>
+<td>0.0015210</td>
+</tr>
+
+<tr>
+<td>101</td>
+<td>University of Arkansas</td>
+<td>0.0015187</td>
+</tr>
+
+<tr>
+<td>102</td>
+<td>University of Rochester</td>
+<td>0.0014903</td>
+</tr>
+
+<tr>
+<td>103</td>
+<td>University of Nebraska, Lincoln</td>
+<td>0.0014715</td>
+</tr>
+
+<tr>
+<td>104</td>
+<td>University of Washington</td>
+<td>0.0014668</td>
+</tr>
+
+<tr>
+<td>105</td>
+<td>Washington University in St. Louis</td>
+<td>0.0013589</td>
+</tr>
+
+<tr>
+<td>106</td>
+<td>Villanova University</td>
+<td>0.0012493</td>
+</tr>
+
+<tr>
+<td>107</td>
+<td>Loyola University Chicago</td>
+<td>0.0011959</td>
+</tr>
+
+<tr>
+<td>107</td>
+<td>University of South Carolina</td>
+<td>0.0011959</td>
+</tr>
+
+<tr>
+<td>107</td>
+<td>Victoria University of Wellington</td>
+<td>0.0011959</td>
+</tr>
+
+<tr>
+<td>110</td>
+<td>University of Florida</td>
+<td>0.0011906</td>
+</tr>
+
+<tr>
+<td>111</td>
+<td>Bowling Green State University</td>
+<td>0.0011731</td>
+</tr>
+
+<tr>
+<td>112</td>
+<td>University of Guelph</td>
+<td>0.0011575</td>
+</tr>
+
+<tr>
+<td>113</td>
+<td>University of Utah</td>
+<td>0.0011462</td>
+</tr>
+
+<tr>
+<td>114</td>
+<td>Binghamton University</td>
+<td>0.0011355</td>
+</tr>
+
+<tr>
+<td>115</td>
+<td>University of Tennessee</td>
+<td>0.0011087</td>
+</tr>
+
+<tr>
+<td>116</td>
+<td>University of Waterloo</td>
+<td>0.0010800</td>
+</tr>
+
+<tr>
+<td>117</td>
+<td>University at Albany</td>
+<td>0.0010486</td>
+</tr>
+
+<tr>
+<td>118</td>
+<td>University of New Mexico</td>
+<td>0.0010049</td>
+</tr>
+
+<tr>
+<td>119</td>
+<td>Birkbeck, University of London</td>
+<td>0.0009510</td>
+</tr>
+
+<tr>
+<td>120</td>
+<td>University of Kentucky</td>
+<td>0.0008533</td>
+</tr>
+
+<tr>
+<td>121</td>
+<td>Marquette University</td>
+<td>0.0008356</td>
+</tr>
+
+<tr>
+<td>122</td>
+<td>University of Cincinnati</td>
+<td>0.0008316</td>
+</tr>
+
+<tr>
+<td>123</td>
+<td>University of Georgia</td>
+<td>0.0007732</td>
+</tr>
+
+<tr>
+<td>124</td>
+<td>Brandeis University</td>
+<td>0.0007232</td>
+</tr>
+
+<tr>
+<td>124</td>
+<td>California Institute of Technology</td>
+<td>0.0007232</td>
+</tr>
+
+<tr>
+<td>124</td>
+<td>Central European University</td>
+<td>0.0007232</td>
+</tr>
+
+<tr>
+<td>124</td>
+<td>Claremont Graduate University</td>
+<td>0.0007232</td>
+</tr>
+
+<tr>
+<td>124</td>
+<td>Dalhousie University</td>
+<td>0.0007232</td>
+</tr>
+
+<tr>
+<td>124</td>
+<td>Deakin University</td>
+<td>0.0007232</td>
+</tr>
+
+<tr>
+<td>124</td>
+<td>Durham University</td>
+<td>0.0007232</td>
+</tr>
+
+<tr>
+<td>124</td>
+<td>Eindhoven University of Technology</td>
+<td>0.0007232</td>
+</tr>
+
+<tr>
+<td>124</td>
+<td>Florida State University</td>
+<td>0.0007232</td>
+</tr>
+
+<tr>
+<td>124</td>
+<td>Free University of Berlin</td>
+<td>0.0007232</td>
+</tr>
+
+<tr>
+<td>124</td>
+<td>Goethe University Frankfurt</td>
+<td>0.0007232</td>
+</tr>
+
+<tr>
+<td>124</td>
+<td>Humboldt University of Berlin</td>
+<td>0.0007232</td>
+</tr>
+
+<tr>
+<td>124</td>
+<td>Iowa State University</td>
+<td>0.0007232</td>
+</tr>
+
+<tr>
+<td>124</td>
+<td>Monash University</td>
+<td>0.0007232</td>
+</tr>
+
+<tr>
+<td>124</td>
+<td>Montclair State University</td>
+<td>0.0007232</td>
+</tr>
+
+<tr>
+<td>124</td>
+<td>Pantheon-Sorbonne University</td>
+<td>0.0007232</td>
+</tr>
+
+<tr>
+<td>124</td>
+<td>Southern Illinois University</td>
+<td>0.0007232</td>
+</tr>
+
+<tr>
+<td>124</td>
+<td>Stockholm University</td>
+<td>0.0007232</td>
+</tr>
+
+<tr>
+<td>124</td>
+<td>Temple University</td>
+<td>0.0007232</td>
+</tr>
+
+<tr>
+<td>124</td>
+<td>Texas State University</td>
+<td>0.0007232</td>
+</tr>
+
+<tr>
+<td>124</td>
+<td>The University of Adelaide</td>
+<td>0.0007232</td>
+</tr>
+
+<tr>
+<td>124</td>
+<td>The University of Western Australia</td>
+<td>0.0007232</td>
+</tr>
+
+<tr>
+<td>124</td>
+<td>Trinity College, Dublin</td>
+<td>0.0007232</td>
+</tr>
+
+<tr>
+<td>124</td>
+<td>University de Montreal</td>
+<td>0.0007232</td>
+</tr>
+
+<tr>
+<td>124</td>
+<td>University of Aberdeen</td>
+<td>0.0007232</td>
+</tr>
+
+<tr>
+<td>124</td>
+<td>University of Amsterdam</td>
+<td>0.0007232</td>
+</tr>
+
+<tr>
+<td>124</td>
+<td>University of Auckland</td>
+<td>0.0007232</td>
+</tr>
+
+<tr>
+<td>124</td>
+<td>University of Bristol</td>
+<td>0.0007232</td>
+</tr>
+
+<tr>
+<td>124</td>
+<td>University of California, Santa Cruz</td>
+<td>0.0007232</td>
+</tr>
+
+<tr>
+<td>124</td>
+<td>University of Cologne</td>
+<td>0.0007232</td>
+</tr>
+
+<tr>
+<td>124</td>
+<td>University of Dallas</td>
+<td>0.0007232</td>
+</tr>
+
+<tr>
+<td>124</td>
+<td>University of East Anglia</td>
+<td>0.0007232</td>
+</tr>
+
+<tr>
+<td>124</td>
+<td>University of Geneva</td>
+<td>0.0007232</td>
+</tr>
+
+<tr>
+<td>124</td>
+<td>University of Glasgow</td>
+<td>0.0007232</td>
+</tr>
+
+<tr>
+<td>124</td>
+<td>University of Groningen</td>
+<td>0.0007232</td>
+</tr>
+
+<tr>
+<td>124</td>
+<td>University of Helsinki</td>
+<td>0.0007232</td>
+</tr>
+
+<tr>
+<td>124</td>
+<td>University of Kansas</td>
+<td>0.0007232</td>
+</tr>
+
+<tr>
+<td>124</td>
+<td>University of Kent</td>
+<td>0.0007232</td>
+</tr>
+
+<tr>
+<td>124</td>
+<td>University of Leeds</td>
+<td>0.0007232</td>
+</tr>
+
+<tr>
+<td>124</td>
+<td>University of Miami</td>
+<td>0.0007232</td>
+</tr>
+
+<tr>
+<td>124</td>
+<td>University of Milan</td>
+<td>0.0007232</td>
+</tr>
+
+<tr>
+<td>124</td>
+<td>University of Missouri</td>
+<td>0.0007232</td>
+</tr>
+
+<tr>
+<td>124</td>
+<td>University of New South Wales</td>
+<td>0.0007232</td>
+</tr>
+
+<tr>
+<td>124</td>
+<td>University of Oslo</td>
+<td>0.0007232</td>
+</tr>
+
+<tr>
+<td>124</td>
+<td>University of Otago</td>
+<td>0.0007232</td>
+</tr>
+
+<tr>
+<td>124</td>
+<td>University of Ottawa</td>
+<td>0.0007232</td>
+</tr>
+
+<tr>
+<td>124</td>
+<td>University of Reading</td>
+<td>0.0007232</td>
+</tr>
+
+<tr>
+<td>124</td>
+<td>University of Sussex</td>
+<td>0.0007232</td>
+</tr>
+
+<tr>
+<td>124</td>
+<td>University of Tasmania</td>
+<td>0.0007232</td>
+</tr>
+
+<tr>
+<td>124</td>
+<td>University of Tubingen</td>
+<td>0.0007232</td>
+</tr>
+
+<tr>
+<td>124</td>
+<td>University of Vienna</td>
+<td>0.0007232</td>
+</tr>
+
+<tr>
+<td>124</td>
+<td>University of Waikato</td>
+<td>0.0007232</td>
+</tr>
+
+<tr>
+<td>124</td>
+<td>University of Warwick</td>
+<td>0.0007232</td>
+</tr>
+
+<tr>
+<td>124</td>
+<td>Uppsala University</td>
+<td>0.0007232</td>
+</tr>
+
+<tr>
+<td>124</td>
+<td>Wayne State University</td>
+<td>0.0007232</td>
 </tr>
 </tbody>
 </table>
