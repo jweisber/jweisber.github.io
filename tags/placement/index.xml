@@ -9,6 +9,315 @@
     <atom:link href="http://jonathanweisberg.org/tags/placement/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
+      <title>Prestige and Time to the Tenure-Track</title>
+      <link>http://jonathanweisberg.org/post/prestige-and-time-to-tt/</link>
+      <pubDate>Thu, 03 Jan 2019 00:00:00 -0500</pubDate>
+      
+      <guid>http://jonathanweisberg.org/post/prestige-and-time-to-tt/</guid>
+      <description>
+
+&lt;p&gt;How much does a PhD from a prestigious program help you on the job
+market in academic philosophy?&lt;/p&gt;
+
+&lt;p&gt;It makes a big difference to &lt;em&gt;where&lt;/em&gt; you get a tenure-track job, if you
+do get one (see
+&lt;a href=&#34;https://quod.lib.umich.edu/e/ergo/12405314.0005.010/--prestige-bias-an-obstacle-to-a-just-academic-philosophy?rgn=main;view=fulltext#4&#34; target=&#34;_blank&#34;&gt;here&lt;/a&gt;).
+It also seems to make some difference to &lt;em&gt;whether&lt;/em&gt; you get a
+tenure-track job (though maybe not as much as one might have thought:
+see
+&lt;a href=&#34;http://placementdata.com:8182/the-philosophical-gourmet-report-and-placement/&#34; target=&#34;_blank&#34;&gt;here&lt;/a&gt;).&lt;/p&gt;
+
+&lt;p&gt;But here I want to consider whether it makes a difference to &lt;em&gt;how long&lt;/em&gt;
+it takes to get a tenure-track job, if you do get one.&lt;/p&gt;
+
+&lt;p&gt;A priori I would have guessed a prestigious PhD shortens one&amp;rsquo;s expected
+time on the job market. But in some correspondence about my
+&lt;a href=&#34;https://jonathanweisberg.org/post/page-rank-1/&#34; target=&#34;_blank&#34;&gt;last&lt;/a&gt;
+&lt;a href=&#34;https://jonathanweisberg.org/post/page-rank-2/&#34; target=&#34;_blank&#34;&gt;two&lt;/a&gt; posts, the
+oppposite hypothesis came up. The thought is that prestigious PhDs are
+more likely to make stopovers in postdocs and fellowships before
+arriving at the tenure track. But then, on the third hand, maybe less
+prestigious PhDs are actually more likely to make stopovers, just in
+less cushy temporary gigs.&lt;/p&gt;
+
+&lt;p&gt;So which is it: does PhD prestige shorten expected time to the tenure
+track, or lengthen it?&lt;/p&gt;
+
+&lt;p&gt;Curiously, the answer so far seems to be: neither. If we use PGR ratings
+to measure prestige, and data from the APDA homepage to measure
+time-to-TT, there seems to be almost no connection. (Again, that&amp;rsquo;s
+assuming you &lt;em&gt;do&lt;/em&gt; end up in a tenure-track job, which a prestigious PhD
+does seem to help with at least a bit.)&lt;/p&gt;
+
+&lt;p&gt;Because this conclusion surprised me so much (and because it&amp;rsquo;s likely to
+be controversial, even weaponized in the PGR wars), I&amp;rsquo;m going to make
+this post way more pedantic than usual. I&amp;rsquo;m going to walk through the
+analysis one step at a time, and even show all the code.&lt;/p&gt;
+
+&lt;p&gt;Hopefully, this way, careful readers will catch and correct any errors.
+And non-careful readers will be so turned off they&amp;rsquo;ll shut up and go
+away (instead of @-ing me with their volcanic takes on twitter or
+stirring up shit elsewhere in the blogosophere).&lt;/p&gt;
+
+&lt;p&gt;Ok let&amp;rsquo;s get started.&lt;/p&gt;
+
+&lt;h1 id=&#34;setting-up&#34;&gt;Setting Up&lt;/h1&gt;
+
+&lt;p&gt;As usual I&amp;rsquo;m working in R, and since I&amp;rsquo;m a &lt;a href=&#34;http://hadley.nz/&#34; target=&#34;_blank&#34;&gt;Hadley&lt;/a&gt;
+stan we start by importing the &lt;code&gt;tidyverse&lt;/code&gt; package. But we&amp;rsquo;ll also
+import the &lt;code&gt;tools&lt;/code&gt; package for its &lt;code&gt;toTitleCase&lt;/code&gt; function, so that we
+can enforce consistent captilization. We&amp;rsquo;ll be combining data from two
+different sources, the PGR and the APDA, so we&amp;rsquo;ll need the names of PhD
+programs capitalized the same way in order to &lt;code&gt;join&lt;/code&gt; the two datasets
+properly.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;library(tidyverse)
+library(tools)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Next we import the APDA data. This is the same data scraped from the
+APDA homepage in my &lt;a href=&#34;https://jonathanweisberg.org/post/page-rank-2/&#34; target=&#34;_blank&#34;&gt;last
+post&lt;/a&gt;:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;df_apda &amp;lt;- read_csv(&amp;quot;data/apda-2018-11-9.csv&amp;quot;,
+                    col_types = cols(
+                      grad_program = col_character(),
+                      id = col_character(),
+                      year_graduated = col_character(),
+                      aos = col_character(),
+                      year = col_integer(),
+                      placement_program = col_character(),
+                      type = col_character()
+                    ))
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;It needs a bit of cleaning: we standardize the capitalization, fix a few
+typos&amp;hellip; but we also filter out duplicate entries, entries where the
+year of the placement is missing or unknown, and entries where the type
+(TT/postdoc/etc.) is missing:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;df_apda$grad_program &amp;lt;- toTitleCase(df_apda$grad_program)
+
+df_apda$year[df_apda$year == 19182] &amp;lt;- 1982
+df_apda$year[df_apda$year == 2104] &amp;lt;- 2014
+
+df_apda &amp;lt;- df_apda %&amp;gt;%
+  distinct() %&amp;gt;%
+  filter(!is.na(year)) %&amp;gt;%
+  filter(year_graduated != &amp;quot;Current Student or Graduation Year Unknown&amp;quot;) %&amp;gt;%
+  filter(!is.na(type))
+
+df_apda$year_graduated &amp;lt;- as.integer(df_apda$year_graduated)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Next we calculate &lt;code&gt;time_to_tt&lt;/code&gt; as follows: (i) filter out all but TT
+placements, (ii) select the first placement (by year) for each graduate,
+and (iii) subtract the year they graduated from that:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;df_apda &amp;lt;- df_apda %&amp;gt;%
+  filter(type == &amp;quot;Tenure-Track&amp;quot;) %&amp;gt;%
+  group_by(grad_program, id) %&amp;gt;%
+  arrange(year) %&amp;gt;%
+  slice(1) %&amp;gt;%
+  mutate(time_to_tt = year - year_graduated) %&amp;gt;%
+  ungroup()
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;For a glimpse of the results, here are ten randomly chosen entries:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;set.seed(42)
+sample_n(df_apda, 10) %&amp;gt;% 
+  select(grad_program, year_graduated, year, time_to_tt)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;pre&gt;&lt;code&gt;## # A tibble: 10 x 4
+##    grad_program                        year_graduated  year time_to_tt
+##    &amp;lt;chr&amp;gt;                                        &amp;lt;int&amp;gt; &amp;lt;dbl&amp;gt;      &amp;lt;dbl&amp;gt;
+##  1 University of Virginia                        2011  2014          3
+##  2 University of Wisconsin-Madison               2013  2016          3
+##  3 New York University                           2016  2015         -1
+##  4 University of Pittsburgh                      2014  2014          0
+##  5 University of Edinburgh                       2015  2017          2
+##  6 University of California, Davis               2003  2009          6
+##  7 University of Minnesota Twin Cities           2011  2015          4
+##  8 Emory University                              2007  2007          0
+##  9 University of Illinois at Chicago             1996  2005          9
+## 10 University of Memphis                         2012  2014          2
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Now we import the PGR data:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;df_pgr &amp;lt;- read_csv(&amp;quot;data/pgr/pgr.csv&amp;quot;, 
+                   col_types = cols(program = col_character(),
+                                    mean = col_double(), 
+                                    locale = col_character(), 
+                                    year = col_integer()))
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;A random glimpse again:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;sample_n(df_pgr, 10)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;pre&gt;&lt;code&gt;## # A tibble: 10 x 4
+##    program                             mean locale       year
+##    &amp;lt;chr&amp;gt;                              &amp;lt;dbl&amp;gt; &amp;lt;chr&amp;gt;       &amp;lt;int&amp;gt;
+##  1 University of British Columbia       3   Canada       2017
+##  2 University of Missouri               2.2 US           2008
+##  3 University of Wisconsin-Madison      3.2 US           2008
+##  4 Ohio State University                3.1 US           2008
+##  5 University of British Columbia       2.6 Canada       2011
+##  6 York University                      1.8 Canada       2008
+##  7 Washington University in St. Louis   3.3 US           2017
+##  8 Florida State University             2.3 US           2014
+##  9 University of Calgary                2.3 Canada       2017
+## 10 University of Canterbury             1.5 Australasia  2008
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Note that we have ratings from the last six iterations of the PGR here:
+2006, 2008, 2009, 2011, 2014, 2017. So we can pair graduates with PGR
+ratings from around the time they went on the market.&lt;/p&gt;
+
+&lt;p&gt;More precisely, we&amp;rsquo;ll assign each graduate a &lt;code&gt;pgr_year&lt;/code&gt; corresponding to
+the latest report available the year they graduated. Unless they
+graduated prior to 2006 in which case we just use the 2006 ratings:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;pgr_years &amp;lt;- unique(df_pgr$year)
+df_apda &amp;lt;- df_apda %&amp;gt;%
+  group_by(grad_program, id) %&amp;gt;%
+  mutate(pgr_year = ifelse(year_graduated &amp;lt;= 2006,
+                           2006,
+                           max(pgr_years[pgr_years &amp;lt;= year_graduated]))) %&amp;gt;%
+  ungroup()
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;(Yes yes we could get earlier PGR data but frankly I&amp;rsquo;m too lazy to go
+through all that again. Most of our graduates are from 2006 or later
+anyway, virtually all are from 2000 or later, and PGR scores don&amp;rsquo;t
+change too much from iteration to iteration.)&lt;/p&gt;
+
+&lt;p&gt;Finally, we join our two tables together, matching by program name and
+year:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;df &amp;lt;- df_apda %&amp;gt;%
+  inner_join(df_pgr, 
+             by = c(&amp;quot;grad_program&amp;quot; = &amp;quot;program&amp;quot;, &amp;quot;pgr_year&amp;quot; = &amp;quot;year&amp;quot;))
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Phew, ok! We finally have a table of graduates from PGR-ranked programs
+who got TT jobs, along with the PGR-rating of their program around that
+time, and the time it took them to land their first TT job:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;sample_n(df, 10) %&amp;gt;% select(grad_program, mean, time_to_tt)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;pre&gt;&lt;code&gt;## # A tibble: 10 x 3
+##    grad_program                                        mean time_to_tt
+##    &amp;lt;chr&amp;gt;                                              &amp;lt;dbl&amp;gt;      &amp;lt;dbl&amp;gt;
+##  1 University of Virginia                               2.7          1
+##  2 Graduate Center of the City University of New York   3.6          3
+##  3 Yale University                                      4            0
+##  4 University of York                                   2.3          2
+##  5 Cornell University                                   3.7          0
+##  6 University of California, Los Angeles                4            0
+##  7 Stanford University                                  3.9          1
+##  8 University of Utah                                   2.2          3
+##  9 University of Arizona                                3.7          1
+## 10 University of Pittsburgh                             4            0
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h1 id=&#34;results&#34;&gt;Results&lt;/h1&gt;
+
+&lt;p&gt;So, is there any correlation between PGR score and time to TT? Let&amp;rsquo;s
+plot our data, with some random jitter added for visibility, and a LOESS
+curve to capture trends:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;http://jonathanweisberg.org/img/prestige-and-time-to-tt/unnamed-chunk-7-1.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Wow, just&amp;hellip; flat. Pretty much all the way across. And calculating the
+correlation, we get basically zero:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;cor(df$mean, df$time_to_tt)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;pre&gt;&lt;code&gt;## [1] -0.03016805
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;There are some pretty weird anomalies though, like that outlier way out
+at the top right. Who took over 50 years to get their first TT job?!?
+Turns out that&amp;rsquo;s David C. Makinson, author of the classic 1965 paper,
+&lt;a href=&#34;https://doi.org/10.1093/analys/25.6.205&#34; target=&#34;_blank&#34;&gt;&amp;ldquo;The Paradox of the Preface&amp;rdquo;&lt;/a&gt;!&lt;/p&gt;
+
+&lt;p&gt;What on earth happened here? Makinson graduated from Oxford in 1965, and
+recently took up a visiting professorship at LSE in 2017, a difference
+of 52 years. That wasn&amp;rsquo;t his first tenured gig of course. But it&amp;rsquo;s the
+only one listed in the APDA database.&lt;/p&gt;
+
+&lt;p&gt;I guess any analysis of this size is bound to include at leats a few
+such errors. (Shut up, I&amp;rsquo;m a dad.) But let&amp;rsquo;s try to minimize them.&lt;/p&gt;
+
+&lt;p&gt;As a first stab, we might just cut out any extreme outliers, say all
+points where &lt;code&gt;time_to_tt&lt;/code&gt; came out less than -2 or greater than 8.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;http://jonathanweisberg.org/img/prestige-and-t3_files/unnamed-chunk-9-1.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Things look a bit less flat now. Maybe there&amp;rsquo;s a slight dip in
+time-to-TT once PGR rating gets above 3 or so. But if so, it looks very
+small. And the overall correlation is again pretty much zero:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;cor(df2$mean, df2$time_to_tt)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;pre&gt;&lt;code&gt;## [1] -0.06784644
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Ok, one more try. Things work differently in different parts of the
+world. PhD programs and job markets differ in their practices between
+the US and the UK, between the UK and the rest of Europe, etc. So let&amp;rsquo;s
+try looking at just the US (the largest locale we have data for and the
+one I understand best):&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;df3 &amp;lt;- df2 %&amp;gt;% filter(locale == &amp;quot;US&amp;quot;)
+
+ggplot(df3, aes(mean, time_to_tt)) +
+ geom_jitter() +
+ xlab(&amp;quot;PGR Rating&amp;quot;) + ylab(&amp;quot;Years to First TT Job&amp;quot;) +
+ geom_smooth(method = &amp;quot;loess&amp;quot;) +
+ theme_minimal()
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;img src=&#34;http://jonathanweisberg.org/img/prestige-and-time-to-tt/unnamed-chunk-11-1.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Again, it looks like there&amp;rsquo;s only a very slight dip as PGR rating
+exceeds 3, with a correlation very close to zero:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;cor(df3$mean, df3$time_to_tt)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;pre&gt;&lt;code&gt;## [1] -0.06922355
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h1 id=&#34;conclusion&#34;&gt;Conclusion&lt;/h1&gt;
+
+&lt;p&gt;We could go on slicing and dicing, and I don&amp;rsquo;t by any means see this as
+the last word. But my expectations have certainly been shaken up here.
+If there is a connection between prestige and time-to-TT, the available
+evidence suggests it&amp;rsquo;s much weaker than I would have guessed, and
+perhaps depends a lot on other factors.&lt;/p&gt;
+
+&lt;p&gt;Hopefully we&amp;rsquo;ll get a clearer picture of all this as the APDA database
+grows. Their focus so far &lt;a href=&#34;http://placementdata.com:8182/the-philosophical-gourmet-report-and-placement/&#34; target=&#34;_blank&#34;&gt;has been on graduates from
+2012&amp;ndash;2016&lt;/a&gt;.
+So the earlier data is probably much less complete (see: Makinson). And
+not enough time has passed yet for the 2012&amp;ndash;2016 data to be as
+informative about time-to-TT.&lt;/p&gt;
+
+&lt;p&gt;So even though this conclusion is striking, I still view it as
+tentative. #JustOneStudy&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
       <title>Placement, PageRank, and the PGR: Part 2</title>
       <link>http://jonathanweisberg.org/post/page-rank-2/</link>
       <pubDate>Thu, 06 Dec 2018 00:00:01 -0500</pubDate>
