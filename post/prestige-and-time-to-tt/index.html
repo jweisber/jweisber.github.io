@@ -172,7 +172,7 @@ analysis one step at a time, and even show all the code.</p>
 <p>Hopefully, this way, careful readers will catch and correct any errors.
 And non-careful readers will be so turned off they&rsquo;ll shut up and go
 away (instead of @-ing me with their volcanic takes on twitter or
-stirring up shit elsewhere in the blogosophere).</p>
+stirring up shit elsewhere in the blogosphere).</p>
 
 <p>Ok let&rsquo;s get started.</p>
 
@@ -181,7 +181,7 @@ stirring up shit elsewhere in the blogosophere).</p>
 <p>As usual I&rsquo;m working in R, and since I&rsquo;m a <a href="http://hadley.nz/" target="_blank">Hadley</a>
 stan we start by importing the <code>tidyverse</code> package. But we&rsquo;ll also
 import the <code>tools</code> package for its <code>toTitleCase</code> function, so that we
-can enforce consistent captilization. We&rsquo;ll be combining data from two
+can enforce consistent capitalization. We&rsquo;ll be combining data from two
 different sources, the PGR and the APDA, so we&rsquo;ll need the names of PhD
 programs capitalized the same way in order to <code>join</code> the two datasets
 properly.</p>
@@ -347,6 +347,13 @@ time, and the time it took them to land their first TT job:</p>
 plot our data, with some random jitter added for visibility, and a LOESS
 curve to capture trends:</p>
 
+<pre><code class="language-r">ggplot(df, aes(mean, time_to_tt)) +
+ geom_jitter() +
+ xlab(&quot;PGR Rating&quot;) + ylab(&quot;Years to First TT Job&quot;) +
+ geom_smooth(method = &quot;loess&quot;) +
+ theme_minimal()
+</code></pre>
+
 <p><img src="/img/prestige-and-time-to-tt/unnamed-chunk-7-1.png" alt="" /></p>
 
 <p>Wow, just&hellip; flat. Pretty much all the way across. And calculating the
@@ -374,7 +381,16 @@ such errors. (Shut up, I&rsquo;m a dad.) But let&rsquo;s try to minimize them.</
 <p>As a first stab, we might just cut out any extreme outliers, say all
 points where <code>time_to_tt</code> came out less than -2 or greater than 8.</p>
 
-<p><img src="/img/prestige-and-t3_files/unnamed-chunk-9-1.png" alt="" /></p>
+<pre><code class="language-r">df2 &lt;- df %&gt;% filter(-2 &lt;= time_to_tt &amp; time_to_tt &lt;= 8)
+
+ggplot(df2, aes(mean, time_to_tt)) +
+ geom_jitter() +
+ xlab(&quot;PGR Rating&quot;) + ylab(&quot;Years to First TT Job&quot;) +
+ geom_smooth(method = &quot;loess&quot;) +
+ theme_minimal()
+</code></pre>
+
+<p><img src="/img/prestige-and-time-to-tt/unnamed-chunk-9-1.png" alt="" /></p>
 
 <p>Things look a bit less flat now. Maybe there&rsquo;s a slight dip in
 time-to-TT once PGR rating gets above 3 or so. But if so, it looks very

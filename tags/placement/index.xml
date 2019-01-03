@@ -57,7 +57,7 @@ analysis one step at a time, and even show all the code.&lt;/p&gt;
 &lt;p&gt;Hopefully, this way, careful readers will catch and correct any errors.
 And non-careful readers will be so turned off they&amp;rsquo;ll shut up and go
 away (instead of @-ing me with their volcanic takes on twitter or
-stirring up shit elsewhere in the blogosophere).&lt;/p&gt;
+stirring up shit elsewhere in the blogosphere).&lt;/p&gt;
 
 &lt;p&gt;Ok let&amp;rsquo;s get started.&lt;/p&gt;
 
@@ -66,7 +66,7 @@ stirring up shit elsewhere in the blogosophere).&lt;/p&gt;
 &lt;p&gt;As usual I&amp;rsquo;m working in R, and since I&amp;rsquo;m a &lt;a href=&#34;http://hadley.nz/&#34; target=&#34;_blank&#34;&gt;Hadley&lt;/a&gt;
 stan we start by importing the &lt;code&gt;tidyverse&lt;/code&gt; package. But we&amp;rsquo;ll also
 import the &lt;code&gt;tools&lt;/code&gt; package for its &lt;code&gt;toTitleCase&lt;/code&gt; function, so that we
-can enforce consistent captilization. We&amp;rsquo;ll be combining data from two
+can enforce consistent capitalization. We&amp;rsquo;ll be combining data from two
 different sources, the PGR and the APDA, so we&amp;rsquo;ll need the names of PhD
 programs capitalized the same way in order to &lt;code&gt;join&lt;/code&gt; the two datasets
 properly.&lt;/p&gt;
@@ -232,6 +232,13 @@ time, and the time it took them to land their first TT job:&lt;/p&gt;
 plot our data, with some random jitter added for visibility, and a LOESS
 curve to capture trends:&lt;/p&gt;
 
+&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;ggplot(df, aes(mean, time_to_tt)) +
+ geom_jitter() +
+ xlab(&amp;quot;PGR Rating&amp;quot;) + ylab(&amp;quot;Years to First TT Job&amp;quot;) +
+ geom_smooth(method = &amp;quot;loess&amp;quot;) +
+ theme_minimal()
+&lt;/code&gt;&lt;/pre&gt;
+
 &lt;p&gt;&lt;img src=&#34;http://jonathanweisberg.org/img/prestige-and-time-to-tt/unnamed-chunk-7-1.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
 
 &lt;p&gt;Wow, just&amp;hellip; flat. Pretty much all the way across. And calculating the
@@ -259,7 +266,16 @@ such errors. (Shut up, I&amp;rsquo;m a dad.) But let&amp;rsquo;s try to minimize
 &lt;p&gt;As a first stab, we might just cut out any extreme outliers, say all
 points where &lt;code&gt;time_to_tt&lt;/code&gt; came out less than -2 or greater than 8.&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&#34;http://jonathanweisberg.org/img/prestige-and-t3_files/unnamed-chunk-9-1.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;df2 &amp;lt;- df %&amp;gt;% filter(-2 &amp;lt;= time_to_tt &amp;amp; time_to_tt &amp;lt;= 8)
+
+ggplot(df2, aes(mean, time_to_tt)) +
+ geom_jitter() +
+ xlab(&amp;quot;PGR Rating&amp;quot;) + ylab(&amp;quot;Years to First TT Job&amp;quot;) +
+ geom_smooth(method = &amp;quot;loess&amp;quot;) +
+ theme_minimal()
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;img src=&#34;http://jonathanweisberg.org/img/prestige-and-time-to-tt/unnamed-chunk-9-1.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
 
 &lt;p&gt;Things look a bit less flat now. Maybe there&amp;rsquo;s a slight dip in
 time-to-TT once PGR rating gets above 3 or so. But if so, it looks very
