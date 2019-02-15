@@ -18,7 +18,7 @@
 
 &lt;p&gt;Here&amp;rsquo;s a striking result that caught me off guard the other day. It came up in a facebook thread, and judging by the discussion there it caught a few other people in this neighbourhood off guard too.&lt;/p&gt;
 
-&lt;p&gt;The short version: chances are &amp;ldquo;self-expecting&amp;rdquo; pretty much if and only if they&amp;rsquo;re &amp;ldquo;self-certain&amp;rdquo;. Less cryptically: the chance of a proposition equals its expected chance more or less just in case the chance function assigns probability 1 to itself being the true chance function.&lt;/p&gt;
+&lt;p&gt;The short version: chances are &amp;ldquo;self-expecting&amp;rdquo; pretty much if and only if they&amp;rsquo;re &amp;ldquo;self-certain&amp;rdquo;. Less cryptically: the chance of a proposition equals its expected chance just in case the chance function assigns probability 1 to itself being the true chance function, modulo an exception to be discussed below.&lt;/p&gt;
 
 &lt;p&gt;The same result applies to any probabilities of course, whether they represent physical chances or evidential probabilities or whatever. In fact, thanks to friends on facebook, I learned that it drives &lt;a href=&#34;https://philpapers.org/archive/DOREAG.pdf&#34; target=&#34;_blank&#34;&gt;this lovely paper by Kevin Dorst&lt;/a&gt;.&lt;/p&gt;
 
@@ -156,7 +156,7 @@ It&amp;rsquo;s kind of a lame counterexample though, because the new, fifth worl
 
 &lt;p&gt;Taking this thought a bit further, you might think there&amp;rsquo;s a region of modal space where, even though worlds $w_1$ and $w_n$ have different chances, $w_n$ is always reachable from world $w_1$. More exactly, there&amp;rsquo;s always a connecting sequence of worlds $w_1, w_2, \ldots, w_n$ where $w_i$ gives non-zero chance to $w_{i+1}$.&lt;/p&gt;
 
-&lt;p&gt;In terms of coin tosses, maybe it&amp;rsquo;s a law of nature that all coins land heads in when all hundred out of one hundred flips land heads. But when there&amp;rsquo;s a mix of heads and tails, there&amp;rsquo;s at least some chance the mix could have had a few more heads, or a few more tails. So every world where the sequence isn&amp;rsquo;t perfectly uniform can be reached from every other. If not in a single, positive-chance hop, then at least by a series of hops, perhaps by switching the outcomes of the flips one at a time for example.&lt;/p&gt;
+&lt;p&gt;In terms of coin tosses, maybe it&amp;rsquo;s a law of nature that all coins land heads when all hundred out of one hundred flips land heads. But when there&amp;rsquo;s a mix of heads and tails, there&amp;rsquo;s at least some chance the mix could have had a few more heads, or a few more tails. So every world where the sequence isn&amp;rsquo;t perfectly uniform can be reached from every other. If not in a single, positive-chance hop, then at least by a series of hops, perhaps by switching the outcomes of the flips one at a time for example.&lt;/p&gt;
 
 &lt;p&gt;In terms of graphs, such a region of modal space is said to be &lt;em&gt;connected&lt;/em&gt;. In terms of matrices, it amounts to the chance matrix for this region being &lt;em&gt;regular&lt;/em&gt;: there must be some power $n$ such that $\C^n$ contains all positive entries.&lt;/p&gt;
 
