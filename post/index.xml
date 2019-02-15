@@ -6,8 +6,178 @@
     <description>Recent content in Posts on Jonathan Weisberg</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Thu, 03 Jan 2019 00:00:00 -0500</lastBuildDate>
+    <lastBuildDate>Fri, 15 Feb 2019 11:52:00 -0500</lastBuildDate>
     <atom:link href="http://jonathanweisberg.org/post/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Nobody Expects the Chance Function!</title>
+      <link>http://jonathanweisberg.org/post/samet-theorem/</link>
+      <pubDate>Fri, 15 Feb 2019 11:52:00 -0500</pubDate>
+      
+      <guid>http://jonathanweisberg.org/post/samet-theorem/</guid>
+      <description>
+
+&lt;p&gt;Here&amp;rsquo;s a striking result that caught me off guard the other day. It came up in a facebook thread, and judging by the discussion there it caught a few other people in this neighbourhood off guard too.&lt;/p&gt;
+
+&lt;p&gt;The short version: chances are &amp;ldquo;self-expecting&amp;rdquo; pretty much if and only if they&amp;rsquo;re &amp;ldquo;self-certain&amp;rdquo;. Less cryptically: the chance of a proposition equals its expected chance more or less just in case the chance function assigns probability 1 to itself being the true chance function.&lt;/p&gt;
+
+&lt;p&gt;The same result applies to any probabilities of course, whether they represent physical chances or evidential probabilities or whatever. In fact, thanks to friends on facebook, I learned that it drives &lt;a href=&#34;https://philpapers.org/archive/DOREAG.pdf&#34; target=&#34;_blank&#34;&gt;this lovely paper by Kevin Dorst&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;I just happened to stumble across it while thinking about chances, because Richard Pettigrew uses the assumption that chances are self-expecting in &lt;a href=&#34;http://fitelson.org/coherence/pettigrew_chance.pdf&#34; target=&#34;_blank&#34;&gt;his &lt;em&gt;Phil Review&lt;/em&gt; paper on accuracy and the Principal Principle&lt;/a&gt;. But later, in &lt;a href=&#34;https://philpapers.org/rec/PETAAT-7&#34; target=&#34;_blank&#34;&gt;his landmark book on accuracy&lt;/a&gt;, he switches to the requirement that they be self-certain. It turns out this isn&amp;rsquo;t a coincidence. The result we&amp;rsquo;re about to look at illuminates this shift.&lt;/p&gt;
+
+&lt;p&gt;The result goes back to 1997 at least, in &lt;a href=&#34;https://homepages.cwi.nl/~jve/books/oldgass/high-order-beliefs.pdf&#34; target=&#34;_blank&#34;&gt;a paper by Dov Samet&lt;/a&gt;. Proving the full result is a bit more involved than what I&amp;rsquo;ll present here. For simplicity, I&amp;rsquo;ll only prove a special case at the end. But along the way we&amp;rsquo;ll look at some suggestive examples that illustrate the full version.&lt;/p&gt;
+
+&lt;h1 id=&#34;the-chance-matrix&#34;&gt;The Chance Matrix&lt;/h1&gt;
+
+&lt;p&gt;Imagine we have just four possible worlds, resulting from two tosses of a coin. What are the physical chances at each of the four possible worlds $HH$, $HT$, $TH$, and $TT$? $\newcommand{\mstar}{\mathfrak{m}^*} \newcommand{\C}{\mathbf{C}}$&lt;/p&gt;
+
+&lt;p&gt;One natural thought is to apply Laplace&amp;rsquo;s classic rule of succession: given $s$ heads out of $n$ tosses, conclude that the probability of heads on each toss is $(s+1)/(n+2)$. So at $HH$-world for example, the chance of heads was $3/ 4$ on each toss.&lt;/p&gt;
+
+&lt;p&gt;If we assume the tosses are independent, then $HH$-world had chance $(3/ 4)(3/ 4) = 9/16$ of being actual, according to the chance function at $HH$-world. Whereas $HT$-world had chance $(3/ 4)(1/ 4) = 3/16$ of being actual at $HH$-world. The full chance function at $HH$-world can be displayed as a column vector:
+$$
+\left(
+    \begin{matrix}
+        9/16\\&lt;br /&gt;
+        3/16\\&lt;br /&gt;
+        3/16\\&lt;br /&gt;
+        1/16
+    \end{matrix}
+\right).
+$$
+Applying the same recipe at $HT$-world would give us a different column vector. And sticking the columns for all four worlds together, we get a $4 \times 4$ &lt;em&gt;chance matrix&lt;/em&gt; for our space of possible worlds:
+$$
+\mathbf{C} =
+    \left(
+        \begin{matrix}
+            9/16 &amp;amp; 1/ 4 &amp;amp; 1/ 4 &amp;amp; 1/16\\&lt;br /&gt;
+            3/16 &amp;amp; 1/ 4 &amp;amp; 1/ 4 &amp;amp; 3/16\\&lt;br /&gt;
+            3/16 &amp;amp; 1/ 4 &amp;amp; 1/ 4 &amp;amp; 3/16\\&lt;br /&gt;
+            1/16 &amp;amp; 1/ 4 &amp;amp; 1/ 4 &amp;amp; 9/16
+        \end{matrix}
+    \right).
+$$
+Each column gives the chances &lt;em&gt;at&lt;/em&gt; a world, while a row gives the chances &lt;em&gt;of&lt;/em&gt; a world. For example, entry $c_{14}$ gives the chance &lt;em&gt;at&lt;/em&gt; world $4$ &lt;em&gt;of&lt;/em&gt; world $1$ being actual. It says how likely the sequence $HH$ was if the actual unfolding of events is instead $TT$, namely $1/16$.&lt;/p&gt;
+
+&lt;p&gt;A different thought would be to appeal to Carnap&amp;rsquo;s notorious &amp;ldquo;logical&amp;rdquo; prior $\mstar$:
+$$
+\mstar =
+    \left(
+        \begin{matrix}
+            1/3\\&lt;br /&gt;
+            1/6\\&lt;br /&gt;
+            1/6\\&lt;br /&gt;
+            1/3
+        \end{matrix}
+    \right).
+$$
+This assignment of probabilities ignores the actual unfolding of events in each world. It falls out of a bit of a priori reasoning instead. There are three possible outcomes: $2$ heads, $1$ head, or $0$ heads. Each is equally likely, $1/ 3$. But there are two ways to get $1$ head, so the $1/ 3$ there gets subdivided equally between $HT$ and $TH$, leaving $1/6$ for each.&lt;/p&gt;
+
+&lt;p&gt;Since these chances ignore the actual unfolding of events in each world, the chance matrix we get here is extremely anti-Humean. It&amp;rsquo;s just four repetitions of $\mstar$:
+$$
+\mathbf{C} =
+    \left(
+        \begin{matrix}
+            1/3 &amp;amp; 1/3 &amp;amp; 1/3 &amp;amp; 1/3\\&lt;br /&gt;
+            1/6 &amp;amp; 1/6 &amp;amp; 1/6 &amp;amp; 1/6\\&lt;br /&gt;
+            1/6 &amp;amp; 1/6 &amp;amp; 1/6 &amp;amp; 1/6\\&lt;br /&gt;
+            1/3 &amp;amp; 1/3 &amp;amp; 1/3 &amp;amp; 1/3
+        \end{matrix}
+    \right).
+$$
+You might think that&amp;rsquo;s a pretty terrible theory of chance, and I sympathize. But what we&amp;rsquo;re about to see is that, of our two chance matrices, only the second is &amp;ldquo;self-expecting&amp;rdquo;. And its terribleness is part of the reason why.&lt;/p&gt;
+
+&lt;h2 id=&#34;self-expectation&#34;&gt;Self Expectation&lt;/h2&gt;
+
+&lt;p&gt;Pettigrew&amp;rsquo;s &lt;em&gt;Phil Review&lt;/em&gt; paper assumes that chance functions are &amp;ldquo;self-expecting&amp;rdquo;. The chance of a proposition at a given world must equal its expected value, where the expectation is taken according to the chances at that world.&lt;/p&gt;
+
+&lt;p&gt;In terms of a chance matrix $\C$, this amounts to the requirement that $\C \C = \C$. When we multiply $\C$ by $\C$, we take dot-products of rows and columns. For example, if we were doing the calculation by hand, we&amp;rsquo;d start by multiplying the first row of $\C$ by the first column of $\C$. And this is just the weighted average of the various possible chances &lt;em&gt;of&lt;/em&gt; the first world, where the weights are the chances &lt;em&gt;at&lt;/em&gt; that world. In other words, it&amp;rsquo;s the expected chance &lt;em&gt;of&lt;/em&gt; $HH$-world &lt;em&gt;at&lt;/em&gt; $HH$-world.&lt;/p&gt;
+
+&lt;p&gt;In general, the dot product of row $i$ with column $j$ is the expected chance &lt;em&gt;of&lt;/em&gt; world $i$ &lt;em&gt;at&lt;/em&gt; world $j$. For this expected chance to equal the chance of world $i$ at world $j$, it must be that $\C \C = \C$. More succinctly, $\C^2 = \C$.&lt;/p&gt;
+
+&lt;p&gt;Matrices that have this property&amp;mdash;squaring them leaves them unchanged&amp;mdash;are called &lt;em&gt;idempotent&lt;/em&gt;. And when our matrices are column stochastic (all values are nonnegative and each column sums to $1$), idempotence is a very&amp;hellip; well, potent requirement.&lt;/p&gt;
+
+&lt;p&gt;For example, our first chance matrix based on Laplace&amp;rsquo;s rule of succession is not idempotent. Its square is not itself, but something quite different. Our second, Carnapian matrix is idempotent though. Its square is just itself. And that&amp;rsquo;s not a coincidence.&lt;/p&gt;
+
+&lt;h1 id=&#34;self-certainty&#34;&gt;Self Certainty&lt;/h1&gt;
+
+&lt;p&gt;Any chance matrix whose columns are redundant will be idempotent. After all, if the chances are the same &lt;em&gt;at&lt;/em&gt; every world, the expected value &lt;em&gt;of&lt;/em&gt; any world is always the same. So its expected value just is the value it has at every world.&lt;/p&gt;
+
+&lt;p&gt;But redundant columns also mean that the chances are &lt;em&gt;self certain&lt;/em&gt;. Each world&amp;rsquo;s chance assignment gives zero probability to the chances being anything other than what they are at that world. Because there &lt;em&gt;are&lt;/em&gt; no worlds where the chances are different.&lt;/p&gt;
+
+&lt;p&gt;The chances can vary from world to world and still be self-expecting though. There are idempotent chance matrices where the columns are not simply redundant. For example, here&amp;rsquo;s another idempotent chance matrix:
+$$
+\left(
+    \begin{matrix}
+        1/3 &amp;amp; 1/3 &amp;amp; 0      &amp;amp;    0\\&lt;br /&gt;
+        2/3 &amp;amp; 2/3 &amp;amp; 0      &amp;amp;    0\\&lt;br /&gt;
+            0 &amp;amp;   0 &amp;amp; 1/ 4 &amp;amp; 1/ 4\\&lt;br /&gt;
+            0 &amp;amp;   0 &amp;amp; 3/ 4 &amp;amp; 3/ 4
+    \end{matrix}
+\right).
+$$
+But notice how it&amp;rsquo;s still kind of a degenerate case. There are two, disjoint regions of modal space here that regard one another as zero-chance. And within each region the chances are the same at each world. Worlds $1$ and $2$ have the same chances, and they give zero chance to worlds $3$ and $4$. And vice versa from the point of view of worlds $3$ and $4$.&lt;/p&gt;
+
+&lt;p&gt;In other words, self-expectation and self-certainty go hand in hand here once again.&lt;/p&gt;
+
+&lt;h1 id=&#34;a-sliver-of-daylight&#34;&gt;A Sliver of Daylight&lt;/h1&gt;
+
+&lt;p&gt;Is there any daylight at all then between self-expectation and self-certainty?&lt;/p&gt;
+
+&lt;p&gt;Self-certainty entails self-expectation, and the argument is pretty short. If the only worlds with positive chance according to world $j$ assign the same chances as world $j$ does, then any average of those chances will just be those same chances.&lt;/p&gt;
+
+&lt;p&gt;But self-expectation doesn&amp;rsquo;t &lt;em&gt;quite&lt;/em&gt; entail self-certainty. For example, here&amp;rsquo;s an idempotent chance matrix that&amp;rsquo;s not self-certain:
+$$
+\left(
+    \begin{matrix}
+        1/3 &amp;amp; 1/3 &amp;amp; 0      &amp;amp;    0 &amp;amp; 25/94\\&lt;br /&gt;
+        2/3 &amp;amp; 2/3 &amp;amp; 0      &amp;amp;    0 &amp;amp; 25/47\\&lt;br /&gt;
+            0 &amp;amp;   0 &amp;amp; 1/ 4 &amp;amp; 1/ 4 &amp;amp; 19/376\\&lt;br /&gt;
+            0 &amp;amp;   0 &amp;amp; 3/ 4 &amp;amp; 3/ 4 &amp;amp; 57/376\\&lt;br /&gt;
+            0 &amp;amp;   0 &amp;amp;    0 &amp;amp;    0 &amp;amp; 0
+    \end{matrix}
+\right).
+$$
+It&amp;rsquo;s kind of a lame counterexample though, because the new, fifth world we&amp;rsquo;ve introduced (the coin explodes or something idk) has zero chance at every world, even itself.&lt;/p&gt;
+
+&lt;p&gt;In fact this is what Samet proves: this is the only kind of counterexample possible! If probabilities are self-expecting, then they must be either self-certain or self-effacing. They must assign zero chance to the chances being otherwise, or they must assign chance one to them being otherwise.&lt;/p&gt;
+
+&lt;p&gt;In terms of matrices, there are only three kinds of idempotent chance matrix:&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;All columns are identical.&lt;/li&gt;
+&lt;li&gt;The matrix is &lt;a href=&#34;https://en.wikipedia.org/wiki/Block_matrix#Block_diagonal_matrices&#34; target=&#34;_blank&#34;&gt;block diagonal&lt;/a&gt;, with identical columns inside each block.&lt;/li&gt;
+&lt;li&gt;The matrix is as in (2), except for some columns $j_1, \ldots, j_n$. But the corresponding rows $j_1, \ldots, j_n$ contain only zeros.&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;Strictly speaking (1) is actually a special case of (2). But (1) deserves direct attention because it arises in a way that&amp;rsquo;s interesting both philosophically and mathematically.&lt;/p&gt;
+
+&lt;h1 id=&#34;the-connected-case&#34;&gt;The Connected Case&lt;/h1&gt;
+
+&lt;p&gt;Here&amp;rsquo;s a natural thought, one that&amp;rsquo;s driven a lot of the literature on chance and Lewis&amp;rsquo; Principal Principle. The thought: however events unfold at one world, there&amp;rsquo;s a chance they could have evolved differently. There&amp;rsquo;s even some small, non-zero chance they could have evolved quite differently.&lt;/p&gt;
+
+&lt;p&gt;Taking this thought a bit further, you might think there&amp;rsquo;s a region of modal space where, even though worlds $w_1$ and $w_n$ have different chances, $w_n$ is always reachable from world $w_1$. More exactly, there&amp;rsquo;s always a connecting sequence of worlds $w_1, w_2, \ldots, w_n$ where $w_i$ gives non-zero chance to $w_{i+1}$.&lt;/p&gt;
+
+&lt;p&gt;In terms of coin tosses, maybe it&amp;rsquo;s a law of nature that all coins land heads in when all hundred out of one hundred flips land heads. But when there&amp;rsquo;s a mix of heads and tails, there&amp;rsquo;s at least some chance the mix could have had a few more heads, or a few more tails. So every world where the sequence isn&amp;rsquo;t perfectly uniform can be reached from every other. If not in a single, positive-chance hop, then at least by a series of hops, perhaps by switching the outcomes of the flips one at a time for example.&lt;/p&gt;
+
+&lt;p&gt;In terms of graphs, such a region of modal space is said to be &lt;em&gt;connected&lt;/em&gt;. In terms of matrices, it amounts to the chance matrix for this region being &lt;em&gt;regular&lt;/em&gt;: there must be some power $n$ such that $\C^n$ contains all positive entries.&lt;/p&gt;
+
+&lt;p&gt;Now, regular matrices have the remarkable property that, as we multiply them against themselves more and more times, the result converges to a matrix $\mathbf{P}$ whose columns are all identical:
+$$ \lim_{n \rightarrow \infty} \C^n = \mathbf{P} =
+\left(
+    \begin{matrix}
+        p_1    &amp;amp; \ldots &amp;amp; p_1    \\&lt;br /&gt;
+        \vdots &amp;amp; \ldots &amp;amp; \vdots \\&lt;br /&gt;
+        p_k    &amp;amp; \ldots &amp;amp; p_k    \\&lt;br /&gt;
+    \end{matrix}
+\right).
+$$
+Now recall that for $\C$ to be self-expecting, it must be idempotent, meaning $\C^2 = \C$. But that means $\C^n = \C$ for any power $n$. But then $\C = \mathbf{P}$, so $\C$ must already have redundant columns.&lt;/p&gt;
+
+&lt;p&gt;What does this mean for us? One way to think about it: there isn&amp;rsquo;t as much room for chances to vary from world to world as one might have thought. If the chances are going to be self-expecting, they must be the same at every world across a whole region modal space despite the facts turning out quite differently at various worlds across that region.&lt;/p&gt;
+
+&lt;p&gt;This point is strongly reminiscent of David Lewis&amp;rsquo; famous &amp;ldquo;Big Bad Bug&amp;rdquo; of course. And there&amp;rsquo;s tons of relevant literature, most of which I confess I never really absorbed. So I&amp;rsquo;ll link to one paper I&amp;rsquo;m finding especially helpful on this right now, Richard Pettigrew&amp;rsquo;s &lt;a href=&#34;https://drive.google.com/file/d/0B-Gzj6gcSXKrcW5MeUhIN2Jsd1k/view&#34; target=&#34;_blank&#34;&gt;&amp;ldquo;What Chance-Credence Norms Should Not Be&amp;rdquo;&lt;/a&gt;.&lt;/p&gt;
+</description>
+    </item>
     
     <item>
       <title>Prestige and Time to the Tenure-Track</title>
@@ -3561,292 +3731,6 @@ $\EIpq$ is uniquely minimized when $\q = \p$.&lt;/p&gt;
 &lt;p&gt;So for now let&amp;rsquo;s just stop and appreciate the work we&amp;rsquo;ve already done. Because not only have we proved one of the most central and interesting results of the accuracy framework. But also, in a lot of ways the hardest work is already behind us. If you&amp;rsquo;ve come this far, I think you deserve a nice pat on the back.&lt;/p&gt;
 
 &lt;p&gt;&lt;img src=&#34;http://i1145.photobucket.com/albums/o503/KimmieRocks/tumblr_liqmv89ru51qb2dn6.gif&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>Journal Submission Rates by Gender: A Look at the APA/BPA Data</title>
-      <link>http://jonathanweisberg.org/post/A%20Look%20at%20the%20APA-BPA%20Data/</link>
-      <pubDate>Tue, 06 Jun 2017 11:45:04 -0500</pubDate>
-      
-      <guid>http://jonathanweisberg.org/post/A%20Look%20at%20the%20APA-BPA%20Data/</guid>
-      <description>
-
-&lt;p&gt;&lt;strong&gt;Update:&lt;/strong&gt; &lt;em&gt;editors at CJP and Phil Quarterly have kindly shared some important, additional information. See the edit below for details.&lt;/em&gt;&lt;/p&gt;
-
-&lt;p&gt;A &lt;a href=&#34;https://link.springer.com/article/10.1007/s11098-017-0919-0&#34; target=&#34;_blank&#34;&gt;new paper&lt;/a&gt; on the representation of women in philosophy journals prompted some debate in the philosophy blogosphere last week. The paper found women to be underrepresented across a range of prominent journals, yet overrepresented in the two journals studied where review was non-anonymous.&lt;/p&gt;
-
-&lt;p&gt;Commenters &lt;a href=&#34;http://dailynous.com/2017/05/26/women-philosophy-journals-new-data/&#34; target=&#34;_blank&#34;&gt;over at Daily Nous&lt;/a&gt; complained about the lack of base-rate data. How many of the submissions to these journals were from women? In some respects, it&amp;rsquo;s hard to know what to make of these findings without such data.&lt;/p&gt;
-
-&lt;p&gt;A few commenters linked to &lt;a href=&#34;http://www.apaonline.org/resource/resmgr/journal_surveys_2014/apa_bpa_survey_data_2014.xlsx&#34; target=&#34;_blank&#34;&gt;a survey&lt;/a&gt; conducted by the APA and BPA a while back, which supplies some numbers along these lines. I was surprised, because I&amp;rsquo;ve wondered about these numbers, but I didn&amp;rsquo;t recall seeing this data-set before. I was excited too because the data-set is huge, in a way: it covers more than 30,000 submissions at 40+ journals over a span of three years!&lt;/p&gt;
-
-&lt;p&gt;So I was keen to give it a closer look. This post walks through that process. But I should warn you up front that the result is kinda disappointing.&lt;/p&gt;
-
-&lt;h1 id=&#34;initial-reservations&#34;&gt;Initial Reservations&lt;/h1&gt;
-
-&lt;p&gt;Right away some conspicuous omissions stand out.&lt;sup class=&#34;footnote-ref&#34; id=&#34;fnref:1&#34;&gt;&lt;a rel=&#34;footnote&#34; href=&#34;#fn:1&#34;&gt;1&lt;/a&gt;&lt;/sup&gt; A good number of the usual suspects aren&amp;rsquo;t included, like &lt;em&gt;Philosophical Studies&lt;/em&gt;, &lt;em&gt;Analysis&lt;/em&gt;, and &lt;em&gt;Australasian Journal of Philosophy&lt;/em&gt;. So the usual worries about response rates and selection bias apply.&lt;/p&gt;
-
-&lt;p&gt;The data are also a bit haphazard and incomplete. Fewer than half of the journals that responded included gender data. And some of those numbers are suspiciously round.&lt;/p&gt;
-
-&lt;p&gt;Still, there&amp;rsquo;s hope. We have data on over ten thousand submissions even after we exclude journals that didn&amp;rsquo;t submit any gender data. As long as they paint a reasonably consistent picture, we stand to learn a lot.&lt;/p&gt;
-
-&lt;h1 id=&#34;first-pass&#34;&gt;First Pass&lt;/h1&gt;
-
-&lt;p&gt;For starters we&amp;rsquo;ll just do some minimal cleaning. We&amp;rsquo;ll exclude data from 2014, since almost no journals supplied it. And we&amp;rsquo;ll lump together the submissions from the remaining three years, 2011&amp;ndash;13, since the gender data isn&amp;rsquo;t broken down by year.&lt;/p&gt;
-
-&lt;p&gt;We can then calculate the following cross-journal tallies for 2011&amp;ndash;13:&lt;/p&gt;
-
-&lt;table&gt;
-&lt;thead&gt;
-&lt;tr&gt;
-&lt;th align=&#34;left&#34;&gt;&lt;/th&gt;
-&lt;th align=&#34;right&#34;&gt;Accepted submissions&lt;/th&gt;
-&lt;th align=&#34;right&#34;&gt;Rejected submissions&lt;/th&gt;
-&lt;/tr&gt;
-&lt;/thead&gt;
-
-&lt;tbody&gt;
-&lt;tr&gt;
-&lt;td align=&#34;left&#34;&gt;Men&lt;/td&gt;
-&lt;td align=&#34;right&#34;&gt;792&lt;/td&gt;
-&lt;td align=&#34;right&#34;&gt;9104&lt;/td&gt;
-&lt;/tr&gt;
-
-&lt;tr&gt;
-&lt;td align=&#34;left&#34;&gt;Women&lt;/td&gt;
-&lt;td align=&#34;right&#34;&gt;213&lt;/td&gt;
-&lt;td align=&#34;right&#34;&gt;1893&lt;/td&gt;
-&lt;/tr&gt;
-&lt;/tbody&gt;
-&lt;/table&gt;
-
-&lt;p&gt;The difference here looks notable at first: 17.5% of submitted papers came from women compared with  21.2% of accepted papers, a statistically significant difference (&lt;em&gt;p&lt;/em&gt; = 0.002).&lt;/p&gt;
-
-&lt;p&gt;But if we plot the data by journal, the picture becomes much less clear:&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&#34;http://jonathanweisberg.org/img/apa_bpa_data_files/unnamed-chunk-3-1.png&#34; alt=&#34;&#34; /&gt;&lt;!-- --&gt;&lt;/p&gt;
-
-&lt;p&gt;The dashed line&lt;sup class=&#34;footnote-ref&#34; id=&#34;fnref:2&#34;&gt;&lt;a rel=&#34;footnote&#34; href=&#34;#fn:2&#34;&gt;2&lt;/a&gt;&lt;/sup&gt; indicates parity: where submission and acceptance rate would be equal. At journals above the line, women make up a larger portion of published authors than they do submitting authors. At journals below the line, it&amp;rsquo;s the reverse.&lt;/p&gt;
-
-&lt;p&gt;It&amp;rsquo;s pretty striking how much variation there is between journals. For example, &lt;em&gt;BJPS&lt;/em&gt; is 12 points above the parity line while &lt;em&gt;Phil Quarterly&lt;/em&gt; is 9 points below it.&lt;/p&gt;
-
-&lt;p&gt;It&amp;rsquo;s also notable that it&amp;rsquo;s the largest journals which diverge the most from parity: &lt;em&gt;BJPS&lt;/em&gt;, &lt;em&gt;EJP&lt;/em&gt;, &lt;em&gt;MIND&lt;/em&gt;, and &lt;em&gt;Phil Quarterly&lt;/em&gt;. (Note: &lt;em&gt;Hume Studies&lt;/em&gt; is actually the most extreme by far. But I&amp;rsquo;ve excluded it from the plot because it&amp;rsquo;s very small, and as an extreme outlier it badly skews the &lt;em&gt;y&lt;/em&gt;-axis.)&lt;/p&gt;
-
-&lt;p&gt;It&amp;rsquo;s hard to see all the details in the plot, so here&amp;rsquo;s the same data in a table.&lt;/p&gt;
-
-&lt;table&gt;
-&lt;thead&gt;
-&lt;tr&gt;
-&lt;th align=&#34;left&#34;&gt;Journal&lt;/th&gt;
-&lt;th align=&#34;right&#34;&gt;submissions&lt;/th&gt;
-&lt;th align=&#34;right&#34;&gt;accepted&lt;/th&gt;
-&lt;th align=&#34;left&#34;&gt;% submissions women&lt;/th&gt;
-&lt;th align=&#34;left&#34;&gt;% accepted women&lt;/th&gt;
-&lt;/tr&gt;
-&lt;/thead&gt;
-
-&lt;tbody&gt;
-&lt;tr&gt;
-&lt;td align=&#34;left&#34;&gt;Ancient Philosophy&lt;/td&gt;
-&lt;td align=&#34;right&#34;&gt;346&lt;/td&gt;
-&lt;td align=&#34;right&#34;&gt;63&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;20&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;24&lt;/td&gt;
-&lt;/tr&gt;
-
-&lt;tr&gt;
-&lt;td align=&#34;left&#34;&gt;British Journal for the Philosophy of Science&lt;/td&gt;
-&lt;td align=&#34;right&#34;&gt;1267&lt;/td&gt;
-&lt;td align=&#34;right&#34;&gt;117&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;15&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;27&lt;/td&gt;
-&lt;/tr&gt;
-
-&lt;tr&gt;
-&lt;td align=&#34;left&#34;&gt;Canadian Journal of Philosophy&lt;/td&gt;
-&lt;td align=&#34;right&#34;&gt;792&lt;/td&gt;
-&lt;td align=&#34;right&#34;&gt;132&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;20&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;21&lt;/td&gt;
-&lt;/tr&gt;
-
-&lt;tr&gt;
-&lt;td align=&#34;left&#34;&gt;Dialectica&lt;/td&gt;
-&lt;td align=&#34;right&#34;&gt;826&lt;/td&gt;
-&lt;td align=&#34;right&#34;&gt;74&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;12.05&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;15.48&lt;/td&gt;
-&lt;/tr&gt;
-
-&lt;tr&gt;
-&lt;td align=&#34;left&#34;&gt;European Journal for Philosophy&lt;/td&gt;
-&lt;td align=&#34;right&#34;&gt;1554&lt;/td&gt;
-&lt;td align=&#34;right&#34;&gt;98&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;11.84&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;25&lt;/td&gt;
-&lt;/tr&gt;
-
-&lt;tr&gt;
-&lt;td align=&#34;left&#34;&gt;Hume Studies&lt;/td&gt;
-&lt;td align=&#34;right&#34;&gt;152&lt;/td&gt;
-&lt;td align=&#34;right&#34;&gt;30&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;23.7&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;58.1&lt;/td&gt;
-&lt;/tr&gt;
-
-&lt;tr&gt;
-&lt;td align=&#34;left&#34;&gt;Journal of Applied Philosophy&lt;/td&gt;
-&lt;td align=&#34;right&#34;&gt;510&lt;/td&gt;
-&lt;td align=&#34;right&#34;&gt;47&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;20&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;20&lt;/td&gt;
-&lt;/tr&gt;
-
-&lt;tr&gt;
-&lt;td align=&#34;left&#34;&gt;Journal of Political Philosophy&lt;/td&gt;
-&lt;td align=&#34;right&#34;&gt;1143&lt;/td&gt;
-&lt;td align=&#34;right&#34;&gt;53&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;35&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;30&lt;/td&gt;
-&lt;/tr&gt;
-
-&lt;tr&gt;
-&lt;td align=&#34;left&#34;&gt;MIND&lt;/td&gt;
-&lt;td align=&#34;right&#34;&gt;1498&lt;/td&gt;
-&lt;td align=&#34;right&#34;&gt;74&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;10&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;5&lt;/td&gt;
-&lt;/tr&gt;
-
-&lt;tr&gt;
-&lt;td align=&#34;left&#34;&gt;Oxford Studies in Ancient Philosophy&lt;/td&gt;
-&lt;td align=&#34;right&#34;&gt;290&lt;/td&gt;
-&lt;td align=&#34;right&#34;&gt;43&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;21&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;20.3&lt;/td&gt;
-&lt;/tr&gt;
-
-&lt;tr&gt;
-&lt;td align=&#34;left&#34;&gt;Philosophy East and West&lt;/td&gt;
-&lt;td align=&#34;right&#34;&gt;320&lt;/td&gt;
-&lt;td align=&#34;right&#34;&gt;66&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;20&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;15&lt;/td&gt;
-&lt;/tr&gt;
-
-&lt;tr&gt;
-&lt;td align=&#34;left&#34;&gt;Phronesis&lt;/td&gt;
-&lt;td align=&#34;right&#34;&gt;388&lt;/td&gt;
-&lt;td align=&#34;right&#34;&gt;38&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;24&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;25&lt;/td&gt;
-&lt;/tr&gt;
-
-&lt;tr&gt;
-&lt;td align=&#34;left&#34;&gt;The Journal of Aesthetics and Art Criticism&lt;/td&gt;
-&lt;td align=&#34;right&#34;&gt;611&lt;/td&gt;
-&lt;td align=&#34;right&#34;&gt;93&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;29&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;27&lt;/td&gt;
-&lt;/tr&gt;
-
-&lt;tr&gt;
-&lt;td align=&#34;left&#34;&gt;The Philosophical Quarterly&lt;/td&gt;
-&lt;td align=&#34;right&#34;&gt;2305&lt;/td&gt;
-&lt;td align=&#34;right&#34;&gt;77&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;14&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;5&lt;/td&gt;
-&lt;/tr&gt;
-&lt;/tbody&gt;
-&lt;/table&gt;
-
-&lt;h1 id=&#34;rounders-removed&#34;&gt;Rounders Removed&lt;/h1&gt;
-
-&lt;p&gt;I mentioned that some of the numbers look suspiciously round. Maybe 10% of submissions to &lt;em&gt;MIND&lt;/em&gt; really were from women, compared with 5% of accepted papers. But some of these cases probably involve non-trivial rounding, maybe even eyeballing or guesstimating. So let&amp;rsquo;s see how things look without them.&lt;/p&gt;
-
-&lt;p&gt;If we omit journals where both percentages are round (integer multiples of 5), that leaves ten journals. And the gap from before is even more pronounced: 16.3% of submissions from women compared with  22.9% of accepted papers (&lt;em&gt;p&lt;/em&gt; = 0.0000003).&lt;/p&gt;
-
-&lt;p&gt;But it&amp;rsquo;s still a few, high-volume journals driving the result: &lt;em&gt;BJPS&lt;/em&gt; and &lt;em&gt;EJP&lt;/em&gt; do a ton of business, and each has a large gap. So much so that they&amp;rsquo;re able to overcome the opposite contribution of &lt;em&gt;Phil Quarterly&lt;/em&gt; (which does a mind-boggling amount of business!).&lt;/p&gt;
-
-&lt;h1 id=&#34;editors-anonymous&#34;&gt;Editors Anonymous&lt;/h1&gt;
-
-&lt;p&gt;Naturally I fell to wondering how these big journals differ in their editorial practices. What are they doing differently that leads to such divergent results?&lt;/p&gt;
-
-&lt;p&gt;One thing the data tell us is which journals practice fully anonymous review, with even the editors ignorant of the author&amp;rsquo;s identity. That narrows it down to just three journals: &lt;em&gt;CJP&lt;/em&gt;, &lt;em&gt;Dialectica&lt;/em&gt;, and &lt;em&gt;Phil Quarterly&lt;/em&gt;.&lt;sup class=&#34;footnote-ref&#34; id=&#34;fnref:3&#34;&gt;&lt;a rel=&#34;footnote&#34; href=&#34;#fn:3&#34;&gt;3&lt;/a&gt;&lt;/sup&gt; The tallies then are:&lt;/p&gt;
-
-&lt;table&gt;
-&lt;thead&gt;
-&lt;tr&gt;
-&lt;th align=&#34;left&#34;&gt;&lt;/th&gt;
-&lt;th align=&#34;right&#34;&gt;Accepted submissions&lt;/th&gt;
-&lt;th align=&#34;right&#34;&gt;Rejected submissions&lt;/th&gt;
-&lt;/tr&gt;
-&lt;/thead&gt;
-
-&lt;tbody&gt;
-&lt;tr&gt;
-&lt;td align=&#34;left&#34;&gt;Men&lt;/td&gt;
-&lt;td align=&#34;right&#34;&gt;240&lt;/td&gt;
-&lt;td align=&#34;right&#34;&gt;3103&lt;/td&gt;
-&lt;/tr&gt;
-
-&lt;tr&gt;
-&lt;td align=&#34;left&#34;&gt;Women&lt;/td&gt;
-&lt;td align=&#34;right&#34;&gt;43&lt;/td&gt;
-&lt;td align=&#34;right&#34;&gt;537&lt;/td&gt;
-&lt;/tr&gt;
-&lt;/tbody&gt;
-&lt;/table&gt;
-
-&lt;p&gt;And now the gap is gone: 14.8% of submissions from women, compared with 15.2% of accepted papers&amp;mdash;not a statistically significant difference (&lt;em&gt;p&lt;/em&gt; = 0.91). That makes it look like the gap is down to editors&amp;rsquo; decisions being influenced by knowledge of the author&amp;rsquo;s gender (whether deliberately or unconsciously).&lt;/p&gt;
-
-&lt;p&gt;But notice again, &lt;em&gt;Phil Quarterly&lt;/em&gt; is still a huge part of this story. It&amp;rsquo;s their high volume and unusually negative differential that compensates for the more modest, positive differentials at &lt;em&gt;CJP&lt;/em&gt; and &lt;em&gt;Dialectica&lt;/em&gt;. So I still want to know more about &lt;em&gt;Phil Quarterly&lt;/em&gt;, and what might explain their unusually negative differential.&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;Edit&lt;/strong&gt;: editors at &lt;em&gt;CJP&lt;/em&gt; and &lt;em&gt;Phil Quarterly&lt;/em&gt; kindly wrote with the following, additional information.&lt;/p&gt;
-
-&lt;p&gt;At &lt;em&gt;CJP&lt;/em&gt;, the author&amp;rsquo;s identity is withheld from the editors while they decide whether to send the paper for external review, but then their identity is revealed (presumably to avoid inviting referees who are unacceptably close to the author&amp;mdash;e.g. those identical to the author).&lt;/p&gt;
-
-&lt;p&gt;And chairman of &lt;em&gt;Phil Quarterly&lt;/em&gt;&amp;rsquo;s editorial board, Jessica Brown, writes:&lt;/p&gt;
-
-&lt;blockquote&gt;
-&lt;ol&gt;
-&lt;li&gt;the PQ is very aware of issues about the representation of women, unsurprisingly given that the editorial board consists of myself, Sarah Broadie and Sophie-Grace Chappell. We monitor data on submissions by women and papers accepted in the journal every year.&lt;/li&gt;
-&lt;li&gt;the PQ has for many years had fully anonymised processing including the point at which decisions on papers are made (i.e. accept, reject, R and R etc). So, when we make such decisions we have no idea of the identity of the author.&lt;/li&gt;
-
-&lt;li&gt;&lt;p&gt;While in some years the data has concerned us, more recently the figures do look better which is encouraging:&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;16-17: 25% declared female authored papers accepted; 16% submissions&lt;/li&gt;
-&lt;li&gt;15-16: 14% accepted; 15% submissions&lt;/li&gt;
-&lt;li&gt;14-15: 16% accepted; 16% submissions&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
-&lt;/ol&gt;
-&lt;/blockquote&gt;
-
-&lt;h1 id=&#34;a-gruesome-conclusion&#34;&gt;A Gruesome Conclusion&lt;/h1&gt;
-
-&lt;p&gt;In the end, I don&amp;rsquo;t see a clear lesson here. Before drawing any conclusions from the aggregated, cross-journal tallies, it seems we&amp;rsquo;d need to know more about the policies and practices of the journals driving them. Otherwise we&amp;rsquo;re liable to be misled to a false generalization about a heterogeneous group.&lt;/p&gt;
-
-&lt;p&gt;Some of that policy-and-practice information is probably publicly available; I haven&amp;rsquo;t had a chance to look. And I bet a lot of it is available informally, if you just talk to the right people. So this data-set could still be informative on our base-rate question. But sadly, I don&amp;rsquo;t think I&amp;rsquo;m currently in a position to make informative use of it.&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&#34;http://i.imgur.com/ojvPBaY.jpg&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
-
-&lt;h1 id=&#34;technical-note&#34;&gt;Technical Note&lt;/h1&gt;
-
-&lt;p&gt;This post was written in R Markdown and the source is &lt;a href=&#34;https://github.com/jweisber/rgo/blob/master/apa bpa data/apa_bpa_data.Rmd&#34; target=&#34;_blank&#34;&gt;available on GitHub&lt;/a&gt;.&lt;/p&gt;
-&lt;div class=&#34;footnotes&#34;&gt;
-
-&lt;hr /&gt;
-
-&lt;ol&gt;
-&lt;li id=&#34;fn:1&#34;&gt;No, I don&amp;rsquo;t mean &lt;em&gt;Ergo&lt;/em&gt;! We published our first issue in 2014 while the survey covers mainly 2011&amp;ndash;13.
- &lt;a class=&#34;footnote-return&#34; href=&#34;#fnref:1&#34;&gt;&lt;sup&gt;[return]&lt;/sup&gt;&lt;/a&gt;&lt;/li&gt;
-&lt;li id=&#34;fn:2&#34;&gt;&lt;strong&gt;Edit&lt;/strong&gt;: the parity line was solid blue originally. But that misled some people into reading it as a fitted line. For reference and posterity, &lt;a href=&#34;http://jonathanweisberg.org/img/apa_bpa_data_files/unnamed-chunk-3-2.png&#34;&gt;the original image is here&lt;/a&gt;.
- &lt;a class=&#34;footnote-return&#34; href=&#34;#fnref:2&#34;&gt;&lt;sup&gt;[return]&lt;/sup&gt;&lt;/a&gt;&lt;/li&gt;
-&lt;li id=&#34;fn:3&#34;&gt;That&amp;rsquo;s if we continue to exclude journals with very round numbers. Adding these journals back in doesn&amp;rsquo;t change the following result, though.
- &lt;a class=&#34;footnote-return&#34; href=&#34;#fnref:3&#34;&gt;&lt;sup&gt;[return]&lt;/sup&gt;&lt;/a&gt;&lt;/li&gt;
-&lt;/ol&gt;
-&lt;/div&gt;
 </description>
     </item>
     

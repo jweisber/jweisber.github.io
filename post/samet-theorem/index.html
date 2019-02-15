@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Jonathan Weisberg's Homepage">
+    <meta name="author" content="Jonathan Weisberg">
+    
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@jweisber">
+    <meta name="twitter:creator" content="@jweisber">
+    <meta name="twitter:title" content="Nobody Expects the Chance Function!">
+    <meta name="twitter:description" content="Here&rsquo;s a striking result that caught me off guard the other day. It came up in a facebook thread, and judging by the discussion there it caught a few other people in this neighbourhood off guard too.
+The short version: chances are &ldquo;self-expecting&rdquo; pretty much if and only if they&rsquo;re &ldquo;self-certain&rdquo;. Less cryptically: the chance of a proposition equals its expected chance more or less just in case the chance function assigns probability 1 to itself being the true chance function.">
+    <meta name="twitter:image" content="https://vignette.wikia.nocookie.net/montypython/images/f/ff/Spanish_Inquisition.jpg/revision/latest?cb=20180629171423">
+
+    <meta property="og:url" content="/post/samet-theorem/" />
+    <meta property="og:type" content="article" />
+    <meta property="og:title" content="Nobody Expects the Chance Function!" />
+    <meta property="og:description" content="Here&rsquo;s a striking result that caught me off guard the other day. It came up in a facebook thread, and judging by the discussion there it caught a few other people in this neighbourhood off guard too.
+The short version: chances are &ldquo;self-expecting&rdquo; pretty much if and only if they&rsquo;re &ldquo;self-certain&rdquo;. Less cryptically: the chance of a proposition equals its expected chance more or less just in case the chance function assigns probability 1 to itself being the true chance function." />
+    <meta property="og:image" content="https://vignette.wikia.nocookie.net/montypython/images/f/ff/Spanish_Inquisition.jpg/revision/latest?cb=20180629171423" />
+
+
+    <title>Nobody Expects the Chance Function!</title>
+
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+    <link href="/css/prism.css" rel="stylesheet" />
+    <link href="/css/scarab.css" rel="stylesheet">
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]},
+        "HTML-CSS": {
+          availableFonts: ["Neo-Euler"],
+          preferredFont: "Neo-Euler",
+          webFont: "Neo-Euler",
+          imageFont: "Neo-Euler",
+        }
+      });
+    </script>
+    <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+    </script>
+    
+    
+    
+
+</head>
+
+<body>
+
+<nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+  <div class="container">
+    
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-navbar-collapse-1">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="http://jonathanweisberg.org/">Jonathan Weisberg</a>
+    </div>
+    
+    <div class="collapse navbar-collapse" id="bs-navbar-collapse-1">
+      <ul class="nav navbar-nav">
+        <li>
+          <a href="/pdf/CV.pdf">
+            <i class="fa fa-briefcase"></i>&nbsp;
+            CV
+          </a>
+        </li>
+        <li>
+          <a href="/post/">
+            <i class="fa fa-code"></i>&nbsp;
+            Blog
+          </a>
+        </li>
+        <li>
+          <a href="/publication/">
+            <i class="fa fa-files-o"></i>&nbsp;
+            Research
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+
+
+  
+  <div class="container blog-post">
+
+    
+    <div class="row">
+      <div class="col-md-3 hidden-sm hidden-xs text-right">
+        <h1 class="post-title">&nbsp;</h1>
+          <em>Feb 15, 2019</em><br />
+          
+          
+          
+          <span class="post-tags">
+            
+            <a class="post-tag" href="http://jonathanweisberg.org/tags/philosophy">Philosophy</a>
+             &bull;   
+            
+            <a class="post-tag" href="http://jonathanweisberg.org/tags/epistemology">Epistemology</a>
+             &bull;  
+            
+            <a class="post-tag" href="http://jonathanweisberg.org/tags/formal-epistemology">Formal Epistemology</a>
+            
+            
+          </span>
+          
+          
+        </p>
+      </div>
+
+      <div class="col-md-7">
+        <h1 class="post-title">Nobody Expects the Chance Function!</h1>
+        <div class="hidden-md hidden-lg post-metadata">
+          <div>
+            <em>Feb 15, 2019</em>
+          </div>
+          
+          
+          
+          <p class="post-tags">
+            
+            <a class="post-tag" href="http://jonathanweisberg.org/tags/philosophy">Philosophy</a>
+             &bull;   
+            
+            <a class="post-tag" href="http://jonathanweisberg.org/tags/epistemology">Epistemology</a>
+             &bull;  
+            
+            <a class="post-tag" href="http://jonathanweisberg.org/tags/formal-epistemology">Formal Epistemology</a>
+            
+            
+          </p>
+          
+          
+        </div>
+
+        <div class="post-body">
+          
+
+<p>Here&rsquo;s a striking result that caught me off guard the other day. It came up in a facebook thread, and judging by the discussion there it caught a few other people in this neighbourhood off guard too.</p>
+
+<p>The short version: chances are &ldquo;self-expecting&rdquo; pretty much if and only if they&rsquo;re &ldquo;self-certain&rdquo;. Less cryptically: the chance of a proposition equals its expected chance more or less just in case the chance function assigns probability 1 to itself being the true chance function.</p>
+
+<p>The same result applies to any probabilities of course, whether they represent physical chances or evidential probabilities or whatever. In fact, thanks to friends on facebook, I learned that it drives <a href="https://philpapers.org/archive/DOREAG.pdf" target="_blank">this lovely paper by Kevin Dorst</a>.</p>
+
+<p>I just happened to stumble across it while thinking about chances, because Richard Pettigrew uses the assumption that chances are self-expecting in <a href="http://fitelson.org/coherence/pettigrew_chance.pdf" target="_blank">his <em>Phil Review</em> paper on accuracy and the Principal Principle</a>. But later, in <a href="https://philpapers.org/rec/PETAAT-7" target="_blank">his landmark book on accuracy</a>, he switches to the requirement that they be self-certain. It turns out this isn&rsquo;t a coincidence. The result we&rsquo;re about to look at illuminates this shift.</p>
+
+<p>The result goes back to 1997 at least, in <a href="https://homepages.cwi.nl/~jve/books/oldgass/high-order-beliefs.pdf" target="_blank">a paper by Dov Samet</a>. Proving the full result is a bit more involved than what I&rsquo;ll present here. For simplicity, I&rsquo;ll only prove a special case at the end. But along the way we&rsquo;ll look at some suggestive examples that illustrate the full version.</p>
+
+<h1 id="the-chance-matrix">The Chance Matrix</h1>
+
+<p>Imagine we have just four possible worlds, resulting from two tosses of a coin. What are the physical chances at each of the four possible worlds $HH$, $HT$, $TH$, and $TT$? $\newcommand{\mstar}{\mathfrak{m}^*} \newcommand{\C}{\mathbf{C}}$</p>
+
+<p>One natural thought is to apply Laplace&rsquo;s classic rule of succession: given $s$ heads out of $n$ tosses, conclude that the probability of heads on each toss is $(s+1)/(n+2)$. So at $HH$-world for example, the chance of heads was $3/ 4$ on each toss.</p>
+
+<p>If we assume the tosses are independent, then $HH$-world had chance $(3/ 4)(3/ 4) = 9/16$ of being actual, according to the chance function at $HH$-world. Whereas $HT$-world had chance $(3/ 4)(1/ 4) = 3/16$ of being actual at $HH$-world. The full chance function at $HH$-world can be displayed as a column vector:
+$$
+\left(
+    \begin{matrix}
+        9/16\\<br />
+        3/16\\<br />
+        3/16\\<br />
+        1/16
+    \end{matrix}
+\right).
+$$
+Applying the same recipe at $HT$-world would give us a different column vector. And sticking the columns for all four worlds together, we get a $4 \times 4$ <em>chance matrix</em> for our space of possible worlds:
+$$
+\mathbf{C} =
+    \left(
+        \begin{matrix}
+            9/16 &amp; 1/ 4 &amp; 1/ 4 &amp; 1/16\\<br />
+            3/16 &amp; 1/ 4 &amp; 1/ 4 &amp; 3/16\\<br />
+            3/16 &amp; 1/ 4 &amp; 1/ 4 &amp; 3/16\\<br />
+            1/16 &amp; 1/ 4 &amp; 1/ 4 &amp; 9/16
+        \end{matrix}
+    \right).
+$$
+Each column gives the chances <em>at</em> a world, while a row gives the chances <em>of</em> a world. For example, entry $c_{14}$ gives the chance <em>at</em> world $4$ <em>of</em> world $1$ being actual. It says how likely the sequence $HH$ was if the actual unfolding of events is instead $TT$, namely $1/16$.</p>
+
+<p>A different thought would be to appeal to Carnap&rsquo;s notorious &ldquo;logical&rdquo; prior $\mstar$:
+$$
+\mstar =
+    \left(
+        \begin{matrix}
+            1/3\\<br />
+            1/6\\<br />
+            1/6\\<br />
+            1/3
+        \end{matrix}
+    \right).
+$$
+This assignment of probabilities ignores the actual unfolding of events in each world. It falls out of a bit of a priori reasoning instead. There are three possible outcomes: $2$ heads, $1$ head, or $0$ heads. Each is equally likely, $1/ 3$. But there are two ways to get $1$ head, so the $1/ 3$ there gets subdivided equally between $HT$ and $TH$, leaving $1/6$ for each.</p>
+
+<p>Since these chances ignore the actual unfolding of events in each world, the chance matrix we get here is extremely anti-Humean. It&rsquo;s just four repetitions of $\mstar$:
+$$
+\mathbf{C} =
+    \left(
+        \begin{matrix}
+            1/3 &amp; 1/3 &amp; 1/3 &amp; 1/3\\<br />
+            1/6 &amp; 1/6 &amp; 1/6 &amp; 1/6\\<br />
+            1/6 &amp; 1/6 &amp; 1/6 &amp; 1/6\\<br />
+            1/3 &amp; 1/3 &amp; 1/3 &amp; 1/3
+        \end{matrix}
+    \right).
+$$
+You might think that&rsquo;s a pretty terrible theory of chance, and I sympathize. But what we&rsquo;re about to see is that, of our two chance matrices, only the second is &ldquo;self-expecting&rdquo;. And its terribleness is part of the reason why.</p>
+
+<h2 id="self-expectation">Self Expectation</h2>
+
+<p>Pettigrew&rsquo;s <em>Phil Review</em> paper assumes that chance functions are &ldquo;self-expecting&rdquo;. The chance of a proposition at a given world must equal its expected value, where the expectation is taken according to the chances at that world.</p>
+
+<p>In terms of a chance matrix $\C$, this amounts to the requirement that $\C \C = \C$. When we multiply $\C$ by $\C$, we take dot-products of rows and columns. For example, if we were doing the calculation by hand, we&rsquo;d start by multiplying the first row of $\C$ by the first column of $\C$. And this is just the weighted average of the various possible chances <em>of</em> the first world, where the weights are the chances <em>at</em> that world. In other words, it&rsquo;s the expected chance <em>of</em> $HH$-world <em>at</em> $HH$-world.</p>
+
+<p>In general, the dot product of row $i$ with column $j$ is the expected chance <em>of</em> world $i$ <em>at</em> world $j$. For this expected chance to equal the chance of world $i$ at world $j$, it must be that $\C \C = \C$. More succinctly, $\C^2 = \C$.</p>
+
+<p>Matrices that have this property&mdash;squaring them leaves them unchanged&mdash;are called <em>idempotent</em>. And when our matrices are column stochastic (all values are nonnegative and each column sums to $1$), idempotence is a very&hellip; well, potent requirement.</p>
+
+<p>For example, our first chance matrix based on Laplace&rsquo;s rule of succession is not idempotent. Its square is not itself, but something quite different. Our second, Carnapian matrix is idempotent though. Its square is just itself. And that&rsquo;s not a coincidence.</p>
+
+<h1 id="self-certainty">Self Certainty</h1>
+
+<p>Any chance matrix whose columns are redundant will be idempotent. After all, if the chances are the same <em>at</em> every world, the expected value <em>of</em> any world is always the same. So its expected value just is the value it has at every world.</p>
+
+<p>But redundant columns also mean that the chances are <em>self certain</em>. Each world&rsquo;s chance assignment gives zero probability to the chances being anything other than what they are at that world. Because there <em>are</em> no worlds where the chances are different.</p>
+
+<p>The chances can vary from world to world and still be self-expecting though. There are idempotent chance matrices where the columns are not simply redundant. For example, here&rsquo;s another idempotent chance matrix:
+$$
+\left(
+    \begin{matrix}
+        1/3 &amp; 1/3 &amp; 0      &amp;    0\\<br />
+        2/3 &amp; 2/3 &amp; 0      &amp;    0\\<br />
+            0 &amp;   0 &amp; 1/ 4 &amp; 1/ 4\\<br />
+            0 &amp;   0 &amp; 3/ 4 &amp; 3/ 4
+    \end{matrix}
+\right).
+$$
+But notice how it&rsquo;s still kind of a degenerate case. There are two, disjoint regions of modal space here that regard one another as zero-chance. And within each region the chances are the same at each world. Worlds $1$ and $2$ have the same chances, and they give zero chance to worlds $3$ and $4$. And vice versa from the point of view of worlds $3$ and $4$.</p>
+
+<p>In other words, self-expectation and self-certainty go hand in hand here once again.</p>
+
+<h1 id="a-sliver-of-daylight">A Sliver of Daylight</h1>
+
+<p>Is there any daylight at all then between self-expectation and self-certainty?</p>
+
+<p>Self-certainty entails self-expectation, and the argument is pretty short. If the only worlds with positive chance according to world $j$ assign the same chances as world $j$ does, then any average of those chances will just be those same chances.</p>
+
+<p>But self-expectation doesn&rsquo;t <em>quite</em> entail self-certainty. For example, here&rsquo;s an idempotent chance matrix that&rsquo;s not self-certain:
+$$
+\left(
+    \begin{matrix}
+        1/3 &amp; 1/3 &amp; 0      &amp;    0 &amp; 25/94\\<br />
+        2/3 &amp; 2/3 &amp; 0      &amp;    0 &amp; 25/47\\<br />
+            0 &amp;   0 &amp; 1/ 4 &amp; 1/ 4 &amp; 19/376\\<br />
+            0 &amp;   0 &amp; 3/ 4 &amp; 3/ 4 &amp; 57/376\\<br />
+            0 &amp;   0 &amp;    0 &amp;    0 &amp; 0
+    \end{matrix}
+\right).
+$$
+It&rsquo;s kind of a lame counterexample though, because the new, fifth world we&rsquo;ve introduced (the coin explodes or something idk) has zero chance at every world, even itself.</p>
+
+<p>In fact this is what Samet proves: this is the only kind of counterexample possible! If probabilities are self-expecting, then they must be either self-certain or self-effacing. They must assign zero chance to the chances being otherwise, or they must assign chance one to them being otherwise.</p>
+
+<p>In terms of matrices, there are only three kinds of idempotent chance matrix:</p>
+
+<ol>
+<li>All columns are identical.</li>
+<li>The matrix is <a href="https://en.wikipedia.org/wiki/Block_matrix#Block_diagonal_matrices" target="_blank">block diagonal</a>, with identical columns inside each block.</li>
+<li>The matrix is as in (2), except for some columns $j_1, \ldots, j_n$. But the corresponding rows $j_1, \ldots, j_n$ contain only zeros.</li>
+</ol>
+
+<p>Strictly speaking (1) is actually a special case of (2). But (1) deserves direct attention because it arises in a way that&rsquo;s interesting both philosophically and mathematically.</p>
+
+<h1 id="the-connected-case">The Connected Case</h1>
+
+<p>Here&rsquo;s a natural thought, one that&rsquo;s driven a lot of the literature on chance and Lewis&rsquo; Principal Principle. The thought: however events unfold at one world, there&rsquo;s a chance they could have evolved differently. There&rsquo;s even some small, non-zero chance they could have evolved quite differently.</p>
+
+<p>Taking this thought a bit further, you might think there&rsquo;s a region of modal space where, even though worlds $w_1$ and $w_n$ have different chances, $w_n$ is always reachable from world $w_1$. More exactly, there&rsquo;s always a connecting sequence of worlds $w_1, w_2, \ldots, w_n$ where $w_i$ gives non-zero chance to $w_{i+1}$.</p>
+
+<p>In terms of coin tosses, maybe it&rsquo;s a law of nature that all coins land heads in when all hundred out of one hundred flips land heads. But when there&rsquo;s a mix of heads and tails, there&rsquo;s at least some chance the mix could have had a few more heads, or a few more tails. So every world where the sequence isn&rsquo;t perfectly uniform can be reached from every other. If not in a single, positive-chance hop, then at least by a series of hops, perhaps by switching the outcomes of the flips one at a time for example.</p>
+
+<p>In terms of graphs, such a region of modal space is said to be <em>connected</em>. In terms of matrices, it amounts to the chance matrix for this region being <em>regular</em>: there must be some power $n$ such that $\C^n$ contains all positive entries.</p>
+
+<p>Now, regular matrices have the remarkable property that, as we multiply them against themselves more and more times, the result converges to a matrix $\mathbf{P}$ whose columns are all identical:
+$$ \lim_{n \rightarrow \infty} \C^n = \mathbf{P} =
+\left(
+    \begin{matrix}
+        p_1    &amp; \ldots &amp; p_1    \\<br />
+        \vdots &amp; \ldots &amp; \vdots \\<br />
+        p_k    &amp; \ldots &amp; p_k    \\<br />
+    \end{matrix}
+\right).
+$$
+Now recall that for $\C$ to be self-expecting, it must be idempotent, meaning $\C^2 = \C$. But that means $\C^n = \C$ for any power $n$. But then $\C = \mathbf{P}$, so $\C$ must already have redundant columns.</p>
+
+<p>What does this mean for us? One way to think about it: there isn&rsquo;t as much room for chances to vary from world to world as one might have thought. If the chances are going to be self-expecting, they must be the same at every world across a whole region modal space despite the facts turning out quite differently at various worlds across that region.</p>
+
+<p>This point is strongly reminiscent of David Lewis&rsquo; famous &ldquo;Big Bad Bug&rdquo; of course. And there&rsquo;s tons of relevant literature, most of which I confess I never really absorbed. So I&rsquo;ll link to one paper I&rsquo;m finding especially helpful on this right now, Richard Pettigrew&rsquo;s <a href="https://drive.google.com/file/d/0B-Gzj6gcSXKrcW5MeUhIN2Jsd1k/view" target="_blank">&ldquo;What Chance-Credence Norms Should Not Be&rdquo;</a>.</p>
+
+
+          &nbsp;
+        </div>
+
+        <div>
+          <div class="post-back-link">
+    <a href="javascript: history.back()">
+        <i class="fa fa-arrow-left"></i> 
+        Back
+    </a>
+</div>
+        </div>
+      </div>
+    </div>
+    
+
+<footer style="padding-top: 1em;">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-lg-12 text-center">
+        <p>
+          &nbsp;
+        </p>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+<script src="/js/prism.js"></script>
+
+<script type="text/javascript">
+var sc_project= 11213692 ;
+var sc_invisible= 1 ;
+var sc_security="b1954803";
+var scJsHost = (("https:" == document.location.protocol) ?
+"https://secure." : "http://www.");
+document.write("<sc"+"ript type='text/javascript' src='" +
+scJsHost+
+"statcounter.com/counter/counter.js'></"+"script>");
+</script>
+<noscript><div class="statcounter"><a title="web analytics"
+href="http://statcounter.com/" target="_blank"><img
+class="statcounter"
+src="//c.statcounter.com/11213692/0/b1954803/1/" alt="web
+analytics"></a></div></noscript>
+
+
+</body>
+</html>
+

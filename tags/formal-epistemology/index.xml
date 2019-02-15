@@ -9,6 +9,176 @@
     <atom:link href="http://jonathanweisberg.org/tags/formal-epistemology/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
+      <title>Nobody Expects the Chance Function!</title>
+      <link>http://jonathanweisberg.org/post/samet-theorem/</link>
+      <pubDate>Fri, 15 Feb 2019 11:52:00 -0500</pubDate>
+      
+      <guid>http://jonathanweisberg.org/post/samet-theorem/</guid>
+      <description>
+
+&lt;p&gt;Here&amp;rsquo;s a striking result that caught me off guard the other day. It came up in a facebook thread, and judging by the discussion there it caught a few other people in this neighbourhood off guard too.&lt;/p&gt;
+
+&lt;p&gt;The short version: chances are &amp;ldquo;self-expecting&amp;rdquo; pretty much if and only if they&amp;rsquo;re &amp;ldquo;self-certain&amp;rdquo;. Less cryptically: the chance of a proposition equals its expected chance more or less just in case the chance function assigns probability 1 to itself being the true chance function.&lt;/p&gt;
+
+&lt;p&gt;The same result applies to any probabilities of course, whether they represent physical chances or evidential probabilities or whatever. In fact, thanks to friends on facebook, I learned that it drives &lt;a href=&#34;https://philpapers.org/archive/DOREAG.pdf&#34; target=&#34;_blank&#34;&gt;this lovely paper by Kevin Dorst&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;I just happened to stumble across it while thinking about chances, because Richard Pettigrew uses the assumption that chances are self-expecting in &lt;a href=&#34;http://fitelson.org/coherence/pettigrew_chance.pdf&#34; target=&#34;_blank&#34;&gt;his &lt;em&gt;Phil Review&lt;/em&gt; paper on accuracy and the Principal Principle&lt;/a&gt;. But later, in &lt;a href=&#34;https://philpapers.org/rec/PETAAT-7&#34; target=&#34;_blank&#34;&gt;his landmark book on accuracy&lt;/a&gt;, he switches to the requirement that they be self-certain. It turns out this isn&amp;rsquo;t a coincidence. The result we&amp;rsquo;re about to look at illuminates this shift.&lt;/p&gt;
+
+&lt;p&gt;The result goes back to 1997 at least, in &lt;a href=&#34;https://homepages.cwi.nl/~jve/books/oldgass/high-order-beliefs.pdf&#34; target=&#34;_blank&#34;&gt;a paper by Dov Samet&lt;/a&gt;. Proving the full result is a bit more involved than what I&amp;rsquo;ll present here. For simplicity, I&amp;rsquo;ll only prove a special case at the end. But along the way we&amp;rsquo;ll look at some suggestive examples that illustrate the full version.&lt;/p&gt;
+
+&lt;h1 id=&#34;the-chance-matrix&#34;&gt;The Chance Matrix&lt;/h1&gt;
+
+&lt;p&gt;Imagine we have just four possible worlds, resulting from two tosses of a coin. What are the physical chances at each of the four possible worlds $HH$, $HT$, $TH$, and $TT$? $\newcommand{\mstar}{\mathfrak{m}^*} \newcommand{\C}{\mathbf{C}}$&lt;/p&gt;
+
+&lt;p&gt;One natural thought is to apply Laplace&amp;rsquo;s classic rule of succession: given $s$ heads out of $n$ tosses, conclude that the probability of heads on each toss is $(s+1)/(n+2)$. So at $HH$-world for example, the chance of heads was $3/ 4$ on each toss.&lt;/p&gt;
+
+&lt;p&gt;If we assume the tosses are independent, then $HH$-world had chance $(3/ 4)(3/ 4) = 9/16$ of being actual, according to the chance function at $HH$-world. Whereas $HT$-world had chance $(3/ 4)(1/ 4) = 3/16$ of being actual at $HH$-world. The full chance function at $HH$-world can be displayed as a column vector:
+$$
+\left(
+    \begin{matrix}
+        9/16\\&lt;br /&gt;
+        3/16\\&lt;br /&gt;
+        3/16\\&lt;br /&gt;
+        1/16
+    \end{matrix}
+\right).
+$$
+Applying the same recipe at $HT$-world would give us a different column vector. And sticking the columns for all four worlds together, we get a $4 \times 4$ &lt;em&gt;chance matrix&lt;/em&gt; for our space of possible worlds:
+$$
+\mathbf{C} =
+    \left(
+        \begin{matrix}
+            9/16 &amp;amp; 1/ 4 &amp;amp; 1/ 4 &amp;amp; 1/16\\&lt;br /&gt;
+            3/16 &amp;amp; 1/ 4 &amp;amp; 1/ 4 &amp;amp; 3/16\\&lt;br /&gt;
+            3/16 &amp;amp; 1/ 4 &amp;amp; 1/ 4 &amp;amp; 3/16\\&lt;br /&gt;
+            1/16 &amp;amp; 1/ 4 &amp;amp; 1/ 4 &amp;amp; 9/16
+        \end{matrix}
+    \right).
+$$
+Each column gives the chances &lt;em&gt;at&lt;/em&gt; a world, while a row gives the chances &lt;em&gt;of&lt;/em&gt; a world. For example, entry $c_{14}$ gives the chance &lt;em&gt;at&lt;/em&gt; world $4$ &lt;em&gt;of&lt;/em&gt; world $1$ being actual. It says how likely the sequence $HH$ was if the actual unfolding of events is instead $TT$, namely $1/16$.&lt;/p&gt;
+
+&lt;p&gt;A different thought would be to appeal to Carnap&amp;rsquo;s notorious &amp;ldquo;logical&amp;rdquo; prior $\mstar$:
+$$
+\mstar =
+    \left(
+        \begin{matrix}
+            1/3\\&lt;br /&gt;
+            1/6\\&lt;br /&gt;
+            1/6\\&lt;br /&gt;
+            1/3
+        \end{matrix}
+    \right).
+$$
+This assignment of probabilities ignores the actual unfolding of events in each world. It falls out of a bit of a priori reasoning instead. There are three possible outcomes: $2$ heads, $1$ head, or $0$ heads. Each is equally likely, $1/ 3$. But there are two ways to get $1$ head, so the $1/ 3$ there gets subdivided equally between $HT$ and $TH$, leaving $1/6$ for each.&lt;/p&gt;
+
+&lt;p&gt;Since these chances ignore the actual unfolding of events in each world, the chance matrix we get here is extremely anti-Humean. It&amp;rsquo;s just four repetitions of $\mstar$:
+$$
+\mathbf{C} =
+    \left(
+        \begin{matrix}
+            1/3 &amp;amp; 1/3 &amp;amp; 1/3 &amp;amp; 1/3\\&lt;br /&gt;
+            1/6 &amp;amp; 1/6 &amp;amp; 1/6 &amp;amp; 1/6\\&lt;br /&gt;
+            1/6 &amp;amp; 1/6 &amp;amp; 1/6 &amp;amp; 1/6\\&lt;br /&gt;
+            1/3 &amp;amp; 1/3 &amp;amp; 1/3 &amp;amp; 1/3
+        \end{matrix}
+    \right).
+$$
+You might think that&amp;rsquo;s a pretty terrible theory of chance, and I sympathize. But what we&amp;rsquo;re about to see is that, of our two chance matrices, only the second is &amp;ldquo;self-expecting&amp;rdquo;. And its terribleness is part of the reason why.&lt;/p&gt;
+
+&lt;h2 id=&#34;self-expectation&#34;&gt;Self Expectation&lt;/h2&gt;
+
+&lt;p&gt;Pettigrew&amp;rsquo;s &lt;em&gt;Phil Review&lt;/em&gt; paper assumes that chance functions are &amp;ldquo;self-expecting&amp;rdquo;. The chance of a proposition at a given world must equal its expected value, where the expectation is taken according to the chances at that world.&lt;/p&gt;
+
+&lt;p&gt;In terms of a chance matrix $\C$, this amounts to the requirement that $\C \C = \C$. When we multiply $\C$ by $\C$, we take dot-products of rows and columns. For example, if we were doing the calculation by hand, we&amp;rsquo;d start by multiplying the first row of $\C$ by the first column of $\C$. And this is just the weighted average of the various possible chances &lt;em&gt;of&lt;/em&gt; the first world, where the weights are the chances &lt;em&gt;at&lt;/em&gt; that world. In other words, it&amp;rsquo;s the expected chance &lt;em&gt;of&lt;/em&gt; $HH$-world &lt;em&gt;at&lt;/em&gt; $HH$-world.&lt;/p&gt;
+
+&lt;p&gt;In general, the dot product of row $i$ with column $j$ is the expected chance &lt;em&gt;of&lt;/em&gt; world $i$ &lt;em&gt;at&lt;/em&gt; world $j$. For this expected chance to equal the chance of world $i$ at world $j$, it must be that $\C \C = \C$. More succinctly, $\C^2 = \C$.&lt;/p&gt;
+
+&lt;p&gt;Matrices that have this property&amp;mdash;squaring them leaves them unchanged&amp;mdash;are called &lt;em&gt;idempotent&lt;/em&gt;. And when our matrices are column stochastic (all values are nonnegative and each column sums to $1$), idempotence is a very&amp;hellip; well, potent requirement.&lt;/p&gt;
+
+&lt;p&gt;For example, our first chance matrix based on Laplace&amp;rsquo;s rule of succession is not idempotent. Its square is not itself, but something quite different. Our second, Carnapian matrix is idempotent though. Its square is just itself. And that&amp;rsquo;s not a coincidence.&lt;/p&gt;
+
+&lt;h1 id=&#34;self-certainty&#34;&gt;Self Certainty&lt;/h1&gt;
+
+&lt;p&gt;Any chance matrix whose columns are redundant will be idempotent. After all, if the chances are the same &lt;em&gt;at&lt;/em&gt; every world, the expected value &lt;em&gt;of&lt;/em&gt; any world is always the same. So its expected value just is the value it has at every world.&lt;/p&gt;
+
+&lt;p&gt;But redundant columns also mean that the chances are &lt;em&gt;self certain&lt;/em&gt;. Each world&amp;rsquo;s chance assignment gives zero probability to the chances being anything other than what they are at that world. Because there &lt;em&gt;are&lt;/em&gt; no worlds where the chances are different.&lt;/p&gt;
+
+&lt;p&gt;The chances can vary from world to world and still be self-expecting though. There are idempotent chance matrices where the columns are not simply redundant. For example, here&amp;rsquo;s another idempotent chance matrix:
+$$
+\left(
+    \begin{matrix}
+        1/3 &amp;amp; 1/3 &amp;amp; 0      &amp;amp;    0\\&lt;br /&gt;
+        2/3 &amp;amp; 2/3 &amp;amp; 0      &amp;amp;    0\\&lt;br /&gt;
+            0 &amp;amp;   0 &amp;amp; 1/ 4 &amp;amp; 1/ 4\\&lt;br /&gt;
+            0 &amp;amp;   0 &amp;amp; 3/ 4 &amp;amp; 3/ 4
+    \end{matrix}
+\right).
+$$
+But notice how it&amp;rsquo;s still kind of a degenerate case. There are two, disjoint regions of modal space here that regard one another as zero-chance. And within each region the chances are the same at each world. Worlds $1$ and $2$ have the same chances, and they give zero chance to worlds $3$ and $4$. And vice versa from the point of view of worlds $3$ and $4$.&lt;/p&gt;
+
+&lt;p&gt;In other words, self-expectation and self-certainty go hand in hand here once again.&lt;/p&gt;
+
+&lt;h1 id=&#34;a-sliver-of-daylight&#34;&gt;A Sliver of Daylight&lt;/h1&gt;
+
+&lt;p&gt;Is there any daylight at all then between self-expectation and self-certainty?&lt;/p&gt;
+
+&lt;p&gt;Self-certainty entails self-expectation, and the argument is pretty short. If the only worlds with positive chance according to world $j$ assign the same chances as world $j$ does, then any average of those chances will just be those same chances.&lt;/p&gt;
+
+&lt;p&gt;But self-expectation doesn&amp;rsquo;t &lt;em&gt;quite&lt;/em&gt; entail self-certainty. For example, here&amp;rsquo;s an idempotent chance matrix that&amp;rsquo;s not self-certain:
+$$
+\left(
+    \begin{matrix}
+        1/3 &amp;amp; 1/3 &amp;amp; 0      &amp;amp;    0 &amp;amp; 25/94\\&lt;br /&gt;
+        2/3 &amp;amp; 2/3 &amp;amp; 0      &amp;amp;    0 &amp;amp; 25/47\\&lt;br /&gt;
+            0 &amp;amp;   0 &amp;amp; 1/ 4 &amp;amp; 1/ 4 &amp;amp; 19/376\\&lt;br /&gt;
+            0 &amp;amp;   0 &amp;amp; 3/ 4 &amp;amp; 3/ 4 &amp;amp; 57/376\\&lt;br /&gt;
+            0 &amp;amp;   0 &amp;amp;    0 &amp;amp;    0 &amp;amp; 0
+    \end{matrix}
+\right).
+$$
+It&amp;rsquo;s kind of a lame counterexample though, because the new, fifth world we&amp;rsquo;ve introduced (the coin explodes or something idk) has zero chance at every world, even itself.&lt;/p&gt;
+
+&lt;p&gt;In fact this is what Samet proves: this is the only kind of counterexample possible! If probabilities are self-expecting, then they must be either self-certain or self-effacing. They must assign zero chance to the chances being otherwise, or they must assign chance one to them being otherwise.&lt;/p&gt;
+
+&lt;p&gt;In terms of matrices, there are only three kinds of idempotent chance matrix:&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;All columns are identical.&lt;/li&gt;
+&lt;li&gt;The matrix is &lt;a href=&#34;https://en.wikipedia.org/wiki/Block_matrix#Block_diagonal_matrices&#34; target=&#34;_blank&#34;&gt;block diagonal&lt;/a&gt;, with identical columns inside each block.&lt;/li&gt;
+&lt;li&gt;The matrix is as in (2), except for some columns $j_1, \ldots, j_n$. But the corresponding rows $j_1, \ldots, j_n$ contain only zeros.&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;Strictly speaking (1) is actually a special case of (2). But (1) deserves direct attention because it arises in a way that&amp;rsquo;s interesting both philosophically and mathematically.&lt;/p&gt;
+
+&lt;h1 id=&#34;the-connected-case&#34;&gt;The Connected Case&lt;/h1&gt;
+
+&lt;p&gt;Here&amp;rsquo;s a natural thought, one that&amp;rsquo;s driven a lot of the literature on chance and Lewis&amp;rsquo; Principal Principle. The thought: however events unfold at one world, there&amp;rsquo;s a chance they could have evolved differently. There&amp;rsquo;s even some small, non-zero chance they could have evolved quite differently.&lt;/p&gt;
+
+&lt;p&gt;Taking this thought a bit further, you might think there&amp;rsquo;s a region of modal space where, even though worlds $w_1$ and $w_n$ have different chances, $w_n$ is always reachable from world $w_1$. More exactly, there&amp;rsquo;s always a connecting sequence of worlds $w_1, w_2, \ldots, w_n$ where $w_i$ gives non-zero chance to $w_{i+1}$.&lt;/p&gt;
+
+&lt;p&gt;In terms of coin tosses, maybe it&amp;rsquo;s a law of nature that all coins land heads in when all hundred out of one hundred flips land heads. But when there&amp;rsquo;s a mix of heads and tails, there&amp;rsquo;s at least some chance the mix could have had a few more heads, or a few more tails. So every world where the sequence isn&amp;rsquo;t perfectly uniform can be reached from every other. If not in a single, positive-chance hop, then at least by a series of hops, perhaps by switching the outcomes of the flips one at a time for example.&lt;/p&gt;
+
+&lt;p&gt;In terms of graphs, such a region of modal space is said to be &lt;em&gt;connected&lt;/em&gt;. In terms of matrices, it amounts to the chance matrix for this region being &lt;em&gt;regular&lt;/em&gt;: there must be some power $n$ such that $\C^n$ contains all positive entries.&lt;/p&gt;
+
+&lt;p&gt;Now, regular matrices have the remarkable property that, as we multiply them against themselves more and more times, the result converges to a matrix $\mathbf{P}$ whose columns are all identical:
+$$ \lim_{n \rightarrow \infty} \C^n = \mathbf{P} =
+\left(
+    \begin{matrix}
+        p_1    &amp;amp; \ldots &amp;amp; p_1    \\&lt;br /&gt;
+        \vdots &amp;amp; \ldots &amp;amp; \vdots \\&lt;br /&gt;
+        p_k    &amp;amp; \ldots &amp;amp; p_k    \\&lt;br /&gt;
+    \end{matrix}
+\right).
+$$
+Now recall that for $\C$ to be self-expecting, it must be idempotent, meaning $\C^2 = \C$. But that means $\C^n = \C$ for any power $n$. But then $\C = \mathbf{P}$, so $\C$ must already have redundant columns.&lt;/p&gt;
+
+&lt;p&gt;What does this mean for us? One way to think about it: there isn&amp;rsquo;t as much room for chances to vary from world to world as one might have thought. If the chances are going to be self-expecting, they must be the same at every world across a whole region modal space despite the facts turning out quite differently at various worlds across that region.&lt;/p&gt;
+
+&lt;p&gt;This point is strongly reminiscent of David Lewis&amp;rsquo; famous &amp;ldquo;Big Bad Bug&amp;rdquo; of course. And there&amp;rsquo;s tons of relevant literature, most of which I confess I never really absorbed. So I&amp;rsquo;ll link to one paper I&amp;rsquo;m finding especially helpful on this right now, Richard Pettigrew&amp;rsquo;s &lt;a href=&#34;https://drive.google.com/file/d/0B-Gzj6gcSXKrcW5MeUhIN2Jsd1k/view&#34; target=&#34;_blank&#34;&gt;&amp;ldquo;What Chance-Credence Norms Should Not Be&amp;rdquo;&lt;/a&gt;.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
       <title>Call for Papers: Formal Epistemology Workshop (FEW) 2018</title>
       <link>http://jonathanweisberg.org/post/CFP%20FEW%202018/</link>
       <pubDate>Thu, 21 Dec 2017 10:36:00 -0500</pubDate>
