@@ -6,8 +6,18 @@
     <description>Recent content in Publications on Jonathan Weisberg</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 28 Dec 2016 11:20:45 -0500</lastBuildDate>
+    <lastBuildDate>Tue, 04 Jun 2019 00:00:00 -0500</lastBuildDate>
     <atom:link href="http://jonathanweisberg.org/publication/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>No Escape from Allais: Reply to Buchak</title>
+      <link>http://jonathanweisberg.org/publication/No%20Escape%20from%20Allais/</link>
+      <pubDate>Tue, 04 Jun 2019 00:00:00 -0500</pubDate>
+      
+      <guid>http://jonathanweisberg.org/publication/No%20Escape%20from%20Allais/</guid>
+      <description>&lt;p&gt;In &lt;em&gt;Risk &amp;amp; Rationality&lt;/em&gt;, Buchak (2013) advertises REU theory as able to recover the modal preferences in the Allais paradox. In our (2017) however, we pointed out that REU theory only applies in the &amp;ldquo;grand world&amp;rdquo; setting, where it actually struggles with the modal Allais preferences. Buchak (2017) offers two replies. Here we enumerate a variety of technical and philosophical problems with each.&lt;/p&gt;
+</description>
+    </item>
     
     <item>
       <title>Risk Writ Large</title>
@@ -146,16 +156,6 @@
       
       <guid>http://jonathanweisberg.org/publication/2010%20A%20Note%20on%20Design/</guid>
       <description>&lt;p&gt;We have known for a long time that there is complex, intelligent life. More recently we have discovered that the physics of our universe is fine-tuned so as to allow for the existence of such life. I argue that this new finding provides no evidence for the design hypothesis. Thus, there is an important sense in which the much-touted fine-tuning of physics is irrelevant to debates about design.&lt;/p&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>Commutativity or Holism? A Dilemma for Conditionalizers</title>
-      <link>http://jonathanweisberg.org/publication/2009%20Commutativity%20or%20Holism/</link>
-      <pubDate>Thu, 01 Jan 2009 00:00:01 -0500</pubDate>
-      
-      <guid>http://jonathanweisberg.org/publication/2009%20Commutativity%20or%20Holism/</guid>
-      <description>&lt;p&gt;Conditionalization and Jeffrey Conditionalization cannot simultaneously satisfy two widely held desiderata on rules for empirical learning. The first desideratum is confirmational holism, which says that the evidential import of an experience is always sensitive to our background assumptions. The second desideratum is commutativity, which says that the order in which one acquires evidence shouldn&amp;rsquo;t affect what conclusions one draws, provided the same total evidence is gathered in the end. (Jeffrey) Conditionalization cannot satisfy either of these desiderata without violating the other. This is a surprising problem, and I offer a diagnosis of its source. I argue that (Jeffrey) Conditionalization is inherently anti-holistic in a way that is just exacerbated by the requirement of commutativity. The dilemma is thus a superficial manifestation of (Jeffrey) Conditionalization&amp;rsquo;s fundamentally anti-holistic nature.&lt;/p&gt;
 </description>
     </item>
     
