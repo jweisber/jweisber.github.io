@@ -9,6 +9,416 @@
     <atom:link href="http://jonathanweisberg.org/tags/placement/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
+      <title>Prestige and Placement in North American Philosophy</title>
+      <link>http://jonathanweisberg.org/post/prestige-placement/</link>
+      <pubDate>Sat, 04 May 2019 00:00:00 -0500</pubDate>
+      
+      <guid>http://jonathanweisberg.org/post/prestige-placement/</guid>
+      <description>
+
+&lt;p&gt;How does prestige correlate with placement in academic philosophy?
+There&amp;rsquo;s good stuff on this already, like &lt;a href=&#34;http://placementdata.com:8182/the-philosophical-gourmet-report-and-placement/&#34; target=&#34;_blank&#34;&gt;this
+post&lt;/a&gt;
+by Carolyn Dicey Jennings, Pablo Contreras Kallens, and Justin
+Vlasits.&lt;sup class=&#34;footnote-ref&#34; id=&#34;fnref:1&#34;&gt;&lt;a rel=&#34;footnote&#34; href=&#34;#fn:1&#34;&gt;1&lt;/a&gt;&lt;/sup&gt; This post uses the same data sources, but emphasizes
+different things (visualization, North American PhDs, and primarily
+tenure-track jobs).&lt;/p&gt;
+
+&lt;h1 id=&#34;tt-placement-in-north-america&#34;&gt;TT Placement in North America&lt;/h1&gt;
+
+&lt;p&gt;Let&amp;rsquo;s start with a simple question of broad interest. In North America,
+how well does the &lt;a href=&#34;https://www.philosophicalgourmet.com/&#34; target=&#34;_blank&#34;&gt;PGR&lt;/a&gt; rating of
+one&amp;rsquo;s PhD-granting program predict one&amp;rsquo;s chances of landing a
+tenure-track (TT) job?&lt;/p&gt;
+
+&lt;p&gt;Consider all the people who got a PhD from a North American philosophy
+program in the years 2012&amp;ndash;14.&lt;sup class=&#34;footnote-ref&#34; id=&#34;fnref:2&#34;&gt;&lt;a rel=&#34;footnote&#34; href=&#34;#fn:2&#34;&gt;2&lt;/a&gt;&lt;/sup&gt; Focus for now on those from PhD
+programs ranked by the 2006 edition of the PGR.&lt;sup class=&#34;footnote-ref&#34; id=&#34;fnref:3&#34;&gt;&lt;a rel=&#34;footnote&#34; href=&#34;#fn:3&#34;&gt;3&lt;/a&gt;&lt;/sup&gt; Now group them
+according to those PGR ratings, rounded to the nearest 0.5.&lt;/p&gt;
+
+&lt;p&gt;This gives us 7 groups of PhDs (rankings range from 2.0 to 5.0).
+According to &lt;a href=&#34;http://placementdata.com&#34; target=&#34;_blank&#34;&gt;the APDA&amp;rsquo;s data&lt;/a&gt;, the portion
+from each group who ended up in TT jobs are as follows:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;http://jonathanweisberg.org/img/prestige-placement/unnamed-chunk-1-1.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;There&amp;rsquo;s clearly a positive connection; almost perfectly linear in fact.
+And the gist&amp;mdash;&lt;em&gt;very crudely speaking&lt;/em&gt;&amp;mdash;is that a high prestige PhD
+about doubles your chances of landing a TT job over a low-prestige PhD:
+from ~30% to ~60%.&lt;/p&gt;
+
+&lt;p&gt;Note that the data are sparse at the extremes though. Consider this raw
+look, where each point is a PhD graduate.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;http://jonathanweisberg.org/img/prestige-placement/unnamed-chunk-2-1.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;A &amp;ldquo;violin plot&amp;rdquo; shows the same thing but easier to read: the thickness
+of the violins indicates the density of points at each &lt;em&gt;x&lt;/em&gt;-position.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;http://jonathanweisberg.org/img/prestige-placement/unnamed-chunk-3-1.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;With so few points at the ends, we shouldn&amp;rsquo;t read too much into the
+exact placement rates there.&lt;/p&gt;
+
+&lt;h1 id=&#34;other-placement-types&#34;&gt;Other Placement Types&lt;/h1&gt;
+
+&lt;p&gt;What about other kinds of jobs? Let&amp;rsquo;s consider five categories, defined
+as follows.&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Postdoc: &amp;ldquo;Fellowship/Postdoc&amp;rdquo; in the APDA database.&lt;/li&gt;
+&lt;li&gt;Permanent: any of the following in the APDA database.
+
+&lt;ul&gt;
+&lt;li&gt;&amp;ldquo;Tenure-Track&amp;rdquo;&lt;/li&gt;
+&lt;li&gt;&amp;ldquo;Lecturer (Permanent)&amp;rdquo;&lt;/li&gt;
+&lt;li&gt;&amp;ldquo;Instructor (Permanent)&amp;rdquo;&lt;/li&gt;
+&lt;li&gt;&amp;ldquo;Adjunct (Permanent)&amp;rdquo;&lt;/li&gt;
+&lt;li&gt;&amp;ldquo;Other (Permanent)&amp;rdquo;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;Tenure-Track: &amp;ldquo;Tenure-Track&amp;rdquo; in the APDA database.&lt;/li&gt;
+&lt;li&gt;PhD Program: Tenure-Track at a PhD-granting program.&lt;/li&gt;
+&lt;li&gt;PGR Ranked: Tenure-Track at a 2006 PGR-ranked program.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;These are hardly perfect definitions, but they&amp;rsquo;re manageable with this
+data while still being pretty informative.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;http://jonathanweisberg.org/img/prestige-placement/unnamed-chunk-4-1.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Note that a graduate can appear in multiple categories (Tenure-Track is
+a subset of Permanent, after all).&lt;/p&gt;
+
+&lt;h1 id=&#34;unranked-programs&#34;&gt;Unranked Programs&lt;/h1&gt;
+
+&lt;p&gt;What about PhD programs not ranked in the 2006 PGR?&lt;sup class=&#34;footnote-ref&#34; id=&#34;fnref:4&#34;&gt;&lt;a rel=&#34;footnote&#34; href=&#34;#fn:4&#34;&gt;4&lt;/a&gt;&lt;/sup&gt; The numbers may
+be iffier here. Some programs have only one graduate listed for example,
+a graduate who got a TT job. But there are only a few such programs, and
+more than 600 graduates otherwise. So the numbers may still be good
+approximations.&lt;/p&gt;
+
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;Postdoc&lt;/th&gt;
+&lt;th&gt;Permanent&lt;/th&gt;
+&lt;th&gt;TT&lt;/th&gt;
+&lt;th&gt;PhD&lt;/th&gt;
+&lt;th&gt;PGR&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;0.13&lt;/td&gt;
+&lt;td&gt;0.46&lt;/td&gt;
+&lt;td&gt;0.39&lt;/td&gt;
+&lt;td&gt;0.05&lt;/td&gt;
+&lt;td&gt;0.01&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;p&gt;If you&amp;rsquo;re curious which programs stand out among the unranked, here are
+the top 10 by TT placement (excluding those with 5 or fewer graduates).&lt;/p&gt;
+
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;Program&lt;/th&gt;
+&lt;th&gt;N&lt;/th&gt;
+&lt;th&gt;Postdoc&lt;/th&gt;
+&lt;th&gt;Permanent&lt;/th&gt;
+&lt;th&gt;TT&lt;/th&gt;
+&lt;th&gt;PhD&lt;/th&gt;
+&lt;th&gt;PGR&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;The Catholic University of America&lt;/td&gt;
+&lt;td&gt;11&lt;/td&gt;
+&lt;td&gt;0.00&lt;/td&gt;
+&lt;td&gt;0.91&lt;/td&gt;
+&lt;td&gt;0.91&lt;/td&gt;
+&lt;td&gt;0.18&lt;/td&gt;
+&lt;td&gt;0&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;Baylor University&lt;/td&gt;
+&lt;td&gt;13&lt;/td&gt;
+&lt;td&gt;0.15&lt;/td&gt;
+&lt;td&gt;0.92&lt;/td&gt;
+&lt;td&gt;0.85&lt;/td&gt;
+&lt;td&gt;0.08&lt;/td&gt;
+&lt;td&gt;0&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;DePaul University&lt;/td&gt;
+&lt;td&gt;11&lt;/td&gt;
+&lt;td&gt;0.00&lt;/td&gt;
+&lt;td&gt;0.82&lt;/td&gt;
+&lt;td&gt;0.82&lt;/td&gt;
+&lt;td&gt;0.09&lt;/td&gt;
+&lt;td&gt;0&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;University of Tennessee&lt;/td&gt;
+&lt;td&gt;13&lt;/td&gt;
+&lt;td&gt;0.00&lt;/td&gt;
+&lt;td&gt;0.77&lt;/td&gt;
+&lt;td&gt;0.77&lt;/td&gt;
+&lt;td&gt;0.00&lt;/td&gt;
+&lt;td&gt;0&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;University of New Mexico&lt;/td&gt;
+&lt;td&gt;7&lt;/td&gt;
+&lt;td&gt;0.00&lt;/td&gt;
+&lt;td&gt;0.71&lt;/td&gt;
+&lt;td&gt;0.71&lt;/td&gt;
+&lt;td&gt;0.00&lt;/td&gt;
+&lt;td&gt;0&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;Vanderbilt University&lt;/td&gt;
+&lt;td&gt;9&lt;/td&gt;
+&lt;td&gt;0.11&lt;/td&gt;
+&lt;td&gt;0.67&lt;/td&gt;
+&lt;td&gt;0.67&lt;/td&gt;
+&lt;td&gt;0.00&lt;/td&gt;
+&lt;td&gt;0&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;University of South Florida&lt;/td&gt;
+&lt;td&gt;15&lt;/td&gt;
+&lt;td&gt;0.13&lt;/td&gt;
+&lt;td&gt;0.60&lt;/td&gt;
+&lt;td&gt;0.60&lt;/td&gt;
+&lt;td&gt;0.00&lt;/td&gt;
+&lt;td&gt;0&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;Florida State University&lt;/td&gt;
+&lt;td&gt;12&lt;/td&gt;
+&lt;td&gt;0.17&lt;/td&gt;
+&lt;td&gt;0.58&lt;/td&gt;
+&lt;td&gt;0.58&lt;/td&gt;
+&lt;td&gt;0.08&lt;/td&gt;
+&lt;td&gt;0&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;University of Oregon&lt;/td&gt;
+&lt;td&gt;12&lt;/td&gt;
+&lt;td&gt;0.17&lt;/td&gt;
+&lt;td&gt;0.67&lt;/td&gt;
+&lt;td&gt;0.58&lt;/td&gt;
+&lt;td&gt;0.00&lt;/td&gt;
+&lt;td&gt;0&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;University of Kansas&lt;/td&gt;
+&lt;td&gt;9&lt;/td&gt;
+&lt;td&gt;0.00&lt;/td&gt;
+&lt;td&gt;0.67&lt;/td&gt;
+&lt;td&gt;0.56&lt;/td&gt;
+&lt;td&gt;0.00&lt;/td&gt;
+&lt;td&gt;0&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;p&gt;Note that the top 3 are at Christian universities, and as you might
+expect, a lot of their placement is driven by hires at Christian
+schools.&lt;/p&gt;
+
+&lt;p&gt;Here are the 10 &amp;ldquo;largest&amp;rdquo; programs, i.e. those with the most graduates
+listed in the APDA database.&lt;/p&gt;
+
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;Program&lt;/th&gt;
+&lt;th&gt;N&lt;/th&gt;
+&lt;th&gt;Postdoc&lt;/th&gt;
+&lt;th&gt;Permanent&lt;/th&gt;
+&lt;th&gt;TT&lt;/th&gt;
+&lt;th&gt;PhD&lt;/th&gt;
+&lt;th&gt;PGR&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;Boston College&lt;/td&gt;
+&lt;td&gt;28&lt;/td&gt;
+&lt;td&gt;0.21&lt;/td&gt;
+&lt;td&gt;0.68&lt;/td&gt;
+&lt;td&gt;0.50&lt;/td&gt;
+&lt;td&gt;0.04&lt;/td&gt;
+&lt;td&gt;0.00&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;The New School&lt;/td&gt;
+&lt;td&gt;26&lt;/td&gt;
+&lt;td&gt;0.23&lt;/td&gt;
+&lt;td&gt;0.31&lt;/td&gt;
+&lt;td&gt;0.27&lt;/td&gt;
+&lt;td&gt;0.08&lt;/td&gt;
+&lt;td&gt;0.00&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;Purdue University&lt;/td&gt;
+&lt;td&gt;22&lt;/td&gt;
+&lt;td&gt;0.14&lt;/td&gt;
+&lt;td&gt;0.32&lt;/td&gt;
+&lt;td&gt;0.27&lt;/td&gt;
+&lt;td&gt;0.00&lt;/td&gt;
+&lt;td&gt;0.00&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;Stony Brook University&lt;/td&gt;
+&lt;td&gt;22&lt;/td&gt;
+&lt;td&gt;0.00&lt;/td&gt;
+&lt;td&gt;0.55&lt;/td&gt;
+&lt;td&gt;0.41&lt;/td&gt;
+&lt;td&gt;0.05&lt;/td&gt;
+&lt;td&gt;0.00&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;Emory University&lt;/td&gt;
+&lt;td&gt;21&lt;/td&gt;
+&lt;td&gt;0.52&lt;/td&gt;
+&lt;td&gt;0.62&lt;/td&gt;
+&lt;td&gt;0.52&lt;/td&gt;
+&lt;td&gt;0.10&lt;/td&gt;
+&lt;td&gt;0.05&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;Southern Illinois University&lt;/td&gt;
+&lt;td&gt;20&lt;/td&gt;
+&lt;td&gt;0.05&lt;/td&gt;
+&lt;td&gt;0.30&lt;/td&gt;
+&lt;td&gt;0.30&lt;/td&gt;
+&lt;td&gt;0.00&lt;/td&gt;
+&lt;td&gt;0.00&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;Duquesne University&lt;/td&gt;
+&lt;td&gt;18&lt;/td&gt;
+&lt;td&gt;0.22&lt;/td&gt;
+&lt;td&gt;0.50&lt;/td&gt;
+&lt;td&gt;0.44&lt;/td&gt;
+&lt;td&gt;0.00&lt;/td&gt;
+&lt;td&gt;0.00&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;Fordham University&lt;/td&gt;
+&lt;td&gt;18&lt;/td&gt;
+&lt;td&gt;0.22&lt;/td&gt;
+&lt;td&gt;0.44&lt;/td&gt;
+&lt;td&gt;0.39&lt;/td&gt;
+&lt;td&gt;0.00&lt;/td&gt;
+&lt;td&gt;0.00&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;Villanova University&lt;/td&gt;
+&lt;td&gt;18&lt;/td&gt;
+&lt;td&gt;0.00&lt;/td&gt;
+&lt;td&gt;0.78&lt;/td&gt;
+&lt;td&gt;0.39&lt;/td&gt;
+&lt;td&gt;0.00&lt;/td&gt;
+&lt;td&gt;0.00&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;University of Guelph&lt;/td&gt;
+&lt;td&gt;17&lt;/td&gt;
+&lt;td&gt;0.12&lt;/td&gt;
+&lt;td&gt;0.06&lt;/td&gt;
+&lt;td&gt;0.00&lt;/td&gt;
+&lt;td&gt;0.00&lt;/td&gt;
+&lt;td&gt;0.00&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;h1 id=&#34;departmental-tt-placement&#34;&gt;Departmental TT Placement&lt;/h1&gt;
+
+&lt;p&gt;Looking at placement rates by department raises the question: how well
+does a department&amp;rsquo;s PGR rating predict its TT placement rate?&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;http://jonathanweisberg.org/img/prestige-placement/unnamed-chunk-8-1.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;There&amp;rsquo;s a clear connection, but also a lot of variation. Which are the
+programs that especially stand out from the trend? Suppressing the
+sizing for visibility, we can label those programs above/below the
+trendline by at least 0.2.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;http://jonathanweisberg.org/img/prestige-placement/unnamed-chunk-9-1.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;For complete listings of departmental placement rates, check out the
+APDA&amp;rsquo;s infograms &lt;a href=&#34;http://www.placementdata.com/data/&#34; target=&#34;_blank&#34;&gt;here&lt;/a&gt;.&lt;/p&gt;
+&lt;div class=&#34;footnotes&#34;&gt;
+
+&lt;hr /&gt;
+
+&lt;ol&gt;
+&lt;li id=&#34;fn:1&#34;&gt;&lt;p&gt;Also check out Figure 1 in &lt;a href=&#34;https://quod.lib.umich.edu/e/ergo/12405314.0005.010?view=text;rgn=main&#34; target=&#34;_blank&#34;&gt;this
+paper&lt;/a&gt;
+by Helen De Cruz.&lt;/p&gt;
+ &lt;a class=&#34;footnote-return&#34; href=&#34;#fnref:1&#34;&gt;&lt;sup&gt;[return]&lt;/sup&gt;&lt;/a&gt;&lt;/li&gt;
+
+&lt;li id=&#34;fn:2&#34;&gt;&lt;p&gt;Why these years? Because that&amp;rsquo;s where the data is best. The APDA
+has focused its collection efforts so far on graduates from the
+years 2012&amp;ndash;16, so that&amp;rsquo;s where the data is the most plentiful. But
+the data for 2015 and 2016 graduates probably aren&amp;rsquo;t &amp;ldquo;ripe&amp;rdquo; enough
+yet for our purposes; many graduates who will ultimately find TT
+jobs are probably still in postdocs and other temporary gigs. Thanks
+to Brian Weatherson for &lt;a href=&#34;https://twitter.com/bweatherson/status/1134570972315508736&#34; target=&#34;_blank&#34;&gt;pushing me to take this into
+account&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;Of course, the 2012&amp;ndash;2014 data aren&amp;rsquo;t fully ripe either. But
+&lt;a href=&#34;https://jonathanweisberg.org/post/prestige-and-time-to-tt/&#34; target=&#34;_blank&#34;&gt;previous
+noodling&lt;/a&gt;
+suggests they&amp;rsquo;re probably pretty close.&lt;/p&gt;
+ &lt;a class=&#34;footnote-return&#34; href=&#34;#fnref:2&#34;&gt;&lt;sup&gt;[return]&lt;/sup&gt;&lt;/a&gt;&lt;/li&gt;
+
+&lt;li id=&#34;fn:3&#34;&gt;&lt;p&gt;Why the 2006 edition? Partly for continuity with &lt;a href=&#34;http://placementdata.com:8182/the-philosophical-gourmet-report-and-placement/&#34; target=&#34;_blank&#34;&gt;the APDA&amp;rsquo;s own
+analysis&lt;/a&gt;.
+But also because students often use PGR rankings to choose PhD
+programs, and the rankings available to them typically predate the
+year of their PhD by 6 or 7 years.&lt;/p&gt;
+ &lt;a class=&#34;footnote-return&#34; href=&#34;#fnref:3&#34;&gt;&lt;sup&gt;[return]&lt;/sup&gt;&lt;/a&gt;&lt;/li&gt;
+
+&lt;li id=&#34;fn:4&#34;&gt;&lt;p&gt;Thanks to &lt;a href=&#34;https://philosopherscocoon.typepad.com/blog/2019/05/phd-program-prestige-and-tt-placement.html?cid=6a014e89cbe0fd970d0240a48b2f6b200d#comment-6a014e89cbe0fd970d0240a48b2f6b200d&#34; target=&#34;_blank&#34;&gt;Amanda at the Philosophers&amp;rsquo;
+Cocoon&lt;/a&gt;
+for prompting me to look at this.&lt;/p&gt;
+ &lt;a class=&#34;footnote-return&#34; href=&#34;#fnref:4&#34;&gt;&lt;sup&gt;[return]&lt;/sup&gt;&lt;/a&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;
+</description>
+    </item>
+    
+    <item>
       <title>Prestige and Time to the Tenure-Track</title>
       <link>http://jonathanweisberg.org/post/prestige-and-time-to-tt/</link>
       <pubDate>Thu, 03 Jan 2019 00:00:00 -0500</pubDate>
