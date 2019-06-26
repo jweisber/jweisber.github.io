@@ -9,6 +9,82 @@
     <atom:link href="http://jonathanweisberg.org/tags/epistemology/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
+      <title>The Open Handbook of Formal Epistemology</title>
+      <link>http://jonathanweisberg.org/post/open-handbook%20%28Jonathans-MacBook-Pro.local%27s%20conflicted%20copy%202019-06-26%29/</link>
+      <pubDate>Wed, 26 Jun 2019 00:00:00 -0500</pubDate>
+      
+      <guid>http://jonathanweisberg.org/post/open-handbook%20%28Jonathans-MacBook-Pro.local%27s%20conflicted%20copy%202019-06-26%29/</guid>
+      <description>&lt;p&gt;Today &lt;em&gt;The Open Handbook of Formal Epistemology&lt;/em&gt; is &lt;a href=&#34;http://jonathanweisberg.org/pdf/open-handbook-of-formal-epistemology.pdf&#34;&gt;available for download&lt;/a&gt;. It&amp;rsquo;s an open access book, the first published by PhilPapers itself. (The editors are &lt;a href=&#34;https://richardpettigrew.com/&#34; target=&#34;_blank&#34;&gt;Richard Pettigrew&lt;/a&gt; and me.)&lt;/p&gt;
+
+&lt;p&gt;The book features 11 outstanding entries by 11 wonderful philosophers.&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&amp;ldquo;Precise Credences&amp;rdquo;, by &lt;a href=&#34;https://sites.google.com/site/michaeltitelbaum/&#34; target=&#34;_blank&#34;&gt;Michael G. Titelbaum&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&amp;ldquo;Decision Theory&amp;rdquo;, by &lt;a href=&#34;https://johannathoma.com/&#34; target=&#34;_blank&#34;&gt;Johanna Thoma&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&amp;ldquo;Imprecise Probabilities&amp;rdquo;, by &lt;a href=&#34;http://www.lse.ac.uk/cpnss/people/anna-mahtani?from_serp=1&#34; target=&#34;_blank&#34;&gt;Anna Mahtani&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&amp;ldquo;Primitive Conditional Probabilities&amp;rdquo;, by &lt;a href=&#34;http://www.kennyeaswaran.org/&#34; target=&#34;_blank&#34;&gt;Kenny Easwaran&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&amp;ldquo;Infinitesimal Probabilities&amp;rdquo;, by &lt;a href=&#34;http://www.sylviawenmackers.be/&#34; target=&#34;_blank&#34;&gt;Sylvia Wenmackers&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&amp;ldquo;Comparative Probabilities&amp;rdquo;, by &lt;a href=&#34;https://jason-konek.squarespace.com/&#34; target=&#34;_blank&#34;&gt;Jason Konek&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&amp;ldquo;Belief Revision Theory&amp;rdquo;, by &lt;a href=&#34;https://sites.google.com/site/hantilinphil/&#34; target=&#34;_blank&#34;&gt;Hanti Lin&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&amp;ldquo;Ranking Theory&amp;rdquo;, by &lt;a href=&#34;https://huber.blogs.chass.utoronto.ca/&#34; target=&#34;_blank&#34;&gt;Franz Huber&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&amp;ldquo;Full &amp;amp; Partial Belief&amp;rdquo;, by &lt;a href=&#34;https://kgenin.github.io/&#34; target=&#34;_blank&#34;&gt;Konstantin Genin&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&amp;ldquo;Doxastic Logic&amp;rdquo;, by &lt;a href=&#34;https://sites.google.com/site/caiemike/&#34; target=&#34;_blank&#34;&gt;Michael Caie&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&amp;ldquo;Conditionals&amp;rdquo;, by &lt;a href=&#34;https://philosophy.stanford.edu/people/ray-briggs&#34; target=&#34;_blank&#34;&gt;R. A. Briggs&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;We wanted to include lots more, but didn&amp;rsquo;t want to hold up publication any longer. Hopefully a second edition will cover more.&lt;/p&gt;
+
+&lt;p&gt;For me personally, a central aim of this project was to demonstrate a point about open access publishing and shared technological standards. The budget for this book was exactly $0.00, which was only possible because we didn&amp;rsquo;t need a human typesetter.&lt;/p&gt;
+
+&lt;p&gt;Pretty much everyone in formal epistemology uses the same, standardized format to do their writing. And that format plugs in to a high-quality, freely available &lt;a href=&#34;https://en.wikipedia.org/wiki/TeX&#34; target=&#34;_blank&#34;&gt;typesetting program&lt;/a&gt;. So all you have to do to turn a dozen contributions from different authors into a unified book is paste them into a template and click &amp;ldquo;typeset&amp;rdquo;.&lt;/p&gt;
+
+&lt;p&gt;Ok, it did actually take some noodling to iron out all the kinks. But mainly because of my poor planning. Having done it once now and learned the gotchas, a second go would come pretty close to the copy→paste→typeset dream.&lt;/p&gt;
+
+&lt;p&gt;So for me, the moral is that philosophers in general (all academics, really) should settle on a similar standard. If we did, we&amp;rsquo;d have a lot more freedom from commercial publishers. We could publish open access books like this on the regular. The books would be freely and easily available to all, and authors would retain copyright.&lt;/p&gt;
+
+&lt;p&gt;Collective action problems are rife in academia, and the world philosophical publishing is no exception. But this is about as close to a major Pareto improvement as we&amp;rsquo;re likely to find.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>The Open Handbook of Formal Epistemology</title>
+      <link>http://jonathanweisberg.org/post/open-handbook/</link>
+      <pubDate>Wed, 26 Jun 2019 00:00:00 -0500</pubDate>
+      
+      <guid>http://jonathanweisberg.org/post/open-handbook/</guid>
+      <description>&lt;p&gt;Today &lt;em&gt;The Open Handbook of Formal Epistemology&lt;/em&gt; is &lt;a href=&#34;http://jonathanweisberg.org/pdf/open-handbook-of-formal-epistemology.pdf&#34;&gt;available for download&lt;/a&gt;. It&amp;rsquo;s an open access book, the first published by PhilPapers itself. (The editors are &lt;a href=&#34;https://richardpettigrew.com/&#34; target=&#34;_blank&#34;&gt;Richard Pettigrew&lt;/a&gt; and me.)&lt;/p&gt;
+
+&lt;p&gt;The book features 11 outstanding entries by 11 wonderful philosophers.&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&amp;ldquo;Precise Credences&amp;rdquo;, by &lt;a href=&#34;https://sites.google.com/site/michaeltitelbaum/&#34; target=&#34;_blank&#34;&gt;Michael G. Titelbaum&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&amp;ldquo;Decision Theory&amp;rdquo;, by &lt;a href=&#34;https://johannathoma.com/&#34; target=&#34;_blank&#34;&gt;Johanna Thoma&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&amp;ldquo;Imprecise Probabilities&amp;rdquo;, by &lt;a href=&#34;http://www.lse.ac.uk/cpnss/people/anna-mahtani?from_serp=1&#34; target=&#34;_blank&#34;&gt;Anna Mahtani&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&amp;ldquo;Primitive Conditional Probabilities&amp;rdquo;, by &lt;a href=&#34;http://www.kennyeaswaran.org/&#34; target=&#34;_blank&#34;&gt;Kenny Easwaran&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&amp;ldquo;Infinitesimal Probabilities&amp;rdquo;, by &lt;a href=&#34;http://www.sylviawenmackers.be/&#34; target=&#34;_blank&#34;&gt;Sylvia Wenmackers&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&amp;ldquo;Comparative Probabilities&amp;rdquo;, by &lt;a href=&#34;https://jason-konek.squarespace.com/&#34; target=&#34;_blank&#34;&gt;Jason Konek&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&amp;ldquo;Belief Revision Theory&amp;rdquo;, by &lt;a href=&#34;https://sites.google.com/site/hantilinphil/&#34; target=&#34;_blank&#34;&gt;Hanti Lin&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&amp;ldquo;Ranking Theory&amp;rdquo;, by &lt;a href=&#34;https://huber.blogs.chass.utoronto.ca/&#34; target=&#34;_blank&#34;&gt;Franz Huber&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&amp;ldquo;Full &amp;amp; Partial Belief&amp;rdquo;, by &lt;a href=&#34;https://kgenin.github.io/&#34; target=&#34;_blank&#34;&gt;Konstantin Genin&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&amp;ldquo;Doxastic Logic&amp;rdquo;, by &lt;a href=&#34;https://sites.google.com/site/caiemike/&#34; target=&#34;_blank&#34;&gt;Michael Caie&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&amp;ldquo;Conditionals&amp;rdquo;, by &lt;a href=&#34;https://philosophy.stanford.edu/people/ray-briggs&#34; target=&#34;_blank&#34;&gt;R. A. Briggs&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;We wanted to include lots more, but didn&amp;rsquo;t want to hold up publication any longer. Hopefully a second edition will cover more.&lt;/p&gt;
+
+&lt;p&gt;For me personally, a central aim of this project was to demonstrate a point about open access publishing and shared standards. The budget for this book was exactly $0.00, and this was only possible because we didn&amp;rsquo;t need a human typesetter.&lt;/p&gt;
+
+&lt;p&gt;Pretty much everyone in formal epistemology uses the same, standardized format to do their writing. And that format plugs in to a high-quality, freely available &lt;a href=&#34;https://en.wikipedia.org/wiki/TeX&#34; target=&#34;_blank&#34;&gt;typesetting program&lt;/a&gt;. So all you have to do to turn a dozen contributions from different authors into a unified book is paste them into a template and click &amp;ldquo;typeset&amp;rdquo;.&lt;/p&gt;
+
+&lt;p&gt;Ok, it did actually take some noodling to iron out the kinks. But mainly just because of my poor planning. Having done it once now and learned the gotchas, a second go would come pretty close to the copy→paste→typeset dream.&lt;/p&gt;
+
+&lt;p&gt;So for me, the moral is that philosophers in general should settle on a similar standard  (all academics, really). If we did, we&amp;rsquo;d have a lot more freedom from commercial publishers. We could publish open access books like this on the regular. The books would be freely and easily available to all, and authors would retain copyright.&lt;/p&gt;
+
+&lt;p&gt;Collective action problems plague academia, and philosophical publishing in particular. But this one&amp;rsquo;s about as close to an opportunity for a major Pareto improvement as we&amp;rsquo;re likely to get.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
       <title>Nobody Expects the Chance Function!</title>
       <link>http://jonathanweisberg.org/post/samet-theorem/</link>
       <pubDate>Fri, 15 Feb 2019 11:52:00 -0500</pubDate>

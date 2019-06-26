@@ -2,6 +2,16 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://jonathanweisberg.org/post/open-handbook%20%28Jonathans-MacBook-Pro.local%27s%20conflicted%20copy%202019-06-26%29/</loc>
+    <lastmod>2019-06-26T00:00:00-05:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://jonathanweisberg.org/post/open-handbook/</loc>
+    <lastmod>2019-06-26T00:00:00-05:00</lastmod>
+  </url>
+  
+  <url>
     <loc>http://jonathanweisberg.org/publication/No%20Escape%20from%20Allais/</loc>
     <lastmod>2019-06-04T00:00:00-05:00</lastmod>
   </url>
@@ -295,7 +305,7 @@
   
   <url>
     <loc>http://jonathanweisberg.org/tags/epistemology/</loc>
-    <lastmod>2019-02-15T11:52:00-05:00</lastmod>
+    <lastmod>2019-06-26T00:00:00-05:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -312,7 +322,7 @@
   
   <url>
     <loc>http://jonathanweisberg.org/tags/formal-epistemology/</loc>
-    <lastmod>2019-02-15T11:52:00-05:00</lastmod>
+    <lastmod>2019-06-26T00:00:00-05:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -324,7 +334,7 @@
   
   <url>
     <loc>http://jonathanweisberg.org/</loc>
-    <lastmod>2019-06-04T00:00:00-05:00</lastmod>
+    <lastmod>2019-06-26T00:00:00-05:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -354,7 +364,7 @@
   
   <url>
     <loc>http://jonathanweisberg.org/tags/philosophy/</loc>
-    <lastmod>2019-06-04T00:00:00-05:00</lastmod>
+    <lastmod>2019-06-26T00:00:00-05:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -366,7 +376,7 @@
   
   <url>
     <loc>http://jonathanweisberg.org/post/</loc>
-    <lastmod>2019-06-04T00:00:00-05:00</lastmod>
+    <lastmod>2019-06-26T00:00:00-05:00</lastmod>
     <priority>0</priority>
   </url>
   
