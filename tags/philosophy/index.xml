@@ -10,44 +10,6 @@
     
     <item>
       <title>The Open Handbook of Formal Epistemology</title>
-      <link>http://jonathanweisberg.org/post/open-handbook%20%28Jonathans-MacBook-Pro.local%27s%20conflicted%20copy%202019-06-26%29/</link>
-      <pubDate>Wed, 26 Jun 2019 00:00:00 -0500</pubDate>
-      
-      <guid>http://jonathanweisberg.org/post/open-handbook%20%28Jonathans-MacBook-Pro.local%27s%20conflicted%20copy%202019-06-26%29/</guid>
-      <description>&lt;p&gt;Today &lt;em&gt;The Open Handbook of Formal Epistemology&lt;/em&gt; is &lt;a href=&#34;http://jonathanweisberg.org/pdf/open-handbook-of-formal-epistemology.pdf&#34;&gt;available for download&lt;/a&gt;. It&amp;rsquo;s an open access book, the first published by PhilPapers itself. (The editors are &lt;a href=&#34;https://richardpettigrew.com/&#34; target=&#34;_blank&#34;&gt;Richard Pettigrew&lt;/a&gt; and me.)&lt;/p&gt;
-
-&lt;p&gt;The book features 11 outstanding entries by 11 wonderful philosophers.&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&amp;ldquo;Precise Credences&amp;rdquo;, by &lt;a href=&#34;https://sites.google.com/site/michaeltitelbaum/&#34; target=&#34;_blank&#34;&gt;Michael G. Titelbaum&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&amp;ldquo;Decision Theory&amp;rdquo;, by &lt;a href=&#34;https://johannathoma.com/&#34; target=&#34;_blank&#34;&gt;Johanna Thoma&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&amp;ldquo;Imprecise Probabilities&amp;rdquo;, by &lt;a href=&#34;http://www.lse.ac.uk/cpnss/people/anna-mahtani?from_serp=1&#34; target=&#34;_blank&#34;&gt;Anna Mahtani&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&amp;ldquo;Primitive Conditional Probabilities&amp;rdquo;, by &lt;a href=&#34;http://www.kennyeaswaran.org/&#34; target=&#34;_blank&#34;&gt;Kenny Easwaran&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&amp;ldquo;Infinitesimal Probabilities&amp;rdquo;, by &lt;a href=&#34;http://www.sylviawenmackers.be/&#34; target=&#34;_blank&#34;&gt;Sylvia Wenmackers&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&amp;ldquo;Comparative Probabilities&amp;rdquo;, by &lt;a href=&#34;https://jason-konek.squarespace.com/&#34; target=&#34;_blank&#34;&gt;Jason Konek&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&amp;ldquo;Belief Revision Theory&amp;rdquo;, by &lt;a href=&#34;https://sites.google.com/site/hantilinphil/&#34; target=&#34;_blank&#34;&gt;Hanti Lin&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&amp;ldquo;Ranking Theory&amp;rdquo;, by &lt;a href=&#34;https://huber.blogs.chass.utoronto.ca/&#34; target=&#34;_blank&#34;&gt;Franz Huber&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&amp;ldquo;Full &amp;amp; Partial Belief&amp;rdquo;, by &lt;a href=&#34;https://kgenin.github.io/&#34; target=&#34;_blank&#34;&gt;Konstantin Genin&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&amp;ldquo;Doxastic Logic&amp;rdquo;, by &lt;a href=&#34;https://sites.google.com/site/caiemike/&#34; target=&#34;_blank&#34;&gt;Michael Caie&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&amp;ldquo;Conditionals&amp;rdquo;, by &lt;a href=&#34;https://philosophy.stanford.edu/people/ray-briggs&#34; target=&#34;_blank&#34;&gt;R. A. Briggs&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;We wanted to include lots more, but didn&amp;rsquo;t want to hold up publication any longer. Hopefully a second edition will cover more.&lt;/p&gt;
-
-&lt;p&gt;For me personally, a central aim of this project was to demonstrate a point about open access publishing and shared technological standards. The budget for this book was exactly $0.00, which was only possible because we didn&amp;rsquo;t need a human typesetter.&lt;/p&gt;
-
-&lt;p&gt;Pretty much everyone in formal epistemology uses the same, standardized format to do their writing. And that format plugs in to a high-quality, freely available &lt;a href=&#34;https://en.wikipedia.org/wiki/TeX&#34; target=&#34;_blank&#34;&gt;typesetting program&lt;/a&gt;. So all you have to do to turn a dozen contributions from different authors into a unified book is paste them into a template and click &amp;ldquo;typeset&amp;rdquo;.&lt;/p&gt;
-
-&lt;p&gt;Ok, it did actually take some noodling to iron out all the kinks. But mainly because of my poor planning. Having done it once now and learned the gotchas, a second go would come pretty close to the copy→paste→typeset dream.&lt;/p&gt;
-
-&lt;p&gt;So for me, the moral is that philosophers in general (all academics, really) should settle on a similar standard. If we did, we&amp;rsquo;d have a lot more freedom from commercial publishers. We could publish open access books like this on the regular. The books would be freely and easily available to all, and authors would retain copyright.&lt;/p&gt;
-
-&lt;p&gt;Collective action problems are rife in academia, and the world philosophical publishing is no exception. But this is about as close to a major Pareto improvement as we&amp;rsquo;re likely to find.&lt;/p&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>The Open Handbook of Formal Epistemology</title>
       <link>http://jonathanweisberg.org/post/open-handbook/</link>
       <pubDate>Wed, 26 Jun 2019 00:00:00 -0500</pubDate>
       
@@ -3343,6 +3305,163 @@ we can depict the small-world version of this gamble:&lt;/p&gt;
  &lt;a class=&#34;footnote-return&#34; href=&#34;#fnref:1&#34;&gt;&lt;sup&gt;[return]&lt;/sup&gt;&lt;/a&gt;&lt;/li&gt;
 &lt;/ol&gt;
 &lt;/div&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Accuracy for Dummies, Part 7: Dominance</title>
+      <link>http://jonathanweisberg.org/post/Accuracy%20for%20Dummies%20-%20Part%207%20-%20Brier%20Dominance/</link>
+      <pubDate>Wed, 07 Jun 2017 00:00:00 -0500</pubDate>
+      
+      <guid>http://jonathanweisberg.org/post/Accuracy%20for%20Dummies%20-%20Part%207%20-%20Brier%20Dominance/</guid>
+      <description>
+
+&lt;p&gt;In our &lt;a href=&#34;http://jonathanweisberg.org/post/Accuracy for Dummies - Part 5 - Convexity/&#34;&gt;last&lt;/a&gt; &lt;a href=&#34;http://jonathanweisberg.org/post/Accuracy for Dummies - Part 6 - Obtusity/&#34;&gt;two&lt;/a&gt; posts we established two key facts:&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;The set of possible probability assignments is convex.&lt;/li&gt;
+&lt;li&gt;Convex sets are &amp;ldquo;obtuse&amp;rdquo;. Given a point outside a convex set, there&amp;rsquo;s a point inside that forms a right-or-obtuse angle with any third point in the set.&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;Today we&amp;rsquo;re putting them together to get the central result of the accuracy framework, the Brier dominance theorem. We&amp;rsquo;ll show that a non-probabilistic credence assignment is always &amp;ldquo;Brier dominated&amp;rdquo; by some probabilistic one. That is, there is always a probabilistic assignment that is closer, in terms of Brier distance, to every possible truth-value assignment.&lt;/p&gt;
+
+&lt;p&gt;In fact we&amp;rsquo;ll show something a bit more general. We&amp;rsquo;ll show that there&amp;rsquo;s a probability assignment that&amp;rsquo;s closer to all the possible &lt;em&gt;probability&lt;/em&gt; assignments. But truth-value assignments are probability assignments, just extreme ones. So the result we really want follows straight away as a special case.$
+\renewcommand{\vec}[1]{\mathbf{#1}}
+\newcommand{\x}{\vec{x}}
+\newcommand{\y}{\vec{y}}
+\newcommand{\z}{\vec{z}}
+\newcommand{\v}{\vec{v}}
+\newcommand{\p}{\vec{p}}
+\newcommand{\q}{\vec{q}}
+\newcommand{\B}{B}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\EIpq}{EI_{\p}(\q)}\newcommand{\EIpp}{EI_{\p}(\p)}
+$&lt;/p&gt;
+
+&lt;h1 id=&#34;recap&#34;&gt;Recap&lt;/h1&gt;
+
+&lt;p&gt;For reference, let&amp;rsquo;s collect our notation, terminology, and previous results, so that we have everything in one place.&lt;/p&gt;
+
+&lt;p&gt;We&amp;rsquo;re using $n$ for the number of possibilities under consideration. And we use bold letters like $\x$ and $\p$ to represent $n$-tuples of real numbers. So $\p = (p_1, \ldots, p_n)$ is a point in $n$-dimensional space: a member of $\R^n$.&lt;/p&gt;
+
+&lt;p&gt;We call $\p$ a &lt;em&gt;probability assignment&lt;/em&gt; if its coordinates are (a) all nonnegative, and (b) they sum to $1$. And we write $P$ for the set of all probability assignments.&lt;/p&gt;
+
+&lt;p&gt;We call $\v$ a &lt;em&gt;truth-value assignment&lt;/em&gt; if its coordinates are all zeros except for a single $1$. And we write $V$ for the set of all truth-value assignments.&lt;/p&gt;
+
+&lt;p&gt;A point $\y$ is a &lt;em&gt;mixture&lt;/em&gt; of the points $\x_1, \ldots, \x_n$ if there are real numbers $\lambda_1, \ldots, \lambda_n$ such that:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;$\lambda_i \geq 0$ for all $i$,&lt;/li&gt;
+&lt;li&gt;$\lambda_1 + \ldots + \lambda_n = 1$, and&lt;/li&gt;
+&lt;li&gt;$\y = \lambda_1 \x_1 + \ldots + \lambda_n \x_n$.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;We say that a set is &lt;em&gt;convex&lt;/em&gt; if it is closed under mixing, i.e. any mixture of elements in the set is also in the set.&lt;/p&gt;
+
+&lt;p&gt;The difference between two points, $\x - \y$, is defined coordinate-wise:
+  $$ \x - \y = (x_1 - y_1, \ldots, x_n - y_n). $$
+The &lt;em&gt;dot product&lt;/em&gt; of two points $\x$ and $\y$ is written $\x \cdot \y$, and is defined:
+  $$ \x \cdot \y = x_1 y_1 + \ldots + x_n y_n. $$
+As a reminder, the dot product returns a single, real number (not another $n$-dimensional point as one might expect). And the sign of the dot product reflects the angle between $\x$ and $\y$ when viewed as vectors/arrows. In particular, $\x \cdot \y \leq 0$ corresponds to a right-or-obtuse angle.&lt;/p&gt;
+
+&lt;p&gt;Finally, $\B(\x,\y)$ is the Brier distance between $\x$ and $\y$, which can be defined:
+  $$
+  \begin{align}
+    \B(\x,\y) &amp;amp;= (\x - \y)^2\\&lt;br /&gt;
+              &amp;amp;= (\x - \y) \cdot (\x - \y).
+  \end{align}
+  $$&lt;/p&gt;
+
+&lt;p&gt;Now let&amp;rsquo;s restate the two key theorems we&amp;rsquo;ll be relying on.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Theorem (Convexity).&lt;/strong&gt;&amp;nbsp;
+The set of probability functions $P$ is convex.&lt;/p&gt;
+
+&lt;p&gt;We established this in &lt;a href=&#34;http://jonathanweisberg.org/post/Accuracy for Dummies - Part 5 - Convexity/&#34;&gt;Part 5&lt;/a&gt; of this series. In particular, we showed that $P$ is the &amp;ldquo;convex hull&amp;rdquo; of $V$: the set of all mixtures of points in $V$.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Lemma (Obtusity).&lt;/strong&gt;&amp;nbsp;
+If $S$ is convex, $\x \not \in S$, and $\y \in S$ minimizes $\B(\y,\x)$ as a function of $\y$ on the domain $S$, then for any $\z \in S$, $(\x - \y) \cdot (\z - \y) \leq 0$.&lt;/p&gt;
+
+&lt;p&gt;The intuitive idea behind this lemma, which we proved last time in &lt;a href=&#34;(/post/Accuracy for Dummies - Part 6 - Obtusity/)&#34; target=&#34;_blank&#34;&gt;Part 6&lt;/a&gt;, can be illustrated with a diagram:
+&lt;img src=&#34;http://jonathanweisberg.org/img/accuracy/ObtusityLemma3.png&#34; alt=&#34;&#34; /&gt;
+Given a point outside a convex set, we can find a point inside (the closest point) that forms a right-or-obtuse angle with all other points in the set.&lt;/p&gt;
+
+&lt;p&gt;What we&amp;rsquo;ll show next is the natural and intuitive consequence: that point $\y$ is thus closer to any point $\z$ of $S$ than $\x$ is.&lt;/p&gt;
+
+&lt;h1 id=&#34;the-brier-dominance-theorem&#34;&gt;The Brier Dominance Theorem&lt;/h1&gt;
+
+&lt;p&gt;Intuitively, we want to show that if the angle formed at point $\y$ with the points $\x$ and $\z$ is right-or-obtuse, then $\y$ must be closer to $\z$ than $\x$ is (in Brier distance).&lt;/p&gt;
+
+&lt;p&gt;Formally, a right-or-obtuse angle corresponds to a dot product less than or equal to zero: $(\x - \y) \cdot (\z - \y) \leq 0$. But if $\x = \y$, then the dot product will be zero trivially. So the precise statement of our theorem is:&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Theorem.&lt;/strong&gt;&amp;nbsp;
+If $(\x - \y) \cdot (\z - \y) \leq 0$ and $\x \neq \y$, then $\B(\x,\z) &amp;gt; \B(\y,\z)$.&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;Proof.&lt;/em&gt;  To start, we establish a general identity via algebra:
+  $$
+  \begin{align}
+  \B(\x, \z) - \B(\x, \y) - \B(\y,\z)
+    &amp;amp;= (\x - \z)^2 - (\x - \y)^2 - (\y - \z)^2\\&lt;br /&gt;
+    &amp;amp;= -2\y^2 - 2 \x \cdot \z + 2 \x \cdot \y + 2 \y \cdot \z\\&lt;br /&gt;
+    &amp;amp;= -2 (\x - \y) \cdot (\z - \y).
+  \end{align}
+  $$
+Now suppose $ (\x - \y) \cdot (\z - \y) \leq 0$. Then, given the negative sign on the $-2$ in the established identity,
+  $$ \B(\x, \z) - \B(\x, \y) - \B(\y,\z) \geq 0, $$
+from which we derive
+  $$ \B(\x, \z)  \geq \B(\x, \y) + \B(\y,\z). $$
+Now, since $\x \neq \y$ by hypothesis, $\B(\x,\y) &amp;gt; 0$. Thus $\B(\x,\z) &amp;gt; \B(\y,\z)$, as desired.
+&lt;span class=&#34;floatright&#34;&gt;$\Box$&lt;/span&gt;&lt;/p&gt;
+
+&lt;p&gt;It follows now that if $\x$ isn&amp;rsquo;t a probability assignment, there&amp;rsquo;s a probability assignment that&amp;rsquo;s closer to every truth-value assignment than $\x$ is.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Corollary (Brier Dominance).&lt;/strong&gt; If $\x \not \in P$ then there is a $\p \in P$ such that $\B(\p,\v) &amp;lt; \B(\x, \v)$ for all $\v \in V$.&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;Proof.&lt;/em&gt;  Fix $\x \not \in P$, and let $\p$ be the member of $P$ that minimizes $B(\y,\x)$ as a function of $\y$. The Convexity theorem tells us that $P$ is convex, so the Obtusity lemma implies $(\x - \p) \cdot (\v - \p) \leq 0$ for every $\v \in V$. And since $\x \neq \p$ (because $\x \not \in P$), the last theorem entails $\B(\p,\v) &amp;lt; \B(\x, \v)$, as desired.
+&lt;span class=&#34;floatright&#34;&gt;$\Box$&lt;/span&gt;&lt;/p&gt;
+
+&lt;p&gt;This is the core of the main result we&amp;rsquo;ve been working towards. Hooray! But, we still have one piece of unfinished business. For what if $\p$ is itself dominated??&lt;/p&gt;
+
+&lt;h1 id=&#34;undominated-dominance&#34;&gt;Undominated Dominance&lt;/h1&gt;
+
+&lt;p&gt;We&amp;rsquo;ve shown that credences which violate the probability axioms are always &amp;ldquo;accuracy dominated&amp;rdquo; by some assignment of credences that obeys those axioms. But what if those dominating, probabilistic credences are themselves dominated? &lt;em&gt;What if they&amp;rsquo;re dominated by non-probabilistic credences??&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;For all we&amp;rsquo;ve said, that&amp;rsquo;s a real possibility. And if it actually obtains, then there&amp;rsquo;s nothing especially accuracy-conducive about the laws of probability. So we had better rule this possibility out. Luckily, that&amp;rsquo;s pretty easy to do.&lt;/p&gt;
+
+&lt;p&gt;In fact, the reals work here was already done back in &lt;a href=&#34;http://jonathanweisberg.org/post/Accuracy for Dummies - Part 3/&#34;&gt;Part 3&lt;/a&gt; of the series. There we showed that Brier distance is a &amp;ldquo;proper&amp;rdquo; measure of inaccuracy: each probability assignment expects itself to do best with respect to accuracy, if inaccuracy is measured by Brier distance.&lt;/p&gt;
+
+&lt;p&gt;As a reminder, we wrote $\EIpq$ for the expected inaccuracy of probability assignment $\q$ according to assignment $\p$. When inaccuracy is measured in terms of Brier distance:
+$$ \EIpq = p_1 \B(\q,\v_1) + p_2 \B(\q,\v_2) + \ldots + p_n \B(\q,\v_n). $$
+Here $\v_i$ is the truth-value assignment with a $1$ in the $i$-th coordinate, and $0$ everywhere else. What we showed in Part 3 was:&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Theorem.&lt;/strong&gt;&amp;nbsp;
+$\EIpq$ is uniquely minimized when $\q = \p$.&lt;/p&gt;
+
+&lt;p&gt;And notice, this would be impossible if there were some $\q$ such that $\B(\q,\v_i) \leq \B(\p,\v_i)$ for all $i$. For then the weighted average $\EIpq$ would have to be no larger than $\EIpp$. And this contradicts the theorem, which says that $\EIpq &amp;gt; \EIpp$ for all $\q \neq \p$.&lt;/p&gt;
+
+&lt;p&gt;So, at long last, we have the full result we want:&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Corollary (Undominated Brier Dominance).&lt;/strong&gt; If $\x \not \in P$ then there is a $\p \in P$ such that $\B(\p,\v) &amp;lt; \B(\x, \v)$ for all $\v \in V$. Moreover, there is no $\q \in P$ such that $\B(\q,\v) \leq \B(\p, \v)$ for all $\v \in V$.&lt;/p&gt;
+
+&lt;p&gt;So the laws of probability really are specially conducive to accuracy, as measured using Brier distance. Only probabilistic credence assignments are undominated.&lt;/p&gt;
+
+&lt;h1 id=&#34;where-to-next&#34;&gt;Where to Next?&lt;/h1&gt;
+
+&lt;p&gt;That&amp;rsquo;s a pretty sweet result. And it raises plenty of fun and interesting questions we could look at next. Here are three:&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;&lt;p&gt;What about other ways of measuring inaccuracy besides Brier? Are there reasonable alternatives, and if so, do similar results apply to them?&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;What about other probabilistic principles, like Conditionalization, the Principal Principle, or the Principle of Indifference? Can we take this approach beyond the probability axioms?&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;Speaking of the probability axioms, we&amp;rsquo;ve been working with a pretty paired down conception of a &amp;ldquo;probability assignment&amp;rdquo;. Usually we assign probabilities not just to atomic possibilities, but to disjunctions/sets of possibilities: e.g. &amp;ldquo;the prize is behind either door #1 or door #2&amp;rdquo;. Can we extend this result to such &amp;ldquo;super-atomic&amp;rdquo; probability assignments?&lt;/p&gt;&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;We&amp;rsquo;ll tackle some or all of these questions in future posts. But I haven&amp;rsquo;t yet decided which ones or in what order.&lt;/p&gt;
+
+&lt;p&gt;So for now let&amp;rsquo;s just stop and appreciate the work we&amp;rsquo;ve already done. Because not only have we proved one of the most central and interesting results of the accuracy framework. But also, in a lot of ways the hardest work is already behind us. If you&amp;rsquo;ve come this far, I think you deserve a nice pat on the back.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;http://i1145.photobucket.com/albums/o503/KimmieRocks/tumblr_liqmv89ru51qb2dn6.gif&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
 </description>
     </item>
     

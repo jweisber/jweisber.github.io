@@ -11,44 +11,6 @@
     
     <item>
       <title>The Open Handbook of Formal Epistemology</title>
-      <link>http://jonathanweisberg.org/post/open-handbook%20%28Jonathans-MacBook-Pro.local%27s%20conflicted%20copy%202019-06-26%29/</link>
-      <pubDate>Wed, 26 Jun 2019 00:00:00 -0500</pubDate>
-      
-      <guid>http://jonathanweisberg.org/post/open-handbook%20%28Jonathans-MacBook-Pro.local%27s%20conflicted%20copy%202019-06-26%29/</guid>
-      <description>&lt;p&gt;Today &lt;em&gt;The Open Handbook of Formal Epistemology&lt;/em&gt; is &lt;a href=&#34;http://jonathanweisberg.org/pdf/open-handbook-of-formal-epistemology.pdf&#34;&gt;available for download&lt;/a&gt;. It&amp;rsquo;s an open access book, the first published by PhilPapers itself. (The editors are &lt;a href=&#34;https://richardpettigrew.com/&#34; target=&#34;_blank&#34;&gt;Richard Pettigrew&lt;/a&gt; and me.)&lt;/p&gt;
-
-&lt;p&gt;The book features 11 outstanding entries by 11 wonderful philosophers.&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&amp;ldquo;Precise Credences&amp;rdquo;, by &lt;a href=&#34;https://sites.google.com/site/michaeltitelbaum/&#34; target=&#34;_blank&#34;&gt;Michael G. Titelbaum&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&amp;ldquo;Decision Theory&amp;rdquo;, by &lt;a href=&#34;https://johannathoma.com/&#34; target=&#34;_blank&#34;&gt;Johanna Thoma&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&amp;ldquo;Imprecise Probabilities&amp;rdquo;, by &lt;a href=&#34;http://www.lse.ac.uk/cpnss/people/anna-mahtani?from_serp=1&#34; target=&#34;_blank&#34;&gt;Anna Mahtani&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&amp;ldquo;Primitive Conditional Probabilities&amp;rdquo;, by &lt;a href=&#34;http://www.kennyeaswaran.org/&#34; target=&#34;_blank&#34;&gt;Kenny Easwaran&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&amp;ldquo;Infinitesimal Probabilities&amp;rdquo;, by &lt;a href=&#34;http://www.sylviawenmackers.be/&#34; target=&#34;_blank&#34;&gt;Sylvia Wenmackers&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&amp;ldquo;Comparative Probabilities&amp;rdquo;, by &lt;a href=&#34;https://jason-konek.squarespace.com/&#34; target=&#34;_blank&#34;&gt;Jason Konek&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&amp;ldquo;Belief Revision Theory&amp;rdquo;, by &lt;a href=&#34;https://sites.google.com/site/hantilinphil/&#34; target=&#34;_blank&#34;&gt;Hanti Lin&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&amp;ldquo;Ranking Theory&amp;rdquo;, by &lt;a href=&#34;https://huber.blogs.chass.utoronto.ca/&#34; target=&#34;_blank&#34;&gt;Franz Huber&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&amp;ldquo;Full &amp;amp; Partial Belief&amp;rdquo;, by &lt;a href=&#34;https://kgenin.github.io/&#34; target=&#34;_blank&#34;&gt;Konstantin Genin&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&amp;ldquo;Doxastic Logic&amp;rdquo;, by &lt;a href=&#34;https://sites.google.com/site/caiemike/&#34; target=&#34;_blank&#34;&gt;Michael Caie&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&amp;ldquo;Conditionals&amp;rdquo;, by &lt;a href=&#34;https://philosophy.stanford.edu/people/ray-briggs&#34; target=&#34;_blank&#34;&gt;R. A. Briggs&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;We wanted to include lots more, but didn&amp;rsquo;t want to hold up publication any longer. Hopefully a second edition will cover more.&lt;/p&gt;
-
-&lt;p&gt;For me personally, a central aim of this project was to demonstrate a point about open access publishing and shared technological standards. The budget for this book was exactly $0.00, which was only possible because we didn&amp;rsquo;t need a human typesetter.&lt;/p&gt;
-
-&lt;p&gt;Pretty much everyone in formal epistemology uses the same, standardized format to do their writing. And that format plugs in to a high-quality, freely available &lt;a href=&#34;https://en.wikipedia.org/wiki/TeX&#34; target=&#34;_blank&#34;&gt;typesetting program&lt;/a&gt;. So all you have to do to turn a dozen contributions from different authors into a unified book is paste them into a template and click &amp;ldquo;typeset&amp;rdquo;.&lt;/p&gt;
-
-&lt;p&gt;Ok, it did actually take some noodling to iron out all the kinks. But mainly because of my poor planning. Having done it once now and learned the gotchas, a second go would come pretty close to the copy→paste→typeset dream.&lt;/p&gt;
-
-&lt;p&gt;So for me, the moral is that philosophers in general (all academics, really) should settle on a similar standard. If we did, we&amp;rsquo;d have a lot more freedom from commercial publishers. We could publish open access books like this on the regular. The books would be freely and easily available to all, and authors would retain copyright.&lt;/p&gt;
-
-&lt;p&gt;Collective action problems are rife in academia, and the world philosophical publishing is no exception. But this is about as close to a major Pareto improvement as we&amp;rsquo;re likely to find.&lt;/p&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>The Open Handbook of Formal Epistemology</title>
       <link>http://jonathanweisberg.org/post/open-handbook/</link>
       <pubDate>Wed, 26 Jun 2019 00:00:00 -0500</pubDate>
       
@@ -3815,6 +3777,39 @@ avg / total       0.92      0.92      0.92     10000
 &lt;p&gt;We&amp;rsquo;re at 92% accuracy across all digits, not bad! And it looks like we could still improve with more training.&lt;/p&gt;
 
 &lt;p&gt;But let&amp;rsquo;s work on speeding up our optimization alogirthm first. We&amp;rsquo;ll pick things up there in the next post.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Call for Papers: Formal Epistemology Workshop (FEW) 2018</title>
+      <link>http://jonathanweisberg.org/post/CFP%20FEW%202018/</link>
+      <pubDate>Thu, 21 Dec 2017 10:36:00 -0500</pubDate>
+      
+      <guid>http://jonathanweisberg.org/post/CFP%20FEW%202018/</guid>
+      <description>&lt;p&gt;&lt;strong&gt;Location:&lt;/strong&gt; University of Toronto&lt;br /&gt;
+&lt;strong&gt;Dates:&lt;/strong&gt; June 12–14, 2018&lt;br /&gt;
+&lt;strong&gt;Keynote Speakers:&lt;/strong&gt; &lt;a href=&#34;http://www.larabuchak.net/&#34; target=&#34;_blank&#34;&gt;Lara Buchak&lt;/a&gt; and &lt;a href=&#34;https://sites.google.com/site/michaeltitelbaum/&#34; target=&#34;_blank&#34;&gt;Mike Titelbaum&lt;/a&gt;&lt;br /&gt;
+&lt;strong&gt;Submission Deadline:&lt;/strong&gt; February 12, 2018&lt;br /&gt;
+&lt;strong&gt;Authors Notified:&lt;/strong&gt; March 31, 2018&lt;/p&gt;
+
+&lt;p&gt;We are pleased to invite papers in formal epistemology, broadly construed to include related areas of philosophy as well as cognate disciplines like statistics, psychology, economics, computer science, and mathematics.&lt;/p&gt;
+
+&lt;p&gt;Submissions should be:&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;prepared for anonymous review,&lt;/li&gt;
+&lt;li&gt;no more than 6,000 words,&lt;/li&gt;
+&lt;li&gt;accompanied by an abstract of up to 300 words, and&lt;/li&gt;
+&lt;li&gt;in PDF format.&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;Submission is via the &lt;a href=&#34;https://easychair.org/conferences/?conf=few2018&#34; target=&#34;_blank&#34;&gt;EasyChair website&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;The final selection of the program will be made with an eye to diversity. We especially encourage submissions from PhD candidates, early career researchers, and members of groups underrepresented in academic philosophy.&lt;/p&gt;
+
+&lt;p&gt;Some funds are available to reimburse speakers&amp;rsquo; travel expenses. The available amounts are still being determined, but we hope to cover most/all expenses for student and early career speakers. Childcare can also be arranged.&lt;/p&gt;
+
+&lt;p&gt;The &lt;a href=&#34;http://jonathanweisberg.org/few2018&#34; target=&#34;_blank&#34;&gt;conference website is here&lt;/a&gt;. The contact address is &lt;a href=&#34;mailto:few2018toronto@gmail.com&#34; target=&#34;_blank&#34;&gt;few2018toronto@gmail.com&lt;/a&gt;. The local organizers are &lt;a href=&#34;http://www.davidjamesbar.net/&#34; target=&#34;_blank&#34;&gt;David James Barnett&lt;/a&gt;, &lt;a href=&#34;http://individual.utoronto.ca/jnagel/Home_Page.html&#34; target=&#34;_blank&#34;&gt;Jennifer Nagel&lt;/a&gt;, and &lt;a href=&#34;http://jonathanweisberg.org/&#34; target=&#34;_blank&#34;&gt;Jonathan Weisberg&lt;/a&gt;.&lt;/p&gt;
 </description>
     </item>
     
