@@ -1,0 +1,601 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Jonathan Weisberg's Homepage">
+    <meta name="author" content="Jonathan Weisberg">
+    
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@jweisber">
+    <meta name="twitter:creator" content="@jweisber">
+    <meta name="twitter:title" content="Coherentism Without Coherence">
+    <meta name="twitter:description" content="If you look at the little network diagram below, you&rsquo;ll probably agree that $P$ is the most &ldquo;central&rdquo; node in some intuitive sense.
+This post is about using a belief&rsquo;s centrality in the web of belief to give a coherentist account of its justification. The more central a belief is, the more justified it is.
+But how do we quantify &ldquo;centrality&rdquo;? The rough idea: the more ways there are to arrive at a proposition by following inferential pathways in the web of belief, the more central it is.">
+    <meta name="twitter:image" content="https://www.newstatesman.com/sites/default/files/styles/cropped_article_image/public/blogs_2016/05/spider-web-399854_1920.jpg">
+
+    <meta property="og:url" content="/post/coherentism-1/" />
+    <meta property="og:type" content="article" />
+    <meta property="og:title" content="Coherentism Without Coherence" />
+    <meta property="og:description" content="If you look at the little network diagram below, you&rsquo;ll probably agree that $P$ is the most &ldquo;central&rdquo; node in some intuitive sense.
+This post is about using a belief&rsquo;s centrality in the web of belief to give a coherentist account of its justification. The more central a belief is, the more justified it is.
+But how do we quantify &ldquo;centrality&rdquo;? The rough idea: the more ways there are to arrive at a proposition by following inferential pathways in the web of belief, the more central it is." />
+    <meta property="og:image" content="https://www.newstatesman.com/sites/default/files/styles/cropped_article_image/public/blogs_2016/05/spider-web-399854_1920.jpg" />
+
+
+    <title>Coherentism Without Coherence</title>
+
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+    <link href="/css/prism.css" rel="stylesheet" />
+    <link href="/css/scarab.css" rel="stylesheet">
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]},
+        "HTML-CSS": {
+          availableFonts: ["Neo-Euler"],
+          preferredFont: "Neo-Euler",
+          webFont: "Neo-Euler",
+          imageFont: "Neo-Euler",
+        }
+      });
+    </script>
+    <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+    </script>
+    
+    
+    
+
+</head>
+
+<body>
+
+<nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+  <div class="container">
+    
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-navbar-collapse-1">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="http://jonathanweisberg.org/">Jonathan Weisberg</a>
+    </div>
+    
+    <div class="collapse navbar-collapse" id="bs-navbar-collapse-1">
+      <ul class="nav navbar-nav">
+        <li>
+          <a href="/pdf/CV.pdf">
+            <i class="fa fa-briefcase"></i>&nbsp;
+            CV
+          </a>
+        </li>
+        <li>
+          <a href="/post/">
+            <i class="fa fa-code"></i>&nbsp;
+            Blog
+          </a>
+        </li>
+        <li>
+          <a href="/publication/">
+            <i class="fa fa-files-o"></i>&nbsp;
+            Research
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+
+
+  
+  <div class="container blog-post">
+
+    
+    <div class="row">
+      <div class="col-md-3 hidden-sm hidden-xs text-right">
+        <h1 class="post-title">&nbsp;</h1>
+          <em>Aug 14, 2019</em><br />
+          
+          
+          
+          <span class="post-tags">
+            
+            <a class="post-tag" href="http://jonathanweisberg.org/tags/philosophy">Philosophy</a>
+             &bull;   
+            
+            <a class="post-tag" href="http://jonathanweisberg.org/tags/epistemology">Epistemology</a>
+             &bull;  
+            
+            <a class="post-tag" href="http://jonathanweisberg.org/tags/formal-epistemology">Formal Epistemology</a>
+            
+            
+          </span>
+          
+          
+        </p>
+      </div>
+
+      <div class="col-md-7">
+        <h1 class="post-title">Coherentism Without Coherence</h1>
+        <div class="hidden-md hidden-lg post-metadata">
+          <div>
+            <em>Aug 14, 2019</em>
+          </div>
+          
+          
+          
+          <p class="post-tags">
+            
+            <a class="post-tag" href="http://jonathanweisberg.org/tags/philosophy">Philosophy</a>
+             &bull;   
+            
+            <a class="post-tag" href="http://jonathanweisberg.org/tags/epistemology">Epistemology</a>
+             &bull;  
+            
+            <a class="post-tag" href="http://jonathanweisberg.org/tags/formal-epistemology">Formal Epistemology</a>
+            
+            
+          </p>
+          
+          
+        </div>
+
+        <div class="post-body">
+          
+
+<p>If you look at the little network diagram below, you&rsquo;ll probably
+agree that $P$ is the most &ldquo;central&rdquo; node in some intuitive sense.</p>
+
+<p><img src="/img/coherentism-1/fig3.png" alt="" /></p>
+
+<p>This post is about using a belief&rsquo;s centrality in the web of belief to
+give a coherentist account of its justification. The more central a
+belief is, the more justified it is.</p>
+
+<p>But how do we quantify &ldquo;centrality&rdquo;? The rough idea: the more ways there
+are to arrive at a proposition by following inferential pathways in the
+web of belief, the more central it is.</p>
+
+<p>Since we&rsquo;re coherentists today (for the next 10 minutes, anyway), cyclic
+pathways are allowed here. If we travel
+$P \rightarrow Q \rightarrow R \rightarrow P$, that counts as an
+inferential path leading to $P$. And if we go around that cycle twice,
+that counts as another such pathway.</p>
+
+<p>You might think this just wrecks the whole idea. Every node has
+infinitely many such pathways leading to it, after all. By cycling
+around and around we can come up with literally any number of pathways
+ending at a given node.</p>
+
+<p>But, by examining how these pathways differ in the limit, we can
+differentiate between more and less central nodes/beliefs. We can thus
+clarify a sense in which $P$ is most central, and quantify that
+centrality. We can even use that quantity to answer a classic objection
+to coherentism leveled by <a href="https://philpapers.org/rec/KLEWPC" target="_blank">Klein &amp; Warfield
+(1994)</a>.</p>
+
+<p>As a bonus, we can do all this without ever giving an account of what
+makes a corpus of beliefs &ldquo;coherent.&rdquo; This flips the script on a lot of
+contemporary formal work on coherentism.<sup class="footnote-ref" id="fnref:1"><a rel="footnote" href="#fn:1">1</a></sup> Because coherentism is
+holistic, you might think it has to evaluate the coherence of a whole
+corpus first, before it can assess the individual members.<sup class="footnote-ref" id="fnref:2"><a rel="footnote" href="#fn:2">2</a></sup> But we&rsquo;ll
+see this isn&rsquo;t so.
+$$
+\newcommand\T{\intercal}
+\newcommand{\A}{\mathbf{A}}
+\renewcommand{\v}{\mathbf{v}}
+$$</p>
+
+<h1 id="counting-pathways">Counting Pathways</h1>
+
+<p>Our idea is to count how many paths there are leading to $P$ vs. other
+nodes. We start with paths of length $1$, then count paths of length
+$2$, then length $3$, and so on. As we count longer and longer paths,
+each node&rsquo;s count approaches infinity.</p>
+
+<p>But not their relative ratios! If, at each step, we divide the number of
+paths ending at $P$ by the number of all paths, this ratio converges.</p>
+
+<p>To find its limit, we represent our graph numerically. A graph can be
+represented in a table, where each node corresponds to a row and column.
+The columns represent &ldquo;sources&rdquo; and the rows represent &ldquo;targets.&rdquo; We put
+a $1$ where the column node points to the row node, otherwise we put a
+$0$.</p>
+
+<table>
+<thead>
+<tr>
+<th></th>
+<th>$P$</th>
+<th>$Q$</th>
+<th>$R$</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>$P$</td>
+<td>0</td>
+<td>1</td>
+<td>1</td>
+</tr>
+
+<tr>
+<td>$Q$</td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+</tr>
+
+<tr>
+<td>$R$</td>
+<td>0</td>
+<td>1</td>
+<td>0</td>
+</tr>
+</tbody>
+</table>
+
+<p>Hiding the row and column names gives us a matrix we&rsquo;ll call $\A$: $$
+\A =
+\left[
+  \begin{matrix}
+    0 &amp; 1 &amp; 1 \\<br />
+    1 &amp; 0 &amp; 0 \\<br />
+    0 &amp; 1 &amp; 0
+  \end{matrix}
+\right].
+$$ Notice how each row records the length-$1$ paths leading to the
+corresponding node. There are two such paths to $P$, and one each to $Q$
+and $R$.<sup class="footnote-ref" id="fnref:3"><a rel="footnote" href="#fn:3">3</a></sup></p>
+
+<p>The key to counting longer paths is to take powers of $\A$. If we
+multiply $\A$ by itself to get $\A^2$, we get a record of the length-$2$
+paths: $$
+\A^2 = \A \times \A = \left[
+  \begin{matrix}
+    0 &amp; 1 &amp; 1 \\<br />
+    1 &amp; 0 &amp; 0 \\<br />
+    0 &amp; 1 &amp; 0
+  \end{matrix}
+\right] \left[
+  \begin{matrix}
+    0 &amp; 1 &amp; 1 \\<br />
+    1 &amp; 0 &amp; 0 \\<br />
+    0 &amp; 1 &amp; 0
+  \end{matrix}
+\right] =
+\left[
+  \begin{matrix}
+    1 &amp; 1 &amp; 0 \\<br />
+    0 &amp; 1 &amp; 1 \\<br />
+    1 &amp; 0 &amp; 0
+  \end{matrix}
+\right].
+$$ There are two such paths to $P$: $$
+\begin{aligned}
+  Q \rightarrow R \rightarrow P,\\<br />
+  P \rightarrow Q \rightarrow P.
+\end{aligned}
+$$ Similarly for $Q$: $$
+\begin{aligned}
+  Q \rightarrow P \rightarrow Q,\\<br />
+  R \rightarrow P \rightarrow Q.
+\end{aligned}
+$$ While $R$ has just one length-$2$ path:
+$$ P \rightarrow Q \rightarrow R. $$ If we go on to examine $\A^3$, its
+rows will tally the length-$3$ paths; in general, $\A^n$ tallies the
+paths of length-$n$.</p>
+
+<p>But we want relative ratios, not raw counts. The trick to getting these
+is to divide $\A$ at each step by a special number $\lambda$, known as
+the &ldquo;leading eigenvalue&rdquo; of $\A$ (details <a href="#tech">below</a>). If we take
+the limit
+$$ \lim_{n \rightarrow \infty} \left(\frac{\A}{\lambda}\right)^n $$ we
+get a matrix whose columns all have a special property: $$
+\left[
+  \begin{matrix}
+    0.41 &amp; 0.55 &amp; 0.31 \\<br />
+    0.31 &amp; 0.41 &amp; 0.23 \\<br />
+    0.23 &amp; 0.31 &amp; 0.18
+  \end{matrix}
+\right].
+$$ They all have the same relative proportions. They&rsquo;re multiples of the
+same &ldquo;frequency vector,&rdquo; a vector of positive values that sum to $1$: $$
+\left[
+  \begin{matrix}
+    0.43 \\<br />
+    0.32 \\<br />
+    0.25 \\<br />
+  \end{matrix}
+\right].
+$$ So as we tally longer and longer paths, we find that $43\%$ of those
+paths lead to $P$, compared with $32\%$ for $Q$ and $25\%$ for $R$. Thus
+$P$ is about $1.3$ times as justified as $Q$ ($.43/.32$), and about
+$1.7$ times as justified as $R$ ($.43/.25$).</p>
+
+<p>We want absolute degrees of justification though, not just comparative
+ones. So we borrow a trick from probability theory and use a tautology
+for scale.</p>
+
+<p>We add a special node $\top$ to our graph, which every other node points
+to, though $\top$ doesn&rsquo;t point back.</p>
+
+<p><img src="/img/coherentism-1/fig4.png" alt="" /></p>
+
+<p>Updating our matrix $\A$ accordingly, we insert $\top$ in the first
+row/column: $$
+\A =
+\left[
+  \begin{matrix}
+    0 &amp; 1 &amp; 1 &amp; 1 \\<br />
+    0 &amp; 0 &amp; 1 &amp; 1 \\<br />
+    0 &amp; 1 &amp; 0 &amp; 0 \\<br />
+    0 &amp; 0 &amp; 1 &amp; 0
+  \end{matrix}
+\right].
+$$ Redoing our limit anlaysis gives us the vector
+$(1.00, 0.57, 0.43, 0.33)$. But this isn&rsquo;t our final answer, because
+it&rsquo;s actually not possible for the non-$\top$ nodes to get a value
+higher than $2/3$ in a graph with just $3$ non-$\top$ nodes.<sup class="footnote-ref" id="fnref:4"><a rel="footnote" href="#fn:4">4</a></sup> So we
+divide elementwise by $(1, 2/3, 2/3, 2/3)$ to scale things, giving us
+our final result: $$
+\left[
+  \begin{matrix}
+    1.00 \\<br />
+    0.85 \\<br />
+    0.65 \\<br />
+    0.49
+  \end{matrix}
+\right].
+$$ The relative justifications are the same as before, e.g. $P$ is still
+$1.3$ times as justified as $Q$. But now we can make absolute
+assessments too. $R$ comes out looking pretty bad ($0.49$), as seems
+right, while $Q$ looks a bit better ($0.65$). Of course $P$ looks best
+($0.85$), though maybe not quite good enough to be justified <em>tout
+court</em>.</p>
+
+<h1 id="the-klein-warfield-problem">The Klein&ndash;Warfield Problem</h1>
+
+<p>Ok that&rsquo;s theoretically nifty and all, but does it work on actual cases?
+Let&rsquo;s try it out by looking at a notorious objection to coherentism.
+<a href="https://philpapers.org/rec/KLEWPC" target="_blank">Klein &amp; Warfield (1994)</a> argue that
+coherentism flouts the laws of probability. How so?</p>
+
+<p>Making sense of things often means believing more: taking on new beliefs
+to resolve the tensions in our existing ones. For example, if we think
+Tweety is a bird who can&rsquo;t fly, the tension is resolved if we also
+believe they&rsquo;re a penguin.<sup class="footnote-ref" id="fnref:5"><a rel="footnote" href="#fn:5">5</a></sup></p>
+
+<p>But believing more means believing less probably. Increases in logical
+strength bring decreases in probability (unless the stronger content was
+already guaranteed with probability $1$). So increasing the coherence in
+one&rsquo;s web of belief will generally mean decreasing its probability. How
+could increasing coherence increase justification, then?</p>
+
+<p><a href="https://philpapers.org/rec/MEROBO" target="_blank">Merricks (1995)</a> points out that,
+even though the probability of the whole corpus goes down, the
+probabilities of individual beliefs go up in a way. After all, it&rsquo;s more
+likely Tweety can&rsquo;t fly if they&rsquo;re a penguin, than if they&rsquo;re just a
+bird of some unknown species.</p>
+
+<p>That&rsquo;s only the beginning of a satisfactory answer though. After all, we
+might not be justified in believing Tweety&rsquo;s a penguin in the first
+place! Adding a new belief to support an existing belief doesn&rsquo;t help if
+the new belief has no support itself. We need a more global assessment,
+which is where the present account shines.</p>
+
+<p>Suppose we add $P$ = <em>Tweety is a penguin</em> to the network containing $B$
+= <em>Tweety is a bird</em> and $\neg F$ = <em>Tweety can&rsquo;t fly</em>. Will this
+increase the centrality/justification of $B$ and of $\neg F$? Yes, but
+we need to sort out the support relations to verify this.</p>
+
+<p>Presumably $P$ supports $B$, and $\neg F$ too. But what about the other
+way around? If Tweety is a flightless bird, there&rsquo;s a decent chance
+they&rsquo;re a penguin. But it&rsquo;s hardly certain; they might be an emu or kiwi
+instead. Come to think of it, isn&rsquo;t support a matter of degree, so don&rsquo;t
+we need finer tools than just on/off arrows?</p>
+
+<p>Yes, and the refinement is easy. We accommodate degrees of support by
+attaching weights to our arrows. Instead of just placing a $1$ in our
+matrix $\A$ wherever the column-node points to the row-node, we put a
+number from the $[0,1]$ interval that reflects the strength of support.
+The same limit analysis as before still works, as it turns out.
+We just think of our inferential links as &ldquo;leaky pipes&rdquo; now, where
+weaker links make for leakier pipelines.</p>
+
+<p>We still need concrete numbers to analyze the Tweety example. But it&rsquo;s a
+toy example, so let&rsquo;s just make up some plausible-ish numbers to get us
+going. Let&rsquo;s suppose $1\%$ of birds are flightless, and birds are an
+even smaller percentage of the flightless things, say $0.1\%$. Let&rsquo;s
+also pretend that $20\%$ of flightless birds are penguins.</p>
+
+<p>Before believing Tweety is a penguin then, our web of belief looks like
+this:</p>
+
+<p><img src="/img/coherentism-1/fig5a.png" alt="" /></p>
+
+<p>Calculating the degrees of justification for $B$ and $\neg F$, both come
+out very close to $0$ as you&rsquo;d expect (with $B$ closer to $0$ than
+$\neg F$). Now we add $P$.</p>
+
+<p><img src="/img/coherentism-1/fig5b.png" alt="" /></p>
+
+<p>Recalculating degrees of justification, we find that they increase
+drastically. $B$ and $F$ are now justified to degree $0.85$, while $P$
+is justified to degree $0.26$. (All numbers approximate.)</p>
+
+<p>So our account vindicates Merricks. Not only does adding $P$ to the
+corpus add &ldquo;local&rdquo; justification for $B$ and for $\neg F$. It also
+improves their standing on a more global assessment.</p>
+
+<p>You might be worried though: did $P$ come out too weakly justified, at
+just $0.26$? No: that&rsquo;s either an artifact of oversimplification, or
+else it&rsquo;s actually the appropriate outcome. Notice that $B$ and $\neg F$
+don&rsquo;t really support Tweety being a penguin. They&rsquo;re a flightless bird,
+sure, but maybe they&rsquo;re an emu, kiwi, or moa. We chose to believe
+penguin, and maybe we have our reasons. If we do, then the graph is
+missing background beliefs which would improve $P$&rsquo;s standing once
+added. But otherwise, we just fell prey to stereotyping or
+comes-to-mind-bias, in which case it&rsquo;s right that $P$ stand poorly.</p>
+
+<h1 id="tech">Technical Background</h1>
+
+<p>The notion of centrality used here is a common tool in network analysis,
+where it&rsquo;s known as <a href="https://en.wikipedia.org/wiki/Eigenvector_centrality" target="_blank">&ldquo;eigenvector
+centrality.&rdquo;</a>
+Because the frequency vector we arrive at in the limit is an
+<a href="https://en.wikipedia.org/wiki/Eigenvalues_and_eigenvectors" target="_blank">eigenvector</a>
+of the matrix $\A$. In fact it&rsquo;s a special eigenvector, the only one
+with all-positive values.</p>
+
+<p>Since we&rsquo;re measuring justification on a $0$-to-$1$ scale, our account
+depends on there always being such an eigenvector for $\A$. In fact we
+need it to be unique, up to scaling (i.e. up to multiplication by a
+constant).</p>
+
+<p>The theorem that guarantees this is actually quite old, going back to
+work by Oskar Perron and Georg Frobenius published around 1910. Here&rsquo;s one version of it.</p>
+
+<p><strong>Perron&ndash;Frobenius Theorem.</strong> Let $\A$ be a square matrix whose entries
+are all positive. Then all of the following hold.</p>
+
+<ol>
+<li>$\A$ has an eigenvalue $\lambda$ that is larger (in absolute value)
+than $\A$&rsquo;s other eigenvalues. We call $\lambda$ the <em>leading
+eigenvalue</em>.</li>
+<li>$\A$&rsquo;s leading eigenvalue has an eigenvector $\v$ whose entries are
+all positive. We call $\v$ the <em>leading eigenvector</em>.</li>
+<li>$\A$ has no other positive eigenvectors, save multiples of $\v$.</li>
+<li>The powers $(\A/\lambda)^n$ as $n \rightarrow \infty$ approach a
+matrix whose columns are all multiples of $\v$.</li>
+</ol>
+
+<p>Now, our matrices had some zeros, so they weren&rsquo;t positive in all their
+entries. But it doesn&rsquo;t really matter, as it turns out.</p>
+
+<p>Frobenius&rsquo; contribution was to generalize this result to many cases that
+feature zeros. But even in cases where Frobenius&rsquo; weaker conditions
+aren&rsquo;t satisfied, we can just borrow a trick from Google.<sup class="footnote-ref" id="fnref:6"><a rel="footnote" href="#fn:6">6</a></sup> Instead of
+using a $0$-to-$1$ scale, we use $\epsilon$-to-$1$ for some very small
+positive number $\epsilon$. Then all entries in $\A$ are guaranteed to
+be positive, and we just rescale our results accordingly. (Choose
+$\epsilon$ small enough and the difference is negligible in practice.)</p>
+
+<h1 id="acknowledgments">Acknowledgments</h1>
+
+<p>This post owes a lot to prior work by Elena Derksen and Selim Berker.
+I&rsquo;d never really thought much about how coherence and justification
+relate prior to reading <a href="http://www.philpeople.com/elenarabinoffderksen/research.html" target="_blank">Derksen&rsquo;s
+work</a>. And
+<a href="https://philpapers.org/rec/BERCVG" target="_blank">Berker&rsquo;s</a> prompted me to take graphs
+more seriously as a way of formalizing coherentism. I&rsquo;m also grateful to
+David Wallace for <a href="/post/page-rank-1/">introducing me to the Perron&ndash;Frobenius theorem&rsquo;s use
+as a tool in network
+analysis</a>.</p>
+<div class="footnotes">
+
+<hr />
+
+<ol>
+<li id="fn:1"><p>See <a href="https://philpapers.org/rec/SHOICT-2" target="_blank">Shogenji (1999)</a> and
+<a href="https://philpapers.org/rec/FITAPT" target="_blank">Fitelson (2003)</a> for some early
+accounts. See Section 6 of <a href="https://plato.stanford.edu/entries/justep-coherence/#ProMeaCoh" target="_blank">Olsson&rsquo;s SEP
+entry</a>
+for a survey and more recent references.</p>
+ <a class="footnote-return" href="#fnref:1"><sup>[return]</sup></a></li>
+
+<li id="fn:2"><p>In his seminal book on coherentism, <a href="https://philpapers.org/rec/BONTSO-4" target="_blank">Bonjour
+(1985)</a> writes: &ldquo;the
+justification of a particular empirical belief finally depends, not
+on other particular beliefs as the linear conception of
+justification would have it, but instead on the overall system and
+its coherence.&rdquo; This doesn&rsquo;t commit us to
+assessing overall coherence before individual
+justification. But that&rsquo;s a natural conclusion you might come away with.</p>
+ <a class="footnote-return" href="#fnref:2"><sup>[return]</sup></a></li>
+
+<li id="fn:3"><p>We could count every proposition as pointing to itself. This would
+mean putting $1$&rsquo;s down the diagonal, i.e. adding the identity
+matrix $\mathbf{I}$ to $\A$. This can be useful as a way to ensure
+the limits we&rsquo;ll require exist. But we&rsquo;ll solve that problem
+differently in the &ldquo;Technical Background&rdquo; section. And otherwise it
+doesn&rsquo;t really affect our results. It increases the leading
+eigenvalue by $1$, but doesn&rsquo;t affect the leading eigenvector.</p>
+ <a class="footnote-return" href="#fnref:3"><sup>[return]</sup></a></li>
+
+<li id="fn:4"><p>In general, the maximum possible centrality is $(k-1)/k$ in a
+graph with $k$ non-$\top$ nodes.</p>
+ <a class="footnote-return" href="#fnref:4"><sup>[return]</sup></a></li>
+
+<li id="fn:5"><p>Hat tip to Erik J. Olsson&rsquo;s <a href="https://plato.stanford.edu/entries/justep-coherence/" target="_blank">entry on
+coherentism</a>
+in the SEP, which uses this example in place of Klein &amp; Warfield&rsquo;s
+slightly more involved one.</p>
+ <a class="footnote-return" href="#fnref:5"><sup>[return]</sup></a></li>
+
+<li id="fn:6"><p>Google&rsquo;s founders used a variant of eigenvector centrality called
+&ldquo;PageRank&rdquo; in their original search engine.</p>
+ <a class="footnote-return" href="#fnref:6"><sup>[return]</sup></a></li>
+</ol>
+</div>
+
+
+          &nbsp;
+        </div>
+
+        <div>
+          <div class="post-back-link">
+    <a href="javascript: history.back()">
+        <i class="fa fa-arrow-left"></i> 
+        Back
+    </a>
+</div>
+        </div>
+      </div>
+    </div>
+    
+
+<footer style="padding-top: 1em;">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-lg-12 text-center">
+        <p>
+          &nbsp;
+        </p>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+<script src="/js/prism.js"></script>
+
+<script type="text/javascript">
+var sc_project= 11213692 ;
+var sc_invisible= 1 ;
+var sc_security="b1954803";
+var scJsHost = (("https:" == document.location.protocol) ?
+"https://secure." : "http://www.");
+document.write("<sc"+"ript type='text/javascript' src='" +
+scJsHost+
+"statcounter.com/counter/counter.js'></"+"script>");
+</script>
+<noscript><div class="statcounter"><a title="web analytics"
+href="http://statcounter.com/" target="_blank"><img
+class="statcounter"
+src="//c.statcounter.com/11213692/0/b1954803/1/" alt="web
+analytics"></a></div></noscript>
+
+
+</body>
+</html>
+
