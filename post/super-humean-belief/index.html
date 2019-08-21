@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Jonathan Weisberg's Homepage">
+    <meta name="author" content="Jonathan Weisberg">
+    
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@jweisber">
+    <meta name="twitter:creator" content="@jweisber">
+    <meta name="twitter:title" content="The Super-Humean Theory of Belief">
+    <meta name="twitter:description" content="The classic &ldquo;Lockean&rdquo; thesis about full and partial belief says full belief is rational iff strong partial belief is rational. Hannes Leitgeb&rsquo;s &ldquo;Humean&rdquo; thesis proposes a subtler connection. $ \newcommand\p{Pr} \newcommand{\B}{\mathbf{B}} \newcommand{\given}{\mid} $
+ The Humean Thesis For a rational agent whose full beliefs are given by the set $\mathbf{B}$, and whose credences by the probability function $\p$: $B \in \mathbf{B}$ iff $\p(B \given A) &gt; t$ for all $A$ consistent with $\mathbf{B}$.">
+    <meta name="twitter:image" content="https://amorphia-apparel.com/image/davidhume.1300x700.png">
+
+    <meta property="og:url" content="/post/super-humean-belief/" />
+    <meta property="og:type" content="article" />
+    <meta property="og:title" content="The Super-Humean Theory of Belief" />
+    <meta property="og:description" content="The classic &ldquo;Lockean&rdquo; thesis about full and partial belief says full belief is rational iff strong partial belief is rational. Hannes Leitgeb&rsquo;s &ldquo;Humean&rdquo; thesis proposes a subtler connection. $ \newcommand\p{Pr} \newcommand{\B}{\mathbf{B}} \newcommand{\given}{\mid} $
+ The Humean Thesis For a rational agent whose full beliefs are given by the set $\mathbf{B}$, and whose credences by the probability function $\p$: $B \in \mathbf{B}$ iff $\p(B \given A) &gt; t$ for all $A$ consistent with $\mathbf{B}$." />
+    <meta property="og:image" content="https://amorphia-apparel.com/image/davidhume.1300x700.png" />
+
+
+    <title>The Super-Humean Theory of Belief</title>
+
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+    <link href="/css/prism.css" rel="stylesheet" />
+    <link href="/css/scarab.css" rel="stylesheet">
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]},
+        "HTML-CSS": {
+          availableFonts: ["Neo-Euler"],
+          preferredFont: "Neo-Euler",
+          webFont: "Neo-Euler",
+          imageFont: "Neo-Euler",
+        }
+      });
+    </script>
+    <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+    </script>
+    
+    
+    
+
+</head>
+
+<body>
+
+<nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+  <div class="container">
+    
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-navbar-collapse-1">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="http://jonathanweisberg.org/">Jonathan Weisberg</a>
+    </div>
+    
+    <div class="collapse navbar-collapse" id="bs-navbar-collapse-1">
+      <ul class="nav navbar-nav">
+        <li>
+          <a href="/pdf/CV.pdf">
+            <i class="fa fa-briefcase"></i>&nbsp;
+            CV
+          </a>
+        </li>
+        <li>
+          <a href="/post/">
+            <i class="fa fa-code"></i>&nbsp;
+            Blog
+          </a>
+        </li>
+        <li>
+          <a href="/publication/">
+            <i class="fa fa-files-o"></i>&nbsp;
+            Research
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+
+
+  
+  <div class="container blog-post">
+
+    
+    <div class="row">
+      <div class="col-md-3 hidden-sm hidden-xs text-right">
+        <h1 class="post-title">&nbsp;</h1>
+          <em>Aug 21, 2019</em><br />
+          
+          
+          
+          <span class="post-tags">
+            
+            <a class="post-tag" href="http://jonathanweisberg.org/tags/philosophy">Philosophy</a>
+             &bull;   
+            
+            <a class="post-tag" href="http://jonathanweisberg.org/tags/epistemology">Epistemology</a>
+             &bull;  
+            
+            <a class="post-tag" href="http://jonathanweisberg.org/tags/formal-epistemology">Formal Epistemology</a>
+            
+            
+          </span>
+          
+          
+        </p>
+      </div>
+
+      <div class="col-md-7">
+        <h1 class="post-title">The Super-Humean Theory of Belief</h1>
+        <div class="hidden-md hidden-lg post-metadata">
+          <div>
+            <em>Aug 21, 2019</em>
+          </div>
+          
+          
+          
+          <p class="post-tags">
+            
+            <a class="post-tag" href="http://jonathanweisberg.org/tags/philosophy">Philosophy</a>
+             &bull;   
+            
+            <a class="post-tag" href="http://jonathanweisberg.org/tags/epistemology">Epistemology</a>
+             &bull;  
+            
+            <a class="post-tag" href="http://jonathanweisberg.org/tags/formal-epistemology">Formal Epistemology</a>
+            
+            
+          </p>
+          
+          
+        </div>
+
+        <div class="post-body">
+          <p>The classic <a href="https://plato.stanford.edu/entries/formal-belief/#QuaBel" target="_blank">&ldquo;Lockean&rdquo; thesis</a> about full and partial belief says full belief is rational iff strong partial belief is rational. <a href="https://philpapers.org/rec/LEIIHT" target="_blank">Hannes Leitgeb&rsquo;s &ldquo;Humean&rdquo; thesis</a> proposes a subtler connection.
+$
+\newcommand\p{Pr}
+\newcommand{\B}{\mathbf{B}}
+\newcommand{\given}{\mid}
+$</p>
+
+<dl>
+<dt>The Humean Thesis</dt>
+<dd><p>For a rational agent whose full beliefs are given by the set $\mathbf{B}$, and whose credences by the probability function $\p$: $B \in \mathbf{B}$ iff $\p(B \given A) &gt; t$ for all $A$ consistent with $\mathbf{B}$.</p></dd>
+</dl>
+
+<p>Notice that we can think of this as, instead, a coherentist theory of justification. Suppose we replace credence with &ldquo;evidential&rdquo; probability (think: Carnap, Williamson). Then we get a theory of justification where beliefs aren&rsquo;t justified in isolation. It&rsquo;s not enough for a belief to be highly probable in its own right, it has to be part of a larger body that underwrites that high probability.</p>
+
+<p>Flipping things around, the coherentist theory of justification from <a href="/post/coherentism-1">my last wacky post</a> doubles as an even wackier theory of full belief. The Humean view is roughly that a belief is justified iff its fellows secure its high probability. Now the &ldquo;Super-Humean&rdquo; view says a belief is justified to the extent its fellows secure its high centrality.</p>
+
+<p>(Last time we explored one fun way of measuring centrality, drawing on coherentism for inspiration, and network theory for the math. But network theory offers <a href="https://en.wikipedia.org/wiki/Centrality" target="_blank">many others ways of measuring centrality</a>, which could be slotted in here to provide alternative theories of full and partial belief.)</p>
+
+<p>Like Leitgeb&rsquo;s Humean view, the Super-Humean view has a holistic character. Instead of evaluating full beliefs just by looking at your credences, we also have to look at what else you believe.</p>
+
+<p>Another parallel: both theories have a permissive quality. Leitgeb presents examples where more than one set $\B$ fits with a given credence function $\p$, on the Humean view. And the same will be true on the Super-Humean view.<sup class="footnote-ref" id="fnref:coins"><a rel="footnote" href="#fn:coins">1</a></sup></p>
+
+<p>But there are interesting differences. We can evaluate beliefs individually on the Super-Humean account, even though our method of evaluation is holistic. True, a belief&rsquo;s justification depends on what else you believe. But your beliefs don&rsquo;t all stand or fall together; some can come out justified even though others come out unjustified.</p>
+
+<p>Strictly speaking, some beliefs come out highly justified even though others come out hardly justified. Because, differing again from the Humean view, evaluations are graded on the Super-Humean view. Each belief is assigned a degree of justification.</p>
+
+<p>One nice thing about the Super-Humean view, then, is that it allows for &ldquo;non-ideal&rdquo; theorizing. We can study non-ideal agents, and discern more justified beliefs from lesser ones.</p>
+
+<p>&ldquo;But does it handle the lottery and preface paradoxes?&rdquo;, is the question we always ask about a theory of full belief. As is so often the case, the answer is &ldquo;yes, but&hellip;&rdquo;.</p>
+
+<p>Consider a lottery of $100$ tickets with one to be selected at random as the winner. If you believe of each ticket that it will lose, we have a network of $101$ nodes: $L_1$ through $L_{100}$, plus the tautology node $\top$. How strong are the connections between these nodes? Assuming we take $L_3&ndash;L_{100}$ as givens in determining the weight of the $L_2 \rightarrow L_1$ arrow, it gets weight $0$ since
+$$\p(L_1 \given L_2 \wedge L_3 \wedge \ldots \wedge L_{100}) = 0.$$
+And likewise for all the other arrows,<sup class="footnote-ref" id="fnref:epsilon"><a rel="footnote" href="#fn:epsilon">2</a></sup> except those pointing to the $\top$ node (they always get weight $1$). All the $L_i$ beliefs thus come out with rock-bottom justification compared to $\top$, i.e. you aren&rsquo;t justified in believing these lottery propositions.</p>
+
+<p>Contrast that with a preface case, where you believe each of $100$ claims you&rsquo;ve researched, $C_1$ through $C_{100}$. These claims are positively correlated though, or at least independent.<sup class="footnote-ref" id="fnref:pollock"><a rel="footnote" href="#fn:pollock">3</a></sup> So
+$$\p(C_1 \given C_2 \wedge C_3 \wedge \ldots \wedge C_{100}) \approx 1,$$
+and likewise for the other $C_i$. The belief-graph here is thus tightly connected, and the $C_i$ nodes will score high on centrality compared to $\top$. So you&rsquo;re highly justified in your beliefs in the preface case.</p>
+
+<p>So far so good, at least if you think&mdash;as I tend to&mdash;that lottery beliefs should come out unjustified, while preface beliefs should come out justified. What&rsquo;s the &ldquo;but&hellip;&rdquo; then? I see two issues (at least).</p>
+
+<p>First, we had to assume that all your remaining beliefs are taken as given in assessing the weight of a connection like $L_2 \rightarrow L_1$. That worked out well here. But as a general rule, it doesn&rsquo;t always have great results, as <a href="https://twitter.com/Juan/status/1161735087093776384?s=20" target="_blank">Juan Comesaña noted</a> about our treatment of the Tweety case last time.</p>
+
+<p>We could go all the way to the other extreme of course, and just evaluate the $L_2 \rightarrow L_1$ connection in isolation by looking at $\p(L_1 \given L_2)$. But that seems too extreme, since it means ignoring the agent&rsquo;s other beliefs altogether.</p>
+
+<p>What we want is something in between, it seems. We want the agent&rsquo;s other beliefs to &ldquo;get in the way&rdquo; enough that they substantially weaken the connections in the lottery graph. But we don&rsquo;t want them to be taken entirely for granted. Exactly how to achieve the right balance here is something I&rsquo;m not sure about.</p>
+
+<p>Second issue: what if you only adopt a few lottery beliefs, just $L_1$ and $L_2$ for example? Then we can&rsquo;t exploit the &ldquo;collective defeat&rdquo; that drove our treatment of the lottery.</p>
+
+<p>You might respond that this is a fine result, since isolated lottery beliefs are actually justified. It&rsquo;s only when you apply the same logic to all the tickets that your justification is undercut. But I find this unsatisfying.</p>
+
+<p>Maybe a student encountering the paradox for the first time is justified in believing their ticket will lose. But it should be enough to defeat that justification that they merely realize they could believe the same thing about all the other tickets, for identical reasons. Even if they don&rsquo;t go ahead to form those beliefs, they should drop the one belief they had about their own ticket.</p>
+
+<p>This is one way in which Leitgeb&rsquo;s Humean theory seems superior to me. On the Humean view, which beliefs are rational depends on how the space of possibilities is partitioned (see <a href="https://philpapers.org/rec/LEITST-2" target="_blank">Leitgeb 2014</a>). And the partition is determined by the context&mdash;how the subject frames the situation in their mind. (At least, that&rsquo;s how I understand Leitgeb here.) So just realizing the symmetry of the lottery paradox is enough to defeat justification, on the Humean view.</p>
+<div class="footnotes">
+
+<hr />
+
+<ol>
+<li id="fn:coins"><p>Example: imagine we&rsquo;ll flip a coin of unknown bias $10$ times. And suppose the probabilities obey Laplace&rsquo;s <a href="https://en.wikipedia.org/wiki/Rule_of_succession" target="_blank">Rule of Succession</a> (a.k.a. Carnap&rsquo;s  $\mathfrak{m}^*$ confirmation function). Then, if you believe each flip will land heads, your beliefs will all come out highly justified, i.e. highly central in your web of $10$ beliefs. But they&rsquo;d have the same justification if you instead believed each flip will land tails.</p>
+
+<p>Permissivism aside, this might seem a pretty bad result on its own. Even if our theory fixed which way you should go, say heads instead of tails, that would be pretty weird. Shouldn&rsquo;t you wait for at least a few flips before forming any such beliefs?</p>
+
+<p>The problem is that we haven&rsquo;t required your beliefs to be inherently probable, only that they render one another probable. The Lockean and Humean theories have such a threshold requirement built-in, but we can build it into our theory too. We can just stipulate that a full belief should be highly probable, as well as being highly central in the network of all your beliefs.</p>
+ <a class="footnote-return" href="#fnref:coins"><sup>[return]</sup></a></li>
+<li id="fn:epsilon">More carefully, each arrow gets the minimum possible weight. If we use the &ldquo;Google hack&rdquo; from last time, this is some small positive number $\epsilon$ instead of $0$.
+ <a class="footnote-return" href="#fnref:epsilon"><sup>[return]</sup></a></li>
+<li id="fn:pollock">Notice we&rsquo;re borrowing the crux of <a href="https://pdfs.semanticscholar.org/b22f/a2029aad762cbeec8d03659b0f8b71dd6d91.pdf" target="_blank">Pollock&rsquo;s (1994)</a> classic treatment of the lottery and preface paradoxes. We&rsquo;re just plugging his observation into a different formal framework.
+ <a class="footnote-return" href="#fnref:pollock"><sup>[return]</sup></a></li>
+</ol>
+</div>
+
+
+          &nbsp;
+        </div>
+
+        <div>
+          <div class="post-back-link">
+    <a href="javascript: history.back()">
+        <i class="fa fa-arrow-left"></i> 
+        Back
+    </a>
+</div>
+        </div>
+      </div>
+    </div>
+    
+
+<footer style="padding-top: 1em;">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-lg-12 text-center">
+        <p>
+          &nbsp;
+        </p>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+<script src="/js/prism.js"></script>
+
+<script type="text/javascript">
+var sc_project= 11213692 ;
+var sc_invisible= 1 ;
+var sc_security="b1954803";
+var scJsHost = (("https:" == document.location.protocol) ?
+"https://secure." : "http://www.");
+document.write("<sc"+"ript type='text/javascript' src='" +
+scJsHost+
+"statcounter.com/counter/counter.js'></"+"script>");
+</script>
+<noscript><div class="statcounter"><a title="web analytics"
+href="http://statcounter.com/" target="_blank"><img
+class="statcounter"
+src="//c.statcounter.com/11213692/0/b1954803/1/" alt="web
+analytics"></a></div></noscript>
+
+
+</body>
+</html>
+

@@ -6,8 +6,87 @@
     <description>Recent content in Posts on Jonathan Weisberg</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 14 Aug 2019 00:00:00 -0500</lastBuildDate>
+    <lastBuildDate>Wed, 21 Aug 2019 00:00:00 -0500</lastBuildDate>
     <atom:link href="http://jonathanweisberg.org/post/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>The Super-Humean Theory of Belief</title>
+      <link>http://jonathanweisberg.org/post/super-humean-belief/</link>
+      <pubDate>Wed, 21 Aug 2019 00:00:00 -0500</pubDate>
+      
+      <guid>http://jonathanweisberg.org/post/super-humean-belief/</guid>
+      <description>&lt;p&gt;The classic &lt;a href=&#34;https://plato.stanford.edu/entries/formal-belief/#QuaBel&#34; target=&#34;_blank&#34;&gt;&amp;ldquo;Lockean&amp;rdquo; thesis&lt;/a&gt; about full and partial belief says full belief is rational iff strong partial belief is rational. &lt;a href=&#34;https://philpapers.org/rec/LEIIHT&#34; target=&#34;_blank&#34;&gt;Hannes Leitgeb&amp;rsquo;s &amp;ldquo;Humean&amp;rdquo; thesis&lt;/a&gt; proposes a subtler connection.
+$
+\newcommand\p{Pr}
+\newcommand{\B}{\mathbf{B}}
+\newcommand{\given}{\mid}
+$&lt;/p&gt;
+
+&lt;dl&gt;
+&lt;dt&gt;The Humean Thesis&lt;/dt&gt;
+&lt;dd&gt;&lt;p&gt;For a rational agent whose full beliefs are given by the set $\mathbf{B}$, and whose credences by the probability function $\p$: $B \in \mathbf{B}$ iff $\p(B \given A) &amp;gt; t$ for all $A$ consistent with $\mathbf{B}$.&lt;/p&gt;&lt;/dd&gt;
+&lt;/dl&gt;
+
+&lt;p&gt;Notice that we can think of this as, instead, a coherentist theory of justification. Suppose we replace credence with &amp;ldquo;evidential&amp;rdquo; probability (think: Carnap, Williamson). Then we get a theory of justification where beliefs aren&amp;rsquo;t justified in isolation. It&amp;rsquo;s not enough for a belief to be highly probable in its own right, it has to be part of a larger body that underwrites that high probability.&lt;/p&gt;
+
+&lt;p&gt;Flipping things around, the coherentist theory of justification from &lt;a href=&#34;http://jonathanweisberg.org/post/coherentism-1&#34;&gt;my last wacky post&lt;/a&gt; doubles as an even wackier theory of full belief. The Humean view is roughly that a belief is justified iff its fellows secure its high probability. Now the &amp;ldquo;Super-Humean&amp;rdquo; view says a belief is justified to the extent its fellows secure its high centrality.&lt;/p&gt;
+
+&lt;p&gt;(Last time we explored one fun way of measuring centrality, drawing on coherentism for inspiration, and network theory for the math. But network theory offers &lt;a href=&#34;https://en.wikipedia.org/wiki/Centrality&#34; target=&#34;_blank&#34;&gt;many others ways of measuring centrality&lt;/a&gt;, which could be slotted in here to provide alternative theories of full and partial belief.)&lt;/p&gt;
+
+&lt;p&gt;Like Leitgeb&amp;rsquo;s Humean view, the Super-Humean view has a holistic character. Instead of evaluating full beliefs just by looking at your credences, we also have to look at what else you believe.&lt;/p&gt;
+
+&lt;p&gt;Another parallel: both theories have a permissive quality. Leitgeb presents examples where more than one set $\B$ fits with a given credence function $\p$, on the Humean view. And the same will be true on the Super-Humean view.&lt;sup class=&#34;footnote-ref&#34; id=&#34;fnref:coins&#34;&gt;&lt;a rel=&#34;footnote&#34; href=&#34;#fn:coins&#34;&gt;1&lt;/a&gt;&lt;/sup&gt;&lt;/p&gt;
+
+&lt;p&gt;But there are interesting differences. We can evaluate beliefs individually on the Super-Humean account, even though our method of evaluation is holistic. True, a belief&amp;rsquo;s justification depends on what else you believe. But your beliefs don&amp;rsquo;t all stand or fall together; some can come out justified even though others come out unjustified.&lt;/p&gt;
+
+&lt;p&gt;Strictly speaking, some beliefs come out highly justified even though others come out hardly justified. Because, differing again from the Humean view, evaluations are graded on the Super-Humean view. Each belief is assigned a degree of justification.&lt;/p&gt;
+
+&lt;p&gt;One nice thing about the Super-Humean view, then, is that it allows for &amp;ldquo;non-ideal&amp;rdquo; theorizing. We can study non-ideal agents, and discern more justified beliefs from lesser ones.&lt;/p&gt;
+
+&lt;p&gt;&amp;ldquo;But does it handle the lottery and preface paradoxes?&amp;rdquo;, is the question we always ask about a theory of full belief. As is so often the case, the answer is &amp;ldquo;yes, but&amp;hellip;&amp;rdquo;.&lt;/p&gt;
+
+&lt;p&gt;Consider a lottery of $100$ tickets with one to be selected at random as the winner. If you believe of each ticket that it will lose, we have a network of $101$ nodes: $L_1$ through $L_{100}$, plus the tautology node $\top$. How strong are the connections between these nodes? Assuming we take $L_3&amp;ndash;L_{100}$ as givens in determining the weight of the $L_2 \rightarrow L_1$ arrow, it gets weight $0$ since
+$$\p(L_1 \given L_2 \wedge L_3 \wedge \ldots \wedge L_{100}) = 0.$$
+And likewise for all the other arrows,&lt;sup class=&#34;footnote-ref&#34; id=&#34;fnref:epsilon&#34;&gt;&lt;a rel=&#34;footnote&#34; href=&#34;#fn:epsilon&#34;&gt;2&lt;/a&gt;&lt;/sup&gt; except those pointing to the $\top$ node (they always get weight $1$). All the $L_i$ beliefs thus come out with rock-bottom justification compared to $\top$, i.e. you aren&amp;rsquo;t justified in believing these lottery propositions.&lt;/p&gt;
+
+&lt;p&gt;Contrast that with a preface case, where you believe each of $100$ claims you&amp;rsquo;ve researched, $C_1$ through $C_{100}$. These claims are positively correlated though, or at least independent.&lt;sup class=&#34;footnote-ref&#34; id=&#34;fnref:pollock&#34;&gt;&lt;a rel=&#34;footnote&#34; href=&#34;#fn:pollock&#34;&gt;3&lt;/a&gt;&lt;/sup&gt; So
+$$\p(C_1 \given C_2 \wedge C_3 \wedge \ldots \wedge C_{100}) \approx 1,$$
+and likewise for the other $C_i$. The belief-graph here is thus tightly connected, and the $C_i$ nodes will score high on centrality compared to $\top$. So you&amp;rsquo;re highly justified in your beliefs in the preface case.&lt;/p&gt;
+
+&lt;p&gt;So far so good, at least if you think&amp;mdash;as I tend to&amp;mdash;that lottery beliefs should come out unjustified, while preface beliefs should come out justified. What&amp;rsquo;s the &amp;ldquo;but&amp;hellip;&amp;rdquo; then? I see two issues (at least).&lt;/p&gt;
+
+&lt;p&gt;First, we had to assume that all your remaining beliefs are taken as given in assessing the weight of a connection like $L_2 \rightarrow L_1$. That worked out well here. But as a general rule, it doesn&amp;rsquo;t always have great results, as &lt;a href=&#34;https://twitter.com/Juan/status/1161735087093776384?s=20&#34; target=&#34;_blank&#34;&gt;Juan Comesaña noted&lt;/a&gt; about our treatment of the Tweety case last time.&lt;/p&gt;
+
+&lt;p&gt;We could go all the way to the other extreme of course, and just evaluate the $L_2 \rightarrow L_1$ connection in isolation by looking at $\p(L_1 \given L_2)$. But that seems too extreme, since it means ignoring the agent&amp;rsquo;s other beliefs altogether.&lt;/p&gt;
+
+&lt;p&gt;What we want is something in between, it seems. We want the agent&amp;rsquo;s other beliefs to &amp;ldquo;get in the way&amp;rdquo; enough that they substantially weaken the connections in the lottery graph. But we don&amp;rsquo;t want them to be taken entirely for granted. Exactly how to achieve the right balance here is something I&amp;rsquo;m not sure about.&lt;/p&gt;
+
+&lt;p&gt;Second issue: what if you only adopt a few lottery beliefs, just $L_1$ and $L_2$ for example? Then we can&amp;rsquo;t exploit the &amp;ldquo;collective defeat&amp;rdquo; that drove our treatment of the lottery.&lt;/p&gt;
+
+&lt;p&gt;You might respond that this is a fine result, since isolated lottery beliefs are actually justified. It&amp;rsquo;s only when you apply the same logic to all the tickets that your justification is undercut. But I find this unsatisfying.&lt;/p&gt;
+
+&lt;p&gt;Maybe a student encountering the paradox for the first time is justified in believing their ticket will lose. But it should be enough to defeat that justification that they merely realize they could believe the same thing about all the other tickets, for identical reasons. Even if they don&amp;rsquo;t go ahead to form those beliefs, they should drop the one belief they had about their own ticket.&lt;/p&gt;
+
+&lt;p&gt;This is one way in which Leitgeb&amp;rsquo;s Humean theory seems superior to me. On the Humean view, which beliefs are rational depends on how the space of possibilities is partitioned (see &lt;a href=&#34;https://philpapers.org/rec/LEITST-2&#34; target=&#34;_blank&#34;&gt;Leitgeb 2014&lt;/a&gt;). And the partition is determined by the context&amp;mdash;how the subject frames the situation in their mind. (At least, that&amp;rsquo;s how I understand Leitgeb here.) So just realizing the symmetry of the lottery paradox is enough to defeat justification, on the Humean view.&lt;/p&gt;
+&lt;div class=&#34;footnotes&#34;&gt;
+
+&lt;hr /&gt;
+
+&lt;ol&gt;
+&lt;li id=&#34;fn:coins&#34;&gt;&lt;p&gt;Example: imagine we&amp;rsquo;ll flip a coin of unknown bias $10$ times. And suppose the probabilities obey Laplace&amp;rsquo;s &lt;a href=&#34;https://en.wikipedia.org/wiki/Rule_of_succession&#34; target=&#34;_blank&#34;&gt;Rule of Succession&lt;/a&gt; (a.k.a. Carnap&amp;rsquo;s  $\mathfrak{m}^*$ confirmation function). Then, if you believe each flip will land heads, your beliefs will all come out highly justified, i.e. highly central in your web of $10$ beliefs. But they&amp;rsquo;d have the same justification if you instead believed each flip will land tails.&lt;/p&gt;
+
+&lt;p&gt;Permissivism aside, this might seem a pretty bad result on its own. Even if our theory fixed which way you should go, say heads instead of tails, that would be pretty weird. Shouldn&amp;rsquo;t you wait for at least a few flips before forming any such beliefs?&lt;/p&gt;
+
+&lt;p&gt;The problem is that we haven&amp;rsquo;t required your beliefs to be inherently probable, only that they render one another probable. The Lockean and Humean theories have such a threshold requirement built-in, but we can build it into our theory too. We can just stipulate that a full belief should be highly probable, as well as being highly central in the network of all your beliefs.&lt;/p&gt;
+ &lt;a class=&#34;footnote-return&#34; href=&#34;#fnref:coins&#34;&gt;&lt;sup&gt;[return]&lt;/sup&gt;&lt;/a&gt;&lt;/li&gt;
+&lt;li id=&#34;fn:epsilon&#34;&gt;More carefully, each arrow gets the minimum possible weight. If we use the &amp;ldquo;Google hack&amp;rdquo; from last time, this is some small positive number $\epsilon$ instead of $0$.
+ &lt;a class=&#34;footnote-return&#34; href=&#34;#fnref:epsilon&#34;&gt;&lt;sup&gt;[return]&lt;/sup&gt;&lt;/a&gt;&lt;/li&gt;
+&lt;li id=&#34;fn:pollock&#34;&gt;Notice we&amp;rsquo;re borrowing the crux of &lt;a href=&#34;https://pdfs.semanticscholar.org/b22f/a2029aad762cbeec8d03659b0f8b71dd6d91.pdf&#34; target=&#34;_blank&#34;&gt;Pollock&amp;rsquo;s (1994)&lt;/a&gt; classic treatment of the lottery and preface paradoxes. We&amp;rsquo;re just plugging his observation into a different formal framework.
+ &lt;a class=&#34;footnote-return&#34; href=&#34;#fnref:pollock&#34;&gt;&lt;sup&gt;[return]&lt;/sup&gt;&lt;/a&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;
+</description>
+    </item>
     
     <item>
       <title>Coherentism Without Coherence</title>
@@ -4174,39 +4253,6 @@ avg / total       0.92      0.92      0.92     10000
 &lt;p&gt;We&amp;rsquo;re at 92% accuracy across all digits, not bad! And it looks like we could still improve with more training.&lt;/p&gt;
 
 &lt;p&gt;But let&amp;rsquo;s work on speeding up our optimization alogirthm first. We&amp;rsquo;ll pick things up there in the next post.&lt;/p&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>Call for Papers: Formal Epistemology Workshop (FEW) 2018</title>
-      <link>http://jonathanweisberg.org/post/CFP%20FEW%202018/</link>
-      <pubDate>Thu, 21 Dec 2017 10:36:00 -0500</pubDate>
-      
-      <guid>http://jonathanweisberg.org/post/CFP%20FEW%202018/</guid>
-      <description>&lt;p&gt;&lt;strong&gt;Location:&lt;/strong&gt; University of Toronto&lt;br /&gt;
-&lt;strong&gt;Dates:&lt;/strong&gt; June 12–14, 2018&lt;br /&gt;
-&lt;strong&gt;Keynote Speakers:&lt;/strong&gt; &lt;a href=&#34;http://www.larabuchak.net/&#34; target=&#34;_blank&#34;&gt;Lara Buchak&lt;/a&gt; and &lt;a href=&#34;https://sites.google.com/site/michaeltitelbaum/&#34; target=&#34;_blank&#34;&gt;Mike Titelbaum&lt;/a&gt;&lt;br /&gt;
-&lt;strong&gt;Submission Deadline:&lt;/strong&gt; February 12, 2018&lt;br /&gt;
-&lt;strong&gt;Authors Notified:&lt;/strong&gt; March 31, 2018&lt;/p&gt;
-
-&lt;p&gt;We are pleased to invite papers in formal epistemology, broadly construed to include related areas of philosophy as well as cognate disciplines like statistics, psychology, economics, computer science, and mathematics.&lt;/p&gt;
-
-&lt;p&gt;Submissions should be:&lt;/p&gt;
-
-&lt;ol&gt;
-&lt;li&gt;prepared for anonymous review,&lt;/li&gt;
-&lt;li&gt;no more than 6,000 words,&lt;/li&gt;
-&lt;li&gt;accompanied by an abstract of up to 300 words, and&lt;/li&gt;
-&lt;li&gt;in PDF format.&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;p&gt;Submission is via the &lt;a href=&#34;https://easychair.org/conferences/?conf=few2018&#34; target=&#34;_blank&#34;&gt;EasyChair website&lt;/a&gt;.&lt;/p&gt;
-
-&lt;p&gt;The final selection of the program will be made with an eye to diversity. We especially encourage submissions from PhD candidates, early career researchers, and members of groups underrepresented in academic philosophy.&lt;/p&gt;
-
-&lt;p&gt;Some funds are available to reimburse speakers&amp;rsquo; travel expenses. The available amounts are still being determined, but we hope to cover most/all expenses for student and early career speakers. Childcare can also be arranged.&lt;/p&gt;
-
-&lt;p&gt;The &lt;a href=&#34;http://jonathanweisberg.org/few2018&#34; target=&#34;_blank&#34;&gt;conference website is here&lt;/a&gt;. The contact address is &lt;a href=&#34;mailto:few2018toronto@gmail.com&#34; target=&#34;_blank&#34;&gt;few2018toronto@gmail.com&lt;/a&gt;. The local organizers are &lt;a href=&#34;http://www.davidjamesbar.net/&#34; target=&#34;_blank&#34;&gt;David James Barnett&lt;/a&gt;, &lt;a href=&#34;http://individual.utoronto.ca/jnagel/Home_Page.html&#34; target=&#34;_blank&#34;&gt;Jennifer Nagel&lt;/a&gt;, and &lt;a href=&#34;http://jonathanweisberg.org/&#34; target=&#34;_blank&#34;&gt;Jonathan Weisberg&lt;/a&gt;.&lt;/p&gt;
 </description>
     </item>
     

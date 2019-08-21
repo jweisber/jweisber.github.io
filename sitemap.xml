@@ -2,6 +2,11 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://jonathanweisberg.org/post/super-humean-belief/</loc>
+    <lastmod>2019-08-21T00:00:00-05:00</lastmod>
+  </url>
+  
+  <url>
     <loc>http://jonathanweisberg.org/post/coherentism-1/</loc>
     <lastmod>2019-08-14T00:00:00-05:00</lastmod>
   </url>
@@ -305,7 +310,7 @@
   
   <url>
     <loc>http://jonathanweisberg.org/tags/epistemology/</loc>
-    <lastmod>2019-08-14T00:00:00-05:00</lastmod>
+    <lastmod>2019-08-21T00:00:00-05:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -322,7 +327,7 @@
   
   <url>
     <loc>http://jonathanweisberg.org/tags/formal-epistemology/</loc>
-    <lastmod>2019-08-14T00:00:00-05:00</lastmod>
+    <lastmod>2019-08-21T00:00:00-05:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -334,7 +339,7 @@
   
   <url>
     <loc>http://jonathanweisberg.org/</loc>
-    <lastmod>2019-08-14T00:00:00-05:00</lastmod>
+    <lastmod>2019-08-21T00:00:00-05:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -364,7 +369,7 @@
   
   <url>
     <loc>http://jonathanweisberg.org/tags/philosophy/</loc>
-    <lastmod>2019-08-14T00:00:00-05:00</lastmod>
+    <lastmod>2019-08-21T00:00:00-05:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -376,7 +381,7 @@
   
   <url>
     <loc>http://jonathanweisberg.org/post/</loc>
-    <lastmod>2019-08-14T00:00:00-05:00</lastmod>
+    <lastmod>2019-08-21T00:00:00-05:00</lastmod>
     <priority>0</priority>
   </url>
   
