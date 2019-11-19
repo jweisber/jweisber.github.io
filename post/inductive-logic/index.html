@@ -1,0 +1,546 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Jonathan Weisberg's Homepage">
+    <meta name="author" content="Jonathan Weisberg">
+    
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@jweisber">
+    <meta name="twitter:creator" content="@jweisber">
+    <meta name="twitter:title" content="Crash Course in Inductive Logic">
+    <meta name="twitter:description" content="There are four ways things can turn out with two flips of a coin: $$ HH, \quad HT, \quad TH, \quad TT.$$ If we know nothing about the coin&rsquo;s tendencies, we might assign equal probability to each of these four possible outcomes: $$ Pr(HH) = Pr(HT) = Pr(TH) = Pr(TT) = 1/ 4. $$ But from another point of view, there are primarily three possibilities. If we ignore order, the possible outcomes are $0$ heads, $1$ head, or $2$ heads.">
+    <meta name="twitter:image" content="/img/inductive-logic/lambda-continuum-k1-n1.png">
+
+    <meta property="og:url" content="/post/inductive-logic/" />
+    <meta property="og:type" content="article" />
+    <meta property="og:title" content="Crash Course in Inductive Logic" />
+    <meta property="og:description" content="There are four ways things can turn out with two flips of a coin: $$ HH, \quad HT, \quad TH, \quad TT.$$ If we know nothing about the coin&rsquo;s tendencies, we might assign equal probability to each of these four possible outcomes: $$ Pr(HH) = Pr(HT) = Pr(TH) = Pr(TT) = 1/ 4. $$ But from another point of view, there are primarily three possibilities. If we ignore order, the possible outcomes are $0$ heads, $1$ head, or $2$ heads." />
+    <meta property="og:image" content="/img/inductive-logic/lambda-continuum-k1-n1.png" />
+
+
+    <title>Crash Course in Inductive Logic</title>
+
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+    <link href="/css/prism.css" rel="stylesheet" />
+    <link href="/css/scarab.css" rel="stylesheet">
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]},
+        "HTML-CSS": {
+          availableFonts: ["Neo-Euler"],
+          preferredFont: "Neo-Euler",
+          webFont: "Neo-Euler",
+          imageFont: "Neo-Euler",
+        }
+      });
+    </script>
+    <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+    </script>
+    
+    
+    
+
+</head>
+
+<body>
+
+<nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+  <div class="container">
+    
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-navbar-collapse-1">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="http://jonathanweisberg.org/">Jonathan Weisberg</a>
+    </div>
+    
+    <div class="collapse navbar-collapse" id="bs-navbar-collapse-1">
+      <ul class="nav navbar-nav">
+        <li>
+          <a href="/pdf/CV.pdf">
+            <i class="fa fa-briefcase"></i>&nbsp;
+            CV
+          </a>
+        </li>
+        <li>
+          <a href="/post/">
+            <i class="fa fa-code"></i>&nbsp;
+            Blog
+          </a>
+        </li>
+        <li>
+          <a href="/publication/">
+            <i class="fa fa-files-o"></i>&nbsp;
+            Research
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+
+
+  
+  <div class="container blog-post">
+
+    
+    <div class="row">
+      <div class="col-md-3 hidden-sm hidden-xs text-right">
+        <h1 class="post-title">&nbsp;</h1>
+          <em>Nov 19, 2019</em><br />
+          
+          
+          
+          <span class="post-tags">
+            
+            <a class="post-tag" href="http://jonathanweisberg.org/tags/philosophy">Philosophy</a>
+             &bull;   
+            
+            <a class="post-tag" href="http://jonathanweisberg.org/tags/epistemology">Epistemology</a>
+             &bull;  
+            
+            <a class="post-tag" href="http://jonathanweisberg.org/tags/formal-epistemology">Formal Epistemology</a>
+            
+            
+          </span>
+          
+          
+        </p>
+      </div>
+
+      <div class="col-md-7">
+        <h1 class="post-title">Crash Course in Inductive Logic</h1>
+        <div class="hidden-md hidden-lg post-metadata">
+          <div>
+            <em>Nov 19, 2019</em>
+          </div>
+          
+          
+          
+          <p class="post-tags">
+            
+            <a class="post-tag" href="http://jonathanweisberg.org/tags/philosophy">Philosophy</a>
+             &bull;   
+            
+            <a class="post-tag" href="http://jonathanweisberg.org/tags/epistemology">Epistemology</a>
+             &bull;  
+            
+            <a class="post-tag" href="http://jonathanweisberg.org/tags/formal-epistemology">Formal Epistemology</a>
+            
+            
+          </p>
+          
+          
+        </div>
+
+        <div class="post-body">
+          
+
+<p>There are four ways things can turn out with two flips of a coin:
+$$ HH, \quad HT, \quad TH, \quad TT.$$
+If we know nothing about the coin&rsquo;s tendencies, we might assign equal probability to each of
+these four possible outcomes:
+$$ Pr(HH) = Pr(HT) = Pr(TH) = Pr(TT) = 1/ 4. $$
+But from another point of view, there are primarily three possibilities. If we ignore order,
+the possible outcomes are $0$ heads, $1$ head, or $2$ heads. So we might
+instead assign equal probability to these three outcomes, then divide
+the middle $1/ 3$ evenly between $HT$ and $TH$: $$
+  Pr(HH) = 1/3  \qquad  Pr(HT) = Pr(TH) = 1/6  \qquad  Pr(TT) = 1/ 3.
+$$</p>
+
+<p>This two-stage approach may seem odd. But it&rsquo;s actually friendlier
+from the point of view of inductive reasoning. On the first
+scheme, a heads on the first toss doesn&rsquo;t increase the probability of
+another heads. It stays fixed at $1/ 2$:
+$$
+  \newcommand{\p}{Pr}
+  \newcommand{\given}{\mid}
+  \renewcommand{\neg}{\mathbin{\sim}}
+  \renewcommand{\wedge}{\mathbin{\text{&amp;}}}
+  \p(HH \given H) = \frac{1/ 4}{1/ 4 + 1/ 4} = \frac{1}{2}.
+$$
+Whereas it does increase on the second strategy, from $1/ 2$ to $2/ 3$:
+$$ \p(HH \given H) = \frac{1/ 3}{1/ 3 + 1/ 6} = \frac{2}{3}. $$
+The two-stage approach thus learns from experience, where the
+single-step division is skeptical about induction.</p>
+
+<p>This holds true as we increase the number of flips. If we do three tosses
+for example, we&rsquo;ll find that $\p(HHH \given HH) = 3/ 4$ on the
+two-stage analysis. Whereas this probability stays stubbornly fixed at
+$1/ 2$ on the first approach. It won&rsquo;t budge no matter how many heads
+we observe, so we can&rsquo;t learn anything about the coin&rsquo;s bias this way.</p>
+
+<p>This is the difference between Carnap&rsquo;s famous account of induction, from
+his 1950 book <em>Logical Foundations of Probability</em>, and the account
+he finds <a href="http://www.kfs.org/jonathan/witt/t515en.html" target="_blank">in Wittgenstein&rsquo;s
+<em>Tractatus</em></a>. <sup class="footnote-ref" id="fnref:peirce"><a rel="footnote" href="#fn:peirce">1</a></sup> Although
+Carnap had actually been scooped by W. E. Johnson, who worked out a similar
+analysis about $25$ years earlier.</p>
+
+<p>This is a short explainer on some key elements of inductive logic that
+Johnson and Carnap worked out, and the place of those ideas in the story of
+inductive logic.</p>
+
+<ul>
+<li><a href="/pdf/inductive-logic.pdf">PDF version here</a></li>
+</ul>
+
+<h1 id="states-structures">States &amp; Structures</h1>
+
+<p>Carnap calls fine-grained specifications like $TH$, <em>state-descriptions</em>.
+The coarser grained &ldquo;$1$ head&rdquo; is a <em>structure-description</em>. A
+state-description specifies which flips land heads, and which tails.
+While a structure-description specifies <em>how many</em> land heads and tails,
+without necessarily saying which.</p>
+
+<p>It needn&rsquo;t be coin flips landing heads or tails, of course. The same
+ideas apply to any set of objects or events, and any feature they might
+have or lack.</p>
+
+<p>Suppose we have two objects $a$ and $b$, each of which might have some
+property $F$. Working for a moment as Carnap did, in
+first-order logic, here is an example of a structure-description:
+$$ (Fa \wedge \neg Fb) \vee (\neg Fa \wedge Fb). $$ But this isn&rsquo;t a
+state-description, since it doesn&rsquo;t specify which object has $F$. It
+only says how many objects have $F$, namely $1$. One of the disjuncts alone would be a
+state-description though:
+$$ Fa \wedge \neg Fb. $$</p>
+
+<p>Carnap&rsquo;s idea was that all structure-descriptions start out with the
+same probability. And these probabilities are then divided equally among
+the state-descriptions that make up a structure-description.</p>
+
+<p>For example, if we do three flips, there are four
+structure-descriptions: $0$ heads, $1$ head, $2$ heads, and $3$ heads.
+Some of these have only one state-description. For example, there&rsquo;s only
+one way to get $0$ heads, namely $TTT$. So $$ \p(TTT) = 1/ 4. $$ But
+others have multiple state-descriptions. There are three ways to get $1$
+head for example, so we divide $1/ 4$ between them:
+$$ \p(HTT) = \p(THT) = \p(TTH) = 1/ 12. $$</p>
+
+<p>The effect is that more homogeneous sequences start out more probable.
+There&rsquo;s only one way to get all heads, so the $HH$ state-description
+inherits the full probability of the corresponding &ldquo;$2$ heads&rdquo;
+structure-description. But a $50$-$50$ split has multiple permutations,
+each of which inherits only a portion of the same quantum of
+probability. A heterogeneous sequence of heads and tails thus starts out
+less probable than a homogeneous one.</p>
+
+<p>That&rsquo;s why the two-stage analysis is induction-friendly. It effectively
+builds Hume&rsquo;s &ldquo;uniformity of nature&rdquo; assumption into the prior
+probabilities.</p>
+
+<h1 id="the-rule-of-succession">The Rule of Succession</h1>
+
+<p>The two-stage assignment also yields a very simple formula for induction:
+Laplace&rsquo;s famous Rule of Succession. (Derivation in the Appendix.)</p>
+
+<dl>
+<dt>The Rule of Succession</dt>
+<dd><p>Given $k$ heads out of $n$ observed flips, the probability of heads
+on a subsequent toss is $$\frac{k+1}{n+2}.$$</p></dd>
+</dl>
+
+<p>Laplace arrived at this rule about $150$ years earlier by somewhat
+different means. But there is a strong similarity.</p>
+
+<p>Laplace supposed that our coin has some fixed, but unknown, chance $p$
+of landing heads on each toss. Suppose we regard all possible values
+$0 \leq p \leq 1$ as equally likely.<sup class="footnote-ref" id="fnref:1"><a rel="footnote" href="#fn:1">2</a></sup> If we then update our beliefs
+about the true value of $p$ using Bayes&rsquo; theorem, we arrive at the Rule
+of Succession. (Proving this is a bit involved. Maybe I&rsquo;ll go over it in
+another time.)</p>
+
+<p>Carnap&rsquo;s way of assigning prior probabilities is essentially the same
+idea, just applied in a discrete setting. By treating all
+structure-descriptions as equiprobable, we make all possible frequencies
+of heads equiprobable. This is a discrete analogue of treating all
+possible values of $p$ as equiprobable.</p>
+
+<p>William Ernest Johnson actually carried out the same analysis about $25$
+years before Carnap. He even did so with greater generality. But
+Carnap&rsquo;s next step here was novel, so far as I know.</p>
+
+<h1 id="the-continuum-of-inductive-methods">The Continuum of Inductive Methods</h1>
+
+<p>Both Johnson and Carnap eventually realized that the two methods of assigning priors we&rsquo;ve
+considered so far are just two points on a larger continuum.</p>
+
+<dl>
+<dt>The $\lambda$ Continuum</dt>
+<dd><p>Given $k$ heads out of $n$ observed flips, the probability of heads
+on a subsequent toss is $$\frac{k + \lambda/2}{n + \lambda},$$ for
+some $\lambda$ in the range $0 \leq \lambda \leq \infty$.</p></dd>
+</dl>
+
+<p>What value should $\lambda$ take here? Notice we get the Rule of
+Succession if $\lambda = 2$. And we get inductive skepticism if we let
+$\lambda$ approach $\infty$. For then $k$ and $n$ fall away and the
+ratio converges to $1/ 2$, no matter what $k$ and $n$ are.</p>
+
+<p>If we set $\lambda = 0$, we get a formula we haven&rsquo;t discussed yet:
+$k/n$. Reichenbach called this the Straight Rule. (In modern statistical
+parlance it&rsquo;s the &ldquo;maximum likelihood estimate.&rdquo;)<sup class="footnote-ref" id="fnref:2"><a rel="footnote" href="#fn:2">3</a></sup></p>
+
+<p>The overall pattern is: the higher $\lambda$, the more &ldquo;cautious&rdquo; our
+inductive inferences will be. A larger $\lambda$ means less influence
+from $k$ and $n$: the probability of another heads stays closer to the
+initial value of $1/ 2$. In the extreme case where $\lambda = \infty$,
+it stays stuck at exactly $1/ 2$ forever.</p>
+
+<p>A low value of $\lambda$, on the other hand, will make our inferences
+more ambitious. In the extreme case $\lambda = 0$, we jump immediately
+to the observed frequency. Our expectation about the next toss is just
+$k/n$, the frequency we&rsquo;ve observed so far. If we&rsquo;ve observed only one
+flip and it was heads ($k = n = 1$), we&rsquo;ll be certain of heads on
+the second toss! <sup class="footnote-ref" id="fnref:3"><a rel="footnote" href="#fn:3">4</a></sup></p>
+
+<p>We can illustrate this pattern in a plot. First let&rsquo;s consider what
+happens if the coin keeps coming up heads, i.e. $k = n$. As $n$
+increases, various settings of $\lambda$ behave as follows.</p>
+
+<p><img src="/img/inductive-logic/lambda-continuum-k1-n1.png" alt="" /></p>
+
+<p>Now suppose the coin only lands heads every third time, so that
+$k \approx n/3$.</p>
+
+<p><img src="/img/inductive-logic/lambda-continuum-k1-n3.png" alt="" /></p>
+
+<p>Notice how lower settings of $\lambda$ bounce around more here before
+settling into roughly $1/ 3$. Higher settings approach $1/ 3$ more
+steadily, but they take longer to get there.</p>
+
+<h1 id="carnap-s-program">Carnap&rsquo;s Program</h1>
+
+<p>Johnson and Carnap went much further, and others since have gone further still. For
+example, we can include more than one predicate, we can use relational
+predicates, and much more.</p>
+
+<p>But philosophers aren&rsquo;t too big on this research program nowadays. Why not?</p>
+
+<p>Choosing $\lambda$ is one issue. Once we see that it&rsquo;s more than a
+binary choice, between inductive optimism and skepticism, it&rsquo;s hard to
+see why we should plump for any particular value of $\lambda$. We could
+set $\lambda = 2$, or $\pi$, or $42$. By what criterion could we make
+this choice? No clear answer emerged from Carnap&rsquo;s program.</p>
+
+<p>Another issue is Goodman&rsquo;s famous <a href="http://www.wi-phi.com/video/puzzle-grue" target="_blank">grue
+puzzle</a>. Suppose we trade our
+coin flips for emeralds. We might replace the heads/tails dichotomy with
+green/not-green then. But we could instead replace it with
+grue/not-grue. The prescriptions of Carnap&rsquo;s inductive logic depend on
+our choice of predicate&mdash;on the underlying language to which we apply
+our chosen value of $\lambda$.</p>
+
+<p>So the Johnson/Carnap system doesn&rsquo;t provide us with rules for inductive
+reasoning, more a framework for formulating such rules. We have to
+decide which predicates should be projectible by choosing the underlying
+language. And then we have to decide how projectible they should be by
+choosing $\lambda$. Only then does the framework tell us what
+conclusions to draw from a given set of observations.</p>
+
+<p>Personally, I still find Carnap&rsquo;s framework useful. It provides a
+lovely way to express informal ideas more rigorously. In it we can frame
+questions about induction, skepticism, and prior probabilities with
+lucidity.</p>
+
+<p>I also like it as a source of toy models. For example, I might test when
+a given claim about induction holds and when it doesn&rsquo;t, by playing with
+different incarnations of $\lambda$.</p>
+
+<p>The utility of Carnap&rsquo;s framework is thus a lot like that of its
+deductive cousins. Compare Timothy Williamson&rsquo;s use of modal logic to
+create <a href="https://philpapers.org/rec/WILANO-22" target="_blank">models of Gettier cases</a>,
+for example, or his model of <a href="https://philpapers.org/rec/WILIKN" target="_blank">improbable
+knowledge</a>.</p>
+
+<p>Even in deductive logic, we only get as much out as we put in. We have
+to choose our connectives in propositional logic, our accessibility
+relation in modal logic, etc. But a flexible system like possible-world
+frames still has its uses, because we can use it to explore
+philosophical options and their interconnections.</p>
+
+<h1 id="further-readings">Further Readings</h1>
+
+<p>For more on this topic, here are some suggested readings.</p>
+
+<ul>
+<li><a href="http://fitelson.org/il.pdf" target="_blank">Inductive Logic</a>, by Branden Fitelson</li>
+<li><a href="https://www.cambridge.org/core/books/cambridge-companion-to-carnap/carnap-on-probability-and-induction/8AEBCBACE4A89B567B7508A1E065EB51" target="_blank">Carnap on Probability and Induction</a>,
+by Sandy Zabell</li>
+<li><a href="https://www.iep.utm.edu/conf-ind/" target="_blank">The IEP entry on Confirmation and
+Induction</a>, by Franz Huber</li>
+<li><a href="https://plato.stanford.edu/entries/logic-inductive/" target="_blank">The SEP entry on Inductive
+Logic</a>, by
+James Hawthorne</li>
+<li><a href="https://www.cambridge.org/core/books/pure-inductive-logic/2ED3E3EE53CC51A99C1DD94341CB7FA2" target="_blank">Pure Inductive
+Logic</a>,
+by Jeffrey Paris and Alena Vencovská</li>
+</ul>
+
+<p>And if you want to see how Johnson and Carnap&rsquo;s two-stage assignment of priors yields the
+Rule of Succession, check out the Appendix.</p>
+
+<h1 id="appendix-deriving-the-rule-of-succession">Appendix: Deriving the Rule of Succession</h1>
+
+<p>To derive the Rule of Succession from the two-stage assignment of
+priors, we need two key formulas.</p>
+
+<ol>
+<li>The prior probability of a particular sequence with $k$ heads out of
+$n$ flips.</li>
+<li>The prior probability of the same initial sequence, followed by one
+more heads.</li>
+</ol>
+
+<p>The first quantity is the probability of getting $k$ heads out of $n$
+flips, regardless of order, divided by the number of ways to get $k$
+heads out of $n$ flips. The number of ways to get $k$ heads out of $n$
+flips is called the <a href="https://en.wikipedia.org/wiki/Binomial_coefficient" target="_blank">binomial
+coefficient</a>. It&rsquo;s
+written $\binom{n}{k}$, and there&rsquo;s a nice formula for calculating it:
+$$ \binom{n}{k} = \frac{n!}{(n-k)!k!}. $$ Since a sequence of $n$ flips
+can feature anywhere from $0$ to $n$ heads, there are $n+1$ structure
+descriptions, each with probability $1/(n+1)$. Thus the probability of a
+specific state-description with $k$ heads out of $n$ flips is
+\begin{align}
+  \frac{1}{(n+1)\binom{n}{k}}
+    &amp;= \frac{1}{(n+1) \frac{n!}{(n-k)!k!}}\\<br />
+    &amp;= \frac{(n-k)!k!}{(n+1)!}.\tag{1}
+\end{align}</p>
+
+<p>The second probability we need is for the same initial sequence, but
+with an additional heads on the next toss. That&rsquo;s a sequence with $k+1$
+heads out of $n+1$ tosses. There are $n+2$ structure descriptions now,
+each with probability $1/(n+2)$. So the probability in question is
+\begin{align}
+  \frac{1}{(n+2)\binom{n+1}{k+1}}
+    &amp;= \frac{1}{(n+2) \frac{(n+1)!}{(n-k)!(k+1)!}}\\<br />
+    &amp;= \frac{(n-k)!(k+1)!}{(n+2)!}.\tag{2}
+\end{align}</p>
+
+<p>Now, to get the conditional probability we&rsquo;re after, we take the ratio
+of the second probability $(2)$ over the first probability $(1)$: $$
+\begin{aligned}
+  \frac{ \frac{(n-k)!(k+1)!}{(n+2)!} }{ \frac{(n-k)!k!}{(n+1)!} }
+    &amp;= \frac{(n-k)!(k+1)!}{(n+2)!}  \frac{(n+1)!}{(n-k)!k!} \\<br />
+    &amp;= \frac{k+1}{n+2}.
+\end{aligned}
+$$ This agrees with the rule of succession, as desired.</p>
+
+<p>So far though, we&rsquo;ve only shown the rule of succession for a specific,
+observed sequence. We&rsquo;ve shown that $\p(HTHH \given HTH) = 3/ 4$, for example.
+But what if we don&rsquo;t know the particular sequence so far? Maybe we only
+know there were $2$ heads out of $3$ tosses. Shouldn&rsquo;t we still be able to
+derive the same result?</p>
+
+<p>We can, with the help of a relevant theorem of probability: if
+$\p(A \given B) = \p(A \given C)$, and $B$ and $C$ are mutually
+exclusive, then
+$$ \p(A \given B \vee C) = \p(A \given B) = \p(A \given C). $$ In our
+case $A$ specifies heads on flip $n+1$, while $B$ and $C$ each specify
+some sequence for flips $1$ through $n$. Although these sequences
+feature the same number of heads and tails, $B$ and $C$ specify
+different orderings. So they&rsquo;re mutually exclusive.</p>
+
+<p>We&rsquo;ve already shown that
+$$ \p(A \given B) = \frac{k+1}{n+1} = \p(A \given C). $$ So we just have
+to verify the theorem:
+$$
+\begin{aligned}
+  \p(A \given B \vee C)
+    &amp;= \frac{\p(A \wedge (B \vee C))}{\p(B \vee C)}\\<br />
+    &amp;= \frac{\p(A \wedge B) + \p(A \wedge C)}{\p(B \vee C)}\\<br />
+    &amp;= \frac{\p(A \given B)\p(B) + \p(A \given C)\p( C)}{\p(B \vee C)}\\<br />
+    &amp;= \frac{\p(A \given B) \left( \p(B) + \p( C) \right)}{\p(B \vee C)}\\<br />
+    &amp;= \p(A \given B).
+\end{aligned}
+$$
+By applying this formula repeatedly to a disjunction of state-descriptions, we get the conditional probability on the structure description of interest.</p>
+<div class="footnotes">
+
+<hr />
+
+<ol>
+<li id="fn:peirce">Carnap also cites Keynes and Peirce as endorsing the Wittgensteinian approach. But thanks to Jonathan Livengood I learned this is actually a misattribution: Keynes mistakenly attributes the view to Peirce, and Carnap seems to have followed Keynes&rsquo; error.
+ <a class="footnote-return" href="#fnref:peirce"><sup>[return]</sup></a></li>
+
+<li id="fn:1"><p>More precisely: we regard them as having the same probability
+<em>density</em>, namely $1$.</p>
+ <a class="footnote-return" href="#fnref:1"><sup>[return]</sup></a></li>
+
+<li id="fn:2"><p>For the $\lambda = 0$ case, we need probability axioms that permit
+conditioning on zero-probability events. For example,
+$\p(HH \given H) = 1$ so $\p(HT \given H) = 0$. Thus
+$\p(HT) = 0$, and $\p(HTH \given HT)$ is undefined on the usual,
+Kolmogorov axioms.</p>
+ <a class="footnote-return" href="#fnref:2"><sup>[return]</sup></a></li>
+
+<li id="fn:3"><p>When $n = 0$ we have to stipulate that the probability is $1/ 2$,
+the limit as $\lambda \rightarrow 0$.</p>
+ <a class="footnote-return" href="#fnref:3"><sup>[return]</sup></a></li>
+</ol>
+</div>
+
+
+          &nbsp;
+        </div>
+
+        <div>
+          <div class="post-back-link">
+    <a href="javascript: history.back()">
+        <i class="fa fa-arrow-left"></i> 
+        Back
+    </a>
+</div>
+        </div>
+      </div>
+    </div>
+    
+
+<footer style="padding-top: 1em;">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-lg-12 text-center">
+        <p>
+          &nbsp;
+        </p>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+<script src="/js/prism.js"></script>
+
+<script type="text/javascript">
+var sc_project= 11213692 ;
+var sc_invisible= 1 ;
+var sc_security="b1954803";
+var scJsHost = (("https:" == document.location.protocol) ?
+"https://secure." : "http://www.");
+document.write("<sc"+"ript type='text/javascript' src='" +
+scJsHost+
+"statcounter.com/counter/counter.js'></"+"script>");
+</script>
+<noscript><div class="statcounter"><a title="web analytics"
+href="http://statcounter.com/" target="_blank"><img
+class="statcounter"
+src="//c.statcounter.com/11213692/0/b1954803/1/" alt="web
+analytics"></a></div></noscript>
+
+
+</body>
+</html>
+

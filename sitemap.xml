@@ -2,6 +2,11 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://jonathanweisberg.org/post/inductive-logic/</loc>
+    <lastmod>2019-11-19T00:00:00-05:00</lastmod>
+  </url>
+  
+  <url>
     <loc>http://jonathanweisberg.org/post/super-humean-belief/</loc>
     <lastmod>2019-08-21T00:00:00-05:00</lastmod>
   </url>
@@ -77,7 +82,7 @@
   </url>
   
   <url>
-    <loc>http://jonathanweisberg.org/post/A%20Neural%20Network%20from%20Scratch%20-%20Part%201/</loc>
+    <loc>http://jonathanweisberg.org/post/a%20neural%20network%20from%20scratch%20-%20part%201/</loc>
     <lastmod>2018-03-05T00:00:00-05:00</lastmod>
   </url>
   
@@ -310,7 +315,7 @@
   
   <url>
     <loc>http://jonathanweisberg.org/tags/epistemology/</loc>
-    <lastmod>2019-08-21T00:00:00-05:00</lastmod>
+    <lastmod>2019-11-19T00:00:00-05:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -327,7 +332,7 @@
   
   <url>
     <loc>http://jonathanweisberg.org/tags/formal-epistemology/</loc>
-    <lastmod>2019-08-21T00:00:00-05:00</lastmod>
+    <lastmod>2019-11-19T00:00:00-05:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -339,7 +344,7 @@
   
   <url>
     <loc>http://jonathanweisberg.org/</loc>
-    <lastmod>2019-08-21T00:00:00-05:00</lastmod>
+    <lastmod>2019-11-19T00:00:00-05:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -369,7 +374,7 @@
   
   <url>
     <loc>http://jonathanweisberg.org/tags/philosophy/</loc>
-    <lastmod>2019-08-21T00:00:00-05:00</lastmod>
+    <lastmod>2019-11-19T00:00:00-05:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -381,7 +386,7 @@
   
   <url>
     <loc>http://jonathanweisberg.org/post/</loc>
-    <lastmod>2019-08-21T00:00:00-05:00</lastmod>
+    <lastmod>2019-11-19T00:00:00-05:00</lastmod>
     <priority>0</priority>
   </url>
   

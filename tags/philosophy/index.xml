@@ -9,6 +9,362 @@
     <atom:link href="http://jonathanweisberg.org/tags/philosophy/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
+      <title>Crash Course in Inductive Logic</title>
+      <link>http://jonathanweisberg.org/post/inductive-logic/</link>
+      <pubDate>Tue, 19 Nov 2019 00:00:00 -0500</pubDate>
+      
+      <guid>http://jonathanweisberg.org/post/inductive-logic/</guid>
+      <description>
+
+&lt;p&gt;There are four ways things can turn out with two flips of a coin:
+$$ HH, \quad HT, \quad TH, \quad TT.$$
+If we know nothing about the coin&amp;rsquo;s tendencies, we might assign equal probability to each of
+these four possible outcomes:
+$$ Pr(HH) = Pr(HT) = Pr(TH) = Pr(TT) = 1/ 4. $$
+But from another point of view, there are primarily three possibilities. If we ignore order,
+the possible outcomes are $0$ heads, $1$ head, or $2$ heads. So we might
+instead assign equal probability to these three outcomes, then divide
+the middle $1/ 3$ evenly between $HT$ and $TH$: $$
+  Pr(HH) = 1/3  \qquad  Pr(HT) = Pr(TH) = 1/6  \qquad  Pr(TT) = 1/ 3.
+$$&lt;/p&gt;
+
+&lt;p&gt;This two-stage approach may seem odd. But it&amp;rsquo;s actually friendlier
+from the point of view of inductive reasoning. On the first
+scheme, a heads on the first toss doesn&amp;rsquo;t increase the probability of
+another heads. It stays fixed at $1/ 2$:
+$$
+  \newcommand{\p}{Pr}
+  \newcommand{\given}{\mid}
+  \renewcommand{\neg}{\mathbin{\sim}}
+  \renewcommand{\wedge}{\mathbin{\text{&amp;amp;}}}
+  \p(HH \given H) = \frac{1/ 4}{1/ 4 + 1/ 4} = \frac{1}{2}.
+$$
+Whereas it does increase on the second strategy, from $1/ 2$ to $2/ 3$:
+$$ \p(HH \given H) = \frac{1/ 3}{1/ 3 + 1/ 6} = \frac{2}{3}. $$
+The two-stage approach thus learns from experience, where the
+single-step division is skeptical about induction.&lt;/p&gt;
+
+&lt;p&gt;This holds true as we increase the number of flips. If we do three tosses
+for example, we&amp;rsquo;ll find that $\p(HHH \given HH) = 3/ 4$ on the
+two-stage analysis. Whereas this probability stays stubbornly fixed at
+$1/ 2$ on the first approach. It won&amp;rsquo;t budge no matter how many heads
+we observe, so we can&amp;rsquo;t learn anything about the coin&amp;rsquo;s bias this way.&lt;/p&gt;
+
+&lt;p&gt;This is the difference between Carnap&amp;rsquo;s famous account of induction, from
+his 1950 book &lt;em&gt;Logical Foundations of Probability&lt;/em&gt;, and the account
+he finds &lt;a href=&#34;http://www.kfs.org/jonathan/witt/t515en.html&#34; target=&#34;_blank&#34;&gt;in Wittgenstein&amp;rsquo;s
+&lt;em&gt;Tractatus&lt;/em&gt;&lt;/a&gt;. &lt;sup class=&#34;footnote-ref&#34; id=&#34;fnref:peirce&#34;&gt;&lt;a rel=&#34;footnote&#34; href=&#34;#fn:peirce&#34;&gt;1&lt;/a&gt;&lt;/sup&gt; Although
+Carnap had actually been scooped by W. E. Johnson, who worked out a similar
+analysis about $25$ years earlier.&lt;/p&gt;
+
+&lt;p&gt;This is a short explainer on some key elements of inductive logic that
+Johnson and Carnap worked out, and the place of those ideas in the story of
+inductive logic.&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;http://jonathanweisberg.org/pdf/inductive-logic.pdf&#34;&gt;PDF version here&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&#34;states-structures&#34;&gt;States &amp;amp; Structures&lt;/h1&gt;
+
+&lt;p&gt;Carnap calls fine-grained specifications like $TH$, &lt;em&gt;state-descriptions&lt;/em&gt;.
+The coarser grained &amp;ldquo;$1$ head&amp;rdquo; is a &lt;em&gt;structure-description&lt;/em&gt;. A
+state-description specifies which flips land heads, and which tails.
+While a structure-description specifies &lt;em&gt;how many&lt;/em&gt; land heads and tails,
+without necessarily saying which.&lt;/p&gt;
+
+&lt;p&gt;It needn&amp;rsquo;t be coin flips landing heads or tails, of course. The same
+ideas apply to any set of objects or events, and any feature they might
+have or lack.&lt;/p&gt;
+
+&lt;p&gt;Suppose we have two objects $a$ and $b$, each of which might have some
+property $F$. Working for a moment as Carnap did, in
+first-order logic, here is an example of a structure-description:
+$$ (Fa \wedge \neg Fb) \vee (\neg Fa \wedge Fb). $$ But this isn&amp;rsquo;t a
+state-description, since it doesn&amp;rsquo;t specify which object has $F$. It
+only says how many objects have $F$, namely $1$. One of the disjuncts alone would be a
+state-description though:
+$$ Fa \wedge \neg Fb. $$&lt;/p&gt;
+
+&lt;p&gt;Carnap&amp;rsquo;s idea was that all structure-descriptions start out with the
+same probability. And these probabilities are then divided equally among
+the state-descriptions that make up a structure-description.&lt;/p&gt;
+
+&lt;p&gt;For example, if we do three flips, there are four
+structure-descriptions: $0$ heads, $1$ head, $2$ heads, and $3$ heads.
+Some of these have only one state-description. For example, there&amp;rsquo;s only
+one way to get $0$ heads, namely $TTT$. So $$ \p(TTT) = 1/ 4. $$ But
+others have multiple state-descriptions. There are three ways to get $1$
+head for example, so we divide $1/ 4$ between them:
+$$ \p(HTT) = \p(THT) = \p(TTH) = 1/ 12. $$&lt;/p&gt;
+
+&lt;p&gt;The effect is that more homogeneous sequences start out more probable.
+There&amp;rsquo;s only one way to get all heads, so the $HH$ state-description
+inherits the full probability of the corresponding &amp;ldquo;$2$ heads&amp;rdquo;
+structure-description. But a $50$-$50$ split has multiple permutations,
+each of which inherits only a portion of the same quantum of
+probability. A heterogeneous sequence of heads and tails thus starts out
+less probable than a homogeneous one.&lt;/p&gt;
+
+&lt;p&gt;That&amp;rsquo;s why the two-stage analysis is induction-friendly. It effectively
+builds Hume&amp;rsquo;s &amp;ldquo;uniformity of nature&amp;rdquo; assumption into the prior
+probabilities.&lt;/p&gt;
+
+&lt;h1 id=&#34;the-rule-of-succession&#34;&gt;The Rule of Succession&lt;/h1&gt;
+
+&lt;p&gt;The two-stage assignment also yields a very simple formula for induction:
+Laplace&amp;rsquo;s famous Rule of Succession. (Derivation in the Appendix.)&lt;/p&gt;
+
+&lt;dl&gt;
+&lt;dt&gt;The Rule of Succession&lt;/dt&gt;
+&lt;dd&gt;&lt;p&gt;Given $k$ heads out of $n$ observed flips, the probability of heads
+on a subsequent toss is $$\frac{k+1}{n+2}.$$&lt;/p&gt;&lt;/dd&gt;
+&lt;/dl&gt;
+
+&lt;p&gt;Laplace arrived at this rule about $150$ years earlier by somewhat
+different means. But there is a strong similarity.&lt;/p&gt;
+
+&lt;p&gt;Laplace supposed that our coin has some fixed, but unknown, chance $p$
+of landing heads on each toss. Suppose we regard all possible values
+$0 \leq p \leq 1$ as equally likely.&lt;sup class=&#34;footnote-ref&#34; id=&#34;fnref:1&#34;&gt;&lt;a rel=&#34;footnote&#34; href=&#34;#fn:1&#34;&gt;2&lt;/a&gt;&lt;/sup&gt; If we then update our beliefs
+about the true value of $p$ using Bayes&amp;rsquo; theorem, we arrive at the Rule
+of Succession. (Proving this is a bit involved. Maybe I&amp;rsquo;ll go over it in
+another time.)&lt;/p&gt;
+
+&lt;p&gt;Carnap&amp;rsquo;s way of assigning prior probabilities is essentially the same
+idea, just applied in a discrete setting. By treating all
+structure-descriptions as equiprobable, we make all possible frequencies
+of heads equiprobable. This is a discrete analogue of treating all
+possible values of $p$ as equiprobable.&lt;/p&gt;
+
+&lt;p&gt;William Ernest Johnson actually carried out the same analysis about $25$
+years before Carnap. He even did so with greater generality. But
+Carnap&amp;rsquo;s next step here was novel, so far as I know.&lt;/p&gt;
+
+&lt;h1 id=&#34;the-continuum-of-inductive-methods&#34;&gt;The Continuum of Inductive Methods&lt;/h1&gt;
+
+&lt;p&gt;Both Johnson and Carnap eventually realized that the two methods of assigning priors we&amp;rsquo;ve
+considered so far are just two points on a larger continuum.&lt;/p&gt;
+
+&lt;dl&gt;
+&lt;dt&gt;The $\lambda$ Continuum&lt;/dt&gt;
+&lt;dd&gt;&lt;p&gt;Given $k$ heads out of $n$ observed flips, the probability of heads
+on a subsequent toss is $$\frac{k + \lambda/2}{n + \lambda},$$ for
+some $\lambda$ in the range $0 \leq \lambda \leq \infty$.&lt;/p&gt;&lt;/dd&gt;
+&lt;/dl&gt;
+
+&lt;p&gt;What value should $\lambda$ take here? Notice we get the Rule of
+Succession if $\lambda = 2$. And we get inductive skepticism if we let
+$\lambda$ approach $\infty$. For then $k$ and $n$ fall away and the
+ratio converges to $1/ 2$, no matter what $k$ and $n$ are.&lt;/p&gt;
+
+&lt;p&gt;If we set $\lambda = 0$, we get a formula we haven&amp;rsquo;t discussed yet:
+$k/n$. Reichenbach called this the Straight Rule. (In modern statistical
+parlance it&amp;rsquo;s the &amp;ldquo;maximum likelihood estimate.&amp;rdquo;)&lt;sup class=&#34;footnote-ref&#34; id=&#34;fnref:2&#34;&gt;&lt;a rel=&#34;footnote&#34; href=&#34;#fn:2&#34;&gt;3&lt;/a&gt;&lt;/sup&gt;&lt;/p&gt;
+
+&lt;p&gt;The overall pattern is: the higher $\lambda$, the more &amp;ldquo;cautious&amp;rdquo; our
+inductive inferences will be. A larger $\lambda$ means less influence
+from $k$ and $n$: the probability of another heads stays closer to the
+initial value of $1/ 2$. In the extreme case where $\lambda = \infty$,
+it stays stuck at exactly $1/ 2$ forever.&lt;/p&gt;
+
+&lt;p&gt;A low value of $\lambda$, on the other hand, will make our inferences
+more ambitious. In the extreme case $\lambda = 0$, we jump immediately
+to the observed frequency. Our expectation about the next toss is just
+$k/n$, the frequency we&amp;rsquo;ve observed so far. If we&amp;rsquo;ve observed only one
+flip and it was heads ($k = n = 1$), we&amp;rsquo;ll be certain of heads on
+the second toss! &lt;sup class=&#34;footnote-ref&#34; id=&#34;fnref:3&#34;&gt;&lt;a rel=&#34;footnote&#34; href=&#34;#fn:3&#34;&gt;4&lt;/a&gt;&lt;/sup&gt;&lt;/p&gt;
+
+&lt;p&gt;We can illustrate this pattern in a plot. First let&amp;rsquo;s consider what
+happens if the coin keeps coming up heads, i.e. $k = n$. As $n$
+increases, various settings of $\lambda$ behave as follows.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;http://jonathanweisberg.org/img/inductive-logic/lambda-continuum-k1-n1.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Now suppose the coin only lands heads every third time, so that
+$k \approx n/3$.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;http://jonathanweisberg.org/img/inductive-logic/lambda-continuum-k1-n3.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Notice how lower settings of $\lambda$ bounce around more here before
+settling into roughly $1/ 3$. Higher settings approach $1/ 3$ more
+steadily, but they take longer to get there.&lt;/p&gt;
+
+&lt;h1 id=&#34;carnap-s-program&#34;&gt;Carnap&amp;rsquo;s Program&lt;/h1&gt;
+
+&lt;p&gt;Johnson and Carnap went much further, and others since have gone further still. For
+example, we can include more than one predicate, we can use relational
+predicates, and much more.&lt;/p&gt;
+
+&lt;p&gt;But philosophers aren&amp;rsquo;t too big on this research program nowadays. Why not?&lt;/p&gt;
+
+&lt;p&gt;Choosing $\lambda$ is one issue. Once we see that it&amp;rsquo;s more than a
+binary choice, between inductive optimism and skepticism, it&amp;rsquo;s hard to
+see why we should plump for any particular value of $\lambda$. We could
+set $\lambda = 2$, or $\pi$, or $42$. By what criterion could we make
+this choice? No clear answer emerged from Carnap&amp;rsquo;s program.&lt;/p&gt;
+
+&lt;p&gt;Another issue is Goodman&amp;rsquo;s famous &lt;a href=&#34;http://www.wi-phi.com/video/puzzle-grue&#34; target=&#34;_blank&#34;&gt;grue
+puzzle&lt;/a&gt;. Suppose we trade our
+coin flips for emeralds. We might replace the heads/tails dichotomy with
+green/not-green then. But we could instead replace it with
+grue/not-grue. The prescriptions of Carnap&amp;rsquo;s inductive logic depend on
+our choice of predicate&amp;mdash;on the underlying language to which we apply
+our chosen value of $\lambda$.&lt;/p&gt;
+
+&lt;p&gt;So the Johnson/Carnap system doesn&amp;rsquo;t provide us with rules for inductive
+reasoning, more a framework for formulating such rules. We have to
+decide which predicates should be projectible by choosing the underlying
+language. And then we have to decide how projectible they should be by
+choosing $\lambda$. Only then does the framework tell us what
+conclusions to draw from a given set of observations.&lt;/p&gt;
+
+&lt;p&gt;Personally, I still find Carnap&amp;rsquo;s framework useful. It provides a
+lovely way to express informal ideas more rigorously. In it we can frame
+questions about induction, skepticism, and prior probabilities with
+lucidity.&lt;/p&gt;
+
+&lt;p&gt;I also like it as a source of toy models. For example, I might test when
+a given claim about induction holds and when it doesn&amp;rsquo;t, by playing with
+different incarnations of $\lambda$.&lt;/p&gt;
+
+&lt;p&gt;The utility of Carnap&amp;rsquo;s framework is thus a lot like that of its
+deductive cousins. Compare Timothy Williamson&amp;rsquo;s use of modal logic to
+create &lt;a href=&#34;https://philpapers.org/rec/WILANO-22&#34; target=&#34;_blank&#34;&gt;models of Gettier cases&lt;/a&gt;,
+for example, or his model of &lt;a href=&#34;https://philpapers.org/rec/WILIKN&#34; target=&#34;_blank&#34;&gt;improbable
+knowledge&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;Even in deductive logic, we only get as much out as we put in. We have
+to choose our connectives in propositional logic, our accessibility
+relation in modal logic, etc. But a flexible system like possible-world
+frames still has its uses, because we can use it to explore
+philosophical options and their interconnections.&lt;/p&gt;
+
+&lt;h1 id=&#34;further-readings&#34;&gt;Further Readings&lt;/h1&gt;
+
+&lt;p&gt;For more on this topic, here are some suggested readings.&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;http://fitelson.org/il.pdf&#34; target=&#34;_blank&#34;&gt;Inductive Logic&lt;/a&gt;, by Branden Fitelson&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://www.cambridge.org/core/books/cambridge-companion-to-carnap/carnap-on-probability-and-induction/8AEBCBACE4A89B567B7508A1E065EB51&#34; target=&#34;_blank&#34;&gt;Carnap on Probability and Induction&lt;/a&gt;,
+by Sandy Zabell&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://www.iep.utm.edu/conf-ind/&#34; target=&#34;_blank&#34;&gt;The IEP entry on Confirmation and
+Induction&lt;/a&gt;, by Franz Huber&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://plato.stanford.edu/entries/logic-inductive/&#34; target=&#34;_blank&#34;&gt;The SEP entry on Inductive
+Logic&lt;/a&gt;, by
+James Hawthorne&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://www.cambridge.org/core/books/pure-inductive-logic/2ED3E3EE53CC51A99C1DD94341CB7FA2&#34; target=&#34;_blank&#34;&gt;Pure Inductive
+Logic&lt;/a&gt;,
+by Jeffrey Paris and Alena Vencovská&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;And if you want to see how Johnson and Carnap&amp;rsquo;s two-stage assignment of priors yields the
+Rule of Succession, check out the Appendix.&lt;/p&gt;
+
+&lt;h1 id=&#34;appendix-deriving-the-rule-of-succession&#34;&gt;Appendix: Deriving the Rule of Succession&lt;/h1&gt;
+
+&lt;p&gt;To derive the Rule of Succession from the two-stage assignment of
+priors, we need two key formulas.&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;The prior probability of a particular sequence with $k$ heads out of
+$n$ flips.&lt;/li&gt;
+&lt;li&gt;The prior probability of the same initial sequence, followed by one
+more heads.&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;The first quantity is the probability of getting $k$ heads out of $n$
+flips, regardless of order, divided by the number of ways to get $k$
+heads out of $n$ flips. The number of ways to get $k$ heads out of $n$
+flips is called the &lt;a href=&#34;https://en.wikipedia.org/wiki/Binomial_coefficient&#34; target=&#34;_blank&#34;&gt;binomial
+coefficient&lt;/a&gt;. It&amp;rsquo;s
+written $\binom{n}{k}$, and there&amp;rsquo;s a nice formula for calculating it:
+$$ \binom{n}{k} = \frac{n!}{(n-k)!k!}. $$ Since a sequence of $n$ flips
+can feature anywhere from $0$ to $n$ heads, there are $n+1$ structure
+descriptions, each with probability $1/(n+1)$. Thus the probability of a
+specific state-description with $k$ heads out of $n$ flips is
+\begin{align}
+  \frac{1}{(n+1)\binom{n}{k}}
+    &amp;amp;= \frac{1}{(n+1) \frac{n!}{(n-k)!k!}}\\&lt;br /&gt;
+    &amp;amp;= \frac{(n-k)!k!}{(n+1)!}.\tag{1}
+\end{align}&lt;/p&gt;
+
+&lt;p&gt;The second probability we need is for the same initial sequence, but
+with an additional heads on the next toss. That&amp;rsquo;s a sequence with $k+1$
+heads out of $n+1$ tosses. There are $n+2$ structure descriptions now,
+each with probability $1/(n+2)$. So the probability in question is
+\begin{align}
+  \frac{1}{(n+2)\binom{n+1}{k+1}}
+    &amp;amp;= \frac{1}{(n+2) \frac{(n+1)!}{(n-k)!(k+1)!}}\\&lt;br /&gt;
+    &amp;amp;= \frac{(n-k)!(k+1)!}{(n+2)!}.\tag{2}
+\end{align}&lt;/p&gt;
+
+&lt;p&gt;Now, to get the conditional probability we&amp;rsquo;re after, we take the ratio
+of the second probability $(2)$ over the first probability $(1)$: $$
+\begin{aligned}
+  \frac{ \frac{(n-k)!(k+1)!}{(n+2)!} }{ \frac{(n-k)!k!}{(n+1)!} }
+    &amp;amp;= \frac{(n-k)!(k+1)!}{(n+2)!}  \frac{(n+1)!}{(n-k)!k!} \\&lt;br /&gt;
+    &amp;amp;= \frac{k+1}{n+2}.
+\end{aligned}
+$$ This agrees with the rule of succession, as desired.&lt;/p&gt;
+
+&lt;p&gt;So far though, we&amp;rsquo;ve only shown the rule of succession for a specific,
+observed sequence. We&amp;rsquo;ve shown that $\p(HTHH \given HTH) = 3/ 4$, for example.
+But what if we don&amp;rsquo;t know the particular sequence so far? Maybe we only
+know there were $2$ heads out of $3$ tosses. Shouldn&amp;rsquo;t we still be able to
+derive the same result?&lt;/p&gt;
+
+&lt;p&gt;We can, with the help of a relevant theorem of probability: if
+$\p(A \given B) = \p(A \given C)$, and $B$ and $C$ are mutually
+exclusive, then
+$$ \p(A \given B \vee C) = \p(A \given B) = \p(A \given C). $$ In our
+case $A$ specifies heads on flip $n+1$, while $B$ and $C$ each specify
+some sequence for flips $1$ through $n$. Although these sequences
+feature the same number of heads and tails, $B$ and $C$ specify
+different orderings. So they&amp;rsquo;re mutually exclusive.&lt;/p&gt;
+
+&lt;p&gt;We&amp;rsquo;ve already shown that
+$$ \p(A \given B) = \frac{k+1}{n+1} = \p(A \given C). $$ So we just have
+to verify the theorem:
+$$
+\begin{aligned}
+  \p(A \given B \vee C)
+    &amp;amp;= \frac{\p(A \wedge (B \vee C))}{\p(B \vee C)}\\&lt;br /&gt;
+    &amp;amp;= \frac{\p(A \wedge B) + \p(A \wedge C)}{\p(B \vee C)}\\&lt;br /&gt;
+    &amp;amp;= \frac{\p(A \given B)\p(B) + \p(A \given C)\p( C)}{\p(B \vee C)}\\&lt;br /&gt;
+    &amp;amp;= \frac{\p(A \given B) \left( \p(B) + \p( C) \right)}{\p(B \vee C)}\\&lt;br /&gt;
+    &amp;amp;= \p(A \given B).
+\end{aligned}
+$$
+By applying this formula repeatedly to a disjunction of state-descriptions, we get the conditional probability on the structure description of interest.&lt;/p&gt;
+&lt;div class=&#34;footnotes&#34;&gt;
+
+&lt;hr /&gt;
+
+&lt;ol&gt;
+&lt;li id=&#34;fn:peirce&#34;&gt;Carnap also cites Keynes and Peirce as endorsing the Wittgensteinian approach. But thanks to Jonathan Livengood I learned this is actually a misattribution: Keynes mistakenly attributes the view to Peirce, and Carnap seems to have followed Keynes&amp;rsquo; error.
+ &lt;a class=&#34;footnote-return&#34; href=&#34;#fnref:peirce&#34;&gt;&lt;sup&gt;[return]&lt;/sup&gt;&lt;/a&gt;&lt;/li&gt;
+
+&lt;li id=&#34;fn:1&#34;&gt;&lt;p&gt;More precisely: we regard them as having the same probability
+&lt;em&gt;density&lt;/em&gt;, namely $1$.&lt;/p&gt;
+ &lt;a class=&#34;footnote-return&#34; href=&#34;#fnref:1&#34;&gt;&lt;sup&gt;[return]&lt;/sup&gt;&lt;/a&gt;&lt;/li&gt;
+
+&lt;li id=&#34;fn:2&#34;&gt;&lt;p&gt;For the $\lambda = 0$ case, we need probability axioms that permit
+conditioning on zero-probability events. For example,
+$\p(HH \given H) = 1$ so $\p(HT \given H) = 0$. Thus
+$\p(HT) = 0$, and $\p(HTH \given HT)$ is undefined on the usual,
+Kolmogorov axioms.&lt;/p&gt;
+ &lt;a class=&#34;footnote-return&#34; href=&#34;#fnref:2&#34;&gt;&lt;sup&gt;[return]&lt;/sup&gt;&lt;/a&gt;&lt;/li&gt;
+
+&lt;li id=&#34;fn:3&#34;&gt;&lt;p&gt;When $n = 0$ we have to stipulate that the probability is $1/ 2$,
+the limit as $\lambda \rightarrow 0$.&lt;/p&gt;
+ &lt;a class=&#34;footnote-return&#34; href=&#34;#fnref:3&#34;&gt;&lt;sup&gt;[return]&lt;/sup&gt;&lt;/a&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;
+</description>
+    </item>
+    
+    <item>
       <title>The Super-Humean Theory of Belief</title>
       <link>http://jonathanweisberg.org/post/super-humean-belief/</link>
       <pubDate>Wed, 21 Aug 2019 00:00:00 -0500</pubDate>
@@ -3567,167 +3923,6 @@ these journals accruing citations faster?&lt;/p&gt;
 &lt;p&gt;Some funds are available to reimburse speakers&amp;rsquo; travel expenses. The available amounts are still being determined, but we hope to cover most/all expenses for student and early career speakers. Childcare can also be arranged.&lt;/p&gt;
 
 &lt;p&gt;The &lt;a href=&#34;http://jonathanweisberg.org/few2018&#34; target=&#34;_blank&#34;&gt;conference website is here&lt;/a&gt;. The contact address is &lt;a href=&#34;mailto:few2018toronto@gmail.com&#34; target=&#34;_blank&#34;&gt;few2018toronto@gmail.com&lt;/a&gt;. The local organizers are &lt;a href=&#34;http://www.davidjamesbar.net/&#34; target=&#34;_blank&#34;&gt;David James Barnett&lt;/a&gt;, &lt;a href=&#34;http://individual.utoronto.ca/jnagel/Home_Page.html&#34; target=&#34;_blank&#34;&gt;Jennifer Nagel&lt;/a&gt;, and &lt;a href=&#34;http://jonathanweisberg.org/&#34; target=&#34;_blank&#34;&gt;Jonathan Weisberg&lt;/a&gt;.&lt;/p&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>REU Redux: Allais All Over Again</title>
-      <link>http://jonathanweisberg.org/post/REU%20Redeux/</link>
-      <pubDate>Tue, 26 Sep 2017 20:24:04 -0500</pubDate>
-      
-      <guid>http://jonathanweisberg.org/post/REU%20Redeux/</guid>
-      <description>
-
-&lt;p&gt;&lt;em&gt;This post is coauthored with &lt;a href=&#34;http://johannathoma.com/&#34; target=&#34;_blank&#34;&gt;Johanna Thoma&lt;/a&gt; and cross-posted at &lt;a href=&#34;https://choiceinference.wordpress.com/&#34; target=&#34;_blank&#34;&gt;Choice &amp;amp; Inference&lt;/a&gt;. Accompanying Mathematica code is available on &lt;a href=&#34;https://github.com/jweisber/reu&#34; target=&#34;_blank&#34;&gt;GitHub&lt;/a&gt;.&lt;/em&gt;&lt;/p&gt;
-
-&lt;p&gt;Lara Buchak&amp;rsquo;s &lt;a href=&#34;http://www.oxfordscholarship.com/view/10.1093/acprof:oso/9780199672165.001.0001/acprof-9780199672165&#34; target=&#34;_blank&#34;&gt;&lt;em&gt;Risk &amp;amp; Rationality&lt;/em&gt;&lt;/a&gt; advertises REU theory as able to recover the modal preferences in the Allais paradox. In &lt;a href=&#34;https://link.springer.com/content/pdf/10.1007%2Fs11098-017-0916-3.pdf&#34; target=&#34;_blank&#34;&gt;our commentary&lt;/a&gt; we challenged this claim. We pointed out that REU theory is strictly &lt;a href=&#34;https://johannathoma.files.wordpress.com/2015/08/decision-theory-open-handbook-edit.pdf#page=11&#34; target=&#34;_blank&#34;&gt;&amp;ldquo;grand-world&amp;rdquo;&lt;/a&gt;, and in the grand-world setting it actually struggles with the Allais preferences.&lt;/p&gt;
-
-&lt;p&gt;To demonstrate, we constructed a grand-world model of the Allais problem. We replaced each small-world outcome with a normal distribution whose mean matches its utility, and whose height corresponds to its probability.&lt;/p&gt;
-
-&lt;p&gt;Take for example the Allais gamble:
-$$(\$0, .01; \$1M, .89; \$5M, .1).$$
-If we adopt &lt;em&gt;Risk &amp;amp; Rationality&lt;/em&gt;&amp;rsquo;s utility assignments:
-$$u(\$0) = 0, u(\$1M) = 1, u(\$5M) = 2,$$
-we can depict the small-world version of this gamble:&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&#34;http://jonathanweisberg.org/img/reu_redeux/fig1.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
-
-&lt;p&gt;On our grand-world model this becomes:&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&#34;http://jonathanweisberg.org/img/reu_redeux/fig2.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
-
-&lt;p&gt;And REU theory fails to predict the usual Allais preferences on this model, provided the normal distributions used are minimally spread out.&lt;/p&gt;
-
-&lt;p&gt;If we squeeze the normal distributions tight enough, the grand-world problem collapses into the small-world problem, and REU theory can recover the Allais preferences. But, we showed, they&amp;rsquo;d have to be squeezed absurdly tight. A small standard deviation like $\sigma = .1$ lets REU theory recover the Allais preferences.&lt;sup class=&#34;footnote-ref&#34; id=&#34;fnref:1&#34;&gt;&lt;a rel=&#34;footnote&#34; href=&#34;#fn:1&#34;&gt;1&lt;/a&gt;&lt;/sup&gt; But it also requires outlandish certainty that a windfall of $\$$1M will lead to a better life than the one you&amp;rsquo;d expect to lead without it. The probability of a life of utility at most 0, despite winning $\$$1M, would have to be smaller than $1 \times 10^{-23}$.&lt;sup class=&#34;footnote-ref&#34; id=&#34;fnref:2&#34;&gt;&lt;a rel=&#34;footnote&#34; href=&#34;#fn:2&#34;&gt;2&lt;/a&gt;&lt;/sup&gt; Yet the chances are massively greater than that of suffering life-ruining tragedy (illness, financial ruin&amp;hellip; &lt;em&gt;Game of Thrones&lt;/em&gt; ending happily ever after, etc.).&lt;/p&gt;
-
-&lt;p&gt;In response Buchak offers &lt;a href=&#34;https://link.springer.com/content/pdf/10.1007%2Fs11098-017-0907-4.pdf&#34; target=&#34;_blank&#34;&gt;two replies&lt;/a&gt;. The first is a technical maneuver, adjusting the model parameters. The second is more philosophical, adjusting the target interpretation of the Allais paradox instead.&lt;/p&gt;
-
-&lt;h1 id=&#34;first-reply&#34;&gt;First Reply&lt;/h1&gt;
-
-&lt;p&gt;Buchak&amp;rsquo;s first reply tweaks our model in two ways. First, the mean utility of winning $\$$5M is shifted from 2 down to 1.3. Second, all normal distributions are skewed by a factor of 5 (positive 5 for utility 0, negative otherwise). So, for example, the Allais gamble pictured above becomes:&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&#34;http://jonathanweisberg.org/img/reu_redeux/fig3.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
-
-&lt;p&gt;We&amp;rsquo;ll focus on the second tweak here, the introduction of skew. It rests on a technical error, as we&amp;rsquo;ll show momentarily. But it also wants for motivation.&lt;/p&gt;
-
-&lt;h2 id=&#34;motivational-problems&#34;&gt;Motivational Problems&lt;/h2&gt;
-
-&lt;p&gt;Why should the grand-world model be skewed? And why in this particular way? Buchak writes:&lt;/p&gt;
-
-&lt;blockquote&gt;
-&lt;p&gt;[&amp;hellip;] receiving $\$$1M makes the worst possibilities much less likely. Receiving $\$$1M provides security in the sense of making the probability associated with lower utility values smaller and smaller. The utility of $\$$1M is concentrated around a high mean with a long tail to the left: things likely will be great, though there is some small and diminishing chance they will be fine but not great. Similarly, the utility of $\$$0 is concentrated around a low mean with a long tail to the right: things likely will be fine but not great, though there is some small and diminishing chance they will be great. In other words, $\$$1M (and $\$$5M) is a gamble with negative skew, and $\$$0 is a gamble with positive skew &lt;a href=&#34;p. 2401&#34; target=&#34;_blank&#34;&gt;&amp;hellip;&lt;/a&gt;&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;But this passage never actually identifies any asymmetry in the phenomena we&amp;rsquo;re modeling. True, &amp;ldquo;receiving $\$$1M makes the worst possibilities much less likely&amp;rdquo;, but it also makes the best possibilities much more likely. Likewise,  &amp;ldquo;[r]eceiving $\$$1M provides security in the sense of making the probability associated with lower utility values smaller and smaller.&amp;rdquo; But $\$$1M also makes the probability associated with higher utility values larger. And so on.&lt;/p&gt;
-
-&lt;p&gt;The tendencies of large winnings to control bad outcomes and promote good outcomes was already captured in the original model. A normal distribution centered on utility 1 already admits &amp;ldquo;some small and diminishing chance that [things] will be fine but not great.&amp;rdquo; It just also admits some small chance that things will be much better than great, since it&amp;rsquo;s symmetric around utility 1. To motivate the skewed model, we&amp;rsquo;d need some reason to think this symmetry should not hold. But none has been given.&lt;/p&gt;
-
-&lt;h2 id=&#34;technical-difficulties&#34;&gt;Technical Difficulties&lt;/h2&gt;
-
-&lt;p&gt;Motivation aside, there is a technical fault in the skewed model.&lt;/p&gt;
-
-&lt;p&gt;Introducing skew is supposed to make room for a reasonably large standard deviation while still recovering the Allais preferences. Buchak advertises a standard deviation&lt;sup class=&#34;footnote-ref&#34; id=&#34;fnref:3&#34;&gt;&lt;a rel=&#34;footnote&#34; href=&#34;#fn:3&#34;&gt;3&lt;/a&gt;&lt;/sup&gt; of $\sigma = .17$ for the skewed model, but the true value is actually $.106$&amp;mdash;essentially the same as the $.1$ value Buchak concedes is implausibly small, and seeks to avoid by introducing skew.&lt;sup class=&#34;footnote-ref&#34; id=&#34;fnref:4&#34;&gt;&lt;a rel=&#34;footnote&#34; href=&#34;#fn:4&#34;&gt;4&lt;/a&gt;&lt;/sup&gt;&lt;/p&gt;
-
-&lt;p&gt;Where does the $.17$ figure come from then? It&amp;rsquo;s the &lt;a href=&#34;https://en.wikipedia.org/wiki/Scale_parameter&#34; target=&#34;_blank&#34;&gt;scale parameter&lt;/a&gt; of the skew normal distribution, often denoted $\omega$. For an ordinary normal distribution, the scale $\omega$ famously coincides with the standard deviation $\sigma$, and so we write $\sigma$ for both. But when we skew a normal distribution, we tighten it, shrinking the standard deviation:&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&#34;http://jonathanweisberg.org/img/reu_redeux/fig4.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
-
-&lt;p&gt;The distributions in this figure share the same scale parameter ($.17$) but the skewed one (yellow) is much narrower.&lt;sup class=&#34;footnote-ref&#34; id=&#34;fnref:5&#34;&gt;&lt;a rel=&#34;footnote&#34; href=&#34;#fn:5&#34;&gt;5&lt;/a&gt;&lt;/sup&gt;&lt;/p&gt;
-
-&lt;p&gt;Unfortunately, &lt;em&gt;Mathematica&lt;/em&gt; uses $\sigma$ for the scale parameter even in skewed normal distributions, giving the misleading impression that it&amp;rsquo;s still the standard deviation.&lt;/p&gt;
-
-&lt;p&gt;What really matters, of course, isn&amp;rsquo;t the value of the standard deviation itself, but the probabilities that result from whatever parameters we choose. And Buchak argues that her model avoids the implausible probabilities we cited in the introduction. How can this be?&lt;/p&gt;
-
-&lt;p&gt;Buchak says that the skewed model has &amp;ldquo;more overlap in the utility that $\$$0 and $\$$1M might deliver&amp;rdquo;:&lt;/p&gt;
-
-&lt;blockquote&gt;
-&lt;p&gt;[&amp;hellip;] there is a 0.003 probability that the $\$$0 gamble will deliver more than 0.5 utils, and a 0.003 probability that the $\$$1M gamble will deliver less than 0.5 utils. (p. 2402)&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;But this &amp;ldquo;overlap&amp;rdquo; was never the problematic quantity. The problem was, rather, that a small standard deviation like $.1$ requires you to think it less than $1 \times 10^{-23}$ likely you will end up with a life no better than $0$ utils, despite a $\$$1M windfall.&lt;/p&gt;
-
-&lt;p&gt;On Buchak&amp;rsquo;s model this probability is still absurdly small: $4 \times 10^{-9}$.&lt;sup class=&#34;footnote-ref&#34; id=&#34;fnref:6&#34;&gt;&lt;a rel=&#34;footnote&#34; href=&#34;#fn:6&#34;&gt;6&lt;/a&gt;&lt;/sup&gt; This is a considerable improvement over $1 \times 10^{-23}$, but it&amp;rsquo;s still not plausible. For example, it&amp;rsquo;s almost $300,000$ times more likely that one author of this post (Jonathan Weisberg) will &lt;a href=&#34;http://www.statcan.gc.ca/pub/84-537-x/2013005/tbl/tbl7a-eng.htm&#34; target=&#34;_blank&#34;&gt;die in the coming year at the ripe old age of 39&lt;/a&gt;.&lt;/p&gt;
-
-&lt;p&gt;But worst of all, any improvement here comes at an impossible price: ludicrously low probabilities on the other side. For example, the probability that the life you&amp;rsquo;ll lead with $\$$1M will end up as good as the one you&amp;rsquo;d expect with $\$$5M is so small that &lt;em&gt;Mathematica&lt;/em&gt; can&amp;rsquo;t distinguish it from zero.&lt;sup class=&#34;footnote-ref&#34; id=&#34;fnref:7&#34;&gt;&lt;a rel=&#34;footnote&#34; href=&#34;#fn:7&#34;&gt;7&lt;/a&gt;&lt;/sup&gt; So the problem is actually worse than before, not better.&lt;/p&gt;
-
-&lt;h1 id=&#34;second-reply&#34;&gt;Second Reply&lt;/h1&gt;
-
-&lt;p&gt;Buchak&amp;rsquo;s second reply is that it wouldn&amp;rsquo;t in fact be a problem if REU theory could only recover the Allais preferences in a small-world setting. We should think of the Allais problem as a thought experiment: it asks us to abstract away from anything but the immediate rewards mentioned in the problem, and to think of the monetary rewards as stand-ins for things that are valuable for their own sakes.&lt;/p&gt;
-
-&lt;p&gt;What &lt;em&gt;Risk &amp;amp; Rationality&lt;/em&gt; showed, according to Buchak, is that REU theory can accommodate people&amp;rsquo;s intuitions regarding such a small-world thought experiment. And this is a success, because this establishes that the theory can accommodate a certain kind of reasoning that we all engage in. Buchak moreover concedes that it may well be a mistake for agents to think of the choices they actually face in small-world terms. But she claims this is no problem for her theory:&lt;/p&gt;
-
-&lt;blockquote&gt;
-&lt;p&gt;[I]f people &amp;lsquo;really&amp;rsquo; face the simple choices, then their reasoning is correct and REU captures it. If people &amp;lsquo;really&amp;rsquo; face the complex choices, then the reasoning in favor of their preferences is misapplied, and REU does not capture their preferences. Either way, the point still stands: REU-maximization rationalizes and formally reconstructs a certain kind of intuitive reasoning, as seen through REU theory&amp;rsquo;s ability to capture preferences over highly idealized gambles to which this reasoning is relevant. (p. 2403)&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;But there isn&amp;rsquo;t actually an &amp;lsquo;if&amp;rsquo; here. People do really face &amp;lsquo;complex&amp;rsquo; choices as we tried to model them. Any reward from an isolated gamble an agent faces in her life really should itself be thought of as a gamble. This is not only true when the potential reward is something like money, which is only a means to something else. Even if the good in question is &amp;lsquo;ultimate&amp;rsquo;, it just adds to the larger gamble of the agent&amp;rsquo;s life she is yet to face. She might win a beautiful holiday, but she will still face 20 micromorts per day for the rest of her life (&lt;a href=&#34;https://en.wikipedia.org/wiki/Micromort#Baseline&#34; target=&#34;_blank&#34;&gt;24 if she moves from Canada to England&lt;/a&gt;). Even on our deathbeds, we are unsure about how a lot of things we care about will play out. REU theory makes this background risk relevant to the evaluation of any individual gamble.&lt;/p&gt;
-
-&lt;p&gt;So Buchak&amp;rsquo;s response really comes to this: REU theory captures a kind of intuitive reasoning that we employ in highly idealized decision contexts, but which would be misapplied in any actual decisions agents face in their lives. This raises two questions:&lt;/p&gt;
-
-&lt;ol&gt;
-&lt;li&gt;&lt;p&gt;Why should we care about accommodating reasoning in highly idealized decision contexts?&lt;/p&gt;
-
-&lt;p&gt;The original project of &lt;em&gt;Risk &amp;amp; Rationality&lt;/em&gt; was to rationally accommodate the ordinary decision-maker. But now what we are rationally accommodating are at best her responses to thought experiments that are very far removed from her real life, namely thought experiments that ask her to imagine that she faces no other risk in her life. If our model is right, then REU theory still has to declare her irrational if she acts in real life as she would in the thought experiment&amp;mdash;as presumably ordinary decision-makers do. And then we haven&amp;rsquo;t done very much to rationally accommodate her. At best, we have provided an error theory to explain her ordinary behaviour: her mistake is to treat grand-world problems like small-world problems. This is, of course, a different project than the one &lt;em&gt;Risk &amp;amp; Rationality&lt;/em&gt; originally embarked on. As an error theory, REU theory will have to compete with other theories of choice under uncertainty that were never meant to be theories of rationality, such as prospect theory. Moreover, there is still another open question.&lt;/p&gt;&lt;/li&gt;
-
-&lt;li&gt;&lt;p&gt;Why should agents have developed a knack for the reasoning displayed in the Allais problem if it is never actually rational to use it?&lt;/p&gt;
-
-&lt;p&gt;As a heuristic to try and approximate the behaviour of a perfectly rational system, at least in the Allais example, agents would do better to maximize expected utility&amp;mdash;which is also easier to compute. Moreover, the burden of proof is on proponents of REU theory to show that there are any grand-world decisions commonly faced by real agents where REU theory comes to a significantly different assessment than expected utility theory. Unless they can show this, expected utility theory comes out as the better heuristic more generally. It is then quite mysterious what explains our supposed employment of REU-style reasoning. Why should irrational agents, who employ it more generally, have developed a bad heuristic? And why should rational agents, who never use it in real life, develop a tendency to employ it exclusively in highly idealized thought experiments?&lt;/p&gt;&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;p&gt;Ultimately, if Buchak&amp;rsquo;s first reply fails, and all we can rely on is her second reply, &lt;em&gt;Risk &amp;amp; Rationality&lt;/em&gt; provides us with no reason to abandon expected utility theory as our best theory of rational choice under uncertainty in actual choice scenarios. Even if we grant that REU theory is a better theory of rational choice in hypothetical scenarios we never face, this is a much less exciting result than the one &lt;em&gt;Risk &amp;amp; Rationality&lt;/em&gt; advertised.&lt;/p&gt;
-&lt;div class=&#34;footnotes&#34;&gt;
-
-&lt;hr /&gt;
-
-&lt;ol&gt;
-&lt;li id=&#34;fn:1&#34;&gt;Though we need a slightly more severe risk function than that used in &lt;em&gt;Risk &amp;amp; Rationality&lt;/em&gt;: $r(p) = p^{2.05}$ instead of $r(p) = p^2$. See our original commentary for details.
- &lt;a class=&#34;footnote-return&#34; href=&#34;#fnref:1&#34;&gt;&lt;sup&gt;[return]&lt;/sup&gt;&lt;/a&gt;&lt;/li&gt;
-
-&lt;li id=&#34;fn:2&#34;&gt;&lt;p&gt;To get this figure we calculate the cumulative density, at zero, of the normal distribution $𝒩(1,.1)$. Using &lt;em&gt;Mathematica&lt;/em&gt;:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-mathematica&#34;&gt;CDF[NormalDistribution[1, .1], 0]
-7.61985 × 10^-24
-&lt;/code&gt;&lt;/pre&gt;
- &lt;a class=&#34;footnote-return&#34; href=&#34;#fnref:2&#34;&gt;&lt;sup&gt;[return]&lt;/sup&gt;&lt;/a&gt;&lt;/li&gt;
-&lt;li id=&#34;fn:3&#34;&gt;This is the &amp;ldquo;variance&amp;rdquo; in Buchak&amp;rsquo;s terminology, but we&amp;rsquo;ll continue to use &amp;ldquo;standard deviation&amp;rdquo; here for consistency with our previous discussion and the preferred nomenclature.
- &lt;a class=&#34;footnote-return&#34; href=&#34;#fnref:3&#34;&gt;&lt;sup&gt;[return]&lt;/sup&gt;&lt;/a&gt;&lt;/li&gt;
-
-&lt;li id=&#34;fn:4&#34;&gt;&lt;p&gt;In &lt;em&gt;Mathematica&lt;/em&gt;:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-mathematica&#34;&gt;StandardDeviation[SkewNormalDistribution[1, .17, -5]]
-0.105874
-&lt;/code&gt;&lt;/pre&gt;
- &lt;a class=&#34;footnote-return&#34; href=&#34;#fnref:4&#34;&gt;&lt;sup&gt;[return]&lt;/sup&gt;&lt;/a&gt;&lt;/li&gt;
-&lt;li id=&#34;fn:5&#34;&gt;Skewing also shifts the mean, we should note.
- &lt;a class=&#34;footnote-return&#34; href=&#34;#fnref:5&#34;&gt;&lt;sup&gt;[return]&lt;/sup&gt;&lt;/a&gt;&lt;/li&gt;
-
-&lt;li id=&#34;fn:6&#34;&gt;&lt;p&gt;In &lt;em&gt;Mathematica&lt;/em&gt;:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-mathematica&#34;&gt;CDF[SkewNormalDistribution[1, .17, -5], 0]
-4.04475 × 10^-9
-&lt;/code&gt;&lt;/pre&gt;
- &lt;a class=&#34;footnote-return&#34; href=&#34;#fnref:6&#34;&gt;&lt;sup&gt;[return]&lt;/sup&gt;&lt;/a&gt;&lt;/li&gt;
-
-&lt;li id=&#34;fn:7&#34;&gt;&lt;p&gt;Here we calculate the complement of the cumulative density, at $1.3$, of the skew normal distribution with location $1$, scale $.17$, and skew $-5$. In &lt;em&gt;Mathematica&lt;/em&gt;:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-mathematica&#34;&gt;1 - CDF[SkewNormalDistribution[1, .17, -5], 1.3]
-0.
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Note that &lt;em&gt;Mathematica&lt;/em&gt; can estimate this value at the nearby point $1.25$, which gives us an upper bound of about $7 \times 10^{-16}$:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-mathematica&#34;&gt;1 - CDF[SkewNormalDistribution[1, .17, -5], 1.25]
-6.66134 × 10^-16
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;For comparison, this probability was about $.0013$ with no skew and $\sigma = .1$:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-mathematica&#34;&gt;1 - CDF[NormalDistribution[1, .1], 1.3]
-0.0013499
-&lt;/code&gt;&lt;/pre&gt;
- &lt;a class=&#34;footnote-return&#34; href=&#34;#fnref:7&#34;&gt;&lt;sup&gt;[return]&lt;/sup&gt;&lt;/a&gt;&lt;/li&gt;
-&lt;/ol&gt;
-&lt;/div&gt;
 </description>
     </item>
     

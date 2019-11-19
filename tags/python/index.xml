@@ -216,10 +216,10 @@ avg / total       0.98      0.98      0.98     10000
     
     <item>
       <title>Building a Neural Network from Scratch: Part 1</title>
-      <link>http://jonathanweisberg.org/post/A%20Neural%20Network%20from%20Scratch%20-%20Part%201/</link>
+      <link>http://jonathanweisberg.org/post/a%20neural%20network%20from%20scratch%20-%20part%201/</link>
       <pubDate>Mon, 05 Mar 2018 00:00:00 -0500</pubDate>
       
-      <guid>http://jonathanweisberg.org/post/A%20Neural%20Network%20from%20Scratch%20-%20Part%201/</guid>
+      <guid>http://jonathanweisberg.org/post/a%20neural%20network%20from%20scratch%20-%20part%201/</guid>
       <description>
 
 &lt;p&gt;In this post we&amp;rsquo;re going to build a neural network from scratch. We&amp;rsquo;ll train it to recognize hand-written digits, using the famous MNIST data set.&lt;/p&gt;

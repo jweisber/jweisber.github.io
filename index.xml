@@ -6,8 +6,364 @@
     <description>Recent content on Jonathan Weisberg</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 21 Aug 2019 00:00:00 -0500</lastBuildDate>
+    <lastBuildDate>Tue, 19 Nov 2019 00:00:00 -0500</lastBuildDate>
     <atom:link href="http://jonathanweisberg.org/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Crash Course in Inductive Logic</title>
+      <link>http://jonathanweisberg.org/post/inductive-logic/</link>
+      <pubDate>Tue, 19 Nov 2019 00:00:00 -0500</pubDate>
+      
+      <guid>http://jonathanweisberg.org/post/inductive-logic/</guid>
+      <description>
+
+&lt;p&gt;There are four ways things can turn out with two flips of a coin:
+$$ HH, \quad HT, \quad TH, \quad TT.$$
+If we know nothing about the coin&amp;rsquo;s tendencies, we might assign equal probability to each of
+these four possible outcomes:
+$$ Pr(HH) = Pr(HT) = Pr(TH) = Pr(TT) = 1/ 4. $$
+But from another point of view, there are primarily three possibilities. If we ignore order,
+the possible outcomes are $0$ heads, $1$ head, or $2$ heads. So we might
+instead assign equal probability to these three outcomes, then divide
+the middle $1/ 3$ evenly between $HT$ and $TH$: $$
+  Pr(HH) = 1/3  \qquad  Pr(HT) = Pr(TH) = 1/6  \qquad  Pr(TT) = 1/ 3.
+$$&lt;/p&gt;
+
+&lt;p&gt;This two-stage approach may seem odd. But it&amp;rsquo;s actually friendlier
+from the point of view of inductive reasoning. On the first
+scheme, a heads on the first toss doesn&amp;rsquo;t increase the probability of
+another heads. It stays fixed at $1/ 2$:
+$$
+  \newcommand{\p}{Pr}
+  \newcommand{\given}{\mid}
+  \renewcommand{\neg}{\mathbin{\sim}}
+  \renewcommand{\wedge}{\mathbin{\text{&amp;amp;}}}
+  \p(HH \given H) = \frac{1/ 4}{1/ 4 + 1/ 4} = \frac{1}{2}.
+$$
+Whereas it does increase on the second strategy, from $1/ 2$ to $2/ 3$:
+$$ \p(HH \given H) = \frac{1/ 3}{1/ 3 + 1/ 6} = \frac{2}{3}. $$
+The two-stage approach thus learns from experience, where the
+single-step division is skeptical about induction.&lt;/p&gt;
+
+&lt;p&gt;This holds true as we increase the number of flips. If we do three tosses
+for example, we&amp;rsquo;ll find that $\p(HHH \given HH) = 3/ 4$ on the
+two-stage analysis. Whereas this probability stays stubbornly fixed at
+$1/ 2$ on the first approach. It won&amp;rsquo;t budge no matter how many heads
+we observe, so we can&amp;rsquo;t learn anything about the coin&amp;rsquo;s bias this way.&lt;/p&gt;
+
+&lt;p&gt;This is the difference between Carnap&amp;rsquo;s famous account of induction, from
+his 1950 book &lt;em&gt;Logical Foundations of Probability&lt;/em&gt;, and the account
+he finds &lt;a href=&#34;http://www.kfs.org/jonathan/witt/t515en.html&#34; target=&#34;_blank&#34;&gt;in Wittgenstein&amp;rsquo;s
+&lt;em&gt;Tractatus&lt;/em&gt;&lt;/a&gt;. &lt;sup class=&#34;footnote-ref&#34; id=&#34;fnref:peirce&#34;&gt;&lt;a rel=&#34;footnote&#34; href=&#34;#fn:peirce&#34;&gt;1&lt;/a&gt;&lt;/sup&gt; Although
+Carnap had actually been scooped by W. E. Johnson, who worked out a similar
+analysis about $25$ years earlier.&lt;/p&gt;
+
+&lt;p&gt;This is a short explainer on some key elements of inductive logic that
+Johnson and Carnap worked out, and the place of those ideas in the story of
+inductive logic.&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;http://jonathanweisberg.org/pdf/inductive-logic.pdf&#34;&gt;PDF version here&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&#34;states-structures&#34;&gt;States &amp;amp; Structures&lt;/h1&gt;
+
+&lt;p&gt;Carnap calls fine-grained specifications like $TH$, &lt;em&gt;state-descriptions&lt;/em&gt;.
+The coarser grained &amp;ldquo;$1$ head&amp;rdquo; is a &lt;em&gt;structure-description&lt;/em&gt;. A
+state-description specifies which flips land heads, and which tails.
+While a structure-description specifies &lt;em&gt;how many&lt;/em&gt; land heads and tails,
+without necessarily saying which.&lt;/p&gt;
+
+&lt;p&gt;It needn&amp;rsquo;t be coin flips landing heads or tails, of course. The same
+ideas apply to any set of objects or events, and any feature they might
+have or lack.&lt;/p&gt;
+
+&lt;p&gt;Suppose we have two objects $a$ and $b$, each of which might have some
+property $F$. Working for a moment as Carnap did, in
+first-order logic, here is an example of a structure-description:
+$$ (Fa \wedge \neg Fb) \vee (\neg Fa \wedge Fb). $$ But this isn&amp;rsquo;t a
+state-description, since it doesn&amp;rsquo;t specify which object has $F$. It
+only says how many objects have $F$, namely $1$. One of the disjuncts alone would be a
+state-description though:
+$$ Fa \wedge \neg Fb. $$&lt;/p&gt;
+
+&lt;p&gt;Carnap&amp;rsquo;s idea was that all structure-descriptions start out with the
+same probability. And these probabilities are then divided equally among
+the state-descriptions that make up a structure-description.&lt;/p&gt;
+
+&lt;p&gt;For example, if we do three flips, there are four
+structure-descriptions: $0$ heads, $1$ head, $2$ heads, and $3$ heads.
+Some of these have only one state-description. For example, there&amp;rsquo;s only
+one way to get $0$ heads, namely $TTT$. So $$ \p(TTT) = 1/ 4. $$ But
+others have multiple state-descriptions. There are three ways to get $1$
+head for example, so we divide $1/ 4$ between them:
+$$ \p(HTT) = \p(THT) = \p(TTH) = 1/ 12. $$&lt;/p&gt;
+
+&lt;p&gt;The effect is that more homogeneous sequences start out more probable.
+There&amp;rsquo;s only one way to get all heads, so the $HH$ state-description
+inherits the full probability of the corresponding &amp;ldquo;$2$ heads&amp;rdquo;
+structure-description. But a $50$-$50$ split has multiple permutations,
+each of which inherits only a portion of the same quantum of
+probability. A heterogeneous sequence of heads and tails thus starts out
+less probable than a homogeneous one.&lt;/p&gt;
+
+&lt;p&gt;That&amp;rsquo;s why the two-stage analysis is induction-friendly. It effectively
+builds Hume&amp;rsquo;s &amp;ldquo;uniformity of nature&amp;rdquo; assumption into the prior
+probabilities.&lt;/p&gt;
+
+&lt;h1 id=&#34;the-rule-of-succession&#34;&gt;The Rule of Succession&lt;/h1&gt;
+
+&lt;p&gt;The two-stage assignment also yields a very simple formula for induction:
+Laplace&amp;rsquo;s famous Rule of Succession. (Derivation in the Appendix.)&lt;/p&gt;
+
+&lt;dl&gt;
+&lt;dt&gt;The Rule of Succession&lt;/dt&gt;
+&lt;dd&gt;&lt;p&gt;Given $k$ heads out of $n$ observed flips, the probability of heads
+on a subsequent toss is $$\frac{k+1}{n+2}.$$&lt;/p&gt;&lt;/dd&gt;
+&lt;/dl&gt;
+
+&lt;p&gt;Laplace arrived at this rule about $150$ years earlier by somewhat
+different means. But there is a strong similarity.&lt;/p&gt;
+
+&lt;p&gt;Laplace supposed that our coin has some fixed, but unknown, chance $p$
+of landing heads on each toss. Suppose we regard all possible values
+$0 \leq p \leq 1$ as equally likely.&lt;sup class=&#34;footnote-ref&#34; id=&#34;fnref:1&#34;&gt;&lt;a rel=&#34;footnote&#34; href=&#34;#fn:1&#34;&gt;2&lt;/a&gt;&lt;/sup&gt; If we then update our beliefs
+about the true value of $p$ using Bayes&amp;rsquo; theorem, we arrive at the Rule
+of Succession. (Proving this is a bit involved. Maybe I&amp;rsquo;ll go over it in
+another time.)&lt;/p&gt;
+
+&lt;p&gt;Carnap&amp;rsquo;s way of assigning prior probabilities is essentially the same
+idea, just applied in a discrete setting. By treating all
+structure-descriptions as equiprobable, we make all possible frequencies
+of heads equiprobable. This is a discrete analogue of treating all
+possible values of $p$ as equiprobable.&lt;/p&gt;
+
+&lt;p&gt;William Ernest Johnson actually carried out the same analysis about $25$
+years before Carnap. He even did so with greater generality. But
+Carnap&amp;rsquo;s next step here was novel, so far as I know.&lt;/p&gt;
+
+&lt;h1 id=&#34;the-continuum-of-inductive-methods&#34;&gt;The Continuum of Inductive Methods&lt;/h1&gt;
+
+&lt;p&gt;Both Johnson and Carnap eventually realized that the two methods of assigning priors we&amp;rsquo;ve
+considered so far are just two points on a larger continuum.&lt;/p&gt;
+
+&lt;dl&gt;
+&lt;dt&gt;The $\lambda$ Continuum&lt;/dt&gt;
+&lt;dd&gt;&lt;p&gt;Given $k$ heads out of $n$ observed flips, the probability of heads
+on a subsequent toss is $$\frac{k + \lambda/2}{n + \lambda},$$ for
+some $\lambda$ in the range $0 \leq \lambda \leq \infty$.&lt;/p&gt;&lt;/dd&gt;
+&lt;/dl&gt;
+
+&lt;p&gt;What value should $\lambda$ take here? Notice we get the Rule of
+Succession if $\lambda = 2$. And we get inductive skepticism if we let
+$\lambda$ approach $\infty$. For then $k$ and $n$ fall away and the
+ratio converges to $1/ 2$, no matter what $k$ and $n$ are.&lt;/p&gt;
+
+&lt;p&gt;If we set $\lambda = 0$, we get a formula we haven&amp;rsquo;t discussed yet:
+$k/n$. Reichenbach called this the Straight Rule. (In modern statistical
+parlance it&amp;rsquo;s the &amp;ldquo;maximum likelihood estimate.&amp;rdquo;)&lt;sup class=&#34;footnote-ref&#34; id=&#34;fnref:2&#34;&gt;&lt;a rel=&#34;footnote&#34; href=&#34;#fn:2&#34;&gt;3&lt;/a&gt;&lt;/sup&gt;&lt;/p&gt;
+
+&lt;p&gt;The overall pattern is: the higher $\lambda$, the more &amp;ldquo;cautious&amp;rdquo; our
+inductive inferences will be. A larger $\lambda$ means less influence
+from $k$ and $n$: the probability of another heads stays closer to the
+initial value of $1/ 2$. In the extreme case where $\lambda = \infty$,
+it stays stuck at exactly $1/ 2$ forever.&lt;/p&gt;
+
+&lt;p&gt;A low value of $\lambda$, on the other hand, will make our inferences
+more ambitious. In the extreme case $\lambda = 0$, we jump immediately
+to the observed frequency. Our expectation about the next toss is just
+$k/n$, the frequency we&amp;rsquo;ve observed so far. If we&amp;rsquo;ve observed only one
+flip and it was heads ($k = n = 1$), we&amp;rsquo;ll be certain of heads on
+the second toss! &lt;sup class=&#34;footnote-ref&#34; id=&#34;fnref:3&#34;&gt;&lt;a rel=&#34;footnote&#34; href=&#34;#fn:3&#34;&gt;4&lt;/a&gt;&lt;/sup&gt;&lt;/p&gt;
+
+&lt;p&gt;We can illustrate this pattern in a plot. First let&amp;rsquo;s consider what
+happens if the coin keeps coming up heads, i.e. $k = n$. As $n$
+increases, various settings of $\lambda$ behave as follows.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;http://jonathanweisberg.org/img/inductive-logic/lambda-continuum-k1-n1.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Now suppose the coin only lands heads every third time, so that
+$k \approx n/3$.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;http://jonathanweisberg.org/img/inductive-logic/lambda-continuum-k1-n3.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Notice how lower settings of $\lambda$ bounce around more here before
+settling into roughly $1/ 3$. Higher settings approach $1/ 3$ more
+steadily, but they take longer to get there.&lt;/p&gt;
+
+&lt;h1 id=&#34;carnap-s-program&#34;&gt;Carnap&amp;rsquo;s Program&lt;/h1&gt;
+
+&lt;p&gt;Johnson and Carnap went much further, and others since have gone further still. For
+example, we can include more than one predicate, we can use relational
+predicates, and much more.&lt;/p&gt;
+
+&lt;p&gt;But philosophers aren&amp;rsquo;t too big on this research program nowadays. Why not?&lt;/p&gt;
+
+&lt;p&gt;Choosing $\lambda$ is one issue. Once we see that it&amp;rsquo;s more than a
+binary choice, between inductive optimism and skepticism, it&amp;rsquo;s hard to
+see why we should plump for any particular value of $\lambda$. We could
+set $\lambda = 2$, or $\pi$, or $42$. By what criterion could we make
+this choice? No clear answer emerged from Carnap&amp;rsquo;s program.&lt;/p&gt;
+
+&lt;p&gt;Another issue is Goodman&amp;rsquo;s famous &lt;a href=&#34;http://www.wi-phi.com/video/puzzle-grue&#34; target=&#34;_blank&#34;&gt;grue
+puzzle&lt;/a&gt;. Suppose we trade our
+coin flips for emeralds. We might replace the heads/tails dichotomy with
+green/not-green then. But we could instead replace it with
+grue/not-grue. The prescriptions of Carnap&amp;rsquo;s inductive logic depend on
+our choice of predicate&amp;mdash;on the underlying language to which we apply
+our chosen value of $\lambda$.&lt;/p&gt;
+
+&lt;p&gt;So the Johnson/Carnap system doesn&amp;rsquo;t provide us with rules for inductive
+reasoning, more a framework for formulating such rules. We have to
+decide which predicates should be projectible by choosing the underlying
+language. And then we have to decide how projectible they should be by
+choosing $\lambda$. Only then does the framework tell us what
+conclusions to draw from a given set of observations.&lt;/p&gt;
+
+&lt;p&gt;Personally, I still find Carnap&amp;rsquo;s framework useful. It provides a
+lovely way to express informal ideas more rigorously. In it we can frame
+questions about induction, skepticism, and prior probabilities with
+lucidity.&lt;/p&gt;
+
+&lt;p&gt;I also like it as a source of toy models. For example, I might test when
+a given claim about induction holds and when it doesn&amp;rsquo;t, by playing with
+different incarnations of $\lambda$.&lt;/p&gt;
+
+&lt;p&gt;The utility of Carnap&amp;rsquo;s framework is thus a lot like that of its
+deductive cousins. Compare Timothy Williamson&amp;rsquo;s use of modal logic to
+create &lt;a href=&#34;https://philpapers.org/rec/WILANO-22&#34; target=&#34;_blank&#34;&gt;models of Gettier cases&lt;/a&gt;,
+for example, or his model of &lt;a href=&#34;https://philpapers.org/rec/WILIKN&#34; target=&#34;_blank&#34;&gt;improbable
+knowledge&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;Even in deductive logic, we only get as much out as we put in. We have
+to choose our connectives in propositional logic, our accessibility
+relation in modal logic, etc. But a flexible system like possible-world
+frames still has its uses, because we can use it to explore
+philosophical options and their interconnections.&lt;/p&gt;
+
+&lt;h1 id=&#34;further-readings&#34;&gt;Further Readings&lt;/h1&gt;
+
+&lt;p&gt;For more on this topic, here are some suggested readings.&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;http://fitelson.org/il.pdf&#34; target=&#34;_blank&#34;&gt;Inductive Logic&lt;/a&gt;, by Branden Fitelson&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://www.cambridge.org/core/books/cambridge-companion-to-carnap/carnap-on-probability-and-induction/8AEBCBACE4A89B567B7508A1E065EB51&#34; target=&#34;_blank&#34;&gt;Carnap on Probability and Induction&lt;/a&gt;,
+by Sandy Zabell&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://www.iep.utm.edu/conf-ind/&#34; target=&#34;_blank&#34;&gt;The IEP entry on Confirmation and
+Induction&lt;/a&gt;, by Franz Huber&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://plato.stanford.edu/entries/logic-inductive/&#34; target=&#34;_blank&#34;&gt;The SEP entry on Inductive
+Logic&lt;/a&gt;, by
+James Hawthorne&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://www.cambridge.org/core/books/pure-inductive-logic/2ED3E3EE53CC51A99C1DD94341CB7FA2&#34; target=&#34;_blank&#34;&gt;Pure Inductive
+Logic&lt;/a&gt;,
+by Jeffrey Paris and Alena Vencovská&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;And if you want to see how Johnson and Carnap&amp;rsquo;s two-stage assignment of priors yields the
+Rule of Succession, check out the Appendix.&lt;/p&gt;
+
+&lt;h1 id=&#34;appendix-deriving-the-rule-of-succession&#34;&gt;Appendix: Deriving the Rule of Succession&lt;/h1&gt;
+
+&lt;p&gt;To derive the Rule of Succession from the two-stage assignment of
+priors, we need two key formulas.&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;The prior probability of a particular sequence with $k$ heads out of
+$n$ flips.&lt;/li&gt;
+&lt;li&gt;The prior probability of the same initial sequence, followed by one
+more heads.&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;The first quantity is the probability of getting $k$ heads out of $n$
+flips, regardless of order, divided by the number of ways to get $k$
+heads out of $n$ flips. The number of ways to get $k$ heads out of $n$
+flips is called the &lt;a href=&#34;https://en.wikipedia.org/wiki/Binomial_coefficient&#34; target=&#34;_blank&#34;&gt;binomial
+coefficient&lt;/a&gt;. It&amp;rsquo;s
+written $\binom{n}{k}$, and there&amp;rsquo;s a nice formula for calculating it:
+$$ \binom{n}{k} = \frac{n!}{(n-k)!k!}. $$ Since a sequence of $n$ flips
+can feature anywhere from $0$ to $n$ heads, there are $n+1$ structure
+descriptions, each with probability $1/(n+1)$. Thus the probability of a
+specific state-description with $k$ heads out of $n$ flips is
+\begin{align}
+  \frac{1}{(n+1)\binom{n}{k}}
+    &amp;amp;= \frac{1}{(n+1) \frac{n!}{(n-k)!k!}}\\&lt;br /&gt;
+    &amp;amp;= \frac{(n-k)!k!}{(n+1)!}.\tag{1}
+\end{align}&lt;/p&gt;
+
+&lt;p&gt;The second probability we need is for the same initial sequence, but
+with an additional heads on the next toss. That&amp;rsquo;s a sequence with $k+1$
+heads out of $n+1$ tosses. There are $n+2$ structure descriptions now,
+each with probability $1/(n+2)$. So the probability in question is
+\begin{align}
+  \frac{1}{(n+2)\binom{n+1}{k+1}}
+    &amp;amp;= \frac{1}{(n+2) \frac{(n+1)!}{(n-k)!(k+1)!}}\\&lt;br /&gt;
+    &amp;amp;= \frac{(n-k)!(k+1)!}{(n+2)!}.\tag{2}
+\end{align}&lt;/p&gt;
+
+&lt;p&gt;Now, to get the conditional probability we&amp;rsquo;re after, we take the ratio
+of the second probability $(2)$ over the first probability $(1)$: $$
+\begin{aligned}
+  \frac{ \frac{(n-k)!(k+1)!}{(n+2)!} }{ \frac{(n-k)!k!}{(n+1)!} }
+    &amp;amp;= \frac{(n-k)!(k+1)!}{(n+2)!}  \frac{(n+1)!}{(n-k)!k!} \\&lt;br /&gt;
+    &amp;amp;= \frac{k+1}{n+2}.
+\end{aligned}
+$$ This agrees with the rule of succession, as desired.&lt;/p&gt;
+
+&lt;p&gt;So far though, we&amp;rsquo;ve only shown the rule of succession for a specific,
+observed sequence. We&amp;rsquo;ve shown that $\p(HTHH \given HTH) = 3/ 4$, for example.
+But what if we don&amp;rsquo;t know the particular sequence so far? Maybe we only
+know there were $2$ heads out of $3$ tosses. Shouldn&amp;rsquo;t we still be able to
+derive the same result?&lt;/p&gt;
+
+&lt;p&gt;We can, with the help of a relevant theorem of probability: if
+$\p(A \given B) = \p(A \given C)$, and $B$ and $C$ are mutually
+exclusive, then
+$$ \p(A \given B \vee C) = \p(A \given B) = \p(A \given C). $$ In our
+case $A$ specifies heads on flip $n+1$, while $B$ and $C$ each specify
+some sequence for flips $1$ through $n$. Although these sequences
+feature the same number of heads and tails, $B$ and $C$ specify
+different orderings. So they&amp;rsquo;re mutually exclusive.&lt;/p&gt;
+
+&lt;p&gt;We&amp;rsquo;ve already shown that
+$$ \p(A \given B) = \frac{k+1}{n+1} = \p(A \given C). $$ So we just have
+to verify the theorem:
+$$
+\begin{aligned}
+  \p(A \given B \vee C)
+    &amp;amp;= \frac{\p(A \wedge (B \vee C))}{\p(B \vee C)}\\&lt;br /&gt;
+    &amp;amp;= \frac{\p(A \wedge B) + \p(A \wedge C)}{\p(B \vee C)}\\&lt;br /&gt;
+    &amp;amp;= \frac{\p(A \given B)\p(B) + \p(A \given C)\p( C)}{\p(B \vee C)}\\&lt;br /&gt;
+    &amp;amp;= \frac{\p(A \given B) \left( \p(B) + \p( C) \right)}{\p(B \vee C)}\\&lt;br /&gt;
+    &amp;amp;= \p(A \given B).
+\end{aligned}
+$$
+By applying this formula repeatedly to a disjunction of state-descriptions, we get the conditional probability on the structure description of interest.&lt;/p&gt;
+&lt;div class=&#34;footnotes&#34;&gt;
+
+&lt;hr /&gt;
+
+&lt;ol&gt;
+&lt;li id=&#34;fn:peirce&#34;&gt;Carnap also cites Keynes and Peirce as endorsing the Wittgensteinian approach. But thanks to Jonathan Livengood I learned this is actually a misattribution: Keynes mistakenly attributes the view to Peirce, and Carnap seems to have followed Keynes&amp;rsquo; error.
+ &lt;a class=&#34;footnote-return&#34; href=&#34;#fnref:peirce&#34;&gt;&lt;sup&gt;[return]&lt;/sup&gt;&lt;/a&gt;&lt;/li&gt;
+
+&lt;li id=&#34;fn:1&#34;&gt;&lt;p&gt;More precisely: we regard them as having the same probability
+&lt;em&gt;density&lt;/em&gt;, namely $1$.&lt;/p&gt;
+ &lt;a class=&#34;footnote-return&#34; href=&#34;#fnref:1&#34;&gt;&lt;sup&gt;[return]&lt;/sup&gt;&lt;/a&gt;&lt;/li&gt;
+
+&lt;li id=&#34;fn:2&#34;&gt;&lt;p&gt;For the $\lambda = 0$ case, we need probability axioms that permit
+conditioning on zero-probability events. For example,
+$\p(HH \given H) = 1$ so $\p(HT \given H) = 0$. Thus
+$\p(HT) = 0$, and $\p(HTH \given HT)$ is undefined on the usual,
+Kolmogorov axioms.&lt;/p&gt;
+ &lt;a class=&#34;footnote-return&#34; href=&#34;#fnref:2&#34;&gt;&lt;sup&gt;[return]&lt;/sup&gt;&lt;/a&gt;&lt;/li&gt;
+
+&lt;li id=&#34;fn:3&#34;&gt;&lt;p&gt;When $n = 0$ we have to stipulate that the probability is $1/ 2$,
+the limit as $\lambda \rightarrow 0$.&lt;/p&gt;
+ &lt;a class=&#34;footnote-return&#34; href=&#34;#fnref:3&#34;&gt;&lt;sup&gt;[return]&lt;/sup&gt;&lt;/a&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;
+</description>
+    </item>
     
     <item>
       <title>The Super-Humean Theory of Belief</title>
@@ -3545,212 +3901,6 @@ these journals accruing citations faster?&lt;/p&gt;
  &lt;a class=&#34;footnote-return&#34; href=&#34;#fnref:1&#34;&gt;&lt;sup&gt;[return]&lt;/sup&gt;&lt;/a&gt;&lt;/li&gt;
 &lt;/ol&gt;
 &lt;/div&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>Building a Neural Network from Scratch: Part 2</title>
-      <link>http://jonathanweisberg.org/post/A%20Neural%20Network%20from%20Scratch%20-%20Part%202/</link>
-      <pubDate>Wed, 07 Mar 2018 00:00:00 -0500</pubDate>
-      
-      <guid>http://jonathanweisberg.org/post/A%20Neural%20Network%20from%20Scratch%20-%20Part%202/</guid>
-      <description>&lt;p&gt;In this post we&amp;rsquo;ll improve our training algorithm from the &lt;a href=&#34;http://jonathanweisberg.org/post/A%20Neural%20Network%20from%20Scratch%20-%20Part%201/&#34;&gt;previous post&lt;/a&gt;. When we&amp;rsquo;re done we&amp;rsquo;ll be able to achieve 98% precision on the MNIST data set, after just 9 epochs of training&amp;mdash;which only takes about 30 seconds to run on my laptop.&lt;/p&gt;
-
-&lt;p&gt;For comparison, last time we only achieved 92% precision after 2,000 epochs of training, which took over an hour!&lt;/p&gt;
-
-&lt;p&gt;The main driver in this improvement is just switching from batch gradient descent to &lt;em&gt;mini&lt;/em&gt;-batch gradient descent. But we&amp;rsquo;ll also make two other, smaller improvements: we&amp;rsquo;ll add momentum to our descent algorithm, and we&amp;rsquo;ll smarten up the initialization of our network&amp;rsquo;s weights.&lt;/p&gt;
-
-&lt;p&gt;We&amp;rsquo;ll also reorganize our code a bit while we&amp;rsquo;re at it, making things more modular.&lt;/p&gt;
-
-&lt;p&gt;But first we need to import and massage our data. These steps are the same as in the previous post:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;from sklearn.datasets import fetch_mldata
-from sklearn.metrics import classification_report, confusion_matrix
-import numpy as np
-
-# import
-mnist = fetch_mldata(&#39;MNIST original&#39;)
-X, y = mnist[&amp;quot;data&amp;quot;], mnist[&amp;quot;target&amp;quot;]
-
-# scale
-X = X / 255
-
-# one-hot encode labels
-digits = 10
-examples = y.shape[0]
-y = y.reshape(1, examples)
-Y_new = np.eye(digits)[y.astype(&#39;int32&#39;)]
-Y_new = Y_new.T.reshape(digits, examples)
-
-# split, reshape, shuffle
-m = 60000
-m_test = X.shape[0] - m
-X_train, X_test = X[:m].T, X[m:].T
-Y_train, Y_test = Y_new[:,:m], Y_new[:,m:]
-shuffle_index = np.random.permutation(m)
-X_train, Y_train = X_train[:, shuffle_index], Y_train[:, shuffle_index]
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Then we&amp;rsquo;ll define our key functions. Only the last two are new, and they just put the steps of forward and backward propagation into their own functions. This tidies up the training code to follow, so that we can focus on the novel elements, especially mini-batch descent and momentum.&lt;/p&gt;
-
-&lt;p&gt;Notice that in the process we introduce three dictionaries:&lt;code&gt;params&lt;/code&gt;, &lt;code&gt;cache&lt;/code&gt;, and &lt;code&gt;grads&lt;/code&gt;. These are for conveniently passing information back and forth between the forward and backward passes.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;def sigmoid(z):
-    s = 1. / (1. + np.exp(-z))
-    return s
-
-def compute_loss(Y, Y_hat):
-
-    L_sum = np.sum(np.multiply(Y, np.log(Y_hat)))
-    m = Y.shape[1]
-    L = -(1./m) * L_sum
-
-    return L
-
-def feed_forward(X, params):
-
-    cache = {}
-
-    cache[&amp;quot;Z1&amp;quot;] = np.matmul(params[&amp;quot;W1&amp;quot;], X) + params[&amp;quot;b1&amp;quot;]
-    cache[&amp;quot;A1&amp;quot;] = sigmoid(cache[&amp;quot;Z1&amp;quot;])
-    cache[&amp;quot;Z2&amp;quot;] = np.matmul(params[&amp;quot;W2&amp;quot;], cache[&amp;quot;A1&amp;quot;]) + params[&amp;quot;b2&amp;quot;]
-    cache[&amp;quot;A2&amp;quot;] = np.exp(cache[&amp;quot;Z2&amp;quot;]) / np.sum(np.exp(cache[&amp;quot;Z2&amp;quot;]), axis=0)
-
-    return cache
-
-def back_propagate(X, Y, params, cache):
-
-    dZ2 = cache[&amp;quot;A2&amp;quot;] - Y
-    dW2 = (1./m_batch) * np.matmul(dZ2, cache[&amp;quot;A1&amp;quot;].T)
-    db2 = (1./m_batch) * np.sum(dZ2, axis=1, keepdims=True)
-
-    dA1 = np.matmul(params[&amp;quot;W2&amp;quot;].T, dZ2)
-    dZ1 = dA1 * sigmoid(cache[&amp;quot;Z1&amp;quot;]) * (1 - sigmoid(cache[&amp;quot;Z1&amp;quot;]))
-    dW1 = (1./m_batch) * np.matmul(dZ1, X.T)
-    db1 = (1./m_batch) * np.sum(dZ1, axis=1, keepdims=True)
-
-    grads = {&amp;quot;dW1&amp;quot;: dW1, &amp;quot;db1&amp;quot;: db1, &amp;quot;dW2&amp;quot;: dW2, &amp;quot;db2&amp;quot;: db2}
-
-    return grads
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Now for the substantive stuff.&lt;/p&gt;
-
-&lt;p&gt;To switch to mini-batch descent, we add another &lt;code&gt;for&lt;/code&gt; loop inside the pass through each epoch. At each pass we randomly shuffle the training set, then iterate through it in chunks of &lt;code&gt;batch_size&lt;/code&gt;, which we&amp;rsquo;ll arbitrarily set to 128. We&amp;rsquo;ll see the code for all this in a moment.&lt;/p&gt;
-
-&lt;p&gt;Next, to add momentum, we keep a moving average of our gradients. So instead of updating our parameters by doing e.g.:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;params[&amp;quot;W1&amp;quot;] = params[&amp;quot;W1&amp;quot;] - learning_rate * grads[&amp;quot;dW1&amp;quot;]
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;we do this:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;V_dW1 = (beta * V_dW1 + (1. - beta) * grads[&amp;quot;dW1&amp;quot;])
-params[&amp;quot;W1&amp;quot;] = params[&amp;quot;W1&amp;quot;] - learning_rate * V_dW1
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Finally, to smarten up our initialization, we shrink the variance of the weights in each layer. Following &lt;a href=&#34;https://www.coursera.org/learn/deep-neural-network/lecture/RwqYe/weight-initialization-for-deep-networks&#34; target=&#34;_blank&#34;&gt;this nice video&lt;/a&gt; by Andrew Ng (whose excellent Coursera materials I&amp;rsquo;ve been relying on heavily in these posts), we&amp;rsquo;ll set the variance for each layer to $1/n$, where $n$ is the number of inputs feeding into that layer.&lt;/p&gt;
-
-&lt;p&gt;We&amp;rsquo;ve been using the &lt;code&gt;np.random.randn()&lt;/code&gt; function to get our initial weights. And this function draws from the standard normal distribution. So to adjust the variance to $1/n$, we just divide by $\sqrt{n}$. In code this means that instead of doing e.g. &lt;code&gt;np.random.randn(n_h, n_x)&lt;/code&gt;, we do &lt;code&gt;np.random.randn(n_h, n_x) * np.sqrt(1. / n_x)&lt;/code&gt;.&lt;/p&gt;
-
-&lt;p&gt;Ok that covers our three improvements. Let&amp;rsquo;s build and train!&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;np.random.seed(138)
-
-# hyperparameters
-n_x = X_train.shape[0]
-n_h = 64
-learning_rate = 4
-beta = .9
-batch_size = 128
-batches = -(-m // batch_size)
-
-# initialization
-params = { &amp;quot;W1&amp;quot;: np.random.randn(n_h, n_x) * np.sqrt(1. / n_x),
-           &amp;quot;b1&amp;quot;: np.zeros((n_h, 1)) * np.sqrt(1. / n_x),
-           &amp;quot;W2&amp;quot;: np.random.randn(digits, n_h) * np.sqrt(1. / n_h),
-           &amp;quot;b2&amp;quot;: np.zeros((digits, 1)) * np.sqrt(1. / n_h) }
-
-V_dW1 = np.zeros(params[&amp;quot;W1&amp;quot;].shape)
-V_db1 = np.zeros(params[&amp;quot;b1&amp;quot;].shape)
-V_dW2 = np.zeros(params[&amp;quot;W2&amp;quot;].shape)
-V_db2 = np.zeros(params[&amp;quot;b2&amp;quot;].shape)
-
-# train
-for i in range(9):
-
-    permutation = np.random.permutation(X_train.shape[1])
-    X_train_shuffled = X_train[:, permutation]
-    Y_train_shuffled = Y_train[:, permutation]
-
-    for j in range(batches):
-
-        begin = j * batch_size
-        end = min(begin + batch_size, X_train.shape[1] - 1)
-        X = X_train_shuffled[:, begin:end]
-        Y = Y_train_shuffled[:, begin:end]
-        m_batch = end - begin
-
-        cache = feed_forward(X, params)
-        grads = back_propagate(X, Y, params, cache)
-
-        V_dW1 = (beta * V_dW1 + (1. - beta) * grads[&amp;quot;dW1&amp;quot;])
-        V_db1 = (beta * V_db1 + (1. - beta) * grads[&amp;quot;db1&amp;quot;])
-        V_dW2 = (beta * V_dW2 + (1. - beta) * grads[&amp;quot;dW2&amp;quot;])
-        V_db2 = (beta * V_db2 + (1. - beta) * grads[&amp;quot;db2&amp;quot;])
-
-        params[&amp;quot;W1&amp;quot;] = params[&amp;quot;W1&amp;quot;] - learning_rate * V_dW1
-        params[&amp;quot;b1&amp;quot;] = params[&amp;quot;b1&amp;quot;] - learning_rate * V_db1
-        params[&amp;quot;W2&amp;quot;] = params[&amp;quot;W2&amp;quot;] - learning_rate * V_dW2
-        params[&amp;quot;b2&amp;quot;] = params[&amp;quot;b2&amp;quot;] - learning_rate * V_db2
-
-    cache = feed_forward(X_train, params)
-    train_cost = compute_loss(Y_train, cache[&amp;quot;A2&amp;quot;])
-    cache = feed_forward(X_test, params)
-    test_cost = compute_loss(Y_test, cache[&amp;quot;A2&amp;quot;])
-    print(&amp;quot;Epoch {}: training cost = {}, test cost = {}&amp;quot;.format(i+1 ,train_cost, test_cost))
-
-print(&amp;quot;Done.&amp;quot;)
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;pre&gt;&lt;code&gt;Epoch 1: training cost = 0.15587093418167058, test cost = 0.16223940981168986
-Epoch 2: training cost = 0.09417519634799829, test cost = 0.11032242938356147
-Epoch 3: training cost = 0.07205872840102934, test cost = 0.0958078559246339
-Epoch 4: training cost = 0.07008115814138867, test cost = 0.1010270024817398
-Epoch 5: training cost = 0.05501929068580713, test cost = 0.09527116695490956
-Epoch 6: training cost = 0.042663638371140164, test cost = 0.08268937190759178
-Epoch 7: training cost = 0.03615501088752129, test cost = 0.08188431384719108
-Epoch 8: training cost = 0.03610956910064329, test cost = 0.08675249924246693
-Epoch 9: training cost = 0.027582647825206745, test cost = 0.08023754855128316
-Done.
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;How&amp;rsquo;d we do?&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;cache = feed_forward(X_test, params)
-predictions = np.argmax(cache[&amp;quot;A2&amp;quot;], axis=0)
-labels = np.argmax(Y_test, axis=0)
-
-print(classification_report(predictions, labels))
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;pre&gt;&lt;code&gt;             precision    recall  f1-score   support
-
-          0       0.99      0.98      0.98       984
-          1       0.99      0.99      0.99      1136
-          2       0.98      0.98      0.98      1037
-          3       0.97      0.98      0.97      1004
-          4       0.97      0.98      0.98       970
-          5       0.97      0.96      0.97       900
-          6       0.97      0.99      0.98       942
-          7       0.97      0.97      0.97      1026
-          8       0.97      0.96      0.97       982
-          9       0.97      0.96      0.97      1019
-
-avg / total       0.98      0.98      0.98     10000
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;And there it is: 98% precision in just 9 epochs of training.&lt;/p&gt;
 </description>
     </item>
     
