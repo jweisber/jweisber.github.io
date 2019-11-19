@@ -68,7 +68,7 @@ inductive logic.&lt;/p&gt;
 
 &lt;h1 id=&#34;states-structures&#34;&gt;States &amp;amp; Structures&lt;/h1&gt;
 
-&lt;p&gt;Carnap calls a fine-grained specification like $TH$ a &lt;em&gt;state-descriptions&lt;/em&gt;.
+&lt;p&gt;Carnap calls a fine-grained specification like $TH$ a &lt;em&gt;state-description&lt;/em&gt;.
 The coarser grained &amp;ldquo;$1$ head&amp;rdquo; is a &lt;em&gt;structure-description&lt;/em&gt;. A
 state-description specifies which flips land heads, and which tails.
 While a structure-description specifies &lt;em&gt;how many&lt;/em&gt; land heads and tails,
