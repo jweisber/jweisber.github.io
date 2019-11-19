@@ -129,7 +129,7 @@ different means. But there is a strong similarity.&lt;/p&gt;
 of landing heads on each toss. Suppose we regard all possible values
 $0 \leq p \leq 1$ as equally likely.&lt;sup class=&#34;footnote-ref&#34; id=&#34;fnref:1&#34;&gt;&lt;a rel=&#34;footnote&#34; href=&#34;#fn:1&#34;&gt;2&lt;/a&gt;&lt;/sup&gt; If we then update our beliefs
 about the true value of $p$ using Bayes&amp;rsquo; theorem, we arrive at the Rule
-of Succession. (Proving this is a bit involved. Maybe I&amp;rsquo;ll go over it in
+of Succession. (Proving this is a bit involved. Maybe I&amp;rsquo;ll go over it
 another time.)&lt;/p&gt;
 
 &lt;p&gt;Carnap&amp;rsquo;s way of assigning prior probabilities is essentially the same
