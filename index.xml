@@ -321,7 +321,7 @@ feature the same number of heads and tails, $B$ and $C$ specify
 different orderings. So they&amp;rsquo;re mutually exclusive.&lt;/p&gt;
 
 &lt;p&gt;We&amp;rsquo;ve already shown that
-$$ \p(A \given B) = \frac{k+1}{n+1} = \p(A \given C). $$ So we just have
+$$ \p(A \given B) = \frac{k+1}{n+2} = \p(A \given C). $$ So we just have
 to verify the theorem:
 $$
 \begin{aligned}
