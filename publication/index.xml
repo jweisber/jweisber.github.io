@@ -6,33 +6,23 @@
     <description>Recent content in Publications on Jonathan Weisberg</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 04 Jun 2019 00:00:00 -0500</lastBuildDate>
+    <lastBuildDate>Tue, 10 Dec 2019 21:59:04 -0500</lastBuildDate>
     <atom:link href="http://jonathanweisberg.org/publication/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
-      <title>No Escape from Allais: Reply to Buchak</title>
-      <link>http://jonathanweisberg.org/publication/No%20Escape%20from%20Allais/</link>
-      <pubDate>Tue, 04 Jun 2019 00:00:00 -0500</pubDate>
+      <title>Belief in Psyontology</title>
+      <link>http://jonathanweisberg.org/publication/Belief%20in%20Psyontology/</link>
+      <pubDate>Tue, 10 Dec 2019 21:59:04 -0500</pubDate>
       
-      <guid>http://jonathanweisberg.org/publication/No%20Escape%20from%20Allais/</guid>
-      <description>&lt;p&gt;In &lt;em&gt;Risk &amp;amp; Rationality&lt;/em&gt;, Buchak (2013) advertises REU theory as able to recover the modal preferences in the Allais paradox. In our (2017) however, we pointed out that REU theory only applies in the &amp;ldquo;grand world&amp;rdquo; setting, where it actually struggles with the modal Allais preferences. Buchak (2017) offers two replies. Here we enumerate a variety of technical and philosophical problems with each.&lt;/p&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>Risk Writ Large</title>
-      <link>http://jonathanweisberg.org/publication/Risk%20Writ%20Large/</link>
-      <pubDate>Wed, 28 Dec 2016 11:20:45 -0500</pubDate>
-      
-      <guid>http://jonathanweisberg.org/publication/Risk%20Writ%20Large/</guid>
-      <description>&lt;p&gt;Risk-weighted expected utility (REU) theory is motivated by small-world problems like the Allais paradox, but it is a grand-world theory by nature. And, at the grand-world level, its ability to handle the Allais paradox is dubious. The REU model described in Risk and Rationality turns out to be risk-seeking rather than risk-averse on one natural way of formulating the Allais gambles in the grand-world context. This result illustrates a general problem with the case for REU theory, we argue. There is a tension between the small-world thinking marshaled against standard expected utility theory, and the grand-world thinking inherent to the risk-weighted alternative.&lt;/p&gt;
+      <guid>http://jonathanweisberg.org/publication/Belief%20in%20Psyontology/</guid>
+      <description>&lt;p&gt;Which is more fundamental, full belief or partial belief? I argue that neither is, ontologically speaking. A survey of some relevant cognitive psychology supports a dualist ontology instead. Beliefs come in two kinds, categorical and graded, with neither kind more fundamental than the other. In particular, the graded kind is no more fundamental. When we discuss belief in on/off terms, we are not speaking coarsely or informally about states that are ultimately credal.&lt;/p&gt;
 </description>
     </item>
     
     <item>
       <title>Could&#39;ve Thought Otherwise</title>
       <link>http://jonathanweisberg.org/publication/Couldve%20Thought%20Otherwise/</link>
-      <pubDate>Tue, 27 Dec 2016 21:58:08 -0500</pubDate>
+      <pubDate>Tue, 10 Dec 2019 21:58:08 -0500</pubDate>
       
       <guid>http://jonathanweisberg.org/publication/Couldve%20Thought%20Otherwise/</guid>
       <description>&lt;p&gt;Evidence is univocal, not equivocal. Its implications don&amp;rsquo;t depend on our beliefs or values, the evidence says what it says. But that doesn&amp;rsquo;t mean there&amp;rsquo;s no room for rational disagreement between people with the same evidence. Evaluating evidence is a lot like polling an electorate: getting an accurate reading requires a bit of luck, and even the best pollsters are bound to get slightly different results. So even though evidence is univocal, rationality&amp;rsquo;s requirements are not &amp;ldquo;unique&amp;rdquo;. Understanding this resolves several puzzles to do with uniqueness and disagreement.&lt;/p&gt;
@@ -40,12 +30,22 @@
     </item>
     
     <item>
-      <title>Belief in Psyontology</title>
-      <link>http://jonathanweisberg.org/publication/Belief%20in%20Psyontology/</link>
-      <pubDate>Tue, 27 Dec 2016 21:58:04 -0500</pubDate>
+      <title>No Escape from Allais: Reply to Buchak</title>
+      <link>http://jonathanweisberg.org/publication/2019%20No%20Escape%20from%20Allais/</link>
+      <pubDate>Tue, 04 Jun 2019 00:00:00 -0500</pubDate>
       
-      <guid>http://jonathanweisberg.org/publication/Belief%20in%20Psyontology/</guid>
-      <description>&lt;p&gt;Which is more fundamental, full belief or partial belief? I argue that neither is, ontologically speaking. A survey of some relevant cognitive psychology supports a dualist ontology instead. Beliefs come in two kinds, categorical and graded, with neither kind more fundamental than the other. In particular, the graded kind is no more fundamental. When we discuss belief in on/off terms, we are not speaking coarsely or informally about states that are ultimately credal.&lt;/p&gt;
+      <guid>http://jonathanweisberg.org/publication/2019%20No%20Escape%20from%20Allais/</guid>
+      <description>&lt;p&gt;In &lt;em&gt;Risk &amp;amp; Rationality&lt;/em&gt;, Buchak (2013) advertises REU theory as able to recover the modal preferences in the Allais paradox. In our (2017) however, we pointed out that REU theory only applies in the &amp;ldquo;grand world&amp;rdquo; setting, where it actually struggles with the modal Allais preferences. Buchak (2017) offers two replies. Here we enumerate a variety of technical and philosophical problems with each.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Risk Writ Large</title>
+      <link>http://jonathanweisberg.org/publication/2017%20Risk%20Writ%20Large/</link>
+      <pubDate>Wed, 28 Dec 2016 11:20:45 -0500</pubDate>
+      
+      <guid>http://jonathanweisberg.org/publication/2017%20Risk%20Writ%20Large/</guid>
+      <description>&lt;p&gt;Risk-weighted expected utility (REU) theory is motivated by small-world problems like the Allais paradox, but it is a grand-world theory by nature. And, at the grand-world level, its ability to handle the Allais paradox is dubious. The REU model described in Risk and Rationality turns out to be risk-seeking rather than risk-averse on one natural way of formulating the Allais gambles in the grand-world context. This result illustrates a general problem with the case for REU theory, we argue. There is a tension between the small-world thinking marshaled against standard expected utility theory, and the grand-world thinking inherent to the risk-weighted alternative.&lt;/p&gt;
 </description>
     </item>
     

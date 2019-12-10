@@ -6,8 +6,181 @@
     <description>Recent content in Posts on Jonathan Weisberg</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 19 Nov 2019 00:00:00 -0500</lastBuildDate>
+    <lastBuildDate>Tue, 10 Dec 2019 00:00:00 -0500</lastBuildDate>
     <atom:link href="http://jonathanweisberg.org/post/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Laplace&#39;s Rule of Succession</title>
+      <link>http://jonathanweisberg.org/post/inductive-logic-2/</link>
+      <pubDate>Tue, 10 Dec 2019 00:00:00 -0500</pubDate>
+      
+      <guid>http://jonathanweisberg.org/post/inductive-logic-2/</guid>
+      <description>
+
+&lt;p&gt;The Rule of Succession gives a simple formula for &amp;ldquo;enumerative induction&amp;rdquo;: reasoning from observed instances to unobserved ones. If you&amp;rsquo;ve observed 8 ravens and they&amp;rsquo;ve all been black, how certain should you be the next raven you see will also be black? According to the Rule of Succession, 90%. In general, the probability is $(k+1)/(n+2)$ that the next observation will be positive, given $k$ positive observations out of $n$ total.&lt;/p&gt;
+
+&lt;p&gt;When does the Rule of Succession apply, and why is it $(k+1)/(n+2)$? Laplace first derived a special case of the rule in 1774, using certain assumptions. The same assumptions also allow us to derive the general rule, and following the derivation through answers both questions.
+$\newcommand{\p}{P}\newcommand{\given}{\mid}\newcommand{\dif}{d}$&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;http://jonathanweisberg.org/pdf/inductive-logic-2.pdf&#34;&gt;PDF version here&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;As motivation, imagine we&amp;rsquo;re drawing randomly, with replacement, from an urn of marbles some proportion $p$ of which are black. Strictly speaking, $p$ must be a rational number in this setup. But formally, we&amp;rsquo;ll suppose $p$ can be any real number in the unit interval.&lt;/p&gt;
+
+&lt;p&gt;If we have no idea what $p$ is, it&amp;rsquo;s natural to start with a uniform prior over its possible values. Formally, $p$ is a random variable with a uniform density on the $[0,1]$ interval. Each draw induces another random variable,
+$$
+X_i =
+\begin{cases}
+1 &amp;amp; \text{ if the $i^\text{th}$ draw is black},\newline
+0 &amp;amp; \text{ otherwise}.
+\end{cases}
+$$
+We&amp;rsquo;ll define one last random variable $S_n$, which counts the black draws:
+$$ S_n = X_1 + \ldots + X_n . $$
+Laplace&amp;rsquo;s assumptions are then as follows.&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;Each $X_i$ has the same chance $p$ of being $1$.&lt;/li&gt;
+&lt;li&gt;That chance is independent of whatever values the other $X_j$&amp;rsquo;s take.&lt;/li&gt;
+&lt;li&gt;The prior distribution over $p$ is uniform: $f(p) = 1$ for $0 \leq p \leq 1$.&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;Given these assumptions, the Rule of Succession follows:
+$$ \p(X_{n+1} = 1 \given S_n = k) = \frac{k+1}{n+2}. $$
+We&amp;rsquo;ll start by deriving this result for the special case where all observations are positive, so that $k = n$.&lt;/p&gt;
+
+&lt;h1 id=&#34;laplace-s-special-case&#34;&gt;Laplace&amp;rsquo;s Special Case&lt;/h1&gt;
+
+&lt;p&gt;When $k = n$, the Rule of Succession says:
+$$ \p(X_{n+1} = 1 \given S_n = n) = \frac{n+1}{n+2}. $$
+To derive this result, we start with the Law of Total Probability.
+\begin{align}
+  \p(X_{n+1} = 1 \given S_n = n)
+    &amp;amp;= \int_0^1 \p(X_{n+1} = 1 \given S_n = n, p) f(p \given S_n = n) \dif p\newline
+    &amp;amp;= \int_0^1 \p(X_{n+1} = 1 \given p) f(p \given S_n = n) \dif p\newline
+    &amp;amp;= \int_0^1 p \, f(p \given S_n = n) \dif p. \tag{1}
+\end{align}
+To finish the calculation, we need to compute $f(p \given S_n = n)$. We need to know how observing $n$ out of $n$ black marbles changes the probability density over $p$.&lt;/p&gt;
+
+&lt;p&gt;For this we turn to Bayes&amp;rsquo; theorem.
+$$
+\begin{aligned}
+  f(p \given S_n = n)
+    &amp;amp;= \frac{ f(p) \p(S_n = n \given p) }{ \p(S_n = n) }\newline
+    &amp;amp;= \frac{ \p(S_n = n \given p) }{ \p(S_n = n) }\newline
+    &amp;amp;= \frac{ p^n }{ \p(S_n = n) }\newline
+    &amp;amp;= c p^n.
+\end{aligned}
+$$
+Here $c$ is an as-yet unknown constant: the inverse of $\p(S_n = n)$, whatever that is. To find $c$, first observe by calculus that:
+$$ \int_0^1 c p^n \dif p = \left. \left(\frac{c p^{n+1}}{n+1}\right) \right|_0^1 = \frac{c}{n+1}. $$
+Then observe that this quantity must equal $1$, since we&amp;rsquo;ve integrated $f(p \given S_n = n)$, a probability density. Thus $c = n + 1$, and hence
+$$ f(p \given S_n = n) = (n+1) p^n. $$
+Returning now to finish our original calculation in Equation (1):
+$$
+\begin{aligned}
+  \p(X_{n+1} = 1 \given S_n = n)
+    &amp;amp;= \int_0^1 p \, f(p \given S_n = n) \dif p\newline
+    &amp;amp;= \int_0^1 p \, (n+1) p^n \dif p\newline
+    &amp;amp;= (n+1) \int_0^1 p^{n+1} \dif p\newline
+    &amp;amp;= (n+1) \left. \left(\frac{p^{n+2}}{n+2}\right) \right|_0^1\newline
+    &amp;amp;= \frac{n+1}{n+2}.
+\end{aligned}
+$$
+This is the Rule of Succession when $k = n$, as desired.&lt;/p&gt;
+
+&lt;h1 id=&#34;the-general-case&#34;&gt;The General Case&lt;/h1&gt;
+
+&lt;p&gt;The proof of the general case starts similarly. We first apply the Law of Total Probability to obtain
+$$ \p(X_{n+1} = 1 \given S_n = k) = \int_0^1 p \, f(p \given S_n = k) \dif p.  \tag{2} $$
+Then we use Bayes&amp;rsquo; theorem to compute $f(p \given S_n = k)$.
+\begin{align}
+  f(p \given S_n = k)
+    &amp;amp;= \frac{ \p(S_n = k \given p) }{ \p(S_n = k) }\newline
+    &amp;amp;= \frac{ \binom{n}{k} p^k (1-p)^{n-k} }{ \p(S_n = k) } \tag{3}.
+\end{align}
+Note that we used the formula for a &lt;a href=&#34;https://en.wikipedia.org/wiki/Binomial_distribution#Probability_mass_function&#34; target=&#34;_blank&#34;&gt;binomial probability&lt;/a&gt; here to calculate the numerator $\p(S_n = k \given p)$.&lt;/p&gt;
+
+&lt;p&gt;Computing the denominator $\p(S_n = k)$ requires a different approach from the special case. We start with the Law of Total Probability:
+\begin{align}
+  \p(S_n = k)
+    &amp;amp;= \int_0^1 \p(S_n = k \given p) f(p) \dif p\newline
+    &amp;amp;= \int_0^1 \p(S_n = k \given p) \dif p \newline
+    &amp;amp;= \int_0^1 \binom{n}{k} p^k (1-p)^{n-k} \dif p \newline
+    &amp;amp;= \binom{n}{k} \int_0^1 p^k (1-p)^{n-k} \dif p.
+\end{align}
+This leaves us facing an instance of a famous function, the &lt;a href=&#34;https://en.wikipedia.org/wiki/Beta_function&#34; target=&#34;_blank&#34;&gt;&amp;ldquo;beta function,&amp;rdquo;&lt;/a&gt; which is defined:
+$$ B(a, b) = \int_0^1 x^a (1-x)^{b} \dif x. $$
+In our case $a$ and $b$ are natural numbers, so $B(a,b)$ has an elegant formula, which we use now and prove later:
+$$
+  B(a, b) = \frac{a!b!}{(a + b + 1)!}.
+$$
+For us, $a = k$ and $b = n-k$, so we have
+$$ \p(S_n = k) = \binom{n}{k} B(k, n-k) = \binom{n}{k} \frac{k!(n-k)!}{(n + 1)!}. $$
+Substituting back into our calculation of $f(p \given S_n = k)$ in Equation (3):
+$$
+\begin{aligned}
+  f(p \given S_n = k)
+    &amp;amp;= \frac{ \binom{n}{k} p^k (1-p)^{n-k} }{ \binom{n}{k} B(k, n-k) }\newline
+    &amp;amp;= \frac{(n + 1)!}{k!(n-k)!} p^k (1-p)^{n-k} .
+\end{aligned}
+$$
+Then we finish our original calculation from Equation (2):
+\begin{align}
+  \p(X_{n+1} = 1 \given S_n = k)
+    &amp;amp;= \int_0^1 p \frac{(n + 1)!}{k!(n-k)!} p^k (1-p)^{n-k} \dif p\newline
+    &amp;amp;= \frac{(n + 1)!}{k!(n-k)!} \int_0^1 p^{k+1} (1-p)^{n-k} \dif p\newline
+    &amp;amp;= \frac{(n + 1)!}{k!(n-k)!} B(k+1, n-k)\newline
+    &amp;amp;= \frac{(n + 1)!}{k!(n-k)!} \frac{(k+1)!(n-k)!}{(k+1 + n-k + 1)!}\newline
+    &amp;amp;= \frac{k+1}{n + 2}.
+\end{align}
+This is the Rule of Succession, as desired.&lt;/p&gt;
+
+&lt;h1 id=&#34;the-beta-function&#34;&gt;The Beta Function&lt;/h1&gt;
+
+&lt;p&gt;Finally, let&amp;rsquo;s derive the formula we used for the beta function:
+$$ \int_0^1 x^a (1-x)^{b} \dif x = \frac{a!b!}{(a + b + 1)!}, $$
+where $a$ and $b$ are natural numbers. We proceed in two steps: integration by parts, then a proof by induction.&lt;/p&gt;
+
+&lt;p&gt;Notice first that when $b = 0$ our integral simplifies and is straightforward:
+$$ \int_0^1 x^a \dif x = \frac{1}{a+1}. $$
+So let&amp;rsquo;s assume $b &amp;gt; 0$ and pursue integration by parts. If we let
+$$ u = (1 - x)^b, \quad \dif v = x^a \dif x, $$
+then
+$$ \dif u = -b (1 - x)^{b-1}, \quad v = \frac{x^{a+1}}{a+1}.
+$$
+So
+$$
+\begin{aligned}
+  \int_0^1 x^a (1-x)^{b} \dif x
+    &amp;amp;= \left. \left(\frac{ x^{a+1} (1 - x)^b }{ a+1 }\right) \right|_0^1 +
+        \frac{b}{a+1} \int_0^1 x^{a+1} (1 - x)^{b-1} \dif x\newline
+    &amp;amp;= \frac{b}{a+1} \int_0^1 x^{a+1} (1 - x)^{b-1} \dif x.
+\end{aligned}
+$$&lt;/p&gt;
+
+&lt;p&gt;Now we use this identity in an argument by induction. We already noted that when $b = 0$ we have $B(a, 0) = 1/(a+1)$. This satisfies the general formula
+$$
+  B(a, b) = \frac{a!b!}{(a+b+1)!}.
+$$
+By induction on $b &amp;gt; 0$, we find the formula holds in general:
+$$
+\begin{aligned}
+  B(a, b)
+    &amp;amp;= \int_0^1 x^a (1-x)^{b} \dif x\newline
+    &amp;amp;= \frac{b}{a+1} \int_0^1 x^{a+1} (1 - x)^{b-1} \dif x\newline
+    &amp;amp;= \frac{b}{a+1} B(a+1, b-1)\newline
+    &amp;amp;= \frac{b}{a+1} \frac{(a+1)!(b-1)!}{(a + 1 + b - 1 + 1)!}\newline
+    &amp;amp;= \frac{a!b!}{(a + b + 1)!}.
+\end{aligned}
+$$&lt;/p&gt;
+
+&lt;h1 id=&#34;acknowledgments&#34;&gt;Acknowledgments&lt;/h1&gt;
+
+&lt;p&gt;Our proof of the special case follows &lt;a href=&#34;https://youtu.be/N8O6zd6vTZ8?t=2245&#34; target=&#34;_blank&#34;&gt;this excellent video&lt;/a&gt; by Joe Blitzstein. And our proof of the general case comes from Sheldon Ross&amp;rsquo; classic textbook, &lt;em&gt;A First Course in Probability&lt;/em&gt;, Exercise 30 on page 128 of the 7th edition.&lt;/p&gt;
+</description>
+    </item>
     
     <item>
       <title>Crash Course in Inductive Logic</title>
@@ -3887,212 +4060,6 @@ these journals accruing citations faster?&lt;/p&gt;
  &lt;a class=&#34;footnote-return&#34; href=&#34;#fnref:1&#34;&gt;&lt;sup&gt;[return]&lt;/sup&gt;&lt;/a&gt;&lt;/li&gt;
 &lt;/ol&gt;
 &lt;/div&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>Building a Neural Network from Scratch: Part 2</title>
-      <link>http://jonathanweisberg.org/post/A%20Neural%20Network%20from%20Scratch%20-%20Part%202/</link>
-      <pubDate>Wed, 07 Mar 2018 00:00:00 -0500</pubDate>
-      
-      <guid>http://jonathanweisberg.org/post/A%20Neural%20Network%20from%20Scratch%20-%20Part%202/</guid>
-      <description>&lt;p&gt;In this post we&amp;rsquo;ll improve our training algorithm from the &lt;a href=&#34;http://jonathanweisberg.org/post/A%20Neural%20Network%20from%20Scratch%20-%20Part%201/&#34;&gt;previous post&lt;/a&gt;. When we&amp;rsquo;re done we&amp;rsquo;ll be able to achieve 98% precision on the MNIST data set, after just 9 epochs of training&amp;mdash;which only takes about 30 seconds to run on my laptop.&lt;/p&gt;
-
-&lt;p&gt;For comparison, last time we only achieved 92% precision after 2,000 epochs of training, which took over an hour!&lt;/p&gt;
-
-&lt;p&gt;The main driver in this improvement is just switching from batch gradient descent to &lt;em&gt;mini&lt;/em&gt;-batch gradient descent. But we&amp;rsquo;ll also make two other, smaller improvements: we&amp;rsquo;ll add momentum to our descent algorithm, and we&amp;rsquo;ll smarten up the initialization of our network&amp;rsquo;s weights.&lt;/p&gt;
-
-&lt;p&gt;We&amp;rsquo;ll also reorganize our code a bit while we&amp;rsquo;re at it, making things more modular.&lt;/p&gt;
-
-&lt;p&gt;But first we need to import and massage our data. These steps are the same as in the previous post:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;from sklearn.datasets import fetch_mldata
-from sklearn.metrics import classification_report, confusion_matrix
-import numpy as np
-
-# import
-mnist = fetch_mldata(&#39;MNIST original&#39;)
-X, y = mnist[&amp;quot;data&amp;quot;], mnist[&amp;quot;target&amp;quot;]
-
-# scale
-X = X / 255
-
-# one-hot encode labels
-digits = 10
-examples = y.shape[0]
-y = y.reshape(1, examples)
-Y_new = np.eye(digits)[y.astype(&#39;int32&#39;)]
-Y_new = Y_new.T.reshape(digits, examples)
-
-# split, reshape, shuffle
-m = 60000
-m_test = X.shape[0] - m
-X_train, X_test = X[:m].T, X[m:].T
-Y_train, Y_test = Y_new[:,:m], Y_new[:,m:]
-shuffle_index = np.random.permutation(m)
-X_train, Y_train = X_train[:, shuffle_index], Y_train[:, shuffle_index]
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Then we&amp;rsquo;ll define our key functions. Only the last two are new, and they just put the steps of forward and backward propagation into their own functions. This tidies up the training code to follow, so that we can focus on the novel elements, especially mini-batch descent and momentum.&lt;/p&gt;
-
-&lt;p&gt;Notice that in the process we introduce three dictionaries:&lt;code&gt;params&lt;/code&gt;, &lt;code&gt;cache&lt;/code&gt;, and &lt;code&gt;grads&lt;/code&gt;. These are for conveniently passing information back and forth between the forward and backward passes.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;def sigmoid(z):
-    s = 1. / (1. + np.exp(-z))
-    return s
-
-def compute_loss(Y, Y_hat):
-
-    L_sum = np.sum(np.multiply(Y, np.log(Y_hat)))
-    m = Y.shape[1]
-    L = -(1./m) * L_sum
-
-    return L
-
-def feed_forward(X, params):
-
-    cache = {}
-
-    cache[&amp;quot;Z1&amp;quot;] = np.matmul(params[&amp;quot;W1&amp;quot;], X) + params[&amp;quot;b1&amp;quot;]
-    cache[&amp;quot;A1&amp;quot;] = sigmoid(cache[&amp;quot;Z1&amp;quot;])
-    cache[&amp;quot;Z2&amp;quot;] = np.matmul(params[&amp;quot;W2&amp;quot;], cache[&amp;quot;A1&amp;quot;]) + params[&amp;quot;b2&amp;quot;]
-    cache[&amp;quot;A2&amp;quot;] = np.exp(cache[&amp;quot;Z2&amp;quot;]) / np.sum(np.exp(cache[&amp;quot;Z2&amp;quot;]), axis=0)
-
-    return cache
-
-def back_propagate(X, Y, params, cache):
-
-    dZ2 = cache[&amp;quot;A2&amp;quot;] - Y
-    dW2 = (1./m_batch) * np.matmul(dZ2, cache[&amp;quot;A1&amp;quot;].T)
-    db2 = (1./m_batch) * np.sum(dZ2, axis=1, keepdims=True)
-
-    dA1 = np.matmul(params[&amp;quot;W2&amp;quot;].T, dZ2)
-    dZ1 = dA1 * sigmoid(cache[&amp;quot;Z1&amp;quot;]) * (1 - sigmoid(cache[&amp;quot;Z1&amp;quot;]))
-    dW1 = (1./m_batch) * np.matmul(dZ1, X.T)
-    db1 = (1./m_batch) * np.sum(dZ1, axis=1, keepdims=True)
-
-    grads = {&amp;quot;dW1&amp;quot;: dW1, &amp;quot;db1&amp;quot;: db1, &amp;quot;dW2&amp;quot;: dW2, &amp;quot;db2&amp;quot;: db2}
-
-    return grads
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Now for the substantive stuff.&lt;/p&gt;
-
-&lt;p&gt;To switch to mini-batch descent, we add another &lt;code&gt;for&lt;/code&gt; loop inside the pass through each epoch. At each pass we randomly shuffle the training set, then iterate through it in chunks of &lt;code&gt;batch_size&lt;/code&gt;, which we&amp;rsquo;ll arbitrarily set to 128. We&amp;rsquo;ll see the code for all this in a moment.&lt;/p&gt;
-
-&lt;p&gt;Next, to add momentum, we keep a moving average of our gradients. So instead of updating our parameters by doing e.g.:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;params[&amp;quot;W1&amp;quot;] = params[&amp;quot;W1&amp;quot;] - learning_rate * grads[&amp;quot;dW1&amp;quot;]
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;we do this:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;V_dW1 = (beta * V_dW1 + (1. - beta) * grads[&amp;quot;dW1&amp;quot;])
-params[&amp;quot;W1&amp;quot;] = params[&amp;quot;W1&amp;quot;] - learning_rate * V_dW1
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Finally, to smarten up our initialization, we shrink the variance of the weights in each layer. Following &lt;a href=&#34;https://www.coursera.org/learn/deep-neural-network/lecture/RwqYe/weight-initialization-for-deep-networks&#34; target=&#34;_blank&#34;&gt;this nice video&lt;/a&gt; by Andrew Ng (whose excellent Coursera materials I&amp;rsquo;ve been relying on heavily in these posts), we&amp;rsquo;ll set the variance for each layer to $1/n$, where $n$ is the number of inputs feeding into that layer.&lt;/p&gt;
-
-&lt;p&gt;We&amp;rsquo;ve been using the &lt;code&gt;np.random.randn()&lt;/code&gt; function to get our initial weights. And this function draws from the standard normal distribution. So to adjust the variance to $1/n$, we just divide by $\sqrt{n}$. In code this means that instead of doing e.g. &lt;code&gt;np.random.randn(n_h, n_x)&lt;/code&gt;, we do &lt;code&gt;np.random.randn(n_h, n_x) * np.sqrt(1. / n_x)&lt;/code&gt;.&lt;/p&gt;
-
-&lt;p&gt;Ok that covers our three improvements. Let&amp;rsquo;s build and train!&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;np.random.seed(138)
-
-# hyperparameters
-n_x = X_train.shape[0]
-n_h = 64
-learning_rate = 4
-beta = .9
-batch_size = 128
-batches = -(-m // batch_size)
-
-# initialization
-params = { &amp;quot;W1&amp;quot;: np.random.randn(n_h, n_x) * np.sqrt(1. / n_x),
-           &amp;quot;b1&amp;quot;: np.zeros((n_h, 1)) * np.sqrt(1. / n_x),
-           &amp;quot;W2&amp;quot;: np.random.randn(digits, n_h) * np.sqrt(1. / n_h),
-           &amp;quot;b2&amp;quot;: np.zeros((digits, 1)) * np.sqrt(1. / n_h) }
-
-V_dW1 = np.zeros(params[&amp;quot;W1&amp;quot;].shape)
-V_db1 = np.zeros(params[&amp;quot;b1&amp;quot;].shape)
-V_dW2 = np.zeros(params[&amp;quot;W2&amp;quot;].shape)
-V_db2 = np.zeros(params[&amp;quot;b2&amp;quot;].shape)
-
-# train
-for i in range(9):
-
-    permutation = np.random.permutation(X_train.shape[1])
-    X_train_shuffled = X_train[:, permutation]
-    Y_train_shuffled = Y_train[:, permutation]
-
-    for j in range(batches):
-
-        begin = j * batch_size
-        end = min(begin + batch_size, X_train.shape[1] - 1)
-        X = X_train_shuffled[:, begin:end]
-        Y = Y_train_shuffled[:, begin:end]
-        m_batch = end - begin
-
-        cache = feed_forward(X, params)
-        grads = back_propagate(X, Y, params, cache)
-
-        V_dW1 = (beta * V_dW1 + (1. - beta) * grads[&amp;quot;dW1&amp;quot;])
-        V_db1 = (beta * V_db1 + (1. - beta) * grads[&amp;quot;db1&amp;quot;])
-        V_dW2 = (beta * V_dW2 + (1. - beta) * grads[&amp;quot;dW2&amp;quot;])
-        V_db2 = (beta * V_db2 + (1. - beta) * grads[&amp;quot;db2&amp;quot;])
-
-        params[&amp;quot;W1&amp;quot;] = params[&amp;quot;W1&amp;quot;] - learning_rate * V_dW1
-        params[&amp;quot;b1&amp;quot;] = params[&amp;quot;b1&amp;quot;] - learning_rate * V_db1
-        params[&amp;quot;W2&amp;quot;] = params[&amp;quot;W2&amp;quot;] - learning_rate * V_dW2
-        params[&amp;quot;b2&amp;quot;] = params[&amp;quot;b2&amp;quot;] - learning_rate * V_db2
-
-    cache = feed_forward(X_train, params)
-    train_cost = compute_loss(Y_train, cache[&amp;quot;A2&amp;quot;])
-    cache = feed_forward(X_test, params)
-    test_cost = compute_loss(Y_test, cache[&amp;quot;A2&amp;quot;])
-    print(&amp;quot;Epoch {}: training cost = {}, test cost = {}&amp;quot;.format(i+1 ,train_cost, test_cost))
-
-print(&amp;quot;Done.&amp;quot;)
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;pre&gt;&lt;code&gt;Epoch 1: training cost = 0.15587093418167058, test cost = 0.16223940981168986
-Epoch 2: training cost = 0.09417519634799829, test cost = 0.11032242938356147
-Epoch 3: training cost = 0.07205872840102934, test cost = 0.0958078559246339
-Epoch 4: training cost = 0.07008115814138867, test cost = 0.1010270024817398
-Epoch 5: training cost = 0.05501929068580713, test cost = 0.09527116695490956
-Epoch 6: training cost = 0.042663638371140164, test cost = 0.08268937190759178
-Epoch 7: training cost = 0.03615501088752129, test cost = 0.08188431384719108
-Epoch 8: training cost = 0.03610956910064329, test cost = 0.08675249924246693
-Epoch 9: training cost = 0.027582647825206745, test cost = 0.08023754855128316
-Done.
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;How&amp;rsquo;d we do?&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;cache = feed_forward(X_test, params)
-predictions = np.argmax(cache[&amp;quot;A2&amp;quot;], axis=0)
-labels = np.argmax(Y_test, axis=0)
-
-print(classification_report(predictions, labels))
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;pre&gt;&lt;code&gt;             precision    recall  f1-score   support
-
-          0       0.99      0.98      0.98       984
-          1       0.99      0.99      0.99      1136
-          2       0.98      0.98      0.98      1037
-          3       0.97      0.98      0.97      1004
-          4       0.97      0.98      0.98       970
-          5       0.97      0.96      0.97       900
-          6       0.97      0.99      0.98       942
-          7       0.97      0.97      0.97      1026
-          8       0.97      0.96      0.97       982
-          9       0.97      0.96      0.97      1019
-
-avg / total       0.98      0.98      0.98     10000
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;And there it is: 98% precision in just 9 epochs of training.&lt;/p&gt;
 </description>
     </item>
     

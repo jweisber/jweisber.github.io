@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Jonathan Weisberg's Homepage">
+    <meta name="author" content="Jonathan Weisberg">
+    
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@jweisber">
+    <meta name="twitter:creator" content="@jweisber">
+    <meta name="twitter:title" content="Laplace&#39;s Rule of Succession">
+    <meta name="twitter:description" content="The Rule of Succession gives a simple formula for &ldquo;enumerative induction&rdquo;: reasoning from observed instances to unobserved ones. If you&rsquo;ve observed 8 ravens and they&rsquo;ve all been black, how certain should you be the next raven you see will also be black? According to the Rule of Succession, 90%. In general, the probability is $(k&#43;1)/(n&#43;2)$ that the next observation will be positive, given $k$ positive observations out of $n$ total.">
+    <meta name="twitter:image" content="https://jonathanweisberg.org/img/inductive-logic/rule-of-succession.png">
+
+    <meta property="og:url" content="/post/inductive-logic-2/" />
+    <meta property="og:type" content="article" />
+    <meta property="og:title" content="Laplace&#39;s Rule of Succession" />
+    <meta property="og:description" content="The Rule of Succession gives a simple formula for &ldquo;enumerative induction&rdquo;: reasoning from observed instances to unobserved ones. If you&rsquo;ve observed 8 ravens and they&rsquo;ve all been black, how certain should you be the next raven you see will also be black? According to the Rule of Succession, 90%. In general, the probability is $(k&#43;1)/(n&#43;2)$ that the next observation will be positive, given $k$ positive observations out of $n$ total." />
+    <meta property="og:image" content="https://jonathanweisberg.org/img/inductive-logic/rule-of-succession.png" />
+
+
+    <title>Laplace&#39;s Rule of Succession</title>
+
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+    <link href="/css/prism.css" rel="stylesheet" />
+    <link href="/css/scarab.css" rel="stylesheet">
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]},
+        "HTML-CSS": {
+          availableFonts: ["Neo-Euler"],
+          preferredFont: "Neo-Euler",
+          webFont: "Neo-Euler",
+          imageFont: "Neo-Euler",
+        }
+      });
+    </script>
+    <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+    </script>
+    
+    
+    
+
+</head>
+
+<body>
+
+<nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+  <div class="container">
+    
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-navbar-collapse-1">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="http://jonathanweisberg.org/">Jonathan Weisberg</a>
+    </div>
+    
+    <div class="collapse navbar-collapse" id="bs-navbar-collapse-1">
+      <ul class="nav navbar-nav">
+        <li>
+          <a href="/pdf/CV.pdf">
+            <i class="fa fa-briefcase"></i>&nbsp;
+            CV
+          </a>
+        </li>
+        <li>
+          <a href="/post/">
+            <i class="fa fa-code"></i>&nbsp;
+            Blog
+          </a>
+        </li>
+        <li>
+          <a href="/publication/">
+            <i class="fa fa-files-o"></i>&nbsp;
+            Research
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+
+
+  
+  <div class="container blog-post">
+
+    
+    <div class="row">
+      <div class="col-md-3 hidden-sm hidden-xs text-right">
+        <h1 class="post-title">&nbsp;</h1>
+          <em>Dec 10, 2019</em><br />
+          
+          
+          
+          <span class="post-tags">
+            
+            <a class="post-tag" href="http://jonathanweisberg.org/tags/philosophy">Philosophy</a>
+             &bull;   
+            
+            <a class="post-tag" href="http://jonathanweisberg.org/tags/epistemology">Epistemology</a>
+             &bull;  
+            
+            <a class="post-tag" href="http://jonathanweisberg.org/tags/formal-epistemology">Formal Epistemology</a>
+            
+            
+          </span>
+          
+          
+        </p>
+      </div>
+
+      <div class="col-md-7">
+        <h1 class="post-title">Laplace&#39;s Rule of Succession</h1>
+        <div class="hidden-md hidden-lg post-metadata">
+          <div>
+            <em>Dec 10, 2019</em>
+          </div>
+          
+          
+          
+          <p class="post-tags">
+            
+            <a class="post-tag" href="http://jonathanweisberg.org/tags/philosophy">Philosophy</a>
+             &bull;   
+            
+            <a class="post-tag" href="http://jonathanweisberg.org/tags/epistemology">Epistemology</a>
+             &bull;  
+            
+            <a class="post-tag" href="http://jonathanweisberg.org/tags/formal-epistemology">Formal Epistemology</a>
+            
+            
+          </p>
+          
+          
+        </div>
+
+        <div class="post-body">
+          
+
+<p>The Rule of Succession gives a simple formula for &ldquo;enumerative induction&rdquo;: reasoning from observed instances to unobserved ones. If you&rsquo;ve observed 8 ravens and they&rsquo;ve all been black, how certain should you be the next raven you see will also be black? According to the Rule of Succession, 90%. In general, the probability is $(k+1)/(n+2)$ that the next observation will be positive, given $k$ positive observations out of $n$ total.</p>
+
+<p>When does the Rule of Succession apply, and why is it $(k+1)/(n+2)$? Laplace first derived a special case of the rule in 1774, using certain assumptions. The same assumptions also allow us to derive the general rule, and following the derivation through answers both questions.
+$\newcommand{\p}{P}\newcommand{\given}{\mid}\newcommand{\dif}{d}$</p>
+
+<ul>
+<li><a href="/pdf/inductive-logic-2.pdf">PDF version here</a></li>
+</ul>
+
+<p>As motivation, imagine we&rsquo;re drawing randomly, with replacement, from an urn of marbles some proportion $p$ of which are black. Strictly speaking, $p$ must be a rational number in this setup. But formally, we&rsquo;ll suppose $p$ can be any real number in the unit interval.</p>
+
+<p>If we have no idea what $p$ is, it&rsquo;s natural to start with a uniform prior over its possible values. Formally, $p$ is a random variable with a uniform density on the $[0,1]$ interval. Each draw induces another random variable,
+$$
+X_i =
+\begin{cases}
+1 &amp; \text{ if the $i^\text{th}$ draw is black},\newline
+0 &amp; \text{ otherwise}.
+\end{cases}
+$$
+We&rsquo;ll define one last random variable $S_n$, which counts the black draws:
+$$ S_n = X_1 + \ldots + X_n . $$
+Laplace&rsquo;s assumptions are then as follows.</p>
+
+<ol>
+<li>Each $X_i$ has the same chance $p$ of being $1$.</li>
+<li>That chance is independent of whatever values the other $X_j$&rsquo;s take.</li>
+<li>The prior distribution over $p$ is uniform: $f(p) = 1$ for $0 \leq p \leq 1$.</li>
+</ol>
+
+<p>Given these assumptions, the Rule of Succession follows:
+$$ \p(X_{n+1} = 1 \given S_n = k) = \frac{k+1}{n+2}. $$
+We&rsquo;ll start by deriving this result for the special case where all observations are positive, so that $k = n$.</p>
+
+<h1 id="laplace-s-special-case">Laplace&rsquo;s Special Case</h1>
+
+<p>When $k = n$, the Rule of Succession says:
+$$ \p(X_{n+1} = 1 \given S_n = n) = \frac{n+1}{n+2}. $$
+To derive this result, we start with the Law of Total Probability.
+\begin{align}
+  \p(X_{n+1} = 1 \given S_n = n)
+    &amp;= \int_0^1 \p(X_{n+1} = 1 \given S_n = n, p) f(p \given S_n = n) \dif p\newline
+    &amp;= \int_0^1 \p(X_{n+1} = 1 \given p) f(p \given S_n = n) \dif p\newline
+    &amp;= \int_0^1 p \, f(p \given S_n = n) \dif p. \tag{1}
+\end{align}
+To finish the calculation, we need to compute $f(p \given S_n = n)$. We need to know how observing $n$ out of $n$ black marbles changes the probability density over $p$.</p>
+
+<p>For this we turn to Bayes&rsquo; theorem.
+$$
+\begin{aligned}
+  f(p \given S_n = n)
+    &amp;= \frac{ f(p) \p(S_n = n \given p) }{ \p(S_n = n) }\newline
+    &amp;= \frac{ \p(S_n = n \given p) }{ \p(S_n = n) }\newline
+    &amp;= \frac{ p^n }{ \p(S_n = n) }\newline
+    &amp;= c p^n.
+\end{aligned}
+$$
+Here $c$ is an as-yet unknown constant: the inverse of $\p(S_n = n)$, whatever that is. To find $c$, first observe by calculus that:
+$$ \int_0^1 c p^n \dif p = \left. \left(\frac{c p^{n+1}}{n+1}\right) \right|_0^1 = \frac{c}{n+1}. $$
+Then observe that this quantity must equal $1$, since we&rsquo;ve integrated $f(p \given S_n = n)$, a probability density. Thus $c = n + 1$, and hence
+$$ f(p \given S_n = n) = (n+1) p^n. $$
+Returning now to finish our original calculation in Equation (1):
+$$
+\begin{aligned}
+  \p(X_{n+1} = 1 \given S_n = n)
+    &amp;= \int_0^1 p \, f(p \given S_n = n) \dif p\newline
+    &amp;= \int_0^1 p \, (n+1) p^n \dif p\newline
+    &amp;= (n+1) \int_0^1 p^{n+1} \dif p\newline
+    &amp;= (n+1) \left. \left(\frac{p^{n+2}}{n+2}\right) \right|_0^1\newline
+    &amp;= \frac{n+1}{n+2}.
+\end{aligned}
+$$
+This is the Rule of Succession when $k = n$, as desired.</p>
+
+<h1 id="the-general-case">The General Case</h1>
+
+<p>The proof of the general case starts similarly. We first apply the Law of Total Probability to obtain
+$$ \p(X_{n+1} = 1 \given S_n = k) = \int_0^1 p \, f(p \given S_n = k) \dif p.  \tag{2} $$
+Then we use Bayes&rsquo; theorem to compute $f(p \given S_n = k)$.
+\begin{align}
+  f(p \given S_n = k)
+    &amp;= \frac{ \p(S_n = k \given p) }{ \p(S_n = k) }\newline
+    &amp;= \frac{ \binom{n}{k} p^k (1-p)^{n-k} }{ \p(S_n = k) } \tag{3}.
+\end{align}
+Note that we used the formula for a <a href="https://en.wikipedia.org/wiki/Binomial_distribution#Probability_mass_function" target="_blank">binomial probability</a> here to calculate the numerator $\p(S_n = k \given p)$.</p>
+
+<p>Computing the denominator $\p(S_n = k)$ requires a different approach from the special case. We start with the Law of Total Probability:
+\begin{align}
+  \p(S_n = k)
+    &amp;= \int_0^1 \p(S_n = k \given p) f(p) \dif p\newline
+    &amp;= \int_0^1 \p(S_n = k \given p) \dif p \newline
+    &amp;= \int_0^1 \binom{n}{k} p^k (1-p)^{n-k} \dif p \newline
+    &amp;= \binom{n}{k} \int_0^1 p^k (1-p)^{n-k} \dif p.
+\end{align}
+This leaves us facing an instance of a famous function, the <a href="https://en.wikipedia.org/wiki/Beta_function" target="_blank">&ldquo;beta function,&rdquo;</a> which is defined:
+$$ B(a, b) = \int_0^1 x^a (1-x)^{b} \dif x. $$
+In our case $a$ and $b$ are natural numbers, so $B(a,b)$ has an elegant formula, which we use now and prove later:
+$$
+  B(a, b) = \frac{a!b!}{(a + b + 1)!}.
+$$
+For us, $a = k$ and $b = n-k$, so we have
+$$ \p(S_n = k) = \binom{n}{k} B(k, n-k) = \binom{n}{k} \frac{k!(n-k)!}{(n + 1)!}. $$
+Substituting back into our calculation of $f(p \given S_n = k)$ in Equation (3):
+$$
+\begin{aligned}
+  f(p \given S_n = k)
+    &amp;= \frac{ \binom{n}{k} p^k (1-p)^{n-k} }{ \binom{n}{k} B(k, n-k) }\newline
+    &amp;= \frac{(n + 1)!}{k!(n-k)!} p^k (1-p)^{n-k} .
+\end{aligned}
+$$
+Then we finish our original calculation from Equation (2):
+\begin{align}
+  \p(X_{n+1} = 1 \given S_n = k)
+    &amp;= \int_0^1 p \frac{(n + 1)!}{k!(n-k)!} p^k (1-p)^{n-k} \dif p\newline
+    &amp;= \frac{(n + 1)!}{k!(n-k)!} \int_0^1 p^{k+1} (1-p)^{n-k} \dif p\newline
+    &amp;= \frac{(n + 1)!}{k!(n-k)!} B(k+1, n-k)\newline
+    &amp;= \frac{(n + 1)!}{k!(n-k)!} \frac{(k+1)!(n-k)!}{(k+1 + n-k + 1)!}\newline
+    &amp;= \frac{k+1}{n + 2}.
+\end{align}
+This is the Rule of Succession, as desired.</p>
+
+<h1 id="the-beta-function">The Beta Function</h1>
+
+<p>Finally, let&rsquo;s derive the formula we used for the beta function:
+$$ \int_0^1 x^a (1-x)^{b} \dif x = \frac{a!b!}{(a + b + 1)!}, $$
+where $a$ and $b$ are natural numbers. We proceed in two steps: integration by parts, then a proof by induction.</p>
+
+<p>Notice first that when $b = 0$ our integral simplifies and is straightforward:
+$$ \int_0^1 x^a \dif x = \frac{1}{a+1}. $$
+So let&rsquo;s assume $b &gt; 0$ and pursue integration by parts. If we let
+$$ u = (1 - x)^b, \quad \dif v = x^a \dif x, $$
+then
+$$ \dif u = -b (1 - x)^{b-1}, \quad v = \frac{x^{a+1}}{a+1}.
+$$
+So
+$$
+\begin{aligned}
+  \int_0^1 x^a (1-x)^{b} \dif x
+    &amp;= \left. \left(\frac{ x^{a+1} (1 - x)^b }{ a+1 }\right) \right|_0^1 +
+        \frac{b}{a+1} \int_0^1 x^{a+1} (1 - x)^{b-1} \dif x\newline
+    &amp;= \frac{b}{a+1} \int_0^1 x^{a+1} (1 - x)^{b-1} \dif x.
+\end{aligned}
+$$</p>
+
+<p>Now we use this identity in an argument by induction. We already noted that when $b = 0$ we have $B(a, 0) = 1/(a+1)$. This satisfies the general formula
+$$
+  B(a, b) = \frac{a!b!}{(a+b+1)!}.
+$$
+By induction on $b &gt; 0$, we find the formula holds in general:
+$$
+\begin{aligned}
+  B(a, b)
+    &amp;= \int_0^1 x^a (1-x)^{b} \dif x\newline
+    &amp;= \frac{b}{a+1} \int_0^1 x^{a+1} (1 - x)^{b-1} \dif x\newline
+    &amp;= \frac{b}{a+1} B(a+1, b-1)\newline
+    &amp;= \frac{b}{a+1} \frac{(a+1)!(b-1)!}{(a + 1 + b - 1 + 1)!}\newline
+    &amp;= \frac{a!b!}{(a + b + 1)!}.
+\end{aligned}
+$$</p>
+
+<h1 id="acknowledgments">Acknowledgments</h1>
+
+<p>Our proof of the special case follows <a href="https://youtu.be/N8O6zd6vTZ8?t=2245" target="_blank">this excellent video</a> by Joe Blitzstein. And our proof of the general case comes from Sheldon Ross&rsquo; classic textbook, <em>A First Course in Probability</em>, Exercise 30 on page 128 of the 7th edition.</p>
+
+
+          &nbsp;
+        </div>
+
+        <div>
+          <div class="post-back-link">
+    <a href="javascript: history.back()">
+        <i class="fa fa-arrow-left"></i> 
+        Back
+    </a>
+</div>
+        </div>
+      </div>
+    </div>
+    
+
+<footer style="padding-top: 1em;">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-lg-12 text-center">
+        <p>
+          &nbsp;
+        </p>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+<script src="/js/prism.js"></script>
+
+<script type="text/javascript">
+var sc_project= 11213692 ;
+var sc_invisible= 1 ;
+var sc_security="b1954803";
+var scJsHost = (("https:" == document.location.protocol) ?
+"https://secure." : "http://www.");
+document.write("<sc"+"ript type='text/javascript' src='" +
+scJsHost+
+"statcounter.com/counter/counter.js'></"+"script>");
+</script>
+<noscript><div class="statcounter"><a title="web analytics"
+href="http://statcounter.com/" target="_blank"><img
+class="statcounter"
+src="//c.statcounter.com/11213692/0/b1954803/1/" alt="web
+analytics"></a></div></noscript>
+
+
+</body>
+</html>
+

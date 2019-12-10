@@ -9,6 +9,179 @@
     <atom:link href="http://jonathanweisberg.org/tags/epistemology/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
+      <title>Laplace&#39;s Rule of Succession</title>
+      <link>http://jonathanweisberg.org/post/inductive-logic-2/</link>
+      <pubDate>Tue, 10 Dec 2019 00:00:00 -0500</pubDate>
+      
+      <guid>http://jonathanweisberg.org/post/inductive-logic-2/</guid>
+      <description>
+
+&lt;p&gt;The Rule of Succession gives a simple formula for &amp;ldquo;enumerative induction&amp;rdquo;: reasoning from observed instances to unobserved ones. If you&amp;rsquo;ve observed 8 ravens and they&amp;rsquo;ve all been black, how certain should you be the next raven you see will also be black? According to the Rule of Succession, 90%. In general, the probability is $(k+1)/(n+2)$ that the next observation will be positive, given $k$ positive observations out of $n$ total.&lt;/p&gt;
+
+&lt;p&gt;When does the Rule of Succession apply, and why is it $(k+1)/(n+2)$? Laplace first derived a special case of the rule in 1774, using certain assumptions. The same assumptions also allow us to derive the general rule, and following the derivation through answers both questions.
+$\newcommand{\p}{P}\newcommand{\given}{\mid}\newcommand{\dif}{d}$&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;http://jonathanweisberg.org/pdf/inductive-logic-2.pdf&#34;&gt;PDF version here&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;As motivation, imagine we&amp;rsquo;re drawing randomly, with replacement, from an urn of marbles some proportion $p$ of which are black. Strictly speaking, $p$ must be a rational number in this setup. But formally, we&amp;rsquo;ll suppose $p$ can be any real number in the unit interval.&lt;/p&gt;
+
+&lt;p&gt;If we have no idea what $p$ is, it&amp;rsquo;s natural to start with a uniform prior over its possible values. Formally, $p$ is a random variable with a uniform density on the $[0,1]$ interval. Each draw induces another random variable,
+$$
+X_i =
+\begin{cases}
+1 &amp;amp; \text{ if the $i^\text{th}$ draw is black},\newline
+0 &amp;amp; \text{ otherwise}.
+\end{cases}
+$$
+We&amp;rsquo;ll define one last random variable $S_n$, which counts the black draws:
+$$ S_n = X_1 + \ldots + X_n . $$
+Laplace&amp;rsquo;s assumptions are then as follows.&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;Each $X_i$ has the same chance $p$ of being $1$.&lt;/li&gt;
+&lt;li&gt;That chance is independent of whatever values the other $X_j$&amp;rsquo;s take.&lt;/li&gt;
+&lt;li&gt;The prior distribution over $p$ is uniform: $f(p) = 1$ for $0 \leq p \leq 1$.&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;Given these assumptions, the Rule of Succession follows:
+$$ \p(X_{n+1} = 1 \given S_n = k) = \frac{k+1}{n+2}. $$
+We&amp;rsquo;ll start by deriving this result for the special case where all observations are positive, so that $k = n$.&lt;/p&gt;
+
+&lt;h1 id=&#34;laplace-s-special-case&#34;&gt;Laplace&amp;rsquo;s Special Case&lt;/h1&gt;
+
+&lt;p&gt;When $k = n$, the Rule of Succession says:
+$$ \p(X_{n+1} = 1 \given S_n = n) = \frac{n+1}{n+2}. $$
+To derive this result, we start with the Law of Total Probability.
+\begin{align}
+  \p(X_{n+1} = 1 \given S_n = n)
+    &amp;amp;= \int_0^1 \p(X_{n+1} = 1 \given S_n = n, p) f(p \given S_n = n) \dif p\newline
+    &amp;amp;= \int_0^1 \p(X_{n+1} = 1 \given p) f(p \given S_n = n) \dif p\newline
+    &amp;amp;= \int_0^1 p \, f(p \given S_n = n) \dif p. \tag{1}
+\end{align}
+To finish the calculation, we need to compute $f(p \given S_n = n)$. We need to know how observing $n$ out of $n$ black marbles changes the probability density over $p$.&lt;/p&gt;
+
+&lt;p&gt;For this we turn to Bayes&amp;rsquo; theorem.
+$$
+\begin{aligned}
+  f(p \given S_n = n)
+    &amp;amp;= \frac{ f(p) \p(S_n = n \given p) }{ \p(S_n = n) }\newline
+    &amp;amp;= \frac{ \p(S_n = n \given p) }{ \p(S_n = n) }\newline
+    &amp;amp;= \frac{ p^n }{ \p(S_n = n) }\newline
+    &amp;amp;= c p^n.
+\end{aligned}
+$$
+Here $c$ is an as-yet unknown constant: the inverse of $\p(S_n = n)$, whatever that is. To find $c$, first observe by calculus that:
+$$ \int_0^1 c p^n \dif p = \left. \left(\frac{c p^{n+1}}{n+1}\right) \right|_0^1 = \frac{c}{n+1}. $$
+Then observe that this quantity must equal $1$, since we&amp;rsquo;ve integrated $f(p \given S_n = n)$, a probability density. Thus $c = n + 1$, and hence
+$$ f(p \given S_n = n) = (n+1) p^n. $$
+Returning now to finish our original calculation in Equation (1):
+$$
+\begin{aligned}
+  \p(X_{n+1} = 1 \given S_n = n)
+    &amp;amp;= \int_0^1 p \, f(p \given S_n = n) \dif p\newline
+    &amp;amp;= \int_0^1 p \, (n+1) p^n \dif p\newline
+    &amp;amp;= (n+1) \int_0^1 p^{n+1} \dif p\newline
+    &amp;amp;= (n+1) \left. \left(\frac{p^{n+2}}{n+2}\right) \right|_0^1\newline
+    &amp;amp;= \frac{n+1}{n+2}.
+\end{aligned}
+$$
+This is the Rule of Succession when $k = n$, as desired.&lt;/p&gt;
+
+&lt;h1 id=&#34;the-general-case&#34;&gt;The General Case&lt;/h1&gt;
+
+&lt;p&gt;The proof of the general case starts similarly. We first apply the Law of Total Probability to obtain
+$$ \p(X_{n+1} = 1 \given S_n = k) = \int_0^1 p \, f(p \given S_n = k) \dif p.  \tag{2} $$
+Then we use Bayes&amp;rsquo; theorem to compute $f(p \given S_n = k)$.
+\begin{align}
+  f(p \given S_n = k)
+    &amp;amp;= \frac{ \p(S_n = k \given p) }{ \p(S_n = k) }\newline
+    &amp;amp;= \frac{ \binom{n}{k} p^k (1-p)^{n-k} }{ \p(S_n = k) } \tag{3}.
+\end{align}
+Note that we used the formula for a &lt;a href=&#34;https://en.wikipedia.org/wiki/Binomial_distribution#Probability_mass_function&#34; target=&#34;_blank&#34;&gt;binomial probability&lt;/a&gt; here to calculate the numerator $\p(S_n = k \given p)$.&lt;/p&gt;
+
+&lt;p&gt;Computing the denominator $\p(S_n = k)$ requires a different approach from the special case. We start with the Law of Total Probability:
+\begin{align}
+  \p(S_n = k)
+    &amp;amp;= \int_0^1 \p(S_n = k \given p) f(p) \dif p\newline
+    &amp;amp;= \int_0^1 \p(S_n = k \given p) \dif p \newline
+    &amp;amp;= \int_0^1 \binom{n}{k} p^k (1-p)^{n-k} \dif p \newline
+    &amp;amp;= \binom{n}{k} \int_0^1 p^k (1-p)^{n-k} \dif p.
+\end{align}
+This leaves us facing an instance of a famous function, the &lt;a href=&#34;https://en.wikipedia.org/wiki/Beta_function&#34; target=&#34;_blank&#34;&gt;&amp;ldquo;beta function,&amp;rdquo;&lt;/a&gt; which is defined:
+$$ B(a, b) = \int_0^1 x^a (1-x)^{b} \dif x. $$
+In our case $a$ and $b$ are natural numbers, so $B(a,b)$ has an elegant formula, which we use now and prove later:
+$$
+  B(a, b) = \frac{a!b!}{(a + b + 1)!}.
+$$
+For us, $a = k$ and $b = n-k$, so we have
+$$ \p(S_n = k) = \binom{n}{k} B(k, n-k) = \binom{n}{k} \frac{k!(n-k)!}{(n + 1)!}. $$
+Substituting back into our calculation of $f(p \given S_n = k)$ in Equation (3):
+$$
+\begin{aligned}
+  f(p \given S_n = k)
+    &amp;amp;= \frac{ \binom{n}{k} p^k (1-p)^{n-k} }{ \binom{n}{k} B(k, n-k) }\newline
+    &amp;amp;= \frac{(n + 1)!}{k!(n-k)!} p^k (1-p)^{n-k} .
+\end{aligned}
+$$
+Then we finish our original calculation from Equation (2):
+\begin{align}
+  \p(X_{n+1} = 1 \given S_n = k)
+    &amp;amp;= \int_0^1 p \frac{(n + 1)!}{k!(n-k)!} p^k (1-p)^{n-k} \dif p\newline
+    &amp;amp;= \frac{(n + 1)!}{k!(n-k)!} \int_0^1 p^{k+1} (1-p)^{n-k} \dif p\newline
+    &amp;amp;= \frac{(n + 1)!}{k!(n-k)!} B(k+1, n-k)\newline
+    &amp;amp;= \frac{(n + 1)!}{k!(n-k)!} \frac{(k+1)!(n-k)!}{(k+1 + n-k + 1)!}\newline
+    &amp;amp;= \frac{k+1}{n + 2}.
+\end{align}
+This is the Rule of Succession, as desired.&lt;/p&gt;
+
+&lt;h1 id=&#34;the-beta-function&#34;&gt;The Beta Function&lt;/h1&gt;
+
+&lt;p&gt;Finally, let&amp;rsquo;s derive the formula we used for the beta function:
+$$ \int_0^1 x^a (1-x)^{b} \dif x = \frac{a!b!}{(a + b + 1)!}, $$
+where $a$ and $b$ are natural numbers. We proceed in two steps: integration by parts, then a proof by induction.&lt;/p&gt;
+
+&lt;p&gt;Notice first that when $b = 0$ our integral simplifies and is straightforward:
+$$ \int_0^1 x^a \dif x = \frac{1}{a+1}. $$
+So let&amp;rsquo;s assume $b &amp;gt; 0$ and pursue integration by parts. If we let
+$$ u = (1 - x)^b, \quad \dif v = x^a \dif x, $$
+then
+$$ \dif u = -b (1 - x)^{b-1}, \quad v = \frac{x^{a+1}}{a+1}.
+$$
+So
+$$
+\begin{aligned}
+  \int_0^1 x^a (1-x)^{b} \dif x
+    &amp;amp;= \left. \left(\frac{ x^{a+1} (1 - x)^b }{ a+1 }\right) \right|_0^1 +
+        \frac{b}{a+1} \int_0^1 x^{a+1} (1 - x)^{b-1} \dif x\newline
+    &amp;amp;= \frac{b}{a+1} \int_0^1 x^{a+1} (1 - x)^{b-1} \dif x.
+\end{aligned}
+$$&lt;/p&gt;
+
+&lt;p&gt;Now we use this identity in an argument by induction. We already noted that when $b = 0$ we have $B(a, 0) = 1/(a+1)$. This satisfies the general formula
+$$
+  B(a, b) = \frac{a!b!}{(a+b+1)!}.
+$$
+By induction on $b &amp;gt; 0$, we find the formula holds in general:
+$$
+\begin{aligned}
+  B(a, b)
+    &amp;amp;= \int_0^1 x^a (1-x)^{b} \dif x\newline
+    &amp;amp;= \frac{b}{a+1} \int_0^1 x^{a+1} (1 - x)^{b-1} \dif x\newline
+    &amp;amp;= \frac{b}{a+1} B(a+1, b-1)\newline
+    &amp;amp;= \frac{b}{a+1} \frac{(a+1)!(b-1)!}{(a + 1 + b - 1 + 1)!}\newline
+    &amp;amp;= \frac{a!b!}{(a + b + 1)!}.
+\end{aligned}
+$$&lt;/p&gt;
+
+&lt;h1 id=&#34;acknowledgments&#34;&gt;Acknowledgments&lt;/h1&gt;
+
+&lt;p&gt;Our proof of the special case follows &lt;a href=&#34;https://youtu.be/N8O6zd6vTZ8?t=2245&#34; target=&#34;_blank&#34;&gt;this excellent video&lt;/a&gt; by Joe Blitzstein. And our proof of the general case comes from Sheldon Ross&amp;rsquo; classic textbook, &lt;em&gt;A First Course in Probability&lt;/em&gt;, Exercise 30 on page 128 of the 7th edition.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
       <title>Crash Course in Inductive Logic</title>
       <link>http://jonathanweisberg.org/post/inductive-logic/</link>
       <pubDate>Tue, 19 Nov 2019 00:00:00 -0500</pubDate>
