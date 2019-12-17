@@ -2,6 +2,11 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://jonathanweisberg.org/post/inductive-logic-3/</loc>
+    <lastmod>2019-12-17T00:00:00-05:00</lastmod>
+  </url>
+  
+  <url>
     <loc>http://jonathanweisberg.org/publication/Belief%20in%20Psyontology/</loc>
     <lastmod>2019-12-10T21:59:04-05:00</lastmod>
   </url>
@@ -320,7 +325,7 @@
   
   <url>
     <loc>http://jonathanweisberg.org/tags/epistemology/</loc>
-    <lastmod>2019-12-10T00:00:00-05:00</lastmod>
+    <lastmod>2019-12-17T00:00:00-05:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -337,7 +342,7 @@
   
   <url>
     <loc>http://jonathanweisberg.org/tags/formal-epistemology/</loc>
-    <lastmod>2019-12-10T00:00:00-05:00</lastmod>
+    <lastmod>2019-12-17T00:00:00-05:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -349,7 +354,7 @@
   
   <url>
     <loc>http://jonathanweisberg.org/</loc>
-    <lastmod>2019-12-10T21:59:04-05:00</lastmod>
+    <lastmod>2019-12-17T00:00:00-05:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -379,7 +384,7 @@
   
   <url>
     <loc>http://jonathanweisberg.org/tags/philosophy/</loc>
-    <lastmod>2019-12-10T00:00:00-05:00</lastmod>
+    <lastmod>2019-12-17T00:00:00-05:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -391,7 +396,7 @@
   
   <url>
     <loc>http://jonathanweisberg.org/post/</loc>
-    <lastmod>2019-12-10T00:00:00-05:00</lastmod>
+    <lastmod>2019-12-17T00:00:00-05:00</lastmod>
     <priority>0</priority>
   </url>
   

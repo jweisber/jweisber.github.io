@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Jonathan Weisberg's Homepage">
+    <meta name="author" content="Jonathan Weisberg">
+    
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@jweisber">
+    <meta name="twitter:creator" content="@jweisber">
+    <meta name="twitter:title" content="The Beta Prior and the Lambda Continuum">
+    <meta name="twitter:description" content="In an earlier post we met the $\lambda$-continuum, a generalization of Laplace&rsquo;s Rule of Succession. Here is Laplace&rsquo;s rule, stated in terms of flips of a coin whose bias is unknown.
+ The Rule of Succession Given $k$ heads out of $n$ flips, the probability the next flip will land heads is $$\frac{k&#43;1}{n&#43;2}.$$
+  To generalize we introduce an adjustable parameter, $\lambda$. Intuitively $\lambda$ captures how cautious we are in drawing conclusions from the observed frequency.">
+    <meta name="twitter:image" content="https://jonathanweisberg.org//img/inductive-logic/inductive-logic/betas.png">
+
+    <meta property="og:url" content="/post/inductive-logic-3/" />
+    <meta property="og:type" content="article" />
+    <meta property="og:title" content="The Beta Prior and the Lambda Continuum" />
+    <meta property="og:description" content="In an earlier post we met the $\lambda$-continuum, a generalization of Laplace&rsquo;s Rule of Succession. Here is Laplace&rsquo;s rule, stated in terms of flips of a coin whose bias is unknown.
+ The Rule of Succession Given $k$ heads out of $n$ flips, the probability the next flip will land heads is $$\frac{k&#43;1}{n&#43;2}.$$
+  To generalize we introduce an adjustable parameter, $\lambda$. Intuitively $\lambda$ captures how cautious we are in drawing conclusions from the observed frequency." />
+    <meta property="og:image" content="https://jonathanweisberg.org//img/inductive-logic/inductive-logic/betas.png" />
+
+
+    <title>The Beta Prior and the Lambda Continuum</title>
+
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+    <link href="/css/prism.css" rel="stylesheet" />
+    <link href="/css/scarab.css" rel="stylesheet">
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]},
+        "HTML-CSS": {
+          availableFonts: ["Neo-Euler"],
+          preferredFont: "Neo-Euler",
+          webFont: "Neo-Euler",
+          imageFont: "Neo-Euler",
+        }
+      });
+    </script>
+    <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+    </script>
+    
+    
+    
+
+</head>
+
+<body>
+
+<nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+  <div class="container">
+    
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-navbar-collapse-1">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="http://jonathanweisberg.org/">Jonathan Weisberg</a>
+    </div>
+    
+    <div class="collapse navbar-collapse" id="bs-navbar-collapse-1">
+      <ul class="nav navbar-nav">
+        <li>
+          <a href="/pdf/CV.pdf">
+            <i class="fa fa-briefcase"></i>&nbsp;
+            CV
+          </a>
+        </li>
+        <li>
+          <a href="/post/">
+            <i class="fa fa-code"></i>&nbsp;
+            Blog
+          </a>
+        </li>
+        <li>
+          <a href="/publication/">
+            <i class="fa fa-files-o"></i>&nbsp;
+            Research
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+
+
+  
+  <div class="container blog-post">
+
+    
+    <div class="row">
+      <div class="col-md-3 hidden-sm hidden-xs text-right">
+        <h1 class="post-title">&nbsp;</h1>
+          <em>Dec 17, 2019</em><br />
+          
+          
+          
+          <span class="post-tags">
+            
+            <a class="post-tag" href="http://jonathanweisberg.org/tags/philosophy">Philosophy</a>
+             &bull;   
+            
+            <a class="post-tag" href="http://jonathanweisberg.org/tags/epistemology">Epistemology</a>
+             &bull;  
+            
+            <a class="post-tag" href="http://jonathanweisberg.org/tags/formal-epistemology">Formal Epistemology</a>
+            
+            
+          </span>
+          
+          
+        </p>
+      </div>
+
+      <div class="col-md-7">
+        <h1 class="post-title">The Beta Prior and the Lambda Continuum</h1>
+        <div class="hidden-md hidden-lg post-metadata">
+          <div>
+            <em>Dec 17, 2019</em>
+          </div>
+          
+          
+          
+          <p class="post-tags">
+            
+            <a class="post-tag" href="http://jonathanweisberg.org/tags/philosophy">Philosophy</a>
+             &bull;   
+            
+            <a class="post-tag" href="http://jonathanweisberg.org/tags/epistemology">Epistemology</a>
+             &bull;  
+            
+            <a class="post-tag" href="http://jonathanweisberg.org/tags/formal-epistemology">Formal Epistemology</a>
+            
+            
+          </p>
+          
+          
+        </div>
+
+        <div class="post-body">
+          
+
+<p>In an <a href="/post/inductive-logic">earlier post</a> we met the $\lambda$-continuum, a generalization of <a href="/post/inductive-logic-2">Laplace&rsquo;s Rule of Succession</a>. Here is Laplace&rsquo;s rule, stated in terms of flips of a coin whose bias is unknown.</p>
+
+<dl>
+<dt>The Rule of Succession</dt>
+<dd><p>Given $k$ heads out of $n$ flips, the probability the next flip will land heads is $$\frac{k+1}{n+2}.$$</p></dd>
+</dl>
+
+<p>To generalize we introduce an adjustable parameter, $\lambda$. Intuitively $\lambda$ captures how cautious we are in drawing conclusions from the observed frequency.</p>
+
+<dl>
+<dt>The $\lambda$ Continuum</dt>
+<dd><p>Given $k$ heads out of $n$ flips, the probability the next flip will land heads is $$\frac{k + \lambda / 2}{n + \lambda}.$$</p></dd>
+</dl>
+
+<p>When $\lambda = 2$, this just is the Rule of Succession. When $\lambda = 0$, it becomes the &ldquo;Straight Rule,&rdquo; which matches the observed frequency, $k/n$. The general pattern is: the larger $\lambda$, the more flips we need to see before we tend toward the observed frequency, and away from the starting default value of $1/ 2$.$\newcommand{\p}{P}\newcommand{\given}{\mid}\newcommand{\dif}{d}$</p>
+
+<p>So what&rsquo;s so special about $\lambda = 2$? Why did Laplace and others take a special interest in the Rule of Succession? Because it derives from the Principle of Indifference. <a href="/post/inductive-logic/">We saw</a> that setting $\lambda = 2$ basically amounts to assuming all possible frequencies have equal prior probability. Or that all possible biases of the coin are equally likely. The Rule of Succession thus corresponds to a uniform prior.</p>
+
+<p>What about other values of $\lambda$ then? What kind of prior do they correspond to? This question has an elegant and illuminating answer, which we&rsquo;ll explore here.</p>
+
+<ul>
+<li><a href="/pdf/inductive-logic-3.pdf">PDF version here</a></li>
+</ul>
+
+<h1 id="a-preview">A Preview</h1>
+
+<p>Let&rsquo;s preview the result we&rsquo;ll arrive at. Because, although the core idea isn&rsquo;t very technical, deriving the full result does takes some noodling. It will be good to have some sense of where we&rsquo;re going.</p>
+
+<p>Here&rsquo;s a picture of the priors that correspond to various choices of $\lambda$. The $x$-axis is the bias of the coin, the $y$-axis is the probability density.</p>
+
+<p><img src="/img/inductive-logic/betas.png" alt="" /></p>
+
+<p>Notice how $\lambda = 2$ is a kind of inflection point. The plot goes from being concave up to concave down. When $\lambda &lt; 2$, the prior is U-shaped. Then, as $\lambda$ grows above $2$, we approach a normal distribution centered on $1/ 2$.</p>
+
+<p>So, when $\lambda &lt; 2$, we start out pretty sure the coin is biased, though we don&rsquo;t know in which direction. When $\lambda &lt; 2$ we&rsquo;re inclined to run with the observed frequency, whatever that is. If we observe a heads on the first toss, we&rsquo;ll be pretty confident the next toss will land heads too. And the lower $\lambda$ is, the more confident we&rsquo;ll be about that.</p>
+
+<p>Whereas $\lambda &gt; 2$ corresponds to an inclination to think the coin fair, or at least fair-ish. So it takes a while for the observed frequency to draw us away from our initial expectation of $1/ 2$. (Unless the observed frequency is itself $1/ 2$.)</p>
+
+<p>That&rsquo;s the intuitive picture we&rsquo;re working towards. Let&rsquo;s see how to get there.</p>
+
+<h1 id="pseudo-observations">Pseudo-observations</h1>
+
+<p>Notice that the Rule of Succession is the same as pretending we&rsquo;ve already observed one heads and one tails, and then using the Straight Rule. A $3$rd toss landing heads would give us an observed frequency of $2/3$, precisely what the Rule of Succession gives when just $1$ toss has landed heads. If $k = n = 1$, then
+$$ \frac{k+1}{n+2} = \frac{2}{3}. $$
+So, setting $\lambda = 2$ amounts to imagining we have $2$ observations already, and then using the observed frequency as the posterior probability.</p>
+
+<p>Setting $\lambda = 4$ is like pretending we have $4$ observations already. If we have $2$ heads and $2$ tails so far, then a heads on the $5$th toss would make for an observed frequency of $3/5$. And this is the posterior probability the $\lambda$-continuum dictates for a single heads when $\lambda = 4$:
+$$ \frac{k + \lambda/2}{n + \lambda} = \frac{1 + 4/2}{1 + 4} = \frac{3}{5}. $$
+In general, even values of $\lambda &gt; 0$ amount to pretending we&rsquo;ve already observed $\lambda$ flips, evenly split between heads and tails, and then using the observed frequency as the posterior probability.</p>
+
+<p>This doesn&rsquo;t quite answer our question, but it&rsquo;s the key idea. We know that the uniform prior distribution gives rise to the posterior probabilities dictated by $\lambda = 2$. We want to know what prior distribution corresponds to other settings of $\lambda$. We see here that, for $\lambda = 4, 6, 8, \ldots$ the relevant prior is the same as the &ldquo;pseudo-posterior&rdquo; we would have if we updated the uniform prior on an additional $2$ &ldquo;pseudo-observations&rdquo;, or $4$, or $6$, etc.</p>
+
+<p>So we just need to know what these pseudo-posteriors look like, and then extend the idea beyond even values of $\lambda$.</p>
+
+<h1 id="pseudo-posteriors">Pseudo-posteriors</h1>
+
+<p>Let&rsquo;s write $S_n = k$ to mean that we&rsquo;ve observed $k$ heads out of $n$ flips. We&rsquo;ll use $p$ for the unknown, true probability of heads on each flip. Our uniform prior distribution is $f(p) = 1$ for $0 \leq p \leq 1$. We want to know what $f(p \given S_n = k)$ looks like.</p>
+
+<p>In <a href="https://jonathanweisberg.org/post/inductive-logic-2/" target="_blank">a previous post</a> we derived a formula for this:
+$$ f(p \given S_n = k) = \frac{(n+1)!}{k!(n-k)!} p^k (1-p)^{n-k}. $$
+This is the posterior distribution after observing $k$ heads out of $n$ flips, assuming we start with a uniform prior which corresponds to $\lambda = 2$. So, when we set $\lambda$ to a larger even number, it&rsquo;s the same as starting with $f(p) = 1$ and updating on $S_{\lambda - 2} = \lambda/2 - 1$. We subtract $2$ here because $2$ pseudo-observations were already counted in forming the uniform prior $f(p) = 1$.</p>
+
+<p>Thus the prior distribution $f_\lambda$ for a positive, even value of $\lambda$ is:
+$$
+\begin{aligned}
+f_\lambda(p) &amp;= f(p \given S_{\lambda - 2} = \lambda/2 - 1)\\<br />
+  &amp;= \frac{(\lambda - 1)!}{(\lambda/2 - 1)!(\lambda/2 - 1)!} p^{\lambda/2 - 1} (1-p)^{\lambda/2 - 1}.
+\end{aligned}
+$$
+This prior generates the picture we started with for $\lambda \geq 2$.</p>
+
+<p><img src="/img/inductive-logic/betas-even.png" alt="" /></p>
+
+<p>As $\lambda$ increases, we move from a uniform prior towards a normal distribution centered on $p = 1/ 2$. This makes intuitive sense: the more we accrue evenly balanced observations, the more our expectations come to resemble those for a fair coin.</p>
+
+<p>So, what about odd values of $\lambda$? Or non-integer values? To generalize our treatment beyond even values, we need to generalize our formula for $f_\lambda$.</p>
+
+<h1 id="the-beta-prior">The Beta Prior</h1>
+
+<p>Recall our formula for $f(p \given S_n = k)$:
+$$ \frac{(n+1)!}{k!(n-k)!} p^k (1-p)^{n-k}. $$
+This is a member of a famous family of probability densities, the <a href="https://en.wikipedia.org/wiki/Beta_distribution" target="_blank"><em>beta densities</em></a>. To select a member from this family, we specify two parameters $a,b &gt; 0$ in the formula:
+$$ \frac{1}{B(a,b)} p^{a-1} (1-p)^{b-1}. $$
+Here $B(a,b)$ is the beta function, defined:
+$$ B(a,b) = \int_0^1 x^{a-1} (1-x)^{b-1} \dif x. $$
+<a href="https://jonathanweisberg.org/post/inductive-logic-2/#the-beta-function" target="_blank">We showed</a> that, when $a$ and $b$ are natural numbers,
+$$ B(a,b) = \frac{(a-1)!(b-1)!}{(a+b-1)!}. $$
+To generalize our treatment of $f_\lambda$ beyond whole numbers, we first need to do the same for the beta function. We need $B(a,b)$ for all positive real numbers.</p>
+
+<p>As it turns out, this is a matter of generalizing the notion of factorial. The generalization we need is called the gamma function, and it looks like this:</p>
+
+<p><img src="/img/inductive-logic/gamma.png" alt="" /></p>
+
+<p>The formal definition is
+$$ \Gamma(x) = \int_0^\infty u^{x-1} e^{-u} \dif u. $$
+The gamma function connects to the factorial function because it has the property:
+$$ \Gamma(x+1) = x\Gamma(x). $$
+This entails, by induction, that $\Gamma(n) = (n-1)!$ for any natural number $n$.</p>
+
+<p>In fact we can substitute gammas for factorials in our formula for the beta function:
+$$ B(a,b) = \frac{\Gamma(a)\Gamma(b)}{\Gamma(a+b)}. $$
+Proving this formula would require a long digression, so we&rsquo;ll take it for granted here.</p>
+
+<p>Now we can now work with beta densities whose parameters are not whole numbers. For any $a, b &gt; 0$, the beta density is
+$$ \frac{\Gamma(a + b)}{\Gamma(a)\Gamma(b)} p^{a-1} (1-p)^{b-1}. $$
+We can now show our main result: setting $a = b = \lambda/2$ generates the $\lambda$-continuum.</p>
+
+<h1 id="from-beta-to-lambda">From Beta to Lambda</h1>
+
+<p>We&rsquo;ll write $X_{n+1} = 1$ to mean that toss $n+1$ lands heads. We want to show
+$$ \p(X_{n+1} = 1 \given S_n = k) = \frac{k + \lambda/2}{n + \lambda}, $$
+given two assumptions.</p>
+
+<ul>
+<li>The tosses are independent and identically distributed with probability $p$ for heads.</li>
+<li>The prior distribution $f_\lambda(p)$ is a beta density with $a = b = \lambda/2$.</li>
+</ul>
+
+<p>We start by applying the Law of Total Probability:
+$$
+\begin{aligned}
+  P(X_{n+1} = 1 \given S_n = k)
+    &amp;= \int_0^1 P(X_{n+1} = 1 \given S_n = k, p) f_\lambda(p \given S_n = k) \dif p\\<br />
+    &amp;= \int_0^1 p f_\lambda(p \given S_n = k) \dif p.
+\end{aligned}
+$$
+Notice, this is the expected value of $p$, according to the posterior $f_\lambda(p \given S_n = k)$. To analyze it further, we use two facts proved below.</p>
+
+<ol>
+<li>The posterior $f_\lambda(p \given S_n = k)$ is itself a beta density, but with parameters $k + \lambda/2$ and $n - k + \lambda/2$.</li>
+<li>The expected value of any beta density with parameters $a$ and $b$ is $a/(a+b)$.</li>
+</ol>
+
+<p>Thus
+$$
+\begin{aligned}
+  P(X_{n+1} = 1 \given S_n = k)
+    &amp;= \int_0^1 p f_\lambda(p \given S_n = k) \dif p \\<br />
+    &amp;= \frac{k + \lambda/2}{k + \lambda/2 + n - k + \lambda/2}\\<br />
+    &amp;= \frac{k + \lambda/2}{n + \lambda}.
+\end{aligned}
+$$
+This is the desired result, we just need to establish Facts 1 and 2.</p>
+
+<h2 id="fact-1">Fact 1</h2>
+
+<p>Here we show that, if $f(p)$ is a beta density with parameters $a$ and $b$, then $f(p \given S_n = k)$ is a beta density with parameters $k+a$ and $n - k + b$.</p>
+
+<p>Suppose $f(p)$ is a beta density with parameters $a$ and $b$:
+$$ f(p) = \frac{1}{B(a, b)} p^{a-1} (1-p)^{b-1}. $$
+We calculate $f(p \given S_n = k)$ using Bayes&rsquo; theorem:
+\begin{align}
+  f(p \given S_n = k)
+    &amp;= \frac{f(p) P(S_n = k \given p)}{P(S_n = k)}\\<br />
+    &amp;= \frac{p^{a-1} (1-p)^{b-1} \binom{n}{k} p^k (1-p)^{n-k}}{B(a,b) P(S_n = k)}\\<br />
+    &amp;= \frac{\binom{n}{k}}{B(a,b) \p(S_n = k)} p^{k+a-1} (1-p)^{n-k+b-1} .\tag{1}
+\end{align}
+To analyze $\p(S_n = k)$, we begin with the Law of Total Probability:
+$$
+\begin{aligned}
+  P(S_n = k)
+    &amp;= \int_0^1 P(S_n = k \given p) f(p) \dif p\\<br />
+    &amp;= \int_0^1 \binom{n}{k} p^k (1-p)^{n-k} \frac{1}{B(a, b)} p^{a-1} (1-p)^{b-1} \dif p\\<br />
+    &amp;= \frac{\binom{n}{k}}{B(a, b)} \int_0^1 p^{a+k-1} (1-p)^{b+n-k-1} \dif p\\<br />
+    &amp;= \frac{\binom{n}{k}}{B(a, b)} B(k+a, n-k+b).
+\end{aligned}
+$$
+Substituting back into Equation (1), we get:
+$$ f(p \given S_n = k) = \frac{1}{B(k+a, n-k+b)} p^{k+a-1} (1-p)^{n-k+b-1}. $$
+So $f(p \given S_n = k)$ is the beta density with parameters $k + a$ and $n - k + b$.</p>
+
+<h2 id="fact-2">Fact 2</h2>
+
+<p>Here we show that the expected value of a beta density with parameters $a$ and $b$ is $a/(a+b)$. The expected value formula gives:
+$$
+\frac{1}{B(a, b)} \int_0^1 p p^{a-1} (1-p)^{b-1} \dif p\\<br />
+    = \frac{\Gamma(a + b)}{\Gamma(a)\Gamma(b)} \int_0^1 p^a (1-p)^{b-1} \dif p.
+$$
+The integrand look like a beta density, with parameters $a+1$ and $b$. So we multiply by $1$ in a form that allows us to pair it with the corresponding normalizing constant:
+$$
+\begin{aligned}
+\begin{split}
+\frac{\Gamma(a + b)}{\Gamma(a)\Gamma(b)} &amp; \int_0^1 p^a (1-p)^{b-1} \dif p \\<br />
+    &amp;= \frac{\Gamma(a + b)}{\Gamma(a)\Gamma(b)} \frac{\Gamma(a + 1)\Gamma(b)} {\Gamma(a + b + 1)}\int_0^1 \frac{\Gamma(a + b + 1)}{\Gamma(a + 1)\Gamma(b)} p^a (1-p)^{b-1} \dif p\\<br />
+    &amp;= \frac{\Gamma(a + b)}{\Gamma(a)\Gamma(b)} \frac{\Gamma(a + 1)\Gamma(b)} {\Gamma(a + b + 1)}.
+\end{split}
+\end{aligned}
+$$
+Finally, we use the the property $\Gamma(a+1) = a \Gamma(a)$ to obtain:
+$$
+\frac{\Gamma(a + b)}{\Gamma(a)\Gamma(b)} \frac{a\Gamma(a)\Gamma(b)} {(a+b) \Gamma(a + b)} = \frac{a} {a+b}.
+$$</p>
+
+<h1 id="picturing-it">Picturing It</h1>
+
+<p>What do our priors corresponding to $\lambda &lt; 2$ look like? Above we saw that they&rsquo;re U-shaped, approaching a flat line as $\lambda$ increases. Here&rsquo;s a closer look:</p>
+
+<p><img src="/img/inductive-logic/betas-small.png" alt="" /></p>
+
+<p>We can also look at odd values $\lambda \geq 2$ now, where the pattern is the same as we observed previously.</p>
+
+<p><img src="/img/inductive-logic/betas-odd.png" alt="" /></p>
+
+<h1 id="what-about-zero">What About Zero?</h1>
+
+<p>What about when $\lambda = 0$? This is a permissible value on the $\lambda$-continuum, giving rise to the Straight Rule as we&rsquo;ve noted. But it doesn&rsquo;t correspond to any beta density. The parameters would be $a = b = \lambda/2 = 0$. Whereas we require $a, b &gt; 0$, since the integral
+$$ \int_0^1 p^{-1}(1-p)^{-1} \dif p $$
+diverges.</p>
+
+<p>In fact no prior can agree with the Straight Rule. At least, not on the standard axioms of probability. The Straight Rule requires $\p(HH \given H) = 1$, which entails $\p(HT \given H) = 0$. By the usual definition of conditional probability then, $\p(HT) = 0$. Which means $\p(HTT \given HT)$ is undefined. Yet the Straight Rule says $\p(HTT \given HT) = 1/ 2$.</p>
+
+<p>We can accommodate the Straight Rule by switching to a nonstandard axiom system, where conditional probabilities are primitive, rather than being defined as ratios of unconditional probabilities. This is approach is sometimes called &ldquo;Popper&ndash;Rényi&rdquo; style probability.</p>
+
+<p>Alternatively, we can stick with the standard, Kolmogorov system and instead permit <a href="https://en.wikipedia.org/wiki/Prior_probability#Improper_priors" target="_blank">&ldquo;improper&rdquo; priors</a>: prior distributions that don&rsquo;t integrate to $1$, but which deliver posteriors that do.</p>
+
+<p>Taking this approach, the beta density with $a = b = 0$ is called the <a href="https://en.wikipedia.org/wiki/Beta_distribution#Haldane.27s_prior_probability_.28Beta.280.2C0.29.29" target="_blank">Haldane prior</a>. It&rsquo;s sometimes regarded as &ldquo;informationless,&rdquo; since its posteriors just follow the observed frequencies. But other priors, like the uniform prior, also have some claim to representing perfect ignorance. The <a href="https://en.wikipedia.org/wiki/Jeffreys_prior" target="_blank">Jeffreys prior</a>, which is obtained by setting $a = b = 1/ 2$ (so $\lambda = 1$), is another prior with a similar claim.</p>
+
+<p>That multiple priors can make this claim is a reminder of one of the great tragedies of epistemology: <a href="https://plato.stanford.edu/entries/epistemology-bayesian/" target="_blank">the problem of priors</a>.</p>
+
+<h1 id="acknowledgments">Acknowledgments</h1>
+
+<p>I&rsquo;m grateful to Boris Babic for reminding me of the beta-lambda connection. For more on beta densities I recommend the videos at <a href="http://stat110.net" target="_blank">stat110.net</a>.</p>
+
+
+          &nbsp;
+        </div>
+
+        <div>
+          <div class="post-back-link">
+    <a href="javascript: history.back()">
+        <i class="fa fa-arrow-left"></i> 
+        Back
+    </a>
+</div>
+        </div>
+      </div>
+    </div>
+    
+
+<footer style="padding-top: 1em;">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-lg-12 text-center">
+        <p>
+          &nbsp;
+        </p>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+<script src="/js/prism.js"></script>
+
+<script type="text/javascript">
+var sc_project= 11213692 ;
+var sc_invisible= 1 ;
+var sc_security="b1954803";
+var scJsHost = (("https:" == document.location.protocol) ?
+"https://secure." : "http://www.");
+document.write("<sc"+"ript type='text/javascript' src='" +
+scJsHost+
+"statcounter.com/counter/counter.js'></"+"script>");
+</script>
+<noscript><div class="statcounter"><a title="web analytics"
+href="http://statcounter.com/" target="_blank"><img
+class="statcounter"
+src="//c.statcounter.com/11213692/0/b1954803/1/" alt="web
+analytics"></a></div></noscript>
+
+
+</body>
+</html>
+

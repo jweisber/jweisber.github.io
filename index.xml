@@ -6,8 +6,241 @@
     <description>Recent content on Jonathan Weisberg</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 10 Dec 2019 21:59:04 -0500</lastBuildDate>
+    <lastBuildDate>Tue, 17 Dec 2019 00:00:00 -0500</lastBuildDate>
     <atom:link href="http://jonathanweisberg.org/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>The Beta Prior and the Lambda Continuum</title>
+      <link>http://jonathanweisberg.org/post/inductive-logic-3/</link>
+      <pubDate>Tue, 17 Dec 2019 00:00:00 -0500</pubDate>
+      
+      <guid>http://jonathanweisberg.org/post/inductive-logic-3/</guid>
+      <description>
+
+&lt;p&gt;In an &lt;a href=&#34;http://jonathanweisberg.org/post/inductive-logic&#34;&gt;earlier post&lt;/a&gt; we met the $\lambda$-continuum, a generalization of &lt;a href=&#34;http://jonathanweisberg.org/post/inductive-logic-2&#34;&gt;Laplace&amp;rsquo;s Rule of Succession&lt;/a&gt;. Here is Laplace&amp;rsquo;s rule, stated in terms of flips of a coin whose bias is unknown.&lt;/p&gt;
+
+&lt;dl&gt;
+&lt;dt&gt;The Rule of Succession&lt;/dt&gt;
+&lt;dd&gt;&lt;p&gt;Given $k$ heads out of $n$ flips, the probability the next flip will land heads is $$\frac{k+1}{n+2}.$$&lt;/p&gt;&lt;/dd&gt;
+&lt;/dl&gt;
+
+&lt;p&gt;To generalize we introduce an adjustable parameter, $\lambda$. Intuitively $\lambda$ captures how cautious we are in drawing conclusions from the observed frequency.&lt;/p&gt;
+
+&lt;dl&gt;
+&lt;dt&gt;The $\lambda$ Continuum&lt;/dt&gt;
+&lt;dd&gt;&lt;p&gt;Given $k$ heads out of $n$ flips, the probability the next flip will land heads is $$\frac{k + \lambda / 2}{n + \lambda}.$$&lt;/p&gt;&lt;/dd&gt;
+&lt;/dl&gt;
+
+&lt;p&gt;When $\lambda = 2$, this just is the Rule of Succession. When $\lambda = 0$, it becomes the &amp;ldquo;Straight Rule,&amp;rdquo; which matches the observed frequency, $k/n$. The general pattern is: the larger $\lambda$, the more flips we need to see before we tend toward the observed frequency, and away from the starting default value of $1/ 2$.$\newcommand{\p}{P}\newcommand{\given}{\mid}\newcommand{\dif}{d}$&lt;/p&gt;
+
+&lt;p&gt;So what&amp;rsquo;s so special about $\lambda = 2$? Why did Laplace and others take a special interest in the Rule of Succession? Because it derives from the Principle of Indifference. &lt;a href=&#34;http://jonathanweisberg.org/post/inductive-logic/&#34;&gt;We saw&lt;/a&gt; that setting $\lambda = 2$ basically amounts to assuming all possible frequencies have equal prior probability. Or that all possible biases of the coin are equally likely. The Rule of Succession thus corresponds to a uniform prior.&lt;/p&gt;
+
+&lt;p&gt;What about other values of $\lambda$ then? What kind of prior do they correspond to? This question has an elegant and illuminating answer, which we&amp;rsquo;ll explore here.&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;http://jonathanweisberg.org/pdf/inductive-logic-3.pdf&#34;&gt;PDF version here&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&#34;a-preview&#34;&gt;A Preview&lt;/h1&gt;
+
+&lt;p&gt;Let&amp;rsquo;s preview the result we&amp;rsquo;ll arrive at. Because, although the core idea isn&amp;rsquo;t very technical, deriving the full result does takes some noodling. It will be good to have some sense of where we&amp;rsquo;re going.&lt;/p&gt;
+
+&lt;p&gt;Here&amp;rsquo;s a picture of the priors that correspond to various choices of $\lambda$. The $x$-axis is the bias of the coin, the $y$-axis is the probability density.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;http://jonathanweisberg.org/img/inductive-logic/betas.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Notice how $\lambda = 2$ is a kind of inflection point. The plot goes from being concave up to concave down. When $\lambda &amp;lt; 2$, the prior is U-shaped. Then, as $\lambda$ grows above $2$, we approach a normal distribution centered on $1/ 2$.&lt;/p&gt;
+
+&lt;p&gt;So, when $\lambda &amp;lt; 2$, we start out pretty sure the coin is biased, though we don&amp;rsquo;t know in which direction. When $\lambda &amp;lt; 2$ we&amp;rsquo;re inclined to run with the observed frequency, whatever that is. If we observe a heads on the first toss, we&amp;rsquo;ll be pretty confident the next toss will land heads too. And the lower $\lambda$ is, the more confident we&amp;rsquo;ll be about that.&lt;/p&gt;
+
+&lt;p&gt;Whereas $\lambda &amp;gt; 2$ corresponds to an inclination to think the coin fair, or at least fair-ish. So it takes a while for the observed frequency to draw us away from our initial expectation of $1/ 2$. (Unless the observed frequency is itself $1/ 2$.)&lt;/p&gt;
+
+&lt;p&gt;That&amp;rsquo;s the intuitive picture we&amp;rsquo;re working towards. Let&amp;rsquo;s see how to get there.&lt;/p&gt;
+
+&lt;h1 id=&#34;pseudo-observations&#34;&gt;Pseudo-observations&lt;/h1&gt;
+
+&lt;p&gt;Notice that the Rule of Succession is the same as pretending we&amp;rsquo;ve already observed one heads and one tails, and then using the Straight Rule. A $3$rd toss landing heads would give us an observed frequency of $2/3$, precisely what the Rule of Succession gives when just $1$ toss has landed heads. If $k = n = 1$, then
+$$ \frac{k+1}{n+2} = \frac{2}{3}. $$
+So, setting $\lambda = 2$ amounts to imagining we have $2$ observations already, and then using the observed frequency as the posterior probability.&lt;/p&gt;
+
+&lt;p&gt;Setting $\lambda = 4$ is like pretending we have $4$ observations already. If we have $2$ heads and $2$ tails so far, then a heads on the $5$th toss would make for an observed frequency of $3/5$. And this is the posterior probability the $\lambda$-continuum dictates for a single heads when $\lambda = 4$:
+$$ \frac{k + \lambda/2}{n + \lambda} = \frac{1 + 4/2}{1 + 4} = \frac{3}{5}. $$
+In general, even values of $\lambda &amp;gt; 0$ amount to pretending we&amp;rsquo;ve already observed $\lambda$ flips, evenly split between heads and tails, and then using the observed frequency as the posterior probability.&lt;/p&gt;
+
+&lt;p&gt;This doesn&amp;rsquo;t quite answer our question, but it&amp;rsquo;s the key idea. We know that the uniform prior distribution gives rise to the posterior probabilities dictated by $\lambda = 2$. We want to know what prior distribution corresponds to other settings of $\lambda$. We see here that, for $\lambda = 4, 6, 8, \ldots$ the relevant prior is the same as the &amp;ldquo;pseudo-posterior&amp;rdquo; we would have if we updated the uniform prior on an additional $2$ &amp;ldquo;pseudo-observations&amp;rdquo;, or $4$, or $6$, etc.&lt;/p&gt;
+
+&lt;p&gt;So we just need to know what these pseudo-posteriors look like, and then extend the idea beyond even values of $\lambda$.&lt;/p&gt;
+
+&lt;h1 id=&#34;pseudo-posteriors&#34;&gt;Pseudo-posteriors&lt;/h1&gt;
+
+&lt;p&gt;Let&amp;rsquo;s write $S_n = k$ to mean that we&amp;rsquo;ve observed $k$ heads out of $n$ flips. We&amp;rsquo;ll use $p$ for the unknown, true probability of heads on each flip. Our uniform prior distribution is $f(p) = 1$ for $0 \leq p \leq 1$. We want to know what $f(p \given S_n = k)$ looks like.&lt;/p&gt;
+
+&lt;p&gt;In &lt;a href=&#34;https://jonathanweisberg.org/post/inductive-logic-2/&#34; target=&#34;_blank&#34;&gt;a previous post&lt;/a&gt; we derived a formula for this:
+$$ f(p \given S_n = k) = \frac{(n+1)!}{k!(n-k)!} p^k (1-p)^{n-k}. $$
+This is the posterior distribution after observing $k$ heads out of $n$ flips, assuming we start with a uniform prior which corresponds to $\lambda = 2$. So, when we set $\lambda$ to a larger even number, it&amp;rsquo;s the same as starting with $f(p) = 1$ and updating on $S_{\lambda - 2} = \lambda/2 - 1$. We subtract $2$ here because $2$ pseudo-observations were already counted in forming the uniform prior $f(p) = 1$.&lt;/p&gt;
+
+&lt;p&gt;Thus the prior distribution $f_\lambda$ for a positive, even value of $\lambda$ is:
+$$
+\begin{aligned}
+f_\lambda(p) &amp;amp;= f(p \given S_{\lambda - 2} = \lambda/2 - 1)\\&lt;br /&gt;
+  &amp;amp;= \frac{(\lambda - 1)!}{(\lambda/2 - 1)!(\lambda/2 - 1)!} p^{\lambda/2 - 1} (1-p)^{\lambda/2 - 1}.
+\end{aligned}
+$$
+This prior generates the picture we started with for $\lambda \geq 2$.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;http://jonathanweisberg.org/img/inductive-logic/betas-even.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;As $\lambda$ increases, we move from a uniform prior towards a normal distribution centered on $p = 1/ 2$. This makes intuitive sense: the more we accrue evenly balanced observations, the more our expectations come to resemble those for a fair coin.&lt;/p&gt;
+
+&lt;p&gt;So, what about odd values of $\lambda$? Or non-integer values? To generalize our treatment beyond even values, we need to generalize our formula for $f_\lambda$.&lt;/p&gt;
+
+&lt;h1 id=&#34;the-beta-prior&#34;&gt;The Beta Prior&lt;/h1&gt;
+
+&lt;p&gt;Recall our formula for $f(p \given S_n = k)$:
+$$ \frac{(n+1)!}{k!(n-k)!} p^k (1-p)^{n-k}. $$
+This is a member of a famous family of probability densities, the &lt;a href=&#34;https://en.wikipedia.org/wiki/Beta_distribution&#34; target=&#34;_blank&#34;&gt;&lt;em&gt;beta densities&lt;/em&gt;&lt;/a&gt;. To select a member from this family, we specify two parameters $a,b &amp;gt; 0$ in the formula:
+$$ \frac{1}{B(a,b)} p^{a-1} (1-p)^{b-1}. $$
+Here $B(a,b)$ is the beta function, defined:
+$$ B(a,b) = \int_0^1 x^{a-1} (1-x)^{b-1} \dif x. $$
+&lt;a href=&#34;https://jonathanweisberg.org/post/inductive-logic-2/#the-beta-function&#34; target=&#34;_blank&#34;&gt;We showed&lt;/a&gt; that, when $a$ and $b$ are natural numbers,
+$$ B(a,b) = \frac{(a-1)!(b-1)!}{(a+b-1)!}. $$
+To generalize our treatment of $f_\lambda$ beyond whole numbers, we first need to do the same for the beta function. We need $B(a,b)$ for all positive real numbers.&lt;/p&gt;
+
+&lt;p&gt;As it turns out, this is a matter of generalizing the notion of factorial. The generalization we need is called the gamma function, and it looks like this:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;http://jonathanweisberg.org/img/inductive-logic/gamma.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;The formal definition is
+$$ \Gamma(x) = \int_0^\infty u^{x-1} e^{-u} \dif u. $$
+The gamma function connects to the factorial function because it has the property:
+$$ \Gamma(x+1) = x\Gamma(x). $$
+This entails, by induction, that $\Gamma(n) = (n-1)!$ for any natural number $n$.&lt;/p&gt;
+
+&lt;p&gt;In fact we can substitute gammas for factorials in our formula for the beta function:
+$$ B(a,b) = \frac{\Gamma(a)\Gamma(b)}{\Gamma(a+b)}. $$
+Proving this formula would require a long digression, so we&amp;rsquo;ll take it for granted here.&lt;/p&gt;
+
+&lt;p&gt;Now we can now work with beta densities whose parameters are not whole numbers. For any $a, b &amp;gt; 0$, the beta density is
+$$ \frac{\Gamma(a + b)}{\Gamma(a)\Gamma(b)} p^{a-1} (1-p)^{b-1}. $$
+We can now show our main result: setting $a = b = \lambda/2$ generates the $\lambda$-continuum.&lt;/p&gt;
+
+&lt;h1 id=&#34;from-beta-to-lambda&#34;&gt;From Beta to Lambda&lt;/h1&gt;
+
+&lt;p&gt;We&amp;rsquo;ll write $X_{n+1} = 1$ to mean that toss $n+1$ lands heads. We want to show
+$$ \p(X_{n+1} = 1 \given S_n = k) = \frac{k + \lambda/2}{n + \lambda}, $$
+given two assumptions.&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;The tosses are independent and identically distributed with probability $p$ for heads.&lt;/li&gt;
+&lt;li&gt;The prior distribution $f_\lambda(p)$ is a beta density with $a = b = \lambda/2$.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;We start by applying the Law of Total Probability:
+$$
+\begin{aligned}
+  P(X_{n+1} = 1 \given S_n = k)
+    &amp;amp;= \int_0^1 P(X_{n+1} = 1 \given S_n = k, p) f_\lambda(p \given S_n = k) \dif p\\&lt;br /&gt;
+    &amp;amp;= \int_0^1 p f_\lambda(p \given S_n = k) \dif p.
+\end{aligned}
+$$
+Notice, this is the expected value of $p$, according to the posterior $f_\lambda(p \given S_n = k)$. To analyze it further, we use two facts proved below.&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;The posterior $f_\lambda(p \given S_n = k)$ is itself a beta density, but with parameters $k + \lambda/2$ and $n - k + \lambda/2$.&lt;/li&gt;
+&lt;li&gt;The expected value of any beta density with parameters $a$ and $b$ is $a/(a+b)$.&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;Thus
+$$
+\begin{aligned}
+  P(X_{n+1} = 1 \given S_n = k)
+    &amp;amp;= \int_0^1 p f_\lambda(p \given S_n = k) \dif p \\&lt;br /&gt;
+    &amp;amp;= \frac{k + \lambda/2}{k + \lambda/2 + n - k + \lambda/2}\\&lt;br /&gt;
+    &amp;amp;= \frac{k + \lambda/2}{n + \lambda}.
+\end{aligned}
+$$
+This is the desired result, we just need to establish Facts 1 and 2.&lt;/p&gt;
+
+&lt;h2 id=&#34;fact-1&#34;&gt;Fact 1&lt;/h2&gt;
+
+&lt;p&gt;Here we show that, if $f(p)$ is a beta density with parameters $a$ and $b$, then $f(p \given S_n = k)$ is a beta density with parameters $k+a$ and $n - k + b$.&lt;/p&gt;
+
+&lt;p&gt;Suppose $f(p)$ is a beta density with parameters $a$ and $b$:
+$$ f(p) = \frac{1}{B(a, b)} p^{a-1} (1-p)^{b-1}. $$
+We calculate $f(p \given S_n = k)$ using Bayes&amp;rsquo; theorem:
+\begin{align}
+  f(p \given S_n = k)
+    &amp;amp;= \frac{f(p) P(S_n = k \given p)}{P(S_n = k)}\\&lt;br /&gt;
+    &amp;amp;= \frac{p^{a-1} (1-p)^{b-1} \binom{n}{k} p^k (1-p)^{n-k}}{B(a,b) P(S_n = k)}\\&lt;br /&gt;
+    &amp;amp;= \frac{\binom{n}{k}}{B(a,b) \p(S_n = k)} p^{k+a-1} (1-p)^{n-k+b-1} .\tag{1}
+\end{align}
+To analyze $\p(S_n = k)$, we begin with the Law of Total Probability:
+$$
+\begin{aligned}
+  P(S_n = k)
+    &amp;amp;= \int_0^1 P(S_n = k \given p) f(p) \dif p\\&lt;br /&gt;
+    &amp;amp;= \int_0^1 \binom{n}{k} p^k (1-p)^{n-k} \frac{1}{B(a, b)} p^{a-1} (1-p)^{b-1} \dif p\\&lt;br /&gt;
+    &amp;amp;= \frac{\binom{n}{k}}{B(a, b)} \int_0^1 p^{a+k-1} (1-p)^{b+n-k-1} \dif p\\&lt;br /&gt;
+    &amp;amp;= \frac{\binom{n}{k}}{B(a, b)} B(k+a, n-k+b).
+\end{aligned}
+$$
+Substituting back into Equation (1), we get:
+$$ f(p \given S_n = k) = \frac{1}{B(k+a, n-k+b)} p^{k+a-1} (1-p)^{n-k+b-1}. $$
+So $f(p \given S_n = k)$ is the beta density with parameters $k + a$ and $n - k + b$.&lt;/p&gt;
+
+&lt;h2 id=&#34;fact-2&#34;&gt;Fact 2&lt;/h2&gt;
+
+&lt;p&gt;Here we show that the expected value of a beta density with parameters $a$ and $b$ is $a/(a+b)$. The expected value formula gives:
+$$
+\frac{1}{B(a, b)} \int_0^1 p p^{a-1} (1-p)^{b-1} \dif p\\&lt;br /&gt;
+    = \frac{\Gamma(a + b)}{\Gamma(a)\Gamma(b)} \int_0^1 p^a (1-p)^{b-1} \dif p.
+$$
+The integrand look like a beta density, with parameters $a+1$ and $b$. So we multiply by $1$ in a form that allows us to pair it with the corresponding normalizing constant:
+$$
+\begin{aligned}
+\begin{split}
+\frac{\Gamma(a + b)}{\Gamma(a)\Gamma(b)} &amp;amp; \int_0^1 p^a (1-p)^{b-1} \dif p \\&lt;br /&gt;
+    &amp;amp;= \frac{\Gamma(a + b)}{\Gamma(a)\Gamma(b)} \frac{\Gamma(a + 1)\Gamma(b)} {\Gamma(a + b + 1)}\int_0^1 \frac{\Gamma(a + b + 1)}{\Gamma(a + 1)\Gamma(b)} p^a (1-p)^{b-1} \dif p\\&lt;br /&gt;
+    &amp;amp;= \frac{\Gamma(a + b)}{\Gamma(a)\Gamma(b)} \frac{\Gamma(a + 1)\Gamma(b)} {\Gamma(a + b + 1)}.
+\end{split}
+\end{aligned}
+$$
+Finally, we use the the property $\Gamma(a+1) = a \Gamma(a)$ to obtain:
+$$
+\frac{\Gamma(a + b)}{\Gamma(a)\Gamma(b)} \frac{a\Gamma(a)\Gamma(b)} {(a+b) \Gamma(a + b)} = \frac{a} {a+b}.
+$$&lt;/p&gt;
+
+&lt;h1 id=&#34;picturing-it&#34;&gt;Picturing It&lt;/h1&gt;
+
+&lt;p&gt;What do our priors corresponding to $\lambda &amp;lt; 2$ look like? Above we saw that they&amp;rsquo;re U-shaped, approaching a flat line as $\lambda$ increases. Here&amp;rsquo;s a closer look:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;http://jonathanweisberg.org/img/inductive-logic/betas-small.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;We can also look at odd values $\lambda \geq 2$ now, where the pattern is the same as we observed previously.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;http://jonathanweisberg.org/img/inductive-logic/betas-odd.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+
+&lt;h1 id=&#34;what-about-zero&#34;&gt;What About Zero?&lt;/h1&gt;
+
+&lt;p&gt;What about when $\lambda = 0$? This is a permissible value on the $\lambda$-continuum, giving rise to the Straight Rule as we&amp;rsquo;ve noted. But it doesn&amp;rsquo;t correspond to any beta density. The parameters would be $a = b = \lambda/2 = 0$. Whereas we require $a, b &amp;gt; 0$, since the integral
+$$ \int_0^1 p^{-1}(1-p)^{-1} \dif p $$
+diverges.&lt;/p&gt;
+
+&lt;p&gt;In fact no prior can agree with the Straight Rule. At least, not on the standard axioms of probability. The Straight Rule requires $\p(HH \given H) = 1$, which entails $\p(HT \given H) = 0$. By the usual definition of conditional probability then, $\p(HT) = 0$. Which means $\p(HTT \given HT)$ is undefined. Yet the Straight Rule says $\p(HTT \given HT) = 1/ 2$.&lt;/p&gt;
+
+&lt;p&gt;We can accommodate the Straight Rule by switching to a nonstandard axiom system, where conditional probabilities are primitive, rather than being defined as ratios of unconditional probabilities. This is approach is sometimes called &amp;ldquo;Popper&amp;ndash;Rényi&amp;rdquo; style probability.&lt;/p&gt;
+
+&lt;p&gt;Alternatively, we can stick with the standard, Kolmogorov system and instead permit &lt;a href=&#34;https://en.wikipedia.org/wiki/Prior_probability#Improper_priors&#34; target=&#34;_blank&#34;&gt;&amp;ldquo;improper&amp;rdquo; priors&lt;/a&gt;: prior distributions that don&amp;rsquo;t integrate to $1$, but which deliver posteriors that do.&lt;/p&gt;
+
+&lt;p&gt;Taking this approach, the beta density with $a = b = 0$ is called the &lt;a href=&#34;https://en.wikipedia.org/wiki/Beta_distribution#Haldane.27s_prior_probability_.28Beta.280.2C0.29.29&#34; target=&#34;_blank&#34;&gt;Haldane prior&lt;/a&gt;. It&amp;rsquo;s sometimes regarded as &amp;ldquo;informationless,&amp;rdquo; since its posteriors just follow the observed frequencies. But other priors, like the uniform prior, also have some claim to representing perfect ignorance. The &lt;a href=&#34;https://en.wikipedia.org/wiki/Jeffreys_prior&#34; target=&#34;_blank&#34;&gt;Jeffreys prior&lt;/a&gt;, which is obtained by setting $a = b = 1/ 2$ (so $\lambda = 1$), is another prior with a similar claim.&lt;/p&gt;
+
+&lt;p&gt;That multiple priors can make this claim is a reminder of one of the great tragedies of epistemology: &lt;a href=&#34;https://plato.stanford.edu/entries/epistemology-bayesian/&#34; target=&#34;_blank&#34;&gt;the problem of priors&lt;/a&gt;.&lt;/p&gt;
+
+&lt;h1 id=&#34;acknowledgments&#34;&gt;Acknowledgments&lt;/h1&gt;
+
+&lt;p&gt;I&amp;rsquo;m grateful to Boris Babic for reminding me of the beta-lambda connection. For more on beta densities I recommend the videos at &lt;a href=&#34;http://stat110.net&#34; target=&#34;_blank&#34;&gt;stat110.net&lt;/a&gt;.&lt;/p&gt;
+</description>
+    </item>
     
     <item>
       <title>Belief in Psyontology</title>
@@ -3693,51 +3926,6 @@ In other words, we expect it to take on average $5.7$ tries to secure two refere
 &lt;p&gt;&lt;img src=&#34;http://jonathanweisberg.org/img/model_referees_files/unnamed-chunk-4-1.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
 
 &lt;p&gt;All these models assume that referees&amp;rsquo; responses are independent, like flips of a coin, which isn&amp;rsquo;t too realistic. But given how close the model is for &lt;em&gt;Ergo&lt;/em&gt;, it might still be good enough for other journals too.&lt;/p&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>How Hard Is It to Find Referees?</title>
-      <link>http://jonathanweisberg.org/post/How%20Hard%20Is%20It%20to%20Find%20Referees/</link>
-      <pubDate>Sat, 06 Oct 2018 00:00:00 -0500</pubDate>
-      
-      <guid>http://jonathanweisberg.org/post/How%20Hard%20Is%20It%20to%20Find%20Referees/</guid>
-      <description>&lt;p&gt;Finding willing referees is one of the more tedious parts of an editor’s
-job. And with all the talk about how overloaded the peer-review system
-is, it’s worth pausing to examine just how hard it is to find referees.&lt;/p&gt;
-
-&lt;p&gt;Well, at &lt;em&gt;Ergo&lt;/em&gt; it takes on average 5.8 tries before we find two
-referees to review a submission. The following plot gives the full
-picture.&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&#34;http://jonathanweisberg.org/img/finding_referees_files/unnamed-chunk-2-1.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
-
-&lt;p&gt;So most submissions take six or fewer invites, and the overwhelming
-majority require fewer than 10. But 10–15 is not unheard of. And on very
-rare occasions it’s taken more than 20.&lt;/p&gt;
-
-&lt;p&gt;A different perspective is the time it takes to find two willing
-referees. The average time between when the first invite is sent out and
-two referees have agreed is 10.8 days. Here’s the histogram:&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&#34;http://jonathanweisberg.org/img/finding_referees_files/unnamed-chunk-4-1.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
-
-&lt;p&gt;So it usually takes less than two weeks to find two takers, though on
-occasion it can take more than a month. And on very rare occasions it’s
-taken more than two months.&lt;/p&gt;
-
-&lt;p&gt;That’s all looking just at submissions that had two referees, mind you.
-Most submissions to &lt;em&gt;Ergo&lt;/em&gt; aren’t sent out to external reviewers at all,
-being desk-rejected instead. But more directly relevant is that about
-20% of externally reviewed submissions are rejected just on one
-referee’s recommendation, because the referee submits a decisively
-negative report before a second can be commissioned. And on some
-occasions an editor will even commission three reports.&lt;/p&gt;
-
-&lt;p&gt;So maybe the best way to look at the whole thing is just to calculate
-The Big Number: 35% of all invitations sent to referees end with a
-completed report. Which, I gotta say, is actually a lot better than I
-would have guessed.&lt;/p&gt;
 </description>
     </item>
     
