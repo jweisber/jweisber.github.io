@@ -9,6 +9,97 @@
     <atom:link href="http://jonathanweisberg.org/tags/formal-epistemology/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
+      <title>The Zollman Effect</title>
+      <link>http://jonathanweisberg.org/post/zollman/</link>
+      <pubDate>Wed, 28 Oct 2020 00:00:00 -0500</pubDate>
+      
+      <guid>http://jonathanweisberg.org/post/zollman/</guid>
+      <description>
+
+&lt;p&gt;I&amp;rsquo;m drafting a new social epistemology section for &lt;a href=&#34;https://plato.stanford.edu/entries/formal-epistemology/&#34; target=&#34;_blank&#34;&gt;the SEP entry on formal epistemology&lt;/a&gt;. It&amp;rsquo;ll focus on a series of three papers that study epistemic networks using computer simulations. This post is the first in a series of three explainers, one on each paper.&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;&lt;a href=&#34;http://jonathanweisberg.org/post/zollman&#34;&gt;The Zollman Effect&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;How Robust is the Zollman Effect? (coming soon)&lt;/li&gt;
+&lt;li&gt;Mistrust &amp;amp; Polarization (coming soon)&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;In each post I&amp;rsquo;ll summarize the main ideas and replicate some key results in Python. You can grab &lt;a href=&#34;https://github.com/jweisber/sep-sen&#34; target=&#34;_blank&#34;&gt;the final code from GitHub&lt;/a&gt; if you want to play along and tinker.&lt;/p&gt;
+
+&lt;h1 id=&#34;the-idea&#34;&gt;The Idea&lt;/h1&gt;
+
+&lt;p&gt;More information generally means a better chance at discovering the truth, at least from an individual perspective. But not as a community, &lt;a href=&#34;https://www.doi.org/10.1086/525605&#34; target=&#34;_blank&#34;&gt;Zollman finds&lt;/a&gt;, at least not always. Sharing all our information with one another can make us less likely to reach the correct answer to a question we&amp;rsquo;re all investigating.&lt;/p&gt;
+
+&lt;p&gt;Imagine there are two treatments available for some medical condition. One treatment is old, and its efficacy is well known: it has a .5 chance of success. The other treatment is new and might be slightly better or slightly worse: a .501 chance of success, or else .499.&lt;/p&gt;
+
+&lt;p&gt;Some doctors are wary of the new treatment, others are more optimistic. So some try it on their patients while others stick to the old ways.&lt;/p&gt;
+
+&lt;p&gt;As it happens the optimists are right: the new treatment is superior (chance .501 of success). So as they gather data about the new treatment and share it with the medical community, its superiority will eventually emerge as a consensus, right? At least, if all our doctors see all the evidence and weigh it fairly?&lt;/p&gt;
+
+&lt;p&gt;Not necessarily. It&amp;rsquo;s possible that those trying the new treatment will hit a string of bad luck. Initial studies may get a run of less-than-stellar results, which don&amp;rsquo;t accurately reflect the new treatment&amp;rsquo;s superiority. After all, it&amp;rsquo;s only slightly better than the traditional treatment. So it might not show its mettle right away. And if it doesn&amp;rsquo;t, the optimists may abandon it before it has a chance to prove itself.&lt;/p&gt;
+
+&lt;p&gt;One way to mitigate this danger, it turns out, is to restrict the flow of information in the medical community. Imagine one doctor gets a run of bad luck&amp;mdash;a string of patients who don&amp;rsquo;t do so well with the new treatment, creating the misleading impression that the new treatment is inferior. If they share this result with everyone, it&amp;rsquo;s more likely the whole community will abandon the new treatment. Whereas if they only share it with a few colleagues, others will keep trying the new treatment a while longer, hopefully giving them time to discover its superiority.&lt;/p&gt;
+
+&lt;h1 id=&#34;the-model&#34;&gt;The Model&lt;/h1&gt;
+
+&lt;p&gt;We can test this story by simulation. We&amp;rsquo;ll create a network of doctors, each with their own initial credence that the new treatment is superior. Those with credence &amp;gt; .5 will try the new treatment, others will stick to the old. Doctors directly connected in the network will share results with their neighbours, and everyone will update on whatever results they see using &lt;a href=&#34;https://en.wikipedia.org/wiki/Bayes%27_theorem&#34; target=&#34;_blank&#34;&gt;Bayes&amp;rsquo; theorem&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;We&amp;rsquo;ll consider networks of different sizes, from 3 to 10 agents. And we&amp;rsquo;ll try three different network &amp;ldquo;shapes&amp;rdquo;: complete, wheel, and cycle.&lt;/p&gt;
+
+&lt;figure&gt;
+  &lt;img src=&#34;http://jonathanweisberg.org/img/sep-sen/graph-shapes.png&#34;  /&gt;
+  &lt;figcaption style=&#34;font-style:italic; font-size: .8em; text-align: center; padding-bottom: .75em;&#34;&gt;
+      Fig. 1. Three network configurations, illustrated here with 6 agents each
+  &lt;/figcaption&gt;
+&lt;/figure&gt;
+
+&lt;p&gt;These shapes vary in their connectedness. The complete network is fully connected, while the cycle is the least connected. Each doctor only confers with their two neighbours in the cycle. The wheel is in between.&lt;/p&gt;
+
+&lt;p&gt;Our conjecture is that the cycle will prove most reliable. A doctor who gets a run of bad luck&amp;mdash;a string of misleading results&amp;mdash;will do the least damage there. Sharing their results might discourage their two neighbours from learning the truth. But the others in the network may keep investigating, and ultimately learn the truth about the new treatment&amp;rsquo;s superiority. The wheel should be more vulnerable to accidental misinformation, however, and the complete network most vulnerable.&lt;/p&gt;
+
+&lt;h2 id=&#34;nitty-gritty&#34;&gt;Nitty Gritty&lt;/h2&gt;
+
+&lt;p&gt;Initially, each doctor is assigned a random credence that the new treatment is superior, uniformly from the [0, 1] interval.&lt;/p&gt;
+
+&lt;p&gt;Those with credence &amp;gt; .5 will then try the new treatment on 1,000 patients. The number of successes will be randomly determined, according to the &lt;a href=&#34;https://en.wikipedia.org/wiki/Binomial_distribution&#34; target=&#34;_blank&#34;&gt;binomial distribution&lt;/a&gt; with probability of success .501.&lt;/p&gt;
+
+&lt;p&gt;Each doctor then shares their results with their neighbours, and updates by Bayes&amp;rsquo; theorem on all data available to them (their own + neighbors&amp;rsquo;). Then we do another round of experimenting, sharing, and updating, followed by another, and so on until the community reaches a consensus.&lt;/p&gt;
+
+&lt;p&gt;Consensus can be achieved in either of two ways. Either everyone learns the truth that the new treatment is superior: credence &amp;gt; .99 let&amp;rsquo;s say. Alternatively, everyone might reach credence ≤ .5 in the new treatment. Then no one experiments with it further, so it&amp;rsquo;s impossible for it to make a comeback. (The .99 cutoff is kind of arbitrary, but it&amp;rsquo;s very unlikely the truth could be &amp;ldquo;unlearned&amp;rdquo; after that point.)&lt;/p&gt;
+
+&lt;h1 id=&#34;results&#34;&gt;Results&lt;/h1&gt;
+
+&lt;p&gt;Here&amp;rsquo;s what happens when we run each simulation 10,000 times. Both the shape of the network and the number of agents affect how often the community finds the truth.&lt;/p&gt;
+
+&lt;figure&gt;
+  &lt;img src=&#34;http://jonathanweisberg.org/img/sep-sen/zollman.png&#34;  /&gt;
+  &lt;figcaption style=&#34;font-style:italic; font-size: .8em; text-align: center; padding-bottom: .75em;&#34;&gt;
+      Fig. 2. Probability of discovering the truth depends on network configuration and number of agents.
+  &lt;/figcaption&gt;
+&lt;/figure&gt;
+
+&lt;p&gt;The less connected the network, the more likely they&amp;rsquo;ll find the truth. And a bigger community is more likely to find the truth too. Why?&lt;/p&gt;
+
+&lt;p&gt;Bigger, less connected networks are better insulated against misleading results. Some doctors are bound to get data that don&amp;rsquo;t reflect the true character of the new treatment once in a while. And when that happens, their misleading results risk polluting the community with misinformation, discouraging others from experimenting with the new treatment. But the more people in the network, the more likely the misleading results will be swamped by accurate, representative results from others. And the fewer people see the misleading results, the fewer people will be misled.&lt;/p&gt;
+
+&lt;p&gt;Here&amp;rsquo;s an animated pair of simulations to illustrate the second effect. Here I set the six scientists&amp;rsquo; starting credences to the same, even spread in both networks: .3, .4, .5, .6, .7, and .8. I also gave them the same sequence of random data. Only the connections in the networks are different, and in this case it makes all the difference. Only the cycle learns the truth. The complete network goes dark very early, abandoning the novel treatment entirely after just 26 iterations.&lt;/p&gt;
+
+&lt;div style=&#34;text-align: center;&#34;&gt;
+  &lt;video width=&#34;600&#34; height=&#34;300&#34; controls&gt;
+    &lt;source src=&#34;http://jonathanweisberg.org/img/sep-sen/zollman.mp4&#34; type=&#34;video/mp4&#34;&gt;
+  &lt;/video&gt;
+  &lt;figcaption style=&#34;font-style:italic; font-size: .8em; text-align: center; padding-bottom: .75em;&#34;&gt;
+      Fig. 3. Two networks with identical priors encounter identical evidence, but only one discovers the truth.
+  &lt;/figcaption&gt;
+&lt;/div&gt;
+
+&lt;p&gt;What saves the cycle network is the agent who starts with .8 credence (bottom left). She starts out optimistic enough to keep going after the group encounters an initial string of dismaying results. In the complete network, however, she receives so much negative evidence early on that she gives up almost right away. Her optimism is overwhelmed by the negative findings of her many neighbours. Whereas the cycle exposes her to less of this discouraging evidence, giving her time to keep experimenting with the novel treatment, ultimately winning over her neighbours.&lt;/p&gt;
+
+&lt;p&gt;As &lt;a href=&#34;http://doi.org/10.1086/690717&#34; target=&#34;_blank&#34;&gt;Rosenstock, Bruner, and O&amp;rsquo;Connor (2017)&lt;/a&gt; put it: sometimes less is more, when it comes to sharing the results of scientific inquiry. But how important is this effect? How often is it present, and is it big enough to worry about in actual practice? Next time we&amp;rsquo;ll follow Rosenstock, Bruner, and O&amp;rsquo;Connor further and explore these questions.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
       <title>The Beta Prior and the Lambda Continuum</title>
       <link>http://jonathanweisberg.org/post/inductive-logic-3/</link>
       <pubDate>Tue, 17 Dec 2019 00:00:00 -0500</pubDate>
@@ -2475,184 +2566,6 @@ $$&lt;/p&gt;
 &lt;p&gt;But, in general, moving to the square root of the largest $p_i$ (when there is one) doesn&amp;rsquo;t minimize $\EIpq$. Even in the special case where all the other elements in the vector are equal, this doesn&amp;rsquo;t generally work.&lt;/p&gt;
 
 &lt;p&gt;Jonathan did solve that special case, though, and he found at least one interesting result connected with Conjecture 2. There appear to be cases where $p_i &amp;lt; 1/ 2$ for all $i$, and yet $\EIpq$ is still minimized by going directly to the extreme. For example, $\p = (.465, .2675, .2675)$.&lt;/p&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>Accuracy for Dummies, Part 3: Beyond the Second Dimension</title>
-      <link>http://jonathanweisberg.org/post/Accuracy%20for%20Dummies%20-%20Part%203/</link>
-      <pubDate>Fri, 27 Jan 2017 00:00:00 -0500</pubDate>
-      
-      <guid>http://jonathanweisberg.org/post/Accuracy%20for%20Dummies%20-%20Part%203/</guid>
-      <description>
-
-&lt;p&gt;Last time we saw why accuracy-mavens prefer Brier distance to Euclidean distance. But we did everything in two dimensions. That&amp;rsquo;s fine for a coin toss, with only two possibilities. But what if there are three doors and one of them has a prize behind it??&lt;/p&gt;
-
-&lt;p&gt;Don&amp;rsquo;t panic! Today we&amp;rsquo;re going to verify that Brier distance is still a proper way of measuring inaccuracy, even when there are more than two possibilities. (Next time we&amp;rsquo;ll talk about Euclidean distance with more than two possibilitie.)&lt;/p&gt;
-
-&lt;p&gt;Let&amp;rsquo;s start small, with just three possibilities. $\renewcommand{\vec}[1]{\mathbf{#1}}\newcommand{\p}{\vec{p}}\newcommand{\q}{\vec{q}}\newcommand{\v}{\vec{v}}\newcommand{\EIpq}{EI_{\p}(\q)}\newcommand{\EIpp}{EI_{\p}(\p)}$&lt;/p&gt;
-
-&lt;h1 id=&#34;three-possibilities&#34;&gt;Three Possibilities&lt;/h1&gt;
-
-&lt;p&gt;You&amp;rsquo;re on a game show; there are three doors; one has a prize behind it. The three possibilities are represented by the vertices $(1,0,0)$, $(0,1,0)$, and $(0,0,1)$:&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&#34;http://jonathanweisberg.org/img/accuracy/Three Vertices.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
-
-&lt;p&gt;Your credences are given by some probability assignment $(p_1, p_2, p_3)$. It might be $(1/ 3, 1/ 3, 1/ 3)$ but it could be anything&amp;hellip; $(7/ 10, 2/ 10, 1/ 10)$, for example.&lt;/p&gt;
-
-&lt;p&gt;In case you&amp;rsquo;re curious, here&amp;rsquo;s what the range of possible probability assignments looks like in graphical terms:&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&#34;http://jonathanweisberg.org/img/accuracy/Three Vertices with Hull.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
-
-&lt;p&gt;The triangular surface is the three-dimensional analogue of the diagonal line in &lt;a href=&#34;http://jonathanweisberg.org/img/accuracy/2D Dominance Diagram.png&#34;&gt;the two-dimensional diagram&lt;/a&gt; from our &lt;a href=&#34;http://jonathanweisberg.org/post/Accuracy for Dummies - Part 1/&#34;&gt;first post&lt;/a&gt; in this series.&lt;/p&gt;
-
-&lt;p&gt;It&amp;rsquo;ll be handy to refer to points on this surface using single letters, like $\p$ for $(p_1, p_2, p_3)$. We&amp;rsquo;ll write these letters in bold, to distinguish a sequence of numbers like $\p$ from a single number like $p_1$. (In math-speak, $\p$ is a &lt;em&gt;vector&lt;/em&gt; and $p_1$ is a &lt;em&gt;scalar&lt;/em&gt;.)&lt;/p&gt;
-
-&lt;p&gt;Our job is to show that Brier distance is &amp;ldquo;proper&amp;rdquo; in three dimensions. Let&amp;rsquo;s recall what that means: given a point $\p$, the expected Brier distance (according to $\p$) of a point $\q = (q_1, q_2, q_3)$ from the three vertices is always smallest when $\q = \p$.&lt;/p&gt;
-
-&lt;p&gt;What does &lt;em&gt;that&lt;/em&gt; mean?&lt;/p&gt;
-
-&lt;p&gt;Recall, the Brier distance from $\q$ to the vertex $(1, 0, 0)$ is:
-$$
-(q_1 - 1)^2 + (q_2 - 0)^2 + (q_3 - 0)^2
-$$
-Or, more succinctly:
-$$
-(q_1 - 1)^2 + q_2^2 + q_3^2
-$$
-So the &lt;em&gt;expected&lt;/em&gt; Brier distance of $\q$ according to $\p$ weights each such sum by the probability $\p$ assigns to the corresponding vertex.
-$$
-\begin{align}
-&amp;amp;\quad\quad p_1 \left( (q_1 - 1)^2 + q_2^2 + q_3^2 \right)\\&lt;br /&gt;
-  &amp;amp;\quad + p_2 \left( q_1^2 + (q_2 - 1)^2 + q_3^2 \right)\\&lt;br /&gt;
-  &amp;amp;\quad + p_3 \left( q_1^2 + q_2^2 + (q_3 - 1)^2 \right)
-\end{align}
-$$
-We need to show that this quantity is smallest when $\q = \p$, i.e. when $q_1 = p_1$, $q_2 = p_2$, and $q_3 = p_3$.&lt;/p&gt;
-
-&lt;h2 id=&#34;visualizing-expected-inaccuracy&#34;&gt;Visualizing Expected Inaccuracy&lt;/h2&gt;
-
-&lt;p&gt;Let&amp;rsquo;s do some visualization. We&amp;rsquo;ll take a few examples of $\p$, and graph the expected inaccuracy of other possible points $\q$, using Brier distance to measure inaccuracy.&lt;/p&gt;
-
-&lt;p&gt;For example, suppose $\p = (1/ 3, 1/ 3, 1/ 3)$. Then the expected inaccuracy of each point $\q$ looks like this:&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&#34;http://jonathanweisberg.org/img/accuracy/BrierEI3.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
-
-&lt;p&gt;The horizontal axes represent $q_1$ and $q_2$. The vertical axis represents expected inaccuracy.&lt;/p&gt;
-
-&lt;p&gt;Where&amp;rsquo;s $q_3$?? Not pictured! If we used all three visible dimensions for the elements of $\q$, we&amp;rsquo;d have nothing left to visualize expected inaccuracy. But $q_3$ is there implicitly. You can always get $q_3$ by calculating $1 - (q_1 + q_2)$, because $\q$ is a probability assignment. So we don&amp;rsquo;t actually need $q_3$ in the graph!&lt;/p&gt;
-
-&lt;p&gt;Now, the red dot is the lowest point on the surface: the smallest possible expected inaccuracy, according to $\p$. But where is that in terms of $q_1$ and $q_2$? Let&amp;rsquo;s look at the same graph from directly above:&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&#34;http://jonathanweisberg.org/img/accuracy/BrierEI3-above.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
-
-&lt;p&gt;Hey! Looks like the red dot is located at $q_1 = 1/ 3$ and $q_2 = 1/ 3$, i.e. at $\q = (1/ 3, 1/ 3, 1/ 3)$. Also known as $\p$. So that&amp;rsquo;s promising: looks like expected inaccuracy is minimized when $\q = \p$, at least in this example.&lt;/p&gt;
-
-&lt;p&gt;Let&amp;rsquo;s do one more example, $\p = (6/ 10, 3/ 10, 1/ 10)$. Then the expected Brier distance of each point $\q$ looks like this:
-&lt;img src=&#34;http://jonathanweisberg.org/img/accuracy/BrierEI3-2.png&#34; alt=&#34;&#34; /&gt;
-Or, taking the aerial view again:
-&lt;img src=&#34;http://jonathanweisberg.org/img/accuracy/BrierEI3-2above.png&#34; alt=&#34;&#34; /&gt;
-Yep, looks like the red dot is located at $q_1 = 6/ 10$ and $q_2 = 3/ 10$, i.e. at $\q = (6/ 10, 3/ 10, 1/ 10)$, also known as $\p$. So, once again, it seems expected inaccuracy is minimized when $\q = \p$.&lt;/p&gt;
-
-&lt;p&gt;So let&amp;rsquo;s prove that that&amp;rsquo;s how it always is.&lt;/p&gt;
-
-&lt;h2 id=&#34;a-proof&#34;&gt;A Proof&lt;/h2&gt;
-
-&lt;p&gt;We&amp;rsquo;ll need a little notation: I&amp;rsquo;m going to write $\EIpq$ for the expected inaccuracy of point $\q$, according to $\p$.&lt;/p&gt;
-
-&lt;p&gt;Now recall our formula for expected inaccuracy:
-$$
-\begin{align}
-\EIpq
-&amp;amp;= \quad p_1 \left( (q_1 - 1)^2 + q_2^2 + q_3^2 \right)\\&lt;br /&gt;
-  &amp;amp;\quad + p_2 \left( q_1^2 + (q_2 - 1)^2 + q_3^2 \right)\\&lt;br /&gt;
-  &amp;amp;\quad + p_3 \left( q_1^2 + q_2^2 + (q_3 - 1)^2 \right).
-\end{align}
-$$
-How do we find the point $\q$ that minimizes this mess?&lt;/p&gt;
-
-&lt;p&gt;Originally this post used some pretty tedious calculus. But thanks to a hot tip from &lt;a href=&#34;https://mathematics.stanford.edu/people/department-directory/name/jonathan-love/&#34; target=&#34;_blank&#34;&gt;Jonathan Love&lt;/a&gt;, we can get by just with algebra.&lt;/p&gt;
-
-&lt;p&gt;First we need to expand the squares in our big ugly sum:
-$$
-\begin{align}
-\EIpq
-&amp;amp;= \quad p_1 \left( q_1^2 - 2q_1 + 1 + q_2^2 + q_3^2 \right)\\&lt;br /&gt;
-  &amp;amp;\quad + p_2 \left( q_1^2 + q_2^2 - 2q_2 + 1 + q_3^2 \right)\\&lt;br /&gt;
-  &amp;amp;\quad + p_3 \left( q_1^2 + q_2^2 + q_3^2 - 2q_3 + 1 \right).
-\end{align}
-$$
-Then we&amp;rsquo;ll gather some common terms and rearrange things:
-$$
-\begin{align}
-\EIpq &amp;amp;= (p_1 + p_2 + p_3)\left(q_1^2 + q_2^2 + q_3^2 + 1 \right) - 2p_1q_1 - 2p_2q_2 - 2p_3q_3.\\&lt;br /&gt;
-\end{align}
-$$
-Since $p_1 + p_2 + p_3 = 1$, that simplifies to:
-$$
-\begin{align}
-\EIpq &amp;amp;= q_1^2 + q_2^2 + q_3^2 + 1 - 2p_1q_1 - 2p_2q_2 - 2p_3q_3.\\&lt;br /&gt;
-\end{align}
-$$&lt;/p&gt;
-
-&lt;p&gt;Now we&amp;rsquo;ll use &lt;a href=&#34;https://mathematics.stanford.edu/people/department-directory/name/jonathan-love/&#34; target=&#34;_blank&#34;&gt;Jonathan&lt;/a&gt;&amp;rsquo;s ingenious trick. We&amp;rsquo;re going to add $p_1^2 + p_2^2 + p_3^2 - 1$ to this expression, &lt;em&gt;which doesn&amp;rsquo;t change where the minimum occurs&lt;/em&gt;. If you shift every point on a graph upwards by the same amount, the minimum is still in the same place. (Imagine everybody in the world grows by an inch overnight; the shortest person in the world is still the shortest, despite being an inch taller.)&lt;/p&gt;
-
-&lt;p&gt;Then, magically, we get an expression that factors into something tidy:
-$$
-\begin{align}
-&amp;amp;\phantom{=}\phantom{=} p_1^2 + p_2^2 + p_3^2 + q_1^2 + q_2^2 + q_3^2 - 2p_1q_1 - 2p_2q_2 - 2p_3q_3\\&lt;br /&gt;
-  &amp;amp;= (p_1 - q_1)^2 + (p_2 - q_2)^2 + (p_3 - q_3)^2.
-\end{align}
-$$
-And not just tidy, but easy to minimize. It&amp;rsquo;s a sum of squares, and squares are never negative. So the smallest possible value  is $0$, which occurs when all the squares are $0$, i.e. when $q_1 = p_1$, $q_2 = p_2$, and $q_3 = p_3$.&lt;/p&gt;
-
-&lt;p&gt;So, the minimum of $\EIpq$ occurs in the same place, namely when $\q = \p$!&lt;/p&gt;
-
-&lt;h2 id=&#34;the-nth-dimension&#34;&gt;The Nth Dimension&lt;/h2&gt;
-
-&lt;p&gt;Now we can use the same idea to generalize to any number of dimensions. Since the steps are essentially identical, I&amp;rsquo;ll keep it short and (I hope) sweet.&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;Theorem.&lt;/strong&gt;&amp;nbsp;
-Given a probability assignment $\p = (p_1, \ldots, p_n)$, if inaccuracy is measured using Brier distance, then $\EIpq$ is uniquely minimized when $\q = \p$.&lt;/p&gt;
-
-&lt;p&gt;&lt;em&gt;Proof.&lt;/em&gt;&amp;nbsp;
-Let $\p = (p_1, \ldots, p_n)$ be a probability assignment, and let $\EIpq$ be the expected inaccuracy according to $\p$ of probability assignment $\q = (q_1, \ldots, q_n)$, measured using Brier distance.&lt;/p&gt;
-
-&lt;p&gt;First we simplify our expression for $\EIpq$ using algebra:
-$$
-\begin{align}
-\EIpq
-&amp;amp;= \quad p_1 \left( (q_1 - 1)^2 + q_2^2 + \ldots + q_n^2 \right)\\&lt;br /&gt;
-  &amp;amp;\quad + p_2 \left( q_1^2 + (q_2 - 1)^2 + \ldots + q_n^2 \right)\\&lt;br /&gt;
-  &amp;amp;\quad\quad \vdots\\&lt;br /&gt;
-  &amp;amp;\quad + p_n \left( q_1^2 + q_2^2 + \ldots + q_{n-1}^2 + (q_n - 1)^2 \right)\\&lt;br /&gt;
-&amp;amp;= (p_1 + \ldots + p_n)\left( q_1^2 + \ldots + q_n^2 + 1\right) - 2 p_1 q_1 - \ldots - 2 p_n q_n\\&lt;br /&gt;
-&amp;amp;= q_1^2 + \ldots + q_n^2 + 1 - 2 p_1 q_1 - \ldots - 2 p_n q_n.
-\end{align}
-$$
-Now, because $p_1^2 + \ldots + p_n^2 - 1$ is a constant, adding it to $\EIpq$ doesn&amp;rsquo;t change where the minimum occurs. So we can minimize instead:
-$$
-\begin{align}
-&amp;amp;\phantom{=}\phantom{=} p_1^2 + \ldots + p_n^2 + q_1^2 + \ldots + q_n^2 - 2 p_1 q_1 - \ldots - 2 p_n q_n\\&lt;br /&gt;
-&amp;amp;= (p_1 - q_1)^2 + \ldots + (p_n - q_n)^2.
-\end{align}
-$$
-Being a sum of squares, the minimum value here cannot be less than $0$, which occurs when $\q = \p$. &lt;span style=&#34;float: right;&#34;&gt;$\Box$&lt;/span&gt;&lt;/p&gt;
-
-&lt;h1 id=&#34;conclusion&#34;&gt;Conclusion&lt;/h1&gt;
-
-&lt;div class=&#34;text-center&#34;&gt;
-&lt;object data=&#34;http://www.youtube.com/embed/MkmMxfCgewQ&#34;
-   width=&#34;560&#34; height=&#34;315&#34; classboo=&#34;text-center&#34;&gt;&lt;/object&gt;
-&lt;/div&gt;
-
-&lt;p&gt;So what did we learn? That Brier distance isn&amp;rsquo;t just &amp;ldquo;stable&amp;rdquo; in toy cases like a coin-toss. It&amp;rsquo;s also stable in toy cases with any finite number of outcomes.&lt;/p&gt;
-
-&lt;p&gt;No matter how many outcomes are under consideration, each probability assignment expects itself to do best at minimizing inaccuracy, if we use Brier distance to measure inaccuracy.&lt;/p&gt;
-
-&lt;p&gt;To go beyond toy cases, we&amp;rsquo;d have to extend this result to cases with infinite numbers of possibilities. And I haven&amp;rsquo;t even begun to think about how to do that.&lt;/p&gt;
-
-&lt;p&gt;Instead, next time we&amp;rsquo;ll look at what happens in $3+$ dimensions when we use Euclidean distance instead of Brier distance. And it&amp;rsquo;s actually kind of interesting! It turns out Euclidean distance is still improper in $3+$ dimensions, but not necessarily in the same way as in $2$ dimensions. More on that next time&amp;hellip;&lt;/p&gt;
 </description>
     </item>
     
