@@ -6,8 +6,98 @@
     <description>Recent content in Posts on Jonathan Weisberg</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 28 Oct 2020 00:00:00 -0500</lastBuildDate>
+    <lastBuildDate>Mon, 02 Nov 2020 00:00:00 -0500</lastBuildDate>
     <atom:link href="http://jonathanweisberg.org/post/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>How Robust is the Zollman Effect?</title>
+      <link>http://jonathanweisberg.org/post/rbo/</link>
+      <pubDate>Mon, 02 Nov 2020 00:00:00 -0500</pubDate>
+      
+      <guid>http://jonathanweisberg.org/post/rbo/</guid>
+      <description>
+
+&lt;p&gt;This is the second in a trio of posts on simulated epistemic networks:&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;&lt;a href=&#34;http://jonathanweisberg.org/post/zollman/&#34;&gt;The Zollman Effect&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://jonathanweisberg.org/post/rbo&#34;&gt;How Robust is the Zollman Effect?&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Mistrust &amp;amp; Polarization (coming soon)&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;This post summarizes some key ideas from &lt;a href=&#34;http://doi.org/10.1086/690717&#34; target=&#34;_blank&#34;&gt;Rosenstock, Bruner, and O&amp;rsquo;Connor&amp;rsquo;s paper&lt;/a&gt; on the Zollman effect, and reproduces some of their results in Python. As always you can grab &lt;a href=&#34;https://github.com/jweisber/sep-sen&#34; target=&#34;_blank&#34;&gt;the code&lt;/a&gt; from GitHub.&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;http://jonathanweisberg.org/post/zollman/&#34;&gt;Last time&lt;/a&gt; we met the Zollman effect: sharing experimental results in a scientific community can actually hurt its chances of arriving at the truth. Bad luck can generate misleading results, discouraging inquiry into superior options. By limiting the sharing of results, we can increase the chance that alternatives will be explored long enough for their superiority to emerge.&lt;/p&gt;
+
+&lt;p&gt;But is this effect likely to have a big impact on actual research communities? Or is it rare enough, or small enough, that we shouldn&amp;rsquo;t really worry about it?&lt;/p&gt;
+
+&lt;h1 id=&#34;easy-like-sunday-morning&#34;&gt;Easy Like Sunday Morning&lt;/h1&gt;
+
+&lt;p&gt;Last time we saw the Zollman effect can be substantial. The chance of success increased from .89 to .97 when 10 researchers went from full sharing to sharing with just two neighbours (from complete to cycle).&lt;/p&gt;
+
+&lt;figure&gt;
+  &lt;img src=&#34;http://jonathanweisberg.org/img/sep-sen/zollman.png&#34; /&gt;
+  &lt;figcaption style=&#34;font-style:italic; font-size: .8em; text-align: center; padding-bottom: .75em;&#34;&gt;
+      Fig. 1. The Zollman effect: less connected networks can have a better chance of discovering the truth
+  &lt;/figcaption&gt;
+&lt;/figure&gt;
+
+&lt;p&gt;But that was assuming the novel alternative is only slightly better: .501 chance of success instead of .5, a difference of .001. We&amp;rsquo;d be less likely to get misleading results if the difference were .01, or .1. It should be easier to see the new treatment&amp;rsquo;s superiority in the data then.&lt;/p&gt;
+
+&lt;p&gt;So RBO (Rosenstock, Bruner, and O&amp;rsquo;Connor) rerun the simulations with different values for ϵ, the increase in probability of success afforded by the new treatment. Last time we held ϵ fixed at .001, now we&amp;rsquo;ll let it vary up to .1. We&amp;rsquo;ll only consider a complete network vs. a wheel this time, and we&amp;rsquo;ll hold the number of agents fixed at 10. The number of trials each round continues to be 1,000.&lt;/p&gt;
+
+&lt;figure&gt;
+  &lt;img src=&#34;http://jonathanweisberg.org/img/sep-sen/rbo-2.png&#34; /&gt;
+  &lt;figcaption style=&#34;font-style:italic; font-size: .8em; text-align: center; padding-bottom: .75em;&#34;&gt;
+      Fig. 2. The Zollman effect vanishes as the difference in efficacy between the two treatments increases
+  &lt;/figcaption&gt;
+&lt;/figure&gt;
+
+&lt;p&gt;Here the Zollman effect shrinks as ϵ grows. In fact it&amp;rsquo;s only visible up to about .025 in our simulations.&lt;/p&gt;
+
+&lt;h1 id=&#34;more-trials-fewer-tribulations&#34;&gt;More Trials, Fewer Tribulations&lt;/h1&gt;
+
+&lt;p&gt;Something similar can happen as we increase &lt;em&gt;n&lt;/em&gt;, the number of trials each researcher performs. Last time we held &lt;em&gt;n&lt;/em&gt; fixed at 1,000, now let&amp;rsquo;s have it vary from 10 up to 10,000. We&amp;rsquo;ll stick to 10 agents again, although this time we&amp;rsquo;ll set ϵ to .01 instead of .001.&lt;/p&gt;
+
+&lt;figure&gt;
+  &lt;img src=&#34;http://jonathanweisberg.org/img/sep-sen/rbo-3.png&#34; /&gt;
+  &lt;figcaption style=&#34;font-style:italic; font-size: .8em; text-align: center; padding-bottom: .75em;&#34;&gt;
+      Fig. 3. The Zollman effect vanishes as the number of trials per iteration increases
+  &lt;/figcaption&gt;
+&lt;/figure&gt;
+
+&lt;p&gt;Again the Zollman effect fades, this time as the parameter &lt;em&gt;n&lt;/em&gt; increases.&lt;/p&gt;
+
+&lt;p&gt;The emerging theme is that the easier the epistemic problem is, the smaller the Zollman effect. Before, we made the problem easier by making the novel treatment more effective. Now we&amp;rsquo;re making things easier by giving our agents more data. These are both ways of making the superiority of the novel treatment easier to see. The easier it is to discern two alternatives, the less our agents need to worry about inquiry being prematurely shut down by the misfortune of misleading data.&lt;/p&gt;
+
+&lt;h1 id=&#34;agent-smith&#34;&gt;Agent Smith&lt;/h1&gt;
+
+&lt;p&gt;Last time we saw that the Zollman effect seemed to grow as our network grew, from 3 up to 10 agents. But RBO note that the effect reverses after a while. Let&amp;rsquo;s return to &lt;em&gt;n&lt;/em&gt; = 1,000 trials and ϵ = .001, so that we&amp;rsquo;re dealing with a hard problem again. And let&amp;rsquo;s see what happens as the number of agents grows from 3 up to 100.&lt;/p&gt;
+
+&lt;figure&gt;
+  &lt;img src=&#34;http://jonathanweisberg.org/img/sep-sen/rbo-4.png&#34; /&gt;
+  &lt;figcaption style=&#34;font-style:italic; font-size: .8em; text-align: center; padding-bottom: .75em;&#34;&gt;
+      Fig. 4. The Zollman effect eventually shrinks as the number of agents increases
+  &lt;/figcaption&gt;
+&lt;/figure&gt;
+
+&lt;p&gt;The effect grows from 3 agents up to around 10. But then it starts to shrink again, narrowing to a meagre .01 at 100 agents.&lt;/p&gt;
+
+&lt;p&gt;What&amp;rsquo;s happening here? As RBO explain, in the complete network a larger community effectively means a larger sample size at each round. Since the researchers pool their data, a community of 50 will update on the results of 25,000 trials at each round, assuming half the community has credence &amp;gt; 0.5. And a community of 100 people updates on the results of 50,000 trials, etc.&lt;/p&gt;
+
+&lt;p&gt;As the pooled sample size increases, so does the probability it will accurately reflect the novel treatment&amp;rsquo;s superiority. The chance of the community being misled drops away.&lt;/p&gt;
+
+&lt;h1 id=&#34;conclusion&#34;&gt;Conclusion&lt;/h1&gt;
+
+&lt;p&gt;RBO conclude that the Zollman effect only afflicts epistemically &amp;ldquo;hard&amp;rdquo; problems, where it&amp;rsquo;s difficult to discern the superior alternative from the data. But that doesn&amp;rsquo;t mean it&amp;rsquo;s not an important effect. Its importance just depends on how common it is for interesting problems to be &amp;ldquo;hard.&amp;rdquo;&lt;/p&gt;
+
+&lt;p&gt;Do such problems crop up in actual scientific research, and if so how often? It&amp;rsquo;s difficult to say. As RBO note, the model we&amp;rsquo;ve been exploring is both artificially simple and highly idealized. So it&amp;rsquo;s unclear how often real-world problems, which tend to be messier and more complex, will follow similar patterns.&lt;/p&gt;
+
+&lt;p&gt;On the one hand, they argue, our confidence that the Zollman effect is important should be diminished by the fact that it&amp;rsquo;s not robust against variations in the parameters. Fragile effects are less likely to come through in messy, real-world systems. On the other hand, they point to some empirical studies where Zollman-like effects seem to crop up in the real world.&lt;/p&gt;
+
+&lt;p&gt;So it&amp;rsquo;s not clear. Maybe determining whether Zollman-hard problems are a real thing is itself a Zollman-hard problem?&lt;/p&gt;
+</description>
+    </item>
     
     <item>
       <title>The Zollman Effect</title>
@@ -21,7 +111,7 @@
 
 &lt;ol&gt;
 &lt;li&gt;&lt;a href=&#34;http://jonathanweisberg.org/post/zollman&#34;&gt;The Zollman Effect&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;How Robust is the Zollman Effect? (coming soon)&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://jonathanweisberg.org/post/rbo&#34;&gt;How Robust is the Zollman Effect?&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;Mistrust &amp;amp; Polarization (coming soon)&lt;/li&gt;
 &lt;/ol&gt;
 
@@ -96,7 +186,7 @@
 
 &lt;p&gt;What saves the cycle network is the agent who starts with .8 credence (bottom left). She starts out optimistic enough to keep going after the group encounters an initial string of dismaying results. In the complete network, however, she receives so much negative evidence early on that she gives up almost right away. Her optimism is overwhelmed by the negative findings of her many neighbours. Whereas the cycle exposes her to less of this discouraging evidence, giving her time to keep experimenting with the novel treatment, ultimately winning over her neighbours.&lt;/p&gt;
 
-&lt;p&gt;As &lt;a href=&#34;http://doi.org/10.1086/690717&#34; target=&#34;_blank&#34;&gt;Rosenstock, Bruner, and O&amp;rsquo;Connor (2017)&lt;/a&gt; put it: sometimes less is more, when it comes to sharing the results of scientific inquiry. But how important is this effect? How often is it present, and is it big enough to worry about in actual practice? Next time we&amp;rsquo;ll follow Rosenstock, Bruner, and O&amp;rsquo;Connor further and explore these questions.&lt;/p&gt;
+&lt;p&gt;As &lt;a href=&#34;http://doi.org/10.1086/690717&#34; target=&#34;_blank&#34;&gt;Rosenstock, Bruner, and O&amp;rsquo;Connor&lt;/a&gt; put it: sometimes less is more, when it comes to sharing the results of scientific inquiry. But how important is this effect? How often is it present, and is it big enough to worry about in actual practice? Next time we&amp;rsquo;ll follow Rosenstock, Bruner, and O&amp;rsquo;Connor further and explore these questions.&lt;/p&gt;
 </description>
     </item>
     
@@ -4032,35 +4122,6 @@ occasions an editor will even commission three reports.&lt;/p&gt;
 The Big Number: 35% of all invitations sent to referees end with a
 completed report. Which, I gotta say, is actually a lot better than I
 would have guessed.&lt;/p&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>Waiting for the Editor: A New App</title>
-      <link>http://jonathanweisberg.org/post/Shiny%20Wait%20Times/</link>
-      <pubDate>Wed, 27 Jun 2018 00:00:00 -0500</pubDate>
-      
-      <guid>http://jonathanweisberg.org/post/Shiny%20Wait%20Times/</guid>
-      <description>&lt;p&gt;If waiting to hear back from journals makes you as twitchy as it makes me, you might appreciate &lt;a href=&#34;https://jweisber.shinyapps.io/WaitingForTheEditor/&#34; target=&#34;_blank&#34;&gt;Waiting for the Editor&lt;/a&gt;. It&amp;rsquo;s a little app that displays wait time forecasts and data from &lt;a href=&#34;https://blog.apaonline.org/2017/04/13/journal-surveys-assessing-the-peer-review-process/&#34; target=&#34;_blank&#34;&gt;the APA Journal Survey&lt;/a&gt;.&lt;/p&gt;
-
-&lt;p&gt;It has two kinds of display, based on &lt;a href=&#34;http://jonathanweisberg.org/post/Journal%20Surveys&#34;&gt;my earlier post&lt;/a&gt; about the APA survey. You can view scatterplots:&lt;/p&gt;
-
-&lt;p&gt;&lt;a href=&#34;https://jweisber.shinyapps.io/WaitingForTheEditor/&#34; target=&#34;_blank&#34;&gt;&lt;img src=&#34;http://jonathanweisberg.org/img/shiny_wait_times/scatter.png&#34; alt=&#34;&#34; /&gt;&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;Or ridgeplots:&lt;/p&gt;
-
-&lt;p&gt;&lt;a href=&#34;https://jweisber.shinyapps.io/WaitingForTheEditor/&#34; target=&#34;_blank&#34;&gt;&lt;img src=&#34;http://jonathanweisberg.org/img/shiny_wait_times/ridge.png&#34; alt=&#34;&#34; /&gt;&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;Note that the ridgeplots can be misleading.&lt;/strong&gt; They treat old data and new the same. So if a journal&amp;rsquo;s wait times have improved/worsened since the survey started in 2009, this won&amp;rsquo;t be reflected in the ridgeplot.&lt;/p&gt;
-
-&lt;p&gt;You can customize these displays by&amp;hellip;&lt;/p&gt;
-
-&lt;ol&gt;
-&lt;li&gt;selecting which journals to show.&lt;/li&gt;
-&lt;li&gt;including all submissions or just e.g. rejected ones (since &lt;a href=&#34;http://jonathanweisberg.org/post/Journal%20Surveys/#acceptance-rates&#34; target=&#34;_blank&#34;&gt;accepted submissions are overrepresented&lt;/a&gt;).&lt;/li&gt;
-&lt;li&gt;choosing what dates you want to draw the data from, since some journals have gotten better/worse since 2009.&lt;/li&gt;
-&lt;li&gt;choosing your own cap for the maximum review time.&lt;/li&gt;
-&lt;/ol&gt;
 </description>
     </item>
     

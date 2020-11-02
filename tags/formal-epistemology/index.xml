@@ -9,6 +9,96 @@
     <atom:link href="http://jonathanweisberg.org/tags/formal-epistemology/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
+      <title>How Robust is the Zollman Effect?</title>
+      <link>http://jonathanweisberg.org/post/rbo/</link>
+      <pubDate>Mon, 02 Nov 2020 00:00:00 -0500</pubDate>
+      
+      <guid>http://jonathanweisberg.org/post/rbo/</guid>
+      <description>
+
+&lt;p&gt;This is the second in a trio of posts on simulated epistemic networks:&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;&lt;a href=&#34;http://jonathanweisberg.org/post/zollman/&#34;&gt;The Zollman Effect&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://jonathanweisberg.org/post/rbo&#34;&gt;How Robust is the Zollman Effect?&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Mistrust &amp;amp; Polarization (coming soon)&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;This post summarizes some key ideas from &lt;a href=&#34;http://doi.org/10.1086/690717&#34; target=&#34;_blank&#34;&gt;Rosenstock, Bruner, and O&amp;rsquo;Connor&amp;rsquo;s paper&lt;/a&gt; on the Zollman effect, and reproduces some of their results in Python. As always you can grab &lt;a href=&#34;https://github.com/jweisber/sep-sen&#34; target=&#34;_blank&#34;&gt;the code&lt;/a&gt; from GitHub.&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;http://jonathanweisberg.org/post/zollman/&#34;&gt;Last time&lt;/a&gt; we met the Zollman effect: sharing experimental results in a scientific community can actually hurt its chances of arriving at the truth. Bad luck can generate misleading results, discouraging inquiry into superior options. By limiting the sharing of results, we can increase the chance that alternatives will be explored long enough for their superiority to emerge.&lt;/p&gt;
+
+&lt;p&gt;But is this effect likely to have a big impact on actual research communities? Or is it rare enough, or small enough, that we shouldn&amp;rsquo;t really worry about it?&lt;/p&gt;
+
+&lt;h1 id=&#34;easy-like-sunday-morning&#34;&gt;Easy Like Sunday Morning&lt;/h1&gt;
+
+&lt;p&gt;Last time we saw the Zollman effect can be substantial. The chance of success increased from .89 to .97 when 10 researchers went from full sharing to sharing with just two neighbours (from complete to cycle).&lt;/p&gt;
+
+&lt;figure&gt;
+  &lt;img src=&#34;http://jonathanweisberg.org/img/sep-sen/zollman.png&#34; /&gt;
+  &lt;figcaption style=&#34;font-style:italic; font-size: .8em; text-align: center; padding-bottom: .75em;&#34;&gt;
+      Fig. 1. The Zollman effect: less connected networks can have a better chance of discovering the truth
+  &lt;/figcaption&gt;
+&lt;/figure&gt;
+
+&lt;p&gt;But that was assuming the novel alternative is only slightly better: .501 chance of success instead of .5, a difference of .001. We&amp;rsquo;d be less likely to get misleading results if the difference were .01, or .1. It should be easier to see the new treatment&amp;rsquo;s superiority in the data then.&lt;/p&gt;
+
+&lt;p&gt;So RBO (Rosenstock, Bruner, and O&amp;rsquo;Connor) rerun the simulations with different values for ϵ, the increase in probability of success afforded by the new treatment. Last time we held ϵ fixed at .001, now we&amp;rsquo;ll let it vary up to .1. We&amp;rsquo;ll only consider a complete network vs. a wheel this time, and we&amp;rsquo;ll hold the number of agents fixed at 10. The number of trials each round continues to be 1,000.&lt;/p&gt;
+
+&lt;figure&gt;
+  &lt;img src=&#34;http://jonathanweisberg.org/img/sep-sen/rbo-2.png&#34; /&gt;
+  &lt;figcaption style=&#34;font-style:italic; font-size: .8em; text-align: center; padding-bottom: .75em;&#34;&gt;
+      Fig. 2. The Zollman effect vanishes as the difference in efficacy between the two treatments increases
+  &lt;/figcaption&gt;
+&lt;/figure&gt;
+
+&lt;p&gt;Here the Zollman effect shrinks as ϵ grows. In fact it&amp;rsquo;s only visible up to about .025 in our simulations.&lt;/p&gt;
+
+&lt;h1 id=&#34;more-trials-fewer-tribulations&#34;&gt;More Trials, Fewer Tribulations&lt;/h1&gt;
+
+&lt;p&gt;Something similar can happen as we increase &lt;em&gt;n&lt;/em&gt;, the number of trials each researcher performs. Last time we held &lt;em&gt;n&lt;/em&gt; fixed at 1,000, now let&amp;rsquo;s have it vary from 10 up to 10,000. We&amp;rsquo;ll stick to 10 agents again, although this time we&amp;rsquo;ll set ϵ to .01 instead of .001.&lt;/p&gt;
+
+&lt;figure&gt;
+  &lt;img src=&#34;http://jonathanweisberg.org/img/sep-sen/rbo-3.png&#34; /&gt;
+  &lt;figcaption style=&#34;font-style:italic; font-size: .8em; text-align: center; padding-bottom: .75em;&#34;&gt;
+      Fig. 3. The Zollman effect vanishes as the number of trials per iteration increases
+  &lt;/figcaption&gt;
+&lt;/figure&gt;
+
+&lt;p&gt;Again the Zollman effect fades, this time as the parameter &lt;em&gt;n&lt;/em&gt; increases.&lt;/p&gt;
+
+&lt;p&gt;The emerging theme is that the easier the epistemic problem is, the smaller the Zollman effect. Before, we made the problem easier by making the novel treatment more effective. Now we&amp;rsquo;re making things easier by giving our agents more data. These are both ways of making the superiority of the novel treatment easier to see. The easier it is to discern two alternatives, the less our agents need to worry about inquiry being prematurely shut down by the misfortune of misleading data.&lt;/p&gt;
+
+&lt;h1 id=&#34;agent-smith&#34;&gt;Agent Smith&lt;/h1&gt;
+
+&lt;p&gt;Last time we saw that the Zollman effect seemed to grow as our network grew, from 3 up to 10 agents. But RBO note that the effect reverses after a while. Let&amp;rsquo;s return to &lt;em&gt;n&lt;/em&gt; = 1,000 trials and ϵ = .001, so that we&amp;rsquo;re dealing with a hard problem again. And let&amp;rsquo;s see what happens as the number of agents grows from 3 up to 100.&lt;/p&gt;
+
+&lt;figure&gt;
+  &lt;img src=&#34;http://jonathanweisberg.org/img/sep-sen/rbo-4.png&#34; /&gt;
+  &lt;figcaption style=&#34;font-style:italic; font-size: .8em; text-align: center; padding-bottom: .75em;&#34;&gt;
+      Fig. 4. The Zollman effect eventually shrinks as the number of agents increases
+  &lt;/figcaption&gt;
+&lt;/figure&gt;
+
+&lt;p&gt;The effect grows from 3 agents up to around 10. But then it starts to shrink again, narrowing to a meagre .01 at 100 agents.&lt;/p&gt;
+
+&lt;p&gt;What&amp;rsquo;s happening here? As RBO explain, in the complete network a larger community effectively means a larger sample size at each round. Since the researchers pool their data, a community of 50 will update on the results of 25,000 trials at each round, assuming half the community has credence &amp;gt; 0.5. And a community of 100 people updates on the results of 50,000 trials, etc.&lt;/p&gt;
+
+&lt;p&gt;As the pooled sample size increases, so does the probability it will accurately reflect the novel treatment&amp;rsquo;s superiority. The chance of the community being misled drops away.&lt;/p&gt;
+
+&lt;h1 id=&#34;conclusion&#34;&gt;Conclusion&lt;/h1&gt;
+
+&lt;p&gt;RBO conclude that the Zollman effect only afflicts epistemically &amp;ldquo;hard&amp;rdquo; problems, where it&amp;rsquo;s difficult to discern the superior alternative from the data. But that doesn&amp;rsquo;t mean it&amp;rsquo;s not an important effect. Its importance just depends on how common it is for interesting problems to be &amp;ldquo;hard.&amp;rdquo;&lt;/p&gt;
+
+&lt;p&gt;Do such problems crop up in actual scientific research, and if so how often? It&amp;rsquo;s difficult to say. As RBO note, the model we&amp;rsquo;ve been exploring is both artificially simple and highly idealized. So it&amp;rsquo;s unclear how often real-world problems, which tend to be messier and more complex, will follow similar patterns.&lt;/p&gt;
+
+&lt;p&gt;On the one hand, they argue, our confidence that the Zollman effect is important should be diminished by the fact that it&amp;rsquo;s not robust against variations in the parameters. Fragile effects are less likely to come through in messy, real-world systems. On the other hand, they point to some empirical studies where Zollman-like effects seem to crop up in the real world.&lt;/p&gt;
+
+&lt;p&gt;So it&amp;rsquo;s not clear. Maybe determining whether Zollman-hard problems are a real thing is itself a Zollman-hard problem?&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
       <title>The Zollman Effect</title>
       <link>http://jonathanweisberg.org/post/zollman/</link>
       <pubDate>Wed, 28 Oct 2020 00:00:00 -0500</pubDate>
@@ -20,7 +110,7 @@
 
 &lt;ol&gt;
 &lt;li&gt;&lt;a href=&#34;http://jonathanweisberg.org/post/zollman&#34;&gt;The Zollman Effect&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;How Robust is the Zollman Effect? (coming soon)&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://jonathanweisberg.org/post/rbo&#34;&gt;How Robust is the Zollman Effect?&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;Mistrust &amp;amp; Polarization (coming soon)&lt;/li&gt;
 &lt;/ol&gt;
 
@@ -95,7 +185,7 @@
 
 &lt;p&gt;What saves the cycle network is the agent who starts with .8 credence (bottom left). She starts out optimistic enough to keep going after the group encounters an initial string of dismaying results. In the complete network, however, she receives so much negative evidence early on that she gives up almost right away. Her optimism is overwhelmed by the negative findings of her many neighbours. Whereas the cycle exposes her to less of this discouraging evidence, giving her time to keep experimenting with the novel treatment, ultimately winning over her neighbours.&lt;/p&gt;
 
-&lt;p&gt;As &lt;a href=&#34;http://doi.org/10.1086/690717&#34; target=&#34;_blank&#34;&gt;Rosenstock, Bruner, and O&amp;rsquo;Connor (2017)&lt;/a&gt; put it: sometimes less is more, when it comes to sharing the results of scientific inquiry. But how important is this effect? How often is it present, and is it big enough to worry about in actual practice? Next time we&amp;rsquo;ll follow Rosenstock, Bruner, and O&amp;rsquo;Connor further and explore these questions.&lt;/p&gt;
+&lt;p&gt;As &lt;a href=&#34;http://doi.org/10.1086/690717&#34; target=&#34;_blank&#34;&gt;Rosenstock, Bruner, and O&amp;rsquo;Connor&lt;/a&gt; put it: sometimes less is more, when it comes to sharing the results of scientific inquiry. But how important is this effect? How often is it present, and is it big enough to worry about in actual practice? Next time we&amp;rsquo;ll follow Rosenstock, Bruner, and O&amp;rsquo;Connor further and explore these questions.&lt;/p&gt;
 </description>
     </item>
     
@@ -2350,222 +2440,6 @@ In other words, $\p$ is a mixture of the possible truth-value assignments, where
 &lt;h1 id=&#34;up-next&#34;&gt;Up Next&lt;/h1&gt;
 
 &lt;p&gt;We&amp;rsquo;ve established the first of the three items listed earlier. Next time we&amp;rsquo;ll establish the second: given a point outside a convex set, there&amp;rsquo;s always a point inside that forms a right or obtuse angle with any other point of the set. Then we&amp;rsquo;ll be just a few lines of algebra from the main result: the Brier dominance theorem!&lt;/p&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>Accuracy for Dummies, Part 4: Euclid in the Round</title>
-      <link>http://jonathanweisberg.org/post/Accuracy%20for%20Dummies%20-%20Part%204/</link>
-      <pubDate>Thu, 23 Feb 2017 00:00:00 -0500</pubDate>
-      
-      <guid>http://jonathanweisberg.org/post/Accuracy%20for%20Dummies%20-%20Part%204/</guid>
-      <description>
-
-&lt;p&gt;Last time we took Brier distance beyond two dimensions. &lt;a href=&#34;http://jonathanweisberg.org/post/Accuracy for Dummies - Part 3/&#34;&gt;We showed&lt;/a&gt; that it&amp;rsquo;s &amp;ldquo;proper&amp;rdquo; in any finite number of dimensions. Today we&amp;rsquo;ll show that Euclidean distance is &amp;ldquo;improper&amp;rdquo; in any finite number dimensions.&lt;/p&gt;
-
-&lt;p&gt;When I first sat down to write this post, I had in mind a straightforward generalization of &lt;a href=&#34;http://jonathanweisberg.org/post/Accuracy for Dummies - Part 1/&#34;&gt;our previous result&lt;/a&gt; for Euclidean distance in two dimensions. And I figured it would be easy to prove.&lt;/p&gt;
-
-&lt;p&gt;Not so.&lt;/p&gt;
-
-&lt;p&gt;My initial conjecture was false, and worse, when I asked my accuracy-guru friends for the truth, nobody seemed to know. (They did offer lots of helpful suggestions, though.)&lt;/p&gt;
-
-&lt;p&gt;So today we&amp;rsquo;re muddling through on our own even more than usual. Here goes.&lt;/p&gt;
-
-&lt;h1 id=&#34;background&#34;&gt;Background&lt;/h1&gt;
-
-&lt;p&gt;Let&amp;rsquo;s recall where we are. We&amp;rsquo;ve been considering different ways of measuring the inaccuracy of a probability assignment given a possibility, or a &amp;ldquo;possible world&amp;rdquo;.&lt;/p&gt;
-
-&lt;p&gt;Let&amp;rsquo;s start today by regimenting our terminology. We&amp;rsquo;ve used these terms semi-formally for a while now. But let&amp;rsquo;s gather them here for reference, and to make them a little more precise.$
-\renewcommand{\vec}[1]{\mathbf{#1}}
-\newcommand{\p}{\vec{p}}
-\newcommand{\q}{\vec{q}}
-\newcommand{\u}{\vec{u}}
-\newcommand{\EIpq}{EI_{\p}(\q)}
-\newcommand{\EIpp}{EI_{\p}(\p)}
-$&lt;/p&gt;
-
-&lt;p&gt;Given a number of dimensions $n$:&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;A &lt;em&gt;probability assignment&lt;/em&gt; $\p = (p_1, \ldots, p_n)$ is a vector of positive real numbers that sum to $1$.&lt;/li&gt;
-&lt;li&gt;A &lt;em&gt;possible world&lt;/em&gt; is a vector $\u$ of length $n$ containing all zeros except for a single $1$. (A &lt;a href=&#34;https://en.wikipedia.org/wiki/Unit_vector&#34; target=&#34;_blank&#34;&gt;unit vector&lt;/a&gt; of length $n$, in other words.)&lt;/li&gt;
-&lt;li&gt;A &lt;em&gt;measure of inaccuracy&lt;/em&gt; $D(\p, \u)$ is a function that takes a probability assignment and a possible world and returns a real number.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;We&amp;rsquo;ve been considering two measures of inaccuracy. The first is the familiar Euclidean distance between $\p$ and $\u$. For example, when $\u = (1, 0, \ldots, 0)$ we have:
-$$ \sqrt{(p_1 - 1)^2 + (p_2 - 0)^2 + \ldots + (p_n - 0)^2}.$$
-The second way of measuring inaccuracy is less familiar, Brier distance, which is just the square of Euclidean distance:
-$$ (p_1 - 1)^2 + (p_2 - 0)^2 + \ldots + (p_n - 0)^2.$$&lt;/p&gt;
-
-&lt;p&gt;What we found in $n = 2$ dimensions is that Euclidean distance is &amp;ldquo;unstable&amp;rdquo; in a way that Brier is not. If we measure inaccuracy using Euclidean distance, a probability assignment can expect some &lt;em&gt;other&lt;/em&gt; probability assignment to do better accuracy-wise, i.e. to have lower inaccuracy.&lt;/p&gt;
-
-&lt;p&gt;In fact, given almost any probability assignment, the way to minimize expected inaccuracy is to leap to certainty in the most likely possibility. Given $(2/3, 1/3)$, for example, the way to minimize expected inaccuracy is to move to $(1,0)$.&lt;/p&gt;
-
-&lt;p&gt;Because Euclidean distance is unstable in this way, it&amp;rsquo;s called an &amp;ldquo;improper&amp;rdquo; measure of inaccuracy. So, two more bits of terminology:&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;Given a probability assignment $\p$ and a measure of inaccuracy $D$, the &lt;em&gt;expected inaccuracy&lt;/em&gt; of probability assignment $\q$, written $\EIpq$, is the weighted sum:
-$$
-\EIpq = p_1 D(\q,\u_1) + \ldots + p_n D(\q,\u_n),
-$$
-where $\u_i$ is the possible world with a $1$ at index $i$.&lt;/li&gt;
-&lt;li&gt;A measure of inaccuracy $D$ is &lt;em&gt;improper&lt;/em&gt; if there is a probability assignment $\p$ such that for some assignment $\q \neq \p$, $\EIpq &amp;lt; \EIpp$ when inaccuracy is measured according to $D$.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;Last time we showed that Brier is &lt;em&gt;proper&lt;/em&gt; in any finite number of dimensions $n$. Today our main task is to show that Euclidean distance is &lt;em&gt;&lt;strong&gt;im&lt;/strong&gt;proper&lt;/em&gt; in any finite number of dimensions $n$.&lt;/p&gt;
-
-&lt;p&gt;But first, let&amp;rsquo;s get a tempting mistake out of the way.&lt;/p&gt;
-
-&lt;h1 id=&#34;a-conjecture-and-its-refutation&#34;&gt;A Conjecture and Its Refutation&lt;/h1&gt;
-
-&lt;p&gt;In &lt;a href=&#34;http://jonathanweisberg.org/post/Accuracy for Dummies - Part 1/&#34;&gt;our first post&lt;/a&gt;, we saw that Euclidean distance isn&amp;rsquo;t just improper in two dimensions. It&amp;rsquo;s also &lt;em&gt;extremizing&lt;/em&gt;: the assignment $(2/3, 1/3)$ doesn&amp;rsquo;t just expect &lt;em&gt;some&lt;/em&gt; other assignment to do better accuracy-wise. It expects the assignment $(1,0)$ to do best!&lt;/p&gt;
-
-&lt;p&gt;At first I thought we&amp;rsquo;d be proving a straightforward generalization of that result today:&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;Conjecture 1 (False).&lt;/strong&gt; Let $(p_1, \ldots, p_n)$ be a probability assignment with a unique largest element $p_i$. If we measure inaccuracy by Euclidean distance, then $\EIpq$ is minimized when $\q = \u_i$.&lt;/p&gt;
-
-&lt;p&gt;Intuitively: expected inaccuracy is minimized by leaping to certainty in the most probable possibility. Turns out this is false in three dimensions. Here&amp;rsquo;s a&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;Counterexample.&lt;/strong&gt; Let&amp;rsquo;s define:
-$$
-\begin{align}
-\p &amp;amp;= (5/12, 4/12, 3/12),\\&lt;br /&gt;
-\p&amp;rsquo; &amp;amp;= (6/12, 4/12, 2/12),\\&lt;br /&gt;
-\u_1 &amp;amp;= (1, 0, 0).
-\end{align}
-$$&lt;/p&gt;
-
-&lt;p&gt;Then we can calculate (or better, &lt;a href=&#34;https://github.com/jweisber/a4d/blob/master/Euclid%20in%20the%20Round.nb&#34; target=&#34;_blank&#34;&gt;have &lt;em&gt;Mathematica&lt;/em&gt; calculate&lt;/a&gt;):
-$$
-\begin{align}
-\EIpp &amp;amp;\approx .804,\\&lt;br /&gt;
-EI_{\p}(\p&amp;rsquo;) &amp;amp;\approx .800,\\&lt;br /&gt;
-EI_{\p}(\u_1) &amp;amp;\approx .825.
-\end{align}
-$$
-In this case $\EIpp &amp;lt; EI_{\p}(\u_1)$. So leaping to certainty doesn&amp;rsquo;t minimize expected inaccuracy (as measured by Euclidean distance).&lt;/p&gt;
-
-&lt;p&gt;Of course, staying put doesn&amp;rsquo;t minimize it either, since $EI_{\p}(\p&amp;rsquo;) &amp;lt; \EIpp$.&lt;/p&gt;
-
-&lt;p&gt;So what &lt;em&gt;does&lt;/em&gt; minimize it in this example? I asked &lt;em&gt;Mathematica&lt;/em&gt; to minimize $\EIpq$ and got&amp;hellip; nothing for days. Eventually I gave up waiting and asked instead for &lt;a href=&#34;https://github.com/jweisber/a4d/blob/master/Euclid%20in%20the%20Round.nb&#34; target=&#34;_blank&#34;&gt;a numerical approximation of the minimum&lt;/a&gt;. One second later I got:&lt;/p&gt;
-
-&lt;p&gt;$$EI_{\p}(0.575661, 0.250392, 0.173947) \approx 0.797432.$$&lt;/p&gt;
-
-&lt;p&gt;I have no idea what that is in more meaningful terms, I&amp;rsquo;m sorry to say. But at least we know it&amp;rsquo;s not anywhere near the extreme point $\u_1$ I conjectured at the outset. (See the &lt;strong&gt;Update&lt;/strong&gt; at the end for a little more.)&lt;/p&gt;
-
-&lt;h1 id=&#34;a-shortcut-and-its-shortcomings&#34;&gt;A Shortcut and Its Shortcomings&lt;/h1&gt;
-
-&lt;p&gt;So I asked friends who do this kind of thing for a living how they handle the $n$-dimensional case.  A couple of them suggested taking a shortcut around it!&lt;/p&gt;
-
-&lt;blockquote&gt;
-&lt;p&gt;Look, you&amp;rsquo;ve already handled the two-dimensional case. And that&amp;rsquo;s just an instance of higher dimensional cases.&lt;/p&gt;
-
-&lt;p&gt;Take a probability assignment like (2/3, 1/3). We can also think of it as (2/3, 1/3, 0), or as (2/3, 0, 1/3, 0), etc.&lt;/p&gt;
-
-&lt;p&gt;No matter how many zeros we sprinkle around in there, the same thing is going to happen as in the two-dimensional case. Leaping to certainty in the 2/3 possibility will minimize expected inaccuracy. (Because possibilities with no probability make no difference to expected value calculations.)&lt;/p&gt;
-
-&lt;p&gt;So no matter how many dimensions we&amp;rsquo;re working in, there will always be &lt;em&gt;some&lt;/em&gt; probability assignment where leaping to certainty minimizes expected inaccuracy. It just might have lots of zeros in it.&lt;/p&gt;
-
-&lt;p&gt;So Euclidean distance is, technically, improper in any finite number of dimensions.&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;At first I thought that was good enough for philosophy. Though I still wanted to know how to handle &amp;ldquo;no zeros&amp;rdquo; cases for the mathematical clarity.&lt;/p&gt;
-
-&lt;p&gt;Then I realized there may be a philosophical reason to be dissatisfied with this shortcut. A lot of people endorse the &lt;a href=&#34;http://philosophy.anu.edu.au/sites/default/files/Staying%20Regular.December%2028.2012.pdf&#34; target=&#34;_blank&#34;&gt;Regularity principle&lt;/a&gt;: you should never assign zero probability to any possibility. For these people, the shortcut might be a dead end.&lt;/p&gt;
-
-&lt;p&gt;(Of course, maybe we shouldn&amp;rsquo;t embrace Regularity if we&amp;rsquo;re working in the accuracy framework. I won&amp;rsquo;t stop for that question here.)&lt;/p&gt;
-
-&lt;h1 id=&#34;a-theorem-and-its-corollary&#34;&gt;A Theorem and Its Corollary&lt;/h1&gt;
-
-&lt;p&gt;So let&amp;rsquo;s take the problem head on. We want to show that Euclidean distance is improper in $n &amp;gt; 2$ dimensions, even when there are &amp;ldquo;no zeros&amp;rdquo;. Two last bits of terminology:&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;A probability assignment $(p_1, \ldots, p_n)$ is &lt;em&gt;regular&lt;/em&gt; if $p_i &amp;gt; 0$ for all $i$.&lt;/li&gt;
-&lt;li&gt;A probability assignment $(p_1, \ldots, p_n)$ is &lt;em&gt;uniform&lt;/em&gt; if $p_i = p_j$ for all $i,j$.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;So, for example, the assignment $(1/3, 1/3, 1/3)$ is both regular and uniform. Whereas the assignment $(2/5, 2/5, 1/5)$ is regular, but not uniform.&lt;/p&gt;
-
-&lt;p&gt;What we&amp;rsquo;ll show is that assignments like $(2/5, 2/5, 1/5)$ make Euclidean distance &amp;ldquo;unstable&amp;rdquo;: they expect some other assignment to do better, accuracy-wise. (Exactly which other assignment they&amp;rsquo;ll expect to do best isn&amp;rsquo;t always easy to say.)&lt;/p&gt;
-
-&lt;p&gt;(Though I try to keep the math in these posts as elementary as possible, this proof will use calculus. If you know a bit about derivatives, you should be fine. Technically we&amp;rsquo;ll use multi-variable calculus. But if you&amp;rsquo;ve worked with derivatives in single-variable calculus, that should be enough for the main ideas.)&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;Theorem.&lt;/strong&gt;&amp;nbsp;
-Let $\p = (p_1, \ldots, p_n)$ be a regular, non-uniform probability assignment. If accuracy is measured by Euclidean distance, then $EI_{\p}(\q)$ is not minimized when $\q = \p$.&lt;/p&gt;
-
-&lt;p&gt;&lt;em&gt;Proof.&lt;/em&gt;&amp;nbsp;
-Let $\p = (p_1, \ldots, p_n)$ be a regular and non-uniform probability assignment, and measure inaccuracy using Euclidean distance. Then:
-$$
-\begin{align}
-EI_{\p}(\q) &amp;amp;= p_1 \sqrt{(q_1 - 1)^2 + \ldots + (q_n - 0)^2} + \ldots + p_n \sqrt{(q_1 - 0)^2 + \ldots + (q_n - 1)^2}\\&lt;br /&gt;
-&amp;amp;= p_1 \sqrt{(q_1 - 1)^2 + \ldots + q_n^2} + \ldots + p_n \sqrt{q_1^2 + \ldots + (q_n - 1)^2}
-\end{align}
-$$&lt;/p&gt;
-
-&lt;p&gt;The crux of our proof will be that the derivatives of this function are non-zero at the point $\q = \p$. Since the minimum of a function is always a &lt;a href=&#34;https://en.wikipedia.org/wiki/Critical_point_(mathematics)&#34; target=&#34;_blank&#34;&gt;&amp;ldquo;critical point&amp;rdquo;&lt;/a&gt;, that suffices to show that $\q = \p$ is not a minimum of $\EIpq$.&lt;/p&gt;
-
-&lt;p&gt;To start, we calculate the partial derivative of $\EIpq$ for an arbitrary $q_i$:
-$$
-\begin{align}
-\frac{\partial}{\partial q_i} \EIpq
-&amp;amp;=
-\frac{\partial}{\partial q_i} \left( p_1 \sqrt{(q_1 - 1)^2 + \ldots + q_n^2} + \ldots + p_n \sqrt{q_1^2 + \ldots + (q_n - 1)^2} \right)\\&lt;br /&gt;
-&amp;amp;=
-p_1 \frac{\partial}{\partial q_i} \sqrt{(q_1 - 1)^2 + \ldots + q_n^2} + \ldots + p_n \frac{\partial}{\partial q_i} \sqrt{q_1^2 + \ldots + (q_n - 1)^2}\\&lt;br /&gt;
-&amp;amp;= \quad
-p_i \frac{q_i - 1}{\sqrt{(q_i - 1)^2 + \sum_{j \neq i} q_j^2}} + \sum_{j \neq i} p_j \frac{q_i}{\sqrt{(q_j - 1)^2 + \sum_{k \neq j} q_k^2}}\\&lt;br /&gt;
-&amp;amp;= \quad
-\sum_{j \neq i} \frac{p_j q_i}{\sqrt{(q_j - 1)^2 + \sum_{k \neq j} q_k^2}} - \sum_{j \neq i} \frac{p_i q_j}{\sqrt{(q_i - 1)^2 + \sum_{j \neq i} q_j^2}}.
-\end{align}
-$$&lt;/p&gt;
-
-&lt;p&gt;Then we evaluate at $\q = \p$:
-$$
-\begin{align}
-\frac{\partial}{\partial q_i} \EIpp
-&amp;amp;= \sum_{j \neq i} \frac{p_i p_j}{\sqrt{(p_j - 1)^2 + \sum_{k \neq j} p_k^2}} - \sum_{j \neq i} \frac{p_i p_j}{\sqrt{(p_i - 1)^2 + \sum_{j \neq i} p_j^2}}
-\end{align}
-$$&lt;/p&gt;
-
-&lt;p&gt;Now, because $\p$ is not uniform, some of its elements are larger than others. And because it is finite, there is at least one largest element. When $p_i$ is one of these largest elements, then $\partial / \partial q_i \EIpp$ is negative.&lt;/p&gt;
-
-&lt;p&gt;Why?&lt;/p&gt;
-
-&lt;p&gt;In our equation for $\partial / \partial q_i \EIpp$, each positive term has a corresponding negative term whose numerator is identical. And when $p_i$ is a largest element of $\p$, the denominator of each negative term will never be larger, but will sometimes be smaller, than the denominator of its corresponding positive term. Subtracting $1$ from $p_i$ before squaring does more to reduce the sum of squares $p_i^2 + \sum_{j \neq i} p_j^2$ than subtracting $1$ from any smaller term would. It effectively removes the/a largest square from the sum and substitutes the smallest replacement. So the negative terms are never smaller, but are sometimes larger, than their positive counterparts.&lt;/p&gt;
-
-&lt;p&gt;If, on the other hand, $p_i$ is the one of the smallest elements, then $\partial / \partial q_i \EIpp$ is positive. For then the reverse argument applies: the denominator of each negative term will never be smaller and will sometimes be larger than the denominator of the corresponding positive term. So the negatives terms are never larger, but are sometimes smaller, than their positive counterparts.&lt;/p&gt;
-
-&lt;p&gt;We have shown that the partial derivates of $\EIpq$ are non-zero at the point $\q = \p$. Thus $\p$ is not a critical point of $\EIpq$, and hence cannot be a minimum of $\EIpq$.  &lt;span class=&#34;floatright&#34;&gt;$\Box$&lt;/span&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;Corollary.&lt;/strong&gt; Euclidean distance is improper in any finite number of dimensions.&lt;/p&gt;
-
-&lt;p&gt;&lt;em&gt;Proof.&lt;/em&gt;&amp;nbsp; This is just a slight restatement of our theorem. If $\q = \p$ is not a minimum of $\EIpq$, then there is some $\q \neq \p$ such that $\EIpq &amp;lt; \EIpp$.  &lt;span class=&#34;floatright&#34;&gt;$\Box$&lt;/span&gt;&lt;/p&gt;
-
-&lt;h1 id=&#34;conjectures-awaiting-refutations&#34;&gt;Conjectures Awaiting Refutations&lt;/h1&gt;
-
-&lt;p&gt;Notice, we&amp;rsquo;ve also shown something a bit stronger. We showed that the slope of $\EIpq$ at the point $\q = \p$ is always negative in the direction of $\p$&amp;rsquo;s largest element(s), and positive in the direction of its smallest element(s). That means we can always reduce expected inaccuracy by taking some small quantity away from the/a smallest element of $\p$ and adding it to the/a largest element. In other words, we can always reduce expected inaccuracy by moving &lt;em&gt;some&lt;/em&gt; way towards perfect certainty in the/a possibility that $\p$ rates most probable.&lt;/p&gt;
-
-&lt;p&gt;However, we &lt;em&gt;haven&amp;rsquo;t&lt;/em&gt; shown that repeatedly minimizing expected inaccuracy will, eventually, lead to certainty in the/a possibility that was most probable to begin with. For one thing, we haven&amp;rsquo;t shown that moving towards certainty in this direction minimizes expected inaccuracy at each step. We&amp;rsquo;ve only shown that moving in this direction reduces it.&lt;/p&gt;
-
-&lt;p&gt;Still, I&amp;rsquo;m pretty sure a result along these lines holds. Tinkering in &lt;em&gt;Mathematica&lt;/em&gt; strongly suggests that the following Conjectures are true in any finite number of dimensions $n$:&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;Conjecture 2.&lt;/strong&gt; If a probability assignment gives greater than $1/ 2$ probability to some possibility, then expected inaccuracy is minimized by assigning probability 1 to that possibility. (But see the &lt;strong&gt;Update&lt;/strong&gt; below.)&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;Conjecture 3.&lt;/strong&gt; Given a non-uniform probability assignment, repeatedly minimizing expected inaccuracy will, within a finite number of steps, increase the probability of the/a possibility that was most probable initially beyond $1/ 2$.&lt;/p&gt;
-
-&lt;p&gt;If these conjectures hold, then there&amp;rsquo;s still a weak-ish sense in which Euclidean distance is &amp;ldquo;extremizing&amp;rdquo; in $n &amp;gt; 2$ dimensions. Given a non-uniform probability assignment, repeatedly minimizing expected inaccuracy will eventually lead to greater than $1/ 2$ probability in the/a possibility that was most probable to begin with. Then, minimizing inaccuracy will lead in a single step to certainty in that possibility.&lt;/p&gt;
-
-&lt;p&gt;Proving these conjectures would close much of the gap between the theorem we proved and the false conjecture I started with. If you&amp;rsquo;re interested, you can use &lt;a href=&#34;https://github.com/jweisber/a4d/blob/master/Euclid%20in%20the%20Round.nb&#34; target=&#34;_blank&#34;&gt;this &lt;em&gt;Mathematica&lt;/em&gt; notebook&lt;/a&gt; to test them.&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;Update: Mar. 6, 2017.&lt;/strong&gt; Thanks to some excellent help from &lt;a href=&#34;https://mathematics.stanford.edu/people/department-directory/name/jonathan-love/&#34; target=&#34;_blank&#34;&gt;Jonathan Love&lt;/a&gt;, I&amp;rsquo;ve tweaked this post (and greatly simplified &lt;a href=&#34;http://jonathanweisberg.org/post/Accuracy%20for%20Dummies%20-%20Part%203/&#34;&gt;the previous one&lt;/a&gt;).&lt;/p&gt;
-
-&lt;p&gt;I changed the counterexample to the false Conjecture 1, which used to be $\p = (3/7, 2/7, 2/7)$ and $\p&amp;rsquo; = (4/7, 2/7, 1/7)$. That works fine, but it&amp;rsquo;s potentially misleading.&lt;/p&gt;
-
-&lt;p&gt;As Jonathan kindly pointed out, the minimum point then is something quite nice. It&amp;rsquo;s obtained by moving in the $x$-dimension from $3/7$ to $\sqrt{3/7}$, and correspondingly reducing the probability in the $y$ and $z$ dimensions in equal parts.&lt;/p&gt;
-
-&lt;p&gt;But, in general, moving to the square root of the largest $p_i$ (when there is one) doesn&amp;rsquo;t minimize $\EIpq$. Even in the special case where all the other elements in the vector are equal, this doesn&amp;rsquo;t generally work.&lt;/p&gt;
-
-&lt;p&gt;Jonathan did solve that special case, though, and he found at least one interesting result connected with Conjecture 2. There appear to be cases where $p_i &amp;lt; 1/ 2$ for all $i$, and yet $\EIpq$ is still minimized by going directly to the extreme. For example, $\p = (.465, .2675, .2675)$.&lt;/p&gt;
 </description>
     </item>
     

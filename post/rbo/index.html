@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Jonathan Weisberg's Homepage">
+    <meta name="author" content="Jonathan Weisberg">
+    
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@jweisber">
+    <meta name="twitter:creator" content="@jweisber">
+    <meta name="twitter:title" content="How Robust is the Zollman Effect?">
+    <meta name="twitter:description" content="This is the second in a trio of posts on simulated epistemic networks:
+ The Zollman Effect How Robust is the Zollman Effect? Mistrust &amp; Polarization (coming soon)  This post summarizes some key ideas from Rosenstock, Bruner, and O&rsquo;Connor&rsquo;s paper on the Zollman effect, and reproduces some of their results in Python. As always you can grab the code from GitHub.
+Last time we met the Zollman effect: sharing experimental results in a scientific community can actually hurt its chances of arriving at the truth.">
+    <meta name="twitter:image" content="https://jonathanweisberg.org/img/sep-sen/rbo-2.png">
+
+    <meta property="og:url" content="/post/rbo/" />
+    <meta property="og:type" content="article" />
+    <meta property="og:title" content="How Robust is the Zollman Effect?" />
+    <meta property="og:description" content="This is the second in a trio of posts on simulated epistemic networks:
+ The Zollman Effect How Robust is the Zollman Effect? Mistrust &amp; Polarization (coming soon)  This post summarizes some key ideas from Rosenstock, Bruner, and O&rsquo;Connor&rsquo;s paper on the Zollman effect, and reproduces some of their results in Python. As always you can grab the code from GitHub.
+Last time we met the Zollman effect: sharing experimental results in a scientific community can actually hurt its chances of arriving at the truth." />
+    <meta property="og:image" content="https://jonathanweisberg.org/img/sep-sen/rbo-2.png" />
+
+
+    <title>How Robust is the Zollman Effect?</title>
+
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+    <link href="/css/prism.css" rel="stylesheet" />
+    <link href="/css/scarab.css" rel="stylesheet">
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]},
+        "HTML-CSS": {
+          availableFonts: ["Neo-Euler"],
+          preferredFont: "Neo-Euler",
+          webFont: "Neo-Euler",
+          imageFont: "Neo-Euler",
+        }
+      });
+    </script>
+    <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+    </script>
+    
+    
+    
+
+</head>
+
+<body>
+
+<nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+  <div class="container">
+    
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-navbar-collapse-1">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="http://jonathanweisberg.org/">Jonathan Weisberg</a>
+    </div>
+    
+    <div class="collapse navbar-collapse" id="bs-navbar-collapse-1">
+      <ul class="nav navbar-nav">
+        <li>
+          <a href="/pdf/CV.pdf">
+            <i class="fa fa-briefcase"></i>&nbsp;
+            CV
+          </a>
+        </li>
+        <li>
+          <a href="/post/">
+            <i class="fa fa-code"></i>&nbsp;
+            Blog
+          </a>
+        </li>
+        <li>
+          <a href="/publication/">
+            <i class="fa fa-files-o"></i>&nbsp;
+            Research
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+
+
+  
+  <div class="container blog-post">
+
+    
+    <div class="row">
+      <div class="col-md-3 hidden-sm hidden-xs text-right">
+        <h1 class="post-title">&nbsp;</h1>
+          <em>Nov 2, 2020</em><br />
+          
+          
+          
+          <span class="post-tags">
+            
+            <a class="post-tag" href="http://jonathanweisberg.org/tags/philosophy">Philosophy</a>
+             &bull;   
+            
+            <a class="post-tag" href="http://jonathanweisberg.org/tags/epistemology">Epistemology</a>
+             &bull;  
+            
+            <a class="post-tag" href="http://jonathanweisberg.org/tags/social-epistemology">Social Epistemology</a>
+             &bull;  
+            
+            <a class="post-tag" href="http://jonathanweisberg.org/tags/formal-epistemology">Formal Epistemology</a>
+            
+            
+          </span>
+          
+          
+        </p>
+      </div>
+
+      <div class="col-md-7">
+        <h1 class="post-title">How Robust is the Zollman Effect?</h1>
+        <div class="hidden-md hidden-lg post-metadata">
+          <div>
+            <em>Nov 2, 2020</em>
+          </div>
+          
+          
+          
+          <p class="post-tags">
+            
+            <a class="post-tag" href="http://jonathanweisberg.org/tags/philosophy">Philosophy</a>
+             &bull;   
+            
+            <a class="post-tag" href="http://jonathanweisberg.org/tags/epistemology">Epistemology</a>
+             &bull;  
+            
+            <a class="post-tag" href="http://jonathanweisberg.org/tags/social-epistemology">Social Epistemology</a>
+             &bull;  
+            
+            <a class="post-tag" href="http://jonathanweisberg.org/tags/formal-epistemology">Formal Epistemology</a>
+            
+            
+          </p>
+          
+          
+        </div>
+
+        <div class="post-body">
+          
+
+<p>This is the second in a trio of posts on simulated epistemic networks:</p>
+
+<ol>
+<li><a href="/post/zollman/">The Zollman Effect</a></li>
+<li><a href="/post/rbo">How Robust is the Zollman Effect?</a></li>
+<li>Mistrust &amp; Polarization (coming soon)</li>
+</ol>
+
+<p>This post summarizes some key ideas from <a href="http://doi.org/10.1086/690717" target="_blank">Rosenstock, Bruner, and O&rsquo;Connor&rsquo;s paper</a> on the Zollman effect, and reproduces some of their results in Python. As always you can grab <a href="https://github.com/jweisber/sep-sen" target="_blank">the code</a> from GitHub.</p>
+
+<p><a href="/post/zollman/">Last time</a> we met the Zollman effect: sharing experimental results in a scientific community can actually hurt its chances of arriving at the truth. Bad luck can generate misleading results, discouraging inquiry into superior options. By limiting the sharing of results, we can increase the chance that alternatives will be explored long enough for their superiority to emerge.</p>
+
+<p>But is this effect likely to have a big impact on actual research communities? Or is it rare enough, or small enough, that we shouldn&rsquo;t really worry about it?</p>
+
+<h1 id="easy-like-sunday-morning">Easy Like Sunday Morning</h1>
+
+<p>Last time we saw the Zollman effect can be substantial. The chance of success increased from .89 to .97 when 10 researchers went from full sharing to sharing with just two neighbours (from complete to cycle).</p>
+
+<figure>
+  <img src="/img/sep-sen/zollman.png" />
+  <figcaption style="font-style:italic; font-size: .8em; text-align: center; padding-bottom: .75em;">
+      Fig. 1. The Zollman effect: less connected networks can have a better chance of discovering the truth
+  </figcaption>
+</figure>
+
+<p>But that was assuming the novel alternative is only slightly better: .501 chance of success instead of .5, a difference of .001. We&rsquo;d be less likely to get misleading results if the difference were .01, or .1. It should be easier to see the new treatment&rsquo;s superiority in the data then.</p>
+
+<p>So RBO (Rosenstock, Bruner, and O&rsquo;Connor) rerun the simulations with different values for ϵ, the increase in probability of success afforded by the new treatment. Last time we held ϵ fixed at .001, now we&rsquo;ll let it vary up to .1. We&rsquo;ll only consider a complete network vs. a wheel this time, and we&rsquo;ll hold the number of agents fixed at 10. The number of trials each round continues to be 1,000.</p>
+
+<figure>
+  <img src="/img/sep-sen/rbo-2.png" />
+  <figcaption style="font-style:italic; font-size: .8em; text-align: center; padding-bottom: .75em;">
+      Fig. 2. The Zollman effect vanishes as the difference in efficacy between the two treatments increases
+  </figcaption>
+</figure>
+
+<p>Here the Zollman effect shrinks as ϵ grows. In fact it&rsquo;s only visible up to about .025 in our simulations.</p>
+
+<h1 id="more-trials-fewer-tribulations">More Trials, Fewer Tribulations</h1>
+
+<p>Something similar can happen as we increase <em>n</em>, the number of trials each researcher performs. Last time we held <em>n</em> fixed at 1,000, now let&rsquo;s have it vary from 10 up to 10,000. We&rsquo;ll stick to 10 agents again, although this time we&rsquo;ll set ϵ to .01 instead of .001.</p>
+
+<figure>
+  <img src="/img/sep-sen/rbo-3.png" />
+  <figcaption style="font-style:italic; font-size: .8em; text-align: center; padding-bottom: .75em;">
+      Fig. 3. The Zollman effect vanishes as the number of trials per iteration increases
+  </figcaption>
+</figure>
+
+<p>Again the Zollman effect fades, this time as the parameter <em>n</em> increases.</p>
+
+<p>The emerging theme is that the easier the epistemic problem is, the smaller the Zollman effect. Before, we made the problem easier by making the novel treatment more effective. Now we&rsquo;re making things easier by giving our agents more data. These are both ways of making the superiority of the novel treatment easier to see. The easier it is to discern two alternatives, the less our agents need to worry about inquiry being prematurely shut down by the misfortune of misleading data.</p>
+
+<h1 id="agent-smith">Agent Smith</h1>
+
+<p>Last time we saw that the Zollman effect seemed to grow as our network grew, from 3 up to 10 agents. But RBO note that the effect reverses after a while. Let&rsquo;s return to <em>n</em> = 1,000 trials and ϵ = .001, so that we&rsquo;re dealing with a hard problem again. And let&rsquo;s see what happens as the number of agents grows from 3 up to 100.</p>
+
+<figure>
+  <img src="/img/sep-sen/rbo-4.png" />
+  <figcaption style="font-style:italic; font-size: .8em; text-align: center; padding-bottom: .75em;">
+      Fig. 4. The Zollman effect eventually shrinks as the number of agents increases
+  </figcaption>
+</figure>
+
+<p>The effect grows from 3 agents up to around 10. But then it starts to shrink again, narrowing to a meagre .01 at 100 agents.</p>
+
+<p>What&rsquo;s happening here? As RBO explain, in the complete network a larger community effectively means a larger sample size at each round. Since the researchers pool their data, a community of 50 will update on the results of 25,000 trials at each round, assuming half the community has credence &gt; 0.5. And a community of 100 people updates on the results of 50,000 trials, etc.</p>
+
+<p>As the pooled sample size increases, so does the probability it will accurately reflect the novel treatment&rsquo;s superiority. The chance of the community being misled drops away.</p>
+
+<h1 id="conclusion">Conclusion</h1>
+
+<p>RBO conclude that the Zollman effect only afflicts epistemically &ldquo;hard&rdquo; problems, where it&rsquo;s difficult to discern the superior alternative from the data. But that doesn&rsquo;t mean it&rsquo;s not an important effect. Its importance just depends on how common it is for interesting problems to be &ldquo;hard.&rdquo;</p>
+
+<p>Do such problems crop up in actual scientific research, and if so how often? It&rsquo;s difficult to say. As RBO note, the model we&rsquo;ve been exploring is both artificially simple and highly idealized. So it&rsquo;s unclear how often real-world problems, which tend to be messier and more complex, will follow similar patterns.</p>
+
+<p>On the one hand, they argue, our confidence that the Zollman effect is important should be diminished by the fact that it&rsquo;s not robust against variations in the parameters. Fragile effects are less likely to come through in messy, real-world systems. On the other hand, they point to some empirical studies where Zollman-like effects seem to crop up in the real world.</p>
+
+<p>So it&rsquo;s not clear. Maybe determining whether Zollman-hard problems are a real thing is itself a Zollman-hard problem?</p>
+
+
+          &nbsp;
+        </div>
+
+        <div>
+          <div class="post-back-link">
+    <a href="javascript: history.back()">
+        <i class="fa fa-arrow-left"></i> 
+        Back
+    </a>
+</div>
+        </div>
+      </div>
+    </div>
+    
+
+<footer style="padding-top: 1em;">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-lg-12 text-center">
+        <p>
+          &nbsp;
+        </p>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+<script src="/js/prism.js"></script>
+
+<script type="text/javascript">
+var sc_project= 11213692 ;
+var sc_invisible= 1 ;
+var sc_security="b1954803";
+var scJsHost = (("https:" == document.location.protocol) ?
+"https://secure." : "http://www.");
+document.write("<sc"+"ript type='text/javascript' src='" +
+scJsHost+
+"statcounter.com/counter/counter.js'></"+"script>");
+</script>
+<noscript><div class="statcounter"><a title="web analytics"
+href="http://statcounter.com/" target="_blank"><img
+class="statcounter"
+src="//c.statcounter.com/11213692/0/b1954803/1/" alt="web
+analytics"></a></div></noscript>
+
+
+</body>
+</html>
+
