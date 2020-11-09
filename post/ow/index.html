@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Jonathan Weisberg's Homepage">
+    <meta name="author" content="Jonathan Weisberg">
+    
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@jweisber">
+    <meta name="twitter:creator" content="@jweisber">
+    <meta name="twitter:title" content="Mistrust &amp; Polarization">
+    <meta name="twitter:description" content="This is post 3 of 3 on simulated epistemic networks (code here):
+ The Zollman Effect How Robust is the Zollman Effect? Mistrust &amp; Polarization  The first post introduced a simple model of collective inquiry. Agents experiment with a new treatment and share their data, then update on all data as if it were their own. But what if they mistrust one another?
+It&rsquo;s natural to have less than full faith in those whose opinions differ from your own.">
+    <meta name="twitter:image" content="https://jonathanweisberg.org/img/sep-sen/nick-hibbert.jpg">
+
+    <meta property="og:url" content="/post/ow/" />
+    <meta property="og:type" content="article" />
+    <meta property="og:title" content="Mistrust &amp; Polarization" />
+    <meta property="og:description" content="This is post 3 of 3 on simulated epistemic networks (code here):
+ The Zollman Effect How Robust is the Zollman Effect? Mistrust &amp; Polarization  The first post introduced a simple model of collective inquiry. Agents experiment with a new treatment and share their data, then update on all data as if it were their own. But what if they mistrust one another?
+It&rsquo;s natural to have less than full faith in those whose opinions differ from your own." />
+    <meta property="og:image" content="https://jonathanweisberg.org/img/sep-sen/nick-hibbert.jpg" />
+
+
+    <title>Mistrust &amp; Polarization</title>
+
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+    <link href="/css/prism.css" rel="stylesheet" />
+    <link href="/css/scarab.css" rel="stylesheet">
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]},
+        "HTML-CSS": {
+          availableFonts: ["Neo-Euler"],
+          preferredFont: "Neo-Euler",
+          webFont: "Neo-Euler",
+          imageFont: "Neo-Euler",
+        }
+      });
+    </script>
+    <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+    </script>
+    
+    
+    
+
+</head>
+
+<body>
+
+<nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+  <div class="container">
+    
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-navbar-collapse-1">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="http://jonathanweisberg.org/">Jonathan Weisberg</a>
+    </div>
+    
+    <div class="collapse navbar-collapse" id="bs-navbar-collapse-1">
+      <ul class="nav navbar-nav">
+        <li>
+          <a href="/pdf/CV.pdf">
+            <i class="fa fa-briefcase"></i>&nbsp;
+            CV
+          </a>
+        </li>
+        <li>
+          <a href="/post/">
+            <i class="fa fa-code"></i>&nbsp;
+            Blog
+          </a>
+        </li>
+        <li>
+          <a href="/publication/">
+            <i class="fa fa-files-o"></i>&nbsp;
+            Research
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+
+
+  
+  <div class="container blog-post">
+
+    
+    <div class="row">
+      <div class="col-md-3 hidden-sm hidden-xs text-right">
+        <h1 class="post-title">&nbsp;</h1>
+          <em>Nov 9, 2020</em><br />
+          
+          
+          
+          <span class="post-tags">
+            
+            <a class="post-tag" href="http://jonathanweisberg.org/tags/philosophy">Philosophy</a>
+             &bull;   
+            
+            <a class="post-tag" href="http://jonathanweisberg.org/tags/epistemology">Epistemology</a>
+             &bull;  
+            
+            <a class="post-tag" href="http://jonathanweisberg.org/tags/social-epistemology">Social Epistemology</a>
+             &bull;  
+            
+            <a class="post-tag" href="http://jonathanweisberg.org/tags/formal-epistemology">Formal Epistemology</a>
+            
+            
+          </span>
+          
+          
+        </p>
+      </div>
+
+      <div class="col-md-7">
+        <h1 class="post-title">Mistrust &amp; Polarization</h1>
+        <div class="hidden-md hidden-lg post-metadata">
+          <div>
+            <em>Nov 9, 2020</em>
+          </div>
+          
+          
+          
+          <p class="post-tags">
+            
+            <a class="post-tag" href="http://jonathanweisberg.org/tags/philosophy">Philosophy</a>
+             &bull;   
+            
+            <a class="post-tag" href="http://jonathanweisberg.org/tags/epistemology">Epistemology</a>
+             &bull;  
+            
+            <a class="post-tag" href="http://jonathanweisberg.org/tags/social-epistemology">Social Epistemology</a>
+             &bull;  
+            
+            <a class="post-tag" href="http://jonathanweisberg.org/tags/formal-epistemology">Formal Epistemology</a>
+            
+            
+          </p>
+          
+          
+        </div>
+
+        <div class="post-body">
+          
+
+<p>This is post 3 of 3 on simulated epistemic networks (code <a href="https://github.com/jweisber/sep-sen" target="_blank">here</a>):</p>
+
+<ol>
+<li><a href="/post/zollman/">The Zollman Effect</a></li>
+<li><a href="/post/rbo">How Robust is the Zollman Effect?</a></li>
+<li><a href="/post/ow">Mistrust &amp; Polarization</a></li>
+</ol>
+
+<p>The first post introduced a simple model of collective inquiry. Agents experiment with a new treatment and share their data, then update on all data as if it were their own. But what if they mistrust one another?</p>
+
+<p>It&rsquo;s natural to have less than full faith in those whose opinions differ from your own. They seem to have gone astray somewhere, after all. And even if not, their views may have illicitly influenced their research.</p>
+
+<p>So maybe our agents won&rsquo;t take the data shared by others at face value. Maybe they&rsquo;ll discount it, especially when the source&rsquo;s viewpoint differs greatly from their own. <a href="https://doi.org/10.1007/s13194-018-0213-9" target="_blank">O&rsquo;Connor &amp; Weatherall</a> (O&amp;W) explore this possibility, and find that it can lead to polarization.</p>
+
+<h1 id="polarization">Polarization</h1>
+
+<p>Until now, our communities always reached a consensus. Now though, some agents in the community may conclude the novel treatment is superior, while others abandon it, and even ignore the results of their peers using the new treatment.</p>
+
+<p>In the example animated below, agents in blue have credence &gt;.5 so they experiment with the new treatment, sharing the results with everyone. Agents in green have credence ≤.5 but are still persuadable. They still trust the blue agents enough to update on their results&mdash;though they discount these results more the greater their difference of opinion with the agent who generated them. Finally, red agents ignore results entirely. They&rsquo;re so far from all the blue agents that they don&rsquo;t trust them at all.</p>
+
+<div style="text-align: center;">
+  <video width="500" height="300" controls>
+    <source src="/img/sep-sen/ow-animate.mp4" type="video/mp4">
+  </video>
+  <figcaption style="font-style:italic; font-size: .8em; text-align: center; padding-bottom: .75em;">
+      Fig. 1. Example of polarization in the O'Connor–Weatherall model
+  </figcaption>
+</div>
+
+<p>In this simulation, we reach a point where there are no more green agents, only unpersuadable skeptics in red and highly confident believers in blue. And the blues have become so confident, they&rsquo;re unlikely to ever move close enough to any of the reds to get their ear. So we&rsquo;ve reached a stable state of polarization.</p>
+
+<p>How often does such polarization occur? It depends on the size of the community, and on the &ldquo;rate of mistrust,&rdquo; $m$. Details on this parameter are below, but it&rsquo;s basically the rate at which difference of opinion increases discounting. The larger $m$ is, the more a given difference in our opinions will cause you to discount data I share with you.</p>
+
+<p>Here&rsquo;s how these two factors affect the probability of polarization. (Note: we&rsquo;re considering only complete networks here.)</p>
+
+<figure>
+  <img src="/img/sep-sen/ow-2.png"  />
+  <figcaption style="font-style:italic; font-size: .8em; text-align: center; padding-bottom: .75em;">
+      Fig. 2. Probability of polarization depends on community size and rate of mistrust.
+  </figcaption>
+</figure>
+
+<p>So the more agents are inclined to mistrust one another, the more likely they are to end up polarized. No surprise there. But larger communities are also more disposed to polarize. Why?</p>
+
+<p>As O&amp;W explain, the more agents there are, the more likely it is that strong skeptics will be present at the start of inquiry: agents with credence well below .5. These agents will tend to ignore the reports of the optimists experimenting with the new treatment. So they anchor a skeptical segment of the population.</p>
+
+<p>The mistrust multiplier $m$ is essential for polarization to happen in this model. There&rsquo;s no polarization unless $m &gt; 1$. So let&rsquo;s see the details of how $m$ works.</p>
+
+<h1 id="jeffrey-updating">Jeffrey Updating</h1>
+
+<p>The more our agents differ in their beliefs, the less they&rsquo;ll trust each other. When Dr. Nick reports evidence $E$ to Dr. Hibbert, Hibbert won&rsquo;t simply <a href="https://plato.stanford.edu/entries/epistemology-bayesian/#SimPriCon" target="_blank">conditionalize</a> on $E$ to get his new credence $P&rsquo;(H) = P(H \mathbin{\mid} E)$. Instead he&rsquo;ll take a weighted average of $P(H \mathbin{\mid} E)$ and $P(H \mathbin{\mid} \neg E)$. In other words, he&rsquo;ll use <a href="https://plato.stanford.edu/entries/epistemology-bayesian/#ObjSimPriConRulInfOthObjBayConThe" target="_blank">Jeffrey conditionalization</a>:
+$$ P&rsquo;(H) = P(H \mathbin{\mid} E) P&rsquo;(E) + P(H \mathbin{\mid} \neg E) P&rsquo;(\neg E). $$
+But to apply this formula we need to know the value for $P&rsquo;(E)$. We need to know how believable Hibbert finds $E$ when Nick reports it.</p>
+
+<p>O&amp;W note two factors that should affect $P&rsquo;(E)$.</p>
+
+<ol>
+<li><p>The more Nick&rsquo;s opinion differs from Hibbert&rsquo;s, the less Hibbert will trust him. So we want $P&rsquo;(E)$ to decrease with the absolute difference between Hibbert&rsquo;s credence in $H$ and Nick&rsquo;s. Call this absolute difference $d$.</p></li>
+
+<li><p>We also want $P&rsquo;(E)$ to decrease with $P(\neg E)$. Nick&rsquo;s report of $E$ has to work against Hibbert&rsquo;s skepticism about $E$ to make $P&rsquo;(E)$ high.</p></li>
+</ol>
+
+<p>A natural proposal then is that $P&rsquo;(E)$ should decrease with the product $d \cdot P(\neg E)$, which suggests $1 - d \cdot P(\neg E)$ as our formula. When $d = 1$ this would mean Hibbert ignores Nick&rsquo;s report: $P&rsquo;(E) = 1 - P(\neg E) = P(E)$. And when they are simpatico, $d = 0$, Hibbert will trust Nick fully and just conditionalizes on his report, since then $P&rsquo;(E) = 1$.</p>
+
+<p>This is fine from a formal point of view, but it means that Hibbert will basically never ignore Nick&rsquo;s testimony completely. There is zero chance of $d = 1$ ever happening in our models.</p>
+
+<p>So, to explore models where agents fully discount one another&rsquo;s testimony, we introduce the mistrust multiplier, $m \geq 0$. This makes our final formula:
+$$P&rsquo;(E) = 1 - \min(1, d \cdot m) \cdot P(\neg E).$$
+The $\min$ is there to prevent negative values. When $d \cdot m &gt; 1$, we just replace it with $1$ so that $P&rsquo;(E) = P(E)$. Here&rsquo;s what this function looks like for one example, where $m = 1.5$ and $P(E) = .6$:</p>
+
+<figure>
+  <img src="/img/sep-sen/ow-1.png" />
+  <figcaption style="font-style:italic; font-size: .8em; text-align: center; padding-bottom: .75em;">
+      Fig. 2. Posterior of the evidence $P'(E)$ when $m = 1.5$ and $P(E) = .6$
+  </figcaption>
+</figure>
+
+<p>Note the kink, the point after which agents just ignore one another&rsquo;s data.</p>
+
+<p>O&amp;W also consider models where the line doesn&rsquo;t flatten, but keeps going down. In that case agents don&rsquo;t ignore one another, but rather &ldquo;anti-update.&rdquo; They take a report of $E$ as a reason to <em>decrease</em> their credence in $E$. This too results in polarization, more frequently and with greater severity, in fact.</p>
+
+<h1 id="discussion">Discussion</h1>
+
+<p>Polarization only happens when $m &gt; 1$. Only then do some agents mistrust their colleagues enough to fully discount their reports. If this never happened, they would eventually be drawn to the truth (however slowly) by the data coming from their more optimistic colleagues.</p>
+
+<p>So is $m &gt; 1$ a plausible assumption? I think it can be. People can be so unreliable that their reports aren&rsquo;t believable at all. In some cases a report can even decrease the believability of the proposition reported. Some sources are known for their fabrications.</p>
+
+<p>Ultimately it comes down to whether $P(E \,\vert\, R_E) &gt; P(E)$, i.e. whether someone reporting $E$ increases the probability of $E$. Nothing in-principle stops this association from being present, absent, or reversed. It&rsquo;s an empirical matter of what one knows about the source of the report.</p>
+
+
+          &nbsp;
+        </div>
+
+        <div>
+          <div class="post-back-link">
+    <a href="javascript: history.back()">
+        <i class="fa fa-arrow-left"></i> 
+        Back
+    </a>
+</div>
+        </div>
+      </div>
+    </div>
+    
+
+<footer style="padding-top: 1em;">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-lg-12 text-center">
+        <p>
+          &nbsp;
+        </p>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+<script src="/js/prism.js"></script>
+
+<script type="text/javascript">
+var sc_project= 11213692 ;
+var sc_invisible= 1 ;
+var sc_security="b1954803";
+var scJsHost = (("https:" == document.location.protocol) ?
+"https://secure." : "http://www.");
+document.write("<sc"+"ript type='text/javascript' src='" +
+scJsHost+
+"statcounter.com/counter/counter.js'></"+"script>");
+</script>
+<noscript><div class="statcounter"><a title="web analytics"
+href="http://statcounter.com/" target="_blank"><img
+class="statcounter"
+src="//c.statcounter.com/11213692/0/b1954803/1/" alt="web
+analytics"></a></div></noscript>
+
+
+</body>
+</html>
+

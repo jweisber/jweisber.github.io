@@ -9,6 +9,105 @@
     <atom:link href="http://jonathanweisberg.org/tags/formal-epistemology/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
+      <title>Mistrust &amp; Polarization</title>
+      <link>http://jonathanweisberg.org/post/ow/</link>
+      <pubDate>Mon, 09 Nov 2020 00:00:00 -0500</pubDate>
+      
+      <guid>http://jonathanweisberg.org/post/ow/</guid>
+      <description>
+
+&lt;p&gt;This is post 3 of 3 on simulated epistemic networks (code &lt;a href=&#34;https://github.com/jweisber/sep-sen&#34; target=&#34;_blank&#34;&gt;here&lt;/a&gt;):&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;&lt;a href=&#34;http://jonathanweisberg.org/post/zollman/&#34;&gt;The Zollman Effect&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://jonathanweisberg.org/post/rbo&#34;&gt;How Robust is the Zollman Effect?&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://jonathanweisberg.org/post/ow&#34;&gt;Mistrust &amp;amp; Polarization&lt;/a&gt;&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;The first post introduced a simple model of collective inquiry. Agents experiment with a new treatment and share their data, then update on all data as if it were their own. But what if they mistrust one another?&lt;/p&gt;
+
+&lt;p&gt;It&amp;rsquo;s natural to have less than full faith in those whose opinions differ from your own. They seem to have gone astray somewhere, after all. And even if not, their views may have illicitly influenced their research.&lt;/p&gt;
+
+&lt;p&gt;So maybe our agents won&amp;rsquo;t take the data shared by others at face value. Maybe they&amp;rsquo;ll discount it, especially when the source&amp;rsquo;s viewpoint differs greatly from their own. &lt;a href=&#34;https://doi.org/10.1007/s13194-018-0213-9&#34; target=&#34;_blank&#34;&gt;O&amp;rsquo;Connor &amp;amp; Weatherall&lt;/a&gt; (O&amp;amp;W) explore this possibility, and find that it can lead to polarization.&lt;/p&gt;
+
+&lt;h1 id=&#34;polarization&#34;&gt;Polarization&lt;/h1&gt;
+
+&lt;p&gt;Until now, our communities always reached a consensus. Now though, some agents in the community may conclude the novel treatment is superior, while others abandon it, and even ignore the results of their peers using the new treatment.&lt;/p&gt;
+
+&lt;p&gt;In the example animated below, agents in blue have credence &amp;gt;.5 so they experiment with the new treatment, sharing the results with everyone. Agents in green have credence ≤.5 but are still persuadable. They still trust the blue agents enough to update on their results&amp;mdash;though they discount these results more the greater their difference of opinion with the agent who generated them. Finally, red agents ignore results entirely. They&amp;rsquo;re so far from all the blue agents that they don&amp;rsquo;t trust them at all.&lt;/p&gt;
+
+&lt;div style=&#34;text-align: center;&#34;&gt;
+  &lt;video width=&#34;500&#34; height=&#34;300&#34; controls&gt;
+    &lt;source src=&#34;http://jonathanweisberg.org/img/sep-sen/ow-animate.mp4&#34; type=&#34;video/mp4&#34;&gt;
+  &lt;/video&gt;
+  &lt;figcaption style=&#34;font-style:italic; font-size: .8em; text-align: center; padding-bottom: .75em;&#34;&gt;
+      Fig. 1. Example of polarization in the O&#39;Connor–Weatherall model
+  &lt;/figcaption&gt;
+&lt;/div&gt;
+
+&lt;p&gt;In this simulation, we reach a point where there are no more green agents, only unpersuadable skeptics in red and highly confident believers in blue. And the blues have become so confident, they&amp;rsquo;re unlikely to ever move close enough to any of the reds to get their ear. So we&amp;rsquo;ve reached a stable state of polarization.&lt;/p&gt;
+
+&lt;p&gt;How often does such polarization occur? It depends on the size of the community, and on the &amp;ldquo;rate of mistrust,&amp;rdquo; $m$. Details on this parameter are below, but it&amp;rsquo;s basically the rate at which difference of opinion increases discounting. The larger $m$ is, the more a given difference in our opinions will cause you to discount data I share with you.&lt;/p&gt;
+
+&lt;p&gt;Here&amp;rsquo;s how these two factors affect the probability of polarization. (Note: we&amp;rsquo;re considering only complete networks here.)&lt;/p&gt;
+
+&lt;figure&gt;
+  &lt;img src=&#34;http://jonathanweisberg.org/img/sep-sen/ow-2.png&#34;  /&gt;
+  &lt;figcaption style=&#34;font-style:italic; font-size: .8em; text-align: center; padding-bottom: .75em;&#34;&gt;
+      Fig. 2. Probability of polarization depends on community size and rate of mistrust.
+  &lt;/figcaption&gt;
+&lt;/figure&gt;
+
+&lt;p&gt;So the more agents are inclined to mistrust one another, the more likely they are to end up polarized. No surprise there. But larger communities are also more disposed to polarize. Why?&lt;/p&gt;
+
+&lt;p&gt;As O&amp;amp;W explain, the more agents there are, the more likely it is that strong skeptics will be present at the start of inquiry: agents with credence well below .5. These agents will tend to ignore the reports of the optimists experimenting with the new treatment. So they anchor a skeptical segment of the population.&lt;/p&gt;
+
+&lt;p&gt;The mistrust multiplier $m$ is essential for polarization to happen in this model. There&amp;rsquo;s no polarization unless $m &amp;gt; 1$. So let&amp;rsquo;s see the details of how $m$ works.&lt;/p&gt;
+
+&lt;h1 id=&#34;jeffrey-updating&#34;&gt;Jeffrey Updating&lt;/h1&gt;
+
+&lt;p&gt;The more our agents differ in their beliefs, the less they&amp;rsquo;ll trust each other. When Dr. Nick reports evidence $E$ to Dr. Hibbert, Hibbert won&amp;rsquo;t simply &lt;a href=&#34;https://plato.stanford.edu/entries/epistemology-bayesian/#SimPriCon&#34; target=&#34;_blank&#34;&gt;conditionalize&lt;/a&gt; on $E$ to get his new credence $P&amp;rsquo;(H) = P(H \mathbin{\mid} E)$. Instead he&amp;rsquo;ll take a weighted average of $P(H \mathbin{\mid} E)$ and $P(H \mathbin{\mid} \neg E)$. In other words, he&amp;rsquo;ll use &lt;a href=&#34;https://plato.stanford.edu/entries/epistemology-bayesian/#ObjSimPriConRulInfOthObjBayConThe&#34; target=&#34;_blank&#34;&gt;Jeffrey conditionalization&lt;/a&gt;:
+$$ P&amp;rsquo;(H) = P(H \mathbin{\mid} E) P&amp;rsquo;(E) + P(H \mathbin{\mid} \neg E) P&amp;rsquo;(\neg E). $$
+But to apply this formula we need to know the value for $P&amp;rsquo;(E)$. We need to know how believable Hibbert finds $E$ when Nick reports it.&lt;/p&gt;
+
+&lt;p&gt;O&amp;amp;W note two factors that should affect $P&amp;rsquo;(E)$.&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;&lt;p&gt;The more Nick&amp;rsquo;s opinion differs from Hibbert&amp;rsquo;s, the less Hibbert will trust him. So we want $P&amp;rsquo;(E)$ to decrease with the absolute difference between Hibbert&amp;rsquo;s credence in $H$ and Nick&amp;rsquo;s. Call this absolute difference $d$.&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;We also want $P&amp;rsquo;(E)$ to decrease with $P(\neg E)$. Nick&amp;rsquo;s report of $E$ has to work against Hibbert&amp;rsquo;s skepticism about $E$ to make $P&amp;rsquo;(E)$ high.&lt;/p&gt;&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;A natural proposal then is that $P&amp;rsquo;(E)$ should decrease with the product $d \cdot P(\neg E)$, which suggests $1 - d \cdot P(\neg E)$ as our formula. When $d = 1$ this would mean Hibbert ignores Nick&amp;rsquo;s report: $P&amp;rsquo;(E) = 1 - P(\neg E) = P(E)$. And when they are simpatico, $d = 0$, Hibbert will trust Nick fully and just conditionalizes on his report, since then $P&amp;rsquo;(E) = 1$.&lt;/p&gt;
+
+&lt;p&gt;This is fine from a formal point of view, but it means that Hibbert will basically never ignore Nick&amp;rsquo;s testimony completely. There is zero chance of $d = 1$ ever happening in our models.&lt;/p&gt;
+
+&lt;p&gt;So, to explore models where agents fully discount one another&amp;rsquo;s testimony, we introduce the mistrust multiplier, $m \geq 0$. This makes our final formula:
+$$P&amp;rsquo;(E) = 1 - \min(1, d \cdot m) \cdot P(\neg E).$$
+The $\min$ is there to prevent negative values. When $d \cdot m &amp;gt; 1$, we just replace it with $1$ so that $P&amp;rsquo;(E) = P(E)$. Here&amp;rsquo;s what this function looks like for one example, where $m = 1.5$ and $P(E) = .6$:&lt;/p&gt;
+
+&lt;figure&gt;
+  &lt;img src=&#34;http://jonathanweisberg.org/img/sep-sen/ow-1.png&#34; /&gt;
+  &lt;figcaption style=&#34;font-style:italic; font-size: .8em; text-align: center; padding-bottom: .75em;&#34;&gt;
+      Fig. 2. Posterior of the evidence $P&#39;(E)$ when $m = 1.5$ and $P(E) = .6$
+  &lt;/figcaption&gt;
+&lt;/figure&gt;
+
+&lt;p&gt;Note the kink, the point after which agents just ignore one another&amp;rsquo;s data.&lt;/p&gt;
+
+&lt;p&gt;O&amp;amp;W also consider models where the line doesn&amp;rsquo;t flatten, but keeps going down. In that case agents don&amp;rsquo;t ignore one another, but rather &amp;ldquo;anti-update.&amp;rdquo; They take a report of $E$ as a reason to &lt;em&gt;decrease&lt;/em&gt; their credence in $E$. This too results in polarization, more frequently and with greater severity, in fact.&lt;/p&gt;
+
+&lt;h1 id=&#34;discussion&#34;&gt;Discussion&lt;/h1&gt;
+
+&lt;p&gt;Polarization only happens when $m &amp;gt; 1$. Only then do some agents mistrust their colleagues enough to fully discount their reports. If this never happened, they would eventually be drawn to the truth (however slowly) by the data coming from their more optimistic colleagues.&lt;/p&gt;
+
+&lt;p&gt;So is $m &amp;gt; 1$ a plausible assumption? I think it can be. People can be so unreliable that their reports aren&amp;rsquo;t believable at all. In some cases a report can even decrease the believability of the proposition reported. Some sources are known for their fabrications.&lt;/p&gt;
+
+&lt;p&gt;Ultimately it comes down to whether $P(E \,\vert\, R_E) &amp;gt; P(E)$, i.e. whether someone reporting $E$ increases the probability of $E$. Nothing in-principle stops this association from being present, absent, or reversed. It&amp;rsquo;s an empirical matter of what one knows about the source of the report.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
       <title>How Robust is the Zollman Effect?</title>
       <link>http://jonathanweisberg.org/post/rbo/</link>
       <pubDate>Mon, 02 Nov 2020 00:00:00 -0500</pubDate>
@@ -21,7 +120,7 @@
 &lt;ol&gt;
 &lt;li&gt;&lt;a href=&#34;http://jonathanweisberg.org/post/zollman/&#34;&gt;The Zollman Effect&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;http://jonathanweisberg.org/post/rbo&#34;&gt;How Robust is the Zollman Effect?&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;Mistrust &amp;amp; Polarization (coming soon)&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://jonathanweisberg.org/post/scientific-polarization&#34;&gt;Mistrust &amp;amp; Polarization&lt;/a&gt;&lt;/li&gt;
 &lt;/ol&gt;
 
 &lt;p&gt;This post summarizes some key ideas from &lt;a href=&#34;http://doi.org/10.1086/690717&#34; target=&#34;_blank&#34;&gt;Rosenstock, Bruner, and O&amp;rsquo;Connor&amp;rsquo;s paper&lt;/a&gt; on the Zollman effect, and reproduces some of their results in Python. As always you can grab &lt;a href=&#34;https://github.com/jweisber/sep-sen&#34; target=&#34;_blank&#34;&gt;the code&lt;/a&gt; from GitHub.&lt;/p&gt;
@@ -111,7 +210,7 @@
 &lt;ol&gt;
 &lt;li&gt;&lt;a href=&#34;http://jonathanweisberg.org/post/zollman&#34;&gt;The Zollman Effect&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;http://jonathanweisberg.org/post/rbo&#34;&gt;How Robust is the Zollman Effect?&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;Mistrust &amp;amp; Polarization (coming soon)&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://jonathanweisberg.org/post/scientific-polarization&#34;&gt;Mistrust &amp;amp; Polarization&lt;/a&gt;&lt;/li&gt;
 &lt;/ol&gt;
 
 &lt;p&gt;In each post I&amp;rsquo;ll summarize the main ideas and replicate some key results in Python. You can grab &lt;a href=&#34;https://github.com/jweisber/sep-sen&#34; target=&#34;_blank&#34;&gt;the final code from GitHub&lt;/a&gt; if you want to play along and tinker.&lt;/p&gt;
@@ -2253,193 +2352,6 @@ as desired.
 &lt;/ul&gt;
 
 &lt;p&gt;And indeed, that&amp;rsquo;s what we&amp;rsquo;ll show in the next post!&lt;/p&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>Accuracy for Dummies, Part 5: Convexity</title>
-      <link>http://jonathanweisberg.org/post/Accuracy%20for%20Dummies%20-%20Part%205%20-%20Convexity/</link>
-      <pubDate>Thu, 18 May 2017 10:35:00 -0500</pubDate>
-      
-      <guid>http://jonathanweisberg.org/post/Accuracy%20for%20Dummies%20-%20Part%205%20-%20Convexity/</guid>
-      <description>
-
-&lt;p&gt;In this and the next two posts we&amp;rsquo;ll establish the central theorem of the accuracy framework. We&amp;rsquo;ll show that the laws of probability are specially suited to the pursuit of accuracy, measured in Brier distance.&lt;/p&gt;
-
-&lt;p&gt;We showed this for cases with two possible outcomes, like a coin toss,  way back in &lt;a href=&#34;http://jonathanweisberg.org/post/Accuracy for Dummies - Part 1/&#34;&gt;the first post of this series&lt;/a&gt;. A simple, &lt;a href=&#34;http://jonathanweisberg.org/img/accuracy/2D Dominance Diagram - 400px.png&#34;&gt;two-dimensional diagram&lt;/a&gt; was all we really needed for that argument. To see how the same idea extends to any number of dimensions, we need to generalize the key ingredients of that reasoning to $n$ dimensions.&lt;/p&gt;
-
-&lt;p&gt;This post supplies the first ingredient: the convexity theorem.&lt;/p&gt;
-
-&lt;h1 id=&#34;convex-shapes&#34;&gt;Convex Shapes&lt;/h1&gt;
-
-&lt;p&gt;Convex shapes are central to the accuracy framework because, in a way, the laws of probability have a convex shape. Hopefully that mystical pronouncement will make sense by the end of this post.&lt;/p&gt;
-
-&lt;p&gt;You probably know a convex shape when you see one. Circles, triangles, and octagons are convex; pentagrams and the state of Texas are not.&lt;/p&gt;
-
-&lt;p&gt;But what makes a convex shape convex? Roughly: &lt;em&gt;it contains all its connecting lines&lt;/em&gt;. If you take any two points in a convex region and draw a line connecting them, the line will lie entirely inside that region.&lt;/p&gt;
-
-&lt;p&gt;But on a non-convex figure, you can find points whose connecting line leaves the figure&amp;rsquo;s boundary:&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&#34;http://jonathanweisberg.org/img/accuracy/TexasLine.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
-
-&lt;p&gt;We want to take this idea beyond two dimensions, though. And for that, we need  to generalize the idea of connecting lines. We need the concept of a &amp;ldquo;mixture&amp;rdquo;.&lt;/p&gt;
-
-&lt;h2 id=&#34;pointy-arithmetic&#34;&gt;Pointy Arithmetic&lt;/h2&gt;
-
-&lt;p&gt;In two dimensions it&amp;rsquo;s pretty easy to see that if you take some percentage of one point, and a complementary percentage of another point, you get a third point on the line between them.$
-\renewcommand{\vec}[1]{\mathbf{#1}}
-\newcommand{\p}{\vec{p}}
-\newcommand{\q}{\vec{q}}
-\newcommand{\r}{\vec{r}}
-\newcommand{\v}{\vec{v}}
-\newcommand{\R}{\mathbb{R}}
-$&lt;/p&gt;
-
-&lt;p&gt;For example, if you take $1/ 2$ of $(0,0)$ and add it to $1/ 2$ of $(1,1)$, you get the point halfway between: $(1/ 2,1/ 2)$. That&amp;rsquo;s pretty intuitive geometrically:
-&lt;img src=&#34;http://jonathanweisberg.org/img/accuracy/Fig1.png&#34; alt=&#34;&#34; /&gt;
-But we can capture the idea algebraically too:
-$$
-  \begin{align}
-    1/ 2 \times (0,0) + 1/ 2 \times (1,1)
-      &amp;amp;= (0,0) + (1/ 2, 1/ 2)\\&lt;br /&gt;
-      &amp;amp;= (1/ 2, 1/ 2).
-  \end{align}
-$$&lt;/p&gt;
-
-&lt;p&gt;Likewise, if you add $3/10$ of $(0,0)$ to $7/10$ of $(1, 1)$, you get the point seven-tenths of the way in between, namely $(7/10, 7/10)$:
-&lt;img src=&#34;http://jonathanweisberg.org/img/accuracy/Fig2.png&#34; alt=&#34;&#34; /&gt;
-In algebraic terms:
-$$
-  \begin{align}
-    3/10 \times (0,0) + 7/10 \times (1,1)
-      &amp;amp;= (0,0) + (7/10, 7/10)\\&lt;br /&gt;
-      &amp;amp;= (7/10, 7/10).
-  \end{align}
-$$&lt;/p&gt;
-
-&lt;p&gt;Notice that we just introduced two rules for doing arithmetic with points. When multiplying a point $\p = (p_1, p_2)$ by a number $a$, we get:
-$$ a \p = (a p_1, a p_2). $$
-And when adding two points $\p = (p_1, p_2)$ and $\q = (q_1, q_2)$ together:
-$$ \p + \q = (p_1 + q_1, p_2 + q_2). $$
-In other words, multiplying a point by a single number works element-wise, and so does adding two points together.&lt;/p&gt;
-
-&lt;p&gt;We can generalize these ideas straightforwardly to any number of dimensions $n$. Given points $\p = (p_1, p_2, \ldots, p_n)$ and $\q = (q_1, q_2, \ldots, q_n)$, we can define:
-$$ a \p = (a p_1, a p_2, \ldots, a p_n), $$
-and
-$$ \p + \q = (p_1 + q_1, p_2 + q_2, \ldots, p_n + q_n).$$
-We&amp;rsquo;ll talk more about arithmetic with points next time. For now, these two definitions will do.&lt;/p&gt;
-
-&lt;h2 id=&#34;mixtures&#34;&gt;Mixtures&lt;/h2&gt;
-
-&lt;p&gt;Now back to connecting lines between points. The idea is that the straight line between $\p$ and $\q$ is the set of points we get by &amp;ldquo;mixing&amp;rdquo; some portion of $\p$ with some portion of $\q$.&lt;/p&gt;
-
-&lt;p&gt;We take some number $\lambda$ between $0$ and $1$, we multiply $\p$ by $\lambda$ and $\q$ by $1 - \lambda$, and we sum the results: $\lambda \p + (1-\lambda) \q$. The set of points you can obtain this way is the straight line between $\p$ and $\q$.&lt;/p&gt;
-
-&lt;p&gt;In fact, you can mix any number of points together. Given $m$ points $\q_1, \ldots, \q_m$, we can define their &lt;em&gt;mixture&lt;/em&gt; as follows. Let $\lambda_1, \ldots \lambda_m$ be positive real numbers that sum to one. That is:&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;$\lambda_i \geq 0$ for all $i$, and&lt;/li&gt;
-&lt;li&gt;$\lambda_1 + \lambda_2 + \ldots + \lambda_m = 1$.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;Then we multiply each $\q_i$ by the corresponding $\lambda_i$ and sum up:
-  $$ \p = \lambda_1 \q_1 + \ldots + \lambda_m \q_m. $$
-The resulting point $\p$ is a &lt;em&gt;mixture&lt;/em&gt; of the $\q_i$&amp;rsquo;s.&lt;/p&gt;
-
-&lt;p&gt;Now we can define the general notion of a &lt;em&gt;convex set&lt;/em&gt; of points. A convex set is one where the mixture of any points in the set is also contained in the set. (A convex set is &amp;ldquo;closed under mixing&amp;rdquo;, you might say.)&lt;/p&gt;
-
-&lt;h1 id=&#34;convex-hulls&#34;&gt;Convex Hulls&lt;/h1&gt;
-
-&lt;p&gt;It turns out that the set of possible probability assignments is convex.&lt;/p&gt;
-
-&lt;p&gt;More than that, it&amp;rsquo;s the convex set generated by the possible truth-value assignments, in a certain way. It&amp;rsquo;s the &amp;ldquo;convex hull&amp;rdquo; of the possible truth-value assignments.&lt;/p&gt;
-
-&lt;p&gt;What in the world is a &amp;ldquo;convex hull&amp;rdquo;?&lt;/p&gt;
-
-&lt;p&gt;Imagine some points in the plane&amp;mdash;the corners of a square, for example. Now imagine stretching a rubber band around those points and letting it snap tight. The shape you get is the square with those points as corners. And the set of points enclosed by the rubber band is a convex set. Take any two points inside the square, or on its boundary, and draw the straight line between them. The line will not leave the square.&lt;/p&gt;
-
-&lt;p&gt;Intuitively, the convex hull of a set of points in the plane is the set enclosed by the rubber band exercise. Formally, the convex hull of a set of points is the set of points that can be obtained from them as a mixture. (And this definition works in any number of dimensions.)&lt;/p&gt;
-
-&lt;p&gt;For example, any of the points in our square example can be obtained by taking a mixture of the vertices. Take the center of the square: it&amp;rsquo;s halfway between the bottom left and top right corners. To get something to the left of that we can mix in some of the top left corner (and correspondingly less of the top right). And so on.&lt;/p&gt;
-
-&lt;p&gt;Now imagine the rubber band exercise using the possible truth-value assignments, instead of the corners of a square. In two dimensions, those are the points $(0,1)$ and $(1,0)$. And when you let the band snap tight, you get the diagonal line connecting them. As we saw way back in &lt;a href=&#34;http://jonathanweisberg.org/post/Accuracy for Dummies - Part 1/&#34;&gt;our first post&lt;/a&gt;, the points on that diagonal line are the possible probability assignments.&lt;/p&gt;
-
-&lt;h1 id=&#34;peeking-ahead&#34;&gt;Peeking Ahead&lt;/h1&gt;
-
-&lt;p&gt;We also saw that if you take any point &lt;em&gt;not&lt;/em&gt; on that diagonal, the closest point on the diagonal forms a right angle. That&amp;rsquo;s what lets us do some basic geometric reasoning to see that there&amp;rsquo;s a point on the line that&amp;rsquo;s closer to both vertices than the point off the line:&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&#34;http://jonathanweisberg.org/img/accuracy/2D Dominance Diagram - 400px.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
-
-&lt;p&gt;That fact about closest points and right angles is what&amp;rsquo;s going to enable us to generalize the argument beyond two dimensions. If you take any point not on a convex hull, there&amp;rsquo;s a point on the convex hull (namely the closest point) which forms a right (or obtuse) angle with the other points on the hull.&lt;/p&gt;
-
-&lt;p&gt;Consider the three dimensional case. The possible truth-value assignments are $(1,0,0)$, $(0,1,0)$, and $(0,0,1)$:
-&lt;img src=&#34;http://jonathanweisberg.org/img/accuracy/Three Vertices.png&#34; alt=&#34;&#34; /&gt;
-And when you let a rubber band snap tight around them, it encloses the triangular surface connecting them:
-&lt;img src=&#34;http://jonathanweisberg.org/img/accuracy/Three Vertices with Hull.png&#34; alt=&#34;&#34; /&gt;
-That&amp;rsquo;s the set of probability assignments for three outcomes.&lt;/p&gt;
-
-&lt;p&gt;Now take any point that&amp;rsquo;s not on that triangular surface. Drop a straight line to the closest point on the surface. Then draw another straight line from there to one of the triangle&amp;rsquo;s vertices. These two straight lines will form a right or obtuse angle. So the distance from the first, off-hull point to the vertex is further than the distance from the second, on-hull point to the vertex.&lt;/p&gt;
-
-&lt;p&gt;Essentially the same reasoning works in any number of dimensions. But to make it work, we need to do three things.&lt;/p&gt;
-
-&lt;ol&gt;
-&lt;li&gt;Prove that the probability assignments always form a convex hull around the possible truth-value assignments.&lt;/li&gt;
-&lt;li&gt;Prove that any point outside a convex hull forms a right angle (or an obtuse angle) with any point on the hull.&lt;/li&gt;
-&lt;li&gt;Prove that the point off the hull is further from all the vertices than the closest point on the hull.&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;p&gt;This post is dedicated to the first item.&lt;/p&gt;
-
-&lt;h1 id=&#34;the-convexity-theorem&#34;&gt;The Convexity Theorem&lt;/h1&gt;
-
-&lt;p&gt;We&amp;rsquo;re going to prove that the set of possible probability assignments is the same as the convex hull of the possible truth-value assignments. First let&amp;rsquo;s get some notation in place.&lt;/p&gt;
-
-&lt;h2 id=&#34;notation&#34;&gt;Notation&lt;/h2&gt;
-
-&lt;p&gt;As usual $n$ is the number of possible outcomes under consideration. So each possible truth-value assignment is a point of $n$ coordinates, with a single $1$ and $0$ everywhere else. For example, if $n = 4$ then $(0, 0, 1, 0)$ represents the case where the third possibility obtains.&lt;/p&gt;
-
-&lt;p&gt;We&amp;rsquo;ll write $V$ for the set of all possible truth value assignments. And we&amp;rsquo;ll write $\v_1, \ldots, \v_n$ for the elements of $V$. The first element $\v_1$ has its $1$ in the first coordinate, $\v_2$ has its $1$ in the second coordinate, etc.&lt;/p&gt;
-
-&lt;p&gt;We&amp;rsquo;ll use a superscript $^+$ for the convex hull of a set. So $V^+$ is the convex hull of $V$. It&amp;rsquo;s the set of all points that can be obtained by mixing members of $V$.&lt;/p&gt;
-
-&lt;p&gt;Recall, a mixture is a point obtained by taking nonnegative real numbers $\lambda_1, \ldots, \lambda_n$ that sum to one, and multiplying each one against the corresponding $\v_i$ and then summing up:
-  $$ \lambda_1 \v_1 + \lambda_2 \v_2 + \ldots + \lambda_n \v_n. $$
-So $V^+$ is the set of all points that can be obtained by this method. Each choice of values $\lambda_1, \ldots, \lambda_n$ generates a member of $V^+$. (To exclude one of the $\v_i$&amp;rsquo;s from a mixture, just set $\lambda_i = 0$.)&lt;/p&gt;
-
-&lt;p&gt;Finally, we&amp;rsquo;ll use $P$ for the set of all probability assignments. Recall: a probability assignment is a point of $n$ coordinates, where each coordinate is nonnegative, and all the coordinates together add up to one. That is, $\p = (p_1,\ldots,p_n)$ is a probability assignment just in case:&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;$p_i \geq 0$ for all $i$, and&lt;/li&gt;
-&lt;li&gt;$p_1 + p_2 + \ldots + p_n = 1$.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;The set $P$ contains just those points $\p$ satisfying these two conditions.&lt;/p&gt;
-
-&lt;h2 id=&#34;statement-and-proof&#34;&gt;Statement and Proof&lt;/h2&gt;
-
-&lt;p&gt;In the notation just established, what we&amp;rsquo;re trying to show is that $V^+ = P$.&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;Theorem.&lt;/strong&gt; $V^+ = P$. That is, the convex hull of the possible truth-value assignments just is the set of possible probability assignments.&lt;/p&gt;
-
-&lt;p&gt;&lt;em&gt;Proof.&lt;/em&gt; Let&amp;rsquo;s first show that $V^+ \subseteq P$.&lt;/p&gt;
-
-&lt;p&gt;Notice that a truth-value assignment is also probability assignment. Its coordinates are always $1$ or $0$, so all coordinates are nonnegative. And since it has only a single coordinate with value $1$, its coordinates add up to $1$.&lt;/p&gt;
-
-&lt;p&gt;But we have to show that any mixture of truth-value assignments is also a probability assignment. So let $\lambda_1, \ldots, \lambda_n$ be nonnegative numbers that sum to $1$. If we multiply $\lambda_i$ against a truth-value assignment $\v_i$, we get a point with $0$ in every coordinate except the $i$-th coordinate, which has value $\lambda_i$. For example, $\lambda_3 \times (0, 0, 1, 0) = (0, 0, \lambda_3, 0)$. So the mixture that results from $\lambda_1, \ldots, \lambda_n$ is:
-  $$
-    \lambda_1 \v_1 + \lambda_2 \v_2 + \ldots \lambda_n \v_n = (\lambda_1, \lambda_2, \ldots, \lambda_n).
-  $$
-And this mixture has coordinates that are all nonnegative and sum to $1$, by hypothesis. In other words, it is a probability assignment.&lt;/p&gt;
-
-&lt;p&gt;So we turn to showing that $P \subseteq V^+$. In other words, we want to show that every probability assignment can be obtained as a mixture of the $\v_i$&amp;rsquo;s.&lt;/p&gt;
-
-&lt;p&gt;So take an arbitrary probability assignment $\p \in P$, where $\p = (p_1, \ldots, p_n)$. Let the $\lambda_i$&amp;rsquo;s be the probabilities that $\p$ assigns to each $i$: $\lambda_1 = p_1$, $\lambda_2 = p_2$, and so on. Then, by the same logic as in the first part of the proof:
-  $$ \lambda_1 \v_1 + \ldots + \lambda_n \v_n = (p_1, \ldots, p_n). $$
-In other words, $\p$ is a mixture of the possible truth-value assignments, where the weights in the mixture are just the probability values assigned by $\p$. &lt;span style=&#34;float: right;&#34;&gt;$\Box$&lt;/span&gt;&lt;/p&gt;
-
-&lt;h1 id=&#34;up-next&#34;&gt;Up Next&lt;/h1&gt;
-
-&lt;p&gt;We&amp;rsquo;ve established the first of the three items listed earlier. Next time we&amp;rsquo;ll establish the second: given a point outside a convex set, there&amp;rsquo;s always a point inside that forms a right or obtuse angle with any other point of the set. Then we&amp;rsquo;ll be just a few lines of algebra from the main result: the Brier dominance theorem!&lt;/p&gt;
 </description>
     </item>
     
