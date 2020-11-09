@@ -9,6 +9,77 @@
     <atom:link href="http://jonathanweisberg.org/tags/formal-epistemology/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
+      <title>How Scientific is O&#39;Connor-Weatherall Polarization?</title>
+      <link>http://jonathanweisberg.org/post/ow-commutativity/</link>
+      <pubDate>Sun, 15 Nov 2020 00:00:00 -0500</pubDate>
+      
+      <guid>http://jonathanweisberg.org/post/ow-commutativity/</guid>
+      <description>
+
+&lt;p&gt;As Joe Biden cleared 270 last week, some remarked on how different the narrative would&amp;rsquo;ve been had the votes been counted in a different order:&lt;/p&gt;
+
+&lt;p&gt;&lt;blockquote class=&#34;twitter-tweet&#34;&gt;&lt;p lang=&#34;en&#34; dir=&#34;ltr&#34;&gt;It&amp;#39;s staggering to think about how differently PA would be viewed/covered right now if the EDay/mail ballots were being counted in the opposite order.&lt;/p&gt;&amp;mdash; Dave Wasserman (@Redistrict) &lt;a href=&#34;https://twitter.com/Redistrict/status/1324456769817640961?ref_src=twsrc%5Etfw&#34;&gt;November 5, 2020&lt;/a&gt;&lt;/blockquote&gt; &lt;script async src=&#34;https://platform.twitter.com/widgets.js&#34; charset=&#34;utf-8&#34;&gt;&lt;/script&gt;&lt;/p&gt;
+
+&lt;p&gt;The idea that order shouldn&amp;rsquo;t affect your final take is a classic criterion of rationality. Provided the same total evidence is collected in the end, the order it&amp;rsquo;s processed in shouldn&amp;rsquo;t alter our final opinion. It shouldn&amp;rsquo;t matter whether you see electoral results $E_1$ first and then $E_2$. Your conclusion about how the election went should be the same as if you learned $E_2$ first and then $E_1$. If it wasn&amp;rsquo;t a close call the second way, then it wasn&amp;rsquo;t close the first way either; it just felt close.&lt;/p&gt;
+
+&lt;p&gt;The classic Bayesian rule of conditionalization obeys this constraint. It is &amp;ldquo;commutative.&amp;rdquo; If you update the probability of some hypothesis $H$ on $E_1$ and then on $E_2$, you get the same result as if you update on $E_2$ and then $E_1$.&lt;/p&gt;
+
+&lt;p&gt;But Jeffrey conditionalization is notorious for being trickier here. The order can matter if we&amp;rsquo;re not careful. This post is about how this pitfall affects &lt;a href=&#34;https://doi.org/10.1007/s13194-018-0213-9&#34; target=&#34;_blank&#34;&gt;O&amp;rsquo;Connor &amp;amp; Weatherall&amp;rsquo;s model of &amp;ldquo;scientific polarization,&amp;rdquo;&lt;/a&gt; where divergent opinions arise from a single body of evidence in a community of supposedly rational agents.&lt;/p&gt;
+
+&lt;h1 id=&#34;the-o-connor-weatherall-model&#34;&gt;The O&amp;rsquo;Connor–Weatherall Model&lt;/h1&gt;
+
+&lt;p&gt;Here&amp;rsquo;s a recap of the model (previously &lt;a href=&#34;http://jonathanweisberg.org/post/ow&#34;&gt;here&lt;/a&gt; and &lt;a href=&#34;http://jonathanweisberg.org/post/zollman/&#34;&gt;here&lt;/a&gt;). A community of medical doctors is faced with a novel treatment for some condition. Currently patients with this condition have a $.5$ chance of recovering. The new treatment either increases that chance by some fixed amount, say $.2$, or else decreases it by $.2$. In actual fact it increases the chance, but our doctors don&amp;rsquo;t know this, at least not at first.&lt;/p&gt;
+
+&lt;p&gt;Some doctors start out more skeptical of the new treatment, others more optimistic. Each doctor&amp;rsquo;s initial credence that the new treatment is beneficial is a random number selected uniformly from the $[0, 1]$ interval.&lt;/p&gt;
+
+&lt;p&gt;Those with credence $&amp;gt; .5$ try it on their patients, and share the results with the others. Everybody then updates their credence in the new treatment. This cycle of experiment-share-update then repeats.&lt;/p&gt;
+
+&lt;p&gt;Crucially though, our doctors don&amp;rsquo;t fully trust one another&amp;rsquo;s results. If one doctor has a very different opinion about the new treatment than her colleague, she won&amp;rsquo;t fully trust that colleague&amp;rsquo;s results. She may even discount them entirely.&lt;/p&gt;
+
+&lt;p&gt;When Dr. Nick reports evidence $E$ to Dr. Hibbert, Dr. Hibbert doesn&amp;rsquo;t just conditionalize on $E$. Instead he sets his new credence $P&amp;rsquo;(E)$ according to the following rule:&lt;/p&gt;
+
+&lt;p&gt;$$ P&amp;rsquo;(E) = 1 - \min(1, d \cdot m) \cdot P(\neg E), $$&lt;/p&gt;
+
+&lt;p&gt;where $d$ is the absolute difference between Hibbert&amp;rsquo;s and Nick&amp;rsquo;s credences in the new treatment, and $m &amp;gt; 1$ is an open parameter. Note that this is a decreasing function of $d$, at least as long as $d \cdot m &amp;lt; 1$. The greater their difference of opinion, the less Nick&amp;rsquo;s report of $E$ will do to increase Hibbert&amp;rsquo;s confidence in $E$. Until $d \cdot m \geq 1$, at which point Hibbert just ignores Nick&amp;rsquo;s report. The formula collapses into $P&amp;rsquo;(E) = P(E)$.&lt;/p&gt;
+
+&lt;p&gt;But what about Hibbert&amp;rsquo;s new credence in $H$? This is where Jeffrey conditionalization comes in. Using his new credence in $E$, Hibbert obtains $P&amp;rsquo;(H)$ as follows:&lt;/p&gt;
+
+&lt;p&gt;$$ \newcommand{\given}{\mathbin{\vert}} P&amp;rsquo;(H) = P(H \given E) P&amp;rsquo;(E) + P(H \given E) P&amp;rsquo;(\neg E). $$&lt;/p&gt;
+
+&lt;p&gt;In other words, he takes a weighted average of conditionalizing on $E$ and on $\neg E$, where the weights are $P&amp;rsquo;(E)$ and $1 - P&amp;rsquo;(E)$.&lt;/p&gt;
+
+&lt;h1 id=&#34;failure-to-commute&#34;&gt;Failure to Commute&lt;/h1&gt;
+
+&lt;p&gt;This update method gives different results depending on the order. Here&amp;rsquo;s an extreme example, to make the point vivid.&lt;/p&gt;
+
+&lt;p&gt;Suppose Dr. Hibbert is at $.501$, and his colleagues Nick and Zoidberg are both at $1.0$. Each has a report to share with him, containing bad news about the new treatment. Nick found that it failed in all but $1$ of his $10$ patients, while Zoidberg found that it failed in all $10$ of his. Whose report should Dr. Hibbert update on first?&lt;/p&gt;
+
+&lt;p&gt;If he listens to Nick first, he&amp;rsquo;ll fall below $.5$ and ignore Zoidberg&amp;rsquo;s report as a result. His difference of opinion with Zoidberg will be so large that Hibbert will come to discount him entirely. (Assuming $m = 2$ for concreteness in this example.)&lt;/p&gt;
+
+&lt;p&gt;But if he listens to Zoidberg first, he&amp;rsquo;ll ignore Nick. And since their reports are different, he&amp;rsquo;ll end up with different credences, depending on who he listens to first. Zoidberg&amp;rsquo;s report is slightly more discouraging. So he&amp;rsquo;ll end up more skeptical of the new treatment if he listens to Zoidberg first than if he listens to Nick first.&lt;/p&gt;
+
+&lt;p&gt;It doesn&amp;rsquo;t have to be this extreme. Even if we tweak the numbers so that Hibbert still gives some credence to Zoidberg&amp;rsquo;s report after hearing Nick&amp;rsquo;s (and vice versa), the order will still matter. Whoever he hears out first, he&amp;rsquo;ll weight the other colleague&amp;rsquo;s report less afterwards. The order will still end up mattering.&lt;/p&gt;
+
+&lt;h1 id=&#34;can-it-be-fixed&#34;&gt;Can It Be Fixed?&lt;/h1&gt;
+
+&lt;p&gt;This isn&amp;rsquo;t an artifact of the particular formula for $P&amp;rsquo;(E)$ we used above. It&amp;rsquo;s in the nature of the project. Any polarization model of the same, broad kind must have the same bug.&lt;/p&gt;
+
+&lt;p&gt;Polarization results because, at some point, skeptical agents start to disregard their optimistic colleagues. If they didn&amp;rsquo;t, they&amp;rsquo;d eventually be drawn to the truth. As long as they&amp;rsquo;re still willing to give some credence to the results of their optimistic colleagues, they&amp;rsquo;ll eventually see that those results favour optimism about the new treatment.&lt;/p&gt;
+
+&lt;p&gt;But we&amp;rsquo;d have the same problem even in a model without full discounting (and thus only the potential for temporary polarization). Carl Wagner proves that, for Jeffrey updates to commute, they must not depend on any prior except the prior in the evidence, $P(E)$. But any formula for mistrust must be sensitive to $P(H)$, since mistrust is a function of the difference between $P(H)$ and the reporter&amp;rsquo;s credence in $H$.&lt;/p&gt;
+
+&lt;p&gt;Otoh, P(H) is a linear function of P(E):&lt;/p&gt;
+
+&lt;p&gt;P(E) = .7 P(H) + .3 (1-P(H))
+     = .7 x + .3 - .3 x
+     = .4 x + .3
+P(H) = (P(E) - .3) / .4&lt;/p&gt;
+
+&lt;p&gt;So maybe this is fixable?&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
       <title>Mistrust &amp; Polarization</title>
       <link>http://jonathanweisberg.org/post/ow/</link>
       <pubDate>Mon, 09 Nov 2020 00:00:00 -0500</pubDate>
@@ -120,7 +191,7 @@ The $\min$ is there to prevent negative values. When $d \cdot m &amp;gt; 1$, we 
 &lt;ol&gt;
 &lt;li&gt;&lt;a href=&#34;http://jonathanweisberg.org/post/zollman/&#34;&gt;The Zollman Effect&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;http://jonathanweisberg.org/post/rbo&#34;&gt;How Robust is the Zollman Effect?&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://jonathanweisberg.org/post/scientific-polarization&#34;&gt;Mistrust &amp;amp; Polarization&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://jonathanweisberg.org/post/ow&#34;&gt;Mistrust &amp;amp; Polarization&lt;/a&gt;&lt;/li&gt;
 &lt;/ol&gt;
 
 &lt;p&gt;This post summarizes some key ideas from &lt;a href=&#34;http://doi.org/10.1086/690717&#34; target=&#34;_blank&#34;&gt;Rosenstock, Bruner, and O&amp;rsquo;Connor&amp;rsquo;s paper&lt;/a&gt; on the Zollman effect, and reproduces some of their results in Python. As always you can grab &lt;a href=&#34;https://github.com/jweisber/sep-sen&#34; target=&#34;_blank&#34;&gt;the code&lt;/a&gt; from GitHub.&lt;/p&gt;
@@ -210,7 +281,7 @@ The $\min$ is there to prevent negative values. When $d \cdot m &amp;gt; 1$, we 
 &lt;ol&gt;
 &lt;li&gt;&lt;a href=&#34;http://jonathanweisberg.org/post/zollman&#34;&gt;The Zollman Effect&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;http://jonathanweisberg.org/post/rbo&#34;&gt;How Robust is the Zollman Effect?&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://jonathanweisberg.org/post/scientific-polarization&#34;&gt;Mistrust &amp;amp; Polarization&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://jonathanweisberg.org/post/ow&#34;&gt;Mistrust &amp;amp; Polarization&lt;/a&gt;&lt;/li&gt;
 &lt;/ol&gt;
 
 &lt;p&gt;In each post I&amp;rsquo;ll summarize the main ideas and replicate some key results in Python. You can grab &lt;a href=&#34;https://github.com/jweisber/sep-sen&#34; target=&#34;_blank&#34;&gt;the final code from GitHub&lt;/a&gt; if you want to play along and tinker.&lt;/p&gt;
@@ -2151,207 +2222,6 @@ $\EIpq$ is uniquely minimized when $\q = \p$.&lt;/p&gt;
 &lt;p&gt;So for now let&amp;rsquo;s just stop and appreciate the work we&amp;rsquo;ve already done. Because not only have we proved one of the most central and interesting results of the accuracy framework. But also, in a lot of ways the hardest work is already behind us. If you&amp;rsquo;ve come this far, I think you deserve a nice pat on the back.&lt;/p&gt;
 
 &lt;p&gt;&lt;img src=&#34;http://i1145.photobucket.com/albums/o503/KimmieRocks/tumblr_liqmv89ru51qb2dn6.gif&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>Accuracy for Dummies, Part 6: Obtusity</title>
-      <link>http://jonathanweisberg.org/post/Accuracy%20for%20Dummies%20-%20Part%206%20-%20Obtusity/</link>
-      <pubDate>Wed, 24 May 2017 00:00:00 -0500</pubDate>
-      
-      <guid>http://jonathanweisberg.org/post/Accuracy%20for%20Dummies%20-%20Part%206%20-%20Obtusity/</guid>
-      <description>
-
-&lt;p&gt;&lt;a href=&#34;http://jonathanweisberg.org/post/Accuracy for Dummies - Part 5 - Convexity/&#34;&gt;Last time&lt;/a&gt; we saw that the set of probability assignments is &lt;em&gt;convex&lt;/em&gt;. Today we&amp;rsquo;re going to show that convex sets have a special sort of &amp;ldquo;obtuse&amp;rdquo; relationship with outsiders. Given a point &lt;em&gt;outside&lt;/em&gt; a convex set, there is always a point &lt;em&gt;in&lt;/em&gt; the set that forms a right-or-obtuse angle with it.&lt;/p&gt;
-
-&lt;p&gt;Recall our 2D diagram from the first post. The convex set of interest here is the diagonal line segment from $(0,1)$ to $(1,0)$:&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&#34;http://jonathanweisberg.org/img/accuracy/2D Dominance Diagram - 400px.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
-
-&lt;p&gt;For any point outside the diagonal, like $c^* $, there is a point like $c&amp;rsquo;$ on it that forms a right angle with all other points on the diagonal. As a result, $c&amp;rsquo;$ is closer to all other points on the diagonal than $c^* $ is. In particular, $c&amp;rsquo;$ is closer to both vertices, so it&amp;rsquo;s always more accurate than $c^*$. It&amp;rsquo;s &amp;ldquo;closer to the truth&amp;rdquo;.&lt;/p&gt;
-
-&lt;p&gt;The insider point $c&amp;rsquo;$ that we used in this case is the closest point on the diagonal to $c^*$. That&amp;rsquo;s what licenses the right-triangle reasoning here. Today we&amp;rsquo;re generalizing this strategy to $n$ dimensions.&lt;/p&gt;
-
-&lt;p&gt;To do that, we need some tools for reasoning about $n$-dimensional geometry.$
-\renewcommand{\vec}[1]{\mathbf{#1}}
-\newcommand{\x}{\vec{x}}
-\newcommand{\y}{\vec{y}}
-\newcommand{\z}{\vec{z}}
-\newcommand{\B}{B}
-$&lt;/p&gt;
-
-&lt;h1 id=&#34;arithmetic-with-arrows&#34;&gt;Arithmetic with Arrows&lt;/h1&gt;
-
-&lt;p&gt;You&amp;rsquo;re familiar with arithmetic in one dimension: adding, subtracting, and multiplying single numbers. What about points in $n$ dimensions?&lt;/p&gt;
-
-&lt;p&gt;We introduced two ideas for arithmetic with points last time. We&amp;rsquo;ll add a few more today, and also talk about what they mean geometrically.&lt;/p&gt;
-
-&lt;p&gt;Suppose you have two points $\x$ and $\y$ in $n$ dimensions:
-  $$
-  \begin{align}
-    \x &amp;amp;= (x_1, \ldots, x_n),\\&lt;br /&gt;
-    \y &amp;amp;= (y_1, \ldots, y_n).
-  \end{align}
-  $$
-Their sum $\x + \y$, as we saw last time, is defined as follows:
-  $$ \x + \y = (x_1 + y_1, \ldots, x_n + y_n). $$
-In other words, points are added coordinate-wise.&lt;/p&gt;
-
-&lt;p&gt;This definition has a natural, geometric meaning we didn&amp;rsquo;t mention last time. Start by thinking of $\x$ and $\y$ as &lt;em&gt;vectors&lt;/em&gt;&amp;mdash;as arrows pointing from the origin to the points $\x$ and $\y$. Then $\x + \y$ just amounts to putting the two arrows end-to-point and taking the point at the end:
-&lt;img src=&#34;http://jonathanweisberg.org/img/accuracy/VectorAddition.png&#34; alt=&#34;&#34; /&gt;
-(Notice that we&amp;rsquo;re continuing our usual practice of bold letters for points/vectors like $\x$ and $\y$, and italics for single numbers like $x_1$ and $y_3$.)&lt;/p&gt;
-
-&lt;p&gt;You can also multiply a vector $\x$ by a single number, $a$. The definition is once again coordinate-wise:
-  $$ a \x = (a x_1, \ldots, a x_n). $$
-And again there&amp;rsquo;s a natural, geometric meaning. We&amp;rsquo;ve lengthened the vector $\x$ by a factor of $a$.
-&lt;img src=&#34;http://jonathanweisberg.org/img/accuracy/VectorMultiplication.png&#34; alt=&#34;&#34; /&gt;
-Notice that if $a$ is between $0$ and $1$, then &amp;ldquo;lengthening&amp;rdquo; is actually shortening. For example, multiplying a vector by $a = 1/ 2$ makes it half as long.&lt;/p&gt;
-
-&lt;p&gt;If $a$ is negative, then multiplying by $a$ reverses the direction of the arrow. For example, multiplying the northeasterly arrow $(1,1)$ by $-1$ yields the southwesterly arrow pointing to $(-1,-1)$.&lt;/p&gt;
-
-&lt;p&gt;That means we can define subtraction in terms of addition and multiplication by negative one (just as with single numbers):
-  $$
-  \begin{align}
-    \x - \y &amp;amp;= \x + (-1 \times \y)\\&lt;br /&gt;
-            &amp;amp;= (x_1 - y_1, \ldots, x_n - y_n).
-  \end{align}
-  $$
-So vector subtraction amounts to coordinate-wise subtraction.&lt;/p&gt;
-
-&lt;p&gt;But what about multiplying two vectors? That&amp;rsquo;s actually different from what you might expect! We don&amp;rsquo;t just multiply coordinate-wise. We do that &lt;strong&gt;and then add up the results&lt;/strong&gt;:
-  $$ \x \cdot \y = x_1 y_1 + \ldots + x_n y_n. $$
-So the product of two vectors is &lt;strong&gt;not a vector&lt;/strong&gt;, but a number. That number is called the &lt;em&gt;dot product&lt;/em&gt;, $\x \cdot \y$.&lt;/p&gt;
-
-&lt;p&gt;Why are dot products defined this way? Why do we add up the results of coordinate-wise multiplication to get a single number? Because it yields a more useful extension of the concept of multiplication from single numbers to vectors. We&amp;rsquo;ll see part of that in a moment, in the geometric meaning of the dot product.&lt;/p&gt;
-
-&lt;p&gt;(There&amp;rsquo;s an algebraic side to the story too, having to do with the axioms that characterize the real numbers&amp;mdash;&lt;a href=&#34;https://en.wikipedia.org/wiki/Field_(mathematics)&#34; target=&#34;_blank&#34;&gt;the field axioms&lt;/a&gt;. We won&amp;rsquo;t go into that, but it comes out in &lt;a href=&#34;http://www.youtube.com/watch?v=63HpaUFEtXY&amp;amp;t=8m28s&#34; target=&#34;_blank&#34;&gt;this bit&lt;/a&gt; of a beautiful lecture by Francis Su, especially around &lt;a href=&#34;http://www.youtube.com/watch?v=63HpaUFEtXY&amp;amp;t=11m45s&#34; target=&#34;_blank&#34;&gt;the 11:45 mark&lt;/a&gt;.)&lt;/p&gt;
-
-&lt;h1 id=&#34;signs-and-their-significance&#34;&gt;Signs and Their Significance&lt;/h1&gt;
-
-&lt;p&gt;In two dimensions, a right angle has a special algebraic property: the dot-product of two arrows making the angle is always zero.&lt;/p&gt;
-
-&lt;p&gt;Imagine a right triangle at the origin, with one leg going up to the point $(0,1)$ and the other leg going out to $(1,0)$:
-&lt;img src=&#34;http://jonathanweisberg.org/img/accuracy/VectorRightAngle.png&#34; alt=&#34;&#34; /&gt;
-The dot product of those two vectors is $(1,0) \cdot (0,1) = 1 \times 0 + 0 \times 1 = 0$. One more example: consider the right angle formed by the vectors $(-3,3)$ and $(1,1)$.
-&lt;img src=&#34;http://jonathanweisberg.org/img/accuracy/VectorRightAngle2.png&#34; alt=&#34;&#34; /&gt;
-Again, the dot product is $(-3,3) \cdot (1,1) = -3 \times 1 + 3 \times 1 = 0.$&lt;/p&gt;
-
-&lt;p&gt;Going a bit further: the dot product is always positive for acute angles, and negative for obtuse angles. Take the vectors $(5,0)$ and $(-1,1)$:
-&lt;img src=&#34;http://jonathanweisberg.org/img/accuracy/VectorObtuseAngle.png&#34; alt=&#34;&#34; /&gt;
-Then we have $(5,0) \cdot (-1,1) = -5$. Whereas for $(5,0)$ and $(1,1)$:
-&lt;img src=&#34;http://jonathanweisberg.org/img/accuracy/VectorAcuteAngle.png&#34; alt=&#34;&#34; /&gt;
-we find $(5,0) \cdot (1,1) = 5$.&lt;/p&gt;
-
-&lt;p&gt;So the sign of the dot-product reflects the angle formed by the vectors $\x$ and $\y$:&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;acute angle: $\x \cdot \y &amp;gt; 0$,&lt;/li&gt;
-&lt;li&gt;right angle: $\x \cdot \y = 0$,&lt;/li&gt;
-&lt;li&gt;obtuse angle: $\x \cdot \y &amp;lt; 0$.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;That&amp;rsquo;s going to be key in generalizing to $n$ dimensions, where reasoning with diagrams breaks down. But first, one last bit of groundwork.&lt;/p&gt;
-
-&lt;h1 id=&#34;algebra-with-arrows&#34;&gt;Algebra with Arrows&lt;/h1&gt;
-
-&lt;p&gt;You can check pretty easily that vector addition and multiplication behave a lot like ordinary addition and multiplication. The usual laws of commutativity, associativity, and distribution hold:&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;$\x + \y = \y + \x$.&lt;/li&gt;
-&lt;li&gt;$\x + (\y + \z) = (\x + \y) + \z$.&lt;/li&gt;
-&lt;li&gt;$a ( \x + \y) = a\x + a\y$.&lt;/li&gt;
-&lt;li&gt;$\x \cdot \y = \y \cdot \x$.&lt;/li&gt;
-&lt;li&gt;$\x \cdot (\y + \z) = \x\y + \x\z$.&lt;/li&gt;
-&lt;li&gt;$a (\x \cdot \y) = a \x \cdot \y = \x \cdot a \y$.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;One notable consequence, which we&amp;rsquo;ll use below, is the analogue of the familiar &lt;a href=&#34;https://en.wikipedia.org/wiki/FOIL_method&#34; target=&#34;_blank&#34;&gt;&amp;ldquo;FOIL method&amp;rdquo;&lt;/a&gt; from high school algebra:
-  $$
-  \begin{align}
-    (\x - \y)^2 &amp;amp;= (\x - \y) \cdot (\x - \y)\\&lt;br /&gt;
-                &amp;amp;= \x^2 - 2 \x \cdot \y + \y^2.
-  \end{align}
-  $$
-We&amp;rsquo;ll also make use of the fact that the Brier distance between $\x$ and $\y$ can be written $(\x - \y)^2$. Why?&lt;/p&gt;
-
-&lt;p&gt;Let&amp;rsquo;s write $\B(\x,\y)$ for the Brier distance between points $\x$ and $\y$. Recall the definition of Brier distance, which is just the square of Euclidean distance:
-  $$ \B(\x,\y) = (x_1 - y_1)^2 + (x_2 - y_2)^2 + \ldots + (x_n - y_n)^2. $$
-Now consider that, thanks to our definition of vector subtraction:
-  $$ \x - \y = (x_1 - y_1, x_2 - y_2, \ldots, x_n - y_n). $$
-And thanks to the definition of the dot product:
-  $$ (\x - \y) \cdot (\x - \y) = (x_1 - y_1)^2 + (x_2 - y_2)^2 + \ldots (x_n - y_n)^2. $$
-So $\B(\x, \y) = (\x - \y) \cdot (\x - \y)$, in other words:
-  $$ \B(\x, \y) = (\x - y)^2. $$&lt;/p&gt;
-
-&lt;h1 id=&#34;a-cute-lemma&#34;&gt;A Cute Lemma&lt;/h1&gt;
-
-&lt;p&gt;Now we can prove the lemma that&amp;rsquo;s the aim of this post. For the intuitive idea, picture a convex set $S$ in the plane, like a pentagon. Then choose an arbitrary point $\x$ outside that set:
-&lt;img src=&#34;http://jonathanweisberg.org/img/accuracy/ObtusityLemma.png&#34; alt=&#34;&#34; /&gt;
-Now trace a straight line from $\x$ to the closest point of the convex region, $\y$:
-&lt;img src=&#34;http://jonathanweisberg.org/img/accuracy/ObtusityLemma2.png&#34; alt=&#34;&#34; /&gt;
-Finally, trace another straight line to any other point $\z$ of $S$:
-&lt;img src=&#34;http://jonathanweisberg.org/img/accuracy/ObtusityLemma3.png&#34; alt=&#34;&#34; /&gt;
-No matter what point we choose for $\z$, the angle formed will either be right or obtuse. It cannot be acute.&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;Lemma.&lt;/strong&gt; Let $S$ be a convex set of points in $\mathbb{R}^n$. Let $\x \not \in S$, and let $\y \in S$ minimize $\B(\y, \x)$ as a function of $\y$ on the domain $S$. Then for any $\z \in S$,
-  $$ (\x - \y) \cdot (\z - \y) \leq 0. $$&lt;/p&gt;
-
-&lt;p&gt;Let&amp;rsquo;s pause to understand what the Lemma is saying before we dive into the proof.&lt;/p&gt;
-
-&lt;p&gt;Focus on the centered inequality. It&amp;rsquo;s about the vectors $\x - \y$ and $\z - \y$. These are the arrows pointing from $\y$ to $\x$, and from $\y$ to $\z$. So in terms of our original two dimensional diagram with the triangle:
-&lt;img src=&#34;http://jonathanweisberg.org/img/accuracy/2D Dominance Diagram - 400px.png&#34; alt=&#34;&#34; /&gt;
-we&amp;rsquo;re looking at the angle between  $c^*$, $c&amp;rsquo;$, and any point on the diagonal you like&amp;hellip; which includes the ones we&amp;rsquo;re especially interested in, the vertices. What the lemma tells us is that this angle is always at least a right angle.&lt;/p&gt;
-
-&lt;p&gt;Of course, it&amp;rsquo;s exactly a right angle in this case, not an obtuse one. That&amp;rsquo;s because our convex region is just the diagonal line. But the Lemma could also be applied to the whole triangular region in the diagram. That&amp;rsquo;s a convex set too. And if we took a point inside the triangle as our third point, the angle formed would be obtuse. (This is actually important if you want to generalize the dominance theorem beyond what we&amp;rsquo;ll prove next time. But for us it&amp;rsquo;s just a mathematical extra.)&lt;/p&gt;
-
-&lt;p&gt;Now let&amp;rsquo;s prove the Lemma.&lt;/p&gt;
-
-&lt;p&gt;&lt;em&gt;Proof.&lt;/em&gt; Because $S$ is convex and $\y$ and $\z$ are in $S$, any mixture of $\y$ and $\z$ must also be in $S$. That is, every point $\lambda \z + (1-\lambda) \y$ is in $S$, given $0 \leq \lambda \leq 1$.&lt;/p&gt;
-
-&lt;p&gt;Notice that we can rewrite $\lambda \z + (1-\lambda) \y$ as follows:
-  $$ \lambda \z + (1-\lambda) \y = \y + \lambda(\z - \y). $$
-We&amp;rsquo;ll use this fact momentarily.&lt;/p&gt;
-
-&lt;p&gt;Now, by hypothesis $\y$ is at least as close to $\x$ as any other point of $S$ is. So, in particular, $\y$ is at least as close to $\x$ as the mixtures of $\y$ and $\z$ are. Thus, for any given $\lambda \in [0,1]$:
-  $$ \B(\y,\x) \leq \B(\lambda \z + (1-\lambda) \y, \x). $$
-Using algebra, we can transform the right-hand side as follows:
-  $$
-  \begin{align}
-    \B(\lambda \z + (1-\lambda) \y, \x) &amp;amp;= \B(\x, \lambda \z + (1-\lambda) \y)\\&lt;br /&gt;
-      &amp;amp;= \B(\x, \y + \lambda(\z - \y))\\&lt;br /&gt;
-      &amp;amp;= (\x - (\y + \lambda(\z - \y)))^2\\&lt;br /&gt;
-      &amp;amp;= ((\x - \y) - \lambda(\z - \y))^2\\&lt;br /&gt;
-      &amp;amp;= (\x - \y)^2 + \lambda^2(\z - \y)^2 - 2\lambda(\x - \y) \cdot (\z - \y)\\&lt;br /&gt;
-      &amp;amp;= \B(\x,\y) + \lambda^2\B(\z,\y) - 2\lambda(\x - \y) \cdot (\z - \y).
-  \end{align}
-  $$
-Combining this equation with the previous inequality, we have:
-  $$ \B(\y,\x) \leq \B(\x,\y) + \lambda^2\B(\z,\y) - 2\lambda(\x - \y) \cdot (\z - \y). $$
-And because $\B(\y, \x) = \B(\x, \y)$, this becomes:&lt;br /&gt;
-  $$ 0 \leq \lambda^2\B(\z,\y) - 2\lambda(\x - \y) \cdot (\z - \y). $$
-If we then restrict our attention to $\lambda &amp;gt; 0$, we can divide and rearrange terms to get:
-  $$ (\x - \y) \cdot (\z - \y) \leq \frac{\lambda\B(\z,\y)}{2}. $$
-And since this inequality holds no matter how small $\lambda$ is, it follows that
-  $$ (\x - \y) \cdot (\z - \y) \leq 0, $$
-as desired.
-&lt;span class=&#34;floatright&#34;&gt;$\Box$&lt;/span&gt;&lt;/p&gt;
-
-&lt;h1 id=&#34;taking-stock&#34;&gt;Taking Stock&lt;/h1&gt;
-
-&lt;p&gt;Here&amp;rsquo;s what we&amp;rsquo;ve got from this post and the last one:&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;Last time: the set of probability functions $P$ is convex.&lt;/li&gt;
-&lt;li&gt;This time: given a point $\x$ outside $P$, there&amp;rsquo;s a point $\y$ inside $P$ that forms a right-or-obtuse angle with every other point $\z$ in $P$.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;Intuitively, it should follow that:&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;$\y$ is closer to every $\z$ in $P$ than $\x$ is.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;And indeed, that&amp;rsquo;s what we&amp;rsquo;ll show in the next post!&lt;/p&gt;
 </description>
     </item>
     

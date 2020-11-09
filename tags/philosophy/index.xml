@@ -9,6 +9,77 @@
     <atom:link href="http://jonathanweisberg.org/tags/philosophy/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
+      <title>How Scientific is O&#39;Connor-Weatherall Polarization?</title>
+      <link>http://jonathanweisberg.org/post/ow-commutativity/</link>
+      <pubDate>Sun, 15 Nov 2020 00:00:00 -0500</pubDate>
+      
+      <guid>http://jonathanweisberg.org/post/ow-commutativity/</guid>
+      <description>
+
+&lt;p&gt;As Joe Biden cleared 270 last week, some remarked on how different the narrative would&amp;rsquo;ve been had the votes been counted in a different order:&lt;/p&gt;
+
+&lt;p&gt;&lt;blockquote class=&#34;twitter-tweet&#34;&gt;&lt;p lang=&#34;en&#34; dir=&#34;ltr&#34;&gt;It&amp;#39;s staggering to think about how differently PA would be viewed/covered right now if the EDay/mail ballots were being counted in the opposite order.&lt;/p&gt;&amp;mdash; Dave Wasserman (@Redistrict) &lt;a href=&#34;https://twitter.com/Redistrict/status/1324456769817640961?ref_src=twsrc%5Etfw&#34;&gt;November 5, 2020&lt;/a&gt;&lt;/blockquote&gt; &lt;script async src=&#34;https://platform.twitter.com/widgets.js&#34; charset=&#34;utf-8&#34;&gt;&lt;/script&gt;&lt;/p&gt;
+
+&lt;p&gt;The idea that order shouldn&amp;rsquo;t affect your final take is a classic criterion of rationality. Provided the same total evidence is collected in the end, the order it&amp;rsquo;s processed in shouldn&amp;rsquo;t alter our final opinion. It shouldn&amp;rsquo;t matter whether you see electoral results $E_1$ first and then $E_2$. Your conclusion about how the election went should be the same as if you learned $E_2$ first and then $E_1$. If it wasn&amp;rsquo;t a close call the second way, then it wasn&amp;rsquo;t close the first way either; it just felt close.&lt;/p&gt;
+
+&lt;p&gt;The classic Bayesian rule of conditionalization obeys this constraint. It is &amp;ldquo;commutative.&amp;rdquo; If you update the probability of some hypothesis $H$ on $E_1$ and then on $E_2$, you get the same result as if you update on $E_2$ and then $E_1$.&lt;/p&gt;
+
+&lt;p&gt;But Jeffrey conditionalization is notorious for being trickier here. The order can matter if we&amp;rsquo;re not careful. This post is about how this pitfall affects &lt;a href=&#34;https://doi.org/10.1007/s13194-018-0213-9&#34; target=&#34;_blank&#34;&gt;O&amp;rsquo;Connor &amp;amp; Weatherall&amp;rsquo;s model of &amp;ldquo;scientific polarization,&amp;rdquo;&lt;/a&gt; where divergent opinions arise from a single body of evidence in a community of supposedly rational agents.&lt;/p&gt;
+
+&lt;h1 id=&#34;the-o-connor-weatherall-model&#34;&gt;The O&amp;rsquo;Connor–Weatherall Model&lt;/h1&gt;
+
+&lt;p&gt;Here&amp;rsquo;s a recap of the model (previously &lt;a href=&#34;http://jonathanweisberg.org/post/ow&#34;&gt;here&lt;/a&gt; and &lt;a href=&#34;http://jonathanweisberg.org/post/zollman/&#34;&gt;here&lt;/a&gt;). A community of medical doctors is faced with a novel treatment for some condition. Currently patients with this condition have a $.5$ chance of recovering. The new treatment either increases that chance by some fixed amount, say $.2$, or else decreases it by $.2$. In actual fact it increases the chance, but our doctors don&amp;rsquo;t know this, at least not at first.&lt;/p&gt;
+
+&lt;p&gt;Some doctors start out more skeptical of the new treatment, others more optimistic. Each doctor&amp;rsquo;s initial credence that the new treatment is beneficial is a random number selected uniformly from the $[0, 1]$ interval.&lt;/p&gt;
+
+&lt;p&gt;Those with credence $&amp;gt; .5$ try it on their patients, and share the results with the others. Everybody then updates their credence in the new treatment. This cycle of experiment-share-update then repeats.&lt;/p&gt;
+
+&lt;p&gt;Crucially though, our doctors don&amp;rsquo;t fully trust one another&amp;rsquo;s results. If one doctor has a very different opinion about the new treatment than her colleague, she won&amp;rsquo;t fully trust that colleague&amp;rsquo;s results. She may even discount them entirely.&lt;/p&gt;
+
+&lt;p&gt;When Dr. Nick reports evidence $E$ to Dr. Hibbert, Dr. Hibbert doesn&amp;rsquo;t just conditionalize on $E$. Instead he sets his new credence $P&amp;rsquo;(E)$ according to the following rule:&lt;/p&gt;
+
+&lt;p&gt;$$ P&amp;rsquo;(E) = 1 - \min(1, d \cdot m) \cdot P(\neg E), $$&lt;/p&gt;
+
+&lt;p&gt;where $d$ is the absolute difference between Hibbert&amp;rsquo;s and Nick&amp;rsquo;s credences in the new treatment, and $m &amp;gt; 1$ is an open parameter. Note that this is a decreasing function of $d$, at least as long as $d \cdot m &amp;lt; 1$. The greater their difference of opinion, the less Nick&amp;rsquo;s report of $E$ will do to increase Hibbert&amp;rsquo;s confidence in $E$. Until $d \cdot m \geq 1$, at which point Hibbert just ignores Nick&amp;rsquo;s report. The formula collapses into $P&amp;rsquo;(E) = P(E)$.&lt;/p&gt;
+
+&lt;p&gt;But what about Hibbert&amp;rsquo;s new credence in $H$? This is where Jeffrey conditionalization comes in. Using his new credence in $E$, Hibbert obtains $P&amp;rsquo;(H)$ as follows:&lt;/p&gt;
+
+&lt;p&gt;$$ \newcommand{\given}{\mathbin{\vert}} P&amp;rsquo;(H) = P(H \given E) P&amp;rsquo;(E) + P(H \given E) P&amp;rsquo;(\neg E). $$&lt;/p&gt;
+
+&lt;p&gt;In other words, he takes a weighted average of conditionalizing on $E$ and on $\neg E$, where the weights are $P&amp;rsquo;(E)$ and $1 - P&amp;rsquo;(E)$.&lt;/p&gt;
+
+&lt;h1 id=&#34;failure-to-commute&#34;&gt;Failure to Commute&lt;/h1&gt;
+
+&lt;p&gt;This update method gives different results depending on the order. Here&amp;rsquo;s an extreme example, to make the point vivid.&lt;/p&gt;
+
+&lt;p&gt;Suppose Dr. Hibbert is at $.501$, and his colleagues Nick and Zoidberg are both at $1.0$. Each has a report to share with him, containing bad news about the new treatment. Nick found that it failed in all but $1$ of his $10$ patients, while Zoidberg found that it failed in all $10$ of his. Whose report should Dr. Hibbert update on first?&lt;/p&gt;
+
+&lt;p&gt;If he listens to Nick first, he&amp;rsquo;ll fall below $.5$ and ignore Zoidberg&amp;rsquo;s report as a result. His difference of opinion with Zoidberg will be so large that Hibbert will come to discount him entirely. (Assuming $m = 2$ for concreteness in this example.)&lt;/p&gt;
+
+&lt;p&gt;But if he listens to Zoidberg first, he&amp;rsquo;ll ignore Nick. And since their reports are different, he&amp;rsquo;ll end up with different credences, depending on who he listens to first. Zoidberg&amp;rsquo;s report is slightly more discouraging. So he&amp;rsquo;ll end up more skeptical of the new treatment if he listens to Zoidberg first than if he listens to Nick first.&lt;/p&gt;
+
+&lt;p&gt;It doesn&amp;rsquo;t have to be this extreme. Even if we tweak the numbers so that Hibbert still gives some credence to Zoidberg&amp;rsquo;s report after hearing Nick&amp;rsquo;s (and vice versa), the order will still matter. Whoever he hears out first, he&amp;rsquo;ll weight the other colleague&amp;rsquo;s report less afterwards. The order will still end up mattering.&lt;/p&gt;
+
+&lt;h1 id=&#34;can-it-be-fixed&#34;&gt;Can It Be Fixed?&lt;/h1&gt;
+
+&lt;p&gt;This isn&amp;rsquo;t an artifact of the particular formula for $P&amp;rsquo;(E)$ we used above. It&amp;rsquo;s in the nature of the project. Any polarization model of the same, broad kind must have the same bug.&lt;/p&gt;
+
+&lt;p&gt;Polarization results because, at some point, skeptical agents start to disregard their optimistic colleagues. If they didn&amp;rsquo;t, they&amp;rsquo;d eventually be drawn to the truth. As long as they&amp;rsquo;re still willing to give some credence to the results of their optimistic colleagues, they&amp;rsquo;ll eventually see that those results favour optimism about the new treatment.&lt;/p&gt;
+
+&lt;p&gt;But we&amp;rsquo;d have the same problem even in a model without full discounting (and thus only the potential for temporary polarization). Carl Wagner proves that, for Jeffrey updates to commute, they must not depend on any prior except the prior in the evidence, $P(E)$. But any formula for mistrust must be sensitive to $P(H)$, since mistrust is a function of the difference between $P(H)$ and the reporter&amp;rsquo;s credence in $H$.&lt;/p&gt;
+
+&lt;p&gt;Otoh, P(H) is a linear function of P(E):&lt;/p&gt;
+
+&lt;p&gt;P(E) = .7 P(H) + .3 (1-P(H))
+     = .7 x + .3 - .3 x
+     = .4 x + .3
+P(H) = (P(E) - .3) / .4&lt;/p&gt;
+
+&lt;p&gt;So maybe this is fixable?&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
       <title>Mistrust &amp; Polarization</title>
       <link>http://jonathanweisberg.org/post/ow/</link>
       <pubDate>Mon, 09 Nov 2020 00:00:00 -0500</pubDate>
@@ -120,7 +191,7 @@ The $\min$ is there to prevent negative values. When $d \cdot m &amp;gt; 1$, we 
 &lt;ol&gt;
 &lt;li&gt;&lt;a href=&#34;http://jonathanweisberg.org/post/zollman/&#34;&gt;The Zollman Effect&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;http://jonathanweisberg.org/post/rbo&#34;&gt;How Robust is the Zollman Effect?&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://jonathanweisberg.org/post/scientific-polarization&#34;&gt;Mistrust &amp;amp; Polarization&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://jonathanweisberg.org/post/ow&#34;&gt;Mistrust &amp;amp; Polarization&lt;/a&gt;&lt;/li&gt;
 &lt;/ol&gt;
 
 &lt;p&gt;This post summarizes some key ideas from &lt;a href=&#34;http://doi.org/10.1086/690717&#34; target=&#34;_blank&#34;&gt;Rosenstock, Bruner, and O&amp;rsquo;Connor&amp;rsquo;s paper&lt;/a&gt; on the Zollman effect, and reproduces some of their results in Python. As always you can grab &lt;a href=&#34;https://github.com/jweisber/sep-sen&#34; target=&#34;_blank&#34;&gt;the code&lt;/a&gt; from GitHub.&lt;/p&gt;
@@ -210,7 +281,7 @@ The $\min$ is there to prevent negative values. When $d \cdot m &amp;gt; 1$, we 
 &lt;ol&gt;
 &lt;li&gt;&lt;a href=&#34;http://jonathanweisberg.org/post/zollman&#34;&gt;The Zollman Effect&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;http://jonathanweisberg.org/post/rbo&#34;&gt;How Robust is the Zollman Effect?&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://jonathanweisberg.org/post/scientific-polarization&#34;&gt;Mistrust &amp;amp; Polarization&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://jonathanweisberg.org/post/ow&#34;&gt;Mistrust &amp;amp; Polarization&lt;/a&gt;&lt;/li&gt;
 &lt;/ol&gt;
 
 &lt;p&gt;In each post I&amp;rsquo;ll summarize the main ideas and replicate some key results in Python. You can grab &lt;a href=&#34;https://github.com/jweisber/sep-sen&#34; target=&#34;_blank&#34;&gt;the final code from GitHub&lt;/a&gt; if you want to play along and tinker.&lt;/p&gt;
@@ -4135,46 +4206,6 @@ and past placement data. Meanwhile, here&amp;rsquo;s the full listing:&lt;/p&gt;
 &lt;/tr&gt;
 &lt;/tbody&gt;
 &lt;/table&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>Model Referees</title>
-      <link>http://jonathanweisberg.org/post/Model%20Referees/</link>
-      <pubDate>Mon, 15 Oct 2018 00:00:00 -0500</pubDate>
-      
-      <guid>http://jonathanweisberg.org/post/Model%20Referees/</guid>
-      <description>&lt;p&gt;In &lt;a href=&#34;http://jonathanweisberg.org/post/How Hard Is It to Find Referees/&#34;&gt;the previous post&lt;/a&gt; we saw there&amp;rsquo;s about a $35$% chance a given referee will agree to review a paper for &lt;em&gt;Ergo&lt;/em&gt;. And on average it takes about $5.8$ tries to find two referees for a submission. The full empirical distribution looks like this:&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&#34;http://jonathanweisberg.org/img/model_referees_files/unnamed-chunk-2-1.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
-
-&lt;p&gt;But there&amp;rsquo;s also an a priori way of exploring an editor&amp;rsquo;s predicament here, by using a classic model: the &lt;a href=&#34;https://en.wikipedia.org/wiki/Negative_binomial_distribution&#34; target=&#34;_blank&#34;&gt;negative binomial distribution&lt;/a&gt;. So I thougth I&amp;rsquo;d make a little exercise of seeing how well the model captures the empirical reality here.&lt;/p&gt;
-
-&lt;p&gt;Contacting potential referees is a bit like flipping a loaded coin: you keep flipping until you get two heads, then stop. Our question is how many flips it&amp;rsquo;ll take to get to that point.&lt;/p&gt;
-
-&lt;p&gt;Let $p$ be the probability of heads on each toss, and let $T$ be the number of tails you get before landing the second head. The negative binomial model says the probability of getting $t$ tails, $P(T = t)$, is:
-$$ P(T = t) = \binom{t + 1}{t} p^t (1 - p)^2. $$
-And the mean of this distribution is $2(1-p)/p$.&lt;/p&gt;
-
-&lt;p&gt;If the coin is fair, $p = .5$, and we should expect to get $T = 2$ tails:
-$$ 2(1-p)/p = 2(1-.5)/.5 = 2. $$
-An editor&amp;rsquo;s &amp;ldquo;coin&amp;rdquo; is biased against them though, at least at &lt;em&gt;Ergo&lt;/em&gt;: $p = .35$. So we would expect $T = 3.7$ referees on average to decline before we get two takers:
-$$ 2(1-p)/p = 2(1-.35)/.35 = 3.7. $$
-In other words, we expect it to take on average $5.7$ tries to secure two referees for a submission, which very closely matches the empirical average of $5.8$!&lt;/p&gt;
-
-&lt;p&gt;How about the full distribution, how well does it match the empirical reality?&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&#34;http://jonathanweisberg.org/img/model_referees_files/unnamed-chunk-3-1.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
-
-&lt;p&gt;The model peaks a bit early, but otherwise it&amp;rsquo;s pretty accurate.&lt;/p&gt;
-
-&lt;p&gt;Of course, mileage may vary depending on the journal. For example, &lt;em&gt;Ergo&lt;/em&gt; has a pretty high desk-rejection rate&amp;mdash;about $67$%. And referees may be more willing to agree when they know a submission has already passed that hurdle.&lt;/p&gt;
-
-&lt;p&gt;So let&amp;rsquo;s conclude by looking at the model&amp;rsquo;s predictions when referees are more/less likely to agree. Here are the predictions for some plausible values of $p$. The mean $\mu$ is the corresponding number of invites required to secure two reviews, on average.&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&#34;http://jonathanweisberg.org/img/model_referees_files/unnamed-chunk-4-1.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
-
-&lt;p&gt;All these models assume that referees&amp;rsquo; responses are independent, like flips of a coin, which isn&amp;rsquo;t too realistic. But given how close the model is for &lt;em&gt;Ergo&lt;/em&gt;, it might still be good enough for other journals too.&lt;/p&gt;
 </description>
     </item>
     
