@@ -9,6 +9,62 @@
     <atom:link href="http://jonathanweisberg.org/tags/social-epistemology/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
+      <title>How Scientific is Scientific Polarization?</title>
+      <link>http://jonathanweisberg.org/post/ow-commutativity/</link>
+      <pubDate>Tue, 10 Nov 2020 00:00:00 -0500</pubDate>
+      
+      <guid>http://jonathanweisberg.org/post/ow-commutativity/</guid>
+      <description>
+
+&lt;p&gt;As Joe Biden cleared 270 last week, some people remarked on how different the narrative would&amp;rsquo;ve been had the votes been counted in a different order:&lt;/p&gt;
+
+&lt;p&gt;&lt;blockquote class=&#34;twitter-tweet&#34;&gt;&lt;p lang=&#34;en&#34; dir=&#34;ltr&#34;&gt;It&amp;#39;s staggering to think about how differently PA would be viewed/covered right now if the EDay/mail ballots were being counted in the opposite order.&lt;/p&gt;&amp;mdash; Dave Wasserman (@Redistrict) &lt;a href=&#34;https://twitter.com/Redistrict/status/1324456769817640961?ref_src=twsrc%5Etfw&#34;&gt;November 5, 2020&lt;/a&gt;&lt;/blockquote&gt; &lt;script async src=&#34;https://platform.twitter.com/widgets.js&#34; charset=&#34;utf-8&#34;&gt;&lt;/script&gt;&lt;/p&gt;
+
+&lt;p&gt;The idea that order shouldn&amp;rsquo;t affect your final take is a classic criterion of rationality. Whatever order the evidence comes in, your final opinion should be the same it&amp;rsquo;s the same total evidence in the end.&lt;/p&gt;
+
+&lt;p&gt;This post is about how &lt;a href=&#34;https://doi.org/10.1007/s13194-018-0213-9&#34; target=&#34;_blank&#34;&gt;O&amp;rsquo;Connor &amp;amp; Weatherall&amp;rsquo;s model&lt;/a&gt; of &amp;ldquo;scientific polarization&amp;rdquo; runs afoul of this constraint. In their model, divergent opinions arise from a shared body of evidence, despite everyone involved being rational. Just how rational is what we&amp;rsquo;re considering here.&lt;/p&gt;
+
+&lt;h1 id=&#34;the-model&#34;&gt;The Model&lt;/h1&gt;
+
+&lt;p&gt;Here&amp;rsquo;s the quick version of O&amp;rsquo;Connor &amp;amp; Weatherall&amp;rsquo;s model. You can find the gory details in my &lt;a href=&#34;http://jonathanweisberg.org/post/ow&#34;&gt;previous post&lt;/a&gt;, but we won&amp;rsquo;t need them here.&lt;/p&gt;
+
+&lt;p&gt;A community of medical doctors is faced with a novel treatment for some condition. Currently, patients with this condition have a .5 chance of recovering. The new treatment either increases that chance or decreases it. In actual fact it increases the chance of recovery, but our doctors don&amp;rsquo;t know that yet.&lt;/p&gt;
+
+&lt;p&gt;Some doctors start out more skeptical of the new treatment, others more optimistic. Those with credence &amp;gt; .5 try the new treatment on their patients, and share the results with the others. Everybody then updates their credence in the new treatment. The cycle of experimentation, sharing, and updating then repeats.&lt;/p&gt;
+
+&lt;p&gt;Crucially though, our doctors don&amp;rsquo;t fully trust one another&amp;rsquo;s results. If a doctor has a very different opinion about the new treatment than her colleague, she won&amp;rsquo;t fully trust that colleague&amp;rsquo;s data. She may even discount them entirely, if their credences differ enough.&lt;/p&gt;
+
+&lt;p&gt;As things develop, this medical community is apt to split. Some doctors learn the truth about the new treatment&amp;rsquo;s superiority, while others remain skeptical and even come to completely disregard the results reported by their colleagues. This won&amp;rsquo;t always happen, but it&amp;rsquo;s the likely outcome given certain assumptions. Crucial for us here: doctors must discount one other&amp;rsquo;s data entirely when their credences differ significantly&amp;mdash;by .5 let&amp;rsquo;s say, just for concreteness.&lt;/p&gt;
+
+&lt;h1 id=&#34;the-problem&#34;&gt;The Problem&lt;/h1&gt;
+
+&lt;p&gt;This way of evaluating evidence depends on the order. Here&amp;rsquo;s an extreme example to make the point vivid.&lt;/p&gt;
+
+&lt;p&gt;Suppose Dr. Hibbert has credence .501 in the new treatment&amp;rsquo;s benefits, and his colleagues Nick and Zoidberg are both at 1.0. Nick and Zoidberg each have a report to share with Hibbert, containing bad news about the new treatment. Nick found that it failed in all but 1 of his 10 patients, while Zoidberg found that it failed in all 10 of his. Whose report should Dr. Hibbert update on first?&lt;/p&gt;
+
+&lt;p&gt;If he listens to Nick first, he&amp;rsquo;ll fall below .5 and ignore Zoidberg&amp;rsquo;s report as a result. His difference of opinion with Zoidberg will be so large that Hibbert will come to discount him entirely. But if he listens to Zoidberg first, he&amp;rsquo;ll ignore Nick then, for the same reason.&lt;/p&gt;
+
+&lt;p&gt;So Hibbert can only really listen to one of them. And since their reports are different, he&amp;rsquo;ll end up with different credences depending on who he listens to. Zoidberg&amp;rsquo;s report is slightly more discouraging. So Hibbert will end up more skeptical of the new treatment if he listens to Zoidberg first, than if he listens to Nick first.&lt;/p&gt;
+
+&lt;h1 id=&#34;can-it-be-fixed&#34;&gt;Can It Be Fixed?&lt;/h1&gt;
+
+&lt;p&gt;This problem isn&amp;rsquo;t an artifact of the particulars of O&amp;rsquo;Connor &amp;amp; Weatherall&amp;rsquo;s model. It&amp;rsquo;s in the nature of the project. Any polarization model of the same, broad kind must have the same bug.&lt;/p&gt;
+
+&lt;p&gt;Polarization happens because skeptical agents come to ignore their optimistic colleagues at some point. Otherwise, skeptics would eventually be drawn to the truth. As long as they&amp;rsquo;re still willing to give some credence to the experimental results, they&amp;rsquo;ll eventually see that those results favour optimism about the new treatment.&lt;/p&gt;
+
+&lt;p&gt;But even if our agents never ignored one another completely, we&amp;rsquo;d still have this problem. Suppose all three of our characters have the same credence. And Nick has one success to report where Zoidberg has one failure. Intuitively, once Hibbert hears them both out, he should end up right back where he started, no matter who he listens to first.&lt;/p&gt;
+
+&lt;p&gt;But if he listens to Nick first, his credence will move away from Zoidberg&amp;rsquo;s. So when he gets to Zoidberg&amp;rsquo;s report it&amp;rsquo;ll carry less weight than Nick&amp;rsquo;s did. He&amp;rsquo;ll end up more confident than he started. Whereas he&amp;rsquo;ll end up less confident if he proceeds in reverse order.&lt;/p&gt;
+
+&lt;h1 id=&#34;does-it-matter&#34;&gt;Does It Matter?&lt;/h1&gt;
+
+&lt;p&gt;It seems like polarization can&amp;rsquo;t be fully scientific if it&amp;rsquo;s driven by mistrust based on difference of opinion. But that doesn&amp;rsquo;t make the model worthless, or even uninteresting. O&amp;rsquo;Connor &amp;amp; Weatherall are already clear that their agents aren&amp;rsquo;t meant to be &amp;ldquo;rational with a capital &amp;lsquo;R&amp;rsquo;&amp;rdquo; anyway.&lt;/p&gt;
+
+&lt;p&gt;Quite plausibly, real people behave something like the agents in this model a lot of the time. The model might be capturing a very real phenomenon, even if it&amp;rsquo;s an irrational one. We just have to take the &amp;ldquo;scientific&amp;rdquo; in &amp;ldquo;scientific polarization&amp;rdquo; with the right amount of salt.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
       <title>Mistrust &amp; Polarization</title>
       <link>http://jonathanweisberg.org/post/ow/</link>
       <pubDate>Mon, 09 Nov 2020 00:00:00 -0500</pubDate>

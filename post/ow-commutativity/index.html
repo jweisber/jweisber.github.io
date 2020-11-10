@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Jonathan Weisberg's Homepage">
+    <meta name="author" content="Jonathan Weisberg">
+    
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@jweisber">
+    <meta name="twitter:creator" content="@jweisber">
+    <meta name="twitter:title" content="How Scientific is Scientific Polarization?">
+    <meta name="twitter:description" content="As Joe Biden cleared 270 last week, some people remarked on how different the narrative would&rsquo;ve been had the votes been counted in a different order:
+It&#39;s staggering to think about how differently PA would be viewed/covered right now if the EDay/mail ballots were being counted in the opposite order.
+&mdash; Dave Wasserman (@Redistrict) November 5, 2020 
+The idea that order shouldn&rsquo;t affect your final take is a classic criterion of rationality.">
+    <meta name="twitter:image" content="portrait.png">
+
+    <meta property="og:url" content="/post/ow-commutativity/" />
+    <meta property="og:type" content="article" />
+    <meta property="og:title" content="How Scientific is Scientific Polarization?" />
+    <meta property="og:description" content="As Joe Biden cleared 270 last week, some people remarked on how different the narrative would&rsquo;ve been had the votes been counted in a different order:
+It&#39;s staggering to think about how differently PA would be viewed/covered right now if the EDay/mail ballots were being counted in the opposite order.
+&mdash; Dave Wasserman (@Redistrict) November 5, 2020 
+The idea that order shouldn&rsquo;t affect your final take is a classic criterion of rationality." />
+    <meta property="og:image" content="portrait.png" />
+
+
+    <title>How Scientific is Scientific Polarization?</title>
+
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+    <link href="/css/prism.css" rel="stylesheet" />
+    <link href="/css/scarab.css" rel="stylesheet">
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]},
+        "HTML-CSS": {
+          availableFonts: ["Neo-Euler"],
+          preferredFont: "Neo-Euler",
+          webFont: "Neo-Euler",
+          imageFont: "Neo-Euler",
+        }
+      });
+    </script>
+    <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+    </script>
+    
+    
+    
+
+</head>
+
+<body>
+
+<nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+  <div class="container">
+    
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-navbar-collapse-1">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="http://jonathanweisberg.org/">Jonathan Weisberg</a>
+    </div>
+    
+    <div class="collapse navbar-collapse" id="bs-navbar-collapse-1">
+      <ul class="nav navbar-nav">
+        <li>
+          <a href="/pdf/CV.pdf">
+            <i class="fa fa-briefcase"></i>&nbsp;
+            CV
+          </a>
+        </li>
+        <li>
+          <a href="/post/">
+            <i class="fa fa-code"></i>&nbsp;
+            Blog
+          </a>
+        </li>
+        <li>
+          <a href="/publication/">
+            <i class="fa fa-files-o"></i>&nbsp;
+            Research
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+
+
+  
+  <div class="container blog-post">
+
+    
+    <div class="row">
+      <div class="col-md-3 hidden-sm hidden-xs text-right">
+        <h1 class="post-title">&nbsp;</h1>
+          <em>Nov 10, 2020</em><br />
+          
+          
+          
+          <span class="post-tags">
+            
+            <a class="post-tag" href="http://jonathanweisberg.org/tags/philosophy">Philosophy</a>
+             &bull;   
+            
+            <a class="post-tag" href="http://jonathanweisberg.org/tags/epistemology">Epistemology</a>
+             &bull;  
+            
+            <a class="post-tag" href="http://jonathanweisberg.org/tags/social-epistemology">Social Epistemology</a>
+             &bull;  
+            
+            <a class="post-tag" href="http://jonathanweisberg.org/tags/formal-epistemology">Formal Epistemology</a>
+            
+            
+          </span>
+          
+          
+        </p>
+      </div>
+
+      <div class="col-md-7">
+        <h1 class="post-title">How Scientific is Scientific Polarization?</h1>
+        <div class="hidden-md hidden-lg post-metadata">
+          <div>
+            <em>Nov 10, 2020</em>
+          </div>
+          
+          
+          
+          <p class="post-tags">
+            
+            <a class="post-tag" href="http://jonathanweisberg.org/tags/philosophy">Philosophy</a>
+             &bull;   
+            
+            <a class="post-tag" href="http://jonathanweisberg.org/tags/epistemology">Epistemology</a>
+             &bull;  
+            
+            <a class="post-tag" href="http://jonathanweisberg.org/tags/social-epistemology">Social Epistemology</a>
+             &bull;  
+            
+            <a class="post-tag" href="http://jonathanweisberg.org/tags/formal-epistemology">Formal Epistemology</a>
+            
+            
+          </p>
+          
+          
+        </div>
+
+        <div class="post-body">
+          
+
+<p>As Joe Biden cleared 270 last week, some people remarked on how different the narrative would&rsquo;ve been had the votes been counted in a different order:</p>
+
+<p><blockquote class="twitter-tweet"><p lang="en" dir="ltr">It&#39;s staggering to think about how differently PA would be viewed/covered right now if the EDay/mail ballots were being counted in the opposite order.</p>&mdash; Dave Wasserman (@Redistrict) <a href="https://twitter.com/Redistrict/status/1324456769817640961?ref_src=twsrc%5Etfw">November 5, 2020</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script></p>
+
+<p>The idea that order shouldn&rsquo;t affect your final take is a classic criterion of rationality. Whatever order the evidence comes in, your final opinion should be the same it&rsquo;s the same total evidence in the end.</p>
+
+<p>This post is about how <a href="https://doi.org/10.1007/s13194-018-0213-9" target="_blank">O&rsquo;Connor &amp; Weatherall&rsquo;s model</a> of &ldquo;scientific polarization&rdquo; runs afoul of this constraint. In their model, divergent opinions arise from a shared body of evidence, despite everyone involved being rational. Just how rational is what we&rsquo;re considering here.</p>
+
+<h1 id="the-model">The Model</h1>
+
+<p>Here&rsquo;s the quick version of O&rsquo;Connor &amp; Weatherall&rsquo;s model. You can find the gory details in my <a href="/post/ow">previous post</a>, but we won&rsquo;t need them here.</p>
+
+<p>A community of medical doctors is faced with a novel treatment for some condition. Currently, patients with this condition have a .5 chance of recovering. The new treatment either increases that chance or decreases it. In actual fact it increases the chance of recovery, but our doctors don&rsquo;t know that yet.</p>
+
+<p>Some doctors start out more skeptical of the new treatment, others more optimistic. Those with credence &gt; .5 try the new treatment on their patients, and share the results with the others. Everybody then updates their credence in the new treatment. The cycle of experimentation, sharing, and updating then repeats.</p>
+
+<p>Crucially though, our doctors don&rsquo;t fully trust one another&rsquo;s results. If a doctor has a very different opinion about the new treatment than her colleague, she won&rsquo;t fully trust that colleague&rsquo;s data. She may even discount them entirely, if their credences differ enough.</p>
+
+<p>As things develop, this medical community is apt to split. Some doctors learn the truth about the new treatment&rsquo;s superiority, while others remain skeptical and even come to completely disregard the results reported by their colleagues. This won&rsquo;t always happen, but it&rsquo;s the likely outcome given certain assumptions. Crucial for us here: doctors must discount one other&rsquo;s data entirely when their credences differ significantly&mdash;by .5 let&rsquo;s say, just for concreteness.</p>
+
+<h1 id="the-problem">The Problem</h1>
+
+<p>This way of evaluating evidence depends on the order. Here&rsquo;s an extreme example to make the point vivid.</p>
+
+<p>Suppose Dr. Hibbert has credence .501 in the new treatment&rsquo;s benefits, and his colleagues Nick and Zoidberg are both at 1.0. Nick and Zoidberg each have a report to share with Hibbert, containing bad news about the new treatment. Nick found that it failed in all but 1 of his 10 patients, while Zoidberg found that it failed in all 10 of his. Whose report should Dr. Hibbert update on first?</p>
+
+<p>If he listens to Nick first, he&rsquo;ll fall below .5 and ignore Zoidberg&rsquo;s report as a result. His difference of opinion with Zoidberg will be so large that Hibbert will come to discount him entirely. But if he listens to Zoidberg first, he&rsquo;ll ignore Nick then, for the same reason.</p>
+
+<p>So Hibbert can only really listen to one of them. And since their reports are different, he&rsquo;ll end up with different credences depending on who he listens to. Zoidberg&rsquo;s report is slightly more discouraging. So Hibbert will end up more skeptical of the new treatment if he listens to Zoidberg first, than if he listens to Nick first.</p>
+
+<h1 id="can-it-be-fixed">Can It Be Fixed?</h1>
+
+<p>This problem isn&rsquo;t an artifact of the particulars of O&rsquo;Connor &amp; Weatherall&rsquo;s model. It&rsquo;s in the nature of the project. Any polarization model of the same, broad kind must have the same bug.</p>
+
+<p>Polarization happens because skeptical agents come to ignore their optimistic colleagues at some point. Otherwise, skeptics would eventually be drawn to the truth. As long as they&rsquo;re still willing to give some credence to the experimental results, they&rsquo;ll eventually see that those results favour optimism about the new treatment.</p>
+
+<p>But even if our agents never ignored one another completely, we&rsquo;d still have this problem. Suppose all three of our characters have the same credence. And Nick has one success to report where Zoidberg has one failure. Intuitively, once Hibbert hears them both out, he should end up right back where he started, no matter who he listens to first.</p>
+
+<p>But if he listens to Nick first, his credence will move away from Zoidberg&rsquo;s. So when he gets to Zoidberg&rsquo;s report it&rsquo;ll carry less weight than Nick&rsquo;s did. He&rsquo;ll end up more confident than he started. Whereas he&rsquo;ll end up less confident if he proceeds in reverse order.</p>
+
+<h1 id="does-it-matter">Does It Matter?</h1>
+
+<p>It seems like polarization can&rsquo;t be fully scientific if it&rsquo;s driven by mistrust based on difference of opinion. But that doesn&rsquo;t make the model worthless, or even uninteresting. O&rsquo;Connor &amp; Weatherall are already clear that their agents aren&rsquo;t meant to be &ldquo;rational with a capital &lsquo;R&rsquo;&rdquo; anyway.</p>
+
+<p>Quite plausibly, real people behave something like the agents in this model a lot of the time. The model might be capturing a very real phenomenon, even if it&rsquo;s an irrational one. We just have to take the &ldquo;scientific&rdquo; in &ldquo;scientific polarization&rdquo; with the right amount of salt.</p>
+
+
+          &nbsp;
+        </div>
+
+        <div>
+          <div class="post-back-link">
+    <a href="javascript: history.back()">
+        <i class="fa fa-arrow-left"></i> 
+        Back
+    </a>
+</div>
+        </div>
+      </div>
+    </div>
+    
+
+<footer style="padding-top: 1em;">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-lg-12 text-center">
+        <p>
+          &nbsp;
+        </p>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+<script src="/js/prism.js"></script>
+
+<script type="text/javascript">
+var sc_project= 11213692 ;
+var sc_invisible= 1 ;
+var sc_security="b1954803";
+var scJsHost = (("https:" == document.location.protocol) ?
+"https://secure." : "http://www.");
+document.write("<sc"+"ript type='text/javascript' src='" +
+scJsHost+
+"statcounter.com/counter/counter.js'></"+"script>");
+</script>
+<noscript><div class="statcounter"><a title="web analytics"
+href="http://statcounter.com/" target="_blank"><img
+class="statcounter"
+src="//c.statcounter.com/11213692/0/b1954803/1/" alt="web
+analytics"></a></div></noscript>
+
+
+</body>
+</html>
+
