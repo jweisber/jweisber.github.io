@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Rants on Jonathan Weisberg</title>
+    <link>http://jonathanweisberg.org/tags/rants/index.xml</link>
+    <description>Recent content in Rants on Jonathan Weisberg</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <atom:link href="http://jonathanweisberg.org/tags/rants/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Philosophy Fumbles the Bag</title>
+      <link>http://jonathanweisberg.org/post/philosophy-fumbles-the-bag/</link>
+      <pubDate>Fri, 09 Oct 2026 08:58:59 -0400</pubDate>
+      
+      <guid>http://jonathanweisberg.org/post/philosophy-fumbles-the-bag/</guid>
+      <description>&lt;p&gt;Academic philosophers have just been handed a golden ticket. And, as far as I can tell, we&amp;rsquo;re responding by looking around for the nearest garbage can to toss it away in.&lt;/p&gt;
+
+&lt;p&gt;LLMs have made &lt;a href=&#34;https://en.wikipedia.org/wiki/Least_publishable_unit&#34; target=&#34;_blank&#34;&gt;MPUs&lt;/a&gt; cheap as hell. With a little human guidance, you can crank out the kind of papers that make up 95% of what we publish in a few hours. Soon (already?), human guidance may not even be necessary.&lt;/p&gt;
+
+&lt;p&gt;Do I find this depressing? Just the opposite. Sure, I built my career on this skill, honed it for decades, and now a computer can do it in a hundredth of the time. In some ways, it even does better work than I ever could.&lt;/p&gt;
+
+&lt;p&gt;But this was always a goofy way of making a living. And, in truth, it&amp;rsquo;s always been one of the worst things about the job. I fell in love with academia and philosophy because I loved learning, and there were things I desperately wanted to understand. Along the way I learned to crank out publishable papers, and to dress up my piddly personal breakthroughs as &amp;ldquo;contributions to the field&amp;rdquo;, because that&amp;rsquo;s how you keep the lights on.&lt;/p&gt;
+
+&lt;p&gt;But it&amp;rsquo;s always been a drag dealing with bafflingly slow journals, maddeningly lazy referees, and typesetters so incompetent it must be a bit. The publication process puts years of frustrated waiting, and dozens of hours of wasted labour, between when I&amp;rsquo;m actually done understanding an idea, and the point where my dean finally gives me a pat on the head and a sticker that says &amp;ldquo;good job!&amp;rdquo;.&lt;/p&gt;
+
+&lt;p&gt;Now we have an opportunity to end all that. If the machines flood the journals, then the journals can&amp;rsquo;t function, right? I know, I know, you have some clever proposal for shielding the old system from the oncoming storm, some ingenious way of stanching the onslaught of slop. But WHY? Why would you ever want to do that?? The system sucks!&lt;/p&gt;
+
+&lt;p&gt;So, just tell the dean, &amp;ldquo;sorry, LLMs.&amp;rdquo; They&amp;rsquo;ll find some other way to count our beans, I have no doubt. But while they work on figuring that out, we have an opportunity to radically revise the whole bean economy.&lt;/p&gt;
+
+&lt;p&gt;If the journals crash and burn, you can still read, think, and write about philosophy. You can still share your writing with other philosophers, build on what they&amp;rsquo;ve done, hope they&amp;rsquo;ll do the same in turn, etc. None of this requires publishers, typesetters, or &lt;a href=&#34;https://www.journals.uchicago.edu/doi/10.1093/bjps/axz029&#34; target=&#34;_blank&#34;&gt;even traditional peer review&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;What do we lose if LLMs kill the journal system? Nothing but some heavy ass chains, and a few weak heuristics for assessing CVs quickly that were never worth the outrageous amounts of time and labour the journal system wasted anyway.&lt;/p&gt;
+
+&lt;p&gt;So, just put your shit online, give a thumbs up to someone else&amp;rsquo;s if you think others might learn something from it, and go do something more valuable with the rest of your day. Instead of agonizing over how to revise your manuscript so the referees at the fourth journal you send it to won&amp;rsquo;t be able to miss the reply to their objection buried somewhere in the middle of page 23, you could&amp;hellip; idk, work on your teaching?&lt;/p&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>
