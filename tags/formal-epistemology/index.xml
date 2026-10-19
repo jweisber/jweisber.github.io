@@ -9,6 +9,163 @@
     <atom:link href="http://jonathanweisberg.org/tags/formal-epistemology/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
+      <title>&#34;Everyone Who Disagrees With Me Is an Idiot&#34;, Part 1</title>
+      <link>http://jonathanweisberg.org/post/distrust-1/</link>
+      <pubDate>Mon, 19 Oct 2026 00:00:00 -0500</pubDate>
+      
+      <guid>http://jonathanweisberg.org/post/distrust-1/</guid>
+      <description>
+
+&lt;p&gt;It&amp;rsquo;s only natural to place less trust in the judgment of those who disagree with you. After all, from your point of view, those people are mistaken! And making mistakes is a sign of incompetence.&lt;/p&gt;
+
+&lt;p&gt;This kind of distrust is actually baked into a number of models in social epistemology (for example: &lt;a href=&#34;https://www.jasss.org/5/3/2.html&#34; target=&#34;_blank&#34;&gt;here&lt;/a&gt;, &lt;a href=&#34;https://doi.org/10.1093/bjps/axv025&#34; target=&#34;_blank&#34;&gt;here&lt;/a&gt;, and &lt;a href=&#34;https://doi.org/10.1007/s13194-018-0213-9&#34; target=&#34;_blank&#34;&gt;here&lt;/a&gt;). I gave an argument against the rationality of one such model in &lt;a href=&#34;http://jonathanweisberg.org/post/ow-commutativity/&#34;&gt;a previous post&lt;/a&gt;. But the argument doesn&amp;rsquo;t really depend on the details of the model; any rule that discounts evidence reported by a source you disagree with will run into the same problem.&lt;/p&gt;
+
+&lt;p&gt;A policy of distrusting those who disagree with you is also reminiscient of some classic issues in the debate about peer disagreement. So I think it&amp;rsquo;s worth getting clear on the extent to which such distrust makes sense, and trying to understand, when it goes wrong, &lt;em&gt;why&lt;/em&gt; it goes wrong. In this post I&amp;rsquo;ll take a first stab at a diagnosis.&lt;/p&gt;
+
+&lt;div style=&#34;display:none&#34;&gt;
+$\newcommand{\E}{\mathbb{E}}$
+$\renewcommand{\d}[1]{\,\mathrm{d}#1}$
+$\newcommand{\n}[1]{\overline{#1}}$
+&lt;/div&gt;
+
+&lt;h1 id=&#34;one-model-of-competence&#34;&gt;One Model of Competence&lt;/h1&gt;
+
+&lt;p&gt;Suppose you and a friend are investigating some hypothesis, $H$. If $H$ is true, then experiments on $H$ yield a &amp;ldquo;positive&amp;rdquo; result with some fixed probability $p$, whereas if $H$ is false, the &amp;ldquo;positive&amp;rdquo; rate is instead some lower value $q$. So we can think of $H$ as saying that some coin has bias $p$, and $\n{H}$ as saying the bias is instead $q$.&lt;/p&gt;
+
+&lt;p&gt;We&amp;rsquo;ll understand your friend&amp;rsquo;s competence as their reliability at recognizing positive evidence as positive, and negative evidence as negative. In other words, it&amp;rsquo;s the probability that they&amp;rsquo;ll correctly identify a heads as heads, and a tails as tails.&lt;/p&gt;
+
+&lt;p&gt;Now, imagine you and your friend each go off and do some independent experimenting on $H$. It seems plausible that, when you reconvene, you should find yourselves with similar opinions, if your friend is competent. Of course, it&amp;rsquo;s possible that one of you will get an unlucky batch of misleading evidence, and end up with the wrong view of $H$ despite being perfectly competent. But the more evidence you gather, the more likely it is that you&amp;rsquo;ll converge on the truth about $H$&amp;mdash;if, again, your friend is competent.&lt;/p&gt;
+
+&lt;p&gt;So shouldn&amp;rsquo;t you question your friend&amp;rsquo;s competence if they come back with a different opinion than yours? And suspect them more the more their opinion differs?&lt;/p&gt;
+
+&lt;p&gt;Curiously, no. At least, not in this model. The figure below shows how your estimate of your friend&amp;rsquo;s competence varies with the number of &amp;ldquo;heads&amp;rdquo; they claim to have encountered, in one instance of the model.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;http://jonathanweisberg.org/img/distrust-1/fig1.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;In this instance:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;the coin&amp;rsquo;s bias is either $p=&amp;frac34;$ or $q=&amp;frac14;$,&lt;/li&gt;
+&lt;li&gt;your friend does $10$ tosses, and&lt;/li&gt;
+&lt;li&gt;they might be perfectly competent ($C = 1$), perfectly incompetent ($C = &amp;frac12;$), or anything in between. All possibilities in this range are equally probable to start.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;The exact result depends on your $P(H)$, but the pattern is the same across various opinions you might hold about $H$: the more extreme your friend&amp;rsquo;s opinion, the higher you&amp;rsquo;ll rate their competence.&lt;/p&gt;
+
+&lt;h1 id=&#34;understanding-the-result&#34;&gt;Understanding the Result&lt;/h1&gt;
+
+&lt;p&gt;That&amp;rsquo;s an odd result, so let&amp;rsquo;s see if we can understand how it arises.&lt;/p&gt;
+
+&lt;p&gt;To fix ideas, suppose for a moment that $H$ is true, so the coin has bias $p=&amp;frac34;$. If your friend is perfectly competent ($C=1$), then the most likely outcome is they think they observe $7$ or $8$ heads. Whereas, if they&amp;rsquo;re perfectly incompetent ($C=&amp;frac12;$), they&amp;rsquo;ll probably claim to get around $5$ heads.&lt;/p&gt;
+
+&lt;p&gt;But that&amp;rsquo;s the wrong comparison to make! What matters is not where each likelihood function has its peak, but where the &lt;em&gt;ratio of the two likelihood functions&lt;/em&gt; has its maximum. That tells us where the competence and incompetence hypotheses have the starkest contrast, and thus where the strongest evidence for discriminating between them lies.&lt;/p&gt;
+
+&lt;p&gt;Now, the more &amp;ldquo;heads&amp;rdquo; your friend reports, the more this ratio increases. Think about it this way: each heads is $1.5$ times more likely given competence than it is given incompetence. Each time the coin lands, there&amp;rsquo;s only a $&amp;frac12;$ chance they&amp;rsquo;ll see it as heads if they&amp;rsquo;re incompetent, as compared with a $&amp;frac34;$ chance if they&amp;rsquo;re competent. So each time they call &amp;ldquo;heads&amp;rdquo;, the odds of the competent hypothesis increase by a factor of $1.5$.&lt;/p&gt;
+
+&lt;p&gt;That&amp;rsquo;s all assuming the bias is $p=&amp;frac34;$, which of course you don&amp;rsquo;t know. If instead the bias is $q=&amp;frac14;$, the story inverts: the competence hypothesis gets a $1.5\times$ boost each time your friend calls &amp;ldquo;tails&amp;rdquo; instead. But, while the evidence for competence is strongest at the opposite extreme in this case, it is still strongest at the extreme.&lt;/p&gt;
+
+&lt;p&gt;You might think that, if you don&amp;rsquo;t know which case you&amp;rsquo;re in&amp;mdash;$p=&amp;frac34;$ or $q=&amp;frac14;$&amp;mdash;then this extremizing tendency will get washed out when you average the two cases according to your probability for each. But no, as the following figure shows. Even if you&amp;rsquo;re entirely uncertain which is the true bias, with $P(H) = P(\n{H}) = &amp;frac12;$, the starkest contrast is still at the extremes:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;http://jonathanweisberg.org/img/distrust-1/fig2.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;A bit confusingly, that&amp;rsquo;s not where the biggest &lt;em&gt;difference&lt;/em&gt; is between the likelihoods of our two hypotheses about your friend&amp;rsquo;s competence. So it may help to view things on a log scale. Then the differences in the plot tell us where the likelihood &lt;em&gt;ratio&lt;/em&gt; is largest, namely at the extremes:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;http://jonathanweisberg.org/img/distrust-1/fig3.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+
+&lt;h1 id=&#34;a-diagnosis&#34;&gt;A Diagnosis&lt;/h1&gt;
+
+&lt;p&gt;So our diagnosis, at least in the case of this model, is as follows. The temptation to think that distrust tracks difference of opinion comes from a confusion between two questions.&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;What outcome is most expected if your friend is competent?&lt;/li&gt;
+&lt;li&gt;What outcome has the greatest contrast in what we expect from competence vs. incompetence?&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;That question (2) is what matters is a classic Bayesian moral, the law of likelihood. Relying instead on question (1) is a fallacy Elliott Sober dubs &lt;a href=&#34;https://joelvelasco.net/teaching/249/Sober%2005%20-%20is%20drift%20a%20serious%20alternative.pdf&#34; target=&#34;_blank&#34;&gt;&lt;em&gt;probabilistic modus tollens&lt;/em&gt;&lt;/a&gt;. &amp;ldquo;If my friend is competent, they should end up with an opinion similar to mine; they haven&amp;rsquo;t; so they&amp;rsquo;re probably not competent.&amp;rdquo; Tempting, but unBayesian.&lt;/p&gt;
+
+&lt;h1 id=&#34;getting-more-realistic&#34;&gt;Getting More Realistic&lt;/h1&gt;
+
+&lt;p&gt;Of course, that&amp;rsquo;s just one model, and it&amp;rsquo;s unrealistic in a number of ways. For one thing, it treats incompetence as random noise: on this model, an incompetent person treats positive and negative evidence identically, misreading both at the same rate. But, realistically, people misinterpret evidence and arguments in more systematic and biased ways, like wishful thinking.&lt;/p&gt;
+
+&lt;p&gt;So, a more realistic model would be one where your friend has a preference for $H$, and thus tends to see tails as heads more often than the other way around. Or, maybe, they have no initial preference, but as the data come in, they tend to interpret new data in line with whichever hypothesis has been favoured by the data so far.&lt;/p&gt;
+
+&lt;p&gt;I&amp;rsquo;ll try to work out the details of this kind of variation if I get the time. Meanwhile, here&amp;rsquo;s the math on the naive model we used here.&lt;/p&gt;
+
+&lt;h1 id=&#34;the-gory-details&#34;&gt;The Gory Details&lt;/h1&gt;
+
+&lt;p&gt;Recall the model&amp;rsquo;s assumptions:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;A coin has one of two possible biases, $p$ or $q$.&lt;/li&gt;
+&lt;li&gt;Your friend flips the coin some fixed number of times, $n$.&lt;/li&gt;
+&lt;li&gt;Their competence level is some probability, $C \sim \textrm{Uniform}(a,b)$.
+
+&lt;ul&gt;
+&lt;li&gt;They perceive each toss correctly with probability $C$, otherwise they perceive the opposite result.&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;At the end, they report how many heads they think they observed, $X$.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Under these assumptions, we can analyze the expected value of their competence given their report as follows:
+\begin{align}
+\E [ C \mid X=k ]
+  &amp;amp;= \int_a^b c \, f(c \mid k) \d{c} \\&lt;br /&gt;
+  &amp;amp;= \int_a^b c \, \frac{ f( c) \, P(k \mid c) }{ P(k) } \d{c} \\&lt;br /&gt;
+  &amp;amp;= \frac{ \int_a^b c \, f( c) \, P(k \mid c) \d{c} }{ P(k) } \\&lt;br /&gt;
+  &amp;amp;= \frac{ \int_a^b c \, f( c) \, P(k \mid c) \d{c} }{ \int_a^b f( c) \, P(k \mid c) \d{c} } \\&lt;br /&gt;
+  &amp;amp;= \frac{ \int_a^b c \, P(k \mid c) \d{c} }{ \int_a^b P(k \mid c) \d{c} }.
+\end{align}
+Now, assuming $H$ and $c$ are independent,
+\begin{align}
+P(k \mid c)
+  &amp;amp;= P(H) P(k \mid H, c) + P(\n{H}) P(k \mid \n{H}, c).
+\end{align}
+And if we define
+\begin{align}
+\rho(c, \theta)
+  &amp;amp;= c \theta + (1-c)(1-\theta), \\&lt;br /&gt;
+\beta(x)
+  &amp;amp;= x^k (1-x)^{n-k},
+\end{align}
+then we can express the conditional probabilities here as:
+\begin{align}
+P(k \mid H, c)
+  &amp;amp;= \binom{n}{k} \rho(c, p)^k (1 - \rho(c, p))^{n-k} \\&lt;br /&gt;
+  &amp;amp;= \binom{n}{k} \beta(\rho(c, p)), \\&lt;br /&gt;
+P(k \mid \n{H}, c)
+  &amp;amp;= \binom{n}{k} \rho(c, q)^k (1 - \rho(c, q))^{n-k} \\&lt;br /&gt;
+  &amp;amp;= \binom{n}{k} \beta(\rho(c, q)).
+\end{align}
+Returning now to our analysis of $\E[C \mid X = k]$:
+\begin{align}
+\E [ C \mid X = k ]
+  &amp;amp;= \frac{ \int_a^b c \, P(k \mid c) \d{c} }{ \int_a^b P(k \mid c) \d{c} } \\&lt;br /&gt;
+  &amp;amp;= \frac{ \int_a^b \left[c \, P(H) P(k \mid H, c) + c \, P(\n{H}) P(k \mid \n{H}, c) \right] \d{c} }{ \int_a^b \left[ P(H) P(k \mid H, c) + P(\n{H}) P(k \mid \n{H}, c) \right] \d{c} } \\&lt;br /&gt;
+  &amp;amp;= \frac{ P(H) \int_a^b c \, \beta(\rho(c, p)) \d{c} + P(\n{H}) \int_a^b c \, \beta(\rho(c, q)) \d{c} }{ P(H) \int_a^b \beta(\rho(c, p)) \d{c} + P(\n{H}) \int_a^b \beta(\rho(c, q)) \d{c} }.
+\end{align}&lt;/p&gt;
+
+&lt;p&gt;This is something we can express straightforwardly &lt;a href=&#34;http://jonathanweisberg.org/code/distrust-1/distrust-1.R&#34;&gt;in code&lt;/a&gt;, and fixing $(p, q, a, b) = (&amp;frac34;, &amp;frac14;, &amp;frac12;, 1)$, we get the first figure above.&lt;/p&gt;
+
+&lt;p&gt;We also focused on the special cases $C=&amp;frac12;$ and $C=1$. Here,
+$$
+\rho(c, \theta) =
+  \begin{cases}
+    &amp;frac12;    &amp;amp; \textrm{ if } c = &amp;frac12;, \\&lt;br /&gt;
+    \theta &amp;amp; \textrm{ if } c = 1,
+  \end{cases}
+$$
+so
+\begin{align}
+P(k \mid C=&amp;frac12;)
+  &amp;amp;= \binom{n}{k} (&amp;frac12;)^n, \\&lt;br /&gt;
+P(k \mid C=1)
+  &amp;amp;= \binom{n}{k} \left[P(H) \, p^k (1-p)^{n-k} + P(\n{H})\, q^k (1-q)^{n-k}\right].
+\end{align}
+These formulas give us the second and third figures above, assuming $P(H) = P(\n{H}) = &amp;frac12;$.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
       <title>How Scientific is Scientific Polarization?</title>
       <link>http://jonathanweisberg.org/post/ow-commutativity/</link>
       <pubDate>Tue, 10 Nov 2020 00:00:00 -0500</pubDate>
@@ -2050,163 +2207,6 @@ we can depict the small-world version of this gamble:&lt;/p&gt;
  &lt;a class=&#34;footnote-return&#34; href=&#34;#fnref:1&#34;&gt;&lt;sup&gt;[return]&lt;/sup&gt;&lt;/a&gt;&lt;/li&gt;
 &lt;/ol&gt;
 &lt;/div&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>Accuracy for Dummies, Part 7: Dominance</title>
-      <link>http://jonathanweisberg.org/post/Accuracy%20for%20Dummies%20-%20Part%207%20-%20Brier%20Dominance/</link>
-      <pubDate>Wed, 07 Jun 2017 00:00:00 -0500</pubDate>
-      
-      <guid>http://jonathanweisberg.org/post/Accuracy%20for%20Dummies%20-%20Part%207%20-%20Brier%20Dominance/</guid>
-      <description>
-
-&lt;p&gt;In our &lt;a href=&#34;http://jonathanweisberg.org/post/Accuracy for Dummies - Part 5 - Convexity/&#34;&gt;last&lt;/a&gt; &lt;a href=&#34;http://jonathanweisberg.org/post/Accuracy for Dummies - Part 6 - Obtusity/&#34;&gt;two&lt;/a&gt; posts we established two key facts:&lt;/p&gt;
-
-&lt;ol&gt;
-&lt;li&gt;The set of possible probability assignments is convex.&lt;/li&gt;
-&lt;li&gt;Convex sets are &amp;ldquo;obtuse&amp;rdquo;. Given a point outside a convex set, there&amp;rsquo;s a point inside that forms a right-or-obtuse angle with any third point in the set.&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;p&gt;Today we&amp;rsquo;re putting them together to get the central result of the accuracy framework, the Brier dominance theorem. We&amp;rsquo;ll show that a non-probabilistic credence assignment is always &amp;ldquo;Brier dominated&amp;rdquo; by some probabilistic one. That is, there is always a probabilistic assignment that is closer, in terms of Brier distance, to every possible truth-value assignment.&lt;/p&gt;
-
-&lt;p&gt;In fact we&amp;rsquo;ll show something a bit more general. We&amp;rsquo;ll show that there&amp;rsquo;s a probability assignment that&amp;rsquo;s closer to all the possible &lt;em&gt;probability&lt;/em&gt; assignments. But truth-value assignments are probability assignments, just extreme ones. So the result we really want follows straight away as a special case.$
-\renewcommand{\vec}[1]{\mathbf{#1}}
-\newcommand{\x}{\vec{x}}
-\newcommand{\y}{\vec{y}}
-\newcommand{\z}{\vec{z}}
-\newcommand{\v}{\vec{v}}
-\newcommand{\p}{\vec{p}}
-\newcommand{\q}{\vec{q}}
-\newcommand{\B}{B}
-\newcommand{\R}{\mathbb{R}}
-\newcommand{\EIpq}{EI_{\p}(\q)}\newcommand{\EIpp}{EI_{\p}(\p)}
-$&lt;/p&gt;
-
-&lt;h1 id=&#34;recap&#34;&gt;Recap&lt;/h1&gt;
-
-&lt;p&gt;For reference, let&amp;rsquo;s collect our notation, terminology, and previous results, so that we have everything in one place.&lt;/p&gt;
-
-&lt;p&gt;We&amp;rsquo;re using $n$ for the number of possibilities under consideration. And we use bold letters like $\x$ and $\p$ to represent $n$-tuples of real numbers. So $\p = (p_1, \ldots, p_n)$ is a point in $n$-dimensional space: a member of $\R^n$.&lt;/p&gt;
-
-&lt;p&gt;We call $\p$ a &lt;em&gt;probability assignment&lt;/em&gt; if its coordinates are (a) all nonnegative, and (b) they sum to $1$. And we write $P$ for the set of all probability assignments.&lt;/p&gt;
-
-&lt;p&gt;We call $\v$ a &lt;em&gt;truth-value assignment&lt;/em&gt; if its coordinates are all zeros except for a single $1$. And we write $V$ for the set of all truth-value assignments.&lt;/p&gt;
-
-&lt;p&gt;A point $\y$ is a &lt;em&gt;mixture&lt;/em&gt; of the points $\x_1, \ldots, \x_n$ if there are real numbers $\lambda_1, \ldots, \lambda_n$ such that:&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;$\lambda_i \geq 0$ for all $i$,&lt;/li&gt;
-&lt;li&gt;$\lambda_1 + \ldots + \lambda_n = 1$, and&lt;/li&gt;
-&lt;li&gt;$\y = \lambda_1 \x_1 + \ldots + \lambda_n \x_n$.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;We say that a set is &lt;em&gt;convex&lt;/em&gt; if it is closed under mixing, i.e. any mixture of elements in the set is also in the set.&lt;/p&gt;
-
-&lt;p&gt;The difference between two points, $\x - \y$, is defined coordinate-wise:
-  $$ \x - \y = (x_1 - y_1, \ldots, x_n - y_n). $$
-The &lt;em&gt;dot product&lt;/em&gt; of two points $\x$ and $\y$ is written $\x \cdot \y$, and is defined:
-  $$ \x \cdot \y = x_1 y_1 + \ldots + x_n y_n. $$
-As a reminder, the dot product returns a single, real number (not another $n$-dimensional point as one might expect). And the sign of the dot product reflects the angle between $\x$ and $\y$ when viewed as vectors/arrows. In particular, $\x \cdot \y \leq 0$ corresponds to a right-or-obtuse angle.&lt;/p&gt;
-
-&lt;p&gt;Finally, $\B(\x,\y)$ is the Brier distance between $\x$ and $\y$, which can be defined:
-  $$
-  \begin{align}
-    \B(\x,\y) &amp;amp;= (\x - \y)^2\\&lt;br /&gt;
-              &amp;amp;= (\x - \y) \cdot (\x - \y).
-  \end{align}
-  $$&lt;/p&gt;
-
-&lt;p&gt;Now let&amp;rsquo;s restate the two key theorems we&amp;rsquo;ll be relying on.&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;Theorem (Convexity).&lt;/strong&gt;&amp;nbsp;
-The set of probability functions $P$ is convex.&lt;/p&gt;
-
-&lt;p&gt;We established this in &lt;a href=&#34;http://jonathanweisberg.org/post/Accuracy for Dummies - Part 5 - Convexity/&#34;&gt;Part 5&lt;/a&gt; of this series. In particular, we showed that $P$ is the &amp;ldquo;convex hull&amp;rdquo; of $V$: the set of all mixtures of points in $V$.&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;Lemma (Obtusity).&lt;/strong&gt;&amp;nbsp;
-If $S$ is convex, $\x \not \in S$, and $\y \in S$ minimizes $\B(\y,\x)$ as a function of $\y$ on the domain $S$, then for any $\z \in S$, $(\x - \y) \cdot (\z - \y) \leq 0$.&lt;/p&gt;
-
-&lt;p&gt;The intuitive idea behind this lemma, which we proved last time in &lt;a href=&#34;(/post/Accuracy for Dummies - Part 6 - Obtusity/)&#34; target=&#34;_blank&#34;&gt;Part 6&lt;/a&gt;, can be illustrated with a diagram:
-&lt;img src=&#34;http://jonathanweisberg.org/img/accuracy/ObtusityLemma3.png&#34; alt=&#34;&#34; /&gt;
-Given a point outside a convex set, we can find a point inside (the closest point) that forms a right-or-obtuse angle with all other points in the set.&lt;/p&gt;
-
-&lt;p&gt;What we&amp;rsquo;ll show next is the natural and intuitive consequence: that point $\y$ is thus closer to any point $\z$ of $S$ than $\x$ is.&lt;/p&gt;
-
-&lt;h1 id=&#34;the-brier-dominance-theorem&#34;&gt;The Brier Dominance Theorem&lt;/h1&gt;
-
-&lt;p&gt;Intuitively, we want to show that if the angle formed at point $\y$ with the points $\x$ and $\z$ is right-or-obtuse, then $\y$ must be closer to $\z$ than $\x$ is (in Brier distance).&lt;/p&gt;
-
-&lt;p&gt;Formally, a right-or-obtuse angle corresponds to a dot product less than or equal to zero: $(\x - \y) \cdot (\z - \y) \leq 0$. But if $\x = \y$, then the dot product will be zero trivially. So the precise statement of our theorem is:&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;Theorem.&lt;/strong&gt;&amp;nbsp;
-If $(\x - \y) \cdot (\z - \y) \leq 0$ and $\x \neq \y$, then $\B(\x,\z) &amp;gt; \B(\y,\z)$.&lt;/p&gt;
-
-&lt;p&gt;&lt;em&gt;Proof.&lt;/em&gt;  To start, we establish a general identity via algebra:
-  $$
-  \begin{align}
-  \B(\x, \z) - \B(\x, \y) - \B(\y,\z)
-    &amp;amp;= (\x - \z)^2 - (\x - \y)^2 - (\y - \z)^2\\&lt;br /&gt;
-    &amp;amp;= -2\y^2 - 2 \x \cdot \z + 2 \x \cdot \y + 2 \y \cdot \z\\&lt;br /&gt;
-    &amp;amp;= -2 (\x - \y) \cdot (\z - \y).
-  \end{align}
-  $$
-Now suppose $ (\x - \y) \cdot (\z - \y) \leq 0$. Then, given the negative sign on the $-2$ in the established identity,
-  $$ \B(\x, \z) - \B(\x, \y) - \B(\y,\z) \geq 0, $$
-from which we derive
-  $$ \B(\x, \z)  \geq \B(\x, \y) + \B(\y,\z). $$
-Now, since $\x \neq \y$ by hypothesis, $\B(\x,\y) &amp;gt; 0$. Thus $\B(\x,\z) &amp;gt; \B(\y,\z)$, as desired.
-&lt;span class=&#34;floatright&#34;&gt;$\Box$&lt;/span&gt;&lt;/p&gt;
-
-&lt;p&gt;It follows now that if $\x$ isn&amp;rsquo;t a probability assignment, there&amp;rsquo;s a probability assignment that&amp;rsquo;s closer to every truth-value assignment than $\x$ is.&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;Corollary (Brier Dominance).&lt;/strong&gt; If $\x \not \in P$ then there is a $\p \in P$ such that $\B(\p,\v) &amp;lt; \B(\x, \v)$ for all $\v \in V$.&lt;/p&gt;
-
-&lt;p&gt;&lt;em&gt;Proof.&lt;/em&gt;  Fix $\x \not \in P$, and let $\p$ be the member of $P$ that minimizes $B(\y,\x)$ as a function of $\y$. The Convexity theorem tells us that $P$ is convex, so the Obtusity lemma implies $(\x - \p) \cdot (\v - \p) \leq 0$ for every $\v \in V$. And since $\x \neq \p$ (because $\x \not \in P$), the last theorem entails $\B(\p,\v) &amp;lt; \B(\x, \v)$, as desired.
-&lt;span class=&#34;floatright&#34;&gt;$\Box$&lt;/span&gt;&lt;/p&gt;
-
-&lt;p&gt;This is the core of the main result we&amp;rsquo;ve been working towards. Hooray! But, we still have one piece of unfinished business. For what if $\p$ is itself dominated??&lt;/p&gt;
-
-&lt;h1 id=&#34;undominated-dominance&#34;&gt;Undominated Dominance&lt;/h1&gt;
-
-&lt;p&gt;We&amp;rsquo;ve shown that credences which violate the probability axioms are always &amp;ldquo;accuracy dominated&amp;rdquo; by some assignment of credences that obeys those axioms. But what if those dominating, probabilistic credences are themselves dominated? &lt;em&gt;What if they&amp;rsquo;re dominated by non-probabilistic credences??&lt;/em&gt;&lt;/p&gt;
-
-&lt;p&gt;For all we&amp;rsquo;ve said, that&amp;rsquo;s a real possibility. And if it actually obtains, then there&amp;rsquo;s nothing especially accuracy-conducive about the laws of probability. So we had better rule this possibility out. Luckily, that&amp;rsquo;s pretty easy to do.&lt;/p&gt;
-
-&lt;p&gt;In fact, the reals work here was already done back in &lt;a href=&#34;http://jonathanweisberg.org/post/Accuracy for Dummies - Part 3/&#34;&gt;Part 3&lt;/a&gt; of the series. There we showed that Brier distance is a &amp;ldquo;proper&amp;rdquo; measure of inaccuracy: each probability assignment expects itself to do best with respect to accuracy, if inaccuracy is measured by Brier distance.&lt;/p&gt;
-
-&lt;p&gt;As a reminder, we wrote $\EIpq$ for the expected inaccuracy of probability assignment $\q$ according to assignment $\p$. When inaccuracy is measured in terms of Brier distance:
-$$ \EIpq = p_1 \B(\q,\v_1) + p_2 \B(\q,\v_2) + \ldots + p_n \B(\q,\v_n). $$
-Here $\v_i$ is the truth-value assignment with a $1$ in the $i$-th coordinate, and $0$ everywhere else. What we showed in Part 3 was:&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;Theorem.&lt;/strong&gt;&amp;nbsp;
-$\EIpq$ is uniquely minimized when $\q = \p$.&lt;/p&gt;
-
-&lt;p&gt;And notice, this would be impossible if there were some $\q$ such that $\B(\q,\v_i) \leq \B(\p,\v_i)$ for all $i$. For then the weighted average $\EIpq$ would have to be no larger than $\EIpp$. And this contradicts the theorem, which says that $\EIpq &amp;gt; \EIpp$ for all $\q \neq \p$.&lt;/p&gt;
-
-&lt;p&gt;So, at long last, we have the full result we want:&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;Corollary (Undominated Brier Dominance).&lt;/strong&gt; If $\x \not \in P$ then there is a $\p \in P$ such that $\B(\p,\v) &amp;lt; \B(\x, \v)$ for all $\v \in V$. Moreover, there is no $\q \in P$ such that $\B(\q,\v) \leq \B(\p, \v)$ for all $\v \in V$.&lt;/p&gt;
-
-&lt;p&gt;So the laws of probability really are specially conducive to accuracy, as measured using Brier distance. Only probabilistic credence assignments are undominated.&lt;/p&gt;
-
-&lt;h1 id=&#34;where-to-next&#34;&gt;Where to Next?&lt;/h1&gt;
-
-&lt;p&gt;That&amp;rsquo;s a pretty sweet result. And it raises plenty of fun and interesting questions we could look at next. Here are three:&lt;/p&gt;
-
-&lt;ol&gt;
-&lt;li&gt;&lt;p&gt;What about other ways of measuring inaccuracy besides Brier? Are there reasonable alternatives, and if so, do similar results apply to them?&lt;/p&gt;&lt;/li&gt;
-
-&lt;li&gt;&lt;p&gt;What about other probabilistic principles, like Conditionalization, the Principal Principle, or the Principle of Indifference? Can we take this approach beyond the probability axioms?&lt;/p&gt;&lt;/li&gt;
-
-&lt;li&gt;&lt;p&gt;Speaking of the probability axioms, we&amp;rsquo;ve been working with a pretty paired down conception of a &amp;ldquo;probability assignment&amp;rdquo;. Usually we assign probabilities not just to atomic possibilities, but to disjunctions/sets of possibilities: e.g. &amp;ldquo;the prize is behind either door #1 or door #2&amp;rdquo;. Can we extend this result to such &amp;ldquo;super-atomic&amp;rdquo; probability assignments?&lt;/p&gt;&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;p&gt;We&amp;rsquo;ll tackle some or all of these questions in future posts. But I haven&amp;rsquo;t yet decided which ones or in what order.&lt;/p&gt;
-
-&lt;p&gt;So for now let&amp;rsquo;s just stop and appreciate the work we&amp;rsquo;ve already done. Because not only have we proved one of the most central and interesting results of the accuracy framework. But also, in a lot of ways the hardest work is already behind us. If you&amp;rsquo;ve come this far, I think you deserve a nice pat on the back.&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&#34;http://i1145.photobucket.com/albums/o503/KimmieRocks/tumblr_liqmv89ru51qb2dn6.gif&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
 </description>
     </item>
     

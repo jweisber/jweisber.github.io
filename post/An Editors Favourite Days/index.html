@@ -10,8 +10,8 @@
     <meta name="author" content="Jonathan Weisberg">
     
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:site" content="@jweisber">
-    <meta name="twitter:creator" content="@jweisber">
+    <meta name="twitter:site" content="@">
+    <meta name="twitter:creator" content="@">
     <meta name="twitter:title" content="An Editor&#39;s Favourite Days of the Week">
     <meta name="twitter:description" content="Finding willing referees is one of the biggest challenges for a journal editor. Are referees more willing some days of the week than others? Apparently they are, on Mondays&hellip; and Thursdays, for some reason. At least, that&rsquo;s how things have gone at Ergo the last couple years (2015 and 2016).
 Data Consider the &ldquo;bounce rate&rdquo; for a given day of the week: the portion of invites sent on that day that end up being declined (bounce rate = #declined / #invited).">
@@ -31,19 +31,13 @@ Data Consider the &ldquo;bounce rate&rdquo; for a given day of the week: the por
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
     <link href="/css/prism.css" rel="stylesheet" />
     <link href="/css/scarab.css" rel="stylesheet">
-    <script type="text/x-mathjax-config">
-      MathJax.Hub.Config({
-        tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]},
-        "HTML-CSS": {
-          availableFonts: ["Neo-Euler"],
-          preferredFont: "Neo-Euler",
-          webFont: "Neo-Euler",
-          imageFont: "Neo-Euler",
-        }
-      });
+    <script>
+      window.MathJax = {
+        tex: { inlineMath: [['$','$'], ['\\(','\\)']] },
+        output: { font: 'mathjax-stix2', linebreaks: { inline: false } }
+      };
     </script>
-    <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
-    </script>
+    <script defer src="https://cdn.jsdelivr.net/npm/mathjax@4.1.3/tex-mml-chtml.js"></script>
     
     
     

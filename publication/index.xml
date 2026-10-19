@@ -6,25 +6,55 @@
     <description>Recent content in Publications on Jonathan Weisberg</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 10 Dec 2019 21:59:04 -0500</lastBuildDate>
+    <lastBuildDate>Mon, 19 Oct 2026 00:00:02 -0500</lastBuildDate>
     <atom:link href="http://jonathanweisberg.org/publication/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
+      <title>Geometric Pooling: A User&#39;s Guide</title>
+      <link>http://jonathanweisberg.org/publication/2026%20Geometric%20Pooling/</link>
+      <pubDate>Mon, 19 Oct 2026 00:00:02 -0500</pubDate>
+      
+      <guid>http://jonathanweisberg.org/publication/2026%20Geometric%20Pooling/</guid>
+      <description>&lt;p&gt;Evidence is univocal, not equivocal. Its implications don&amp;rsquo;t depend on our beliefs or values, the evidence says what it says. But that doesn&amp;rsquo;t mean there&amp;rsquo;s no room for rational disagreement between people with the same evidence. Evaluating evidence is a lot like polling an electorate: getting an accurate reading requires a bit of luck, and even the best pollsters are bound to get slightly different results. So even though evidence is univocal, rationality&amp;rsquo;s requirements are not &amp;ldquo;unique&amp;rdquo;. Understanding this resolves several puzzles to do with uniqueness and disagreement.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Jeffrey Pooling</title>
+      <link>http://jonathanweisberg.org/publication/2025%20Jeffrey%20Pooling/</link>
+      <pubDate>Mon, 19 Oct 2026 00:00:01 -0500</pubDate>
+      
+      <guid>http://jonathanweisberg.org/publication/2025%20Jeffrey%20Pooling/</guid>
+      <description>&lt;p&gt;Evidence is univocal, not equivocal. Its implications don&amp;rsquo;t depend on our beliefs or values, the evidence says what it says. But that doesn&amp;rsquo;t mean there&amp;rsquo;s no room for rational disagreement between people with the same evidence. Evaluating evidence is a lot like polling an electorate: getting an accurate reading requires a bit of luck, and even the best pollsters are bound to get slightly different results. So even though evidence is univocal, rationality&amp;rsquo;s requirements are not &amp;ldquo;unique&amp;rdquo;. Understanding this resolves several puzzles to do with uniqueness and disagreement.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Updating on the Evidence of Others</title>
+      <link>http://jonathanweisberg.org/publication/2024%20Updating%20on%20the%20Evidence%20of%20Others/</link>
+      <pubDate>Mon, 19 Oct 2026 00:00:00 -0500</pubDate>
+      
+      <guid>http://jonathanweisberg.org/publication/2024%20Updating%20on%20the%20Evidence%20of%20Others/</guid>
+      <description>&lt;p&gt;One often learns the opinions of others without getting to hear the evidence behind them. How should you revise your own opinions in such cases? Dietrich (2010) shows that, for opinions about objective chance, the method known as upco effectively adds your interlocutor’s evidence to your own. We provide a simple way of viewing upco that makes properties like Dietrich’s easy to appreciate, and we do three things with it. First, we unify Dietrich’s motivation for upco with another motivation due to Easwaran et al. (2016). Second, we show that laypeople can sometimes use upco to resolve expert disagreements. And third, we use it to cricitize the social argument for the uniqueness thesis.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
       <title>Belief in Psyontology</title>
-      <link>http://jonathanweisberg.org/publication/Belief%20in%20Psyontology/</link>
+      <link>http://jonathanweisberg.org/publication/2020%20Belief%20in%20Psyontology/</link>
       <pubDate>Tue, 10 Dec 2019 21:59:04 -0500</pubDate>
       
-      <guid>http://jonathanweisberg.org/publication/Belief%20in%20Psyontology/</guid>
+      <guid>http://jonathanweisberg.org/publication/2020%20Belief%20in%20Psyontology/</guid>
       <description>&lt;p&gt;Which is more fundamental, full belief or partial belief? I argue that neither is, ontologically speaking. A survey of some relevant cognitive psychology supports a dualist ontology instead. Beliefs come in two kinds, categorical and graded, with neither kind more fundamental than the other. In particular, the graded kind is no more fundamental. When we discuss belief in on/off terms, we are not speaking coarsely or informally about states that are ultimately credal.&lt;/p&gt;
 </description>
     </item>
     
     <item>
       <title>Could&#39;ve Thought Otherwise</title>
-      <link>http://jonathanweisberg.org/publication/Couldve%20Thought%20Otherwise/</link>
+      <link>http://jonathanweisberg.org/publication/2020%20Couldve%20Thought%20Otherwise/</link>
       <pubDate>Tue, 10 Dec 2019 21:58:08 -0500</pubDate>
       
-      <guid>http://jonathanweisberg.org/publication/Couldve%20Thought%20Otherwise/</guid>
+      <guid>http://jonathanweisberg.org/publication/2020%20Couldve%20Thought%20Otherwise/</guid>
       <description>&lt;p&gt;Evidence is univocal, not equivocal. Its implications don&amp;rsquo;t depend on our beliefs or values, the evidence says what it says. But that doesn&amp;rsquo;t mean there&amp;rsquo;s no room for rational disagreement between people with the same evidence. Evaluating evidence is a lot like polling an electorate: getting an accurate reading requires a bit of luck, and even the best pollsters are bound to get slightly different results. So even though evidence is univocal, rationality&amp;rsquo;s requirements are not &amp;ldquo;unique&amp;rdquo;. Understanding this resolves several puzzles to do with uniqueness and disagreement.&lt;/p&gt;
 </description>
     </item>
@@ -126,36 +156,6 @@
       
       <guid>http://jonathanweisberg.org/publication/2011%20Representation%20Theorems%20and%20the%20Foundations%20of%20Decision%20Theory/</guid>
       <description>&lt;p&gt;Representation theorems are often taken to provide the foundations for decision theory. First, they are taken to characterize degrees of belief and utilities. Second, they are taken to justify two fundamental rules of rationality: that we should have probabilistic degrees of belief and that we should act as expected utility maximizers. We argue that representation theorems cannot serve either of these foundational purposes, and that recent attempts to defend the foundational importance of representation theorems are unsuccessful. As a result, we should reject these claims, and lay the foundations of decision theory on firmer ground.&lt;/p&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>Varieties of Bayesianism</title>
-      <link>http://jonathanweisberg.org/publication/2011%20Varieties%20of%20Bayesianism/</link>
-      <pubDate>Sat, 01 Jan 2011 00:00:00 -0500</pubDate>
-      
-      <guid>http://jonathanweisberg.org/publication/2011%20Varieties%20of%20Bayesianism/</guid>
-      <description>&lt;p&gt;A survey of Bayesian epistemology covering (1) the basic mathematical machinery of Bayesianism, (2) interpretations of &amp;lsquo;probability&amp;rsquo;, (3) the subjective-objective continuum, (4) justifications for Bayesian principles, (5) decision theory, (6) confirmation theory, and (7) full and partial belief.&lt;/p&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>Bootstrapping in General</title>
-      <link>http://jonathanweisberg.org/publication/2010%20Bootstrapping%20in%20General/</link>
-      <pubDate>Fri, 01 Jan 2010 00:00:01 -0500</pubDate>
-      
-      <guid>http://jonathanweisberg.org/publication/2010%20Bootstrapping%20in%20General/</guid>
-      <description>&lt;p&gt;Bootstrapping poses a more general challenge than commonly thought. Versions of the problem afflict even strongly internalist theories of knowledge. Even if one must know a source to be reliable to gain knowledge from it, bootstrapping is still a threat. I consider potential solutions internalists might try, and defend the one I think most plausible: that bootstrapping involves an abuse of inductive reasoning akin to generalizing from a small or biased sample. Finally, I argue that this solution is equally available to the reliabilist. The moral is that the issues raised by bootstrapping are orthogonal to questions about internalism and basic knowledge. They have more to do with the nature of good inductive reasoning.&lt;/p&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>A Note on Design: What&#39;s Fine-tuning Got to Do With It?</title>
-      <link>http://jonathanweisberg.org/publication/2010%20A%20Note%20on%20Design/</link>
-      <pubDate>Fri, 01 Jan 2010 00:00:00 -0500</pubDate>
-      
-      <guid>http://jonathanweisberg.org/publication/2010%20A%20Note%20on%20Design/</guid>
-      <description>&lt;p&gt;We have known for a long time that there is complex, intelligent life. More recently we have discovered that the physics of our universe is fine-tuned so as to allow for the existence of such life. I argue that this new finding provides no evidence for the design hypothesis. Thus, there is an important sense in which the much-touted fine-tuning of physics is irrelevant to debates about design.&lt;/p&gt;
 </description>
     </item>
     

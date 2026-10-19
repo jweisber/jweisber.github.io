@@ -9,6 +9,163 @@
     <atom:link href="http://jonathanweisberg.org/tags/philosophy/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
+      <title>&#34;Everyone Who Disagrees With Me Is an Idiot&#34;, Part 1</title>
+      <link>http://jonathanweisberg.org/post/distrust-1/</link>
+      <pubDate>Mon, 19 Oct 2026 00:00:00 -0500</pubDate>
+      
+      <guid>http://jonathanweisberg.org/post/distrust-1/</guid>
+      <description>
+
+&lt;p&gt;It&amp;rsquo;s only natural to place less trust in the judgment of those who disagree with you. After all, from your point of view, those people are mistaken! And making mistakes is a sign of incompetence.&lt;/p&gt;
+
+&lt;p&gt;This kind of distrust is actually baked into a number of models in social epistemology (for example: &lt;a href=&#34;https://www.jasss.org/5/3/2.html&#34; target=&#34;_blank&#34;&gt;here&lt;/a&gt;, &lt;a href=&#34;https://doi.org/10.1093/bjps/axv025&#34; target=&#34;_blank&#34;&gt;here&lt;/a&gt;, and &lt;a href=&#34;https://doi.org/10.1007/s13194-018-0213-9&#34; target=&#34;_blank&#34;&gt;here&lt;/a&gt;). I gave an argument against the rationality of one such model in &lt;a href=&#34;http://jonathanweisberg.org/post/ow-commutativity/&#34;&gt;a previous post&lt;/a&gt;. But the argument doesn&amp;rsquo;t really depend on the details of the model; any rule that discounts evidence reported by a source you disagree with will run into the same problem.&lt;/p&gt;
+
+&lt;p&gt;A policy of distrusting those who disagree with you is also reminiscient of some classic issues in the debate about peer disagreement. So I think it&amp;rsquo;s worth getting clear on the extent to which such distrust makes sense, and trying to understand, when it goes wrong, &lt;em&gt;why&lt;/em&gt; it goes wrong. In this post I&amp;rsquo;ll take a first stab at a diagnosis.&lt;/p&gt;
+
+&lt;div style=&#34;display:none&#34;&gt;
+$\newcommand{\E}{\mathbb{E}}$
+$\renewcommand{\d}[1]{\,\mathrm{d}#1}$
+$\newcommand{\n}[1]{\overline{#1}}$
+&lt;/div&gt;
+
+&lt;h1 id=&#34;one-model-of-competence&#34;&gt;One Model of Competence&lt;/h1&gt;
+
+&lt;p&gt;Suppose you and a friend are investigating some hypothesis, $H$. If $H$ is true, then experiments on $H$ yield a &amp;ldquo;positive&amp;rdquo; result with some fixed probability $p$, whereas if $H$ is false, the &amp;ldquo;positive&amp;rdquo; rate is instead some lower value $q$. So we can think of $H$ as saying that some coin has bias $p$, and $\n{H}$ as saying the bias is instead $q$.&lt;/p&gt;
+
+&lt;p&gt;We&amp;rsquo;ll understand your friend&amp;rsquo;s competence as their reliability at recognizing positive evidence as positive, and negative evidence as negative. In other words, it&amp;rsquo;s the probability that they&amp;rsquo;ll correctly identify a heads as heads, and a tails as tails.&lt;/p&gt;
+
+&lt;p&gt;Now, imagine you and your friend each go off and do some independent experimenting on $H$. It seems plausible that, when you reconvene, you should find yourselves with similar opinions, if your friend is competent. Of course, it&amp;rsquo;s possible that one of you will get an unlucky batch of misleading evidence, and end up with the wrong view of $H$ despite being perfectly competent. But the more evidence you gather, the more likely it is that you&amp;rsquo;ll converge on the truth about $H$&amp;mdash;if, again, your friend is competent.&lt;/p&gt;
+
+&lt;p&gt;So shouldn&amp;rsquo;t you question your friend&amp;rsquo;s competence if they come back with a different opinion than yours? And suspect them more the more their opinion differs?&lt;/p&gt;
+
+&lt;p&gt;Curiously, no. At least, not in this model. The figure below shows how your estimate of your friend&amp;rsquo;s competence varies with the number of &amp;ldquo;heads&amp;rdquo; they claim to have encountered, in one instance of the model.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;http://jonathanweisberg.org/img/distrust-1/fig1.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;In this instance:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;the coin&amp;rsquo;s bias is either $p=&amp;frac34;$ or $q=&amp;frac14;$,&lt;/li&gt;
+&lt;li&gt;your friend does $10$ tosses, and&lt;/li&gt;
+&lt;li&gt;they might be perfectly competent ($C = 1$), perfectly incompetent ($C = &amp;frac12;$), or anything in between. All possibilities in this range are equally probable to start.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;The exact result depends on your $P(H)$, but the pattern is the same across various opinions you might hold about $H$: the more extreme your friend&amp;rsquo;s opinion, the higher you&amp;rsquo;ll rate their competence.&lt;/p&gt;
+
+&lt;h1 id=&#34;understanding-the-result&#34;&gt;Understanding the Result&lt;/h1&gt;
+
+&lt;p&gt;That&amp;rsquo;s an odd result, so let&amp;rsquo;s see if we can understand how it arises.&lt;/p&gt;
+
+&lt;p&gt;To fix ideas, suppose for a moment that $H$ is true, so the coin has bias $p=&amp;frac34;$. If your friend is perfectly competent ($C=1$), then the most likely outcome is they think they observe $7$ or $8$ heads. Whereas, if they&amp;rsquo;re perfectly incompetent ($C=&amp;frac12;$), they&amp;rsquo;ll probably claim to get around $5$ heads.&lt;/p&gt;
+
+&lt;p&gt;But that&amp;rsquo;s the wrong comparison to make! What matters is not where each likelihood function has its peak, but where the &lt;em&gt;ratio of the two likelihood functions&lt;/em&gt; has its maximum. That tells us where the competence and incompetence hypotheses have the starkest contrast, and thus where the strongest evidence for discriminating between them lies.&lt;/p&gt;
+
+&lt;p&gt;Now, the more &amp;ldquo;heads&amp;rdquo; your friend reports, the more this ratio increases. Think about it this way: each heads is $1.5$ times more likely given competence than it is given incompetence. Each time the coin lands, there&amp;rsquo;s only a $&amp;frac12;$ chance they&amp;rsquo;ll see it as heads if they&amp;rsquo;re incompetent, as compared with a $&amp;frac34;$ chance if they&amp;rsquo;re competent. So each time they call &amp;ldquo;heads&amp;rdquo;, the odds of the competent hypothesis increase by a factor of $1.5$.&lt;/p&gt;
+
+&lt;p&gt;That&amp;rsquo;s all assuming the bias is $p=&amp;frac34;$, which of course you don&amp;rsquo;t know. If instead the bias is $q=&amp;frac14;$, the story inverts: the competence hypothesis gets a $1.5\times$ boost each time your friend calls &amp;ldquo;tails&amp;rdquo; instead. But, while the evidence for competence is strongest at the opposite extreme in this case, it is still strongest at the extreme.&lt;/p&gt;
+
+&lt;p&gt;You might think that, if you don&amp;rsquo;t know which case you&amp;rsquo;re in&amp;mdash;$p=&amp;frac34;$ or $q=&amp;frac14;$&amp;mdash;then this extremizing tendency will get washed out when you average the two cases according to your probability for each. But no, as the following figure shows. Even if you&amp;rsquo;re entirely uncertain which is the true bias, with $P(H) = P(\n{H}) = &amp;frac12;$, the starkest contrast is still at the extremes:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;http://jonathanweisberg.org/img/distrust-1/fig2.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;A bit confusingly, that&amp;rsquo;s not where the biggest &lt;em&gt;difference&lt;/em&gt; is between the likelihoods of our two hypotheses about your friend&amp;rsquo;s competence. So it may help to view things on a log scale. Then the differences in the plot tell us where the likelihood &lt;em&gt;ratio&lt;/em&gt; is largest, namely at the extremes:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;http://jonathanweisberg.org/img/distrust-1/fig3.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+
+&lt;h1 id=&#34;a-diagnosis&#34;&gt;A Diagnosis&lt;/h1&gt;
+
+&lt;p&gt;So our diagnosis, at least in the case of this model, is as follows. The temptation to think that distrust tracks difference of opinion comes from a confusion between two questions.&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;What outcome is most expected if your friend is competent?&lt;/li&gt;
+&lt;li&gt;What outcome has the greatest contrast in what we expect from competence vs. incompetence?&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;That question (2) is what matters is a classic Bayesian moral, the law of likelihood. Relying instead on question (1) is a fallacy Elliott Sober dubs &lt;a href=&#34;https://joelvelasco.net/teaching/249/Sober%2005%20-%20is%20drift%20a%20serious%20alternative.pdf&#34; target=&#34;_blank&#34;&gt;&lt;em&gt;probabilistic modus tollens&lt;/em&gt;&lt;/a&gt;. &amp;ldquo;If my friend is competent, they should end up with an opinion similar to mine; they haven&amp;rsquo;t; so they&amp;rsquo;re probably not competent.&amp;rdquo; Tempting, but unBayesian.&lt;/p&gt;
+
+&lt;h1 id=&#34;getting-more-realistic&#34;&gt;Getting More Realistic&lt;/h1&gt;
+
+&lt;p&gt;Of course, that&amp;rsquo;s just one model, and it&amp;rsquo;s unrealistic in a number of ways. For one thing, it treats incompetence as random noise: on this model, an incompetent person treats positive and negative evidence identically, misreading both at the same rate. But, realistically, people misinterpret evidence and arguments in more systematic and biased ways, like wishful thinking.&lt;/p&gt;
+
+&lt;p&gt;So, a more realistic model would be one where your friend has a preference for $H$, and thus tends to see tails as heads more often than the other way around. Or, maybe, they have no initial preference, but as the data come in, they tend to interpret new data in line with whichever hypothesis has been favoured by the data so far.&lt;/p&gt;
+
+&lt;p&gt;I&amp;rsquo;ll try to work out the details of this kind of variation if I get the time. Meanwhile, here&amp;rsquo;s the math on the naive model we used here.&lt;/p&gt;
+
+&lt;h1 id=&#34;the-gory-details&#34;&gt;The Gory Details&lt;/h1&gt;
+
+&lt;p&gt;Recall the model&amp;rsquo;s assumptions:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;A coin has one of two possible biases, $p$ or $q$.&lt;/li&gt;
+&lt;li&gt;Your friend flips the coin some fixed number of times, $n$.&lt;/li&gt;
+&lt;li&gt;Their competence level is some probability, $C \sim \textrm{Uniform}(a,b)$.
+
+&lt;ul&gt;
+&lt;li&gt;They perceive each toss correctly with probability $C$, otherwise they perceive the opposite result.&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;At the end, they report how many heads they think they observed, $X$.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Under these assumptions, we can analyze the expected value of their competence given their report as follows:
+\begin{align}
+\E [ C \mid X=k ]
+  &amp;amp;= \int_a^b c \, f(c \mid k) \d{c} \\&lt;br /&gt;
+  &amp;amp;= \int_a^b c \, \frac{ f( c) \, P(k \mid c) }{ P(k) } \d{c} \\&lt;br /&gt;
+  &amp;amp;= \frac{ \int_a^b c \, f( c) \, P(k \mid c) \d{c} }{ P(k) } \\&lt;br /&gt;
+  &amp;amp;= \frac{ \int_a^b c \, f( c) \, P(k \mid c) \d{c} }{ \int_a^b f( c) \, P(k \mid c) \d{c} } \\&lt;br /&gt;
+  &amp;amp;= \frac{ \int_a^b c \, P(k \mid c) \d{c} }{ \int_a^b P(k \mid c) \d{c} }.
+\end{align}
+Now, assuming $H$ and $c$ are independent,
+\begin{align}
+P(k \mid c)
+  &amp;amp;= P(H) P(k \mid H, c) + P(\n{H}) P(k \mid \n{H}, c).
+\end{align}
+And if we define
+\begin{align}
+\rho(c, \theta)
+  &amp;amp;= c \theta + (1-c)(1-\theta), \\&lt;br /&gt;
+\beta(x)
+  &amp;amp;= x^k (1-x)^{n-k},
+\end{align}
+then we can express the conditional probabilities here as:
+\begin{align}
+P(k \mid H, c)
+  &amp;amp;= \binom{n}{k} \rho(c, p)^k (1 - \rho(c, p))^{n-k} \\&lt;br /&gt;
+  &amp;amp;= \binom{n}{k} \beta(\rho(c, p)), \\&lt;br /&gt;
+P(k \mid \n{H}, c)
+  &amp;amp;= \binom{n}{k} \rho(c, q)^k (1 - \rho(c, q))^{n-k} \\&lt;br /&gt;
+  &amp;amp;= \binom{n}{k} \beta(\rho(c, q)).
+\end{align}
+Returning now to our analysis of $\E[C \mid X = k]$:
+\begin{align}
+\E [ C \mid X = k ]
+  &amp;amp;= \frac{ \int_a^b c \, P(k \mid c) \d{c} }{ \int_a^b P(k \mid c) \d{c} } \\&lt;br /&gt;
+  &amp;amp;= \frac{ \int_a^b \left[c \, P(H) P(k \mid H, c) + c \, P(\n{H}) P(k \mid \n{H}, c) \right] \d{c} }{ \int_a^b \left[ P(H) P(k \mid H, c) + P(\n{H}) P(k \mid \n{H}, c) \right] \d{c} } \\&lt;br /&gt;
+  &amp;amp;= \frac{ P(H) \int_a^b c \, \beta(\rho(c, p)) \d{c} + P(\n{H}) \int_a^b c \, \beta(\rho(c, q)) \d{c} }{ P(H) \int_a^b \beta(\rho(c, p)) \d{c} + P(\n{H}) \int_a^b \beta(\rho(c, q)) \d{c} }.
+\end{align}&lt;/p&gt;
+
+&lt;p&gt;This is something we can express straightforwardly &lt;a href=&#34;http://jonathanweisberg.org/code/distrust-1/distrust-1.R&#34;&gt;in code&lt;/a&gt;, and fixing $(p, q, a, b) = (&amp;frac34;, &amp;frac14;, &amp;frac12;, 1)$, we get the first figure above.&lt;/p&gt;
+
+&lt;p&gt;We also focused on the special cases $C=&amp;frac12;$ and $C=1$. Here,
+$$
+\rho(c, \theta) =
+  \begin{cases}
+    &amp;frac12;    &amp;amp; \textrm{ if } c = &amp;frac12;, \\&lt;br /&gt;
+    \theta &amp;amp; \textrm{ if } c = 1,
+  \end{cases}
+$$
+so
+\begin{align}
+P(k \mid C=&amp;frac12;)
+  &amp;amp;= \binom{n}{k} (&amp;frac12;)^n, \\&lt;br /&gt;
+P(k \mid C=1)
+  &amp;amp;= \binom{n}{k} \left[P(H) \, p^k (1-p)^{n-k} + P(\n{H})\, q^k (1-q)^{n-k}\right].
+\end{align}
+These formulas give us the second and third figures above, assuming $P(H) = P(\n{H}) = &amp;frac12;$.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
       <title>Philosophy Fumbles the Bag</title>
       <link>http://jonathanweisberg.org/post/philosophy-fumbles-the-bag/</link>
       <pubDate>Fri, 09 Oct 2026 08:58:59 -0400</pubDate>
@@ -2558,253 +2715,6 @@ informative about time-to-TT.&lt;/p&gt;
 
 &lt;p&gt;So even though this conclusion is striking, I still view it as
 tentative. #JustOneStudy&lt;/p&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>Placement, PageRank, and the PGR: Part 2</title>
-      <link>http://jonathanweisberg.org/post/page-rank-2/</link>
-      <pubDate>Thu, 06 Dec 2018 00:00:01 -0500</pubDate>
-      
-      <guid>http://jonathanweisberg.org/post/page-rank-2/</guid>
-      <description>
-
-&lt;p&gt;This post is the second of two devoted to &lt;a href=&#34;https://bit.ly/2z12SoB&#34; target=&#34;_blank&#34;&gt;an idea of David
-Wallace’s&lt;/a&gt;: applying Google’s PageRank algorithm
-to the &lt;a href=&#34;http://www.placementdata.com/&#34; target=&#34;_blank&#34;&gt;APDA&lt;/a&gt; placement data.&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;http://jonathanweisberg.org/post/page-rank-1&#34;&gt;Part 1&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;Part 2&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://github.com/jweisber/page-rank&#34; target=&#34;_blank&#34;&gt;Source on GitHub&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;&lt;a href=&#34;http://jonathanweisberg.org/post/page-rank-1/&#34;&gt;Last time&lt;/a&gt; we looked at the motivation and
-theory behind the idea. Now we’ll try predicting PageRanks. Can students
-who care about PageRank use the latest
-&lt;a href=&#34;https://www.philosophicalgourmet.com/&#34; target=&#34;_blank&#34;&gt;PGR&lt;/a&gt; to guesstimate a program’s
-PageRank 5 or 10 years in the future? Can they use the latest placement
-data?&lt;/p&gt;
-
-&lt;h1 id=&#34;the-data&#34;&gt;The Data&lt;/h1&gt;
-
-&lt;p&gt;We’ll use a somewhat different data set from last time, since we need
-things broken down by year. Our data comes now from &lt;a href=&#34;http://placementdata.com&#34; target=&#34;_blank&#34;&gt;the APDA
-homepage&lt;/a&gt;, where you can search by PhD program
-and get a list of jobs where its graduates have landed.&lt;/p&gt;
-
-&lt;p&gt;Unfortunately the search results are in a pretty unfriendly format. This
-means doing some nasty
-&lt;a href=&#34;https://en.wikipedia.org/wiki/Web_scraping&#34; target=&#34;_blank&#34;&gt;scraping&lt;/a&gt;, a notoriously
-error-prone process. And even before scraping, the data seems to have
-some errors and quirks (duplicate entries, inconsistent capitalization,
-missing values, etc.). I’ve patched what I can, but we should keep in
-mind that we’re already working with a pretty noisy signal even before
-we get to any analysis.&lt;/p&gt;
-
-&lt;p&gt;A quick poke around before we get to the main event: how much data do we
-have for each year? The years since 2010 really dominate this data set.&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&#34;http://jonathanweisberg.org/img/page-rank-2/unnamed-chunk-2-1.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
-
-&lt;p&gt;That’s going to be a problem, when we try predicting future PageRank
-based on past PageRank. Ideally we’d like to have two data-rich periods
-separated by a 5-year span. Then we can see how well a hypothetical
-prospective student would have done at predicting the PageRanks they’d
-face on the job market, using the PageRanks available when they were
-choosing a program. But we don’t have that. So we’ll have to live with
-some additional noise when we get to this below.&lt;/p&gt;
-
-&lt;p&gt;For now let’s turn to placement type. The APDA tracks whether a job is
-TT, a postdoc, temporary letureship, etc. TT and postdoc placements
-dominate the landscape, followed by temporary and non-academic
-positions.&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&#34;http://jonathanweisberg.org/img/page-rank-2/unnamed-chunk-3-1.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
-
-&lt;p&gt;Placement types change dramatically over the years though. From the
-early to late naughties, TT changes from being the dominant type to a
-minority.&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&#34;http://jonathanweisberg.org/img/page-rank-2/unnamed-chunk-4-1.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
-
-&lt;p&gt;Is this the story of the Great Recession? That’s likely a big factor.
-But our data gets spottier as we go back through the naughties. So a
-selection effect is another likely culprit.&lt;/p&gt;
-
-&lt;p&gt;Now let’s turn to predicting PageRanks.&lt;/p&gt;
-
-&lt;h1 id=&#34;predicting-pagerank-from-pgr&#34;&gt;Predicting PageRank from PGR&lt;/h1&gt;
-
-&lt;p&gt;We’ll calculate all PageRanks on a five-year window (a somewhat
-arbitrary choice). So the “future” PageRanks—the numbers we’ll be trying
-to predict—are calculated from the placement data in the years
-2014–2018.&lt;/p&gt;
-
-&lt;p&gt;For now we’ll count postdocs as well as TT placements, for continuity
-with the last post and with Wallace’s original analysis. We’ll rerun the
-analysis using only TT jobs at the end.&lt;/p&gt;
-
-&lt;p&gt;Given these choices, here are the top 10 programs by PageRank for
-2014–18.&lt;/p&gt;
-
-&lt;table&gt;
-&lt;thead&gt;
-&lt;tr class=&#34;header&#34;&gt;
-&lt;th style=&#34;text-align: left;&#34;&gt;Program&lt;/th&gt;
-&lt;th style=&#34;text-align: right;&#34;&gt;PageRank 2014-18&lt;/th&gt;
-&lt;/tr&gt;
-&lt;/thead&gt;
-&lt;tbody&gt;
-&lt;tr class=&#34;odd&#34;&gt;
-&lt;td style=&#34;text-align: left;&#34;&gt;Princeton University&lt;/td&gt;
-&lt;td style=&#34;text-align: right;&#34;&gt;0.0437282&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr class=&#34;even&#34;&gt;
-&lt;td style=&#34;text-align: left;&#34;&gt;Stanford University&lt;/td&gt;
-&lt;td style=&#34;text-align: right;&#34;&gt;0.0434163&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr class=&#34;odd&#34;&gt;
-&lt;td style=&#34;text-align: left;&#34;&gt;New York University&lt;/td&gt;
-&lt;td style=&#34;text-align: right;&#34;&gt;0.0408766&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr class=&#34;even&#34;&gt;
-&lt;td style=&#34;text-align: left;&#34;&gt;University of Oxford&lt;/td&gt;
-&lt;td style=&#34;text-align: right;&#34;&gt;0.0374294&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr class=&#34;odd&#34;&gt;
-&lt;td style=&#34;text-align: left;&#34;&gt;University of Arizona&lt;/td&gt;
-&lt;td style=&#34;text-align: right;&#34;&gt;0.0367260&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr class=&#34;even&#34;&gt;
-&lt;td style=&#34;text-align: left;&#34;&gt;Harvard University&lt;/td&gt;
-&lt;td style=&#34;text-align: right;&#34;&gt;0.0323110&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr class=&#34;odd&#34;&gt;
-&lt;td style=&#34;text-align: left;&#34;&gt;University of Pittsburgh (HPS)&lt;/td&gt;
-&lt;td style=&#34;text-align: right;&#34;&gt;0.0296616&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr class=&#34;even&#34;&gt;
-&lt;td style=&#34;text-align: left;&#34;&gt;Massachusetts Institute of Technology&lt;/td&gt;
-&lt;td style=&#34;text-align: right;&#34;&gt;0.0278274&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr class=&#34;odd&#34;&gt;
-&lt;td style=&#34;text-align: left;&#34;&gt;University of Chicago&lt;/td&gt;
-&lt;td style=&#34;text-align: right;&#34;&gt;0.0277885&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr class=&#34;even&#34;&gt;
-&lt;td style=&#34;text-align: left;&#34;&gt;University of Toronto&lt;/td&gt;
-&lt;td style=&#34;text-align: right;&#34;&gt;0.0260106&lt;/td&gt;
-&lt;/tr&gt;
-&lt;/tbody&gt;
-&lt;/table&gt;
-
-&lt;p&gt;How well do PGR scores predict these rankings? Following Wallace we’ll
-start with the 2006 PGR. But we’ll also consider the five iterations
-since. I’ve put the PageRanks (the &lt;em&gt;y&lt;/em&gt;-axis) on a log scale for
-visibility.&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&#34;http://jonathanweisberg.org/img/page-rank-2/unnamed-chunk-6-1.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
-
-&lt;p&gt;Overall the correlation looks pretty strong, ranging from 0.66 in 2006
-to 0.73 in 2014. And that seems consistent with Wallace’s original
-finding, a correlation of 0.75 between the 2006 PGR and all placement
-data up through 2016.&lt;/p&gt;
-
-&lt;p&gt;Notice though, the connection gets much weaker when PGR ratings are
-lower. Below a PGR rating of 3 or so, PageRank doesn’t seem to increase
-much with PGR rating: the average correlation is only 0.25.&lt;/p&gt;
-
-&lt;p&gt;We have two conclusions so far then. First, as Wallace found, PGR rating
-seems to predict PageRank pretty well, even when the ratings are
-collected almost a decade in advance. But second, this effect is much
-stronger for programs with high PGR ratings.&lt;/p&gt;
-
-&lt;h1 id=&#34;predicting-pagerank-from-pagerank&#34;&gt;Predicting PageRank from PageRank&lt;/h1&gt;
-
-&lt;p&gt;What if our hypothetical grad student had relied on the available
-placement data instead of PGR scores in deciding where to go?&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&#34;http://jonathanweisberg.org/img/page-rank-2/unnamed-chunk-8-1.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
-
-&lt;p&gt;Well they’d probably have been better off using the PGR in 2006. But
-PageRank gets pretty competitive with PGR starting around 2010, when the
-placement data gets richer.&lt;/p&gt;
-
-&lt;p&gt;It might be that PageRank has the potential to be a better
-predictor—even long range—provided we have enough placement data. Or it
-might be that PageRank is only better at close range. We can’t be sure,
-but hopefully we’ll find out in a few years as the APDA database grows.&lt;/p&gt;
-
-&lt;h1 id=&#34;tenure-track-only&#34;&gt;Tenure-track Only&lt;/h1&gt;
-
-&lt;p&gt;Finally, let’s do the same analysis but counting only tenure-track
-placements toward a department’s PageRank. Here are our top 10 programs
-then (a more similar group to what we saw last time, note).&lt;/p&gt;
-
-&lt;table&gt;
-&lt;thead&gt;
-&lt;tr class=&#34;header&#34;&gt;
-&lt;th style=&#34;text-align: left;&#34;&gt;Program&lt;/th&gt;
-&lt;th style=&#34;text-align: right;&#34;&gt;PageRank 2014-18&lt;/th&gt;
-&lt;/tr&gt;
-&lt;/thead&gt;
-&lt;tbody&gt;
-&lt;tr class=&#34;odd&#34;&gt;
-&lt;td style=&#34;text-align: left;&#34;&gt;Princeton University&lt;/td&gt;
-&lt;td style=&#34;text-align: right;&#34;&gt;0.0837437&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr class=&#34;even&#34;&gt;
-&lt;td style=&#34;text-align: left;&#34;&gt;University of Pittsburgh (HPS)&lt;/td&gt;
-&lt;td style=&#34;text-align: right;&#34;&gt;0.0640854&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr class=&#34;odd&#34;&gt;
-&lt;td style=&#34;text-align: left;&#34;&gt;University of Oxford&lt;/td&gt;
-&lt;td style=&#34;text-align: right;&#34;&gt;0.0573890&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr class=&#34;even&#34;&gt;
-&lt;td style=&#34;text-align: left;&#34;&gt;University of Chicago&lt;/td&gt;
-&lt;td style=&#34;text-align: right;&#34;&gt;0.0519388&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr class=&#34;odd&#34;&gt;
-&lt;td style=&#34;text-align: left;&#34;&gt;Yale University&lt;/td&gt;
-&lt;td style=&#34;text-align: right;&#34;&gt;0.0452552&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr class=&#34;even&#34;&gt;
-&lt;td style=&#34;text-align: left;&#34;&gt;Harvard University&lt;/td&gt;
-&lt;td style=&#34;text-align: right;&#34;&gt;0.0420271&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr class=&#34;odd&#34;&gt;
-&lt;td style=&#34;text-align: left;&#34;&gt;Massachusetts Institute of Technology&lt;/td&gt;
-&lt;td style=&#34;text-align: right;&#34;&gt;0.0374587&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr class=&#34;even&#34;&gt;
-&lt;td style=&#34;text-align: left;&#34;&gt;Rutgers University&lt;/td&gt;
-&lt;td style=&#34;text-align: right;&#34;&gt;0.0360075&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr class=&#34;odd&#34;&gt;
-&lt;td style=&#34;text-align: left;&#34;&gt;New York University&lt;/td&gt;
-&lt;td style=&#34;text-align: right;&#34;&gt;0.0335406&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr class=&#34;even&#34;&gt;
-&lt;td style=&#34;text-align: left;&#34;&gt;University of California, Berkeley&lt;/td&gt;
-&lt;td style=&#34;text-align: right;&#34;&gt;0.0290834&lt;/td&gt;
-&lt;/tr&gt;
-&lt;/tbody&gt;
-&lt;/table&gt;
-
-&lt;p&gt;Here are the comparisons with past PGR scores.&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&#34;http://jonathanweisberg.org/img/page-rank-2/unnamed-chunk-11-1.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
-
-&lt;p&gt;And here are past PageRanks.&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&#34;http://jonathanweisberg.org/img/page-rank-2/unnamed-chunk-12-1.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
-
-&lt;p&gt;Unsurprisingly, restricting ourselves to TT placements makes things
-noisier across the board. PGR-based predictions show more resilience
-here, possibly because they’re only affected by the added noise at one
-end.&lt;/p&gt;
 </description>
     </item>
     

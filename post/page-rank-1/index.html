@@ -10,8 +10,8 @@
     <meta name="author" content="Jonathan Weisberg">
     
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:site" content="@jweisber">
-    <meta name="twitter:creator" content="@jweisber">
+    <meta name="twitter:site" content="@">
+    <meta name="twitter:creator" content="@">
     <meta name="twitter:title" content="Placement, PageRank, and the PGR: Part 1">
     <meta name="twitter:description" content="This is the first of two posts devoted to an idea of David Wallace&rsquo;s.
  Part 1 Part 2 Source on GitHub  Suppose you pick a philosophy PhD program at random and you go visit their website. There you pick a random person from the faculty list and see where they got their PhD. Then you go to that program&rsquo;s website and repeat the exercise: pick a random faculty member, see where they did their PhD, and go to that program&rsquo;s website.">
@@ -31,19 +31,13 @@
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
     <link href="/css/prism.css" rel="stylesheet" />
     <link href="/css/scarab.css" rel="stylesheet">
-    <script type="text/x-mathjax-config">
-      MathJax.Hub.Config({
-        tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]},
-        "HTML-CSS": {
-          availableFonts: ["Neo-Euler"],
-          preferredFont: "Neo-Euler",
-          webFont: "Neo-Euler",
-          imageFont: "Neo-Euler",
-        }
-      });
+    <script>
+      window.MathJax = {
+        tex: { inlineMath: [['$','$'], ['\\(','\\)']] },
+        output: { font: 'mathjax-stix2', linebreaks: { inline: false } }
+      };
     </script>
-    <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
-    </script>
+    <script defer src="https://cdn.jsdelivr.net/npm/mathjax@4.1.3/tex-mml-chtml.js"></script>
     
     
     

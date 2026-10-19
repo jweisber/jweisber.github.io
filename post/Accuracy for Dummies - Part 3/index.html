@@ -10,8 +10,8 @@
     <meta name="author" content="Jonathan Weisberg">
     
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:site" content="@jweisber">
-    <meta name="twitter:creator" content="@jweisber">
+    <meta name="twitter:site" content="@">
+    <meta name="twitter:creator" content="@">
     <meta name="twitter:title" content="Accuracy for Dummies, Part 3: Beyond the Second Dimension">
     <meta name="twitter:description" content="Last time we saw why accuracy-mavens prefer Brier distance to Euclidean distance. But we did everything in two dimensions. That&rsquo;s fine for a coin toss, with only two possibilities. But what if there are three doors and one of them has a prize behind it??
 Don&rsquo;t panic! Today we&rsquo;re going to verify that Brier distance is still a proper way of measuring inaccuracy, even when there are more than two possibilities.">
@@ -31,19 +31,13 @@ Don&rsquo;t panic! Today we&rsquo;re going to verify that Brier distance is stil
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
     <link href="/css/prism.css" rel="stylesheet" />
     <link href="/css/scarab.css" rel="stylesheet">
-    <script type="text/x-mathjax-config">
-      MathJax.Hub.Config({
-        tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]},
-        "HTML-CSS": {
-          availableFonts: ["Neo-Euler"],
-          preferredFont: "Neo-Euler",
-          webFont: "Neo-Euler",
-          imageFont: "Neo-Euler",
-        }
-      });
+    <script>
+      window.MathJax = {
+        tex: { inlineMath: [['$','$'], ['\\(','\\)']] },
+        output: { font: 'mathjax-stix2', linebreaks: { inline: false } }
+      };
     </script>
-    <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
-    </script>
+    <script defer src="https://cdn.jsdelivr.net/npm/mathjax@4.1.3/tex-mml-chtml.js"></script>
     
     
     

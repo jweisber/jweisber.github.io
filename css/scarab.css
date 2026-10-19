@@ -1,45 +1,66 @@
-@import url(https://fonts.googleapis.com/css?family=Josefin+Slab:400|Alegreya:400,400i,700|Ubuntu:500);
+@import url(https://fonts.googleapis.com/css2?family=Josefin+Slab:wght@400&family=STIX+Two+Text:ital,wght@0,400;0,700;1,400;1,700&family=Ubuntu:wght@500&display=swap);
 
-/* 
+/*
   COLOR SCHEME
-  ------------
-  background: #f8f8f8
-  text: #040F0F
-  headings: #D62839
-  navbar: #3F3250
-  links: #f25757
-  hover: #4C6085
 */
+
+:root {
+  --band: #1B2559;        /* navbar, headings, link hover */
+  --band-dark: #121A42;   /* navbar active/toggle */
+  --band-ink: #FFF7F4;    /* navbar text */
+  --band-hover: #FFA9CF;  /* navbar hover */
+  --paper: #FFFDFA;       /* background */
+  --ink: #1D1B22;         /* body text */
+  --link: #B5176B;        /* links */
+  --muted: #5B5866;       /* tags, secondary meta */
+  --rule: #E6E1D8;        /* hr, table rules */
+}
 
 body {
   padding-top: 70px;
-  background: #f8f8f8;
-  color: #040F0F;
-  font-family: "Alegreya", "Hoefler Text", Times, serif;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: "STIX Two Text", "STIX Two", Times, serif;
   font-weight: 400;
-  font-size: 14pt;
+  font-size: 13.5pt;
 }
 
 a {
-  color: #f25757;
+  color: var(--link);
 }
-a:hover {
-  color: #4C6085;
+a:hover, a:focus {
+  color: var(--band);
   text-decoration: none;
+}
+a:focus-visible {
+  outline: 2px solid var(--link);
+  outline-offset: 2px;
 }
 .pub-link a {
   font-weight: bold;
 }
 .blog-post a {
-  color: #040F0F;
-  border-bottom: 1px dotted #4C6085;
+  color: var(--ink);
+  border-bottom: 1px solid var(--link);
 }
 .blog-post a:hover {
-  color: #4C6085;
+  color: var(--link);
 }
 .post-back-link a {
-  color: #f25757;
+  color: var(--link);
   border-bottom: none;
+}
+
+hr {
+  border-top-color: var(--rule);
+}
+
+mjx-container {
+  color: inherit;
+}
+mjx-container[display="true"] {
+  overflow-x: auto;
+  overflow-y: hidden;
 }
 
 h1, h2, h3, h4  {
@@ -50,10 +71,11 @@ h1, h2, h3, h4  {
   font-family: "Josefin Slab", serif;
   font-weight: normal;  
   letter-spacing: 0rem;
+  color: var(--band);
 }
 
-.blog-post h1, h2, h3 {
-  color: #D62839;
+.blog-post h1, .blog-post h2, .blog-post h3 {
+  color: var(--band);
 }
 .blog-post h1 {
   font-size: 2.5rem;
@@ -121,6 +143,14 @@ pre[class*="language-"] {
 .post-tags {
   font-size: .85em;
   font-style: italic;
+  color: var(--muted);
+}
+.blog-post .post-tags a {
+  color: var(--muted);
+  border-bottom: 1px dotted var(--muted);
+}
+.blog-post .post-tags a:hover {
+  color: var(--link);
 }
 
 .post-date {
@@ -164,22 +194,22 @@ footer a {
 /* Pagination */
 
 nav > ul.pagination > li > a {
-  color: #f25757;
-  background: #f8f8f8;
-  border-color: #f25757 !important;
+  color: var(--link);
+  background: var(--paper);
+  border-color: var(--link) !important;
   font-style: italic;
 }
 
 nav > ul.pagination > li > a:hover {
-  color: #f25757;
-  background: #f0f0f0;
+  color: var(--link);
+  background: var(--rule);
   text-decoration: none;
 }
 
 nav > ul.pagination > li.active > a {
-  color: #f8f8f8;
-  background: #f25757 !important;
-  background-color: #f25757 !important;
+  color: var(--paper);
+  background: var(--link) !important;
+  background-color: var(--link) !important;
 }
 
 
@@ -242,58 +272,58 @@ nav > ul.pagination > li.active > a {
   font-size: 11pt;
 }
 .navbar-default {
-  background-color: #3F3250;
-  border-color: #3F3250;
+  background-color: var(--band);
+  border-color: var(--band);
 }
 .navbar-default .navbar-brand {
-  color: #f8f8f8;
+  color: var(--band-ink);
 }
 .navbar-default .navbar-brand:hover,
 .navbar-default .navbar-brand:focus {
-  color: #dbd1e7;
+  color: var(--band-hover);
 }
 .navbar-default .navbar-text {
-  color: #f8f8f8;
+  color: var(--band-ink);
 }
 
 .navbar-default .navbar-nav > li > a {
-  color: #f8f8f8;
+  color: var(--band-ink);
 }
 .navbar-default .navbar-nav > li > a:hover,
 .navbar-default .navbar-nav > li > a:focus {
-  color: #dbd1e7;
+  color: var(--band-hover);
 }
 .navbar-default .navbar-nav > .active > a,
 .navbar-default .navbar-nav > .active > a:hover,
 .navbar-default .navbar-nav > .active > a:focus {
-  color: #dbd1e7;
-  background-color: #414141;
+  color: var(--band-hover);
+  background-color: var(--band-dark);
 }
 .navbar-default .navbar-nav > .open > a,
 .navbar-default .navbar-nav > .open > a:hover,
 .navbar-default .navbar-nav > .open > a:focus {
-  color: #dbd1e7;
-  background-color: #414141;
+  color: var(--band-hover);
+  background-color: var(--band-dark);
 }
 .navbar-default .navbar-toggle {
-  border-color: #414141;
+  border-color: var(--band-dark);
 }
 .navbar-default .navbar-toggle:hover,
 .navbar-default .navbar-toggle:focus {
-  background-color: #414141;
+  background-color: var(--band-dark);
 }
 .navbar-default .navbar-toggle .icon-bar {
-  background-color: #f8f8f8;
+  background-color: var(--band-ink);
 }
 .navbar-default .navbar-collapse,
 .navbar-default .navbar-form {
-  border-color: #f8f8f8;
+  border-color: var(--band-ink);
 }
 .navbar-default .navbar-link {
-  color: #f8f8f8;
+  color: var(--band-ink);
 }
 .navbar-default .navbar-link:hover {
-  color: #dbd1e7;
+  color: var(--band-hover);
 }
 
 
@@ -330,14 +360,14 @@ table th{
 }
 table td{
   vertical-align:top;
-  border-top:1px solid #ddd;
+  border-top:1px solid var(--rule);
 }
 table tbody th{
-  border-top:1px solid #ddd;
+  border-top:1px solid var(--rule);
   vertical-align:top
 }
 table{
-  border:1px solid #ddd;
+  border:1px solid var(--rule);
   border-collapse:separate;
   *border-collapse:collapse;
   -webkit-border-radius:4px;
@@ -345,7 +375,7 @@ table{
   border-radius:4px
 }
 table th+th,table td+td,table th+td{
-  border-left:1px solid #ddd
+  border-left:1px solid var(--rule)
 }
 table thead tr:first-child th:first-child,table tbody tr:first-child td:first-child{
   -webkit-border-radius:4px 0 0 0;
@@ -377,8 +407,8 @@ caption{
   text-transform:uppercase;
   letter-spacing:2px;
   word-spacing:.2em;
-  background:rgba(0,0,0,.75);
-  color:#EEE;
+  background:var(--band);
+  color:var(--band-ink);
   padding:4px;
   -webkit-border-radius:4px;
   margin:4px 0;

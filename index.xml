@@ -6,8 +6,195 @@
     <description>Recent content on Jonathan Weisberg</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Fri, 09 Oct 2026 08:58:59 -0400</lastBuildDate>
+    <lastBuildDate>Mon, 19 Oct 2026 00:00:02 -0500</lastBuildDate>
     <atom:link href="http://jonathanweisberg.org/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Geometric Pooling: A User&#39;s Guide</title>
+      <link>http://jonathanweisberg.org/publication/2026%20Geometric%20Pooling/</link>
+      <pubDate>Mon, 19 Oct 2026 00:00:02 -0500</pubDate>
+      
+      <guid>http://jonathanweisberg.org/publication/2026%20Geometric%20Pooling/</guid>
+      <description>&lt;p&gt;Evidence is univocal, not equivocal. Its implications don&amp;rsquo;t depend on our beliefs or values, the evidence says what it says. But that doesn&amp;rsquo;t mean there&amp;rsquo;s no room for rational disagreement between people with the same evidence. Evaluating evidence is a lot like polling an electorate: getting an accurate reading requires a bit of luck, and even the best pollsters are bound to get slightly different results. So even though evidence is univocal, rationality&amp;rsquo;s requirements are not &amp;ldquo;unique&amp;rdquo;. Understanding this resolves several puzzles to do with uniqueness and disagreement.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Jeffrey Pooling</title>
+      <link>http://jonathanweisberg.org/publication/2025%20Jeffrey%20Pooling/</link>
+      <pubDate>Mon, 19 Oct 2026 00:00:01 -0500</pubDate>
+      
+      <guid>http://jonathanweisberg.org/publication/2025%20Jeffrey%20Pooling/</guid>
+      <description>&lt;p&gt;Evidence is univocal, not equivocal. Its implications don&amp;rsquo;t depend on our beliefs or values, the evidence says what it says. But that doesn&amp;rsquo;t mean there&amp;rsquo;s no room for rational disagreement between people with the same evidence. Evaluating evidence is a lot like polling an electorate: getting an accurate reading requires a bit of luck, and even the best pollsters are bound to get slightly different results. So even though evidence is univocal, rationality&amp;rsquo;s requirements are not &amp;ldquo;unique&amp;rdquo;. Understanding this resolves several puzzles to do with uniqueness and disagreement.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>&#34;Everyone Who Disagrees With Me Is an Idiot&#34;, Part 1</title>
+      <link>http://jonathanweisberg.org/post/distrust-1/</link>
+      <pubDate>Mon, 19 Oct 2026 00:00:00 -0500</pubDate>
+      
+      <guid>http://jonathanweisberg.org/post/distrust-1/</guid>
+      <description>
+
+&lt;p&gt;It&amp;rsquo;s only natural to place less trust in the judgment of those who disagree with you. After all, from your point of view, those people are mistaken! And making mistakes is a sign of incompetence.&lt;/p&gt;
+
+&lt;p&gt;This kind of distrust is actually baked into a number of models in social epistemology (for example: &lt;a href=&#34;https://www.jasss.org/5/3/2.html&#34; target=&#34;_blank&#34;&gt;here&lt;/a&gt;, &lt;a href=&#34;https://doi.org/10.1093/bjps/axv025&#34; target=&#34;_blank&#34;&gt;here&lt;/a&gt;, and &lt;a href=&#34;https://doi.org/10.1007/s13194-018-0213-9&#34; target=&#34;_blank&#34;&gt;here&lt;/a&gt;). I gave an argument against the rationality of one such model in &lt;a href=&#34;http://jonathanweisberg.org/post/ow-commutativity/&#34;&gt;a previous post&lt;/a&gt;. But the argument doesn&amp;rsquo;t really depend on the details of the model; any rule that discounts evidence reported by a source you disagree with will run into the same problem.&lt;/p&gt;
+
+&lt;p&gt;A policy of distrusting those who disagree with you is also reminiscient of some classic issues in the debate about peer disagreement. So I think it&amp;rsquo;s worth getting clear on the extent to which such distrust makes sense, and trying to understand, when it goes wrong, &lt;em&gt;why&lt;/em&gt; it goes wrong. In this post I&amp;rsquo;ll take a first stab at a diagnosis.&lt;/p&gt;
+
+&lt;div style=&#34;display:none&#34;&gt;
+$\newcommand{\E}{\mathbb{E}}$
+$\renewcommand{\d}[1]{\,\mathrm{d}#1}$
+$\newcommand{\n}[1]{\overline{#1}}$
+&lt;/div&gt;
+
+&lt;h1 id=&#34;one-model-of-competence&#34;&gt;One Model of Competence&lt;/h1&gt;
+
+&lt;p&gt;Suppose you and a friend are investigating some hypothesis, $H$. If $H$ is true, then experiments on $H$ yield a &amp;ldquo;positive&amp;rdquo; result with some fixed probability $p$, whereas if $H$ is false, the &amp;ldquo;positive&amp;rdquo; rate is instead some lower value $q$. So we can think of $H$ as saying that some coin has bias $p$, and $\n{H}$ as saying the bias is instead $q$.&lt;/p&gt;
+
+&lt;p&gt;We&amp;rsquo;ll understand your friend&amp;rsquo;s competence as their reliability at recognizing positive evidence as positive, and negative evidence as negative. In other words, it&amp;rsquo;s the probability that they&amp;rsquo;ll correctly identify a heads as heads, and a tails as tails.&lt;/p&gt;
+
+&lt;p&gt;Now, imagine you and your friend each go off and do some independent experimenting on $H$. It seems plausible that, when you reconvene, you should find yourselves with similar opinions, if your friend is competent. Of course, it&amp;rsquo;s possible that one of you will get an unlucky batch of misleading evidence, and end up with the wrong view of $H$ despite being perfectly competent. But the more evidence you gather, the more likely it is that you&amp;rsquo;ll converge on the truth about $H$&amp;mdash;if, again, your friend is competent.&lt;/p&gt;
+
+&lt;p&gt;So shouldn&amp;rsquo;t you question your friend&amp;rsquo;s competence if they come back with a different opinion than yours? And suspect them more the more their opinion differs?&lt;/p&gt;
+
+&lt;p&gt;Curiously, no. At least, not in this model. The figure below shows how your estimate of your friend&amp;rsquo;s competence varies with the number of &amp;ldquo;heads&amp;rdquo; they claim to have encountered, in one instance of the model.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;http://jonathanweisberg.org/img/distrust-1/fig1.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;In this instance:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;the coin&amp;rsquo;s bias is either $p=&amp;frac34;$ or $q=&amp;frac14;$,&lt;/li&gt;
+&lt;li&gt;your friend does $10$ tosses, and&lt;/li&gt;
+&lt;li&gt;they might be perfectly competent ($C = 1$), perfectly incompetent ($C = &amp;frac12;$), or anything in between. All possibilities in this range are equally probable to start.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;The exact result depends on your $P(H)$, but the pattern is the same across various opinions you might hold about $H$: the more extreme your friend&amp;rsquo;s opinion, the higher you&amp;rsquo;ll rate their competence.&lt;/p&gt;
+
+&lt;h1 id=&#34;understanding-the-result&#34;&gt;Understanding the Result&lt;/h1&gt;
+
+&lt;p&gt;That&amp;rsquo;s an odd result, so let&amp;rsquo;s see if we can understand how it arises.&lt;/p&gt;
+
+&lt;p&gt;To fix ideas, suppose for a moment that $H$ is true, so the coin has bias $p=&amp;frac34;$. If your friend is perfectly competent ($C=1$), then the most likely outcome is they think they observe $7$ or $8$ heads. Whereas, if they&amp;rsquo;re perfectly incompetent ($C=&amp;frac12;$), they&amp;rsquo;ll probably claim to get around $5$ heads.&lt;/p&gt;
+
+&lt;p&gt;But that&amp;rsquo;s the wrong comparison to make! What matters is not where each likelihood function has its peak, but where the &lt;em&gt;ratio of the two likelihood functions&lt;/em&gt; has its maximum. That tells us where the competence and incompetence hypotheses have the starkest contrast, and thus where the strongest evidence for discriminating between them lies.&lt;/p&gt;
+
+&lt;p&gt;Now, the more &amp;ldquo;heads&amp;rdquo; your friend reports, the more this ratio increases. Think about it this way: each heads is $1.5$ times more likely given competence than it is given incompetence. Each time the coin lands, there&amp;rsquo;s only a $&amp;frac12;$ chance they&amp;rsquo;ll see it as heads if they&amp;rsquo;re incompetent, as compared with a $&amp;frac34;$ chance if they&amp;rsquo;re competent. So each time they call &amp;ldquo;heads&amp;rdquo;, the odds of the competent hypothesis increase by a factor of $1.5$.&lt;/p&gt;
+
+&lt;p&gt;That&amp;rsquo;s all assuming the bias is $p=&amp;frac34;$, which of course you don&amp;rsquo;t know. If instead the bias is $q=&amp;frac14;$, the story inverts: the competence hypothesis gets a $1.5\times$ boost each time your friend calls &amp;ldquo;tails&amp;rdquo; instead. But, while the evidence for competence is strongest at the opposite extreme in this case, it is still strongest at the extreme.&lt;/p&gt;
+
+&lt;p&gt;You might think that, if you don&amp;rsquo;t know which case you&amp;rsquo;re in&amp;mdash;$p=&amp;frac34;$ or $q=&amp;frac14;$&amp;mdash;then this extremizing tendency will get washed out when you average the two cases according to your probability for each. But no, as the following figure shows. Even if you&amp;rsquo;re entirely uncertain which is the true bias, with $P(H) = P(\n{H}) = &amp;frac12;$, the starkest contrast is still at the extremes:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;http://jonathanweisberg.org/img/distrust-1/fig2.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;A bit confusingly, that&amp;rsquo;s not where the biggest &lt;em&gt;difference&lt;/em&gt; is between the likelihoods of our two hypotheses about your friend&amp;rsquo;s competence. So it may help to view things on a log scale. Then the differences in the plot tell us where the likelihood &lt;em&gt;ratio&lt;/em&gt; is largest, namely at the extremes:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;http://jonathanweisberg.org/img/distrust-1/fig3.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+
+&lt;h1 id=&#34;a-diagnosis&#34;&gt;A Diagnosis&lt;/h1&gt;
+
+&lt;p&gt;So our diagnosis, at least in the case of this model, is as follows. The temptation to think that distrust tracks difference of opinion comes from a confusion between two questions.&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;What outcome is most expected if your friend is competent?&lt;/li&gt;
+&lt;li&gt;What outcome has the greatest contrast in what we expect from competence vs. incompetence?&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;That question (2) is what matters is a classic Bayesian moral, the law of likelihood. Relying instead on question (1) is a fallacy Elliott Sober dubs &lt;a href=&#34;https://joelvelasco.net/teaching/249/Sober%2005%20-%20is%20drift%20a%20serious%20alternative.pdf&#34; target=&#34;_blank&#34;&gt;&lt;em&gt;probabilistic modus tollens&lt;/em&gt;&lt;/a&gt;. &amp;ldquo;If my friend is competent, they should end up with an opinion similar to mine; they haven&amp;rsquo;t; so they&amp;rsquo;re probably not competent.&amp;rdquo; Tempting, but unBayesian.&lt;/p&gt;
+
+&lt;h1 id=&#34;getting-more-realistic&#34;&gt;Getting More Realistic&lt;/h1&gt;
+
+&lt;p&gt;Of course, that&amp;rsquo;s just one model, and it&amp;rsquo;s unrealistic in a number of ways. For one thing, it treats incompetence as random noise: on this model, an incompetent person treats positive and negative evidence identically, misreading both at the same rate. But, realistically, people misinterpret evidence and arguments in more systematic and biased ways, like wishful thinking.&lt;/p&gt;
+
+&lt;p&gt;So, a more realistic model would be one where your friend has a preference for $H$, and thus tends to see tails as heads more often than the other way around. Or, maybe, they have no initial preference, but as the data come in, they tend to interpret new data in line with whichever hypothesis has been favoured by the data so far.&lt;/p&gt;
+
+&lt;p&gt;I&amp;rsquo;ll try to work out the details of this kind of variation if I get the time. Meanwhile, here&amp;rsquo;s the math on the naive model we used here.&lt;/p&gt;
+
+&lt;h1 id=&#34;the-gory-details&#34;&gt;The Gory Details&lt;/h1&gt;
+
+&lt;p&gt;Recall the model&amp;rsquo;s assumptions:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;A coin has one of two possible biases, $p$ or $q$.&lt;/li&gt;
+&lt;li&gt;Your friend flips the coin some fixed number of times, $n$.&lt;/li&gt;
+&lt;li&gt;Their competence level is some probability, $C \sim \textrm{Uniform}(a,b)$.
+
+&lt;ul&gt;
+&lt;li&gt;They perceive each toss correctly with probability $C$, otherwise they perceive the opposite result.&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;At the end, they report how many heads they think they observed, $X$.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Under these assumptions, we can analyze the expected value of their competence given their report as follows:
+\begin{align}
+\E [ C \mid X=k ]
+  &amp;amp;= \int_a^b c \, f(c \mid k) \d{c} \\&lt;br /&gt;
+  &amp;amp;= \int_a^b c \, \frac{ f( c) \, P(k \mid c) }{ P(k) } \d{c} \\&lt;br /&gt;
+  &amp;amp;= \frac{ \int_a^b c \, f( c) \, P(k \mid c) \d{c} }{ P(k) } \\&lt;br /&gt;
+  &amp;amp;= \frac{ \int_a^b c \, f( c) \, P(k \mid c) \d{c} }{ \int_a^b f( c) \, P(k \mid c) \d{c} } \\&lt;br /&gt;
+  &amp;amp;= \frac{ \int_a^b c \, P(k \mid c) \d{c} }{ \int_a^b P(k \mid c) \d{c} }.
+\end{align}
+Now, assuming $H$ and $c$ are independent,
+\begin{align}
+P(k \mid c)
+  &amp;amp;= P(H) P(k \mid H, c) + P(\n{H}) P(k \mid \n{H}, c).
+\end{align}
+And if we define
+\begin{align}
+\rho(c, \theta)
+  &amp;amp;= c \theta + (1-c)(1-\theta), \\&lt;br /&gt;
+\beta(x)
+  &amp;amp;= x^k (1-x)^{n-k},
+\end{align}
+then we can express the conditional probabilities here as:
+\begin{align}
+P(k \mid H, c)
+  &amp;amp;= \binom{n}{k} \rho(c, p)^k (1 - \rho(c, p))^{n-k} \\&lt;br /&gt;
+  &amp;amp;= \binom{n}{k} \beta(\rho(c, p)), \\&lt;br /&gt;
+P(k \mid \n{H}, c)
+  &amp;amp;= \binom{n}{k} \rho(c, q)^k (1 - \rho(c, q))^{n-k} \\&lt;br /&gt;
+  &amp;amp;= \binom{n}{k} \beta(\rho(c, q)).
+\end{align}
+Returning now to our analysis of $\E[C \mid X = k]$:
+\begin{align}
+\E [ C \mid X = k ]
+  &amp;amp;= \frac{ \int_a^b c \, P(k \mid c) \d{c} }{ \int_a^b P(k \mid c) \d{c} } \\&lt;br /&gt;
+  &amp;amp;= \frac{ \int_a^b \left[c \, P(H) P(k \mid H, c) + c \, P(\n{H}) P(k \mid \n{H}, c) \right] \d{c} }{ \int_a^b \left[ P(H) P(k \mid H, c) + P(\n{H}) P(k \mid \n{H}, c) \right] \d{c} } \\&lt;br /&gt;
+  &amp;amp;= \frac{ P(H) \int_a^b c \, \beta(\rho(c, p)) \d{c} + P(\n{H}) \int_a^b c \, \beta(\rho(c, q)) \d{c} }{ P(H) \int_a^b \beta(\rho(c, p)) \d{c} + P(\n{H}) \int_a^b \beta(\rho(c, q)) \d{c} }.
+\end{align}&lt;/p&gt;
+
+&lt;p&gt;This is something we can express straightforwardly &lt;a href=&#34;http://jonathanweisberg.org/code/distrust-1/distrust-1.R&#34;&gt;in code&lt;/a&gt;, and fixing $(p, q, a, b) = (&amp;frac34;, &amp;frac14;, &amp;frac12;, 1)$, we get the first figure above.&lt;/p&gt;
+
+&lt;p&gt;We also focused on the special cases $C=&amp;frac12;$ and $C=1$. Here,
+$$
+\rho(c, \theta) =
+  \begin{cases}
+    &amp;frac12;    &amp;amp; \textrm{ if } c = &amp;frac12;, \\&lt;br /&gt;
+    \theta &amp;amp; \textrm{ if } c = 1,
+  \end{cases}
+$$
+so
+\begin{align}
+P(k \mid C=&amp;frac12;)
+  &amp;amp;= \binom{n}{k} (&amp;frac12;)^n, \\&lt;br /&gt;
+P(k \mid C=1)
+  &amp;amp;= \binom{n}{k} \left[P(H) \, p^k (1-p)^{n-k} + P(\n{H})\, q^k (1-q)^{n-k}\right].
+\end{align}
+These formulas give us the second and third figures above, assuming $P(H) = P(\n{H}) = &amp;frac12;$.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Updating on the Evidence of Others</title>
+      <link>http://jonathanweisberg.org/publication/2024%20Updating%20on%20the%20Evidence%20of%20Others/</link>
+      <pubDate>Mon, 19 Oct 2026 00:00:00 -0500</pubDate>
+      
+      <guid>http://jonathanweisberg.org/publication/2024%20Updating%20on%20the%20Evidence%20of%20Others/</guid>
+      <description>&lt;p&gt;One often learns the opinions of others without getting to hear the evidence behind them. How should you revise your own opinions in such cases? Dietrich (2010) shows that, for opinions about objective chance, the method known as upco effectively adds your interlocutor’s evidence to your own. We provide a simple way of viewing upco that makes properties like Dietrich’s easy to appreciate, and we do three things with it. First, we unify Dietrich’s motivation for upco with another motivation due to Easwaran et al. (2016). Second, we show that laypeople can sometimes use upco to resolve expert disagreements. And third, we use it to cricitize the social argument for the uniqueness thesis.&lt;/p&gt;
+</description>
+    </item>
     
     <item>
       <title>Philosophy Fumbles the Bag</title>
@@ -608,20 +795,20 @@ diverges.&lt;/p&gt;
     
     <item>
       <title>Belief in Psyontology</title>
-      <link>http://jonathanweisberg.org/publication/Belief%20in%20Psyontology/</link>
+      <link>http://jonathanweisberg.org/publication/2020%20Belief%20in%20Psyontology/</link>
       <pubDate>Tue, 10 Dec 2019 21:59:04 -0500</pubDate>
       
-      <guid>http://jonathanweisberg.org/publication/Belief%20in%20Psyontology/</guid>
+      <guid>http://jonathanweisberg.org/publication/2020%20Belief%20in%20Psyontology/</guid>
       <description>&lt;p&gt;Which is more fundamental, full belief or partial belief? I argue that neither is, ontologically speaking. A survey of some relevant cognitive psychology supports a dualist ontology instead. Beliefs come in two kinds, categorical and graded, with neither kind more fundamental than the other. In particular, the graded kind is no more fundamental. When we discuss belief in on/off terms, we are not speaking coarsely or informally about states that are ultimately credal.&lt;/p&gt;
 </description>
     </item>
     
     <item>
       <title>Could&#39;ve Thought Otherwise</title>
-      <link>http://jonathanweisberg.org/publication/Couldve%20Thought%20Otherwise/</link>
+      <link>http://jonathanweisberg.org/publication/2020%20Couldve%20Thought%20Otherwise/</link>
       <pubDate>Tue, 10 Dec 2019 21:58:08 -0500</pubDate>
       
-      <guid>http://jonathanweisberg.org/publication/Couldve%20Thought%20Otherwise/</guid>
+      <guid>http://jonathanweisberg.org/publication/2020%20Couldve%20Thought%20Otherwise/</guid>
       <description>&lt;p&gt;Evidence is univocal, not equivocal. Its implications don&amp;rsquo;t depend on our beliefs or values, the evidence says what it says. But that doesn&amp;rsquo;t mean there&amp;rsquo;s no room for rational disagreement between people with the same evidence. Evaluating evidence is a lot like polling an electorate: getting an accurate reading requires a bit of luck, and even the best pollsters are bound to get slightly different results. So even though evidence is univocal, rationality&amp;rsquo;s requirements are not &amp;ldquo;unique&amp;rdquo;. Understanding this resolves several puzzles to do with uniqueness and disagreement.&lt;/p&gt;
 </description>
     </item>
@@ -1225,873 +1412,6 @@ and likewise for the other $C_i$. The belief-graph here is thus tightly connecte
  &lt;a class=&#34;footnote-return&#34; href=&#34;#fnref:epsilon&#34;&gt;&lt;sup&gt;[return]&lt;/sup&gt;&lt;/a&gt;&lt;/li&gt;
 &lt;li id=&#34;fn:pollock&#34;&gt;Notice we&amp;rsquo;re borrowing the crux of &lt;a href=&#34;https://pdfs.semanticscholar.org/b22f/a2029aad762cbeec8d03659b0f8b71dd6d91.pdf&#34; target=&#34;_blank&#34;&gt;Pollock&amp;rsquo;s (1994)&lt;/a&gt; classic treatment of the lottery and preface paradoxes. We&amp;rsquo;re just plugging his observation into a different formal framework.
  &lt;a class=&#34;footnote-return&#34; href=&#34;#fnref:pollock&#34;&gt;&lt;sup&gt;[return]&lt;/sup&gt;&lt;/a&gt;&lt;/li&gt;
-&lt;/ol&gt;
-&lt;/div&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>Coherentism Without Coherence</title>
-      <link>http://jonathanweisberg.org/post/coherentism-1/</link>
-      <pubDate>Wed, 14 Aug 2019 00:00:00 -0500</pubDate>
-      
-      <guid>http://jonathanweisberg.org/post/coherentism-1/</guid>
-      <description>
-
-&lt;p&gt;If you look at the little network diagram below, you&amp;rsquo;ll probably
-agree that $P$ is the most &amp;ldquo;central&amp;rdquo; node in some intuitive sense.&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&#34;http://jonathanweisberg.org/img/coherentism-1/fig3.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
-
-&lt;p&gt;This post is about using a belief&amp;rsquo;s centrality in the web of belief to
-give a coherentist account of its justification. The more central a
-belief is, the more justified it is.&lt;/p&gt;
-
-&lt;p&gt;But how do we quantify &amp;ldquo;centrality&amp;rdquo;? The rough idea: the more ways there
-are to arrive at a proposition by following inferential pathways in the
-web of belief, the more central it is.&lt;/p&gt;
-
-&lt;p&gt;Since we&amp;rsquo;re coherentists today (for the next 10 minutes, anyway), cyclic
-pathways are allowed here. If we travel
-$P \rightarrow Q \rightarrow R \rightarrow P$, that counts as an
-inferential path leading to $P$. And if we go around that cycle twice,
-that counts as another such pathway.&lt;/p&gt;
-
-&lt;p&gt;You might think this just wrecks the whole idea. Every node has
-infinitely many such pathways leading to it, after all. By cycling
-around and around we can come up with literally any number of pathways
-ending at a given node.&lt;/p&gt;
-
-&lt;p&gt;But, by examining how these pathways differ in the limit, we can
-differentiate between more and less central nodes/beliefs. We can thus
-clarify a sense in which $P$ is most central, and quantify that
-centrality. We can even use that quantity to answer a classic objection
-to coherentism leveled by &lt;a href=&#34;https://philpapers.org/rec/KLEWPC&#34; target=&#34;_blank&#34;&gt;Klein &amp;amp; Warfield
-(1994)&lt;/a&gt;.&lt;/p&gt;
-
-&lt;p&gt;As a bonus, we can do all this without ever giving an account of what
-makes a corpus of beliefs &amp;ldquo;coherent.&amp;rdquo; This flips the script on a lot of
-contemporary formal work on coherentism.&lt;sup class=&#34;footnote-ref&#34; id=&#34;fnref:1&#34;&gt;&lt;a rel=&#34;footnote&#34; href=&#34;#fn:1&#34;&gt;1&lt;/a&gt;&lt;/sup&gt; Because coherentism is
-holistic, you might think it has to evaluate the coherence of a whole
-corpus first, before it can assess the individual members.&lt;sup class=&#34;footnote-ref&#34; id=&#34;fnref:2&#34;&gt;&lt;a rel=&#34;footnote&#34; href=&#34;#fn:2&#34;&gt;2&lt;/a&gt;&lt;/sup&gt; But we&amp;rsquo;ll
-see this isn&amp;rsquo;t so.
-$$
-\newcommand\T{\intercal}
-\newcommand{\A}{\mathbf{A}}
-\renewcommand{\v}{\mathbf{v}}
-$$&lt;/p&gt;
-
-&lt;h1 id=&#34;counting-pathways&#34;&gt;Counting Pathways&lt;/h1&gt;
-
-&lt;p&gt;Our idea is to count how many paths there are leading to $P$ vs. other
-nodes. We start with paths of length $1$, then count paths of length
-$2$, then length $3$, and so on. As we count longer and longer paths,
-each node&amp;rsquo;s count approaches infinity.&lt;/p&gt;
-
-&lt;p&gt;But not their relative ratios! If, at each step, we divide the number of
-paths ending at $P$ by the number of all paths, this ratio converges.&lt;/p&gt;
-
-&lt;p&gt;To find its limit, we represent our graph numerically. A graph can be
-represented in a table, where each node corresponds to a row and column.
-The columns represent &amp;ldquo;sources&amp;rdquo; and the rows represent &amp;ldquo;targets.&amp;rdquo; We put
-a $1$ where the column node points to the row node, otherwise we put a
-$0$.&lt;/p&gt;
-
-&lt;table&gt;
-&lt;thead&gt;
-&lt;tr&gt;
-&lt;th&gt;&lt;/th&gt;
-&lt;th&gt;$P$&lt;/th&gt;
-&lt;th&gt;$Q$&lt;/th&gt;
-&lt;th&gt;$R$&lt;/th&gt;
-&lt;/tr&gt;
-&lt;/thead&gt;
-
-&lt;tbody&gt;
-&lt;tr&gt;
-&lt;td&gt;$P$&lt;/td&gt;
-&lt;td&gt;0&lt;/td&gt;
-&lt;td&gt;1&lt;/td&gt;
-&lt;td&gt;1&lt;/td&gt;
-&lt;/tr&gt;
-
-&lt;tr&gt;
-&lt;td&gt;$Q$&lt;/td&gt;
-&lt;td&gt;1&lt;/td&gt;
-&lt;td&gt;0&lt;/td&gt;
-&lt;td&gt;0&lt;/td&gt;
-&lt;/tr&gt;
-
-&lt;tr&gt;
-&lt;td&gt;$R$&lt;/td&gt;
-&lt;td&gt;0&lt;/td&gt;
-&lt;td&gt;1&lt;/td&gt;
-&lt;td&gt;0&lt;/td&gt;
-&lt;/tr&gt;
-&lt;/tbody&gt;
-&lt;/table&gt;
-
-&lt;p&gt;Hiding the row and column names gives us a matrix we&amp;rsquo;ll call $\A$: $$
-\A =
-\left[
-  \begin{matrix}
-    0 &amp;amp; 1 &amp;amp; 1 \\&lt;br /&gt;
-    1 &amp;amp; 0 &amp;amp; 0 \\&lt;br /&gt;
-    0 &amp;amp; 1 &amp;amp; 0
-  \end{matrix}
-\right].
-$$ Notice how each row records the length-$1$ paths leading to the
-corresponding node. There are two such paths to $P$, and one each to $Q$
-and $R$.&lt;sup class=&#34;footnote-ref&#34; id=&#34;fnref:3&#34;&gt;&lt;a rel=&#34;footnote&#34; href=&#34;#fn:3&#34;&gt;3&lt;/a&gt;&lt;/sup&gt;&lt;/p&gt;
-
-&lt;p&gt;The key to counting longer paths is to take powers of $\A$. If we
-multiply $\A$ by itself to get $\A^2$, we get a record of the length-$2$
-paths: $$
-\A^2 = \A \times \A = \left[
-  \begin{matrix}
-    0 &amp;amp; 1 &amp;amp; 1 \\&lt;br /&gt;
-    1 &amp;amp; 0 &amp;amp; 0 \\&lt;br /&gt;
-    0 &amp;amp; 1 &amp;amp; 0
-  \end{matrix}
-\right] \left[
-  \begin{matrix}
-    0 &amp;amp; 1 &amp;amp; 1 \\&lt;br /&gt;
-    1 &amp;amp; 0 &amp;amp; 0 \\&lt;br /&gt;
-    0 &amp;amp; 1 &amp;amp; 0
-  \end{matrix}
-\right] =
-\left[
-  \begin{matrix}
-    1 &amp;amp; 1 &amp;amp; 0 \\&lt;br /&gt;
-    0 &amp;amp; 1 &amp;amp; 1 \\&lt;br /&gt;
-    1 &amp;amp; 0 &amp;amp; 0
-  \end{matrix}
-\right].
-$$ There are two such paths to $P$: $$
-\begin{aligned}
-  Q \rightarrow R \rightarrow P,\\&lt;br /&gt;
-  P \rightarrow Q \rightarrow P.
-\end{aligned}
-$$ Similarly for $Q$: $$
-\begin{aligned}
-  Q \rightarrow P \rightarrow Q,\\&lt;br /&gt;
-  R \rightarrow P \rightarrow Q.
-\end{aligned}
-$$ While $R$ has just one length-$2$ path:
-$$ P \rightarrow Q \rightarrow R. $$ If we go on to examine $\A^3$, its
-rows will tally the length-$3$ paths; in general, $\A^n$ tallies the
-paths of length-$n$.&lt;/p&gt;
-
-&lt;p&gt;But we want relative ratios, not raw counts. The trick to getting these
-is to divide $\A$ at each step by a special number $\lambda$, known as
-the &amp;ldquo;leading eigenvalue&amp;rdquo; of $\A$ (details &lt;a href=&#34;#tech&#34;&gt;below&lt;/a&gt;). If we take
-the limit
-$$ \lim_{n \rightarrow \infty} \left(\frac{\A}{\lambda}\right)^n $$ we
-get a matrix whose columns all have a special property: $$
-\left[
-  \begin{matrix}
-    0.41 &amp;amp; 0.55 &amp;amp; 0.31 \\&lt;br /&gt;
-    0.31 &amp;amp; 0.41 &amp;amp; 0.23 \\&lt;br /&gt;
-    0.23 &amp;amp; 0.31 &amp;amp; 0.18
-  \end{matrix}
-\right].
-$$ They all have the same relative proportions. They&amp;rsquo;re multiples of the
-same &amp;ldquo;frequency vector,&amp;rdquo; a vector of positive values that sum to $1$: $$
-\left[
-  \begin{matrix}
-    0.43 \\&lt;br /&gt;
-    0.32 \\&lt;br /&gt;
-    0.25 \\&lt;br /&gt;
-  \end{matrix}
-\right].
-$$ So as we tally longer and longer paths, we find that $43\%$ of those
-paths lead to $P$, compared with $32\%$ for $Q$ and $25\%$ for $R$. Thus
-$P$ is about $1.3$ times as justified as $Q$ ($.43/.32$), and about
-$1.7$ times as justified as $R$ ($.43/.25$).&lt;/p&gt;
-
-&lt;p&gt;We want absolute degrees of justification though, not just comparative
-ones. So we borrow a trick from probability theory and use a tautology
-for scale.&lt;/p&gt;
-
-&lt;p&gt;We add a special node $\top$ to our graph, which every other node points
-to, though $\top$ doesn&amp;rsquo;t point back.&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&#34;http://jonathanweisberg.org/img/coherentism-1/fig4.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
-
-&lt;p&gt;Updating our matrix $\A$ accordingly, we insert $\top$ in the first
-row/column: $$
-\A =
-\left[
-  \begin{matrix}
-    0 &amp;amp; 1 &amp;amp; 1 &amp;amp; 1 \\&lt;br /&gt;
-    0 &amp;amp; 0 &amp;amp; 1 &amp;amp; 1 \\&lt;br /&gt;
-    0 &amp;amp; 1 &amp;amp; 0 &amp;amp; 0 \\&lt;br /&gt;
-    0 &amp;amp; 0 &amp;amp; 1 &amp;amp; 0
-  \end{matrix}
-\right].
-$$ Redoing our limit anlaysis gives us the vector
-$(1.00, 0.57, 0.43, 0.33)$. But this isn&amp;rsquo;t our final answer, because
-it&amp;rsquo;s actually not possible for the non-$\top$ nodes to get a value
-higher than $2/3$ in a graph with just $3$ non-$\top$ nodes.&lt;sup class=&#34;footnote-ref&#34; id=&#34;fnref:4&#34;&gt;&lt;a rel=&#34;footnote&#34; href=&#34;#fn:4&#34;&gt;4&lt;/a&gt;&lt;/sup&gt; So we
-divide elementwise by $(1, 2/3, 2/3, 2/3)$ to scale things, giving us
-our final result: $$
-\left[
-  \begin{matrix}
-    1.00 \\&lt;br /&gt;
-    0.85 \\&lt;br /&gt;
-    0.65 \\&lt;br /&gt;
-    0.49
-  \end{matrix}
-\right].
-$$ The relative justifications are the same as before, e.g. $P$ is still
-$1.3$ times as justified as $Q$. But now we can make absolute
-assessments too. $R$ comes out looking pretty bad ($0.49$), as seems
-right, while $Q$ looks a bit better ($0.65$). Of course $P$ looks best
-($0.85$), though maybe not quite good enough to be justified &lt;em&gt;tout
-court&lt;/em&gt;.&lt;/p&gt;
-
-&lt;h1 id=&#34;the-klein-warfield-problem&#34;&gt;The Klein&amp;ndash;Warfield Problem&lt;/h1&gt;
-
-&lt;p&gt;Ok that&amp;rsquo;s theoretically nifty and all, but does it work on actual cases?
-Let&amp;rsquo;s try it out by looking at a notorious objection to coherentism.
-&lt;a href=&#34;https://philpapers.org/rec/KLEWPC&#34; target=&#34;_blank&#34;&gt;Klein &amp;amp; Warfield (1994)&lt;/a&gt; argue that
-coherentism flouts the laws of probability. How so?&lt;/p&gt;
-
-&lt;p&gt;Making sense of things often means believing more: taking on new beliefs
-to resolve the tensions in our existing ones. For example, if we think
-Tweety is a bird who can&amp;rsquo;t fly, the tension is resolved if we also
-believe they&amp;rsquo;re a penguin.&lt;sup class=&#34;footnote-ref&#34; id=&#34;fnref:5&#34;&gt;&lt;a rel=&#34;footnote&#34; href=&#34;#fn:5&#34;&gt;5&lt;/a&gt;&lt;/sup&gt;&lt;/p&gt;
-
-&lt;p&gt;But believing more means believing less probably. Increases in logical
-strength bring decreases in probability (unless the stronger content was
-already guaranteed with probability $1$). So increasing the coherence in
-one&amp;rsquo;s web of belief will generally mean decreasing its probability. How
-could increasing coherence increase justification, then?&lt;/p&gt;
-
-&lt;p&gt;&lt;a href=&#34;https://philpapers.org/rec/MEROBO&#34; target=&#34;_blank&#34;&gt;Merricks (1995)&lt;/a&gt; points out that,
-even though the probability of the whole corpus goes down, the
-probabilities of individual beliefs go up in a way. After all, it&amp;rsquo;s more
-likely Tweety can&amp;rsquo;t fly if they&amp;rsquo;re a penguin, than if they&amp;rsquo;re just a
-bird of some unknown species.&lt;/p&gt;
-
-&lt;p&gt;That&amp;rsquo;s only the beginning of a satisfactory answer though. After all, we
-might not be justified in believing Tweety&amp;rsquo;s a penguin in the first
-place! Adding a new belief to support an existing belief doesn&amp;rsquo;t help if
-the new belief has no support itself. We need a more global assessment,
-which is where the present account shines.&lt;/p&gt;
-
-&lt;p&gt;Suppose we add $P$ = &lt;em&gt;Tweety is a penguin&lt;/em&gt; to the network containing $B$
-= &lt;em&gt;Tweety is a bird&lt;/em&gt; and $\neg F$ = &lt;em&gt;Tweety can&amp;rsquo;t fly&lt;/em&gt;. Will this
-increase the centrality/justification of $B$ and of $\neg F$? Yes, but
-we need to sort out the support relations to verify this.&lt;/p&gt;
-
-&lt;p&gt;Presumably $P$ supports $B$, and $\neg F$ too. But what about the other
-way around? If Tweety is a flightless bird, there&amp;rsquo;s a decent chance
-they&amp;rsquo;re a penguin. But it&amp;rsquo;s hardly certain; they might be an emu or kiwi
-instead. Come to think of it, isn&amp;rsquo;t support a matter of degree, so don&amp;rsquo;t
-we need finer tools than just on/off arrows?&lt;/p&gt;
-
-&lt;p&gt;Yes, and the refinement is easy. We accommodate degrees of support by
-attaching weights to our arrows. Instead of just placing a $1$ in our
-matrix $\A$ wherever the column-node points to the row-node, we put a
-number from the $[0,1]$ interval that reflects the strength of support.
-The same limit analysis as before still works, as it turns out.
-We just think of our inferential links as &amp;ldquo;leaky pipes&amp;rdquo; now, where
-weaker links make for leakier pipelines.&lt;/p&gt;
-
-&lt;p&gt;We still need concrete numbers to analyze the Tweety example. But it&amp;rsquo;s a
-toy example, so let&amp;rsquo;s just make up some plausible-ish numbers to get us
-going. Let&amp;rsquo;s suppose $1\%$ of birds are flightless, and birds are an
-even smaller percentage of the flightless things, say $0.1\%$. Let&amp;rsquo;s
-also pretend that $20\%$ of flightless birds are penguins.&lt;/p&gt;
-
-&lt;p&gt;Before believing Tweety is a penguin then, our web of belief looks like
-this:&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&#34;http://jonathanweisberg.org/img/coherentism-1/fig5a.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
-
-&lt;p&gt;Calculating the degrees of justification for $B$ and $\neg F$, both come
-out very close to $0$ as you&amp;rsquo;d expect (with $B$ closer to $0$ than
-$\neg F$). Now we add $P$.&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&#34;http://jonathanweisberg.org/img/coherentism-1/fig5b.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
-
-&lt;p&gt;Recalculating degrees of justification, we find that they increase
-drastically. $B$ and $F$ are now justified to degree $0.85$, while $P$
-is justified to degree $0.26$. (All numbers approximate.)&lt;/p&gt;
-
-&lt;p&gt;So our account vindicates Merricks. Not only does adding $P$ to the
-corpus add &amp;ldquo;local&amp;rdquo; justification for $B$ and for $\neg F$. It also
-improves their standing on a more global assessment.&lt;/p&gt;
-
-&lt;p&gt;You might be worried though: did $P$ come out too weakly justified, at
-just $0.26$? No: that&amp;rsquo;s either an artifact of oversimplification, or
-else it&amp;rsquo;s actually the appropriate outcome. Notice that $B$ and $\neg F$
-don&amp;rsquo;t really support Tweety being a penguin. They&amp;rsquo;re a flightless bird,
-sure, but maybe they&amp;rsquo;re an emu, kiwi, or moa. We chose to believe
-penguin, and maybe we have our reasons. If we do, then the graph is
-missing background beliefs which would improve $P$&amp;rsquo;s standing once
-added. But otherwise, we just fell prey to stereotyping or
-comes-to-mind-bias, in which case it&amp;rsquo;s right that $P$ stand poorly.&lt;/p&gt;
-
-&lt;h1 id=&#34;tech&#34;&gt;Technical Background&lt;/h1&gt;
-
-&lt;p&gt;The notion of centrality used here is a common tool in network analysis,
-where it&amp;rsquo;s known as &lt;a href=&#34;https://en.wikipedia.org/wiki/Eigenvector_centrality&#34; target=&#34;_blank&#34;&gt;&amp;ldquo;eigenvector
-centrality.&amp;rdquo;&lt;/a&gt;
-Because the frequency vector we arrive at in the limit is an
-&lt;a href=&#34;https://en.wikipedia.org/wiki/Eigenvalues_and_eigenvectors&#34; target=&#34;_blank&#34;&gt;eigenvector&lt;/a&gt;
-of the matrix $\A$. In fact it&amp;rsquo;s a special eigenvector, the only one
-with all-positive values.&lt;/p&gt;
-
-&lt;p&gt;Since we&amp;rsquo;re measuring justification on a $0$-to-$1$ scale, our account
-depends on there always being such an eigenvector for $\A$. In fact we
-need it to be unique, up to scaling (i.e. up to multiplication by a
-constant).&lt;/p&gt;
-
-&lt;p&gt;The theorem that guarantees this is actually quite old, going back to
-work by Oskar Perron and Georg Frobenius published around 1910. Here&amp;rsquo;s one version of it.&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;Perron&amp;ndash;Frobenius Theorem.&lt;/strong&gt; Let $\A$ be a square matrix whose entries
-are all positive. Then all of the following hold.&lt;/p&gt;
-
-&lt;ol&gt;
-&lt;li&gt;$\A$ has an eigenvalue $\lambda$ that is larger (in absolute value)
-than $\A$&amp;rsquo;s other eigenvalues. We call $\lambda$ the &lt;em&gt;leading
-eigenvalue&lt;/em&gt;.&lt;/li&gt;
-&lt;li&gt;$\A$&amp;rsquo;s leading eigenvalue has an eigenvector $\v$ whose entries are
-all positive. We call $\v$ the &lt;em&gt;leading eigenvector&lt;/em&gt;.&lt;/li&gt;
-&lt;li&gt;$\A$ has no other positive eigenvectors, save multiples of $\v$.&lt;/li&gt;
-&lt;li&gt;The powers $(\A/\lambda)^n$ as $n \rightarrow \infty$ approach a
-matrix whose columns are all multiples of $\v$.&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;p&gt;Now, our matrices had some zeros, so they weren&amp;rsquo;t positive in all their
-entries. But it doesn&amp;rsquo;t really matter, as it turns out.&lt;/p&gt;
-
-&lt;p&gt;Frobenius&amp;rsquo; contribution was to generalize this result to many cases that
-feature zeros. But even in cases where Frobenius&amp;rsquo; weaker conditions
-aren&amp;rsquo;t satisfied, we can just borrow a trick from Google.&lt;sup class=&#34;footnote-ref&#34; id=&#34;fnref:6&#34;&gt;&lt;a rel=&#34;footnote&#34; href=&#34;#fn:6&#34;&gt;6&lt;/a&gt;&lt;/sup&gt; Instead of
-using a $0$-to-$1$ scale, we use $\epsilon$-to-$1$ for some very small
-positive number $\epsilon$. Then all entries in $\A$ are guaranteed to
-be positive, and we just rescale our results accordingly. (Choose
-$\epsilon$ small enough and the difference is negligible in practice.)&lt;/p&gt;
-
-&lt;h1 id=&#34;acknowledgments&#34;&gt;Acknowledgments&lt;/h1&gt;
-
-&lt;p&gt;This post owes a lot to prior work by Elena Derksen and Selim Berker.
-I&amp;rsquo;d never really thought much about how coherence and justification
-relate prior to reading &lt;a href=&#34;http://www.philpeople.com/elenarabinoffderksen/research.html&#34; target=&#34;_blank&#34;&gt;Derksen&amp;rsquo;s
-work&lt;/a&gt;. And
-&lt;a href=&#34;https://philpapers.org/rec/BERCVG&#34; target=&#34;_blank&#34;&gt;Berker&amp;rsquo;s&lt;/a&gt; prompted me to take graphs
-more seriously as a way of formalizing coherentism. I&amp;rsquo;m also grateful to
-David Wallace for &lt;a href=&#34;http://jonathanweisberg.org/post/page-rank-1/&#34;&gt;introducing me to the Perron&amp;ndash;Frobenius theorem&amp;rsquo;s use
-as a tool in network
-analysis&lt;/a&gt;.&lt;/p&gt;
-&lt;div class=&#34;footnotes&#34;&gt;
-
-&lt;hr /&gt;
-
-&lt;ol&gt;
-&lt;li id=&#34;fn:1&#34;&gt;&lt;p&gt;See &lt;a href=&#34;https://philpapers.org/rec/SHOICT-2&#34; target=&#34;_blank&#34;&gt;Shogenji (1999)&lt;/a&gt; and
-&lt;a href=&#34;https://philpapers.org/rec/FITAPT&#34; target=&#34;_blank&#34;&gt;Fitelson (2003)&lt;/a&gt; for some early
-accounts. See Section 6 of &lt;a href=&#34;https://plato.stanford.edu/entries/justep-coherence/#ProMeaCoh&#34; target=&#34;_blank&#34;&gt;Olsson&amp;rsquo;s SEP
-entry&lt;/a&gt;
-for a survey and more recent references.&lt;/p&gt;
- &lt;a class=&#34;footnote-return&#34; href=&#34;#fnref:1&#34;&gt;&lt;sup&gt;[return]&lt;/sup&gt;&lt;/a&gt;&lt;/li&gt;
-
-&lt;li id=&#34;fn:2&#34;&gt;&lt;p&gt;In his seminal book on coherentism, &lt;a href=&#34;https://philpapers.org/rec/BONTSO-4&#34; target=&#34;_blank&#34;&gt;Bonjour
-(1985)&lt;/a&gt; writes: &amp;ldquo;the
-justification of a particular empirical belief finally depends, not
-on other particular beliefs as the linear conception of
-justification would have it, but instead on the overall system and
-its coherence.&amp;rdquo; This doesn&amp;rsquo;t commit us to
-assessing overall coherence before individual
-justification. But that&amp;rsquo;s a natural conclusion you might come away with.&lt;/p&gt;
- &lt;a class=&#34;footnote-return&#34; href=&#34;#fnref:2&#34;&gt;&lt;sup&gt;[return]&lt;/sup&gt;&lt;/a&gt;&lt;/li&gt;
-
-&lt;li id=&#34;fn:3&#34;&gt;&lt;p&gt;We could count every proposition as pointing to itself. This would
-mean putting $1$&amp;rsquo;s down the diagonal, i.e. adding the identity
-matrix $\mathbf{I}$ to $\A$. This can be useful as a way to ensure
-the limits we&amp;rsquo;ll require exist. But we&amp;rsquo;ll solve that problem
-differently in the &amp;ldquo;Technical Background&amp;rdquo; section. And otherwise it
-doesn&amp;rsquo;t really affect our results. It increases the leading
-eigenvalue by $1$, but doesn&amp;rsquo;t affect the leading eigenvector.&lt;/p&gt;
- &lt;a class=&#34;footnote-return&#34; href=&#34;#fnref:3&#34;&gt;&lt;sup&gt;[return]&lt;/sup&gt;&lt;/a&gt;&lt;/li&gt;
-
-&lt;li id=&#34;fn:4&#34;&gt;&lt;p&gt;In general, the maximum possible centrality is $(k-1)/k$ in a
-graph with $k$ non-$\top$ nodes.&lt;/p&gt;
- &lt;a class=&#34;footnote-return&#34; href=&#34;#fnref:4&#34;&gt;&lt;sup&gt;[return]&lt;/sup&gt;&lt;/a&gt;&lt;/li&gt;
-
-&lt;li id=&#34;fn:5&#34;&gt;&lt;p&gt;Hat tip to Erik J. Olsson&amp;rsquo;s &lt;a href=&#34;https://plato.stanford.edu/entries/justep-coherence/&#34; target=&#34;_blank&#34;&gt;entry on
-coherentism&lt;/a&gt;
-in the SEP, which uses this example in place of Klein &amp;amp; Warfield&amp;rsquo;s
-slightly more involved one.&lt;/p&gt;
- &lt;a class=&#34;footnote-return&#34; href=&#34;#fnref:5&#34;&gt;&lt;sup&gt;[return]&lt;/sup&gt;&lt;/a&gt;&lt;/li&gt;
-
-&lt;li id=&#34;fn:6&#34;&gt;&lt;p&gt;Google&amp;rsquo;s founders used a variant of eigenvector centrality called
-&amp;ldquo;PageRank&amp;rdquo; in their original search engine.&lt;/p&gt;
- &lt;a class=&#34;footnote-return&#34; href=&#34;#fnref:6&#34;&gt;&lt;sup&gt;[return]&lt;/sup&gt;&lt;/a&gt;&lt;/li&gt;
-&lt;/ol&gt;
-&lt;/div&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>The Open Handbook of Formal Epistemology</title>
-      <link>http://jonathanweisberg.org/post/open-handbook/</link>
-      <pubDate>Wed, 26 Jun 2019 00:00:00 -0500</pubDate>
-      
-      <guid>http://jonathanweisberg.org/post/open-handbook/</guid>
-      <description>&lt;p&gt;Today &lt;em&gt;The Open Handbook of Formal Epistemology&lt;/em&gt; is &lt;a href=&#34;http://jonathanweisberg.org/pdf/open-handbook-of-formal-epistemology.pdf&#34;&gt;available for download&lt;/a&gt;. It&amp;rsquo;s an open access book, the first published by PhilPapers itself. (The editors are &lt;a href=&#34;https://richardpettigrew.com/&#34; target=&#34;_blank&#34;&gt;Richard Pettigrew&lt;/a&gt; and me.)&lt;/p&gt;
-
-&lt;p&gt;The book features 11 outstanding entries by 11 wonderful philosophers.&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&amp;ldquo;Precise Credences&amp;rdquo;, by &lt;a href=&#34;https://sites.google.com/site/michaeltitelbaum/&#34; target=&#34;_blank&#34;&gt;Michael G. Titelbaum&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&amp;ldquo;Decision Theory&amp;rdquo;, by &lt;a href=&#34;https://johannathoma.com/&#34; target=&#34;_blank&#34;&gt;Johanna Thoma&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&amp;ldquo;Imprecise Probabilities&amp;rdquo;, by &lt;a href=&#34;http://www.lse.ac.uk/cpnss/people/anna-mahtani?from_serp=1&#34; target=&#34;_blank&#34;&gt;Anna Mahtani&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&amp;ldquo;Primitive Conditional Probabilities&amp;rdquo;, by &lt;a href=&#34;http://www.kennyeaswaran.org/&#34; target=&#34;_blank&#34;&gt;Kenny Easwaran&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&amp;ldquo;Infinitesimal Probabilities&amp;rdquo;, by &lt;a href=&#34;http://www.sylviawenmackers.be/&#34; target=&#34;_blank&#34;&gt;Sylvia Wenmackers&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&amp;ldquo;Comparative Probabilities&amp;rdquo;, by &lt;a href=&#34;https://jason-konek.squarespace.com/&#34; target=&#34;_blank&#34;&gt;Jason Konek&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&amp;ldquo;Belief Revision Theory&amp;rdquo;, by &lt;a href=&#34;https://sites.google.com/site/hantilinphil/&#34; target=&#34;_blank&#34;&gt;Hanti Lin&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&amp;ldquo;Ranking Theory&amp;rdquo;, by &lt;a href=&#34;https://huber.blogs.chass.utoronto.ca/&#34; target=&#34;_blank&#34;&gt;Franz Huber&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&amp;ldquo;Full &amp;amp; Partial Belief&amp;rdquo;, by &lt;a href=&#34;https://kgenin.github.io/&#34; target=&#34;_blank&#34;&gt;Konstantin Genin&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&amp;ldquo;Doxastic Logic&amp;rdquo;, by &lt;a href=&#34;https://sites.google.com/site/caiemike/&#34; target=&#34;_blank&#34;&gt;Michael Caie&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&amp;ldquo;Conditionals&amp;rdquo;, by &lt;a href=&#34;https://philosophy.stanford.edu/people/ray-briggs&#34; target=&#34;_blank&#34;&gt;R. A. Briggs&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;We wanted to include lots more, but didn&amp;rsquo;t want to hold up publication any longer. Hopefully a second edition will cover more.&lt;/p&gt;
-
-&lt;p&gt;For me personally, a central aim of this project was to demonstrate a point about open access publishing and shared standards. The budget for this book was exactly $0.00, and this was only possible because we didn&amp;rsquo;t need a human typesetter.&lt;/p&gt;
-
-&lt;p&gt;Pretty much everyone in formal epistemology uses the same, standardized format to do their writing. And that format plugs in to a high-quality, freely available &lt;a href=&#34;https://en.wikipedia.org/wiki/TeX&#34; target=&#34;_blank&#34;&gt;typesetting program&lt;/a&gt;. So all you have to do to turn a dozen contributions from different authors into a unified book is paste them into a template and click &amp;ldquo;typeset&amp;rdquo;.&lt;/p&gt;
-
-&lt;p&gt;Ok, it did actually take some noodling to iron out the kinks. But mainly just because of my poor planning. Having done it once now and learned the gotchas, a second go would come pretty close to the copy→paste→typeset dream.&lt;/p&gt;
-
-&lt;p&gt;So for me, the moral is that philosophers in general should settle on a similar standard  (all academics, really). If we did, we&amp;rsquo;d have a lot more freedom from commercial publishers. We could publish open access books like this on the regular. The books would be freely and easily available to all, and authors would retain copyright.&lt;/p&gt;
-
-&lt;p&gt;Collective action problems plague academia, and philosophical publishing in particular. But this one&amp;rsquo;s about as close to an opportunity for a major Pareto improvement as we&amp;rsquo;re likely to get.&lt;/p&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>No Escape from Allais: Reply to Buchak</title>
-      <link>http://jonathanweisberg.org/publication/2019%20No%20Escape%20from%20Allais/</link>
-      <pubDate>Tue, 04 Jun 2019 00:00:00 -0500</pubDate>
-      
-      <guid>http://jonathanweisberg.org/publication/2019%20No%20Escape%20from%20Allais/</guid>
-      <description>&lt;p&gt;In &lt;em&gt;Risk &amp;amp; Rationality&lt;/em&gt;, Buchak (2013) advertises REU theory as able to recover the modal preferences in the Allais paradox. In our (2017) however, we pointed out that REU theory only applies in the &amp;ldquo;grand world&amp;rdquo; setting, where it actually struggles with the modal Allais preferences. Buchak (2017) offers two replies. Here we enumerate a variety of technical and philosophical problems with each.&lt;/p&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>Prestige and Placement in North American Philosophy</title>
-      <link>http://jonathanweisberg.org/post/prestige-placement/</link>
-      <pubDate>Tue, 04 Jun 2019 00:00:00 -0500</pubDate>
-      
-      <guid>http://jonathanweisberg.org/post/prestige-placement/</guid>
-      <description>
-
-&lt;p&gt;How does prestige correlate with placement in academic philosophy?
-There&amp;rsquo;s good stuff on this already, like &lt;a href=&#34;http://placementdata.com:8182/the-philosophical-gourmet-report-and-placement/&#34; target=&#34;_blank&#34;&gt;this
-post&lt;/a&gt;
-by Carolyn Dicey Jennings, Pablo Contreras Kallens, and Justin
-Vlasits.&lt;sup class=&#34;footnote-ref&#34; id=&#34;fnref:1&#34;&gt;&lt;a rel=&#34;footnote&#34; href=&#34;#fn:1&#34;&gt;1&lt;/a&gt;&lt;/sup&gt; This post uses the same data sources, but emphasizes
-different things (visualization, North American PhDs, and primarily
-tenure-track jobs).&lt;/p&gt;
-
-&lt;h1 id=&#34;tt-placement-in-north-america&#34;&gt;TT Placement in North America&lt;/h1&gt;
-
-&lt;p&gt;Let&amp;rsquo;s start with a simple question of broad interest. In North America,
-how well does the &lt;a href=&#34;https://www.philosophicalgourmet.com/&#34; target=&#34;_blank&#34;&gt;PGR&lt;/a&gt; rating of
-one&amp;rsquo;s PhD-granting program predict one&amp;rsquo;s chances of landing a
-tenure-track (TT) job?&lt;/p&gt;
-
-&lt;p&gt;Consider all the people who got a PhD from a North American philosophy
-program in the years 2012&amp;ndash;14.&lt;sup class=&#34;footnote-ref&#34; id=&#34;fnref:2&#34;&gt;&lt;a rel=&#34;footnote&#34; href=&#34;#fn:2&#34;&gt;2&lt;/a&gt;&lt;/sup&gt; Focus for now on those from PhD
-programs ranked by the 2006 edition of the PGR.&lt;sup class=&#34;footnote-ref&#34; id=&#34;fnref:3&#34;&gt;&lt;a rel=&#34;footnote&#34; href=&#34;#fn:3&#34;&gt;3&lt;/a&gt;&lt;/sup&gt; Now group them
-according to those PGR ratings, rounded to the nearest 0.5.&lt;/p&gt;
-
-&lt;p&gt;This gives us 7 groups of PhDs (rankings range from 2.0 to 5.0).
-According to &lt;a href=&#34;http://placementdata.com&#34; target=&#34;_blank&#34;&gt;the APDA&amp;rsquo;s data&lt;/a&gt;, the portion
-from each group who ended up in TT jobs are as follows:&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&#34;http://jonathanweisberg.org/img/prestige-placement/unnamed-chunk-1-1.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
-
-&lt;p&gt;There&amp;rsquo;s clearly a positive connection; almost perfectly linear in fact.
-And the gist&amp;mdash;&lt;em&gt;very crudely speaking&lt;/em&gt;&amp;mdash;is that a high prestige PhD
-about doubles your chances of landing a TT job over a low-prestige PhD:
-from ~30% to ~60%.&lt;/p&gt;
-
-&lt;p&gt;Note that the data are sparse at the extremes though. Consider this raw
-look, where each point is a PhD graduate.&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&#34;http://jonathanweisberg.org/img/prestige-placement/unnamed-chunk-2-1.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
-
-&lt;p&gt;A &amp;ldquo;violin plot&amp;rdquo; shows the same thing but easier to read: the thickness
-of the violins indicates the density of points at each &lt;em&gt;x&lt;/em&gt;-position.&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&#34;http://jonathanweisberg.org/img/prestige-placement/unnamed-chunk-3-1.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
-
-&lt;p&gt;With so few points at the ends, we shouldn&amp;rsquo;t read too much into the
-exact placement rates there.&lt;/p&gt;
-
-&lt;h1 id=&#34;other-placement-types&#34;&gt;Other Placement Types&lt;/h1&gt;
-
-&lt;p&gt;What about other kinds of jobs? Let&amp;rsquo;s consider five categories, defined
-as follows.&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;Postdoc: &amp;ldquo;Fellowship/Postdoc&amp;rdquo; in the APDA database.&lt;/li&gt;
-&lt;li&gt;Permanent: any of the following in the APDA database.
-
-&lt;ul&gt;
-&lt;li&gt;&amp;ldquo;Tenure-Track&amp;rdquo;&lt;/li&gt;
-&lt;li&gt;&amp;ldquo;Lecturer (Permanent)&amp;rdquo;&lt;/li&gt;
-&lt;li&gt;&amp;ldquo;Instructor (Permanent)&amp;rdquo;&lt;/li&gt;
-&lt;li&gt;&amp;ldquo;Adjunct (Permanent)&amp;rdquo;&lt;/li&gt;
-&lt;li&gt;&amp;ldquo;Other (Permanent)&amp;rdquo;&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
-&lt;li&gt;Tenure-Track: &amp;ldquo;Tenure-Track&amp;rdquo; in the APDA database.&lt;/li&gt;
-&lt;li&gt;PhD Program: Tenure-Track at a PhD-granting program.&lt;/li&gt;
-&lt;li&gt;PGR Ranked: Tenure-Track at a 2006 PGR-ranked program.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;These are hardly perfect definitions, but they&amp;rsquo;re manageable with this
-data while still being pretty informative.&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&#34;http://jonathanweisberg.org/img/prestige-placement/unnamed-chunk-4-1.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
-
-&lt;p&gt;Note that a graduate can appear in multiple categories (Tenure-Track is
-a subset of Permanent, after all).&lt;/p&gt;
-
-&lt;h1 id=&#34;unranked-programs&#34;&gt;Unranked Programs&lt;/h1&gt;
-
-&lt;p&gt;What about PhD programs not ranked in the 2006 PGR?&lt;sup class=&#34;footnote-ref&#34; id=&#34;fnref:4&#34;&gt;&lt;a rel=&#34;footnote&#34; href=&#34;#fn:4&#34;&gt;4&lt;/a&gt;&lt;/sup&gt; The numbers may
-be iffier here. Some programs have only one graduate listed for example,
-a graduate who got a TT job. But there are only a few such programs, and
-more than 600 graduates otherwise. So the numbers may still be good
-approximations.&lt;/p&gt;
-
-&lt;table&gt;
-&lt;thead&gt;
-&lt;tr&gt;
-&lt;th&gt;Postdoc&lt;/th&gt;
-&lt;th&gt;Permanent&lt;/th&gt;
-&lt;th&gt;TT&lt;/th&gt;
-&lt;th&gt;PhD&lt;/th&gt;
-&lt;th&gt;PGR&lt;/th&gt;
-&lt;/tr&gt;
-&lt;/thead&gt;
-
-&lt;tbody&gt;
-&lt;tr&gt;
-&lt;td&gt;0.13&lt;/td&gt;
-&lt;td&gt;0.46&lt;/td&gt;
-&lt;td&gt;0.39&lt;/td&gt;
-&lt;td&gt;0.05&lt;/td&gt;
-&lt;td&gt;0.01&lt;/td&gt;
-&lt;/tr&gt;
-&lt;/tbody&gt;
-&lt;/table&gt;
-
-&lt;p&gt;If you&amp;rsquo;re curious which programs stand out among the unranked, here are
-the top 10 by TT placement (excluding those with 5 or fewer graduates).&lt;/p&gt;
-
-&lt;table&gt;
-&lt;thead&gt;
-&lt;tr&gt;
-&lt;th&gt;Program&lt;/th&gt;
-&lt;th&gt;N&lt;/th&gt;
-&lt;th&gt;Postdoc&lt;/th&gt;
-&lt;th&gt;Permanent&lt;/th&gt;
-&lt;th&gt;TT&lt;/th&gt;
-&lt;th&gt;PhD&lt;/th&gt;
-&lt;th&gt;PGR&lt;/th&gt;
-&lt;/tr&gt;
-&lt;/thead&gt;
-
-&lt;tbody&gt;
-&lt;tr&gt;
-&lt;td&gt;The Catholic University of America&lt;/td&gt;
-&lt;td&gt;11&lt;/td&gt;
-&lt;td&gt;0.00&lt;/td&gt;
-&lt;td&gt;0.91&lt;/td&gt;
-&lt;td&gt;0.91&lt;/td&gt;
-&lt;td&gt;0.18&lt;/td&gt;
-&lt;td&gt;0&lt;/td&gt;
-&lt;/tr&gt;
-
-&lt;tr&gt;
-&lt;td&gt;Baylor University&lt;/td&gt;
-&lt;td&gt;13&lt;/td&gt;
-&lt;td&gt;0.15&lt;/td&gt;
-&lt;td&gt;0.92&lt;/td&gt;
-&lt;td&gt;0.85&lt;/td&gt;
-&lt;td&gt;0.08&lt;/td&gt;
-&lt;td&gt;0&lt;/td&gt;
-&lt;/tr&gt;
-
-&lt;tr&gt;
-&lt;td&gt;DePaul University&lt;/td&gt;
-&lt;td&gt;11&lt;/td&gt;
-&lt;td&gt;0.00&lt;/td&gt;
-&lt;td&gt;0.82&lt;/td&gt;
-&lt;td&gt;0.82&lt;/td&gt;
-&lt;td&gt;0.09&lt;/td&gt;
-&lt;td&gt;0&lt;/td&gt;
-&lt;/tr&gt;
-
-&lt;tr&gt;
-&lt;td&gt;University of Tennessee&lt;/td&gt;
-&lt;td&gt;13&lt;/td&gt;
-&lt;td&gt;0.00&lt;/td&gt;
-&lt;td&gt;0.77&lt;/td&gt;
-&lt;td&gt;0.77&lt;/td&gt;
-&lt;td&gt;0.00&lt;/td&gt;
-&lt;td&gt;0&lt;/td&gt;
-&lt;/tr&gt;
-
-&lt;tr&gt;
-&lt;td&gt;University of New Mexico&lt;/td&gt;
-&lt;td&gt;7&lt;/td&gt;
-&lt;td&gt;0.00&lt;/td&gt;
-&lt;td&gt;0.71&lt;/td&gt;
-&lt;td&gt;0.71&lt;/td&gt;
-&lt;td&gt;0.00&lt;/td&gt;
-&lt;td&gt;0&lt;/td&gt;
-&lt;/tr&gt;
-
-&lt;tr&gt;
-&lt;td&gt;Vanderbilt University&lt;/td&gt;
-&lt;td&gt;9&lt;/td&gt;
-&lt;td&gt;0.11&lt;/td&gt;
-&lt;td&gt;0.67&lt;/td&gt;
-&lt;td&gt;0.67&lt;/td&gt;
-&lt;td&gt;0.00&lt;/td&gt;
-&lt;td&gt;0&lt;/td&gt;
-&lt;/tr&gt;
-
-&lt;tr&gt;
-&lt;td&gt;University of South Florida&lt;/td&gt;
-&lt;td&gt;15&lt;/td&gt;
-&lt;td&gt;0.13&lt;/td&gt;
-&lt;td&gt;0.60&lt;/td&gt;
-&lt;td&gt;0.60&lt;/td&gt;
-&lt;td&gt;0.00&lt;/td&gt;
-&lt;td&gt;0&lt;/td&gt;
-&lt;/tr&gt;
-
-&lt;tr&gt;
-&lt;td&gt;Florida State University&lt;/td&gt;
-&lt;td&gt;12&lt;/td&gt;
-&lt;td&gt;0.17&lt;/td&gt;
-&lt;td&gt;0.58&lt;/td&gt;
-&lt;td&gt;0.58&lt;/td&gt;
-&lt;td&gt;0.08&lt;/td&gt;
-&lt;td&gt;0&lt;/td&gt;
-&lt;/tr&gt;
-
-&lt;tr&gt;
-&lt;td&gt;University of Oregon&lt;/td&gt;
-&lt;td&gt;12&lt;/td&gt;
-&lt;td&gt;0.17&lt;/td&gt;
-&lt;td&gt;0.67&lt;/td&gt;
-&lt;td&gt;0.58&lt;/td&gt;
-&lt;td&gt;0.00&lt;/td&gt;
-&lt;td&gt;0&lt;/td&gt;
-&lt;/tr&gt;
-
-&lt;tr&gt;
-&lt;td&gt;University of Kansas&lt;/td&gt;
-&lt;td&gt;9&lt;/td&gt;
-&lt;td&gt;0.00&lt;/td&gt;
-&lt;td&gt;0.67&lt;/td&gt;
-&lt;td&gt;0.56&lt;/td&gt;
-&lt;td&gt;0.00&lt;/td&gt;
-&lt;td&gt;0&lt;/td&gt;
-&lt;/tr&gt;
-&lt;/tbody&gt;
-&lt;/table&gt;
-
-&lt;p&gt;Note that the top 3 are at Christian universities, and as you might
-expect, a lot of their placement is driven by hires at Christian
-schools.&lt;/p&gt;
-
-&lt;p&gt;Here are the 10 &amp;ldquo;largest&amp;rdquo; programs, i.e. those with the most graduates
-listed in the APDA database.&lt;/p&gt;
-
-&lt;table&gt;
-&lt;thead&gt;
-&lt;tr&gt;
-&lt;th&gt;Program&lt;/th&gt;
-&lt;th&gt;N&lt;/th&gt;
-&lt;th&gt;Postdoc&lt;/th&gt;
-&lt;th&gt;Permanent&lt;/th&gt;
-&lt;th&gt;TT&lt;/th&gt;
-&lt;th&gt;PhD&lt;/th&gt;
-&lt;th&gt;PGR&lt;/th&gt;
-&lt;/tr&gt;
-&lt;/thead&gt;
-
-&lt;tbody&gt;
-&lt;tr&gt;
-&lt;td&gt;Boston College&lt;/td&gt;
-&lt;td&gt;28&lt;/td&gt;
-&lt;td&gt;0.21&lt;/td&gt;
-&lt;td&gt;0.68&lt;/td&gt;
-&lt;td&gt;0.50&lt;/td&gt;
-&lt;td&gt;0.04&lt;/td&gt;
-&lt;td&gt;0.00&lt;/td&gt;
-&lt;/tr&gt;
-
-&lt;tr&gt;
-&lt;td&gt;The New School&lt;/td&gt;
-&lt;td&gt;26&lt;/td&gt;
-&lt;td&gt;0.23&lt;/td&gt;
-&lt;td&gt;0.31&lt;/td&gt;
-&lt;td&gt;0.27&lt;/td&gt;
-&lt;td&gt;0.08&lt;/td&gt;
-&lt;td&gt;0.00&lt;/td&gt;
-&lt;/tr&gt;
-
-&lt;tr&gt;
-&lt;td&gt;Purdue University&lt;/td&gt;
-&lt;td&gt;22&lt;/td&gt;
-&lt;td&gt;0.14&lt;/td&gt;
-&lt;td&gt;0.32&lt;/td&gt;
-&lt;td&gt;0.27&lt;/td&gt;
-&lt;td&gt;0.00&lt;/td&gt;
-&lt;td&gt;0.00&lt;/td&gt;
-&lt;/tr&gt;
-
-&lt;tr&gt;
-&lt;td&gt;Stony Brook University&lt;/td&gt;
-&lt;td&gt;22&lt;/td&gt;
-&lt;td&gt;0.00&lt;/td&gt;
-&lt;td&gt;0.55&lt;/td&gt;
-&lt;td&gt;0.41&lt;/td&gt;
-&lt;td&gt;0.05&lt;/td&gt;
-&lt;td&gt;0.00&lt;/td&gt;
-&lt;/tr&gt;
-
-&lt;tr&gt;
-&lt;td&gt;Emory University&lt;/td&gt;
-&lt;td&gt;21&lt;/td&gt;
-&lt;td&gt;0.52&lt;/td&gt;
-&lt;td&gt;0.62&lt;/td&gt;
-&lt;td&gt;0.52&lt;/td&gt;
-&lt;td&gt;0.10&lt;/td&gt;
-&lt;td&gt;0.05&lt;/td&gt;
-&lt;/tr&gt;
-
-&lt;tr&gt;
-&lt;td&gt;Southern Illinois University&lt;/td&gt;
-&lt;td&gt;20&lt;/td&gt;
-&lt;td&gt;0.05&lt;/td&gt;
-&lt;td&gt;0.30&lt;/td&gt;
-&lt;td&gt;0.30&lt;/td&gt;
-&lt;td&gt;0.00&lt;/td&gt;
-&lt;td&gt;0.00&lt;/td&gt;
-&lt;/tr&gt;
-
-&lt;tr&gt;
-&lt;td&gt;Duquesne University&lt;/td&gt;
-&lt;td&gt;18&lt;/td&gt;
-&lt;td&gt;0.22&lt;/td&gt;
-&lt;td&gt;0.50&lt;/td&gt;
-&lt;td&gt;0.44&lt;/td&gt;
-&lt;td&gt;0.00&lt;/td&gt;
-&lt;td&gt;0.00&lt;/td&gt;
-&lt;/tr&gt;
-
-&lt;tr&gt;
-&lt;td&gt;Fordham University&lt;/td&gt;
-&lt;td&gt;18&lt;/td&gt;
-&lt;td&gt;0.22&lt;/td&gt;
-&lt;td&gt;0.44&lt;/td&gt;
-&lt;td&gt;0.39&lt;/td&gt;
-&lt;td&gt;0.00&lt;/td&gt;
-&lt;td&gt;0.00&lt;/td&gt;
-&lt;/tr&gt;
-
-&lt;tr&gt;
-&lt;td&gt;Villanova University&lt;/td&gt;
-&lt;td&gt;18&lt;/td&gt;
-&lt;td&gt;0.00&lt;/td&gt;
-&lt;td&gt;0.78&lt;/td&gt;
-&lt;td&gt;0.39&lt;/td&gt;
-&lt;td&gt;0.00&lt;/td&gt;
-&lt;td&gt;0.00&lt;/td&gt;
-&lt;/tr&gt;
-
-&lt;tr&gt;
-&lt;td&gt;University of Guelph&lt;/td&gt;
-&lt;td&gt;17&lt;/td&gt;
-&lt;td&gt;0.12&lt;/td&gt;
-&lt;td&gt;0.06&lt;/td&gt;
-&lt;td&gt;0.00&lt;/td&gt;
-&lt;td&gt;0.00&lt;/td&gt;
-&lt;td&gt;0.00&lt;/td&gt;
-&lt;/tr&gt;
-&lt;/tbody&gt;
-&lt;/table&gt;
-
-&lt;h1 id=&#34;departmental-tt-placement&#34;&gt;Departmental TT Placement&lt;/h1&gt;
-
-&lt;p&gt;Looking at placement rates by department raises the question: how well
-does a department&amp;rsquo;s PGR rating predict its TT placement rate?&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&#34;http://jonathanweisberg.org/img/prestige-placement/unnamed-chunk-8-1.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
-
-&lt;p&gt;There&amp;rsquo;s a clear connection, but also a lot of variation. Which are the
-programs that especially stand out from the trend? Suppressing the
-sizing for visibility, we can label those programs above/below the
-trendline by at least 0.2.&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&#34;http://jonathanweisberg.org/img/prestige-placement/unnamed-chunk-9-1.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
-
-&lt;p&gt;For complete listings of departmental placement rates, check out the
-APDA&amp;rsquo;s infograms &lt;a href=&#34;http://www.placementdata.com/data/&#34; target=&#34;_blank&#34;&gt;here&lt;/a&gt;.&lt;/p&gt;
-
-&lt;p&gt;The code for this analysis is available &lt;a href=&#34;https://github.com/jweisber/prestige-placement&#34; target=&#34;_blank&#34;&gt;here&lt;/a&gt;.&lt;/p&gt;
-&lt;div class=&#34;footnotes&#34;&gt;
-
-&lt;hr /&gt;
-
-&lt;ol&gt;
-&lt;li id=&#34;fn:1&#34;&gt;&lt;p&gt;Also check out Figure 1 in &lt;a href=&#34;https://quod.lib.umich.edu/e/ergo/12405314.0005.010?view=text;rgn=main&#34; target=&#34;_blank&#34;&gt;this
-paper&lt;/a&gt;
-by Helen De Cruz.&lt;/p&gt;
- &lt;a class=&#34;footnote-return&#34; href=&#34;#fnref:1&#34;&gt;&lt;sup&gt;[return]&lt;/sup&gt;&lt;/a&gt;&lt;/li&gt;
-
-&lt;li id=&#34;fn:2&#34;&gt;&lt;p&gt;Why these years? Because that&amp;rsquo;s where the data is best. The APDA
-has focused its collection efforts so far on graduates from the
-years 2012&amp;ndash;16, so that&amp;rsquo;s where the data is the most plentiful. But
-the data for 2015 and 2016 graduates probably aren&amp;rsquo;t &amp;ldquo;ripe&amp;rdquo; enough
-yet for our purposes; many graduates who will ultimately find TT
-jobs are probably still in postdocs and other temporary gigs. Thanks
-to Brian Weatherson for &lt;a href=&#34;https://twitter.com/bweatherson/status/1134570972315508736&#34; target=&#34;_blank&#34;&gt;pushing me to take this into
-account&lt;/a&gt;.&lt;/p&gt;
-
-&lt;p&gt;Of course, the 2012&amp;ndash;2014 data aren&amp;rsquo;t fully ripe either. But
-&lt;a href=&#34;https://jonathanweisberg.org/post/prestige-and-time-to-tt/&#34; target=&#34;_blank&#34;&gt;previous
-noodling&lt;/a&gt;
-suggests they&amp;rsquo;re probably pretty close.&lt;/p&gt;
- &lt;a class=&#34;footnote-return&#34; href=&#34;#fnref:2&#34;&gt;&lt;sup&gt;[return]&lt;/sup&gt;&lt;/a&gt;&lt;/li&gt;
-
-&lt;li id=&#34;fn:3&#34;&gt;&lt;p&gt;Why the 2006 edition? Partly for continuity with &lt;a href=&#34;http://placementdata.com:8182/the-philosophical-gourmet-report-and-placement/&#34; target=&#34;_blank&#34;&gt;the APDA&amp;rsquo;s own
-analysis&lt;/a&gt;.
-But also because students often use PGR rankings to choose PhD
-programs, and the rankings available to them typically predate the
-year of their PhD by 6 or 7 years.&lt;/p&gt;
- &lt;a class=&#34;footnote-return&#34; href=&#34;#fnref:3&#34;&gt;&lt;sup&gt;[return]&lt;/sup&gt;&lt;/a&gt;&lt;/li&gt;
-
-&lt;li id=&#34;fn:4&#34;&gt;&lt;p&gt;Thanks to &lt;a href=&#34;https://philosopherscocoon.typepad.com/blog/2019/05/phd-program-prestige-and-tt-placement.html?cid=6a014e89cbe0fd970d0240a48b2f6b200d#comment-6a014e89cbe0fd970d0240a48b2f6b200d&#34; target=&#34;_blank&#34;&gt;Amanda at the Philosophers&amp;rsquo;
-Cocoon&lt;/a&gt;
-for prompting me to look at this.&lt;/p&gt;
- &lt;a class=&#34;footnote-return&#34; href=&#34;#fnref:4&#34;&gt;&lt;sup&gt;[return]&lt;/sup&gt;&lt;/a&gt;&lt;/li&gt;
 &lt;/ol&gt;
 &lt;/div&gt;
 </description>

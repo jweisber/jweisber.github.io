@@ -10,8 +10,8 @@
     <meta name="author" content="Jonathan Weisberg">
     
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:site" content="@jweisber">
-    <meta name="twitter:creator" content="@jweisber">
+    <meta name="twitter:site" content="@">
+    <meta name="twitter:creator" content="@">
     <meta name="twitter:title" content="Accuracy for Dummies, Part 2: from Euclid to Brier">
     <meta name="twitter:description" content="Last time we saw that Euclidean distance is an &ldquo;unstable&rdquo; way of measuring inaccuracy. Given one assignment of probabilities, you&rsquo;ll expect some other assignment to be more accurate (unless the first assignment is either perfectly certain or perfectly uncertain).
 That&rsquo;s why accuraticians don&rsquo;t use good ol&rsquo; Euclidean distance.
@@ -33,19 +33,13 @@ Instead they use&hellip; well, there are lots of alternatives. But the closest t
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
     <link href="/css/prism.css" rel="stylesheet" />
     <link href="/css/scarab.css" rel="stylesheet">
-    <script type="text/x-mathjax-config">
-      MathJax.Hub.Config({
-        tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]},
-        "HTML-CSS": {
-          availableFonts: ["Neo-Euler"],
-          preferredFont: "Neo-Euler",
-          webFont: "Neo-Euler",
-          imageFont: "Neo-Euler",
-        }
-      });
+    <script>
+      window.MathJax = {
+        tex: { inlineMath: [['$','$'], ['\\(','\\)']] },
+        output: { font: 'mathjax-stix2', linebreaks: { inline: false } }
+      };
     </script>
-    <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
-    </script>
+    <script defer src="https://cdn.jsdelivr.net/npm/mathjax@4.1.3/tex-mml-chtml.js"></script>
     
     
     

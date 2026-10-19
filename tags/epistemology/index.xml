@@ -9,6 +9,163 @@
     <atom:link href="http://jonathanweisberg.org/tags/epistemology/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
+      <title>&#34;Everyone Who Disagrees With Me Is an Idiot&#34;, Part 1</title>
+      <link>http://jonathanweisberg.org/post/distrust-1/</link>
+      <pubDate>Mon, 19 Oct 2026 00:00:00 -0500</pubDate>
+      
+      <guid>http://jonathanweisberg.org/post/distrust-1/</guid>
+      <description>
+
+&lt;p&gt;It&amp;rsquo;s only natural to place less trust in the judgment of those who disagree with you. After all, from your point of view, those people are mistaken! And making mistakes is a sign of incompetence.&lt;/p&gt;
+
+&lt;p&gt;This kind of distrust is actually baked into a number of models in social epistemology (for example: &lt;a href=&#34;https://www.jasss.org/5/3/2.html&#34; target=&#34;_blank&#34;&gt;here&lt;/a&gt;, &lt;a href=&#34;https://doi.org/10.1093/bjps/axv025&#34; target=&#34;_blank&#34;&gt;here&lt;/a&gt;, and &lt;a href=&#34;https://doi.org/10.1007/s13194-018-0213-9&#34; target=&#34;_blank&#34;&gt;here&lt;/a&gt;). I gave an argument against the rationality of one such model in &lt;a href=&#34;http://jonathanweisberg.org/post/ow-commutativity/&#34;&gt;a previous post&lt;/a&gt;. But the argument doesn&amp;rsquo;t really depend on the details of the model; any rule that discounts evidence reported by a source you disagree with will run into the same problem.&lt;/p&gt;
+
+&lt;p&gt;A policy of distrusting those who disagree with you is also reminiscient of some classic issues in the debate about peer disagreement. So I think it&amp;rsquo;s worth getting clear on the extent to which such distrust makes sense, and trying to understand, when it goes wrong, &lt;em&gt;why&lt;/em&gt; it goes wrong. In this post I&amp;rsquo;ll take a first stab at a diagnosis.&lt;/p&gt;
+
+&lt;div style=&#34;display:none&#34;&gt;
+$\newcommand{\E}{\mathbb{E}}$
+$\renewcommand{\d}[1]{\,\mathrm{d}#1}$
+$\newcommand{\n}[1]{\overline{#1}}$
+&lt;/div&gt;
+
+&lt;h1 id=&#34;one-model-of-competence&#34;&gt;One Model of Competence&lt;/h1&gt;
+
+&lt;p&gt;Suppose you and a friend are investigating some hypothesis, $H$. If $H$ is true, then experiments on $H$ yield a &amp;ldquo;positive&amp;rdquo; result with some fixed probability $p$, whereas if $H$ is false, the &amp;ldquo;positive&amp;rdquo; rate is instead some lower value $q$. So we can think of $H$ as saying that some coin has bias $p$, and $\n{H}$ as saying the bias is instead $q$.&lt;/p&gt;
+
+&lt;p&gt;We&amp;rsquo;ll understand your friend&amp;rsquo;s competence as their reliability at recognizing positive evidence as positive, and negative evidence as negative. In other words, it&amp;rsquo;s the probability that they&amp;rsquo;ll correctly identify a heads as heads, and a tails as tails.&lt;/p&gt;
+
+&lt;p&gt;Now, imagine you and your friend each go off and do some independent experimenting on $H$. It seems plausible that, when you reconvene, you should find yourselves with similar opinions, if your friend is competent. Of course, it&amp;rsquo;s possible that one of you will get an unlucky batch of misleading evidence, and end up with the wrong view of $H$ despite being perfectly competent. But the more evidence you gather, the more likely it is that you&amp;rsquo;ll converge on the truth about $H$&amp;mdash;if, again, your friend is competent.&lt;/p&gt;
+
+&lt;p&gt;So shouldn&amp;rsquo;t you question your friend&amp;rsquo;s competence if they come back with a different opinion than yours? And suspect them more the more their opinion differs?&lt;/p&gt;
+
+&lt;p&gt;Curiously, no. At least, not in this model. The figure below shows how your estimate of your friend&amp;rsquo;s competence varies with the number of &amp;ldquo;heads&amp;rdquo; they claim to have encountered, in one instance of the model.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;http://jonathanweisberg.org/img/distrust-1/fig1.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;In this instance:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;the coin&amp;rsquo;s bias is either $p=&amp;frac34;$ or $q=&amp;frac14;$,&lt;/li&gt;
+&lt;li&gt;your friend does $10$ tosses, and&lt;/li&gt;
+&lt;li&gt;they might be perfectly competent ($C = 1$), perfectly incompetent ($C = &amp;frac12;$), or anything in between. All possibilities in this range are equally probable to start.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;The exact result depends on your $P(H)$, but the pattern is the same across various opinions you might hold about $H$: the more extreme your friend&amp;rsquo;s opinion, the higher you&amp;rsquo;ll rate their competence.&lt;/p&gt;
+
+&lt;h1 id=&#34;understanding-the-result&#34;&gt;Understanding the Result&lt;/h1&gt;
+
+&lt;p&gt;That&amp;rsquo;s an odd result, so let&amp;rsquo;s see if we can understand how it arises.&lt;/p&gt;
+
+&lt;p&gt;To fix ideas, suppose for a moment that $H$ is true, so the coin has bias $p=&amp;frac34;$. If your friend is perfectly competent ($C=1$), then the most likely outcome is they think they observe $7$ or $8$ heads. Whereas, if they&amp;rsquo;re perfectly incompetent ($C=&amp;frac12;$), they&amp;rsquo;ll probably claim to get around $5$ heads.&lt;/p&gt;
+
+&lt;p&gt;But that&amp;rsquo;s the wrong comparison to make! What matters is not where each likelihood function has its peak, but where the &lt;em&gt;ratio of the two likelihood functions&lt;/em&gt; has its maximum. That tells us where the competence and incompetence hypotheses have the starkest contrast, and thus where the strongest evidence for discriminating between them lies.&lt;/p&gt;
+
+&lt;p&gt;Now, the more &amp;ldquo;heads&amp;rdquo; your friend reports, the more this ratio increases. Think about it this way: each heads is $1.5$ times more likely given competence than it is given incompetence. Each time the coin lands, there&amp;rsquo;s only a $&amp;frac12;$ chance they&amp;rsquo;ll see it as heads if they&amp;rsquo;re incompetent, as compared with a $&amp;frac34;$ chance if they&amp;rsquo;re competent. So each time they call &amp;ldquo;heads&amp;rdquo;, the odds of the competent hypothesis increase by a factor of $1.5$.&lt;/p&gt;
+
+&lt;p&gt;That&amp;rsquo;s all assuming the bias is $p=&amp;frac34;$, which of course you don&amp;rsquo;t know. If instead the bias is $q=&amp;frac14;$, the story inverts: the competence hypothesis gets a $1.5\times$ boost each time your friend calls &amp;ldquo;tails&amp;rdquo; instead. But, while the evidence for competence is strongest at the opposite extreme in this case, it is still strongest at the extreme.&lt;/p&gt;
+
+&lt;p&gt;You might think that, if you don&amp;rsquo;t know which case you&amp;rsquo;re in&amp;mdash;$p=&amp;frac34;$ or $q=&amp;frac14;$&amp;mdash;then this extremizing tendency will get washed out when you average the two cases according to your probability for each. But no, as the following figure shows. Even if you&amp;rsquo;re entirely uncertain which is the true bias, with $P(H) = P(\n{H}) = &amp;frac12;$, the starkest contrast is still at the extremes:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;http://jonathanweisberg.org/img/distrust-1/fig2.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;A bit confusingly, that&amp;rsquo;s not where the biggest &lt;em&gt;difference&lt;/em&gt; is between the likelihoods of our two hypotheses about your friend&amp;rsquo;s competence. So it may help to view things on a log scale. Then the differences in the plot tell us where the likelihood &lt;em&gt;ratio&lt;/em&gt; is largest, namely at the extremes:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;http://jonathanweisberg.org/img/distrust-1/fig3.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+
+&lt;h1 id=&#34;a-diagnosis&#34;&gt;A Diagnosis&lt;/h1&gt;
+
+&lt;p&gt;So our diagnosis, at least in the case of this model, is as follows. The temptation to think that distrust tracks difference of opinion comes from a confusion between two questions.&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;What outcome is most expected if your friend is competent?&lt;/li&gt;
+&lt;li&gt;What outcome has the greatest contrast in what we expect from competence vs. incompetence?&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;That question (2) is what matters is a classic Bayesian moral, the law of likelihood. Relying instead on question (1) is a fallacy Elliott Sober dubs &lt;a href=&#34;https://joelvelasco.net/teaching/249/Sober%2005%20-%20is%20drift%20a%20serious%20alternative.pdf&#34; target=&#34;_blank&#34;&gt;&lt;em&gt;probabilistic modus tollens&lt;/em&gt;&lt;/a&gt;. &amp;ldquo;If my friend is competent, they should end up with an opinion similar to mine; they haven&amp;rsquo;t; so they&amp;rsquo;re probably not competent.&amp;rdquo; Tempting, but unBayesian.&lt;/p&gt;
+
+&lt;h1 id=&#34;getting-more-realistic&#34;&gt;Getting More Realistic&lt;/h1&gt;
+
+&lt;p&gt;Of course, that&amp;rsquo;s just one model, and it&amp;rsquo;s unrealistic in a number of ways. For one thing, it treats incompetence as random noise: on this model, an incompetent person treats positive and negative evidence identically, misreading both at the same rate. But, realistically, people misinterpret evidence and arguments in more systematic and biased ways, like wishful thinking.&lt;/p&gt;
+
+&lt;p&gt;So, a more realistic model would be one where your friend has a preference for $H$, and thus tends to see tails as heads more often than the other way around. Or, maybe, they have no initial preference, but as the data come in, they tend to interpret new data in line with whichever hypothesis has been favoured by the data so far.&lt;/p&gt;
+
+&lt;p&gt;I&amp;rsquo;ll try to work out the details of this kind of variation if I get the time. Meanwhile, here&amp;rsquo;s the math on the naive model we used here.&lt;/p&gt;
+
+&lt;h1 id=&#34;the-gory-details&#34;&gt;The Gory Details&lt;/h1&gt;
+
+&lt;p&gt;Recall the model&amp;rsquo;s assumptions:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;A coin has one of two possible biases, $p$ or $q$.&lt;/li&gt;
+&lt;li&gt;Your friend flips the coin some fixed number of times, $n$.&lt;/li&gt;
+&lt;li&gt;Their competence level is some probability, $C \sim \textrm{Uniform}(a,b)$.
+
+&lt;ul&gt;
+&lt;li&gt;They perceive each toss correctly with probability $C$, otherwise they perceive the opposite result.&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;At the end, they report how many heads they think they observed, $X$.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Under these assumptions, we can analyze the expected value of their competence given their report as follows:
+\begin{align}
+\E [ C \mid X=k ]
+  &amp;amp;= \int_a^b c \, f(c \mid k) \d{c} \\&lt;br /&gt;
+  &amp;amp;= \int_a^b c \, \frac{ f( c) \, P(k \mid c) }{ P(k) } \d{c} \\&lt;br /&gt;
+  &amp;amp;= \frac{ \int_a^b c \, f( c) \, P(k \mid c) \d{c} }{ P(k) } \\&lt;br /&gt;
+  &amp;amp;= \frac{ \int_a^b c \, f( c) \, P(k \mid c) \d{c} }{ \int_a^b f( c) \, P(k \mid c) \d{c} } \\&lt;br /&gt;
+  &amp;amp;= \frac{ \int_a^b c \, P(k \mid c) \d{c} }{ \int_a^b P(k \mid c) \d{c} }.
+\end{align}
+Now, assuming $H$ and $c$ are independent,
+\begin{align}
+P(k \mid c)
+  &amp;amp;= P(H) P(k \mid H, c) + P(\n{H}) P(k \mid \n{H}, c).
+\end{align}
+And if we define
+\begin{align}
+\rho(c, \theta)
+  &amp;amp;= c \theta + (1-c)(1-\theta), \\&lt;br /&gt;
+\beta(x)
+  &amp;amp;= x^k (1-x)^{n-k},
+\end{align}
+then we can express the conditional probabilities here as:
+\begin{align}
+P(k \mid H, c)
+  &amp;amp;= \binom{n}{k} \rho(c, p)^k (1 - \rho(c, p))^{n-k} \\&lt;br /&gt;
+  &amp;amp;= \binom{n}{k} \beta(\rho(c, p)), \\&lt;br /&gt;
+P(k \mid \n{H}, c)
+  &amp;amp;= \binom{n}{k} \rho(c, q)^k (1 - \rho(c, q))^{n-k} \\&lt;br /&gt;
+  &amp;amp;= \binom{n}{k} \beta(\rho(c, q)).
+\end{align}
+Returning now to our analysis of $\E[C \mid X = k]$:
+\begin{align}
+\E [ C \mid X = k ]
+  &amp;amp;= \frac{ \int_a^b c \, P(k \mid c) \d{c} }{ \int_a^b P(k \mid c) \d{c} } \\&lt;br /&gt;
+  &amp;amp;= \frac{ \int_a^b \left[c \, P(H) P(k \mid H, c) + c \, P(\n{H}) P(k \mid \n{H}, c) \right] \d{c} }{ \int_a^b \left[ P(H) P(k \mid H, c) + P(\n{H}) P(k \mid \n{H}, c) \right] \d{c} } \\&lt;br /&gt;
+  &amp;amp;= \frac{ P(H) \int_a^b c \, \beta(\rho(c, p)) \d{c} + P(\n{H}) \int_a^b c \, \beta(\rho(c, q)) \d{c} }{ P(H) \int_a^b \beta(\rho(c, p)) \d{c} + P(\n{H}) \int_a^b \beta(\rho(c, q)) \d{c} }.
+\end{align}&lt;/p&gt;
+
+&lt;p&gt;This is something we can express straightforwardly &lt;a href=&#34;http://jonathanweisberg.org/code/distrust-1/distrust-1.R&#34;&gt;in code&lt;/a&gt;, and fixing $(p, q, a, b) = (&amp;frac34;, &amp;frac14;, &amp;frac12;, 1)$, we get the first figure above.&lt;/p&gt;
+
+&lt;p&gt;We also focused on the special cases $C=&amp;frac12;$ and $C=1$. Here,
+$$
+\rho(c, \theta) =
+  \begin{cases}
+    &amp;frac12;    &amp;amp; \textrm{ if } c = &amp;frac12;, \\&lt;br /&gt;
+    \theta &amp;amp; \textrm{ if } c = 1,
+  \end{cases}
+$$
+so
+\begin{align}
+P(k \mid C=&amp;frac12;)
+  &amp;amp;= \binom{n}{k} (&amp;frac12;)^n, \\&lt;br /&gt;
+P(k \mid C=1)
+  &amp;amp;= \binom{n}{k} \left[P(H) \, p^k (1-p)^{n-k} + P(\n{H})\, q^k (1-q)^{n-k}\right].
+\end{align}
+These formulas give us the second and third figures above, assuming $P(H) = P(\n{H}) = &amp;frac12;$.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
       <title>How Scientific is Scientific Polarization?</title>
       <link>http://jonathanweisberg.org/post/ow-commutativity/</link>
       <pubDate>Tue, 10 Nov 2020 00:00:00 -0500</pubDate>

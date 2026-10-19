@@ -2,6 +2,26 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://jonathanweisberg.org/publication/2026%20Geometric%20Pooling/</loc>
+    <lastmod>2026-10-19T00:00:02-05:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://jonathanweisberg.org/publication/2025%20Jeffrey%20Pooling/</loc>
+    <lastmod>2026-10-19T00:00:01-05:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://jonathanweisberg.org/post/distrust-1/</loc>
+    <lastmod>2026-10-19T00:00:00-05:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://jonathanweisberg.org/publication/2024%20Updating%20on%20the%20Evidence%20of%20Others/</loc>
+    <lastmod>2026-10-19T00:00:00-05:00</lastmod>
+  </url>
+  
+  <url>
     <loc>http://jonathanweisberg.org/post/philosophy-fumbles-the-bag/</loc>
     <lastmod>2026-10-09T08:58:59-04:00</lastmod>
   </url>
@@ -32,12 +52,12 @@
   </url>
   
   <url>
-    <loc>http://jonathanweisberg.org/publication/Belief%20in%20Psyontology/</loc>
+    <loc>http://jonathanweisberg.org/publication/2020%20Belief%20in%20Psyontology/</loc>
     <lastmod>2019-12-10T21:59:04-05:00</lastmod>
   </url>
   
   <url>
-    <loc>http://jonathanweisberg.org/publication/Couldve%20Thought%20Otherwise/</loc>
+    <loc>http://jonathanweisberg.org/publication/2020%20Couldve%20Thought%20Otherwise/</loc>
     <lastmod>2019-12-10T21:58:08-05:00</lastmod>
   </url>
   
@@ -350,7 +370,7 @@
   
   <url>
     <loc>http://jonathanweisberg.org/tags/epistemology/</loc>
-    <lastmod>2020-11-10T00:00:00-05:00</lastmod>
+    <lastmod>2026-10-19T00:00:00-05:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -367,7 +387,7 @@
   
   <url>
     <loc>http://jonathanweisberg.org/tags/formal-epistemology/</loc>
-    <lastmod>2020-11-10T00:00:00-05:00</lastmod>
+    <lastmod>2026-10-19T00:00:00-05:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -379,7 +399,7 @@
   
   <url>
     <loc>http://jonathanweisberg.org/</loc>
-    <lastmod>2026-10-09T08:58:59-04:00</lastmod>
+    <lastmod>2026-10-19T00:00:02-05:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -409,7 +429,7 @@
   
   <url>
     <loc>http://jonathanweisberg.org/tags/philosophy/</loc>
-    <lastmod>2026-10-09T08:58:59-04:00</lastmod>
+    <lastmod>2026-10-19T00:00:00-05:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -421,7 +441,7 @@
   
   <url>
     <loc>http://jonathanweisberg.org/post/</loc>
-    <lastmod>2026-10-09T08:58:59-04:00</lastmod>
+    <lastmod>2026-10-19T00:00:00-05:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -433,7 +453,7 @@
   
   <url>
     <loc>http://jonathanweisberg.org/publication/</loc>
-    <lastmod>2019-12-10T21:59:04-05:00</lastmod>
+    <lastmod>2026-10-19T00:00:02-05:00</lastmod>
     <priority>0</priority>
   </url>
   

@@ -10,8 +10,8 @@
     <meta name="author" content="Jonathan Weisberg">
     
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:site" content="@jweisber">
-    <meta name="twitter:creator" content="@jweisber">
+    <meta name="twitter:site" content="@">
+    <meta name="twitter:creator" content="@">
     <meta name="twitter:title" content="Laplace&#39;s Rule of Succession">
     <meta name="twitter:description" content="The Rule of Succession gives a simple formula for &ldquo;enumerative induction&rdquo;: reasoning from observed instances to unobserved ones. If you&rsquo;ve observed 8 ravens and they&rsquo;ve all been black, how certain should you be the next raven you see will also be black? According to the Rule of Succession, 90%. In general, the probability is $(k&#43;1)/(n&#43;2)$ that the next observation will be positive, given $k$ positive observations out of $n$ total.">
     <meta name="twitter:image" content="https://jonathanweisberg.org/img/inductive-logic/rule-of-succession.png">
@@ -29,19 +29,13 @@
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
     <link href="/css/prism.css" rel="stylesheet" />
     <link href="/css/scarab.css" rel="stylesheet">
-    <script type="text/x-mathjax-config">
-      MathJax.Hub.Config({
-        tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]},
-        "HTML-CSS": {
-          availableFonts: ["Neo-Euler"],
-          preferredFont: "Neo-Euler",
-          webFont: "Neo-Euler",
-          imageFont: "Neo-Euler",
-        }
-      });
+    <script>
+      window.MathJax = {
+        tex: { inlineMath: [['$','$'], ['\\(','\\)']] },
+        output: { font: 'mathjax-stix2', linebreaks: { inline: false } }
+      };
     </script>
-    <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
-    </script>
+    <script defer src="https://cdn.jsdelivr.net/npm/mathjax@4.1.3/tex-mml-chtml.js"></script>
     
     
     
