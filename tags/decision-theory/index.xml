@@ -9,6 +9,68 @@
     <atom:link href="http://jonathanweisberg.org/tags/decision-theory/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
+      <title>Decision Theory Without Representation Theorems or Tears</title>
+      <link>http://jonathanweisberg.org/post/decision-theory/</link>
+      <pubDate>Wed, 21 Oct 2026 00:00:00 -0500</pubDate>
+      
+      <guid>http://jonathanweisberg.org/post/decision-theory/</guid>
+      <description>
+
+&lt;p&gt;Since the dawn of time, decision theorists have wondered why expected utility is the right way to evaluate options. Sure, it satisfies the usual axioms of decision theory, like von Neumann &amp;amp; Morgenstern&amp;rsquo;s independence axiom or Savage&amp;rsquo;s sure-thing principle. But so do other decision rules.&lt;/p&gt;
+
+&lt;p&gt;For example, suppose there are three possible outcomes, with utilities $1$, $4$, and $9$. And imagine that you evaluate a gamble where the probabilities of these outcomes are, respectively, $p_1$, $p_2$, and $p_3$, using the following formula:
+$$ p_1 \sqrt{1} + p_2 \sqrt{4} + p_3 \sqrt{9}. $$
+This &amp;ldquo;expected square-root-of-utility&amp;rdquo; formula will rank gambles exactly the same as an expected utility maximizer whose utilities for the three outcomes are instead $1$, $2$, and $3$. So it satisfies all the usual preference axioms, including independence/the sure-thing principle.&lt;/p&gt;
+
+&lt;p&gt;&lt;del&gt;Lazy philosophers&lt;/del&gt; Constructivists will protest that there is no behavioural difference between an expected utility maximizer with utilities $1$, $2$, and $3$, and an expected square-root-of-utility maximizer with utilities $1$, $4$, and $9$. And, where there is no behavioural difference, there is no psychological difference. So our supposed expected square-root-of-utility maximizer is actually an expected utility maximizer after all.&lt;/p&gt;
+
+&lt;p&gt;But &lt;a href=&#34;https://www.youtube.com/watch?v=DRsRV5I_jP4&amp;amp;t=36s&#34; target=&#34;_blank&#34;&gt;these philosophers are behaviourists&lt;/a&gt;. What would actually solve our problem is a plausible axiom that acknowledges the &lt;em&gt;possibility&lt;/em&gt; of following the expected square-root-of-utility rule, yet precludes its &lt;em&gt;rationality&lt;/em&gt;.&lt;/p&gt;
+
+&lt;p&gt;Martin Peterson provides just that in &lt;a href=&#34;https://onlinelibrary.wiley.com/doi/10.1111/j.1755-2567.2002.tb00124.x&#34; target=&#34;_blank&#34;&gt;a 2002 paper&lt;/a&gt;, which has, according to Google Scholar, been cited &lt;a href=&#34;https://scholar.google.com/scholar?oi=bibs&amp;amp;hl=en&amp;amp;cites=6029521995644976817&amp;amp;inst=315209982802967212&#34; target=&#34;_blank&#34;&gt;a grand total of nine (9) times&lt;/a&gt;. So here&amp;rsquo;s an attempt to explain Peterson&amp;rsquo;s principle, and hopefully bring it more eyeballs.&lt;/p&gt;
+
+&lt;h1 id=&#34;tradeoff-equivalence&#34;&gt;Tradeoff Equivalence&lt;/h1&gt;
+
+&lt;p&gt;Let&amp;rsquo;s actually start with a stronger assumption than the one Peterson relies on. Although more controversial, this assumption is more accessible. And we can replace it with Peterson&amp;rsquo;s actual proposal once we&amp;rsquo;ve got the hang of the basic idea.&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;Tradeoff Equivalence.&lt;/strong&gt; If a gamble has two equiprobable outcomes, making one of these outcomes worse by some amount and the other better by the same amount does not change the gamble&amp;rsquo;s desirability.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;So, for example, you should be indifferent between (i) a fair coin flip that results in $10$ utils if heads and $0$ utils if tails, and (ii) a fair coin flip that results in $9$ utils if heads and $1$ util if tails.&lt;/p&gt;
+
+&lt;p&gt;How does Tradeoff Equivalence lead to expected utility? Well, suppose our three outcomes $1$, $4$, and $9$ are all equiprobable. Then we can make the first one better by $11/3$ utils, and the last one worse by the same amount: so we have $14/3$, $12/3$, and $16/3$. By Tradeoff Equivalence, this modified gamble is no better or worse. So let&amp;rsquo;s modify it again, this time taking $2/3$ from the last outcome and giving it to the middle one, to obtain $14/3$, $14/3$, and $14/3$. This is just a guaranteed utility of $14/3$. And, by transitivity, our original gamble is equipreferable to it. So the original gamble&amp;rsquo;s value was its expected utility: $14/3$.&lt;/p&gt;
+
+&lt;p&gt;That&amp;rsquo;s all well and good for cases where the outcomes are equally likely, but what about other cases? Well, suppose the probabilities of our three outcomes are instead $1/ 4$, $1/ 4$, and $1/ 2$. This is, extensionally, the same as a fair $4$-ticket lottery where the payoffs are $1$, $4$, $9$, and $9$. So now we just do the same trick to create a transitive chain that ends in a guaranteed payoff:
+$$ (1, 4, 9, 9) \to (17/4, 16/4, 23/4, 36/4) \to (23/4, 16/4, 23/4, 30/4) \to (23/4, 23/4, 23/4, 23/4). $$
+So this gamble too is equipreferable to a guarantee of its expected utility, $23/4$.&lt;/p&gt;
+
+&lt;p&gt;We&amp;rsquo;re using additional assumptions here, beyond just Tradeoff Equivalence: transitivity, dominance, etc. But these are much less controversial. So let&amp;rsquo;s focus on justifying the big one, Tradeoff Equivalence.&lt;/p&gt;
+
+&lt;h1 id=&#34;the-peterson-principle&#34;&gt;The Peterson Principle&lt;/h1&gt;
+
+&lt;p&gt;We can derive Tradeoff Equivalence from something more innocuous. What Peterson actually assumes is that, if we make the better of two equiprobable outcomes worse by some small amount, there is &lt;em&gt;some&lt;/em&gt; amount we can improve the other outcome by to compensate. Every small &amp;ldquo;souring&amp;rdquo; of a gamble has some compensatory &amp;ldquo;sweetening&amp;rdquo;, when dealing with equiprobable outcomes.&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;The Peterson Principle.&lt;/strong&gt; For some $\delta &amp;gt; 0$, every $\epsilon \in [0, \delta]$ has an $\epsilon&amp;rsquo;$ such that, if $u$ and $u&amp;rsquo;$ are equiprobable with $u &amp;gt; u&amp;rsquo;$, then replacing $u$ with $u-\epsilon$ and $u&amp;rsquo;$ with $u&amp;rsquo;+\epsilon&amp;rsquo;$ does not alter the gamble&amp;rsquo;s desirability.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;Here we don&amp;rsquo;t assume that the tradeoffs have to be the same size. For all this principle says, a small souring might need a much larger sweetening to compensate for it: $\epsilon&amp;rsquo;$ might be much bigger than $\epsilon$.&lt;/p&gt;
+
+&lt;p&gt;However, we can show that the souring and sweetening must be the same size if we assume dominance and transitivity. To see why, consider again a fair coin flip, with payoffs $u &amp;gt; u&amp;rsquo;$, where $u - u&amp;rsquo; &amp;lt; \epsilon$. Then
+$$ (u, u&amp;rsquo;) \sim (u-\epsilon, u&amp;rsquo;+\epsilon&amp;rsquo;) \sim (u-\epsilon+\epsilon&amp;rsquo;, u&amp;rsquo;+\epsilon&amp;rsquo;-\epsilon). $$
+Now, if $\epsilon &amp;gt; \epsilon&amp;rsquo;$, then by dominance,
+$$ (u, u&amp;rsquo;) \succ (u-\epsilon+\epsilon&amp;rsquo;, u&amp;rsquo;+\epsilon&amp;rsquo;-\epsilon), $$
+contradicting transitivity. Whereas if $\epsilon &amp;lt; \epsilon&amp;rsquo;$, we contradict dominance and transitivity again, just with $\prec$ in place of $\succ$. So $\epsilon = \epsilon&amp;rsquo;$ is the only possibility.&lt;/p&gt;
+
+&lt;p&gt;It thus follows that souring one outcome by any amount, and sweetening the other by that same amount, has no effect. For, we can add some $(-\epsilon,\epsilon)$ to $(u, u&amp;rsquo;)$ as many times as needed to arrive at $(u-\Delta, u&amp;rsquo;+\Delta)$, without altering the desirability at any step. So Peterson&amp;rsquo;s principle gives us Tradeoff Equivalence in the presence of other, standard assumptions like transitivity and dominance.&lt;/p&gt;
+
+&lt;h1 id=&#34;more&#34;&gt;More&lt;/h1&gt;
+
+&lt;p&gt;You can find more about the necessary assumptions in &lt;a href=&#34;https://www.cambridge.org/highereducation/books/an-introduction-to-decision-theory/93E043CC210347D7F3FE39665FD26C9F#contents&#34; target=&#34;_blank&#34;&gt;Peterson&amp;rsquo;s textbook&lt;/a&gt;, which gives a very accessible presentation in Chapter 4. I also recommend Kenny Easwaran&amp;rsquo;s paper, &lt;a href=&#34;https://quod.lib.umich.edu/p/phimp/3521354.0014.027/1&#34; target=&#34;_blank&#34;&gt;&amp;ldquo;Decision Theory Without Representation Theorems&amp;rdquo;&lt;/a&gt;, from which this post adapts its title. Easwaran develops a more general theory, which handles certain cases where expected utility is either infinite or undefined and standard decision theory thus breaks down. Might be some tears on that one, though.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
       <title>REU Redux: Allais All Over Again</title>
       <link>http://jonathanweisberg.org/post/REU%20Redeux/</link>
       <pubDate>Tue, 26 Sep 2017 20:24:04 -0500</pubDate>

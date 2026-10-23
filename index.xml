@@ -6,8 +6,70 @@
     <description>Recent content on Jonathan Weisberg</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 19 Oct 2026 00:00:02 -0500</lastBuildDate>
+    <lastBuildDate>Wed, 21 Oct 2026 00:00:00 -0500</lastBuildDate>
     <atom:link href="http://jonathanweisberg.org/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Decision Theory Without Representation Theorems or Tears</title>
+      <link>http://jonathanweisberg.org/post/decision-theory/</link>
+      <pubDate>Wed, 21 Oct 2026 00:00:00 -0500</pubDate>
+      
+      <guid>http://jonathanweisberg.org/post/decision-theory/</guid>
+      <description>
+
+&lt;p&gt;Since the dawn of time, decision theorists have wondered why expected utility is the right way to evaluate options. Sure, it satisfies the usual axioms of decision theory, like von Neumann &amp;amp; Morgenstern&amp;rsquo;s independence axiom or Savage&amp;rsquo;s sure-thing principle. But so do other decision rules.&lt;/p&gt;
+
+&lt;p&gt;For example, suppose there are three possible outcomes, with utilities $1$, $4$, and $9$. And imagine that you evaluate a gamble where the probabilities of these outcomes are, respectively, $p_1$, $p_2$, and $p_3$, using the following formula:
+$$ p_1 \sqrt{1} + p_2 \sqrt{4} + p_3 \sqrt{9}. $$
+This &amp;ldquo;expected square-root-of-utility&amp;rdquo; formula will rank gambles exactly the same as an expected utility maximizer whose utilities for the three outcomes are instead $1$, $2$, and $3$. So it satisfies all the usual preference axioms, including independence/the sure-thing principle.&lt;/p&gt;
+
+&lt;p&gt;&lt;del&gt;Lazy philosophers&lt;/del&gt; Constructivists will protest that there is no behavioural difference between an expected utility maximizer with utilities $1$, $2$, and $3$, and an expected square-root-of-utility maximizer with utilities $1$, $4$, and $9$. And, where there is no behavioural difference, there is no psychological difference. So our supposed expected square-root-of-utility maximizer is actually an expected utility maximizer after all.&lt;/p&gt;
+
+&lt;p&gt;But &lt;a href=&#34;https://www.youtube.com/watch?v=DRsRV5I_jP4&amp;amp;t=36s&#34; target=&#34;_blank&#34;&gt;these philosophers are behaviourists&lt;/a&gt;. What would actually solve our problem is a plausible axiom that acknowledges the &lt;em&gt;possibility&lt;/em&gt; of following the expected square-root-of-utility rule, yet precludes its &lt;em&gt;rationality&lt;/em&gt;.&lt;/p&gt;
+
+&lt;p&gt;Martin Peterson provides just that in &lt;a href=&#34;https://onlinelibrary.wiley.com/doi/10.1111/j.1755-2567.2002.tb00124.x&#34; target=&#34;_blank&#34;&gt;a 2002 paper&lt;/a&gt;, which has, according to Google Scholar, been cited &lt;a href=&#34;https://scholar.google.com/scholar?oi=bibs&amp;amp;hl=en&amp;amp;cites=6029521995644976817&amp;amp;inst=315209982802967212&#34; target=&#34;_blank&#34;&gt;a grand total of nine (9) times&lt;/a&gt;. So here&amp;rsquo;s an attempt to explain Peterson&amp;rsquo;s principle, and hopefully bring it more eyeballs.&lt;/p&gt;
+
+&lt;h1 id=&#34;tradeoff-equivalence&#34;&gt;Tradeoff Equivalence&lt;/h1&gt;
+
+&lt;p&gt;Let&amp;rsquo;s actually start with a stronger assumption than the one Peterson relies on. Although more controversial, this assumption is more accessible. And we can replace it with Peterson&amp;rsquo;s actual proposal once we&amp;rsquo;ve got the hang of the basic idea.&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;Tradeoff Equivalence.&lt;/strong&gt; If a gamble has two equiprobable outcomes, making one of these outcomes worse by some amount and the other better by the same amount does not change the gamble&amp;rsquo;s desirability.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;So, for example, you should be indifferent between (i) a fair coin flip that results in $10$ utils if heads and $0$ utils if tails, and (ii) a fair coin flip that results in $9$ utils if heads and $1$ util if tails.&lt;/p&gt;
+
+&lt;p&gt;How does Tradeoff Equivalence lead to expected utility? Well, suppose our three outcomes $1$, $4$, and $9$ are all equiprobable. Then we can make the first one better by $11/3$ utils, and the last one worse by the same amount: so we have $14/3$, $12/3$, and $16/3$. By Tradeoff Equivalence, this modified gamble is no better or worse. So let&amp;rsquo;s modify it again, this time taking $2/3$ from the last outcome and giving it to the middle one, to obtain $14/3$, $14/3$, and $14/3$. This is just a guaranteed utility of $14/3$. And, by transitivity, our original gamble is equipreferable to it. So the original gamble&amp;rsquo;s value was its expected utility: $14/3$.&lt;/p&gt;
+
+&lt;p&gt;That&amp;rsquo;s all well and good for cases where the outcomes are equally likely, but what about other cases? Well, suppose the probabilities of our three outcomes are instead $1/ 4$, $1/ 4$, and $1/ 2$. This is, extensionally, the same as a fair $4$-ticket lottery where the payoffs are $1$, $4$, $9$, and $9$. So now we just do the same trick to create a transitive chain that ends in a guaranteed payoff:
+$$ (1, 4, 9, 9) \to (17/4, 16/4, 23/4, 36/4) \to (23/4, 16/4, 23/4, 30/4) \to (23/4, 23/4, 23/4, 23/4). $$
+So this gamble too is equipreferable to a guarantee of its expected utility, $23/4$.&lt;/p&gt;
+
+&lt;p&gt;We&amp;rsquo;re using additional assumptions here, beyond just Tradeoff Equivalence: transitivity, dominance, etc. But these are much less controversial. So let&amp;rsquo;s focus on justifying the big one, Tradeoff Equivalence.&lt;/p&gt;
+
+&lt;h1 id=&#34;the-peterson-principle&#34;&gt;The Peterson Principle&lt;/h1&gt;
+
+&lt;p&gt;We can derive Tradeoff Equivalence from something more innocuous. What Peterson actually assumes is that, if we make the better of two equiprobable outcomes worse by some small amount, there is &lt;em&gt;some&lt;/em&gt; amount we can improve the other outcome by to compensate. Every small &amp;ldquo;souring&amp;rdquo; of a gamble has some compensatory &amp;ldquo;sweetening&amp;rdquo;, when dealing with equiprobable outcomes.&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;The Peterson Principle.&lt;/strong&gt; For some $\delta &amp;gt; 0$, every $\epsilon \in [0, \delta]$ has an $\epsilon&amp;rsquo;$ such that, if $u$ and $u&amp;rsquo;$ are equiprobable with $u &amp;gt; u&amp;rsquo;$, then replacing $u$ with $u-\epsilon$ and $u&amp;rsquo;$ with $u&amp;rsquo;+\epsilon&amp;rsquo;$ does not alter the gamble&amp;rsquo;s desirability.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;Here we don&amp;rsquo;t assume that the tradeoffs have to be the same size. For all this principle says, a small souring might need a much larger sweetening to compensate for it: $\epsilon&amp;rsquo;$ might be much bigger than $\epsilon$.&lt;/p&gt;
+
+&lt;p&gt;However, we can show that the souring and sweetening must be the same size if we assume dominance and transitivity. To see why, consider again a fair coin flip, with payoffs $u &amp;gt; u&amp;rsquo;$, where $u - u&amp;rsquo; &amp;lt; \epsilon$. Then
+$$ (u, u&amp;rsquo;) \sim (u-\epsilon, u&amp;rsquo;+\epsilon&amp;rsquo;) \sim (u-\epsilon+\epsilon&amp;rsquo;, u&amp;rsquo;+\epsilon&amp;rsquo;-\epsilon). $$
+Now, if $\epsilon &amp;gt; \epsilon&amp;rsquo;$, then by dominance,
+$$ (u, u&amp;rsquo;) \succ (u-\epsilon+\epsilon&amp;rsquo;, u&amp;rsquo;+\epsilon&amp;rsquo;-\epsilon), $$
+contradicting transitivity. Whereas if $\epsilon &amp;lt; \epsilon&amp;rsquo;$, we contradict dominance and transitivity again, just with $\prec$ in place of $\succ$. So $\epsilon = \epsilon&amp;rsquo;$ is the only possibility.&lt;/p&gt;
+
+&lt;p&gt;It thus follows that souring one outcome by any amount, and sweetening the other by that same amount, has no effect. For, we can add some $(-\epsilon,\epsilon)$ to $(u, u&amp;rsquo;)$ as many times as needed to arrive at $(u-\Delta, u&amp;rsquo;+\Delta)$, without altering the desirability at any step. So Peterson&amp;rsquo;s principle gives us Tradeoff Equivalence in the presence of other, standard assumptions like transitivity and dominance.&lt;/p&gt;
+
+&lt;h1 id=&#34;more&#34;&gt;More&lt;/h1&gt;
+
+&lt;p&gt;You can find more about the necessary assumptions in &lt;a href=&#34;https://www.cambridge.org/highereducation/books/an-introduction-to-decision-theory/93E043CC210347D7F3FE39665FD26C9F#contents&#34; target=&#34;_blank&#34;&gt;Peterson&amp;rsquo;s textbook&lt;/a&gt;, which gives a very accessible presentation in Chapter 4. I also recommend Kenny Easwaran&amp;rsquo;s paper, &lt;a href=&#34;https://quod.lib.umich.edu/p/phimp/3521354.0014.027/1&#34; target=&#34;_blank&#34;&gt;&amp;ldquo;Decision Theory Without Representation Theorems&amp;rdquo;&lt;/a&gt;, from which this post adapts its title. Easwaran develops a more general theory, which handles certain cases where expected utility is either infinite or undefined and standard decision theory thus breaks down. Might be some tears on that one, though.&lt;/p&gt;
+</description>
+    </item>
     
     <item>
       <title>Geometric Pooling: A User&#39;s Guide</title>
@@ -1333,85 +1395,6 @@ Kolmogorov axioms.&lt;/p&gt;
 &lt;li id=&#34;fn:3&#34;&gt;&lt;p&gt;When $n = 0$ we have to stipulate that the probability is $1/ 2$,
 the limit as $\lambda \rightarrow 0$.&lt;/p&gt;
  &lt;a class=&#34;footnote-return&#34; href=&#34;#fnref:3&#34;&gt;&lt;sup&gt;[return]&lt;/sup&gt;&lt;/a&gt;&lt;/li&gt;
-&lt;/ol&gt;
-&lt;/div&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>The Super-Humean Theory of Belief</title>
-      <link>http://jonathanweisberg.org/post/super-humean-belief/</link>
-      <pubDate>Wed, 21 Aug 2019 00:00:00 -0500</pubDate>
-      
-      <guid>http://jonathanweisberg.org/post/super-humean-belief/</guid>
-      <description>&lt;p&gt;The classic &lt;a href=&#34;https://plato.stanford.edu/entries/formal-belief/#QuaBel&#34; target=&#34;_blank&#34;&gt;&amp;ldquo;Lockean&amp;rdquo; thesis&lt;/a&gt; about full and partial belief says full belief is rational iff strong partial belief is rational. &lt;a href=&#34;https://philpapers.org/rec/LEIIHT&#34; target=&#34;_blank&#34;&gt;Hannes Leitgeb&amp;rsquo;s &amp;ldquo;Humean&amp;rdquo; thesis&lt;/a&gt; proposes a subtler connection.
-$
-\newcommand\p{Pr}
-\newcommand{\B}{\mathbf{B}}
-\newcommand{\given}{\mid}
-$&lt;/p&gt;
-
-&lt;dl&gt;
-&lt;dt&gt;The Humean Thesis&lt;/dt&gt;
-&lt;dd&gt;&lt;p&gt;For a rational agent whose full beliefs are given by the set $\mathbf{B}$, and whose credences by the probability function $\p$: $B \in \mathbf{B}$ iff $\p(B \given A) &amp;gt; t$ for all $A$ consistent with $\mathbf{B}$.&lt;/p&gt;&lt;/dd&gt;
-&lt;/dl&gt;
-
-&lt;p&gt;Notice that we can think of this as, instead, a coherentist theory of justification. Suppose we replace credence with &amp;ldquo;evidential&amp;rdquo; probability (think: Carnap, Williamson). Then we get a theory of justification where beliefs aren&amp;rsquo;t justified in isolation. It&amp;rsquo;s not enough for a belief to be highly probable in its own right, it has to be part of a larger body that underwrites that high probability.&lt;/p&gt;
-
-&lt;p&gt;Flipping things around, the coherentist theory of justification from &lt;a href=&#34;http://jonathanweisberg.org/post/coherentism-1&#34;&gt;my last wacky post&lt;/a&gt; doubles as an even wackier theory of full belief. The Humean view is roughly that a belief is justified iff its fellows secure its high probability. Now the &amp;ldquo;Super-Humean&amp;rdquo; view says a belief is justified to the extent its fellows secure its high centrality.&lt;/p&gt;
-
-&lt;p&gt;(Last time we explored one fun way of measuring centrality, drawing on coherentism for inspiration, and network theory for the math. But network theory offers &lt;a href=&#34;https://en.wikipedia.org/wiki/Centrality&#34; target=&#34;_blank&#34;&gt;many others ways of measuring centrality&lt;/a&gt;, which could be slotted in here to provide alternative theories of full and partial belief.)&lt;/p&gt;
-
-&lt;p&gt;Like Leitgeb&amp;rsquo;s Humean view, the Super-Humean view has a holistic character. Instead of evaluating full beliefs just by looking at your credences, we also have to look at what else you believe.&lt;/p&gt;
-
-&lt;p&gt;Another parallel: both theories have a permissive quality. Leitgeb presents examples where more than one set $\B$ fits with a given credence function $\p$, on the Humean view. And the same will be true on the Super-Humean view.&lt;sup class=&#34;footnote-ref&#34; id=&#34;fnref:coins&#34;&gt;&lt;a rel=&#34;footnote&#34; href=&#34;#fn:coins&#34;&gt;1&lt;/a&gt;&lt;/sup&gt;&lt;/p&gt;
-
-&lt;p&gt;But there are interesting differences. We can evaluate beliefs individually on the Super-Humean account, even though our method of evaluation is holistic. True, a belief&amp;rsquo;s justification depends on what else you believe. But your beliefs don&amp;rsquo;t all stand or fall together; some can come out justified even though others come out unjustified.&lt;/p&gt;
-
-&lt;p&gt;Strictly speaking, some beliefs come out highly justified even though others come out hardly justified. Because, differing again from the Humean view, evaluations are graded on the Super-Humean view. Each belief is assigned a degree of justification.&lt;/p&gt;
-
-&lt;p&gt;One nice thing about the Super-Humean view, then, is that it allows for &amp;ldquo;non-ideal&amp;rdquo; theorizing. We can study non-ideal agents, and discern more justified beliefs from lesser ones.&lt;/p&gt;
-
-&lt;p&gt;&amp;ldquo;But does it handle the lottery and preface paradoxes?&amp;rdquo;, is the question we always ask about a theory of full belief. As is so often the case, the answer is &amp;ldquo;yes, but&amp;hellip;&amp;rdquo;.&lt;/p&gt;
-
-&lt;p&gt;Consider a lottery of $100$ tickets with one to be selected at random as the winner. If you believe of each ticket that it will lose, we have a network of $101$ nodes: $L_1$ through $L_{100}$, plus the tautology node $\top$. How strong are the connections between these nodes? Assuming we take $L_3&amp;ndash;L_{100}$ as givens in determining the weight of the $L_2 \rightarrow L_1$ arrow, it gets weight $0$ since
-$$\p(L_1 \given L_2 \wedge L_3 \wedge \ldots \wedge L_{100}) = 0.$$
-And likewise for all the other arrows,&lt;sup class=&#34;footnote-ref&#34; id=&#34;fnref:epsilon&#34;&gt;&lt;a rel=&#34;footnote&#34; href=&#34;#fn:epsilon&#34;&gt;2&lt;/a&gt;&lt;/sup&gt; except those pointing to the $\top$ node (they always get weight $1$). All the $L_i$ beliefs thus come out with rock-bottom justification compared to $\top$, i.e. you aren&amp;rsquo;t justified in believing these lottery propositions.&lt;/p&gt;
-
-&lt;p&gt;Contrast that with a preface case, where you believe each of $100$ claims you&amp;rsquo;ve researched, $C_1$ through $C_{100}$. These claims are positively correlated though, or at least independent.&lt;sup class=&#34;footnote-ref&#34; id=&#34;fnref:pollock&#34;&gt;&lt;a rel=&#34;footnote&#34; href=&#34;#fn:pollock&#34;&gt;3&lt;/a&gt;&lt;/sup&gt; So
-$$\p(C_1 \given C_2 \wedge C_3 \wedge \ldots \wedge C_{100}) \approx 1,$$
-and likewise for the other $C_i$. The belief-graph here is thus tightly connected, and the $C_i$ nodes will score high on centrality compared to $\top$. So you&amp;rsquo;re highly justified in your beliefs in the preface case.&lt;/p&gt;
-
-&lt;p&gt;So far so good, at least if you think&amp;mdash;as I tend to&amp;mdash;that lottery beliefs should come out unjustified, while preface beliefs should come out justified. What&amp;rsquo;s the &amp;ldquo;but&amp;hellip;&amp;rdquo; then? I see two issues (at least).&lt;/p&gt;
-
-&lt;p&gt;First, we had to assume that all your remaining beliefs are taken as given in assessing the weight of a connection like $L_2 \rightarrow L_1$. That worked out well here. But as a general rule, it doesn&amp;rsquo;t always have great results, as &lt;a href=&#34;https://twitter.com/Juan/status/1161735087093776384?s=20&#34; target=&#34;_blank&#34;&gt;Juan Comesaña noted&lt;/a&gt; about our treatment of the Tweety case last time.&lt;/p&gt;
-
-&lt;p&gt;We could go all the way to the other extreme of course, and just evaluate the $L_2 \rightarrow L_1$ connection in isolation by looking at $\p(L_1 \given L_2)$. But that seems too extreme, since it means ignoring the agent&amp;rsquo;s other beliefs altogether.&lt;/p&gt;
-
-&lt;p&gt;What we want is something in between, it seems. We want the agent&amp;rsquo;s other beliefs to &amp;ldquo;get in the way&amp;rdquo; enough that they substantially weaken the connections in the lottery graph. But we don&amp;rsquo;t want them to be taken entirely for granted. Exactly how to achieve the right balance here is something I&amp;rsquo;m not sure about.&lt;/p&gt;
-
-&lt;p&gt;Second issue: what if you only adopt a few lottery beliefs, just $L_1$ and $L_2$ for example? Then we can&amp;rsquo;t exploit the &amp;ldquo;collective defeat&amp;rdquo; that drove our treatment of the lottery.&lt;/p&gt;
-
-&lt;p&gt;You might respond that this is a fine result, since isolated lottery beliefs are actually justified. It&amp;rsquo;s only when you apply the same logic to all the tickets that your justification is undercut. But I find this unsatisfying.&lt;/p&gt;
-
-&lt;p&gt;Maybe a student encountering the paradox for the first time is justified in believing their ticket will lose. But it should be enough to defeat that justification that they merely realize they could believe the same thing about all the other tickets, for identical reasons. Even if they don&amp;rsquo;t go ahead to form those beliefs, they should drop the one belief they had about their own ticket.&lt;/p&gt;
-
-&lt;p&gt;This is one way in which Leitgeb&amp;rsquo;s Humean theory seems superior to me. On the Humean view, which beliefs are rational depends on how the space of possibilities is partitioned (see &lt;a href=&#34;https://philpapers.org/rec/LEITST-2&#34; target=&#34;_blank&#34;&gt;Leitgeb 2014&lt;/a&gt;). And the partition is determined by the context&amp;mdash;how the subject frames the situation in their mind. (At least, that&amp;rsquo;s how I understand Leitgeb here.) So just realizing the symmetry of the lottery paradox is enough to defeat justification, on the Humean view.&lt;/p&gt;
-&lt;div class=&#34;footnotes&#34;&gt;
-
-&lt;hr /&gt;
-
-&lt;ol&gt;
-&lt;li id=&#34;fn:coins&#34;&gt;&lt;p&gt;Example: imagine we&amp;rsquo;ll flip a coin of unknown bias $10$ times. And suppose the probabilities obey Laplace&amp;rsquo;s &lt;a href=&#34;https://en.wikipedia.org/wiki/Rule_of_succession&#34; target=&#34;_blank&#34;&gt;Rule of Succession&lt;/a&gt; (a.k.a. Carnap&amp;rsquo;s  $\mathfrak{m}^*$ confirmation function). Then, if you believe each flip will land heads, your beliefs will all come out highly justified, i.e. highly central in your web of $10$ beliefs. But they&amp;rsquo;d have the same justification if you instead believed each flip will land tails.&lt;/p&gt;
-
-&lt;p&gt;Permissivism aside, this might seem a pretty bad result on its own. Even if our theory fixed which way you should go, say heads instead of tails, that would be pretty weird. Shouldn&amp;rsquo;t you wait for at least a few flips before forming any such beliefs?&lt;/p&gt;
-
-&lt;p&gt;The problem is that we haven&amp;rsquo;t required your beliefs to be inherently probable, only that they render one another probable. The Lockean and Humean theories have such a threshold requirement built-in, but we can build it into our theory too. We can just stipulate that a full belief should be highly probable, as well as being highly central in the network of all your beliefs.&lt;/p&gt;
- &lt;a class=&#34;footnote-return&#34; href=&#34;#fnref:coins&#34;&gt;&lt;sup&gt;[return]&lt;/sup&gt;&lt;/a&gt;&lt;/li&gt;
-&lt;li id=&#34;fn:epsilon&#34;&gt;More carefully, each arrow gets the minimum possible weight. If we use the &amp;ldquo;Google hack&amp;rdquo; from last time, this is some small positive number $\epsilon$ instead of $0$.
- &lt;a class=&#34;footnote-return&#34; href=&#34;#fnref:epsilon&#34;&gt;&lt;sup&gt;[return]&lt;/sup&gt;&lt;/a&gt;&lt;/li&gt;
-&lt;li id=&#34;fn:pollock&#34;&gt;Notice we&amp;rsquo;re borrowing the crux of &lt;a href=&#34;https://pdfs.semanticscholar.org/b22f/a2029aad762cbeec8d03659b0f8b71dd6d91.pdf&#34; target=&#34;_blank&#34;&gt;Pollock&amp;rsquo;s (1994)&lt;/a&gt; classic treatment of the lottery and preface paradoxes. We&amp;rsquo;re just plugging his observation into a different formal framework.
- &lt;a class=&#34;footnote-return&#34; href=&#34;#fnref:pollock&#34;&gt;&lt;sup&gt;[return]&lt;/sup&gt;&lt;/a&gt;&lt;/li&gt;
 &lt;/ol&gt;
 &lt;/div&gt;
 </description>
