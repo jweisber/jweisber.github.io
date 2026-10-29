@@ -77,7 +77,7 @@ contradicting transitivity. Whereas if $\epsilon &amp;lt; \epsilon&amp;rsquo;$, 
       <pubDate>Mon, 19 Oct 2026 00:00:02 -0500</pubDate>
       
       <guid>http://jonathanweisberg.org/publication/2026%20Geometric%20Pooling/</guid>
-      <description>&lt;p&gt;Evidence is univocal, not equivocal. Its implications don&amp;rsquo;t depend on our beliefs or values, the evidence says what it says. But that doesn&amp;rsquo;t mean there&amp;rsquo;s no room for rational disagreement between people with the same evidence. Evaluating evidence is a lot like polling an electorate: getting an accurate reading requires a bit of luck, and even the best pollsters are bound to get slightly different results. So even though evidence is univocal, rationality&amp;rsquo;s requirements are not &amp;ldquo;unique&amp;rdquo;. Understanding this resolves several puzzles to do with uniqueness and disagreement.&lt;/p&gt;
+      <description>&lt;p&gt;Much of our information comes to us indirectly, in the form of conclusions others have drawn from evidence they gathered. When we hear these conclusions, how can we modify our own opinions so as to gain the benefit of their evidence? In this paper, we study the method known as geometric pooling. We begin by raising objections to a recent argument in support of this method, and then turn to what we take to be better arguments in its favour; finally, we consider a further argument that appeals to the utility of geometric pooling in social settings, and we use our results from earlier in the paper to suggest an amendment.&lt;/p&gt;
 </description>
     </item>
     
@@ -87,7 +87,7 @@ contradicting transitivity. Whereas if $\epsilon &amp;lt; \epsilon&amp;rsquo;$, 
       <pubDate>Mon, 19 Oct 2026 00:00:01 -0500</pubDate>
       
       <guid>http://jonathanweisberg.org/publication/2025%20Jeffrey%20Pooling/</guid>
-      <description>&lt;p&gt;Evidence is univocal, not equivocal. Its implications don&amp;rsquo;t depend on our beliefs or values, the evidence says what it says. But that doesn&amp;rsquo;t mean there&amp;rsquo;s no room for rational disagreement between people with the same evidence. Evaluating evidence is a lot like polling an electorate: getting an accurate reading requires a bit of luck, and even the best pollsters are bound to get slightly different results. So even though evidence is univocal, rationality&amp;rsquo;s requirements are not &amp;ldquo;unique&amp;rdquo;. Understanding this resolves several puzzles to do with uniqueness and disagreement.&lt;/p&gt;
+      <description>&lt;p&gt;How should your opinion change in light of an epistemic peer&amp;rsquo;s? We show that the pooling rule known as &amp;ldquo;upco&amp;rdquo; is the unique answer satisfying some natural desiderata. If your revised opinion will impact your other views by Jeffrey conditionalization, then upco is the only standard pooling rule that ensures the order in which peers are consulted makes no difference. Popular alternatives like linear pooling, geometric pooling, and harmonic pooling cannot boast the same. In fact, no alternative can that possesses four minimal properties these proposals all share.&lt;/p&gt;
 </description>
     </item>
     
